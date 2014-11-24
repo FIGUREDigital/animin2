@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
+  <Tracking>
+    <ImageTarget name="tbo" size="200.000000 125.199997" />
+    <ImageTarget name="mandi" size="200.000000 125.199997" />
+    <ImageTarget name="pi" size="200.000000 125.199997" />
+    <ImageTarget name="kelsi" size="200.000000 125.199997" />
+    <ImageTarget name="demo" size="200.000000 125.199997" />
+  </Tracking>
+</QCARConfig>

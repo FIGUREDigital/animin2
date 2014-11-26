@@ -21,7 +21,7 @@ public class SceneZero : MonoBehaviour
 		GetOBB ();
 		StartCoroutine(ExtractObbDatasets());
 		#else
-		Application.LoadLevel ("TestMenu");
+		Application.LoadLevel ("Menu");
 		#endif
 	}
 

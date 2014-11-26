@@ -25,6 +25,7 @@ public class SceneZero : MonoBehaviour
 		#endif
 	}
 
+		#if UNITY_ANDROID
 	private void GetOBB ()
 	{
 		OBBDebug("GetOBB Called");
@@ -91,4 +92,5 @@ public class SceneZero : MonoBehaviour
 		if (errormess != null)
 			errormess.text += ("\n" + s);
 	}
+		#endif
 }

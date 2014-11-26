@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{941FAB35-3A66-E903-CDE7-D8D2F01C21E0}</ProjectGuid>
+	<ProjectGuid>{5D8A00FA-8D53-BDE4-1A68-D381E930603B}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -19,7 +19,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_4_6_0;UNITY_4_6;UNITY_STANDALONE_OSX;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_GAMECENTER;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_OSX;UNITY_PRO_LICENSE</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_4_6_0;UNITY_4_6;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -39,10 +39,10 @@
 	<Reference Include="System.Core" />
 	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
-	  <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
@@ -76,25 +76,241 @@
      <Compile Include="Assets\Qualcomm Augmented Reality\Scripts\WireframeBehaviour.cs" />
      <Compile Include="Assets\Qualcomm Augmented Reality\Scripts\WireframeTrackableEventHandler.cs" />
      <Compile Include="Assets\Qualcomm Augmented Reality\Scripts\WordBehaviour.cs" />
+     <Compile Include="Assets\Scripts\CreateProfile.cs" />
+     <Compile Include="Assets\Scripts\EnterProfile.cs" />
+     <Compile Include="Assets\Scripts\FacebookClickScript.cs" />
+     <Compile Include="Assets\Scripts\GoogleClickScript.cs" />
+     <Compile Include="Assets\Scripts\Menu\UI\GoToGameButton.cs" />
+     <Compile Include="Assets\Scripts\NonARPosRef.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Account.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\AchievementManager.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\AddressScreen.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\ArCameraManager.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\BlinkRef.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\CharacterChoiceManager.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\ChestScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\DownloadObbExample.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Enumerations\UIFunctionalityId.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\GameController.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Harrys\Alarm\Alarm.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Harrys\Alarm\CurrentTime.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Harrys\Alarm\LoopingScrollView.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Harrys\Alarm\SelectDay.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Harrys\BetweenSceneData.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Harrys\CameraChecker.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Harrys\DroppedItemScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Harrys\Flurry\EndFlurryLoadingTimer.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Harrys\Flurry\FlurryHandler.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Harrys\Flurry\FlurryLogger.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Harrys\Flurry\FlurryStartMinigame.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Harrys\GetOBB.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Harrys\ImageTargetFixer.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Harrys\MediaDebugDummy.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Harrys\Minigame 1\LoadProfileMG1.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Harrys\Minigame 1\TrackVFMG1.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Harrys\Minigame 2\LoadProfileMG2.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Harrys\Minigame 2\TrackVFMG2.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Harrys\NonARSceneReadout.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Harrys\PopulateTimer.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Harrys\RefreshUI.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Harrys\ScreenshotTest.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Harrys\TestPauser.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Harrys\Tutorial\CannonClashTutorialOneAnimationScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Harrys\Tutorial\HandPointer.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Harrys\Tutorial\ResetMinigameTutorials.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Harrys\Tutorial\TutorialHandler.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Harrys\Tutorial\TutorialNextButton.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Harrys\Tutorial\TutorialReader.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Harrys\UI\CardPostedUI.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Harrys\UI\OpenAniminDotMeHyperlink.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Harrys\UI\Parental Controls\CloseParentalControls.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Harrys\UI\Parental Controls\ConfirmParentalPasswordButton.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Harrys\UI\Parental Controls\CreatePasswordFromTextBox.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Harrys\UI\Parental Controls\EnterParentalPasswordButton.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Harrys\UI\Parental Controls\ParentalControls.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Harrys\UI\Parental Controls\SetParentPasswordButton.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Harrys\UI\Parental Controls\Toggleable.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Harrys\UI\PhotoFadeOut.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Harrys\UI\Privacy Policy\PrivacyPolicy.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Harrys\UI\Privacy Policy\PrvPlcyOKBttn.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Harrys\UI\Settings\ParentalContolsBttn.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Harrys\UI\Settings\PrivacyPolicyBttn.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Helpers.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\IdLabel.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\MultipleCardTrackerScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\ParentalGateway.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\PersistentData.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\PlayerProfileData.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\PrefabPool.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Print.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\RealtimeReporting.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\SaveAndLoad.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\AchievementsScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\AnimateCharacterOutPortalScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\AnimateChestObjectOutScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\AnimationControllerScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\BarrelCollisionScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\BlinkingScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\BulletAmmoLostScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\CameraFacingBillboardScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\CameraModelScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\CharacterChoiceItem.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\CharacterControllerScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\CharacterProgressScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\CharacterSwapManagementScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\CubeAnimatonScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\Debug\CheatDefs.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\Debug\DebugCheats.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\DestroyedBarrelScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\DetectBroomScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\DetectDragIconScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\DeviceCameraScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\DragDrop3DItemScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\DragDropMainBarItem.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\EDMBoxScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\EDMMixerScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\EnterCodeButton.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\EnterFriendsNameSubmitScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\EvilCharacterPatternMovementScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\EvolutionManager.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\FlashObjectScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\FlatScalerScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\GroundShadowScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\GunGameEnemyScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\GunsMinigameScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\HeadReferenceScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\InterfaceItemLinkToModelScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\JoystiqScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\LighbulbSwitchOnOffScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\MediaPlayerPluginScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\MinigameAnimationControllerScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\MinigameCollectorScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\MonsterSplatExplosionScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\MoveTutorialHandScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\MusicScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\NewJoystickScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\ObjectLookAtDeviceScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\OpenShop.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\OscillationUpDownScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\PlantScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\PopUpMainMenuScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\PortalAnimationScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\PortalScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\PresentationEventScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\ProfilesManagementScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\ProgressBarUVScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\ProjectileScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\ReferencedObjectScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\SerializableDictionary.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\SetTimerOnLabelScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\SmoothLookAt.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\SoundEngineScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\SpaceEnemyScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\SpaceshipMinigameScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\SpinObjectScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\SplatFadeScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\SwipeDragScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\TestVuforiaScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\ThrowAnimationScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\ThumbstickControlsScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\TrackMusicOnTickScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\TrackSongIndexScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\TrackSoundEffectOnTickScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\TrackVuforiaScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\TurdRotationScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\UI\AniminNameSprite.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\UI\Menu\BackToProfilesClickScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\UI\Menu\SelectAniminToPlayClickScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\UI\PurchaseBackButton.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\UI\UIClickButtonMasterScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\UI\UIGlobalVariablesScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\UI\UIPopupItemScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Scripts\UnlockCharacterManager.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Terrahard\ShopManager.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\Terrahard\TboEvolutionWarningScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\TestScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\UI\AchievementCount.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\UI\AchievementItem.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\UI\AchievementPanel.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\UI\AgeScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\UI\BackToProfileSelect.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\UI\BuyWithAnimin.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\UI\BuyWithCode.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\UI\BuyWithItunes.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\UI\BuyWithWebView.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\UI\CancelCreateAccessCodeScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\UI\CancelPurchaseScreen.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\UI\CloseButtons.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\UI\CloseWebView.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\UI\CreateUsernameButtonClickScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\UI\CreateUsernameFromTextboxClickScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\UI\EvoBar.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\UI\GatewayButton.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\UI\InputSecretCode.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\UI\InputUsername.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\UI\ItunesButtonUpdate.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\UI\LoginUser.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\UI\NewUser.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\UI\OpenInGamePurchaseView.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\UI\OpenSettingsInMainMenuScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\UI\PaypalChooseCharacterPanel.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\UI\PressEdmBoxKeyScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\UI\ProfileChecker.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\UI\PurchaseChoiceScreen.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\UI\RestorePurchases.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\UI\RetrieveUser.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\UI\ReturnToMenu.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\UI\ScreenshotScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\UI\SelectCharacterClickScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\UI\SendAccesCodeFromChatboxClickScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\UI\SendAccessCodeToServerButtonClickScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\UI\SendAddress.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\UI\ShowForm.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\UI\StartCreateProfileButtonScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\UI\UIManager.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\UI\UnlockCharacterButtonClickScript.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\UI\WebviewEnabler.cs" />
+     <Compile Include="Assets\Scripts\OLD\Code\messageChanger.cs" />
+     <Compile Include="Assets\Scripts\ProfilePanel.cs" />
+     <Compile Include="Assets\Scripts\Shaun\Scripts\Globals.cs" />
+     <Compile Include="Assets\Scripts\Shaun\Scripts\PlayerController.cs" />
+     <Compile Include="Assets\Scripts\TwitterClickScript.cs" />
+     <Compile Include="Assets\Scripts\UiPages.cs" />
      <Compile Include="Assets\Scripts\VuforiaHandler\AniminTrackableEventHandler.cs" />
-     <Compile Include="Assets\Scripts\VuforiaHandler\CameraHandler.cs" />
+     <Compile Include="Assets\Scripts\VuforiaHandler\MainARHandler.cs" />
+     <Compile Include="Assets\Scripts\YoutubeClickScript.cs" />
+     <Compile Include="Assets\Scripts\Zero\SceneZero.cs" />
+     <None Include="Assets\Plugins\Android\build.xml" />
      <None Include="Assets\Qualcomm Augmented Reality\Shaders\VertexLitWithZ.shader" />
+     <None Include="Assets\Plugins\Android\res\layout-v11\status_bar_ongoing_event_progress_bar.xml" />
      <None Include="Assets\license_3rdpartynotice.txt" />
      <None Include="Assets\Qualcomm Augmented Reality\Shaders\RenderVideoBackground.shader" />
      <None Include="Assets\readme_SDK.txt" />
+     <None Include="Assets\Plugins\Android\res\values-v9\styles.xml" />
+     <None Include="Assets\Plugins\Android\res\layout\main.xml" />
+     <None Include="Assets\Plugins\Android\res\values-v11\styles.xml" />
      <None Include="Assets\Editor\QCAR\WebcamProfiles\profiles.xml" />
      <None Include="Assets\Qualcomm Augmented Reality\Shaders\DepthMask.shader" />
+     <None Include="Assets\README.txt" />
+     <None Include="Assets\Plugins\Android\res\layout\status_bar_ongoing_event_progress_bar.xml" />
      <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
      <None Include="Assets\StreamingAssets\QCAR\Animin_release1.xml" />
      <None Include="Assets\Qualcomm Augmented Reality\Shaders\BrightTexture.shader" />
+     <None Include="Assets\Plugins\Android\res\values\styles.xml" />
+     <None Include="Assets\Plugins\Android\res\values\strings.xml" />
+     <None Include="Assets\Plugins\Android\res\values\main-strings.xml" />
      <None Include="Assets\Qualcomm Augmented Reality\Shaders\Text3D.shader" />
      <None Include="Assets\StreamingAssets\QCAR\unity.txt" />
  <Reference Include="UnityEngine.UI">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
+ <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="Qualcomm.Vuforia.UnityExtensions">
- <HintPath>/Users/drive/Documents/Animin2/Assets/Qualcomm Augmented Reality/Scripts/Internal/Qualcomm.Vuforia.UnityExtensions.dll</HintPath>
+ <HintPath>C:/Users/Drive/Documents/animin2/Assets/Qualcomm Augmented Reality/Scripts/Internal/Qualcomm.Vuforia.UnityExtensions.dll</HintPath>
  </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{AADB1B34-1900-80BB-8B08-71374D92CBEC}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

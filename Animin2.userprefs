@@ -1,6 +1,67 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ProfilePanel.cs">
+    <Files>
+      <File FileName="Assets\Scripts\OLD\Code\AddressScreen.cs" Line="35" Column="15" />
+      <File FileName="Assets\Scripts\OLD\Code\Harrys\Alarm\SelectDay.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OLD\Code\Harrys\ImageTargetFixer.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OLD\Code\Harrys\Minigame 1\TrackVFMG1.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OLD\Code\Harrys\Minigame 2\TrackVFMG2.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OLD\Code\Harrys\PopulateTimer.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OLD\Code\Harrys\Flurry\FlurryLogger.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OLD\Code\Harrys\RefreshUI.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OLD\Code\Harrys\Tutorial\CannonClashTutorialOneAnimationScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OLD\Code\Harrys\Tutorial\HandPointer.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OLD\Code\Harrys\Tutorial\TutorialHandler.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OLD\Code\Harrys\UI\CardPostedUI.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OLD\Code\Harrys\UI\Parental Controls\ConfirmParentalPasswordButton.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OLD\Code\Harrys\UI\Parental Controls\CreatePasswordFromTextBox.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OLD\Code\Harrys\UI\Parental Controls\EnterParentalPasswordButton.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OLD\Code\Harrys\UI\Parental Controls\Toggleable.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OLD\Code\Harrys\UI\PhotoFadeOut.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OLD\Code\Scripts\MoveTutorialHandScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OLD\Code\UI\BuyWithWebView.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OLD\Code\UI\CreateUsernameFromTextboxClickScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OLD\Code\UI\SendAccesCodeFromChatboxClickScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OLD\Code\UI\SendAccessCodeToServerButtonClickScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OLD\Code\Scripts\EnterFriendsNameSubmitScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OLD\Code\PersistentData.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OLD\Code\Print.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OLD\Code\Scripts\AchievementsScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OLD\Code\Scripts\CameraModelScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OLD\Code\Scripts\CharacterChoiceItem.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OLD\Code\Scripts\CharacterControllerScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OLD\Code\Scripts\CharacterProgressScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OLD\Code\Scripts\GunGameEnemyScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OLD\Code\Scripts\GunsMinigameScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OLD\Code\GameController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OLD\Code\Scripts\JoystiqScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OLD\Code\Scripts\MediaPlayerPluginScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OLD\Code\Scripts\MinigameCollectorScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OLD\Code\Scripts\NewJoystickScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OLD\Code\Scripts\ProjectileScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OLD\Code\Scripts\SetTimerOnLabelScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OLD\Code\Scripts\SpaceshipMinigameScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OLD\Code\Scripts\TrackMusicOnTickScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OLD\Code\Scripts\TrackVuforiaScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OLD\Code\Scripts\UI\AniminNameSprite.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OLD\Code\Scripts\UI\UIClickButtonMasterScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OLD\Code\Scripts\UI\UIGlobalVariablesScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OLD\Code\UI\AchievementItem.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OLD\Code\UI\AgeScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OLD\Code\UI\EvoBar.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OLD\Code\UI\InputSecretCode.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OLD\Code\UI\InputUsername.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OLD\Code\UI\PressEdmBoxKeyScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OLD\Code\UI\ProfileChecker.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OLD\Code\UI\ScreenshotScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OLD\Code\UI\UIManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\OLD\Code\messageChanger.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Shaun\Scripts\PlayerController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\CreateProfile.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\ProfilePanel.cs" Line="21" Column="20" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

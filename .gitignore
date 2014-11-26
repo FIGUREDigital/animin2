@@ -1,0 +1,11 @@
+Temp/
+obj/
+target/
+Library/
+*.dll
+*.mdb
+*.csproj
+*.userprefs
+*.unityproj
+*.sln
+*.meta

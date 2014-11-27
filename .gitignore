@@ -2,7 +2,6 @@ Temp/
 obj/
 target/
 Library/
-*.dll
 *.mdb
 *.csproj
 *.userprefs

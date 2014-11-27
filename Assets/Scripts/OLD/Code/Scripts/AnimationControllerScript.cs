@@ -665,8 +665,9 @@ public class AnimationControllerScript : MonoBehaviour
                     case 1:
                     case 2:
                         {
-                            if (MediaPlayerPluginScript.IsPlaying)
-                            {
+                            //if (MediaPlayerPluginScript.IsPlaying)
+                            if (false)
+							{
                                 int random = UnityEngine.Random.Range(0, 2);
                                 if (random == 0)
                                 {
@@ -679,8 +680,9 @@ public class AnimationControllerScript : MonoBehaviour
                             }
                             else
                             {
-                                if (!MediaPlayerPluginScript.IsPlaying)
-                                {
+                                //if (!MediaPlayerPluginScript.IsPlaying)
+                                if(true)
+								{
 						
                                     int random = UnityEngine.Random.Range(0, 4);
                                     if (random == 0)
@@ -865,7 +867,7 @@ public class AnimationControllerScript : MonoBehaviour
         }
         if (IsIdle)
         {
-            if (MediaPlayerPluginScript.IsPlaying || MediaDebugDummy.On)
+            //if (MediaPlayerPluginScript.IsPlaying || MediaDebugDummy.On)
             {
                 //IsDanceBOP = true;
             }

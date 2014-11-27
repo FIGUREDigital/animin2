@@ -103,7 +103,11 @@ public class ItunesButtonUpdate : MonoBehaviour
 	}
 #endif
 
+		#if UNITY_IOS
+		void purchaseUnsuccessful( string response )
+		#elif UNITY_ANDROID
 		void purchaseUnsuccessful( string response, int errorcode )
+		#endif
 	{
 		Debug.Log("Purchase Unsuccessful, response: " + response);
 		ProfilesManagementScript.Singleton.LoadingSpinner.SetActive(false);

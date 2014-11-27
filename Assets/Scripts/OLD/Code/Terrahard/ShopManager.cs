@@ -171,7 +171,11 @@ public class ShopManager
 	}
 #endif
 
+		#if UNITY_IOS
+		void purchaseFailed( string error )
+		#elif UNITY_ANDROID
 		void purchaseFailed( string error, int errorcode )
+		#endif
 	{
         
         CurrentPurchaseStatus = PurchaseStatus.Fail;

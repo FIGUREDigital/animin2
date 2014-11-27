@@ -121,16 +121,11 @@ class MyEditorScript {
 		string text = File.ReadAllText(file);
 		text = text.Replace(@"com.figuredigital.${PRODUCT_NAME}", @"com.do.dog");
 
-		Debug.Log ("Finding : [</dict>]");
 		int iOfEnd = text.IndexOf ("</dict>");
 
 		if (iOfEnd != -1) {
-
-			Debug.Log (">FOUND : [</dict>]; at ["+iOfEnd+"];");
 			string s1 = text.Insert (iOfEnd, "\t<key>UIInterfaceOrientation</key>\n\t<string>UIInterfaceOrientationPortrait</string>");
-		} else {
-			Debug.Log (">NOT FOUND : [</dict>]");
-		}
+		} 
 
 		File.WriteAllText(file, text);
 

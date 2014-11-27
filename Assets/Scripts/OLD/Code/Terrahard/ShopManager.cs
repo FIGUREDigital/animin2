@@ -171,7 +171,7 @@ public class ShopManager
 	}
 #endif
 
-	void purchaseFailed( string error )
+		void purchaseFailed( string error, int errorcode )
 	{
         
         CurrentPurchaseStatus = PurchaseStatus.Fail;

@@ -52,7 +52,7 @@ public class SendAccessCodeToServerButtonClickScript : MonoBehaviour {
 		UnregisterListeners();
 	}
 #endif
-	void purchaseUnsuccessful( string transaction )
+		void purchaseUnsuccessful( string transaction, int errorcode )
 	{
 		ProfilesManagementScript.Singleton.LoadingSpinner.SetActive(false);
 		ProfilesManagementScript.Singleton.AniminsScreen.SetActive(true);

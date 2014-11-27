@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: f48b7449317a8447c8b84b31d890d80c
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - FlashShader: {fileID: 4800000, guid: 6d0a2a911161e49c18f33c2dcf9ac46f, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 

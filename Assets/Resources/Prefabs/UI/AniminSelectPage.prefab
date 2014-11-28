@@ -779,10 +779,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 22400014}
   m_RootOrder: 1
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -490.5, y: 259.5}
-  m_SizeDelta: {x: -1081, y: -619}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 155.5, y: -120.5}
+  m_SizeDelta: {x: 211, y: 141}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22400012
 RectTransform:

@@ -1,0 +1,148 @@
+fileFormatVersion: 2
+guid: dd81fee4df9d84142aa25934bbc1987c
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: ke_baby:skin_bn_cog_01_joint
+    100002: ke_baby:skin_bn_hair_01_joint
+    100004: ke_baby:skin_bn_hair_02_joint
+    100006: ke_baby:skin_bn_hair_03_joint
+    100008: ke_baby:skin_bn_hair_04_joint
+    100010: ke_baby:skin_bn_hair_05_joint
+    100012: ke_baby:skin_bn_hair_06_joint
+    100014: ke_baby:skin_bn_hair_07_joint
+    100016: ke_baby:skin_bn_head_01_joint
+    100018: ke_baby:skin_bn_head_end_01_joint
+    100020: ke_baby:skin_bn_l_arm_01_joint
+    100022: ke_baby:skin_bn_l_arm_end_01_joint
+    100024: ke_baby:skin_bn_l_ear_01_joint
+    100026: ke_baby:skin_bn_l_earTip_joint
+    100028: ke_baby:skin_bn_l_forearm_01_joint
+    100030: ke_baby:skin_bn_l_leg_01_joint
+    100032: ke_baby:skin_bn_l_leg_end_01_joint
+    100034: ke_baby:skin_bn_l_nappy_01_joint
+    100036: ke_baby:skin_bn_l_shin_01_joint
+    100038: ke_baby:skin_bn_l_shoulder_01_joint
+    100040: ke_baby:skin_bn_nappy_01_joint
+    100042: ke_baby:skin_bn_nappy_top_01_joint
+    100044: ke_baby:skin_bn_neck_01_joint
+    100046: ke_baby:skin_bn_nose_01_joint
+    100048: ke_baby:skin_bn_nose_end_01_joint
+    100050: ke_baby:skin_bn_r_arm_01_joint
+    100052: ke_baby:skin_bn_r_arm_end_01_joint
+    100054: ke_baby:skin_bn_r_ear_01_joint
+    100056: ke_baby:skin_bn_r_earTip_joint
+    100058: ke_baby:skin_bn_r_forearm_01_joint
+    100060: ke_baby:skin_bn_r_nappy_01_joint
+    100062: ke_baby:skin_bn_r_reg_01_joint
+    100064: ke_baby:skin_bn_r_reg_end_01_joint
+    100066: ke_baby:skin_bn_r_shin_01_joint
+    100068: ke_baby:skin_bn_r_shourder_01_joint
+    100070: ke_baby:skin_bn_spine_01_joint
+    100072: ke_baby:skin_bn_spine_02_joint
+    100074: ke_baby:skin_bn_spine_03_joint
+    100076: ke_baby:skin_bn_spine_04_joint
+    100078: ke_baby:skin_bn_spine_05_joint
+    100080: ke_baby:skin_bn_spine_06_joint
+    100082: ke_baby:skin_bn_spine_07_joint
+    100084: //RootNode
+    400000: ke_baby:skin_bn_cog_01_joint
+    400002: ke_baby:skin_bn_hair_01_joint
+    400004: ke_baby:skin_bn_hair_02_joint
+    400006: ke_baby:skin_bn_hair_03_joint
+    400008: ke_baby:skin_bn_hair_04_joint
+    400010: ke_baby:skin_bn_hair_05_joint
+    400012: ke_baby:skin_bn_hair_06_joint
+    400014: ke_baby:skin_bn_hair_07_joint
+    400016: ke_baby:skin_bn_head_01_joint
+    400018: ke_baby:skin_bn_head_end_01_joint
+    400020: ke_baby:skin_bn_l_arm_01_joint
+    400022: ke_baby:skin_bn_l_arm_end_01_joint
+    400024: ke_baby:skin_bn_l_ear_01_joint
+    400026: ke_baby:skin_bn_l_earTip_joint
+    400028: ke_baby:skin_bn_l_forearm_01_joint
+    400030: ke_baby:skin_bn_l_leg_01_joint
+    400032: ke_baby:skin_bn_l_leg_end_01_joint
+    400034: ke_baby:skin_bn_l_nappy_01_joint
+    400036: ke_baby:skin_bn_l_shin_01_joint
+    400038: ke_baby:skin_bn_l_shoulder_01_joint
+    400040: ke_baby:skin_bn_nappy_01_joint
+    400042: ke_baby:skin_bn_nappy_top_01_joint
+    400044: ke_baby:skin_bn_neck_01_joint
+    400046: ke_baby:skin_bn_nose_01_joint
+    400048: ke_baby:skin_bn_nose_end_01_joint
+    400050: ke_baby:skin_bn_r_arm_01_joint
+    400052: ke_baby:skin_bn_r_arm_end_01_joint
+    400054: ke_baby:skin_bn_r_ear_01_joint
+    400056: ke_baby:skin_bn_r_earTip_joint
+    400058: ke_baby:skin_bn_r_forearm_01_joint
+    400060: ke_baby:skin_bn_r_nappy_01_joint
+    400062: ke_baby:skin_bn_r_reg_01_joint
+    400064: ke_baby:skin_bn_r_reg_end_01_joint
+    400066: ke_baby:skin_bn_r_shin_01_joint
+    400068: ke_baby:skin_bn_r_shourder_01_joint
+    400070: ke_baby:skin_bn_spine_01_joint
+    400072: ke_baby:skin_bn_spine_02_joint
+    400074: ke_baby:skin_bn_spine_03_joint
+    400076: ke_baby:skin_bn_spine_04_joint
+    400078: ke_baby:skin_bn_spine_05_joint
+    400080: ke_baby:skin_bn_spine_06_joint
+    400082: ke_baby:skin_bn_spine_07_joint
+    400084: //RootNode
+    7400000: Take 001
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 1
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: d9e6b7c3bf8624beaad19711c577df1c,
+    type: 3}
+  animationType: 2
+  additionalBone: 0
+  userData: 

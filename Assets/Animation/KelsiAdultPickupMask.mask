@@ -1,0 +1,220 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1011 &101100000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: KelsiAdultPickupMask
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: ke_adult:_character
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:cog_joint
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:cog_joint/ke_adult:hip_l_joint
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:cog_joint/ke_adult:hip_l_joint/ke_adult:knee_l_joint
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:cog_joint/ke_adult:hip_l_joint/ke_adult:knee_l_joint/ke_adult:ankle_l_joint
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:cog_joint/ke_adult:hip_r_joint
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:cog_joint/ke_adult:hip_r_joint/ke_adult:knee_r_joint
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:cog_joint/ke_adult:hip_r_joint/ke_adult:knee_r_joint/ke_adult:ankle_r_joint
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:cog_joint/ke_adult:object_joint
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:cog_joint/ke_adult:spine_1_joint
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:cog_joint/ke_adult:spine_1_joint/ke_adult:spine_2_joint
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:cog_joint/ke_adult:spine_1_joint/ke_adult:spine_2_joint/ke_adult:spine_3_joint
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:cog_joint/ke_adult:spine_1_joint/ke_adult:spine_2_joint/ke_adult:spine_3_joint/ke_adult:spine_4_joint
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:cog_joint/ke_adult:spine_1_joint/ke_adult:spine_2_joint/ke_adult:spine_3_joint/ke_adult:spine_4_joint/ke_adult:spine_5_joint
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:cog_joint/ke_adult:spine_1_joint/ke_adult:spine_2_joint/ke_adult:spine_3_joint/ke_adult:spine_4_joint/ke_adult:spine_5_joint/ke_adult:spine_6_joint
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:cog_joint/ke_adult:spine_1_joint/ke_adult:spine_2_joint/ke_adult:spine_3_joint/ke_adult:spine_4_joint/ke_adult:spine_5_joint/ke_adult:spine_6_joint/ke_adult:clavicle_l_joint
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:cog_joint/ke_adult:spine_1_joint/ke_adult:spine_2_joint/ke_adult:spine_3_joint/ke_adult:spine_4_joint/ke_adult:spine_5_joint/ke_adult:spine_6_joint/ke_adult:clavicle_l_joint/ke_adult:shoulder_l_joint
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:cog_joint/ke_adult:spine_1_joint/ke_adult:spine_2_joint/ke_adult:spine_3_joint/ke_adult:spine_4_joint/ke_adult:spine_5_joint/ke_adult:spine_6_joint/ke_adult:clavicle_l_joint/ke_adult:shoulder_l_joint/ke_adult:elbow_l_joint
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:cog_joint/ke_adult:spine_1_joint/ke_adult:spine_2_joint/ke_adult:spine_3_joint/ke_adult:spine_4_joint/ke_adult:spine_5_joint/ke_adult:spine_6_joint/ke_adult:clavicle_l_joint/ke_adult:shoulder_l_joint/ke_adult:elbow_l_joint/ke_adult:wrist_l_joint
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:cog_joint/ke_adult:spine_1_joint/ke_adult:spine_2_joint/ke_adult:spine_3_joint/ke_adult:spine_4_joint/ke_adult:spine_5_joint/ke_adult:spine_6_joint/ke_adult:clavicle_r_joint
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:cog_joint/ke_adult:spine_1_joint/ke_adult:spine_2_joint/ke_adult:spine_3_joint/ke_adult:spine_4_joint/ke_adult:spine_5_joint/ke_adult:spine_6_joint/ke_adult:clavicle_r_joint/ke_adult:shoulder_r_joint
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:cog_joint/ke_adult:spine_1_joint/ke_adult:spine_2_joint/ke_adult:spine_3_joint/ke_adult:spine_4_joint/ke_adult:spine_5_joint/ke_adult:spine_6_joint/ke_adult:clavicle_r_joint/ke_adult:shoulder_r_joint/ke_adult:elbow_r_joint
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:cog_joint/ke_adult:spine_1_joint/ke_adult:spine_2_joint/ke_adult:spine_3_joint/ke_adult:spine_4_joint/ke_adult:spine_5_joint/ke_adult:spine_6_joint/ke_adult:clavicle_r_joint/ke_adult:shoulder_r_joint/ke_adult:elbow_r_joint/ke_adult:wrist_r_joint
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:cog_joint/ke_adult:spine_1_joint/ke_adult:spine_2_joint/ke_adult:spine_3_joint/ke_adult:spine_4_joint/ke_adult:spine_5_joint/ke_adult:spine_6_joint/ke_adult:neck_joint
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:cog_joint/ke_adult:spine_1_joint/ke_adult:spine_2_joint/ke_adult:spine_3_joint/ke_adult:spine_4_joint/ke_adult:spine_5_joint/ke_adult:spine_6_joint/ke_adult:neck_joint/ke_adult:head_joint
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:cog_joint/ke_adult:spine_1_joint/ke_adult:spine_2_joint/ke_adult:spine_3_joint/ke_adult:spine_4_joint/ke_adult:spine_5_joint/ke_adult:spine_6_joint/ke_adult:neck_joint/ke_adult:head_joint/ke_adult:hair_1_joint
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:cog_joint/ke_adult:spine_1_joint/ke_adult:spine_2_joint/ke_adult:spine_3_joint/ke_adult:spine_4_joint/ke_adult:spine_5_joint/ke_adult:spine_6_joint/ke_adult:neck_joint/ke_adult:head_joint/ke_adult:hair_1_joint/ke_adult:hair_2_joint
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:cog_joint/ke_adult:spine_1_joint/ke_adult:spine_2_joint/ke_adult:spine_3_joint/ke_adult:spine_4_joint/ke_adult:spine_5_joint/ke_adult:spine_6_joint/ke_adult:neck_joint/ke_adult:head_joint/ke_adult:hair_1_joint/ke_adult:hair_2_joint/ke_adult:hair_3_joint
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:cog_joint/ke_adult:spine_1_joint/ke_adult:spine_2_joint/ke_adult:spine_3_joint/ke_adult:spine_4_joint/ke_adult:spine_5_joint/ke_adult:spine_6_joint/ke_adult:neck_joint/ke_adult:head_joint/ke_adult:hair_1_joint/ke_adult:hair_2_joint/ke_adult:hair_3_joint/ke_adult:hair_4_joint
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:cog_joint/ke_adult:spine_1_joint/ke_adult:spine_2_joint/ke_adult:spine_3_joint/ke_adult:spine_4_joint/ke_adult:spine_5_joint/ke_adult:spine_6_joint/ke_adult:neck_joint/ke_adult:head_joint/ke_adult:nose_joint
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:cog_joint/ke_adult:spine_1_joint/ke_adult:spine_2_joint/ke_adult:spine_3_joint/ke_adult:spine_4_joint/ke_adult:spine_5_joint/ke_adult:spine_6_joint/ke_adult:spine_7_joint
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:gIKSpine
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:gIKSpine/ke_adult:gIKSpineXTR
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:gIKSpine/ke_adult:gIKSpineXTR/ke_adult:IKSpineCl_2Handle
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:gIKSpine/ke_adult:gIKSpineXTR/ke_adult:IKSpineCurve
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:gIKSpine/ke_adult:phipCtrl
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:gIKSpine/ke_adult:phipCtrl/ke_adult:hipCtrlOrientGrp
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:gIKSpine/ke_adult:phipCtrl/ke_adult:hipCtrlOrientGrp/ke_adult:hip_Ctrl
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:gIKSpine/ke_adult:phipCtrl/ke_adult:hipCtrlOrientGrp/ke_adult:hip_Ctrl/ke_adult:Ccog_joint
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:gIKSpine/ke_adult:phipCtrl/ke_adult:hipCtrlOrientGrp/ke_adult:hip_Ctrl/ke_adult:IKSpineCl_0Handle
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:gIKSpine/ke_adult:phipCtrl/ke_adult:hipCtrlOrientGrp/ke_adult:hip_Ctrl/ke_adult:IKSpineCl_1Handle
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:gIKSpine/ke_adult:pshoulderCtrl
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:gIKSpine/ke_adult:pshoulderCtrl/ke_adult:shoulder_Ctrl
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:gIKSpine/ke_adult:pshoulderCtrl/ke_adult:shoulder_Ctrl/ke_adult:IKSpineCl_3Handle
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:gIKSpine/ke_adult:pshoulderCtrl/ke_adult:shoulder_Ctrl/ke_adult:IKSpineCl_4Handle
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:gIKSpine/ke_adult:pshoulderCtrl/ke_adult:shoulder_Ctrl/ke_adult:locAlign_clavicle_l_joint
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:gIKSpine/ke_adult:pshoulderCtrl/ke_adult:shoulder_Ctrl/ke_adult:locAlign_clavicle_l_joint/ke_adult:FKClavicle_Ctrl
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:gIKSpine/ke_adult:pshoulderCtrl/ke_adult:shoulder_Ctrl/ke_adult:locAlign_clavicle_l_joint/ke_adult:FKClavicle_Ctrl/ke_adult:locAlign_shoulder_l_joint
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:gIKSpine/ke_adult:pshoulderCtrl/ke_adult:shoulder_Ctrl/ke_adult:locAlign_clavicle_l_joint/ke_adult:FKClavicle_Ctrl/ke_adult:locAlign_shoulder_l_joint/ke_adult:FKShoulder_Ctrl
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:gIKSpine/ke_adult:pshoulderCtrl/ke_adult:shoulder_Ctrl/ke_adult:locAlign_clavicle_l_joint/ke_adult:FKClavicle_Ctrl/ke_adult:locAlign_shoulder_l_joint/ke_adult:FKShoulder_Ctrl/ke_adult:locAlign_elbow_l_joint
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:gIKSpine/ke_adult:pshoulderCtrl/ke_adult:shoulder_Ctrl/ke_adult:locAlign_clavicle_l_joint/ke_adult:FKClavicle_Ctrl/ke_adult:locAlign_shoulder_l_joint/ke_adult:FKShoulder_Ctrl/ke_adult:locAlign_elbow_l_joint/ke_adult:FKElbow_Ctrl
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:gIKSpine/ke_adult:pshoulderCtrl/ke_adult:shoulder_Ctrl/ke_adult:locAlign_clavicle_r_joint
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:gIKSpine/ke_adult:pshoulderCtrl/ke_adult:shoulder_Ctrl/ke_adult:locAlign_clavicle_r_joint/ke_adult:FKClavicle_Ctrl
+      1
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:gIKSpine/ke_adult:pshoulderCtrl/ke_adult:shoulder_Ctrl/ke_adult:locAlign_clavicle_r_joint/ke_adult:FKClavicle_Ctrl
+      1/ke_adult:locAlign_shoulder_r_joint
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:gIKSpine/ke_adult:pshoulderCtrl/ke_adult:shoulder_Ctrl/ke_adult:locAlign_clavicle_r_joint/ke_adult:FKClavicle_Ctrl
+      1/ke_adult:locAlign_shoulder_r_joint/ke_adult:FKShoulder_Ctrl 1
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:gIKSpine/ke_adult:pshoulderCtrl/ke_adult:shoulder_Ctrl/ke_adult:locAlign_clavicle_r_joint/ke_adult:FKClavicle_Ctrl
+      1/ke_adult:locAlign_shoulder_r_joint/ke_adult:FKShoulder_Ctrl 1/ke_adult:locAlign_elbow_r_joint
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:gIKSpine/ke_adult:pshoulderCtrl/ke_adult:shoulder_Ctrl/ke_adult:locAlign_clavicle_r_joint/ke_adult:FKClavicle_Ctrl
+      1/ke_adult:locAlign_shoulder_r_joint/ke_adult:FKShoulder_Ctrl 1/ke_adult:locAlign_elbow_r_joint/ke_adult:FKElbow_Ctrl
+      1
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:gIKSpine/ke_adult:pshoulderCtrl/ke_adult:shoulder_Ctrl/ke_adult:locAlign_head_joint
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:gIKSpine/ke_adult:pshoulderCtrl/ke_adult:shoulder_Ctrl/ke_adult:locAlign_head_joint/ke_adult:Head_Ctrl
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:gIKSpine/ke_adult:pshoulderCtrl/ke_adult:shoulder_Ctrl/ke_adult:locAlign_head_joint/ke_adult:Head_Ctrl/ke_adult:locAlign_hair_2_joint
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:gIKSpine/ke_adult:pshoulderCtrl/ke_adult:shoulder_Ctrl/ke_adult:locAlign_head_joint/ke_adult:Head_Ctrl/ke_adult:locAlign_hair_2_joint/ke_adult:Hair_1_Ctrl
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:gIKSpine/ke_adult:pshoulderCtrl/ke_adult:shoulder_Ctrl/ke_adult:locAlign_head_joint/ke_adult:Head_Ctrl/ke_adult:locAlign_hair_2_joint/ke_adult:Hair_1_Ctrl/ke_adult:locAlign_hair_3_joint
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:gIKSpine/ke_adult:pshoulderCtrl/ke_adult:shoulder_Ctrl/ke_adult:locAlign_head_joint/ke_adult:Head_Ctrl/ke_adult:locAlign_hair_2_joint/ke_adult:Hair_1_Ctrl/ke_adult:locAlign_hair_3_joint/ke_adult:Hair_2_Ctrl
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:gIKSpine/ke_adult:pshoulderCtrl/ke_adult:shoulder_Ctrl/ke_adult:locAlign_head_joint/ke_adult:Head_Ctrl/ke_adult:locAlign_nose_joint
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:gIKSpine/ke_adult:pshoulderCtrl/ke_adult:shoulder_Ctrl/ke_adult:locAlign_head_joint/ke_adult:Head_Ctrl/ke_adult:locAlign_nose_joint/ke_adult:Nose_Ctrl
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:main_Ctrl
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:main_Ctrl/ke_adult:object_anim
+    m_Weight: 0
+  - m_Path: ke_adult:_character/ke_adult:main_Ctrl/ke_adult:object_anim/ke_adult:object_offset_anim
+    m_Weight: 0
+  - m_Path: ke_adult:body
+    m_Weight: 0
+  - m_Path: ke_adult:bow
+    m_Weight: 0
+  - m_Path: ke_adult:hair
+    m_Weight: 0
+  - m_Path: ke_adult:skin_cog_joint
+    m_Weight: 0
+  - m_Path: ke_adult:skin_cog_joint/ke_adult:skin_hip_l_joint
+    m_Weight: 0
+  - m_Path: ke_adult:skin_cog_joint/ke_adult:skin_hip_l_joint/ke_adult:skin_knee_l_joint
+    m_Weight: 0
+  - m_Path: ke_adult:skin_cog_joint/ke_adult:skin_hip_l_joint/ke_adult:skin_knee_l_joint/ke_adult:skin_ankle_l_joint
+    m_Weight: 0
+  - m_Path: ke_adult:skin_cog_joint/ke_adult:skin_hip_r_joint
+    m_Weight: 0
+  - m_Path: ke_adult:skin_cog_joint/ke_adult:skin_hip_r_joint/ke_adult:skin_knee_r_joint
+    m_Weight: 0
+  - m_Path: ke_adult:skin_cog_joint/ke_adult:skin_hip_r_joint/ke_adult:skin_knee_r_joint/ke_adult:skin_ankle_r_joint
+    m_Weight: 0
+  - m_Path: ke_adult:skin_cog_joint/ke_adult:skin_object_joint
+    m_Weight: 0
+  - m_Path: ke_adult:skin_cog_joint/ke_adult:skin_spine_1_joint
+    m_Weight: 0
+  - m_Path: ke_adult:skin_cog_joint/ke_adult:skin_spine_1_joint/ke_adult:skin_spine_2_joint
+    m_Weight: 0
+  - m_Path: ke_adult:skin_cog_joint/ke_adult:skin_spine_1_joint/ke_adult:skin_spine_2_joint/ke_adult:skin_spine_3_joint
+    m_Weight: 0
+  - m_Path: ke_adult:skin_cog_joint/ke_adult:skin_spine_1_joint/ke_adult:skin_spine_2_joint/ke_adult:skin_spine_3_joint/ke_adult:skin_spine_4_joint
+    m_Weight: 0
+  - m_Path: ke_adult:skin_cog_joint/ke_adult:skin_spine_1_joint/ke_adult:skin_spine_2_joint/ke_adult:skin_spine_3_joint/ke_adult:skin_spine_4_joint/ke_adult:skin_spine_5_joint
+    m_Weight: 0
+  - m_Path: ke_adult:skin_cog_joint/ke_adult:skin_spine_1_joint/ke_adult:skin_spine_2_joint/ke_adult:skin_spine_3_joint/ke_adult:skin_spine_4_joint/ke_adult:skin_spine_5_joint/ke_adult:skin_spine_6_joint
+    m_Weight: 0
+  - m_Path: ke_adult:skin_cog_joint/ke_adult:skin_spine_1_joint/ke_adult:skin_spine_2_joint/ke_adult:skin_spine_3_joint/ke_adult:skin_spine_4_joint/ke_adult:skin_spine_5_joint/ke_adult:skin_spine_6_joint/ke_adult:skin_clavicle_l_joint
+    m_Weight: 1
+  - m_Path: ke_adult:skin_cog_joint/ke_adult:skin_spine_1_joint/ke_adult:skin_spine_2_joint/ke_adult:skin_spine_3_joint/ke_adult:skin_spine_4_joint/ke_adult:skin_spine_5_joint/ke_adult:skin_spine_6_joint/ke_adult:skin_clavicle_l_joint/ke_adult:skin_shoulder_l_joint
+    m_Weight: 1
+  - m_Path: ke_adult:skin_cog_joint/ke_adult:skin_spine_1_joint/ke_adult:skin_spine_2_joint/ke_adult:skin_spine_3_joint/ke_adult:skin_spine_4_joint/ke_adult:skin_spine_5_joint/ke_adult:skin_spine_6_joint/ke_adult:skin_clavicle_l_joint/ke_adult:skin_shoulder_l_joint/ke_adult:skin_elbow_l_joint
+    m_Weight: 1
+  - m_Path: ke_adult:skin_cog_joint/ke_adult:skin_spine_1_joint/ke_adult:skin_spine_2_joint/ke_adult:skin_spine_3_joint/ke_adult:skin_spine_4_joint/ke_adult:skin_spine_5_joint/ke_adult:skin_spine_6_joint/ke_adult:skin_clavicle_l_joint/ke_adult:skin_shoulder_l_joint/ke_adult:skin_elbow_l_joint/ke_adult:skin_wrist_l_joint
+    m_Weight: 1
+  - m_Path: ke_adult:skin_cog_joint/ke_adult:skin_spine_1_joint/ke_adult:skin_spine_2_joint/ke_adult:skin_spine_3_joint/ke_adult:skin_spine_4_joint/ke_adult:skin_spine_5_joint/ke_adult:skin_spine_6_joint/ke_adult:skin_clavicle_r_joint
+    m_Weight: 1
+  - m_Path: ke_adult:skin_cog_joint/ke_adult:skin_spine_1_joint/ke_adult:skin_spine_2_joint/ke_adult:skin_spine_3_joint/ke_adult:skin_spine_4_joint/ke_adult:skin_spine_5_joint/ke_adult:skin_spine_6_joint/ke_adult:skin_clavicle_r_joint/ke_adult:skin_shoulder_r_joint
+    m_Weight: 1
+  - m_Path: ke_adult:skin_cog_joint/ke_adult:skin_spine_1_joint/ke_adult:skin_spine_2_joint/ke_adult:skin_spine_3_joint/ke_adult:skin_spine_4_joint/ke_adult:skin_spine_5_joint/ke_adult:skin_spine_6_joint/ke_adult:skin_clavicle_r_joint/ke_adult:skin_shoulder_r_joint/ke_adult:skin_elbow_r_joint
+    m_Weight: 1
+  - m_Path: ke_adult:skin_cog_joint/ke_adult:skin_spine_1_joint/ke_adult:skin_spine_2_joint/ke_adult:skin_spine_3_joint/ke_adult:skin_spine_4_joint/ke_adult:skin_spine_5_joint/ke_adult:skin_spine_6_joint/ke_adult:skin_clavicle_r_joint/ke_adult:skin_shoulder_r_joint/ke_adult:skin_elbow_r_joint/ke_adult:skin_wrist_r_joint
+    m_Weight: 1
+  - m_Path: ke_adult:skin_cog_joint/ke_adult:skin_spine_1_joint/ke_adult:skin_spine_2_joint/ke_adult:skin_spine_3_joint/ke_adult:skin_spine_4_joint/ke_adult:skin_spine_5_joint/ke_adult:skin_spine_6_joint/ke_adult:skin_neck_joint
+    m_Weight: 0
+  - m_Path: ke_adult:skin_cog_joint/ke_adult:skin_spine_1_joint/ke_adult:skin_spine_2_joint/ke_adult:skin_spine_3_joint/ke_adult:skin_spine_4_joint/ke_adult:skin_spine_5_joint/ke_adult:skin_spine_6_joint/ke_adult:skin_neck_joint/ke_adult:skin_head_joint
+    m_Weight: 0
+  - m_Path: ke_adult:skin_cog_joint/ke_adult:skin_spine_1_joint/ke_adult:skin_spine_2_joint/ke_adult:skin_spine_3_joint/ke_adult:skin_spine_4_joint/ke_adult:skin_spine_5_joint/ke_adult:skin_spine_6_joint/ke_adult:skin_neck_joint/ke_adult:skin_head_joint/ke_adult:skin_hair_1_joint
+    m_Weight: 0
+  - m_Path: ke_adult:skin_cog_joint/ke_adult:skin_spine_1_joint/ke_adult:skin_spine_2_joint/ke_adult:skin_spine_3_joint/ke_adult:skin_spine_4_joint/ke_adult:skin_spine_5_joint/ke_adult:skin_spine_6_joint/ke_adult:skin_neck_joint/ke_adult:skin_head_joint/ke_adult:skin_hair_1_joint/ke_adult:skin_hair_2_joint
+    m_Weight: 0
+  - m_Path: ke_adult:skin_cog_joint/ke_adult:skin_spine_1_joint/ke_adult:skin_spine_2_joint/ke_adult:skin_spine_3_joint/ke_adult:skin_spine_4_joint/ke_adult:skin_spine_5_joint/ke_adult:skin_spine_6_joint/ke_adult:skin_neck_joint/ke_adult:skin_head_joint/ke_adult:skin_hair_1_joint/ke_adult:skin_hair_2_joint/ke_adult:skin_hair_3_joint
+    m_Weight: 0
+  - m_Path: ke_adult:skin_cog_joint/ke_adult:skin_spine_1_joint/ke_adult:skin_spine_2_joint/ke_adult:skin_spine_3_joint/ke_adult:skin_spine_4_joint/ke_adult:skin_spine_5_joint/ke_adult:skin_spine_6_joint/ke_adult:skin_neck_joint/ke_adult:skin_head_joint/ke_adult:skin_hair_1_joint/ke_adult:skin_hair_2_joint/ke_adult:skin_hair_3_joint/ke_adult:skin_hair_4_joint
+    m_Weight: 0
+  - m_Path: ke_adult:skin_cog_joint/ke_adult:skin_spine_1_joint/ke_adult:skin_spine_2_joint/ke_adult:skin_spine_3_joint/ke_adult:skin_spine_4_joint/ke_adult:skin_spine_5_joint/ke_adult:skin_spine_6_joint/ke_adult:skin_neck_joint/ke_adult:skin_head_joint/ke_adult:skin_nose_joint
+    m_Weight: 0
+  - m_Path: ke_adult:skin_cog_joint/ke_adult:skin_spine_1_joint/ke_adult:skin_spine_2_joint/ke_adult:skin_spine_3_joint/ke_adult:skin_spine_4_joint/ke_adult:skin_spine_5_joint/ke_adult:skin_spine_6_joint/ke_adult:skin_spine_7_joint
+    m_Weight: 0

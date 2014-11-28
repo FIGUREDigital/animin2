@@ -269,7 +269,11 @@ public class CharacterProgressScript : MonoBehaviour
         //ProfilesManagementScript.Singleton.CurrentAnimin.SetDefault();
         //ProfilesManagementScript.Singleton.CurrentAnimin.Load();
 
-        if (ProfilesManagementScript.Singleton.CurrentProfile == null)
+		Debug.Log ("CharacterProgressScript AWAKE");
+		if (ProfilesManagementScript.Singleton == null) {
+			ProfilesManagementScript.Singleton = new ProfilesManagementScript ();
+		}
+		if (ProfilesManagementScript.Singleton!=null && ProfilesManagementScript.Singleton.CurrentProfile == null)
         {
             ProfilesManagementScript.Singleton.CurrentProfile = PlayerProfileData.CreateNewProfile("buildintest");
             ProfilesManagementScript.Singleton.CurrentAnimin = ProfilesManagementScript.Singleton.CurrentProfile.Characters[(int)PersistentData.TypesOfAnimin.Tbo];
@@ -295,6 +299,16 @@ public class CharacterProgressScript : MonoBehaviour
         GetComponent<CharacterControllerScript>().SetLocal(true);
         UIClickButtonMasterScript.SetSoundSprite();
 
+
+		if (ProfilesManagementScript.Singleton == null) {
+			ProfilesManagementScript.Singleton = new ProfilesManagementScript ();
+		}
+
+		if (ProfilesManagementScript.Singleton.CurrentAnimin == null) {
+			ProfilesManagementScript.Singleton.CurrentAnimin = new PersistentData ();
+			ProfilesManagementScript.Singleton.CurrentAnimin.PlayerAniminId = PersistentData.TypesOfAnimin.Tbo;
+			ProfilesManagementScript.Singleton.CurrentAnimin.AniminEvolutionId = AniminEvolutionStageId.Baby;
+		}
 
         //HARRY: REMEMEBR TO REMOVE THESE COMMENTS, FOR CHRIST'S SAKE.
         Debug.Log("ID  : [" + ProfilesManagementScript.Singleton.CurrentAnimin + "|" + ProfilesManagementScript.Singleton.CurrentAnimin.AniminEvolutionId + "];");
@@ -376,6 +390,7 @@ public class CharacterProgressScript : MonoBehaviour
             exitSleep();
         }
 
+		/*
         if (DateTime.Now.Subtract(ProfilesManagementScript.Singleton.CurrentAnimin.CreatedOn).Days >= 1)
         {
             UIGlobalVariablesScript.Singleton.TutHandler.TriggerAdHocStartCond("1DayEvolve");
@@ -384,7 +399,7 @@ public class CharacterProgressScript : MonoBehaviour
         {
             UIGlobalVariablesScript.Singleton.TutHandler.TriggerAdHocStartCond("3DayEvolve");
         }
-
+		*/
 
 
 
@@ -512,12 +527,13 @@ public class CharacterProgressScript : MonoBehaviour
     public void HidePopupMenus()
     {
         Debug.Log("Hiding popup menus");
-        UIGlobalVariablesScript.Singleton.AlarmUI.SetActive(false);
-        UIGlobalVariablesScript.Singleton.StereoUI.SetActive(false);
-        UIGlobalVariablesScript.Singleton.LightbulbUI.SetActive(false);
-        UIGlobalVariablesScript.Singleton.EDMBoxUI.SetActive(false);
-        UIGlobalVariablesScript.Singleton.JunoUI.SetActive(false);
-        UIGlobalVariablesScript.Singleton.PianoUI.SetActive(false);
+				//UICOMMENT
+        //UIGlobalVariablesScript.Singleton.AlarmUI.SetActive(false);
+        //UIGlobalVariablesScript.Singleton.StereoUI.SetActive(false);
+        //UIGlobalVariablesScript.Singleton.LightbulbUI.SetActive(false);
+        //UIGlobalVariablesScript.Singleton.EDMBoxUI.SetActive(false);
+        //UIGlobalVariablesScript.Singleton.JunoUI.SetActive(false);
+        //UIGlobalVariablesScript.Singleton.PianoUI.SetActive(false);
     }
 
     private GameObject GetClosestFoodToEat()
@@ -729,16 +745,20 @@ public class CharacterProgressScript : MonoBehaviour
         if (Input.GetButton("Fire1") || Input.GetButtonDown("Fire1") || Input.GetButtonUp("Fire1"))
         {
             // This grabs the camera attached to the NGUI UI_Root object.
-            Camera nguiCam = Camera.main;
+            Camera uiCam = Camera.main;
 			
-            if (nguiCam != null)
+            if (uiCam != null)
             {
                 // pos is the Vector3 representing the screen position of the input
-                Ray inputRay = nguiCam.ScreenPointToRay(Input.mousePosition);    
-                RaycastHit hit;
+				Ray inputRay = uiCam.ScreenPointToRay(Input.mousePosition);  
+								Debug.DrawRay(uiCam.transform.position ,uiCam.ScreenPointToRay(Input.mousePosition).direction*100,Color.green,5,false); 
 
+
+
+                RaycastHit hit;
                 if (Physics.Raycast(inputRay, out hit))
-                {
+				{
+					Debug.Log("Colliding with : [" + hit.collider.gameObject.name + "];");
                     //Debug.Log("TOUCH: " + hit.collider.gameObject.layer.ToString());
 
                     //Debug.Log("normalUIRAY:" + hit.collider.gameObject);
@@ -761,11 +781,11 @@ public class CharacterProgressScript : MonoBehaviour
         if (Physics.Raycast(ray, out hitInfo))
         {
             //Debug.Log("TUTORIAL PLAYING? : ["+UIGlobalVariablesScript.Singleton.TutHandler.IsPlaying+"]");
-            if (UIGlobalVariablesScript.Singleton.TutHandler.IsPlaying)
-            {
-                hadRayCollision = UIGlobalVariablesScript.Singleton.TutHandler.CheckCharacterProgress(this, hitInfo);
-            }
-            else
+            //if (UIGlobalVariablesScript.Singleton.TutHandler.IsPlaying)
+            //{
+            //    hadRayCollision = UIGlobalVariablesScript.Singleton.TutHandler.CheckCharacterProgress(this, hitInfo);
+            //}
+            //else
                 hadRayCollision = true;
             //Debug.Log ("Ray Collision : ["+hitInfo.collider.gameObject.name+"];");
         }
@@ -931,7 +951,7 @@ public class CharacterProgressScript : MonoBehaviour
 
                         UIGlobalVariablesScript.Singleton.NonSceneRef.SetActive(false);
                         UIGlobalVariablesScript.Singleton.ARSceneRef.SetActive(true);
-                        UIGlobalVariablesScript.Singleton.Vuforia.OnCharacterEnterARScene();
+                        //UIGlobalVariablesScript.Singleton.Vuforia.OnCharacterEnterARScene();
 
 
                         //UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<AnimateCharacterOutPortalScript>().Timer = 0;
@@ -1272,7 +1292,6 @@ public class CharacterProgressScript : MonoBehaviour
                         IsDetectingMouseMoveForDrag = false;
 
 
-
                         if (UIGlobalVariablesScript.Singleton.DragableUI3DObject.transform.childCount == 1 && UIGlobalVariablesScript.Singleton.DragableUI3DObject.transform.GetChild(0).name == "Broom")
                         {
                             if (hadRayCollision && (hitInfo.collider.tag == "Items" || hitInfo.collider.tag == "Shit") && GroundItems.Contains(hitInfo.collider.gameObject))
@@ -1501,12 +1520,12 @@ public class CharacterProgressScript : MonoBehaviour
                                 if (RequestedToMoveToCounter > 1)
                                 {
                                     MoveTo(point, true);
-                                    UIGlobalVariablesScript.Singleton.TutHandler.TriggerAdHocExitCond("Walk", "runto");
+                                    //UICOMMENT: UIGlobalVariablesScript.Singleton.TutHandler.TriggerAdHocExitCond("Walk", "runto");
                                 }
                                 else
                                 {
                                     MoveTo(point, false);
-                                    UIGlobalVariablesScript.Singleton.TutHandler.TriggerAdHocExitCond("Walk", "walkto");
+																//UICOMMENT: UIGlobalVariablesScript.Singleton.TutHandler.TriggerAdHocExitCond("Walk", "walkto");
                                 }
                             }
 						
@@ -1518,7 +1537,7 @@ public class CharacterProgressScript : MonoBehaviour
                     {
                         if (!IsMovingTowardsLocation && !animationController.IsWakingUp && ObjectHolding == null && ProfilesManagementScript.Singleton.CurrentAnimin.Hungry <= ConsideredHungryLevels && !animationController.IsTickled)
                         {
-                            Debug.Log("Famished!");
+                            //Debug.Log("Famished!");
                             FeedMyselfTimer += Time.deltaTime;
 
                             if (FeedMyselfTimer >= 1)
@@ -1682,14 +1701,14 @@ public class CharacterProgressScript : MonoBehaviour
 
         }
 		 
-
+		/*Remember to comment these back in when UI is working.
         UIGlobalVariablesScript.Singleton.HungryControlBarRef.transform.localPosition = new Vector3(Mathf.Lerp(-80.51972f, 617.2906f, ProfilesManagementScript.Singleton.CurrentAnimin.Hungry / 100.0f), UIGlobalVariablesScript.Singleton.HungryControlBarRef.transform.localPosition.y, 0);
         UIGlobalVariablesScript.Singleton.HealthControlBarRef.transform.localPosition = new Vector3(Mathf.Lerp(-80.51972f, 617.2906f, ProfilesManagementScript.Singleton.CurrentAnimin.Health / 100.0f), UIGlobalVariablesScript.Singleton.HealthControlBarRef.transform.localPosition.y, 0);
         UIGlobalVariablesScript.Singleton.HapynessControlBarRef.transform.localPosition = new Vector3(Mathf.Lerp(-80.51972f, 617.2906f, 
         ProfilesManagementScript.Singleton.CurrentAnimin.Happy / PersistentData.MaxHappy), UIGlobalVariablesScript.Singleton.HapynessControlBarRef.transform.localPosition.y, 0);
         UIGlobalVariablesScript.Singleton.FitnessControlBarRef.transform.localPosition = new Vector3(Mathf.Lerp(-80.51972f, 617.2906f, ProfilesManagementScript.Singleton.CurrentAnimin.Fitness / 100.0f), UIGlobalVariablesScript.Singleton.FitnessControlBarRef.transform.localPosition.y, 0);
         //UIGlobalVariablesScript.Singleton.EvolutionControlBarRef.GetComponent<UISlider>().value = Evolution / 100.0f;
-
+		*/
         /*
 		if((DateTime.Now - LastSavePerformed).TotalSeconds >= 4)
 		{
@@ -1715,7 +1734,7 @@ public class CharacterProgressScript : MonoBehaviour
         }
 	
 
-        UIGlobalVariablesScript.Singleton.ZefTokensUI.text = ProfilesManagementScript.Singleton.CurrentAnimin.ZefTokens.ToString();
+        //UICOMMENT: UIGlobalVariablesScript.Singleton.ZefTokensUI.text = ProfilesManagementScript.Singleton.CurrentAnimin.ZefTokens.ToString();
 	
         //lastMousePosition = Input.mousePosition;
         DragedObjectedFromUIToWorld = false;

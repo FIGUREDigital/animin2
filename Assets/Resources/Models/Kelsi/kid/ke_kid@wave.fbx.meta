@@ -1,0 +1,112 @@
+fileFormatVersion: 2
+guid: 491c6dfd2837541ddb936aae908dd584
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: ke_kid:skin_jAnkle_L
+    100002: ke_kid:skin_jAnkle_R
+    100004: ke_kid:skin_jCalvicle_L
+    100006: ke_kid:skin_jCalvicle_R
+    100008: ke_kid:skin_jCOG
+    100010: ke_kid:skin_jElbow_L
+    100012: ke_kid:skin_jElbow_R
+    100014: ke_kid:skin_jHead
+    100016: ke_kid:skin_jHip_L
+    100018: ke_kid:skin_jHip_R
+    100020: ke_kid:skin_jKnee_L
+    100022: ke_kid:skin_jKnee_R
+    100024: ke_kid:skin_jNeck
+    100026: ke_kid:skin_jNose
+    100028: ke_kid:skin_jShoulder_L
+    100030: ke_kid:skin_jShoulder_R
+    100032: ke_kid:skin_jShoulders
+    100034: ke_kid:skin_jSpine_1
+    100036: ke_kid:skin_jSpine_2
+    100038: ke_kid:skin_jSpine_3
+    100040: ke_kid:skin_jSpine_4
+    100042: ke_kid:skin_jSpine_5
+    100044: ke_kid:world_root
+    100046: //RootNode
+    100048: ke_kid:skin_object_joint
+    400000: ke_kid:skin_jAnkle_L
+    400002: ke_kid:skin_jAnkle_R
+    400004: ke_kid:skin_jCalvicle_L
+    400006: ke_kid:skin_jCalvicle_R
+    400008: ke_kid:skin_jCOG
+    400010: ke_kid:skin_jElbow_L
+    400012: ke_kid:skin_jElbow_R
+    400014: ke_kid:skin_jHead
+    400016: ke_kid:skin_jHip_L
+    400018: ke_kid:skin_jHip_R
+    400020: ke_kid:skin_jKnee_L
+    400022: ke_kid:skin_jKnee_R
+    400024: ke_kid:skin_jNeck
+    400026: ke_kid:skin_jNose
+    400028: ke_kid:skin_jShoulder_L
+    400030: ke_kid:skin_jShoulder_R
+    400032: ke_kid:skin_jShoulders
+    400034: ke_kid:skin_jSpine_1
+    400036: ke_kid:skin_jSpine_2
+    400038: ke_kid:skin_jSpine_3
+    400040: ke_kid:skin_jSpine_4
+    400042: ke_kid:skin_jSpine_5
+    400044: ke_kid:world_root
+    400046: //RootNode
+    400048: ke_kid:skin_object_joint
+    7400000: Take 001
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 3
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 1
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 0fcc3e28290eb46f18583b5d1c282923,
+    type: 3}
+  animationType: 2
+  additionalBone: 0
+  userData: 

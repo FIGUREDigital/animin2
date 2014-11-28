@@ -1,0 +1,714 @@
+fileFormatVersion: 2
+guid: 32798cec7bc5749bf90d4a86d6529d11
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: geo
+    100002: head1_head
+    100004: head1_neck
+    100006: leftArm1_HiResClavical
+    100008: leftArm1_HiResHand
+    100010: leftArm1_HiResLowerArm
+    100012: leftArm1_HiResLowerArmTwist
+    100014: leftArm1_HiResUpperArm
+    100016: leftArm1_HiResUpperArmTwist
+    100018: leftLeg1_HiResFoot
+    100020: leftLeg1_HiResLowerLeg
+    100022: leftLeg1_HiResLowerLegTwist
+    100024: leftLeg1_HiResToe
+    100026: leftLeg1_HiResUpperLeg
+    100028: leftLeg1_HiResUpperLegTwist
+    100030: rightArm1_HiResClavical
+    100032: rightArm1_HiResHand
+    100034: rightArm1_HiResLowerArm
+    100036: rightArm1_HiResLowerArmTwist
+    100038: rightArm1_HiResUpperArm
+    100040: rightArm1_HiResUpperArmTwist
+    100042: rightLeg1_HiResFoot
+    100044: rightLeg1_HiResLowerLeg
+    100046: rightLeg1_HiResLowerLegTwist
+    100048: rightLeg1_HiResToe
+    100050: rightLeg1_HiResUpperLeg
+    100052: rightLeg1_HiResUpperLegTwist
+    100054: spine1_hiResSpine1
+    100056: spine1_hiResSpine2
+    100058: spine1_hiResSpine3
+    100060: spine1_hiResSpine4
+    100062: spine1_hiResSpine5
+    100064: tail1_Joint1
+    100066: tail1_Joint2
+    100068: tail1_Joint3
+    100070: tail1_Joint4
+    100072: tail1_Joint5
+    100074: tail1_Joint6
+    100076: tail1_Joint7
+    100078: tail2_Joint1
+    100080: tail2_Joint2
+    100082: tail2_Joint3
+    100084: tail2_Joint4
+    100086: tail2_Joint5
+    100088: tail2_Joint6
+    100090: tail2_Joint7
+    100092: //RootNode
+    100094: tbo
+    100096: tbo_geo
+    100098: TSMGWorldJoint
+    400000: geo
+    400002: head1_head
+    400004: head1_neck
+    400006: leftArm1_HiResClavical
+    400008: leftArm1_HiResHand
+    400010: leftArm1_HiResLowerArm
+    400012: leftArm1_HiResLowerArmTwist
+    400014: leftArm1_HiResUpperArm
+    400016: leftArm1_HiResUpperArmTwist
+    400018: leftLeg1_HiResFoot
+    400020: leftLeg1_HiResLowerLeg
+    400022: leftLeg1_HiResLowerLegTwist
+    400024: leftLeg1_HiResToe
+    400026: leftLeg1_HiResUpperLeg
+    400028: leftLeg1_HiResUpperLegTwist
+    400030: rightArm1_HiResClavical
+    400032: rightArm1_HiResHand
+    400034: rightArm1_HiResLowerArm
+    400036: rightArm1_HiResLowerArmTwist
+    400038: rightArm1_HiResUpperArm
+    400040: rightArm1_HiResUpperArmTwist
+    400042: rightLeg1_HiResFoot
+    400044: rightLeg1_HiResLowerLeg
+    400046: rightLeg1_HiResLowerLegTwist
+    400048: rightLeg1_HiResToe
+    400050: rightLeg1_HiResUpperLeg
+    400052: rightLeg1_HiResUpperLegTwist
+    400054: spine1_hiResSpine1
+    400056: spine1_hiResSpine2
+    400058: spine1_hiResSpine3
+    400060: spine1_hiResSpine4
+    400062: spine1_hiResSpine5
+    400064: tail1_Joint1
+    400066: tail1_Joint2
+    400068: tail1_Joint3
+    400070: tail1_Joint4
+    400072: tail1_Joint5
+    400074: tail1_Joint6
+    400076: tail1_Joint7
+    400078: tail2_Joint1
+    400080: tail2_Joint2
+    400082: tail2_Joint3
+    400084: tail2_Joint4
+    400086: tail2_Joint5
+    400088: tail2_Joint6
+    400090: tail2_Joint7
+    400092: //RootNode
+    400094: tbo
+    400096: tbo_geo
+    400098: TSMGWorldJoint
+    4300000: tbo_geo
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: tbo_geo
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 3
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Take 001
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 160
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: tbo
+        weight: 0
+      - path: tbo/geo
+        weight: 0
+      - path: tbo/geo/tbo_geo
+        weight: 0
+      - path: TSMGWorldJoint
+        weight: 1
+      - path: TSMGWorldJoint/spine1_hiResSpine1
+        weight: 1
+      - path: TSMGWorldJoint/spine1_hiResSpine1/leftLeg1_HiResUpperLeg
+        weight: 1
+      - path: TSMGWorldJoint/spine1_hiResSpine1/leftLeg1_HiResUpperLeg/leftLeg1_HiResUpperLegTwist
+        weight: 1
+      - path: TSMGWorldJoint/spine1_hiResSpine1/leftLeg1_HiResUpperLeg/leftLeg1_HiResUpperLegTwist/leftLeg1_HiResLowerLeg
+        weight: 1
+      - path: TSMGWorldJoint/spine1_hiResSpine1/leftLeg1_HiResUpperLeg/leftLeg1_HiResUpperLegTwist/leftLeg1_HiResLowerLeg/leftLeg1_HiResLowerLegTwist
+        weight: 1
+      - path: TSMGWorldJoint/spine1_hiResSpine1/leftLeg1_HiResUpperLeg/leftLeg1_HiResUpperLegTwist/leftLeg1_HiResLowerLeg/leftLeg1_HiResLowerLegTwist/leftLeg1_HiResFoot
+        weight: 1
+      - path: TSMGWorldJoint/spine1_hiResSpine1/leftLeg1_HiResUpperLeg/leftLeg1_HiResUpperLegTwist/leftLeg1_HiResLowerLeg/leftLeg1_HiResLowerLegTwist/leftLeg1_HiResFoot/leftLeg1_HiResToe
+        weight: 1
+      - path: TSMGWorldJoint/spine1_hiResSpine1/rightLeg1_HiResUpperLeg
+        weight: 1
+      - path: TSMGWorldJoint/spine1_hiResSpine1/rightLeg1_HiResUpperLeg/rightLeg1_HiResUpperLegTwist
+        weight: 1
+      - path: TSMGWorldJoint/spine1_hiResSpine1/rightLeg1_HiResUpperLeg/rightLeg1_HiResUpperLegTwist/rightLeg1_HiResLowerLeg
+        weight: 1
+      - path: TSMGWorldJoint/spine1_hiResSpine1/rightLeg1_HiResUpperLeg/rightLeg1_HiResUpperLegTwist/rightLeg1_HiResLowerLeg/rightLeg1_HiResLowerLegTwist
+        weight: 1
+      - path: TSMGWorldJoint/spine1_hiResSpine1/rightLeg1_HiResUpperLeg/rightLeg1_HiResUpperLegTwist/rightLeg1_HiResLowerLeg/rightLeg1_HiResLowerLegTwist/rightLeg1_HiResFoot
+        weight: 1
+      - path: TSMGWorldJoint/spine1_hiResSpine1/rightLeg1_HiResUpperLeg/rightLeg1_HiResUpperLegTwist/rightLeg1_HiResLowerLeg/rightLeg1_HiResLowerLegTwist/rightLeg1_HiResFoot/rightLeg1_HiResToe
+        weight: 1
+      - path: TSMGWorldJoint/spine1_hiResSpine1/spine1_hiResSpine2
+        weight: 1
+      - path: TSMGWorldJoint/spine1_hiResSpine1/spine1_hiResSpine2/spine1_hiResSpine3
+        weight: 1
+      - path: TSMGWorldJoint/spine1_hiResSpine1/spine1_hiResSpine2/spine1_hiResSpine3/spine1_hiResSpine4
+        weight: 1
+      - path: TSMGWorldJoint/spine1_hiResSpine1/spine1_hiResSpine2/spine1_hiResSpine3/spine1_hiResSpine4/spine1_hiResSpine5
+        weight: 1
+      - path: TSMGWorldJoint/spine1_hiResSpine1/spine1_hiResSpine2/spine1_hiResSpine3/spine1_hiResSpine4/spine1_hiResSpine5/head1_neck
+        weight: 1
+      - path: TSMGWorldJoint/spine1_hiResSpine1/spine1_hiResSpine2/spine1_hiResSpine3/spine1_hiResSpine4/spine1_hiResSpine5/head1_neck/head1_head
+        weight: 1
+      - path: TSMGWorldJoint/spine1_hiResSpine1/spine1_hiResSpine2/spine1_hiResSpine3/spine1_hiResSpine4/spine1_hiResSpine5/head1_neck/head1_head/tail1_Joint1
+        weight: 1
+      - path: TSMGWorldJoint/spine1_hiResSpine1/spine1_hiResSpine2/spine1_hiResSpine3/spine1_hiResSpine4/spine1_hiResSpine5/head1_neck/head1_head/tail1_Joint1/tail1_Joint2
+        weight: 0
+      - path: TSMGWorldJoint/spine1_hiResSpine1/spine1_hiResSpine2/spine1_hiResSpine3/spine1_hiResSpine4/spine1_hiResSpine5/head1_neck/head1_head/tail1_Joint1/tail1_Joint2/tail1_Joint3
+        weight: 0
+      - path: TSMGWorldJoint/spine1_hiResSpine1/spine1_hiResSpine2/spine1_hiResSpine3/spine1_hiResSpine4/spine1_hiResSpine5/head1_neck/head1_head/tail1_Joint1/tail1_Joint2/tail1_Joint3/tail1_Joint4
+        weight: 0
+      - path: TSMGWorldJoint/spine1_hiResSpine1/spine1_hiResSpine2/spine1_hiResSpine3/spine1_hiResSpine4/spine1_hiResSpine5/head1_neck/head1_head/tail1_Joint1/tail1_Joint2/tail1_Joint3/tail1_Joint4/tail1_Joint5
+        weight: 0
+      - path: TSMGWorldJoint/spine1_hiResSpine1/spine1_hiResSpine2/spine1_hiResSpine3/spine1_hiResSpine4/spine1_hiResSpine5/head1_neck/head1_head/tail1_Joint1/tail1_Joint2/tail1_Joint3/tail1_Joint4/tail1_Joint5/tail1_Joint6
+        weight: 0
+      - path: TSMGWorldJoint/spine1_hiResSpine1/spine1_hiResSpine2/spine1_hiResSpine3/spine1_hiResSpine4/spine1_hiResSpine5/head1_neck/head1_head/tail1_Joint1/tail1_Joint2/tail1_Joint3/tail1_Joint4/tail1_Joint5/tail1_Joint6/tail1_Joint7
+        weight: 0
+      - path: TSMGWorldJoint/spine1_hiResSpine1/spine1_hiResSpine2/spine1_hiResSpine3/spine1_hiResSpine4/spine1_hiResSpine5/head1_neck/head1_head/tail2_Joint1
+        weight: 1
+      - path: TSMGWorldJoint/spine1_hiResSpine1/spine1_hiResSpine2/spine1_hiResSpine3/spine1_hiResSpine4/spine1_hiResSpine5/head1_neck/head1_head/tail2_Joint1/tail2_Joint2
+        weight: 0
+      - path: TSMGWorldJoint/spine1_hiResSpine1/spine1_hiResSpine2/spine1_hiResSpine3/spine1_hiResSpine4/spine1_hiResSpine5/head1_neck/head1_head/tail2_Joint1/tail2_Joint2/tail2_Joint3
+        weight: 0
+      - path: TSMGWorldJoint/spine1_hiResSpine1/spine1_hiResSpine2/spine1_hiResSpine3/spine1_hiResSpine4/spine1_hiResSpine5/head1_neck/head1_head/tail2_Joint1/tail2_Joint2/tail2_Joint3/tail2_Joint4
+        weight: 0
+      - path: TSMGWorldJoint/spine1_hiResSpine1/spine1_hiResSpine2/spine1_hiResSpine3/spine1_hiResSpine4/spine1_hiResSpine5/head1_neck/head1_head/tail2_Joint1/tail2_Joint2/tail2_Joint3/tail2_Joint4/tail2_Joint5
+        weight: 0
+      - path: TSMGWorldJoint/spine1_hiResSpine1/spine1_hiResSpine2/spine1_hiResSpine3/spine1_hiResSpine4/spine1_hiResSpine5/head1_neck/head1_head/tail2_Joint1/tail2_Joint2/tail2_Joint3/tail2_Joint4/tail2_Joint5/tail2_Joint6
+        weight: 0
+      - path: TSMGWorldJoint/spine1_hiResSpine1/spine1_hiResSpine2/spine1_hiResSpine3/spine1_hiResSpine4/spine1_hiResSpine5/head1_neck/head1_head/tail2_Joint1/tail2_Joint2/tail2_Joint3/tail2_Joint4/tail2_Joint5/tail2_Joint6/tail2_Joint7
+        weight: 0
+      - path: TSMGWorldJoint/spine1_hiResSpine1/spine1_hiResSpine2/spine1_hiResSpine3/spine1_hiResSpine4/spine1_hiResSpine5/leftArm1_HiResClavical
+        weight: 1
+      - path: TSMGWorldJoint/spine1_hiResSpine1/spine1_hiResSpine2/spine1_hiResSpine3/spine1_hiResSpine4/spine1_hiResSpine5/leftArm1_HiResClavical/leftArm1_HiResUpperArm
+        weight: 1
+      - path: TSMGWorldJoint/spine1_hiResSpine1/spine1_hiResSpine2/spine1_hiResSpine3/spine1_hiResSpine4/spine1_hiResSpine5/leftArm1_HiResClavical/leftArm1_HiResUpperArm/leftArm1_HiResUpperArmTwist
+        weight: 1
+      - path: TSMGWorldJoint/spine1_hiResSpine1/spine1_hiResSpine2/spine1_hiResSpine3/spine1_hiResSpine4/spine1_hiResSpine5/leftArm1_HiResClavical/leftArm1_HiResUpperArm/leftArm1_HiResUpperArmTwist/leftArm1_HiResLowerArm
+        weight: 1
+      - path: TSMGWorldJoint/spine1_hiResSpine1/spine1_hiResSpine2/spine1_hiResSpine3/spine1_hiResSpine4/spine1_hiResSpine5/leftArm1_HiResClavical/leftArm1_HiResUpperArm/leftArm1_HiResUpperArmTwist/leftArm1_HiResLowerArm/leftArm1_HiResLowerArmTwist
+        weight: 1
+      - path: TSMGWorldJoint/spine1_hiResSpine1/spine1_hiResSpine2/spine1_hiResSpine3/spine1_hiResSpine4/spine1_hiResSpine5/leftArm1_HiResClavical/leftArm1_HiResUpperArm/leftArm1_HiResUpperArmTwist/leftArm1_HiResLowerArm/leftArm1_HiResLowerArmTwist/leftArm1_HiResHand
+        weight: 1
+      - path: TSMGWorldJoint/spine1_hiResSpine1/spine1_hiResSpine2/spine1_hiResSpine3/spine1_hiResSpine4/spine1_hiResSpine5/rightArm1_HiResClavical
+        weight: 1
+      - path: TSMGWorldJoint/spine1_hiResSpine1/spine1_hiResSpine2/spine1_hiResSpine3/spine1_hiResSpine4/spine1_hiResSpine5/rightArm1_HiResClavical/rightArm1_HiResUpperArm
+        weight: 1
+      - path: TSMGWorldJoint/spine1_hiResSpine1/spine1_hiResSpine2/spine1_hiResSpine3/spine1_hiResSpine4/spine1_hiResSpine5/rightArm1_HiResClavical/rightArm1_HiResUpperArm/rightArm1_HiResUpperArmTwist
+        weight: 1
+      - path: TSMGWorldJoint/spine1_hiResSpine1/spine1_hiResSpine2/spine1_hiResSpine3/spine1_hiResSpine4/spine1_hiResSpine5/rightArm1_HiResClavical/rightArm1_HiResUpperArm/rightArm1_HiResUpperArmTwist/rightArm1_HiResLowerArm
+        weight: 1
+      - path: TSMGWorldJoint/spine1_hiResSpine1/spine1_hiResSpine2/spine1_hiResSpine3/spine1_hiResSpine4/spine1_hiResSpine5/rightArm1_HiResClavical/rightArm1_HiResUpperArm/rightArm1_HiResUpperArmTwist/rightArm1_HiResLowerArm/rightArm1_HiResLowerArmTwist
+        weight: 1
+      - path: TSMGWorldJoint/spine1_hiResSpine1/spine1_hiResSpine2/spine1_hiResSpine3/spine1_hiResSpine4/spine1_hiResSpine5/rightArm1_HiResClavical/rightArm1_HiResUpperArm/rightArm1_HiResUpperArmTwist/rightArm1_HiResLowerArm/rightArm1_HiResLowerArmTwist/rightArm1_HiResHand
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human:
+    - boneName: spine1_hiResSpine1
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: leftLeg1_HiResUpperLeg
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rightLeg1_HiResUpperLeg
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: leftLeg1_HiResLowerLeg
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rightLeg1_HiResLowerLeg
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: leftLeg1_HiResFoot
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rightLeg1_HiResFoot
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: spine1_hiResSpine2
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: spine1_hiResSpine3
+      humanName: Chest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: head1_neck
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: leftArm1_HiResClavical
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rightArm1_HiResClavical
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: leftArm1_HiResUpperArm
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rightArm1_HiResUpperArm
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: leftArm1_HiResLowerArm
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rightArm1_HiResLowerArm
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: leftArm1_HiResHand
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rightArm1_HiResHand
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: leftLeg1_HiResToe
+      humanName: LeftToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: rightLeg1_HiResToe
+      humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: tail1_Joint1
+      humanName: LeftEye
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: tail2_Joint1
+      humanName: Jaw
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: tb_baby_stressTest(Clone)
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: tbo
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: geo
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: tbo_geo
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: TSMGWorldJoint
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: spine1_hiResSpine1
+      position: {x: -1.23509403e-09, y: .150106788, z: .00452126563}
+      rotation: {x: -.0147635797, y: -.0147606619, z: -.706882536, w: .707022846}
+      scale: {x: .99999994, y: 1.00000012, z: 1.00000012}
+      transformModified: 1
+    - name: leftLeg1_HiResUpperLeg
+      position: {x: -.00996930804, y: -.0404187366, z: -.00410902919}
+      rotation: {x: -.0666484088, y: .0388626009, z: .992355585, w: .0963230133}
+      scale: {x: .99999994, y: .999999642, z: 1}
+      transformModified: 1
+    - name: leftLeg1_HiResUpperLegTwist
+      position: {x: -.0394245759, y: -3.80096026e-08, z: 1.76951289e-08}
+      rotation: {x: 5.58793474e-08, y: -4.09781897e-08, z: -5.35510409e-08, w: 1}
+      scale: {x: .999999881, y: .999999642, z: .999999762}
+      transformModified: 1
+    - name: leftLeg1_HiResLowerLeg
+      position: {x: -.0394244008, y: 2.55531631e-08, z: -1.02445483e-08}
+      rotation: {x: -6.70552254e-08, y: -.239305839, z: -3.35276127e-08, w: .970944285}
+      scale: {x: 1.00000012, y: 1.00000036, z: 1.00000012}
+      transformModified: 1
+    - name: leftLeg1_HiResLowerLegTwist
+      position: {x: -.039060533, y: 7.33416528e-09, z: 9.31322575e-10}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: .99999994, y: 1.00000012, z: .99999994}
+      transformModified: 1
+    - name: leftLeg1_HiResFoot
+      position: {x: -.0390605293, y: 1.60071068e-08, z: -2.23517418e-08}
+      rotation: {x: -.0576101467, y: .708306789, z: .0854880661, w: .698336899}
+      scale: {x: .999999881, y: .999999821, z: .999999881}
+      transformModified: 1
+    - name: leftLeg1_HiResToe
+      position: {x: -.0160767622, y: 4.59840521e-09, z: 3.25962901e-09}
+      rotation: {x: -8.27312469e-05, y: -.147833645, z: .0171778649, w: -.988863111}
+      scale: {x: 1.00000024, y: .99999994, z: 1.00000012}
+      transformModified: 1
+    - name: rightLeg1_HiResUpperLeg
+      position: {x: -.00995321199, y: .0404226705, z: -.00410901057}
+      rotation: {x: -.0666561052, y: -.0388493314, z: .992374659, w: -.0961261243}
+      scale: {x: .999999881, y: .999999702, z: .999999881}
+      transformModified: 1
+    - name: rightLeg1_HiResUpperLegTwist
+      position: {x: -.0394244455, y: -1.90048013e-08, z: -1.81607902e-08}
+      rotation: {x: -4.09781933e-08, y: 7.4505806e-09, z: -3.7252903e-09, w: 1}
+      scale: {x: 1, y: 1.00000012, z: 1}
+      transformModified: 1
+    - name: rightLeg1_HiResLowerLeg
+      position: {x: -.0394244902, y: 4.01050784e-08, z: 8.38190317e-09}
+      rotation: {x: 0, y: -.239305869, z: -8.42847001e-08, w: .970944226}
+      scale: {x: .999999881, y: .999999881, z: 1}
+      transformModified: 1
+    - name: rightLeg1_HiResLowerLegTwist
+      position: {x: -.0390605144, y: 6.75208867e-09, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1.00000012, z: .99999994}
+      transformModified: 1
+    - name: rightLeg1_HiResFoot
+      position: {x: -.0390605107, y: -2.76486389e-08, z: -1.3038516e-08}
+      rotation: {x: .0576100983, y: .708306849, z: -.0854879394, w: .698336899}
+      scale: {x: .999999881, y: 1, z: 1.00000012}
+      transformModified: 1
+    - name: rightLeg1_HiResToe
+      position: {x: -.016076766, y: -4.77302819e-09, z: -1.86264515e-09}
+      rotation: {x: 8.29100609e-05, y: -.147833645, z: -.0171778798, w: -.988863111}
+      scale: {x: 1.00000012, y: .999999881, z: .99999994}
+      transformModified: 1
+    - name: spine1_hiResSpine2
+      position: {x: -.0385765098, y: -2.19848584e-09, z: 1.39698386e-08}
+      rotation: {x: -1.76951289e-08, y: .0116826165, z: -.000198431895, w: .999931812}
+      scale: {x: .999999881, y: .999999642, z: .99999994}
+      transformModified: 1
+    - name: spine1_hiResSpine3
+      position: {x: -.0385762714, y: 6.92726543e-09, z: -4.0163286e-09}
+      rotation: {x: 3.63215804e-08, y: .0347685516, z: .00020037411, w: .99939537}
+      scale: {x: .99999994, y: 1.00000012, z: .99999994}
+      transformModified: 1
+    - name: spine1_hiResSpine4
+      position: {x: -.0363074951, y: -1.76778769e-09, z: 8.49831849e-09}
+      rotation: {x: -2.23517436e-08, y: .0109795565, z: -.000202517447, w: .99993974}
+      scale: {x: .999999881, y: .999999762, z: 1}
+      transformModified: 1
+    - name: spine1_hiResSpine5
+      position: {x: -.0363077596, y: -1.14979386e-08, z: -4.65661287e-09}
+      rotation: {x: 6.10016343e-07, y: -.00548983971, z: .00010129554, w: .99998492}
+      scale: {x: 1.00000012, y: 1.00000012, z: 1.00000012}
+      transformModified: 1
+    - name: head1_neck
+      position: {x: -.0224581584, y: -1.59195856e-08, z: -.0035909717}
+      rotation: {x: 1.11758709e-08, y: .0686044618, z: -5.89061528e-08, w: .997643948}
+      scale: {x: .999999881, y: 1, z: .999999881}
+      transformModified: 1
+    - name: head1_head
+      position: {x: -.0972030908, y: 1.89347382e-08, z: 1.86264515e-08}
+      rotation: {x: 2.65426898e-08, y: -.114051357, z: 9.31322464e-10, w: .993474841}
+      scale: {x: 1.00000024, y: 1.00000012, z: .99999994}
+      transformModified: 1
+    - name: tail1_Joint1
+      position: {x: -.142721981, y: -.0975844562, z: -.00407577679}
+      rotation: {x: .219082832, y: -.248181179, z: .729699492, w: .598287165}
+      scale: {x: .999999881, y: .999999762, z: .999999881}
+      transformModified: 1
+    - name: tail1_Joint2
+      position: {x: -.054511413, y: 3.95812094e-08, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: tail1_Joint3
+      position: {x: -.0545114838, y: -6.05359674e-09, z: -3.7252903e-09}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: tail1_Joint4
+      position: {x: -.0545099229, y: -9.17352736e-08, z: -2.42143869e-08}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: tail1_Joint5
+      position: {x: -.0545109212, y: 1.18277967e-07, z: 5.77419996e-08}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: tail1_Joint6
+      position: {x: -.0545167662, y: -1.1222437e-07, z: -7.26431608e-08}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: tail1_Joint7
+      position: {x: -.0545083508, y: 3.44589353e-08, z: 2.60770321e-08}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: tail2_Joint1
+      position: {x: -.142721981, y: .0975800157, z: -.00407579914}
+      rotation: {x: -.554744661, y: .760328054, z: -.12633276, w: -.31336844}
+      scale: {x: 1, y: .99999994, z: .999999881}
+      transformModified: 1
+    - name: tail2_Joint2
+      position: {x: -.0574761704, y: 4.42378223e-08, z: 2.60770321e-08}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: tail2_Joint3
+      position: {x: -.0574761741, y: -9.77888703e-09, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: tail2_Joint4
+      position: {x: -.0574761778, y: 5.72763383e-08, z: -7.4505806e-09}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: tail2_Joint5
+      position: {x: -.0574762002, y: -4.65661287e-10, z: -9.31322575e-09}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: tail2_Joint6
+      position: {x: -.0574761406, y: -1.07102096e-08, z: -2.04890966e-08}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: tail2_Joint7
+      position: {x: -.0574761927, y: -5.12227416e-09, z: -1.86264515e-09}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: leftArm1_HiResClavical
+      position: {x: .0120959878, y: -.0484792404, z: .0102058388}
+      rotation: {x: .0605029352, y: -.105252042, z: .620390058, w: .774840355}
+      scale: {x: .999999881, y: 1, z: .999999881}
+      transformModified: 1
+    - name: leftArm1_HiResUpperArm
+      position: {x: -.0320322961, y: 4.20259312e-08, z: -4.65661287e-09}
+      rotation: {x: -.125949815, y: .0999890044, z: .16401121, w: .973262191}
+      scale: {x: 1.00000024, y: .99999994, z: 1}
+      transformModified: 1
+    - name: leftArm1_HiResUpperArmTwist
+      position: {x: -.0332111083, y: -6.0768798e-08, z: 5.23868948e-08}
+      rotation: {x: 1.57160684e-08, y: 1.35041773e-08, z: 8.38190317e-09, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: leftArm1_HiResLowerArm
+      position: {x: -.0332111828, y: 3.27127054e-08, z: -3.7252903e-08}
+      rotation: {x: -.00519322092, y: .0369907953, z: -.0300676171, w: .99884975}
+      scale: {x: .999999762, y: .999999821, z: .999999881}
+      transformModified: 1
+    - name: leftArm1_HiResLowerArmTwist
+      position: {x: -.0426144339, y: -8.38190317e-09, z: 1.11758709e-08}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: .99999994, z: 1}
+      transformModified: 1
+    - name: leftArm1_HiResHand
+      position: {x: -.0426144302, y: -3.02679837e-08, z: -2.04890966e-08}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: .99999994, z: 1}
+      transformModified: 1
+    - name: rightArm1_HiResClavical
+      position: {x: .0120957848, y: .0484792702, z: .0102058314}
+      rotation: {x: .620387852, y: .774841964, z: -.060503535, w: .10525313}
+      scale: {x: 1.00000036, y: 1.00000012, z: 1.00000036}
+      transformModified: 1
+    - name: rightArm1_HiResUpperArm
+      position: {x: .0320322178, y: 2.17289198e-07, z: 4.65661287e-09}
+      rotation: {x: -.125949308, y: .0999897718, z: .164015427, w: .973261416}
+      scale: {x: .999999881, y: 1.00000012, z: 1.00000012}
+      transformModified: 1
+    - name: rightArm1_HiResUpperArmTwist
+      position: {x: .033211071, y: -7.86967576e-08, z: -2.56113708e-09}
+      rotation: {x: -4.88944281e-08, y: 2.60770285e-08, z: -6.70552183e-08, w: 1}
+      scale: {x: 1, y: .999999762, z: .999999583}
+      transformModified: 1
+    - name: rightArm1_HiResLowerArm
+      position: {x: .0332111567, y: 1.07102096e-08, z: 5.12227416e-09}
+      rotation: {x: -.00519346865, y: .036990907, z: -.0300681759, w: .99884963}
+      scale: {x: .999999881, y: .99999994, z: 1}
+      transformModified: 1
+    - name: rightArm1_HiResLowerArmTwist
+      position: {x: .0426143743, y: 1.26194209e-07, z: 1.21071935e-08}
+      rotation: {x: 2.52184691e-08, y: 0, z: 4.79631126e-08, w: 1}
+      scale: {x: 1.00000012, y: 1.00000048, z: 1.00000024}
+      transformModified: 1
+    - name: rightArm1_HiResHand
+      position: {x: .0426144935, y: -1.72993168e-07, z: -2.79396772e-08}
+      rotation: {x: 3.35712684e-08, y: -7.4505806e-09, z: -3.41096893e-08, w: 1}
+      scale: {x: 1.00000012, y: .999999523, z: .999999464}
+      transformModified: 1
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 3
+  additionalBone: 0
+  userData: 

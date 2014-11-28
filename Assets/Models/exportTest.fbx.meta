@@ -1,0 +1,466 @@
+fileFormatVersion: 2
+guid: 6bb3cc167fe564b4f888972c778bff37
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: tbo_testrig_Stuart_arm_01_joint
+    100004: tbo_testrig_Stuart_arm_01_joint 1
+    100006: tbo_testrig_Stuart_arm_02_joint
+    100008: tbo_testrig_Stuart_arm_02_joint 1
+    100010: tbo_testrig_Stuart_arm_end_joint
+    100012: tbo_testrig_Stuart_arm_end_joint 1
+    100014: tbo_testrig_Stuart_head_end_joint
+    100016: tbo_testrig_Stuart_head_joint
+    100018: tbo_testrig_Stuart_left_clavicle_joint
+    100020: tbo_testrig_Stuart_left_ear_01_joint
+    100022: tbo_testrig_Stuart_left_ear_02_joint
+    100024: tbo_testrig_Stuart_left_ear_03_joint
+    100026: tbo_testrig_Stuart_left_ear_end_joint
+    100028: tbo_testrig_Stuart_left_leg_01_joint
+    100030: tbo_testrig_Stuart_left_leg_02_joint
+    100032: tbo_testrig_Stuart_left_leg_03_joint
+    100034: tbo_testrig_Stuart_left_leg_end_joint
+    100036: tbo_testrig_Stuart_neck_joint
+    100038: tbo_testrig_Stuart_right_clavicle_joint
+    100040: tbo_testrig_Stuart_right_ear_01_joint
+    100042: tbo_testrig_Stuart_right_ear_02_joint
+    100044: tbo_testrig_Stuart_right_ear_03_joint
+    100046: tbo_testrig_Stuart_right_ear_end_joint
+    100048: tbo_testrig_Stuart_right_leg_01_joint
+    100050: tbo_testrig_Stuart_right_leg_02_joint
+    100052: tbo_testrig_Stuart_right_leg_03_joint
+    100054: tbo_testrig_Stuart_right_leg_end_joint
+    100056: tbo_testrig_Stuart_root_joint
+    100058: tbo_testrig_Stuart_spine_01_joint
+    100060: tbo_testrig_Stuart_spine_02_joint
+    100062: tbo_testrig_Stuart_spine_03_joint
+    100064: tbo_testrig_Stuart_spine_04_joint
+    100066: tbo_testrig_Stuart_tbo_baby
+    100068: tbo_testrig_Stuart_tbo_characterNode_01
+    100070: tbo_testrig_Stuart_tbo_mesh_grp
+    400000: //RootNode
+    400002: tbo_testrig_Stuart_arm_01_joint
+    400004: tbo_testrig_Stuart_arm_01_joint 1
+    400006: tbo_testrig_Stuart_arm_02_joint
+    400008: tbo_testrig_Stuart_arm_02_joint 1
+    400010: tbo_testrig_Stuart_arm_end_joint
+    400012: tbo_testrig_Stuart_arm_end_joint 1
+    400014: tbo_testrig_Stuart_head_end_joint
+    400016: tbo_testrig_Stuart_head_joint
+    400018: tbo_testrig_Stuart_left_clavicle_joint
+    400020: tbo_testrig_Stuart_left_ear_01_joint
+    400022: tbo_testrig_Stuart_left_ear_02_joint
+    400024: tbo_testrig_Stuart_left_ear_03_joint
+    400026: tbo_testrig_Stuart_left_ear_end_joint
+    400028: tbo_testrig_Stuart_left_leg_01_joint
+    400030: tbo_testrig_Stuart_left_leg_02_joint
+    400032: tbo_testrig_Stuart_left_leg_03_joint
+    400034: tbo_testrig_Stuart_left_leg_end_joint
+    400036: tbo_testrig_Stuart_neck_joint
+    400038: tbo_testrig_Stuart_right_clavicle_joint
+    400040: tbo_testrig_Stuart_right_ear_01_joint
+    400042: tbo_testrig_Stuart_right_ear_02_joint
+    400044: tbo_testrig_Stuart_right_ear_03_joint
+    400046: tbo_testrig_Stuart_right_ear_end_joint
+    400048: tbo_testrig_Stuart_right_leg_01_joint
+    400050: tbo_testrig_Stuart_right_leg_02_joint
+    400052: tbo_testrig_Stuart_right_leg_03_joint
+    400054: tbo_testrig_Stuart_right_leg_end_joint
+    400056: tbo_testrig_Stuart_root_joint
+    400058: tbo_testrig_Stuart_spine_01_joint
+    400060: tbo_testrig_Stuart_spine_02_joint
+    400062: tbo_testrig_Stuart_spine_03_joint
+    400064: tbo_testrig_Stuart_spine_04_joint
+    400066: tbo_testrig_Stuart_tbo_baby
+    400068: tbo_testrig_Stuart_tbo_characterNode_01
+    400070: tbo_testrig_Stuart_tbo_mesh_grp
+    4300000: tbo_testrig_Stuart_tbo_baby
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: tbo_testrig_Stuart_tbo_baby
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 3
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human:
+    - boneName: tbo_testrig_Stuart_root_joint
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: tbo_testrig_Stuart_left_leg_01_joint
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: tbo_testrig_Stuart_right_leg_01_joint
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: tbo_testrig_Stuart_left_leg_02_joint
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: tbo_testrig_Stuart_right_leg_02_joint
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: tbo_testrig_Stuart_left_leg_03_joint
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: tbo_testrig_Stuart_right_leg_03_joint
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: tbo_testrig_Stuart_spine_01_joint
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: tbo_testrig_Stuart_spine_03_joint
+      humanName: Chest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: tbo_testrig_Stuart_neck_joint
+      humanName: Neck
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: tbo_testrig_Stuart_head_joint
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: tbo_testrig_Stuart_left_clavicle_joint
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: tbo_testrig_Stuart_right_clavicle_joint
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: tbo_testrig_Stuart_arm_01_joint
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: tbo_testrig_Stuart_arm_01_joint 1
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: tbo_testrig_Stuart_arm_02_joint
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: tbo_testrig_Stuart_arm_02_joint 1
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: tbo_testrig_Stuart_left_ear_01_joint
+      humanName: LeftEye
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: tbo_testrig_Stuart_right_ear_01_joint
+      humanName: RightEye
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: exportTest(Clone)
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: tbo_testrig_Stuart_root_joint
+      position: {x: 3.38637801e-15, y: 1.51861966, z: .110513963}
+      rotation: {x: -.611395478, y: .355240196, z: -.344401836, w: .617565691}
+      scale: {x: 1, y: .99999994, z: 1}
+      transformModified: 1
+    - name: tbo_testrig_Stuart_left_leg_01_joint
+      position: {x: -.039695099, y: .0958988518, z: -.390253216}
+      rotation: {x: .0520682745, y: -.624595761, z: .692754924, w: .356734663}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: tbo_testrig_Stuart_left_leg_02_joint
+      position: {x: -.654138625, y: -2.97847555e-17, z: .126473546}
+      rotation: {x: 1.35734078e-16, y: -.283679694, z: 2.69919489e-16, w: .958919108}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: tbo_testrig_Stuart_left_leg_03_joint
+      position: {x: -.44718188, y: 1.6168868e-17, z: -.0574879758}
+      rotation: {x: 1.16465429e-16, y: -.156245887, z: 5.2417141e-16, w: .987718225}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: tbo_testrig_Stuart_left_leg_end_joint
+      position: {x: -.458679497, y: -3.32773702e-16, z: -.0689855739}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: tbo_testrig_Stuart_right_leg_01_joint
+      position: {x: -.039695099, y: .0958988816, z: .390252978}
+      rotation: {x: -.679673374, y: .101375818, z: .226016089, w: .690422893}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: tbo_testrig_Stuart_right_leg_02_joint
+      position: {x: .654138327, y: -4.11111607e-08, z: -.126473904}
+      rotation: {x: -1.75253064e-07, y: .158756629, z: 6.90698528e-07, w: .987317801}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: tbo_testrig_Stuart_right_leg_03_joint
+      position: {x: .447182387, y: -4.06550384e-07, z: .0574882962}
+      rotation: {x: 1.26780847e-07, y: .0107198227, z: -8.79789525e-07, w: .999942541}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: tbo_testrig_Stuart_right_leg_end_joint
+      position: {x: .458679259, y: 5.38753795e-07, z: .0689855963}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: tbo_testrig_Stuart_spine_01_joint
+      position: {x: -.851849973, y: .0817236528, z: -.0792622715}
+      rotation: {x: .242040515, y: -.106989115, z: -.390012205, w: .881963849}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: tbo_testrig_Stuart_spine_02_joint
+      position: {x: -.368252218, y: 1.8332002e-14, z: 2.84217088e-16}
+      rotation: {x: .105986513, y: -.0456680022, z: -.317721933, w: .941134453}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: tbo_testrig_Stuart_spine_03_joint
+      position: {x: -.805214286, y: -.0710675716, z: .00108732865}
+      rotation: {x: -.109528668, y: .0908443183, z: .0101474291, w: .989771605}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: tbo_testrig_Stuart_spine_04_joint
+      position: {x: -.368252218, y: 2.84217088e-16, z: -1.42108539e-15}
+      rotation: {x: 1.11022302e-16, y: 3.33066907e-16, z: -1.11022302e-16, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: tbo_testrig_Stuart_left_clavicle_joint
+      position: {x: -.213777468, y: -.225713909, z: -.394995987}
+      rotation: {x: .615335464, y: -.610719264, z: .344786435, w: .359870225}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: tbo_testrig_Stuart_arm_01_joint
+      position: {x: -.48109293, y: 1.13686835e-15, z: -1.42108544e-16}
+      rotation: {x: .857088923, y: .0707588866, z: -.386527538, w: -.333148867}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: tbo_testrig_Stuart_arm_02_joint
+      position: {x: -.814280689, y: 0, z: -3.5527136e-17}
+      rotation: {x: .035956081, y: .118870087, z: -.0014405062, w: .992257535}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: tbo_testrig_Stuart_arm_end_joint
+      position: {x: -.850362241, y: -5.68434176e-16, z: -3.5527136e-17}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: tbo_testrig_Stuart_neck_joint
+      position: {x: -.366666317, y: .0995237306, z: 0}
+      rotation: {x: 2.22044605e-16, y: 4.16333634e-16, z: .266136795, w: .963935256}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: tbo_testrig_Stuart_head_joint
+      position: {x: -.415717065, y: -3.5527136e-17, z: 1.57772178e-32}
+      rotation: {x: .960725367, y: -.277501017, z: -1.5031947e-16, w: 2.03164558e-17}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: tbo_testrig_Stuart_head_end_joint
+      position: {x: -3.84729433, y: 7.2386541e-16, z: 5.69376394e-16}
+      rotation: {x: -.498502731, y: .501492798, z: .498502731, w: .501492798}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: tbo_testrig_Stuart_left_ear_01_joint
+      position: {x: -1.79999995, y: -2.51999998, z: -.896530688}
+      rotation: {x: 0, y: -.342846692, z: -0, w: .939391375}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: tbo_testrig_Stuart_left_ear_02_joint
+      position: {x: -.86779058, y: 0, z: 0}
+      rotation: {x: 0, y: .0534972362, z: -0, w: .998567998}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: tbo_testrig_Stuart_left_ear_03_joint
+      position: {x: -.800362229, y: 5.68434176e-16, z: 2.2026825e-15}
+      rotation: {x: 0, y: .15088512, z: -0, w: .988551319}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: tbo_testrig_Stuart_left_ear_end_joint
+      position: {x: -.692691624, y: -2.2737367e-15, z: 1.42108544e-16}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: tbo_testrig_Stuart_right_ear_01_joint
+      position: {x: 1.79999995, y: -2.51999998, z: -.896530986}
+      rotation: {x: .939391375, y: -6.94319921e-17, z: -.342846692, w: -7.51996446e-17}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: tbo_testrig_Stuart_right_ear_02_joint
+      position: {x: .867784619, y: 0, z: -1.32157061e-06}
+      rotation: {x: -1.2045907e-16, y: .0534972362, z: 4.0714465e-17, w: .998567998}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: tbo_testrig_Stuart_right_ear_03_joint
+      position: {x: .800372422, y: 5.68434176e-16, z: 3.93253049e-06}
+      rotation: {x: 1.5812067e-16, y: .15088512, z: -2.34477672e-16, w: .988551319}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: tbo_testrig_Stuart_right_ear_end_joint
+      position: {x: .692687392, y: -5.68434176e-16, z: -1.44623539e-06}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: tbo_testrig_Stuart_right_clavicle_joint
+      position: {x: -.213774577, y: -.225713566, z: .394995987}
+      rotation: {x: .610719264, y: .615335464, z: .359870225, w: -.344786435}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: tbo_testrig_Stuart_arm_01_joint 1
+      position: {x: .481093138, y: -3.25691099e-06, z: -5.5694295e-07}
+      rotation: {x: .0781733245, y: .248501137, z: .136966303, w: .955707252}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: tbo_testrig_Stuart_arm_02_joint 1
+      position: {x: .814279318, y: 3.19459468e-06, z: 1.37698734e-07}
+      rotation: {x: .035956081, y: .118870065, z: -.00144050585, w: .992257535}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: tbo_testrig_Stuart_arm_end_joint 1
+      position: {x: .850367785, y: -2.49405593e-06, z: 1.64920834e-06}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: tbo_testrig_Stuart_tbo_characterNode_01
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: tbo_testrig_Stuart_tbo_mesh_grp
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: tbo_testrig_Stuart_tbo_baby
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 3
+  additionalBone: 0
+  userData: 

@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1011 &101100000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: KelsiKidBabyMask
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: ke_kid:_character
+    m_Weight: 0
+  - m_Path: ke_kid:_character/ke_kid:geo_grp
+    m_Weight: 0
+  - m_Path: ke_kid:_character/ke_kid:geo_grp/ke_kid:body
+    m_Weight: 0
+  - m_Path: ke_kid:_character/ke_kid:geo_grp/ke_kid:bow
+    m_Weight: 0
+  - m_Path: ke_kid:_character/ke_kid:geo_grp/ke_kid:hair
+    m_Weight: 0
+  - m_Path: ke_kid:skin_jCOG
+    m_Weight: 0
+  - m_Path: ke_kid:skin_jCOG/ke_kid:skin_jHip_L
+    m_Weight: 0
+  - m_Path: ke_kid:skin_jCOG/ke_kid:skin_jHip_L/ke_kid:skin_jKnee_L
+    m_Weight: 0
+  - m_Path: ke_kid:skin_jCOG/ke_kid:skin_jHip_L/ke_kid:skin_jKnee_L/ke_kid:skin_jAnkle_L
+    m_Weight: 0
+  - m_Path: ke_kid:skin_jCOG/ke_kid:skin_jHip_R
+    m_Weight: 0
+  - m_Path: ke_kid:skin_jCOG/ke_kid:skin_jHip_R/ke_kid:skin_jKnee_R
+    m_Weight: 0
+  - m_Path: ke_kid:skin_jCOG/ke_kid:skin_jHip_R/ke_kid:skin_jKnee_R/ke_kid:skin_jAnkle_R
+    m_Weight: 0
+  - m_Path: ke_kid:skin_jCOG/ke_kid:skin_jSpine_1
+    m_Weight: 0
+  - m_Path: ke_kid:skin_jCOG/ke_kid:skin_jSpine_1/ke_kid:skin_jSpine_2
+    m_Weight: 0
+  - m_Path: ke_kid:skin_jCOG/ke_kid:skin_jSpine_1/ke_kid:skin_jSpine_2/ke_kid:skin_jSpine_3
+    m_Weight: 0
+  - m_Path: ke_kid:skin_jCOG/ke_kid:skin_jSpine_1/ke_kid:skin_jSpine_2/ke_kid:skin_jSpine_3/ke_kid:skin_jSpine_4
+    m_Weight: 0
+  - m_Path: ke_kid:skin_jCOG/ke_kid:skin_jSpine_1/ke_kid:skin_jSpine_2/ke_kid:skin_jSpine_3/ke_kid:skin_jSpine_4/ke_kid:skin_jSpine_5
+    m_Weight: 0
+  - m_Path: ke_kid:skin_jCOG/ke_kid:skin_jSpine_1/ke_kid:skin_jSpine_2/ke_kid:skin_jSpine_3/ke_kid:skin_jSpine_4/ke_kid:skin_jSpine_5/ke_kid:skin_jShoulders
+    m_Weight: 0
+  - m_Path: ke_kid:skin_jCOG/ke_kid:skin_jSpine_1/ke_kid:skin_jSpine_2/ke_kid:skin_jSpine_3/ke_kid:skin_jSpine_4/ke_kid:skin_jSpine_5/ke_kid:skin_jShoulders/ke_kid:skin_jCalvicle_L
+    m_Weight: 1
+  - m_Path: ke_kid:skin_jCOG/ke_kid:skin_jSpine_1/ke_kid:skin_jSpine_2/ke_kid:skin_jSpine_3/ke_kid:skin_jSpine_4/ke_kid:skin_jSpine_5/ke_kid:skin_jShoulders/ke_kid:skin_jCalvicle_L/ke_kid:skin_jShoulder_L
+    m_Weight: 1
+  - m_Path: ke_kid:skin_jCOG/ke_kid:skin_jSpine_1/ke_kid:skin_jSpine_2/ke_kid:skin_jSpine_3/ke_kid:skin_jSpine_4/ke_kid:skin_jSpine_5/ke_kid:skin_jShoulders/ke_kid:skin_jCalvicle_L/ke_kid:skin_jShoulder_L/ke_kid:skin_jElbow_L
+    m_Weight: 1
+  - m_Path: ke_kid:skin_jCOG/ke_kid:skin_jSpine_1/ke_kid:skin_jSpine_2/ke_kid:skin_jSpine_3/ke_kid:skin_jSpine_4/ke_kid:skin_jSpine_5/ke_kid:skin_jShoulders/ke_kid:skin_jCalvicle_R
+    m_Weight: 1
+  - m_Path: ke_kid:skin_jCOG/ke_kid:skin_jSpine_1/ke_kid:skin_jSpine_2/ke_kid:skin_jSpine_3/ke_kid:skin_jSpine_4/ke_kid:skin_jSpine_5/ke_kid:skin_jShoulders/ke_kid:skin_jCalvicle_R/ke_kid:skin_jShoulder_R
+    m_Weight: 1
+  - m_Path: ke_kid:skin_jCOG/ke_kid:skin_jSpine_1/ke_kid:skin_jSpine_2/ke_kid:skin_jSpine_3/ke_kid:skin_jSpine_4/ke_kid:skin_jSpine_5/ke_kid:skin_jShoulders/ke_kid:skin_jCalvicle_R/ke_kid:skin_jShoulder_R/ke_kid:skin_jElbow_R
+    m_Weight: 1
+  - m_Path: ke_kid:skin_jCOG/ke_kid:skin_jSpine_1/ke_kid:skin_jSpine_2/ke_kid:skin_jSpine_3/ke_kid:skin_jSpine_4/ke_kid:skin_jSpine_5/ke_kid:skin_jShoulders/ke_kid:skin_jNeck
+    m_Weight: 0
+  - m_Path: ke_kid:skin_jCOG/ke_kid:skin_jSpine_1/ke_kid:skin_jSpine_2/ke_kid:skin_jSpine_3/ke_kid:skin_jSpine_4/ke_kid:skin_jSpine_5/ke_kid:skin_jShoulders/ke_kid:skin_jNeck/ke_kid:skin_jHead
+    m_Weight: 0
+  - m_Path: ke_kid:skin_jCOG/ke_kid:skin_jSpine_1/ke_kid:skin_jSpine_2/ke_kid:skin_jSpine_3/ke_kid:skin_jSpine_4/ke_kid:skin_jSpine_5/ke_kid:skin_jShoulders/ke_kid:skin_jNeck/ke_kid:skin_jHead/ke_kid:skin_jNose
+    m_Weight: 0
+  - m_Path: ke_kid:skin_jCOG/ke_kid:skin_object_joint
+    m_Weight: 0

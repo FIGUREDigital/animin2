@@ -1,0 +1,656 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1011 &101100000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: PiAdultMask
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: pi_adult:body
+    m_Weight: 0
+  - m_Path: pi_adult:cape
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:anim_controls
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:anim_controls/pi_adult:global_Ctrl
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:anim_controls/pi_adult:global_Ctrl/pi_adult:object_anim
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:anim_controls/pi_adult:global_Ctrl/pi_adult:object_anim/pi_adult:object_offset_anim
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:extras_toHide
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:extras_toHide/pi_adult:grp_drv_legs_01
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:extras_toHide/pi_adult:grp_drv_legs_01/pi_adult:grp_drv_l_leg_01
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:extras_toHide/pi_adult:grp_drv_legs_01/pi_adult:grp_drv_l_leg_01/pi_adult:joint7
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:extras_toHide/pi_adult:grp_drv_legs_01/pi_adult:grp_drv_l_leg_01/pi_adult:joint8
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:extras_toHide/pi_adult:grp_drv_legs_01/pi_adult:grp_drv_l_leg_01/pi_adult:joint9
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:extras_toHide/pi_adult:grp_drv_legs_01/pi_adult:grp_drv_l_shin_01
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:extras_toHide/pi_adult:grp_drv_legs_01/pi_adult:grp_drv_l_shin_01/pi_adult:joint10
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:extras_toHide/pi_adult:grp_drv_legs_01/pi_adult:grp_drv_l_shin_01/pi_adult:joint11
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:extras_toHide/pi_adult:grp_drv_legs_01/pi_adult:grp_drv_l_shin_01/pi_adult:joint12
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:extras_toHide/pi_adult:grp_drv_legs_01/pi_adult:grp_drv_r_leg_01
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:extras_toHide/pi_adult:grp_drv_legs_01/pi_adult:grp_drv_r_leg_01/pi_adult:joint1
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:extras_toHide/pi_adult:grp_drv_legs_01/pi_adult:grp_drv_r_leg_01/pi_adult:joint2
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:extras_toHide/pi_adult:grp_drv_legs_01/pi_adult:grp_drv_r_leg_01/pi_adult:joint3
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:extras_toHide/pi_adult:grp_drv_legs_01/pi_adult:grp_drv_r_shin_01
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:extras_toHide/pi_adult:grp_drv_legs_01/pi_adult:grp_drv_r_shin_01/pi_adult:joint4
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:extras_toHide/pi_adult:grp_drv_legs_01/pi_adult:grp_drv_r_shin_01/pi_adult:joint5
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:extras_toHide/pi_adult:grp_drv_legs_01/pi_adult:grp_drv_r_shin_01/pi_adult:joint6
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:extras_toHide/pi_adult:grp_fol_legs
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:extras_toHide/pi_adult:grp_fol_legs/pi_adult:grp_fol_l_leg_01
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:extras_toHide/pi_adult:grp_fol_legs/pi_adult:grp_fol_l_leg_01/pi_adult:fol_l_leg_01
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:extras_toHide/pi_adult:grp_fol_legs/pi_adult:grp_fol_l_leg_01/pi_adult:fol_l_leg_02
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:extras_toHide/pi_adult:grp_fol_legs/pi_adult:grp_fol_l_leg_01/pi_adult:fol_l_leg_03
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:extras_toHide/pi_adult:grp_fol_legs/pi_adult:grp_fol_l_leg_01/pi_adult:fol_l_leg_04
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:extras_toHide/pi_adult:grp_fol_legs/pi_adult:grp_fol_l_leg_01/pi_adult:fol_l_leg_05
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:extras_toHide/pi_adult:grp_fol_legs/pi_adult:grp_fol_l_leg_01/pi_adult:fol_l_leg_06
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:extras_toHide/pi_adult:grp_fol_legs/pi_adult:grp_fol_l_leg_01/pi_adult:fol_l_leg_07
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:extras_toHide/pi_adult:grp_fol_legs/pi_adult:grp_fol_l_shin_01
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:extras_toHide/pi_adult:grp_fol_legs/pi_adult:grp_fol_l_shin_01/pi_adult:rib_l_leg_03Follicle5007
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:extras_toHide/pi_adult:grp_fol_legs/pi_adult:grp_fol_l_shin_01/pi_adult:rib_l_leg_03Follicle5021
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:extras_toHide/pi_adult:grp_fol_legs/pi_adult:grp_fol_l_shin_01/pi_adult:rib_l_leg_03Follicle5035
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:extras_toHide/pi_adult:grp_fol_legs/pi_adult:grp_fol_l_shin_01/pi_adult:rib_l_leg_03Follicle5050
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:extras_toHide/pi_adult:grp_fol_legs/pi_adult:grp_fol_l_shin_01/pi_adult:rib_l_leg_03Follicle5064
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:extras_toHide/pi_adult:grp_fol_legs/pi_adult:grp_fol_l_shin_01/pi_adult:rib_l_leg_03Follicle5078
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:extras_toHide/pi_adult:grp_fol_legs/pi_adult:grp_fol_l_shin_01/pi_adult:rib_l_leg_03Follicle5092
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:extras_toHide/pi_adult:grp_fol_legs/pi_adult:grp_fol_r_leg_01
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:extras_toHide/pi_adult:grp_fol_legs/pi_adult:grp_fol_r_leg_01/pi_adult:fol_r_leg_01
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:extras_toHide/pi_adult:grp_fol_legs/pi_adult:grp_fol_r_leg_01/pi_adult:fol_r_leg_02
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:extras_toHide/pi_adult:grp_fol_legs/pi_adult:grp_fol_r_leg_01/pi_adult:fol_r_leg_03
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:extras_toHide/pi_adult:grp_fol_legs/pi_adult:grp_fol_r_leg_01/pi_adult:fol_r_leg_04
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:extras_toHide/pi_adult:grp_fol_legs/pi_adult:grp_fol_r_leg_01/pi_adult:fol_r_leg_05
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:extras_toHide/pi_adult:grp_fol_legs/pi_adult:grp_fol_r_leg_01/pi_adult:fol_r_leg_06
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:extras_toHide/pi_adult:grp_fol_legs/pi_adult:grp_fol_r_leg_01/pi_adult:fol_r_leg_07
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:extras_toHide/pi_adult:grp_fol_legs/pi_adult:grp_fol_r_shin_01
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:extras_toHide/pi_adult:grp_fol_legs/pi_adult:grp_fol_r_shin_01/pi_adult:rib_l_leg_04Follicle5007
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:extras_toHide/pi_adult:grp_fol_legs/pi_adult:grp_fol_r_shin_01/pi_adult:rib_l_leg_04Follicle5021
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:extras_toHide/pi_adult:grp_fol_legs/pi_adult:grp_fol_r_shin_01/pi_adult:rib_l_leg_04Follicle5035
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:extras_toHide/pi_adult:grp_fol_legs/pi_adult:grp_fol_r_shin_01/pi_adult:rib_l_leg_04Follicle5050
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:extras_toHide/pi_adult:grp_fol_legs/pi_adult:grp_fol_r_shin_01/pi_adult:rib_l_leg_04Follicle5064
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:extras_toHide/pi_adult:grp_fol_legs/pi_adult:grp_fol_r_shin_01/pi_adult:rib_l_leg_04Follicle5078
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:extras_toHide/pi_adult:grp_fol_legs/pi_adult:grp_fol_r_shin_01/pi_adult:rib_l_leg_04Follicle5092
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:extras_toHide/pi_adult:grp_rib_legs
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:extras_toHide/pi_adult:grp_rib_legs/pi_adult:rib_l_leg_01
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:extras_toHide/pi_adult:grp_rib_legs/pi_adult:rib_l_shin_01
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:extras_toHide/pi_adult:grp_rib_legs/pi_adult:rib_r_leg_01
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:extras_toHide/pi_adult:grp_rib_legs/pi_adult:rib_r_shin_01
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:gIKSpineXTR
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:gIKSpineXTR/pi_adult:IKSpineCl_2Handle
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:gIKSpineXTR/pi_adult:IKSpineCurve
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:phipCtrl
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:phipCtrl/pi_adult:hipCtrlOrientGrp
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:phipCtrl/pi_adult:hipCtrlOrientGrp/pi_adult:hipCtrl
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:phipCtrl/pi_adult:hipCtrlOrientGrp/pi_adult:hipCtrl/pi_adult:Ccog
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:phipCtrl/pi_adult:hipCtrlOrientGrp/pi_adult:hipCtrl/pi_adult:IKSpineCl_0Handle
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:phipCtrl/pi_adult:hipCtrlOrientGrp/pi_adult:hipCtrl/pi_adult:IKSpineCl_1Handle
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl/pi_adult:shoulderCtrl
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl/pi_adult:shoulderCtrl/pi_adult:cc_l_arm_FK_01
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl/pi_adult:shoulderCtrl/pi_adult:cc_l_arm_FK_01/pi_adult:nurbsCircle7
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl/pi_adult:shoulderCtrl/pi_adult:cc_l_arm_FK_01/pi_adult:nurbsCircle7/pi_adult:nurbsCircle11
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl/pi_adult:shoulderCtrl/pi_adult:cc_l_arm_FK_01/pi_adult:nurbsCircle7/pi_adult:nurbsCircle11/pi_adult:nurbsCircle12
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl/pi_adult:shoulderCtrl/pi_adult:cc_r_arm_FK_01
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl/pi_adult:shoulderCtrl/pi_adult:cc_r_arm_FK_01/pi_adult:nurbsCircle24
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl/pi_adult:shoulderCtrl/pi_adult:cc_r_arm_FK_01/pi_adult:nurbsCircle24/pi_adult:nurbsCircle11
+      1
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl/pi_adult:shoulderCtrl/pi_adult:cc_r_arm_FK_01/pi_adult:nurbsCircle24/pi_adult:nurbsCircle11
+      1/pi_adult:nurbsCircle12 1
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl/pi_adult:shoulderCtrl/pi_adult:ccs_cc_head_01
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl/pi_adult:shoulderCtrl/pi_adult:ccs_cc_head_01/pi_adult:ccs_cc_nose_01
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl/pi_adult:shoulderCtrl/pi_adult:ccs_cc_head_01/pi_adult:grp_l_cc_ear_01
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl/pi_adult:shoulderCtrl/pi_adult:ccs_cc_head_01/pi_adult:grp_l_cc_ear_01/pi_adult:nurbsCircle20
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl/pi_adult:shoulderCtrl/pi_adult:ccs_cc_head_01/pi_adult:grp_l_cc_ear_01/pi_adult:nurbsCircle20/pi_adult:nurbsCircle21
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl/pi_adult:shoulderCtrl/pi_adult:ccs_cc_head_01/pi_adult:grp_r_cc_ear_01
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl/pi_adult:shoulderCtrl/pi_adult:ccs_cc_head_01/pi_adult:grp_r_cc_ear_01/pi_adult:nurbsCircle22
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl/pi_adult:shoulderCtrl/pi_adult:ccs_cc_head_01/pi_adult:grp_r_cc_ear_01/pi_adult:nurbsCircle22/pi_adult:nurbsCircle23
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl/pi_adult:shoulderCtrl/pi_adult:ccs_cc_head_01/pi_adult:nurbsCircle25
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl/pi_adult:shoulderCtrl/pi_adult:ccs_cc_head_01/pi_adult:nurbsCircle25/pi_adult:nurbsCircle26
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl/pi_adult:shoulderCtrl/pi_adult:group1
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl/pi_adult:shoulderCtrl/pi_adult:group1/pi_adult:IKSpineCl_3Handle
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl/pi_adult:shoulderCtrl/pi_adult:group2
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl/pi_adult:shoulderCtrl/pi_adult:group2/pi_adult:IKSpineCl_4Handle
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl/pi_adult:shoulderCtrl/pi_adult:grp_cc_cape_01
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl/pi_adult:shoulderCtrl/pi_adult:grp_cc_cape_01/pi_adult:locAlign_cape_l_1
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl/pi_adult:shoulderCtrl/pi_adult:grp_cc_cape_01/pi_adult:locAlign_cape_l_1/pi_adult:cape_l_Ctrl
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl/pi_adult:shoulderCtrl/pi_adult:grp_cc_cape_01/pi_adult:locAlign_cape_l_1/pi_adult:cape_l_Ctrl/pi_adult:cape_l_Ctrl2
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl/pi_adult:shoulderCtrl/pi_adult:grp_cc_cape_01/pi_adult:locAlign_cape_l_1/pi_adult:cape_l_Ctrl/pi_adult:cape_l_Ctrl2/pi_adult:cape_l_Ctrl3
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl/pi_adult:shoulderCtrl/pi_adult:grp_cc_cape_01/pi_adult:locAlign_cape_l_1/pi_adult:cape_l_Ctrl/pi_adult:cape_l_Ctrl2/pi_adult:cape_l_Ctrl3/pi_adult:cape_l_Ctrl4
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl/pi_adult:shoulderCtrl/pi_adult:grp_cc_cape_01/pi_adult:locAlign_cape_l_1/pi_adult:cape_l_Ctrl/pi_adult:cape_l_Ctrl2/pi_adult:cape_l_Ctrl3/pi_adult:cape_l_Ctrl4/pi_adult:cape_l_Ctrl5
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl/pi_adult:shoulderCtrl/pi_adult:grp_cc_cape_01/pi_adult:locAlign_cape_l_1/pi_adult:cape_l_Ctrl/pi_adult:cape_l_Ctrl2/pi_adult:cape_l_Ctrl3/pi_adult:cape_l_Ctrl4/pi_adult:cape_l_Ctrl5/pi_adult:cape_l_Ctrl6
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl/pi_adult:shoulderCtrl/pi_adult:grp_cc_cape_01/pi_adult:locAlign_cape_l_1/pi_adult:cape_l_Ctrl/pi_adult:cape_l_Ctrl2/pi_adult:cape_l_Ctrl3/pi_adult:cape_l_Ctrl4/pi_adult:cape_l_Ctrl5/pi_adult:cape_l_Ctrl6/pi_adult:cape_l_Ctrl7
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl/pi_adult:shoulderCtrl/pi_adult:grp_cc_cape_01/pi_adult:locAlign_cape_l_1/pi_adult:cape_l_Ctrl/pi_adult:cape_l_Ctrl2/pi_adult:cape_l_Ctrl3/pi_adult:cape_l_Ctrl4/pi_adult:cape_l_Ctrl5/pi_adult:cape_l_Ctrl6/pi_adult:cape_l_Ctrl7/pi_adult:cape_l_Ctrl8
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl/pi_adult:shoulderCtrl/pi_adult:grp_cc_cape_01/pi_adult:locAlign_cape_l_1/pi_adult:cape_l_Ctrl/pi_adult:cape_l_Ctrl2/pi_adult:cape_l_Ctrl3/pi_adult:cape_l_Ctrl4/pi_adult:cape_l_Ctrl5/pi_adult:cape_l_Ctrl6/pi_adult:cape_l_Ctrl7/pi_adult:cape_l_Ctrl8/pi_adult:cape_l_Ctrl9
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl/pi_adult:shoulderCtrl/pi_adult:grp_cc_cape_01/pi_adult:locAlign_cape_l_1/pi_adult:cape_l_Ctrl/pi_adult:cape_l_Ctrl2/pi_adult:cape_l_Ctrl3/pi_adult:cape_l_Ctrl4/pi_adult:cape_l_Ctrl5/pi_adult:cape_l_Ctrl6/pi_adult:cape_l_Ctrl7/pi_adult:cape_l_Ctrl8/pi_adult:cape_l_Ctrl9/pi_adult:cape_l_Ctrl10
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl/pi_adult:shoulderCtrl/pi_adult:grp_cc_cape_01/pi_adult:locAlign_cape_m_1
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl/pi_adult:shoulderCtrl/pi_adult:grp_cc_cape_01/pi_adult:locAlign_cape_m_1/pi_adult:cape_m_Ctrl
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl/pi_adult:shoulderCtrl/pi_adult:grp_cc_cape_01/pi_adult:locAlign_cape_m_1/pi_adult:cape_m_Ctrl/pi_adult:cape_m_Ctrl2
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl/pi_adult:shoulderCtrl/pi_adult:grp_cc_cape_01/pi_adult:locAlign_cape_m_1/pi_adult:cape_m_Ctrl/pi_adult:cape_m_Ctrl2/pi_adult:cape_m_Ctrl3
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl/pi_adult:shoulderCtrl/pi_adult:grp_cc_cape_01/pi_adult:locAlign_cape_m_1/pi_adult:cape_m_Ctrl/pi_adult:cape_m_Ctrl2/pi_adult:cape_m_Ctrl3/pi_adult:cape_m_Ctrl4
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl/pi_adult:shoulderCtrl/pi_adult:grp_cc_cape_01/pi_adult:locAlign_cape_m_1/pi_adult:cape_m_Ctrl/pi_adult:cape_m_Ctrl2/pi_adult:cape_m_Ctrl3/pi_adult:cape_m_Ctrl4/pi_adult:cape_m_Ctrl5
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl/pi_adult:shoulderCtrl/pi_adult:grp_cc_cape_01/pi_adult:locAlign_cape_m_1/pi_adult:cape_m_Ctrl/pi_adult:cape_m_Ctrl2/pi_adult:cape_m_Ctrl3/pi_adult:cape_m_Ctrl4/pi_adult:cape_m_Ctrl5/pi_adult:cape_m_Ctrl6
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl/pi_adult:shoulderCtrl/pi_adult:grp_cc_cape_01/pi_adult:locAlign_cape_m_1/pi_adult:cape_m_Ctrl/pi_adult:cape_m_Ctrl2/pi_adult:cape_m_Ctrl3/pi_adult:cape_m_Ctrl4/pi_adult:cape_m_Ctrl5/pi_adult:cape_m_Ctrl6/pi_adult:cape_m_Ctrl7
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl/pi_adult:shoulderCtrl/pi_adult:grp_cc_cape_01/pi_adult:locAlign_cape_m_1/pi_adult:cape_m_Ctrl/pi_adult:cape_m_Ctrl2/pi_adult:cape_m_Ctrl3/pi_adult:cape_m_Ctrl4/pi_adult:cape_m_Ctrl5/pi_adult:cape_m_Ctrl6/pi_adult:cape_m_Ctrl7/pi_adult:cape_m_Ctrl8
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl/pi_adult:shoulderCtrl/pi_adult:grp_cc_cape_01/pi_adult:locAlign_cape_m_1/pi_adult:cape_m_Ctrl/pi_adult:cape_m_Ctrl2/pi_adult:cape_m_Ctrl3/pi_adult:cape_m_Ctrl4/pi_adult:cape_m_Ctrl5/pi_adult:cape_m_Ctrl6/pi_adult:cape_m_Ctrl7/pi_adult:cape_m_Ctrl8/pi_adult:cape_m_Ctrl9
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl/pi_adult:shoulderCtrl/pi_adult:grp_cc_cape_01/pi_adult:locAlign_cape_m_1/pi_adult:cape_m_Ctrl/pi_adult:cape_m_Ctrl2/pi_adult:cape_m_Ctrl3/pi_adult:cape_m_Ctrl4/pi_adult:cape_m_Ctrl5/pi_adult:cape_m_Ctrl6/pi_adult:cape_m_Ctrl7/pi_adult:cape_m_Ctrl8/pi_adult:cape_m_Ctrl9/pi_adult:cape_m_Ctrl10
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl/pi_adult:shoulderCtrl/pi_adult:grp_cc_cape_01/pi_adult:locAlign_cape_r_1
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl/pi_adult:shoulderCtrl/pi_adult:grp_cc_cape_01/pi_adult:locAlign_cape_r_1/pi_adult:cape_r_Ctrl
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl/pi_adult:shoulderCtrl/pi_adult:grp_cc_cape_01/pi_adult:locAlign_cape_r_1/pi_adult:cape_r_Ctrl/pi_adult:cape_r_Ctrl1
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl/pi_adult:shoulderCtrl/pi_adult:grp_cc_cape_01/pi_adult:locAlign_cape_r_1/pi_adult:cape_r_Ctrl/pi_adult:cape_r_Ctrl1/pi_adult:cape_r_Ctrl2
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl/pi_adult:shoulderCtrl/pi_adult:grp_cc_cape_01/pi_adult:locAlign_cape_r_1/pi_adult:cape_r_Ctrl/pi_adult:cape_r_Ctrl1/pi_adult:cape_r_Ctrl2/pi_adult:cape_r_Ctrl3
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl/pi_adult:shoulderCtrl/pi_adult:grp_cc_cape_01/pi_adult:locAlign_cape_r_1/pi_adult:cape_r_Ctrl/pi_adult:cape_r_Ctrl1/pi_adult:cape_r_Ctrl2/pi_adult:cape_r_Ctrl3/pi_adult:cape_r_Ctrl4
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl/pi_adult:shoulderCtrl/pi_adult:grp_cc_cape_01/pi_adult:locAlign_cape_r_1/pi_adult:cape_r_Ctrl/pi_adult:cape_r_Ctrl1/pi_adult:cape_r_Ctrl2/pi_adult:cape_r_Ctrl3/pi_adult:cape_r_Ctrl4/pi_adult:cape_r_Ctrl5
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl/pi_adult:shoulderCtrl/pi_adult:grp_cc_cape_01/pi_adult:locAlign_cape_r_1/pi_adult:cape_r_Ctrl/pi_adult:cape_r_Ctrl1/pi_adult:cape_r_Ctrl2/pi_adult:cape_r_Ctrl3/pi_adult:cape_r_Ctrl4/pi_adult:cape_r_Ctrl5/pi_adult:cape_r_Ctrl6
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl/pi_adult:shoulderCtrl/pi_adult:grp_cc_cape_01/pi_adult:locAlign_cape_r_1/pi_adult:cape_r_Ctrl/pi_adult:cape_r_Ctrl1/pi_adult:cape_r_Ctrl2/pi_adult:cape_r_Ctrl3/pi_adult:cape_r_Ctrl4/pi_adult:cape_r_Ctrl5/pi_adult:cape_r_Ctrl6/pi_adult:cape_r_Ctrl7
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl/pi_adult:shoulderCtrl/pi_adult:grp_cc_cape_01/pi_adult:locAlign_cape_r_1/pi_adult:cape_r_Ctrl/pi_adult:cape_r_Ctrl1/pi_adult:cape_r_Ctrl2/pi_adult:cape_r_Ctrl3/pi_adult:cape_r_Ctrl4/pi_adult:cape_r_Ctrl5/pi_adult:cape_r_Ctrl6/pi_adult:cape_r_Ctrl7/pi_adult:cape_r_Ctrl8
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:gIKSpine/pi_adult:pshoulderCtrl/pi_adult:shoulderCtrl/pi_adult:grp_cc_cape_01/pi_adult:locAlign_cape_r_1/pi_adult:cape_r_Ctrl/pi_adult:cape_r_Ctrl1/pi_adult:cape_r_Ctrl2/pi_adult:cape_r_Ctrl3/pi_adult:cape_r_Ctrl4/pi_adult:cape_r_Ctrl5/pi_adult:cape_r_Ctrl6/pi_adult:cape_r_Ctrl7/pi_adult:cape_r_Ctrl8/pi_adult:cape_r_Ctrl9
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:bn_l_leg_01
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:bn_l_leg_01/pi_adult:bn_l_leg_02
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:bn_l_leg_01/pi_adult:bn_l_leg_02/pi_adult:bn_l_leg_03
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:bn_l_leg_01/pi_adult:bn_l_leg_02/pi_adult:bn_l_leg_03/pi_adult:bn_l_leg_04
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:bn_l_leg_01/pi_adult:bn_l_leg_02/pi_adult:bn_l_leg_03/pi_adult:bn_l_leg_04/pi_adult:bn_l_leg_05
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:bn_l_leg_01/pi_adult:bn_l_leg_02/pi_adult:bn_l_leg_03/pi_adult:bn_l_leg_04/pi_adult:bn_l_leg_05/pi_adult:bn_l_leg_06
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:bn_l_leg_01/pi_adult:bn_l_leg_02/pi_adult:bn_l_leg_03/pi_adult:bn_l_leg_04/pi_adult:bn_l_leg_05/pi_adult:bn_l_leg_06/pi_adult:bn_l_leg_07
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:bn_l_leg_01/pi_adult:bn_l_leg_02/pi_adult:bn_l_leg_03/pi_adult:bn_l_leg_04/pi_adult:bn_l_leg_05/pi_adult:bn_l_leg_06/pi_adult:bn_l_leg_07/pi_adult:bn_l_shin_01
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:bn_l_leg_01/pi_adult:bn_l_leg_02/pi_adult:bn_l_leg_03/pi_adult:bn_l_leg_04/pi_adult:bn_l_leg_05/pi_adult:bn_l_leg_06/pi_adult:bn_l_leg_07/pi_adult:bn_l_shin_01/pi_adult:bn_l_shin_02
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:bn_l_leg_01/pi_adult:bn_l_leg_02/pi_adult:bn_l_leg_03/pi_adult:bn_l_leg_04/pi_adult:bn_l_leg_05/pi_adult:bn_l_leg_06/pi_adult:bn_l_leg_07/pi_adult:bn_l_shin_01/pi_adult:bn_l_shin_02/pi_adult:bn_l_shin_03
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:bn_l_leg_01/pi_adult:bn_l_leg_02/pi_adult:bn_l_leg_03/pi_adult:bn_l_leg_04/pi_adult:bn_l_leg_05/pi_adult:bn_l_leg_06/pi_adult:bn_l_leg_07/pi_adult:bn_l_shin_01/pi_adult:bn_l_shin_02/pi_adult:bn_l_shin_03/pi_adult:bn_l_shin_04
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:bn_l_leg_01/pi_adult:bn_l_leg_02/pi_adult:bn_l_leg_03/pi_adult:bn_l_leg_04/pi_adult:bn_l_leg_05/pi_adult:bn_l_leg_06/pi_adult:bn_l_leg_07/pi_adult:bn_l_shin_01/pi_adult:bn_l_shin_02/pi_adult:bn_l_shin_03/pi_adult:bn_l_shin_04/pi_adult:bn_l_shin_05
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:bn_l_leg_01/pi_adult:bn_l_leg_02/pi_adult:bn_l_leg_03/pi_adult:bn_l_leg_04/pi_adult:bn_l_leg_05/pi_adult:bn_l_leg_06/pi_adult:bn_l_leg_07/pi_adult:bn_l_shin_01/pi_adult:bn_l_shin_02/pi_adult:bn_l_shin_03/pi_adult:bn_l_shin_04/pi_adult:bn_l_shin_05/pi_adult:bn_l_shin_06
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:bn_l_leg_01/pi_adult:bn_l_leg_02/pi_adult:bn_l_leg_03/pi_adult:bn_l_leg_04/pi_adult:bn_l_leg_05/pi_adult:bn_l_leg_06/pi_adult:bn_l_leg_07/pi_adult:bn_l_shin_01/pi_adult:bn_l_shin_02/pi_adult:bn_l_shin_03/pi_adult:bn_l_shin_04/pi_adult:bn_l_shin_05/pi_adult:bn_l_shin_06/pi_adult:bn_l_shin_07
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:bn_r_leg_01
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:bn_r_leg_01/pi_adult:bn_r_leg_02
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:bn_r_leg_01/pi_adult:bn_r_leg_02/pi_adult:bn_r_leg_03
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:bn_r_leg_01/pi_adult:bn_r_leg_02/pi_adult:bn_r_leg_03/pi_adult:bn_r_leg_04
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:bn_r_leg_01/pi_adult:bn_r_leg_02/pi_adult:bn_r_leg_03/pi_adult:bn_r_leg_04/pi_adult:bn_r_leg_05
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:bn_r_leg_01/pi_adult:bn_r_leg_02/pi_adult:bn_r_leg_03/pi_adult:bn_r_leg_04/pi_adult:bn_r_leg_05/pi_adult:bn_r_leg_06
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:bn_r_leg_01/pi_adult:bn_r_leg_02/pi_adult:bn_r_leg_03/pi_adult:bn_r_leg_04/pi_adult:bn_r_leg_05/pi_adult:bn_r_leg_06/pi_adult:bn_r_leg_07
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:bn_r_leg_01/pi_adult:bn_r_leg_02/pi_adult:bn_r_leg_03/pi_adult:bn_r_leg_04/pi_adult:bn_r_leg_05/pi_adult:bn_r_leg_06/pi_adult:bn_r_leg_07/pi_adult:bn_r_shin_01
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:bn_r_leg_01/pi_adult:bn_r_leg_02/pi_adult:bn_r_leg_03/pi_adult:bn_r_leg_04/pi_adult:bn_r_leg_05/pi_adult:bn_r_leg_06/pi_adult:bn_r_leg_07/pi_adult:bn_r_shin_01/pi_adult:bn_r_shin_02
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:bn_r_leg_01/pi_adult:bn_r_leg_02/pi_adult:bn_r_leg_03/pi_adult:bn_r_leg_04/pi_adult:bn_r_leg_05/pi_adult:bn_r_leg_06/pi_adult:bn_r_leg_07/pi_adult:bn_r_shin_01/pi_adult:bn_r_shin_02/pi_adult:bn_r_shin_03
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:bn_r_leg_01/pi_adult:bn_r_leg_02/pi_adult:bn_r_leg_03/pi_adult:bn_r_leg_04/pi_adult:bn_r_leg_05/pi_adult:bn_r_leg_06/pi_adult:bn_r_leg_07/pi_adult:bn_r_shin_01/pi_adult:bn_r_shin_02/pi_adult:bn_r_shin_03/pi_adult:bn_r_shin_04
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:bn_r_leg_01/pi_adult:bn_r_leg_02/pi_adult:bn_r_leg_03/pi_adult:bn_r_leg_04/pi_adult:bn_r_leg_05/pi_adult:bn_r_leg_06/pi_adult:bn_r_leg_07/pi_adult:bn_r_shin_01/pi_adult:bn_r_shin_02/pi_adult:bn_r_shin_03/pi_adult:bn_r_shin_04/pi_adult:bn_r_shin_05
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:bn_r_leg_01/pi_adult:bn_r_leg_02/pi_adult:bn_r_leg_03/pi_adult:bn_r_leg_04/pi_adult:bn_r_leg_05/pi_adult:bn_r_leg_06/pi_adult:bn_r_leg_07/pi_adult:bn_r_shin_01/pi_adult:bn_r_shin_02/pi_adult:bn_r_shin_03/pi_adult:bn_r_shin_04/pi_adult:bn_r_shin_05/pi_adult:bn_r_shin_06
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:bn_r_leg_01/pi_adult:bn_r_leg_02/pi_adult:bn_r_leg_03/pi_adult:bn_r_leg_04/pi_adult:bn_r_leg_05/pi_adult:bn_r_leg_06/pi_adult:bn_r_leg_07/pi_adult:bn_r_shin_01/pi_adult:bn_r_shin_02/pi_adult:bn_r_shin_03/pi_adult:bn_r_shin_04/pi_adult:bn_r_shin_05/pi_adult:bn_r_shin_06/pi_adult:bn_r_shin_07
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:object_joint
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint/pi_adult:cape_l_1
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint/pi_adult:cape_l_1/pi_adult:cape_l_2
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint/pi_adult:cape_l_1/pi_adult:cape_l_2/pi_adult:cape_l_3
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint/pi_adult:cape_l_1/pi_adult:cape_l_2/pi_adult:cape_l_3/pi_adult:cape_l_4
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint/pi_adult:cape_l_1/pi_adult:cape_l_2/pi_adult:cape_l_3/pi_adult:cape_l_4/pi_adult:cape_l_5
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint/pi_adult:cape_l_1/pi_adult:cape_l_2/pi_adult:cape_l_3/pi_adult:cape_l_4/pi_adult:cape_l_5/pi_adult:cape_l_6
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint/pi_adult:cape_l_1/pi_adult:cape_l_2/pi_adult:cape_l_3/pi_adult:cape_l_4/pi_adult:cape_l_5/pi_adult:cape_l_6/pi_adult:cape_l_7
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint/pi_adult:cape_l_1/pi_adult:cape_l_2/pi_adult:cape_l_3/pi_adult:cape_l_4/pi_adult:cape_l_5/pi_adult:cape_l_6/pi_adult:cape_l_7/pi_adult:cape_l_8
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint/pi_adult:cape_l_1/pi_adult:cape_l_2/pi_adult:cape_l_3/pi_adult:cape_l_4/pi_adult:cape_l_5/pi_adult:cape_l_6/pi_adult:cape_l_7/pi_adult:cape_l_8/pi_adult:cape_l_9
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint/pi_adult:cape_l_1/pi_adult:cape_l_2/pi_adult:cape_l_3/pi_adult:cape_l_4/pi_adult:cape_l_5/pi_adult:cape_l_6/pi_adult:cape_l_7/pi_adult:cape_l_8/pi_adult:cape_l_9/pi_adult:cape_l_10
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint/pi_adult:cape_l_1/pi_adult:cape_l_2/pi_adult:cape_l_3/pi_adult:cape_l_4/pi_adult:cape_l_5/pi_adult:cape_l_6/pi_adult:cape_l_7/pi_adult:cape_l_8/pi_adult:cape_l_9/pi_adult:cape_l_10/pi_adult:cape_l_11
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint/pi_adult:cape_l_1/pi_adult:cape_l_2/pi_adult:cape_l_3/pi_adult:cape_l_4/pi_adult:cape_l_5/pi_adult:cape_l_6/pi_adult:cape_l_7/pi_adult:cape_l_8/pi_adult:cape_l_9/pi_adult:cape_l_10/pi_adult:cape_l_11/pi_adult:cape_l_12
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint/pi_adult:cape_m_1
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint/pi_adult:cape_m_1/pi_adult:cape_m_2
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint/pi_adult:cape_m_1/pi_adult:cape_m_2/pi_adult:cape_m_3
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint/pi_adult:cape_m_1/pi_adult:cape_m_2/pi_adult:cape_m_3/pi_adult:cape_m_4
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint/pi_adult:cape_m_1/pi_adult:cape_m_2/pi_adult:cape_m_3/pi_adult:cape_m_4/pi_adult:cape_m_5
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint/pi_adult:cape_m_1/pi_adult:cape_m_2/pi_adult:cape_m_3/pi_adult:cape_m_4/pi_adult:cape_m_5/pi_adult:cape_m_6
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint/pi_adult:cape_m_1/pi_adult:cape_m_2/pi_adult:cape_m_3/pi_adult:cape_m_4/pi_adult:cape_m_5/pi_adult:cape_m_6/pi_adult:cape_m_7
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint/pi_adult:cape_m_1/pi_adult:cape_m_2/pi_adult:cape_m_3/pi_adult:cape_m_4/pi_adult:cape_m_5/pi_adult:cape_m_6/pi_adult:cape_m_7/pi_adult:cape_m_8
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint/pi_adult:cape_m_1/pi_adult:cape_m_2/pi_adult:cape_m_3/pi_adult:cape_m_4/pi_adult:cape_m_5/pi_adult:cape_m_6/pi_adult:cape_m_7/pi_adult:cape_m_8/pi_adult:cape_m_9
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint/pi_adult:cape_m_1/pi_adult:cape_m_2/pi_adult:cape_m_3/pi_adult:cape_m_4/pi_adult:cape_m_5/pi_adult:cape_m_6/pi_adult:cape_m_7/pi_adult:cape_m_8/pi_adult:cape_m_9/pi_adult:cape_m_10
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint/pi_adult:cape_m_1/pi_adult:cape_m_2/pi_adult:cape_m_3/pi_adult:cape_m_4/pi_adult:cape_m_5/pi_adult:cape_m_6/pi_adult:cape_m_7/pi_adult:cape_m_8/pi_adult:cape_m_9/pi_adult:cape_m_10/pi_adult:cape_m_11
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint/pi_adult:cape_m_1/pi_adult:cape_m_2/pi_adult:cape_m_3/pi_adult:cape_m_4/pi_adult:cape_m_5/pi_adult:cape_m_6/pi_adult:cape_m_7/pi_adult:cape_m_8/pi_adult:cape_m_9/pi_adult:cape_m_10/pi_adult:cape_m_11/pi_adult:cape_m_12
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint/pi_adult:cape_r_1
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint/pi_adult:cape_r_1/pi_adult:cape_r_2
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint/pi_adult:cape_r_1/pi_adult:cape_r_2/pi_adult:cape_r_3
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint/pi_adult:cape_r_1/pi_adult:cape_r_2/pi_adult:cape_r_3/pi_adult:cape_r_4
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint/pi_adult:cape_r_1/pi_adult:cape_r_2/pi_adult:cape_r_3/pi_adult:cape_r_4/pi_adult:cape_r_5
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint/pi_adult:cape_r_1/pi_adult:cape_r_2/pi_adult:cape_r_3/pi_adult:cape_r_4/pi_adult:cape_r_5/pi_adult:cape_r_6
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint/pi_adult:cape_r_1/pi_adult:cape_r_2/pi_adult:cape_r_3/pi_adult:cape_r_4/pi_adult:cape_r_5/pi_adult:cape_r_6/pi_adult:cape_r_7
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint/pi_adult:cape_r_1/pi_adult:cape_r_2/pi_adult:cape_r_3/pi_adult:cape_r_4/pi_adult:cape_r_5/pi_adult:cape_r_6/pi_adult:cape_r_7/pi_adult:cape_r_8
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint/pi_adult:cape_r_1/pi_adult:cape_r_2/pi_adult:cape_r_3/pi_adult:cape_r_4/pi_adult:cape_r_5/pi_adult:cape_r_6/pi_adult:cape_r_7/pi_adult:cape_r_8/pi_adult:cape_r_9
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint/pi_adult:cape_r_1/pi_adult:cape_r_2/pi_adult:cape_r_3/pi_adult:cape_r_4/pi_adult:cape_r_5/pi_adult:cape_r_6/pi_adult:cape_r_7/pi_adult:cape_r_8/pi_adult:cape_r_9/pi_adult:cape_r_10
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint/pi_adult:cape_r_1/pi_adult:cape_r_2/pi_adult:cape_r_3/pi_adult:cape_r_4/pi_adult:cape_r_5/pi_adult:cape_r_6/pi_adult:cape_r_7/pi_adult:cape_r_8/pi_adult:cape_r_9/pi_adult:cape_r_10/pi_adult:cape_r_11
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint/pi_adult:cape_r_1/pi_adult:cape_r_2/pi_adult:cape_r_3/pi_adult:cape_r_4/pi_adult:cape_r_5/pi_adult:cape_r_6/pi_adult:cape_r_7/pi_adult:cape_r_8/pi_adult:cape_r_9/pi_adult:cape_r_10/pi_adult:cape_r_11/pi_adult:cape_r_12
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint/pi_adult:neck_joint
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint/pi_adult:neck_joint/pi_adult:head_joint
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint/pi_adult:neck_joint/pi_adult:head_joint/pi_adult:ear_l_1_joint
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint/pi_adult:neck_joint/pi_adult:head_joint/pi_adult:ear_l_1_joint/pi_adult:ear_l_2_joint
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint/pi_adult:neck_joint/pi_adult:head_joint/pi_adult:ear_l_1_joint/pi_adult:ear_l_2_joint/pi_adult:ear_l_3_joint
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint/pi_adult:neck_joint/pi_adult:head_joint/pi_adult:ear_m_1_joint
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint/pi_adult:neck_joint/pi_adult:head_joint/pi_adult:ear_m_1_joint/pi_adult:ear_m_2_joint
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint/pi_adult:neck_joint/pi_adult:head_joint/pi_adult:ear_m_1_joint/pi_adult:ear_m_2_joint/pi_adult:ear_m_3_joint
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint/pi_adult:neck_joint/pi_adult:head_joint/pi_adult:ear_r_1_joint
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint/pi_adult:neck_joint/pi_adult:head_joint/pi_adult:ear_r_1_joint/pi_adult:ear_r_2_joint
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint/pi_adult:neck_joint/pi_adult:head_joint/pi_adult:ear_r_1_joint/pi_adult:ear_r_2_joint/pi_adult:ear_r_3_joint
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint/pi_adult:neck_joint/pi_adult:head_joint/pi_adult:nose_joint
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint/pi_adult:neck_joint/pi_adult:head_joint/pi_adult:nose_joint/pi_adult:noseTip_joint
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint/pi_adult:shoulder_l_joint
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint/pi_adult:shoulder_l_joint/pi_adult:elbow_l_joint
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint/pi_adult:shoulder_l_joint/pi_adult:elbow_l_joint/pi_adult:wrist_l_joint
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint/pi_adult:shoulder_l_joint/pi_adult:elbow_l_joint/pi_adult:wrist_l_joint/pi_adult:hand_l_joint
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint/pi_adult:shoulder_r_joint
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint/pi_adult:shoulder_r_joint/pi_adult:elbow_r_joint
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint/pi_adult:shoulder_r_joint/pi_adult:elbow_r_joint/pi_adult:wrist_r_joint
+    m_Weight: 0
+  - m_Path: pi_adult:piAdult/pi_adult:joints/pi_adult:cog_joint/pi_adult:spine_1_joint/pi_adult:spine_2_joint/pi_adult:spine_3_joint/pi_adult:spine_4_joint/pi_adult:spine_5_joint/pi_adult:spine_6_joint/pi_adult:spine_7_joint/pi_adult:spine_8_joint/pi_adult:shoulder_r_joint/pi_adult:elbow_r_joint/pi_adult:wrist_r_joint/pi_adult:hand_r_joint
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_bn_l_leg_01
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_bn_l_leg_01/pi_adult:skin_bn_l_leg_02
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_bn_l_leg_01/pi_adult:skin_bn_l_leg_02/pi_adult:skin_bn_l_leg_03
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_bn_l_leg_01/pi_adult:skin_bn_l_leg_02/pi_adult:skin_bn_l_leg_03/pi_adult:skin_bn_l_leg_04
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_bn_l_leg_01/pi_adult:skin_bn_l_leg_02/pi_adult:skin_bn_l_leg_03/pi_adult:skin_bn_l_leg_04/pi_adult:skin_bn_l_leg_05
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_bn_l_leg_01/pi_adult:skin_bn_l_leg_02/pi_adult:skin_bn_l_leg_03/pi_adult:skin_bn_l_leg_04/pi_adult:skin_bn_l_leg_05/pi_adult:skin_bn_l_leg_06
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_bn_l_leg_01/pi_adult:skin_bn_l_leg_02/pi_adult:skin_bn_l_leg_03/pi_adult:skin_bn_l_leg_04/pi_adult:skin_bn_l_leg_05/pi_adult:skin_bn_l_leg_06/pi_adult:skin_bn_l_leg_07
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_bn_l_leg_01/pi_adult:skin_bn_l_leg_02/pi_adult:skin_bn_l_leg_03/pi_adult:skin_bn_l_leg_04/pi_adult:skin_bn_l_leg_05/pi_adult:skin_bn_l_leg_06/pi_adult:skin_bn_l_leg_07/pi_adult:skin_bn_l_shin_01
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_bn_l_leg_01/pi_adult:skin_bn_l_leg_02/pi_adult:skin_bn_l_leg_03/pi_adult:skin_bn_l_leg_04/pi_adult:skin_bn_l_leg_05/pi_adult:skin_bn_l_leg_06/pi_adult:skin_bn_l_leg_07/pi_adult:skin_bn_l_shin_01/pi_adult:skin_bn_l_shin_02
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_bn_l_leg_01/pi_adult:skin_bn_l_leg_02/pi_adult:skin_bn_l_leg_03/pi_adult:skin_bn_l_leg_04/pi_adult:skin_bn_l_leg_05/pi_adult:skin_bn_l_leg_06/pi_adult:skin_bn_l_leg_07/pi_adult:skin_bn_l_shin_01/pi_adult:skin_bn_l_shin_02/pi_adult:skin_bn_l_shin_03
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_bn_l_leg_01/pi_adult:skin_bn_l_leg_02/pi_adult:skin_bn_l_leg_03/pi_adult:skin_bn_l_leg_04/pi_adult:skin_bn_l_leg_05/pi_adult:skin_bn_l_leg_06/pi_adult:skin_bn_l_leg_07/pi_adult:skin_bn_l_shin_01/pi_adult:skin_bn_l_shin_02/pi_adult:skin_bn_l_shin_03/pi_adult:skin_bn_l_shin_04
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_bn_l_leg_01/pi_adult:skin_bn_l_leg_02/pi_adult:skin_bn_l_leg_03/pi_adult:skin_bn_l_leg_04/pi_adult:skin_bn_l_leg_05/pi_adult:skin_bn_l_leg_06/pi_adult:skin_bn_l_leg_07/pi_adult:skin_bn_l_shin_01/pi_adult:skin_bn_l_shin_02/pi_adult:skin_bn_l_shin_03/pi_adult:skin_bn_l_shin_04/pi_adult:skin_bn_l_shin_05
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_bn_l_leg_01/pi_adult:skin_bn_l_leg_02/pi_adult:skin_bn_l_leg_03/pi_adult:skin_bn_l_leg_04/pi_adult:skin_bn_l_leg_05/pi_adult:skin_bn_l_leg_06/pi_adult:skin_bn_l_leg_07/pi_adult:skin_bn_l_shin_01/pi_adult:skin_bn_l_shin_02/pi_adult:skin_bn_l_shin_03/pi_adult:skin_bn_l_shin_04/pi_adult:skin_bn_l_shin_05/pi_adult:skin_bn_l_shin_06
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_bn_l_leg_01/pi_adult:skin_bn_l_leg_02/pi_adult:skin_bn_l_leg_03/pi_adult:skin_bn_l_leg_04/pi_adult:skin_bn_l_leg_05/pi_adult:skin_bn_l_leg_06/pi_adult:skin_bn_l_leg_07/pi_adult:skin_bn_l_shin_01/pi_adult:skin_bn_l_shin_02/pi_adult:skin_bn_l_shin_03/pi_adult:skin_bn_l_shin_04/pi_adult:skin_bn_l_shin_05/pi_adult:skin_bn_l_shin_06/pi_adult:skin_bn_l_shin_07
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_bn_r_leg_01
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_bn_r_leg_01/pi_adult:skin_bn_r_leg_02
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_bn_r_leg_01/pi_adult:skin_bn_r_leg_02/pi_adult:skin_bn_r_leg_03
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_bn_r_leg_01/pi_adult:skin_bn_r_leg_02/pi_adult:skin_bn_r_leg_03/pi_adult:skin_bn_r_leg_04
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_bn_r_leg_01/pi_adult:skin_bn_r_leg_02/pi_adult:skin_bn_r_leg_03/pi_adult:skin_bn_r_leg_04/pi_adult:skin_bn_r_leg_05
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_bn_r_leg_01/pi_adult:skin_bn_r_leg_02/pi_adult:skin_bn_r_leg_03/pi_adult:skin_bn_r_leg_04/pi_adult:skin_bn_r_leg_05/pi_adult:skin_bn_r_leg_06
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_bn_r_leg_01/pi_adult:skin_bn_r_leg_02/pi_adult:skin_bn_r_leg_03/pi_adult:skin_bn_r_leg_04/pi_adult:skin_bn_r_leg_05/pi_adult:skin_bn_r_leg_06/pi_adult:skin_bn_r_leg_07
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_bn_r_leg_01/pi_adult:skin_bn_r_leg_02/pi_adult:skin_bn_r_leg_03/pi_adult:skin_bn_r_leg_04/pi_adult:skin_bn_r_leg_05/pi_adult:skin_bn_r_leg_06/pi_adult:skin_bn_r_leg_07/pi_adult:skin_bn_r_shin_01
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_bn_r_leg_01/pi_adult:skin_bn_r_leg_02/pi_adult:skin_bn_r_leg_03/pi_adult:skin_bn_r_leg_04/pi_adult:skin_bn_r_leg_05/pi_adult:skin_bn_r_leg_06/pi_adult:skin_bn_r_leg_07/pi_adult:skin_bn_r_shin_01/pi_adult:skin_bn_r_shin_02
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_bn_r_leg_01/pi_adult:skin_bn_r_leg_02/pi_adult:skin_bn_r_leg_03/pi_adult:skin_bn_r_leg_04/pi_adult:skin_bn_r_leg_05/pi_adult:skin_bn_r_leg_06/pi_adult:skin_bn_r_leg_07/pi_adult:skin_bn_r_shin_01/pi_adult:skin_bn_r_shin_02/pi_adult:skin_bn_r_shin_03
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_bn_r_leg_01/pi_adult:skin_bn_r_leg_02/pi_adult:skin_bn_r_leg_03/pi_adult:skin_bn_r_leg_04/pi_adult:skin_bn_r_leg_05/pi_adult:skin_bn_r_leg_06/pi_adult:skin_bn_r_leg_07/pi_adult:skin_bn_r_shin_01/pi_adult:skin_bn_r_shin_02/pi_adult:skin_bn_r_shin_03/pi_adult:skin_bn_r_shin_04
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_bn_r_leg_01/pi_adult:skin_bn_r_leg_02/pi_adult:skin_bn_r_leg_03/pi_adult:skin_bn_r_leg_04/pi_adult:skin_bn_r_leg_05/pi_adult:skin_bn_r_leg_06/pi_adult:skin_bn_r_leg_07/pi_adult:skin_bn_r_shin_01/pi_adult:skin_bn_r_shin_02/pi_adult:skin_bn_r_shin_03/pi_adult:skin_bn_r_shin_04/pi_adult:skin_bn_r_shin_05
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_bn_r_leg_01/pi_adult:skin_bn_r_leg_02/pi_adult:skin_bn_r_leg_03/pi_adult:skin_bn_r_leg_04/pi_adult:skin_bn_r_leg_05/pi_adult:skin_bn_r_leg_06/pi_adult:skin_bn_r_leg_07/pi_adult:skin_bn_r_shin_01/pi_adult:skin_bn_r_shin_02/pi_adult:skin_bn_r_shin_03/pi_adult:skin_bn_r_shin_04/pi_adult:skin_bn_r_shin_05/pi_adult:skin_bn_r_shin_06
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_bn_r_leg_01/pi_adult:skin_bn_r_leg_02/pi_adult:skin_bn_r_leg_03/pi_adult:skin_bn_r_leg_04/pi_adult:skin_bn_r_leg_05/pi_adult:skin_bn_r_leg_06/pi_adult:skin_bn_r_leg_07/pi_adult:skin_bn_r_shin_01/pi_adult:skin_bn_r_shin_02/pi_adult:skin_bn_r_shin_03/pi_adult:skin_bn_r_shin_04/pi_adult:skin_bn_r_shin_05/pi_adult:skin_bn_r_shin_06/pi_adult:skin_bn_r_shin_07
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_object_joint
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint/pi_adult:skin_spine_8_joint
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint/pi_adult:skin_spine_8_joint/pi_adult:skin_cape_l_2
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint/pi_adult:skin_spine_8_joint/pi_adult:skin_cape_l_2/pi_adult:skin_cape_l_3
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint/pi_adult:skin_spine_8_joint/pi_adult:skin_cape_l_2/pi_adult:skin_cape_l_3/pi_adult:skin_cape_l_4
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint/pi_adult:skin_spine_8_joint/pi_adult:skin_cape_l_2/pi_adult:skin_cape_l_3/pi_adult:skin_cape_l_4/pi_adult:skin_cape_l_5
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint/pi_adult:skin_spine_8_joint/pi_adult:skin_cape_l_2/pi_adult:skin_cape_l_3/pi_adult:skin_cape_l_4/pi_adult:skin_cape_l_5/pi_adult:skin_cape_l_6
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint/pi_adult:skin_spine_8_joint/pi_adult:skin_cape_l_2/pi_adult:skin_cape_l_3/pi_adult:skin_cape_l_4/pi_adult:skin_cape_l_5/pi_adult:skin_cape_l_6/pi_adult:skin_cape_l_7
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint/pi_adult:skin_spine_8_joint/pi_adult:skin_cape_l_2/pi_adult:skin_cape_l_3/pi_adult:skin_cape_l_4/pi_adult:skin_cape_l_5/pi_adult:skin_cape_l_6/pi_adult:skin_cape_l_7/pi_adult:skin_cape_l_8
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint/pi_adult:skin_spine_8_joint/pi_adult:skin_cape_l_2/pi_adult:skin_cape_l_3/pi_adult:skin_cape_l_4/pi_adult:skin_cape_l_5/pi_adult:skin_cape_l_6/pi_adult:skin_cape_l_7/pi_adult:skin_cape_l_8/pi_adult:skin_cape_l_9
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint/pi_adult:skin_spine_8_joint/pi_adult:skin_cape_l_2/pi_adult:skin_cape_l_3/pi_adult:skin_cape_l_4/pi_adult:skin_cape_l_5/pi_adult:skin_cape_l_6/pi_adult:skin_cape_l_7/pi_adult:skin_cape_l_8/pi_adult:skin_cape_l_9/pi_adult:skin_cape_l_10
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint/pi_adult:skin_spine_8_joint/pi_adult:skin_cape_l_2/pi_adult:skin_cape_l_3/pi_adult:skin_cape_l_4/pi_adult:skin_cape_l_5/pi_adult:skin_cape_l_6/pi_adult:skin_cape_l_7/pi_adult:skin_cape_l_8/pi_adult:skin_cape_l_9/pi_adult:skin_cape_l_10/pi_adult:skin_cape_l_11
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint/pi_adult:skin_spine_8_joint/pi_adult:skin_cape_l_2/pi_adult:skin_cape_l_3/pi_adult:skin_cape_l_4/pi_adult:skin_cape_l_5/pi_adult:skin_cape_l_6/pi_adult:skin_cape_l_7/pi_adult:skin_cape_l_8/pi_adult:skin_cape_l_9/pi_adult:skin_cape_l_10/pi_adult:skin_cape_l_11/pi_adult:skin_cape_l_12
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint/pi_adult:skin_spine_8_joint/pi_adult:skin_cape_m_1
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint/pi_adult:skin_spine_8_joint/pi_adult:skin_cape_m_1/pi_adult:skin_cape_m_2
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint/pi_adult:skin_spine_8_joint/pi_adult:skin_cape_m_1/pi_adult:skin_cape_m_2/pi_adult:skin_cape_m_3
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint/pi_adult:skin_spine_8_joint/pi_adult:skin_cape_m_1/pi_adult:skin_cape_m_2/pi_adult:skin_cape_m_3/pi_adult:skin_cape_m_4
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint/pi_adult:skin_spine_8_joint/pi_adult:skin_cape_m_1/pi_adult:skin_cape_m_2/pi_adult:skin_cape_m_3/pi_adult:skin_cape_m_4/pi_adult:skin_cape_m_5
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint/pi_adult:skin_spine_8_joint/pi_adult:skin_cape_m_1/pi_adult:skin_cape_m_2/pi_adult:skin_cape_m_3/pi_adult:skin_cape_m_4/pi_adult:skin_cape_m_5/pi_adult:skin_cape_m_6
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint/pi_adult:skin_spine_8_joint/pi_adult:skin_cape_m_1/pi_adult:skin_cape_m_2/pi_adult:skin_cape_m_3/pi_adult:skin_cape_m_4/pi_adult:skin_cape_m_5/pi_adult:skin_cape_m_6/pi_adult:skin_cape_m_7
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint/pi_adult:skin_spine_8_joint/pi_adult:skin_cape_m_1/pi_adult:skin_cape_m_2/pi_adult:skin_cape_m_3/pi_adult:skin_cape_m_4/pi_adult:skin_cape_m_5/pi_adult:skin_cape_m_6/pi_adult:skin_cape_m_7/pi_adult:skin_cape_m_8
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint/pi_adult:skin_spine_8_joint/pi_adult:skin_cape_m_1/pi_adult:skin_cape_m_2/pi_adult:skin_cape_m_3/pi_adult:skin_cape_m_4/pi_adult:skin_cape_m_5/pi_adult:skin_cape_m_6/pi_adult:skin_cape_m_7/pi_adult:skin_cape_m_8/pi_adult:skin_cape_m_9
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint/pi_adult:skin_spine_8_joint/pi_adult:skin_cape_m_1/pi_adult:skin_cape_m_2/pi_adult:skin_cape_m_3/pi_adult:skin_cape_m_4/pi_adult:skin_cape_m_5/pi_adult:skin_cape_m_6/pi_adult:skin_cape_m_7/pi_adult:skin_cape_m_8/pi_adult:skin_cape_m_9/pi_adult:skin_cape_m_10
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint/pi_adult:skin_spine_8_joint/pi_adult:skin_cape_m_1/pi_adult:skin_cape_m_2/pi_adult:skin_cape_m_3/pi_adult:skin_cape_m_4/pi_adult:skin_cape_m_5/pi_adult:skin_cape_m_6/pi_adult:skin_cape_m_7/pi_adult:skin_cape_m_8/pi_adult:skin_cape_m_9/pi_adult:skin_cape_m_10/pi_adult:skin_cape_m_11
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint/pi_adult:skin_spine_8_joint/pi_adult:skin_cape_m_1/pi_adult:skin_cape_m_2/pi_adult:skin_cape_m_3/pi_adult:skin_cape_m_4/pi_adult:skin_cape_m_5/pi_adult:skin_cape_m_6/pi_adult:skin_cape_m_7/pi_adult:skin_cape_m_8/pi_adult:skin_cape_m_9/pi_adult:skin_cape_m_10/pi_adult:skin_cape_m_11/pi_adult:skin_cape_m_12
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint/pi_adult:skin_spine_8_joint/pi_adult:skin_cape_r_1
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint/pi_adult:skin_spine_8_joint/pi_adult:skin_cape_r_1/pi_adult:skin_cape_r_2
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint/pi_adult:skin_spine_8_joint/pi_adult:skin_cape_r_1/pi_adult:skin_cape_r_2/pi_adult:skin_cape_r_3
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint/pi_adult:skin_spine_8_joint/pi_adult:skin_cape_r_1/pi_adult:skin_cape_r_2/pi_adult:skin_cape_r_3/pi_adult:skin_cape_r_4
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint/pi_adult:skin_spine_8_joint/pi_adult:skin_cape_r_1/pi_adult:skin_cape_r_2/pi_adult:skin_cape_r_3/pi_adult:skin_cape_r_4/pi_adult:skin_cape_r_5
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint/pi_adult:skin_spine_8_joint/pi_adult:skin_cape_r_1/pi_adult:skin_cape_r_2/pi_adult:skin_cape_r_3/pi_adult:skin_cape_r_4/pi_adult:skin_cape_r_5/pi_adult:skin_cape_r_6
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint/pi_adult:skin_spine_8_joint/pi_adult:skin_cape_r_1/pi_adult:skin_cape_r_2/pi_adult:skin_cape_r_3/pi_adult:skin_cape_r_4/pi_adult:skin_cape_r_5/pi_adult:skin_cape_r_6/pi_adult:skin_cape_r_7
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint/pi_adult:skin_spine_8_joint/pi_adult:skin_cape_r_1/pi_adult:skin_cape_r_2/pi_adult:skin_cape_r_3/pi_adult:skin_cape_r_4/pi_adult:skin_cape_r_5/pi_adult:skin_cape_r_6/pi_adult:skin_cape_r_7/pi_adult:skin_cape_r_8
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint/pi_adult:skin_spine_8_joint/pi_adult:skin_cape_r_1/pi_adult:skin_cape_r_2/pi_adult:skin_cape_r_3/pi_adult:skin_cape_r_4/pi_adult:skin_cape_r_5/pi_adult:skin_cape_r_6/pi_adult:skin_cape_r_7/pi_adult:skin_cape_r_8/pi_adult:skin_cape_r_9
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint/pi_adult:skin_spine_8_joint/pi_adult:skin_cape_r_1/pi_adult:skin_cape_r_2/pi_adult:skin_cape_r_3/pi_adult:skin_cape_r_4/pi_adult:skin_cape_r_5/pi_adult:skin_cape_r_6/pi_adult:skin_cape_r_7/pi_adult:skin_cape_r_8/pi_adult:skin_cape_r_9/pi_adult:skin_cape_r_10
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint/pi_adult:skin_spine_8_joint/pi_adult:skin_cape_r_1/pi_adult:skin_cape_r_2/pi_adult:skin_cape_r_3/pi_adult:skin_cape_r_4/pi_adult:skin_cape_r_5/pi_adult:skin_cape_r_6/pi_adult:skin_cape_r_7/pi_adult:skin_cape_r_8/pi_adult:skin_cape_r_9/pi_adult:skin_cape_r_10/pi_adult:skin_cape_r_11
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint/pi_adult:skin_spine_8_joint/pi_adult:skin_cape_r_1/pi_adult:skin_cape_r_2/pi_adult:skin_cape_r_3/pi_adult:skin_cape_r_4/pi_adult:skin_cape_r_5/pi_adult:skin_cape_r_6/pi_adult:skin_cape_r_7/pi_adult:skin_cape_r_8/pi_adult:skin_cape_r_9/pi_adult:skin_cape_r_10/pi_adult:skin_cape_r_11/pi_adult:skin_cape_r_12
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint/pi_adult:skin_spine_8_joint/pi_adult:skin_neck_joint
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint/pi_adult:skin_spine_8_joint/pi_adult:skin_neck_joint/pi_adult:skin_head_joint
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint/pi_adult:skin_spine_8_joint/pi_adult:skin_neck_joint/pi_adult:skin_head_joint/pi_adult:skin_ear_l_1_joint
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint/pi_adult:skin_spine_8_joint/pi_adult:skin_neck_joint/pi_adult:skin_head_joint/pi_adult:skin_ear_l_1_joint/pi_adult:skin_ear_l_2_joint
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint/pi_adult:skin_spine_8_joint/pi_adult:skin_neck_joint/pi_adult:skin_head_joint/pi_adult:skin_ear_l_1_joint/pi_adult:skin_ear_l_2_joint/pi_adult:skin_ear_l_3_joint
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint/pi_adult:skin_spine_8_joint/pi_adult:skin_neck_joint/pi_adult:skin_head_joint/pi_adult:skin_ear_m_1_joint
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint/pi_adult:skin_spine_8_joint/pi_adult:skin_neck_joint/pi_adult:skin_head_joint/pi_adult:skin_ear_m_1_joint/pi_adult:skin_ear_m_2_joint
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint/pi_adult:skin_spine_8_joint/pi_adult:skin_neck_joint/pi_adult:skin_head_joint/pi_adult:skin_ear_m_1_joint/pi_adult:skin_ear_m_2_joint/pi_adult:skin_ear_m_3_joint
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint/pi_adult:skin_spine_8_joint/pi_adult:skin_neck_joint/pi_adult:skin_head_joint/pi_adult:skin_ear_r_1_joint
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint/pi_adult:skin_spine_8_joint/pi_adult:skin_neck_joint/pi_adult:skin_head_joint/pi_adult:skin_ear_r_1_joint/pi_adult:skin_ear_r_2_joint
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint/pi_adult:skin_spine_8_joint/pi_adult:skin_neck_joint/pi_adult:skin_head_joint/pi_adult:skin_ear_r_1_joint/pi_adult:skin_ear_r_2_joint/pi_adult:skin_ear_r_3_joint
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint/pi_adult:skin_spine_8_joint/pi_adult:skin_neck_joint/pi_adult:skin_head_joint/pi_adult:skin_nose_joint
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint/pi_adult:skin_spine_8_joint/pi_adult:skin_neck_joint/pi_adult:skin_head_joint/pi_adult:skin_nose_joint/pi_adult:skin_noseTip_joint
+    m_Weight: 0
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint/pi_adult:skin_spine_8_joint/pi_adult:skin_shoulder_l_joint
+    m_Weight: 1
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint/pi_adult:skin_spine_8_joint/pi_adult:skin_shoulder_l_joint/pi_adult:skin_elbow_l_joint
+    m_Weight: 1
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint/pi_adult:skin_spine_8_joint/pi_adult:skin_shoulder_l_joint/pi_adult:skin_elbow_l_joint/pi_adult:skin_wrist_l_joint
+    m_Weight: 1
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint/pi_adult:skin_spine_8_joint/pi_adult:skin_shoulder_l_joint/pi_adult:skin_elbow_l_joint/pi_adult:skin_wrist_l_joint/pi_adult:skin_hand_l_joint
+    m_Weight: 1
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint/pi_adult:skin_spine_8_joint/pi_adult:skin_shoulder_r_joint
+    m_Weight: 1
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint/pi_adult:skin_spine_8_joint/pi_adult:skin_shoulder_r_joint/pi_adult:skin_elbow_r_joint
+    m_Weight: 1
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint/pi_adult:skin_spine_8_joint/pi_adult:skin_shoulder_r_joint/pi_adult:skin_elbow_r_joint/pi_adult:skin_wrist_r_joint
+    m_Weight: 1
+  - m_Path: pi_adult:skin_cog_joint/pi_adult:skin_spine_1_joint/pi_adult:skin_spine_2_joint/pi_adult:skin_spine_3_joint/pi_adult:skin_spine_4_joint/pi_adult:skin_spine_5_joint/pi_adult:skin_spine_6_joint/pi_adult:skin_spine_7_joint/pi_adult:skin_spine_8_joint/pi_adult:skin_shoulder_r_joint/pi_adult:skin_elbow_r_joint/pi_adult:skin_wrist_r_joint/pi_adult:skin_hand_r_joint
+    m_Weight: 1

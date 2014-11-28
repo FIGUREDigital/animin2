@@ -566,7 +566,7 @@ public class UIClickButtonMasterScript : MonoBehaviour
 
             case UIFunctionalityId.ChangeCameraFacingMode:
                 {
-                    UIGlobalVariablesScript.Singleton.ImageTarget.GetComponent<TrackVuforiaScript>().FlipFrontBackCamera();
+                    //UIGlobalVariablesScript.Singleton.ImageTarget.GetComponent<TrackVuforiaScript>().FlipFrontBackCamera();
 
                     break;
                 }
@@ -654,7 +654,7 @@ public class UIClickButtonMasterScript : MonoBehaviour
                 {
                     UIGlobalVariablesScript.Singleton.MinigameInterruptedMenu.SetActive(false);
                     HandleClick(UIFunctionalityId.CloseCurrentMinigame, sender);
-                    UIGlobalVariablesScript.Singleton.Vuforia.OnTrackingLost();
+                    //UIGlobalVariablesScript.Singleton.Vuforia.OnTrackingLost();
                     break;
                 }
 

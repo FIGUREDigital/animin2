@@ -1,0 +1,124 @@
+fileFormatVersion: 2
+guid: 77b21f8946f964eb08235bac030a82d0
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: ke_adult:skin_ankle_l_joint
+    100002: ke_adult:skin_ankle_r_joint
+    100004: ke_adult:skin_clavicle_l_joint
+    100006: ke_adult:skin_clavicle_r_joint
+    100008: ke_adult:skin_cog_joint
+    100010: ke_adult:skin_elbow_l_joint
+    100012: ke_adult:skin_elbow_r_joint
+    100014: ke_adult:skin_hair_1_joint
+    100016: ke_adult:skin_hair_2_joint
+    100018: ke_adult:skin_hair_3_joint
+    100020: ke_adult:skin_hair_4_joint
+    100022: ke_adult:skin_head_joint
+    100024: ke_adult:skin_hip_l_joint
+    100026: ke_adult:skin_hip_r_joint
+    100028: ke_adult:skin_knee_l_joint
+    100030: ke_adult:skin_knee_r_joint
+    100032: ke_adult:skin_neck_joint
+    100034: ke_adult:skin_nose_joint
+    100036: ke_adult:skin_shoulder_l_joint
+    100038: ke_adult:skin_shoulder_r_joint
+    100040: ke_adult:skin_spine_1_joint
+    100042: ke_adult:skin_spine_2_joint
+    100044: ke_adult:skin_spine_3_joint
+    100046: ke_adult:skin_spine_4_joint
+    100048: ke_adult:skin_spine_5_joint
+    100050: ke_adult:skin_spine_6_joint
+    100052: ke_adult:skin_spine_7_joint
+    100054: ke_adult:skin_wrist_l_joint
+    100056: ke_adult:skin_wrist_r_joint
+    100058: //RootNode
+    100060: ke_adult:skin_object_joint
+    400000: ke_adult:skin_ankle_l_joint
+    400002: ke_adult:skin_ankle_r_joint
+    400004: ke_adult:skin_clavicle_l_joint
+    400006: ke_adult:skin_clavicle_r_joint
+    400008: ke_adult:skin_cog_joint
+    400010: ke_adult:skin_elbow_l_joint
+    400012: ke_adult:skin_elbow_r_joint
+    400014: ke_adult:skin_hair_1_joint
+    400016: ke_adult:skin_hair_2_joint
+    400018: ke_adult:skin_hair_3_joint
+    400020: ke_adult:skin_hair_4_joint
+    400022: ke_adult:skin_head_joint
+    400024: ke_adult:skin_hip_l_joint
+    400026: ke_adult:skin_hip_r_joint
+    400028: ke_adult:skin_knee_l_joint
+    400030: ke_adult:skin_knee_r_joint
+    400032: ke_adult:skin_neck_joint
+    400034: ke_adult:skin_nose_joint
+    400036: ke_adult:skin_shoulder_l_joint
+    400038: ke_adult:skin_shoulder_r_joint
+    400040: ke_adult:skin_spine_1_joint
+    400042: ke_adult:skin_spine_2_joint
+    400044: ke_adult:skin_spine_3_joint
+    400046: ke_adult:skin_spine_4_joint
+    400048: ke_adult:skin_spine_5_joint
+    400050: ke_adult:skin_spine_6_joint
+    400052: ke_adult:skin_spine_7_joint
+    400054: ke_adult:skin_wrist_l_joint
+    400056: ke_adult:skin_wrist_r_joint
+    400058: //RootNode
+    400060: ke_adult:skin_object_joint
+    7400000: Take 001
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 1
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: b634f315b006a4f5b81880cb4c11c8fc,
+    type: 3}
+  animationType: 2
+  additionalBone: 0
+  userData: 

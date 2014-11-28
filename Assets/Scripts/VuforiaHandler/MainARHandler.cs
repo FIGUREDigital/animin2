@@ -106,7 +106,7 @@ public class MainARHandler : MonoBehaviour
 		UnityEngine.Object.Destroy (CurrentGameSceneGameObject);
 		switch (m_CurrentGameScene) {
 		case GameScenes.Caring:
-			CurrentGameSceneGameObject = (GameObject)GameObject.Instantiate (Resources.Load ("Prefabs/TestDummies/Caring"));
+			CurrentGameSceneGameObject = (GameObject)GameObject.Instantiate (Resources.Load ("Prefabs/ScenePrefabs/Caring"));
 			break;
 
 		case GameScenes.MinigameCubeRunner:

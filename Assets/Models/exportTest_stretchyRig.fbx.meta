@@ -1,0 +1,124 @@
+fileFormatVersion: 2
+guid: 6a68c33264e42444d95e6b009e570c2e
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: hip_anim
+    100004: hip_geo
+    100006: hip_joint
+    100008: shoulder_anim
+    100010: shoulder_geo
+    100012: shoulder_joint
+    100014: torso_1_joint
+    100016: torso_2_joint
+    100018: torso_3_joint
+    100020: torso_4_joint
+    100022: torso_5_joint
+    100024: torso_6_joint
+    100026: torso_7_joint
+    100028: torso_geo
+    100030: torso_geo1
+    100032: torso_geo2
+    100034: torso_segment_4_geo
+    100036: torso_segment_7_geo
+    100038: torso_segment_8_geo
+    400000: //RootNode
+    400002: hip_anim
+    400004: hip_geo
+    400006: hip_joint
+    400008: shoulder_anim
+    400010: shoulder_geo
+    400012: shoulder_joint
+    400014: torso_1_joint
+    400016: torso_2_joint
+    400018: torso_3_joint
+    400020: torso_4_joint
+    400022: torso_5_joint
+    400024: torso_6_joint
+    400026: torso_7_joint
+    400028: torso_geo
+    400030: torso_geo1
+    400032: torso_geo2
+    400034: torso_segment_4_geo
+    400036: torso_segment_7_geo
+    400038: torso_segment_8_geo
+    2300000: hip_geo
+    2300002: shoulder_geo
+    2300004: torso_geo
+    2300006: torso_geo1
+    2300008: torso_geo2
+    2300010: torso_segment_4_geo
+    2300012: torso_segment_7_geo
+    2300014: torso_segment_8_geo
+    3300000: hip_geo
+    3300002: shoulder_geo
+    3300004: torso_geo
+    3300006: torso_geo1
+    3300008: torso_geo2
+    3300010: torso_segment_4_geo
+    3300012: torso_segment_7_geo
+    3300014: torso_segment_8_geo
+    4300000: torso_segment_4_geo
+    4300002: torso_segment_7_geo
+    4300004: torso_segment_8_geo
+    4300006: torso_geo2
+    4300008: torso_geo
+    4300010: torso_geo1
+    4300012: hip_geo
+    4300014: shoulder_geo
+    7400000: Take 001
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

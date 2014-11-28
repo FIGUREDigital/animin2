@@ -1,0 +1,216 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1011 &101100000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: TboBabyMask
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: tbo_baby:skin_world_root
+    m_Weight: 0
+  - m_Path: tbo_baby:skin_world_root/tbo_baby:skin_hips_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:skin_world_root/tbo_baby:skin_hips_joint/tbo_baby:skin_left_leg_01_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:skin_world_root/tbo_baby:skin_hips_joint/tbo_baby:skin_left_leg_01_joint/tbo_baby:skin_left_leg_02_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:skin_world_root/tbo_baby:skin_hips_joint/tbo_baby:skin_left_leg_01_joint/tbo_baby:skin_left_leg_02_joint/tbo_baby:skin_left_leg_03_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:skin_world_root/tbo_baby:skin_hips_joint/tbo_baby:skin_right_leg_01_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:skin_world_root/tbo_baby:skin_hips_joint/tbo_baby:skin_right_leg_01_joint/tbo_baby:skin_right_leg_02_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:skin_world_root/tbo_baby:skin_hips_joint/tbo_baby:skin_right_leg_01_joint/tbo_baby:skin_right_leg_02_joint/tbo_baby:skin_right_leg_03_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:skin_world_root/tbo_baby:skin_hips_joint/tbo_baby:skin_spine_01_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:skin_world_root/tbo_baby:skin_hips_joint/tbo_baby:skin_spine_01_joint/tbo_baby:skin_belly_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:skin_world_root/tbo_baby:skin_hips_joint/tbo_baby:skin_spine_01_joint/tbo_baby:skin_belly_joint/tbo_baby:skin_belly_end_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:skin_world_root/tbo_baby:skin_hips_joint/tbo_baby:skin_spine_01_joint/tbo_baby:skin_spine_02_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:skin_world_root/tbo_baby:skin_hips_joint/tbo_baby:skin_spine_01_joint/tbo_baby:skin_spine_02_joint/tbo_baby:skin_spine_03_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:skin_world_root/tbo_baby:skin_hips_joint/tbo_baby:skin_spine_01_joint/tbo_baby:skin_spine_02_joint/tbo_baby:skin_spine_03_joint/tbo_baby:skin_spine_04_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:skin_world_root/tbo_baby:skin_hips_joint/tbo_baby:skin_spine_01_joint/tbo_baby:skin_spine_02_joint/tbo_baby:skin_spine_03_joint/tbo_baby:skin_spine_04_joint/tbo_baby:skin_spine_05_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:skin_world_root/tbo_baby:skin_hips_joint/tbo_baby:skin_spine_01_joint/tbo_baby:skin_spine_02_joint/tbo_baby:skin_spine_03_joint/tbo_baby:skin_spine_04_joint/tbo_baby:skin_spine_05_joint/tbo_baby:skin_left_clavicle_01_joint
+    m_Weight: 1
+  - m_Path: tbo_baby:skin_world_root/tbo_baby:skin_hips_joint/tbo_baby:skin_spine_01_joint/tbo_baby:skin_spine_02_joint/tbo_baby:skin_spine_03_joint/tbo_baby:skin_spine_04_joint/tbo_baby:skin_spine_05_joint/tbo_baby:skin_left_clavicle_01_joint/tbo_baby:skin_left_arm_01_joint
+    m_Weight: 1
+  - m_Path: tbo_baby:skin_world_root/tbo_baby:skin_hips_joint/tbo_baby:skin_spine_01_joint/tbo_baby:skin_spine_02_joint/tbo_baby:skin_spine_03_joint/tbo_baby:skin_spine_04_joint/tbo_baby:skin_spine_05_joint/tbo_baby:skin_left_clavicle_01_joint/tbo_baby:skin_left_arm_01_joint/tbo_baby:skin_left_arm_02_joint
+    m_Weight: 1
+  - m_Path: tbo_baby:skin_world_root/tbo_baby:skin_hips_joint/tbo_baby:skin_spine_01_joint/tbo_baby:skin_spine_02_joint/tbo_baby:skin_spine_03_joint/tbo_baby:skin_spine_04_joint/tbo_baby:skin_spine_05_joint/tbo_baby:skin_left_clavicle_01_joint/tbo_baby:skin_left_arm_01_joint/tbo_baby:skin_left_arm_02_joint/tbo_baby:skin_left_arm_03_joint
+    m_Weight: 1
+  - m_Path: tbo_baby:skin_world_root/tbo_baby:skin_hips_joint/tbo_baby:skin_spine_01_joint/tbo_baby:skin_spine_02_joint/tbo_baby:skin_spine_03_joint/tbo_baby:skin_spine_04_joint/tbo_baby:skin_spine_05_joint/tbo_baby:skin_neck_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:skin_world_root/tbo_baby:skin_hips_joint/tbo_baby:skin_spine_01_joint/tbo_baby:skin_spine_02_joint/tbo_baby:skin_spine_03_joint/tbo_baby:skin_spine_04_joint/tbo_baby:skin_spine_05_joint/tbo_baby:skin_neck_joint/tbo_baby:skin_head_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:skin_world_root/tbo_baby:skin_hips_joint/tbo_baby:skin_spine_01_joint/tbo_baby:skin_spine_02_joint/tbo_baby:skin_spine_03_joint/tbo_baby:skin_spine_04_joint/tbo_baby:skin_spine_05_joint/tbo_baby:skin_neck_joint/tbo_baby:skin_head_joint/tbo_baby:skin_head_end_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:skin_world_root/tbo_baby:skin_hips_joint/tbo_baby:skin_spine_01_joint/tbo_baby:skin_spine_02_joint/tbo_baby:skin_spine_03_joint/tbo_baby:skin_spine_04_joint/tbo_baby:skin_spine_05_joint/tbo_baby:skin_neck_joint/tbo_baby:skin_head_joint/tbo_baby:skin_left_ear_01_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:skin_world_root/tbo_baby:skin_hips_joint/tbo_baby:skin_spine_01_joint/tbo_baby:skin_spine_02_joint/tbo_baby:skin_spine_03_joint/tbo_baby:skin_spine_04_joint/tbo_baby:skin_spine_05_joint/tbo_baby:skin_neck_joint/tbo_baby:skin_head_joint/tbo_baby:skin_left_ear_01_joint/tbo_baby:skin_left_ear_02_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:skin_world_root/tbo_baby:skin_hips_joint/tbo_baby:skin_spine_01_joint/tbo_baby:skin_spine_02_joint/tbo_baby:skin_spine_03_joint/tbo_baby:skin_spine_04_joint/tbo_baby:skin_spine_05_joint/tbo_baby:skin_neck_joint/tbo_baby:skin_head_joint/tbo_baby:skin_left_ear_01_joint/tbo_baby:skin_left_ear_02_joint/tbo_baby:skin_left_ear_end_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:skin_world_root/tbo_baby:skin_hips_joint/tbo_baby:skin_spine_01_joint/tbo_baby:skin_spine_02_joint/tbo_baby:skin_spine_03_joint/tbo_baby:skin_spine_04_joint/tbo_baby:skin_spine_05_joint/tbo_baby:skin_neck_joint/tbo_baby:skin_head_joint/tbo_baby:skin_nose_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:skin_world_root/tbo_baby:skin_hips_joint/tbo_baby:skin_spine_01_joint/tbo_baby:skin_spine_02_joint/tbo_baby:skin_spine_03_joint/tbo_baby:skin_spine_04_joint/tbo_baby:skin_spine_05_joint/tbo_baby:skin_neck_joint/tbo_baby:skin_head_joint/tbo_baby:skin_nose_joint/tbo_baby:skin_nose_end_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:skin_world_root/tbo_baby:skin_hips_joint/tbo_baby:skin_spine_01_joint/tbo_baby:skin_spine_02_joint/tbo_baby:skin_spine_03_joint/tbo_baby:skin_spine_04_joint/tbo_baby:skin_spine_05_joint/tbo_baby:skin_neck_joint/tbo_baby:skin_head_joint/tbo_baby:skin_right_ear_01_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:skin_world_root/tbo_baby:skin_hips_joint/tbo_baby:skin_spine_01_joint/tbo_baby:skin_spine_02_joint/tbo_baby:skin_spine_03_joint/tbo_baby:skin_spine_04_joint/tbo_baby:skin_spine_05_joint/tbo_baby:skin_neck_joint/tbo_baby:skin_head_joint/tbo_baby:skin_right_ear_01_joint/tbo_baby:skin_right_ear_02_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:skin_world_root/tbo_baby:skin_hips_joint/tbo_baby:skin_spine_01_joint/tbo_baby:skin_spine_02_joint/tbo_baby:skin_spine_03_joint/tbo_baby:skin_spine_04_joint/tbo_baby:skin_spine_05_joint/tbo_baby:skin_neck_joint/tbo_baby:skin_head_joint/tbo_baby:skin_right_ear_01_joint/tbo_baby:skin_right_ear_02_joint/tbo_baby:skin_right_ear_end_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:skin_world_root/tbo_baby:skin_hips_joint/tbo_baby:skin_spine_01_joint/tbo_baby:skin_spine_02_joint/tbo_baby:skin_spine_03_joint/tbo_baby:skin_spine_04_joint/tbo_baby:skin_spine_05_joint/tbo_baby:skin_right_clavicle_01_joint
+    m_Weight: 1
+  - m_Path: tbo_baby:skin_world_root/tbo_baby:skin_hips_joint/tbo_baby:skin_spine_01_joint/tbo_baby:skin_spine_02_joint/tbo_baby:skin_spine_03_joint/tbo_baby:skin_spine_04_joint/tbo_baby:skin_spine_05_joint/tbo_baby:skin_right_clavicle_01_joint/tbo_baby:skin_right_arm_01_joint
+    m_Weight: 1
+  - m_Path: tbo_baby:skin_world_root/tbo_baby:skin_hips_joint/tbo_baby:skin_spine_01_joint/tbo_baby:skin_spine_02_joint/tbo_baby:skin_spine_03_joint/tbo_baby:skin_spine_04_joint/tbo_baby:skin_spine_05_joint/tbo_baby:skin_right_clavicle_01_joint/tbo_baby:skin_right_arm_01_joint/tbo_baby:skin_right_arm_02_joint
+    m_Weight: 1
+  - m_Path: tbo_baby:skin_world_root/tbo_baby:skin_hips_joint/tbo_baby:skin_spine_01_joint/tbo_baby:skin_spine_02_joint/tbo_baby:skin_spine_03_joint/tbo_baby:skin_spine_04_joint/tbo_baby:skin_spine_05_joint/tbo_baby:skin_right_clavicle_01_joint/tbo_baby:skin_right_arm_01_joint/tbo_baby:skin_right_arm_02_joint/tbo_baby:skin_right_arm_03_joint
+    m_Weight: 1
+  - m_Path: tbo_baby:skin_world_root/tbo_baby:skin_object_joint
+    m_Weight: 1
+  - m_Path: tbo_baby:tbo_baby
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:Global_cc_01
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:Global_cc_01/tbo_baby:Hips_cc_01
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:Global_cc_01/tbo_baby:Hips_cc_01/tbo_baby:Hips_Rot_cc_01
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:Global_cc_01/tbo_baby:Hips_cc_01/tbo_baby:Spine1_cc_01
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:Global_cc_01/tbo_baby:Hips_cc_01/tbo_baby:Spine1_cc_01/tbo_baby:Belly_cc_01
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:Global_cc_01/tbo_baby:Hips_cc_01/tbo_baby:Spine1_cc_01/tbo_baby:Spine2_cc_01
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:Global_cc_01/tbo_baby:Hips_cc_01/tbo_baby:Spine1_cc_01/tbo_baby:Spine2_cc_01/tbo_baby:Spine3_cc_01
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:Global_cc_01/tbo_baby:Hips_cc_01/tbo_baby:Spine1_cc_01/tbo_baby:Spine2_cc_01/tbo_baby:Spine3_cc_01/tbo_baby:Spine4_cc_01
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:Global_cc_01/tbo_baby:Hips_cc_01/tbo_baby:Spine1_cc_01/tbo_baby:Spine2_cc_01/tbo_baby:Spine3_cc_01/tbo_baby:Spine4_cc_01/tbo_baby:L_UpperArm_cc_01
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:Global_cc_01/tbo_baby:Hips_cc_01/tbo_baby:Spine1_cc_01/tbo_baby:Spine2_cc_01/tbo_baby:Spine3_cc_01/tbo_baby:Spine4_cc_01/tbo_baby:L_UpperArm_cc_01/tbo_baby:L_Forearm_cc_01
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:Global_cc_01/tbo_baby:Hips_cc_01/tbo_baby:Spine1_cc_01/tbo_baby:Spine2_cc_01/tbo_baby:Spine3_cc_01/tbo_baby:Spine4_cc_01/tbo_baby:L_UpperArm_cc_01/tbo_baby:L_Forearm_cc_01/tbo_baby:loc_L_Forearm_01
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:Global_cc_01/tbo_baby:Hips_cc_01/tbo_baby:Spine1_cc_01/tbo_baby:Spine2_cc_01/tbo_baby:Spine3_cc_01/tbo_baby:Spine4_cc_01/tbo_baby:L_UpperArm_cc_01/tbo_baby:loc_L_arm_01
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:Global_cc_01/tbo_baby:Hips_cc_01/tbo_baby:Spine1_cc_01/tbo_baby:Spine2_cc_01/tbo_baby:Spine3_cc_01/tbo_baby:Spine4_cc_01/tbo_baby:LeftShoulder_cc_01
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:Global_cc_01/tbo_baby:Hips_cc_01/tbo_baby:Spine1_cc_01/tbo_baby:Spine2_cc_01/tbo_baby:Spine3_cc_01/tbo_baby:Spine4_cc_01/tbo_baby:Neck_cc_01
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:Global_cc_01/tbo_baby:Hips_cc_01/tbo_baby:Spine1_cc_01/tbo_baby:Spine2_cc_01/tbo_baby:Spine3_cc_01/tbo_baby:Spine4_cc_01/tbo_baby:Neck_cc_01/tbo_baby:Head_cc_01
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:Global_cc_01/tbo_baby:Hips_cc_01/tbo_baby:Spine1_cc_01/tbo_baby:Spine2_cc_01/tbo_baby:Spine3_cc_01/tbo_baby:Spine4_cc_01/tbo_baby:Neck_cc_01/tbo_baby:Head_cc_01/tbo_baby:LeftEar1_cc_01
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:Global_cc_01/tbo_baby:Hips_cc_01/tbo_baby:Spine1_cc_01/tbo_baby:Spine2_cc_01/tbo_baby:Spine3_cc_01/tbo_baby:Spine4_cc_01/tbo_baby:Neck_cc_01/tbo_baby:Head_cc_01/tbo_baby:LeftEar1_cc_01/tbo_baby:LeftEar2_cc_01
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:Global_cc_01/tbo_baby:Hips_cc_01/tbo_baby:Spine1_cc_01/tbo_baby:Spine2_cc_01/tbo_baby:Spine3_cc_01/tbo_baby:Spine4_cc_01/tbo_baby:Neck_cc_01/tbo_baby:Head_cc_01/tbo_baby:Nose_cc_01
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:Global_cc_01/tbo_baby:Hips_cc_01/tbo_baby:Spine1_cc_01/tbo_baby:Spine2_cc_01/tbo_baby:Spine3_cc_01/tbo_baby:Spine4_cc_01/tbo_baby:Neck_cc_01/tbo_baby:Head_cc_01/tbo_baby:RightEar1_cc_01
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:Global_cc_01/tbo_baby:Hips_cc_01/tbo_baby:Spine1_cc_01/tbo_baby:Spine2_cc_01/tbo_baby:Spine3_cc_01/tbo_baby:Spine4_cc_01/tbo_baby:Neck_cc_01/tbo_baby:Head_cc_01/tbo_baby:RightEar1_cc_01/tbo_baby:RightEar2_cc_01
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:Global_cc_01/tbo_baby:Hips_cc_01/tbo_baby:Spine1_cc_01/tbo_baby:Spine2_cc_01/tbo_baby:Spine3_cc_01/tbo_baby:Spine4_cc_01/tbo_baby:R_UpperArm_cc_01
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:Global_cc_01/tbo_baby:Hips_cc_01/tbo_baby:Spine1_cc_01/tbo_baby:Spine2_cc_01/tbo_baby:Spine3_cc_01/tbo_baby:Spine4_cc_01/tbo_baby:R_UpperArm_cc_01/tbo_baby:loc_L_arm_02
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:Global_cc_01/tbo_baby:Hips_cc_01/tbo_baby:Spine1_cc_01/tbo_baby:Spine2_cc_01/tbo_baby:Spine3_cc_01/tbo_baby:Spine4_cc_01/tbo_baby:R_UpperArm_cc_01/tbo_baby:R_Forearm_cc_01
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:Global_cc_01/tbo_baby:Hips_cc_01/tbo_baby:Spine1_cc_01/tbo_baby:Spine2_cc_01/tbo_baby:Spine3_cc_01/tbo_baby:Spine4_cc_01/tbo_baby:R_UpperArm_cc_01/tbo_baby:R_Forearm_cc_01/tbo_baby:loc_L_arm_03
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:Global_cc_01/tbo_baby:Hips_cc_01/tbo_baby:Spine1_cc_01/tbo_baby:Spine2_cc_01/tbo_baby:Spine3_cc_01/tbo_baby:Spine4_cc_01/tbo_baby:RightShoulder_cc_01
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:Global_cc_01/tbo_baby:object_anim
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:Global_cc_01/tbo_baby:object_anim/tbo_baby:object_offset_anim
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:tbo_baby_skeleton
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:tbo_baby_skeleton/tbo_baby:world_root
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:tbo_baby_skeleton/tbo_baby:world_root/tbo_baby:hips_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:tbo_baby_skeleton/tbo_baby:world_root/tbo_baby:hips_joint/tbo_baby:left_leg_01_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:tbo_baby_skeleton/tbo_baby:world_root/tbo_baby:hips_joint/tbo_baby:left_leg_01_joint/tbo_baby:left_leg_02_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:tbo_baby_skeleton/tbo_baby:world_root/tbo_baby:hips_joint/tbo_baby:left_leg_01_joint/tbo_baby:left_leg_02_joint/tbo_baby:left_leg_03_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:tbo_baby_skeleton/tbo_baby:world_root/tbo_baby:hips_joint/tbo_baby:right_leg_01_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:tbo_baby_skeleton/tbo_baby:world_root/tbo_baby:hips_joint/tbo_baby:right_leg_01_joint/tbo_baby:right_leg_02_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:tbo_baby_skeleton/tbo_baby:world_root/tbo_baby:hips_joint/tbo_baby:right_leg_01_joint/tbo_baby:right_leg_02_joint/tbo_baby:right_leg_03_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:tbo_baby_skeleton/tbo_baby:world_root/tbo_baby:hips_joint/tbo_baby:spine_01_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:tbo_baby_skeleton/tbo_baby:world_root/tbo_baby:hips_joint/tbo_baby:spine_01_joint/tbo_baby:belly_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:tbo_baby_skeleton/tbo_baby:world_root/tbo_baby:hips_joint/tbo_baby:spine_01_joint/tbo_baby:belly_joint/tbo_baby:belly_end_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:tbo_baby_skeleton/tbo_baby:world_root/tbo_baby:hips_joint/tbo_baby:spine_01_joint/tbo_baby:spine_02_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:tbo_baby_skeleton/tbo_baby:world_root/tbo_baby:hips_joint/tbo_baby:spine_01_joint/tbo_baby:spine_02_joint/tbo_baby:spine_03_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:tbo_baby_skeleton/tbo_baby:world_root/tbo_baby:hips_joint/tbo_baby:spine_01_joint/tbo_baby:spine_02_joint/tbo_baby:spine_03_joint/tbo_baby:spine_04_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:tbo_baby_skeleton/tbo_baby:world_root/tbo_baby:hips_joint/tbo_baby:spine_01_joint/tbo_baby:spine_02_joint/tbo_baby:spine_03_joint/tbo_baby:spine_04_joint/tbo_baby:spine_05_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:tbo_baby_skeleton/tbo_baby:world_root/tbo_baby:hips_joint/tbo_baby:spine_01_joint/tbo_baby:spine_02_joint/tbo_baby:spine_03_joint/tbo_baby:spine_04_joint/tbo_baby:spine_05_joint/tbo_baby:left_clavicle_01_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:tbo_baby_skeleton/tbo_baby:world_root/tbo_baby:hips_joint/tbo_baby:spine_01_joint/tbo_baby:spine_02_joint/tbo_baby:spine_03_joint/tbo_baby:spine_04_joint/tbo_baby:spine_05_joint/tbo_baby:left_clavicle_01_joint/tbo_baby:left_arm_01_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:tbo_baby_skeleton/tbo_baby:world_root/tbo_baby:hips_joint/tbo_baby:spine_01_joint/tbo_baby:spine_02_joint/tbo_baby:spine_03_joint/tbo_baby:spine_04_joint/tbo_baby:spine_05_joint/tbo_baby:left_clavicle_01_joint/tbo_baby:left_arm_01_joint/tbo_baby:left_arm_02_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:tbo_baby_skeleton/tbo_baby:world_root/tbo_baby:hips_joint/tbo_baby:spine_01_joint/tbo_baby:spine_02_joint/tbo_baby:spine_03_joint/tbo_baby:spine_04_joint/tbo_baby:spine_05_joint/tbo_baby:left_clavicle_01_joint/tbo_baby:left_arm_01_joint/tbo_baby:left_arm_02_joint/tbo_baby:left_arm_03_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:tbo_baby_skeleton/tbo_baby:world_root/tbo_baby:hips_joint/tbo_baby:spine_01_joint/tbo_baby:spine_02_joint/tbo_baby:spine_03_joint/tbo_baby:spine_04_joint/tbo_baby:spine_05_joint/tbo_baby:neck_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:tbo_baby_skeleton/tbo_baby:world_root/tbo_baby:hips_joint/tbo_baby:spine_01_joint/tbo_baby:spine_02_joint/tbo_baby:spine_03_joint/tbo_baby:spine_04_joint/tbo_baby:spine_05_joint/tbo_baby:neck_joint/tbo_baby:head_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:tbo_baby_skeleton/tbo_baby:world_root/tbo_baby:hips_joint/tbo_baby:spine_01_joint/tbo_baby:spine_02_joint/tbo_baby:spine_03_joint/tbo_baby:spine_04_joint/tbo_baby:spine_05_joint/tbo_baby:neck_joint/tbo_baby:head_joint/tbo_baby:head_end_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:tbo_baby_skeleton/tbo_baby:world_root/tbo_baby:hips_joint/tbo_baby:spine_01_joint/tbo_baby:spine_02_joint/tbo_baby:spine_03_joint/tbo_baby:spine_04_joint/tbo_baby:spine_05_joint/tbo_baby:neck_joint/tbo_baby:head_joint/tbo_baby:left_ear_01_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:tbo_baby_skeleton/tbo_baby:world_root/tbo_baby:hips_joint/tbo_baby:spine_01_joint/tbo_baby:spine_02_joint/tbo_baby:spine_03_joint/tbo_baby:spine_04_joint/tbo_baby:spine_05_joint/tbo_baby:neck_joint/tbo_baby:head_joint/tbo_baby:left_ear_01_joint/tbo_baby:left_ear_02_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:tbo_baby_skeleton/tbo_baby:world_root/tbo_baby:hips_joint/tbo_baby:spine_01_joint/tbo_baby:spine_02_joint/tbo_baby:spine_03_joint/tbo_baby:spine_04_joint/tbo_baby:spine_05_joint/tbo_baby:neck_joint/tbo_baby:head_joint/tbo_baby:left_ear_01_joint/tbo_baby:left_ear_02_joint/tbo_baby:left_ear_end_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:tbo_baby_skeleton/tbo_baby:world_root/tbo_baby:hips_joint/tbo_baby:spine_01_joint/tbo_baby:spine_02_joint/tbo_baby:spine_03_joint/tbo_baby:spine_04_joint/tbo_baby:spine_05_joint/tbo_baby:neck_joint/tbo_baby:head_joint/tbo_baby:nose_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:tbo_baby_skeleton/tbo_baby:world_root/tbo_baby:hips_joint/tbo_baby:spine_01_joint/tbo_baby:spine_02_joint/tbo_baby:spine_03_joint/tbo_baby:spine_04_joint/tbo_baby:spine_05_joint/tbo_baby:neck_joint/tbo_baby:head_joint/tbo_baby:nose_joint/tbo_baby:nose_end_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:tbo_baby_skeleton/tbo_baby:world_root/tbo_baby:hips_joint/tbo_baby:spine_01_joint/tbo_baby:spine_02_joint/tbo_baby:spine_03_joint/tbo_baby:spine_04_joint/tbo_baby:spine_05_joint/tbo_baby:neck_joint/tbo_baby:head_joint/tbo_baby:right_ear_01_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:tbo_baby_skeleton/tbo_baby:world_root/tbo_baby:hips_joint/tbo_baby:spine_01_joint/tbo_baby:spine_02_joint/tbo_baby:spine_03_joint/tbo_baby:spine_04_joint/tbo_baby:spine_05_joint/tbo_baby:neck_joint/tbo_baby:head_joint/tbo_baby:right_ear_01_joint/tbo_baby:right_ear_02_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:tbo_baby_skeleton/tbo_baby:world_root/tbo_baby:hips_joint/tbo_baby:spine_01_joint/tbo_baby:spine_02_joint/tbo_baby:spine_03_joint/tbo_baby:spine_04_joint/tbo_baby:spine_05_joint/tbo_baby:neck_joint/tbo_baby:head_joint/tbo_baby:right_ear_01_joint/tbo_baby:right_ear_02_joint/tbo_baby:right_ear_end_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:tbo_baby_skeleton/tbo_baby:world_root/tbo_baby:hips_joint/tbo_baby:spine_01_joint/tbo_baby:spine_02_joint/tbo_baby:spine_03_joint/tbo_baby:spine_04_joint/tbo_baby:spine_05_joint/tbo_baby:right_clavicle_01_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:tbo_baby_skeleton/tbo_baby:world_root/tbo_baby:hips_joint/tbo_baby:spine_01_joint/tbo_baby:spine_02_joint/tbo_baby:spine_03_joint/tbo_baby:spine_04_joint/tbo_baby:spine_05_joint/tbo_baby:right_clavicle_01_joint/tbo_baby:right_arm_01_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:tbo_baby_skeleton/tbo_baby:world_root/tbo_baby:hips_joint/tbo_baby:spine_01_joint/tbo_baby:spine_02_joint/tbo_baby:spine_03_joint/tbo_baby:spine_04_joint/tbo_baby:spine_05_joint/tbo_baby:right_clavicle_01_joint/tbo_baby:right_arm_01_joint/tbo_baby:right_arm_02_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:tbo_baby_skeleton/tbo_baby:world_root/tbo_baby:hips_joint/tbo_baby:spine_01_joint/tbo_baby:spine_02_joint/tbo_baby:spine_03_joint/tbo_baby:spine_04_joint/tbo_baby:spine_05_joint/tbo_baby:right_clavicle_01_joint/tbo_baby:right_arm_01_joint/tbo_baby:right_arm_02_joint/tbo_baby:right_arm_03_joint
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:tbo_baby_skeleton/tbo_baby:world_root/tbo_baby:transform1
+    m_Weight: 0
+  - m_Path: tbo_baby:tbo_characterNode_01/tbo_baby:MoveScaleRotate_cc_01/tbo_baby:tbo_baby_skeleton/tbo_baby:world_root/tbo_baby:transform1/tbo_baby:object_joint
+    m_Weight: 0

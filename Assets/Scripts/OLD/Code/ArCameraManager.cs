@@ -33,7 +33,7 @@ public class ArCameraManager : MonoBehaviour {
 		{
 		}
 		UIGlobalVariablesScript.Singleton.ARCamera = Go;
-		UIGlobalVariablesScript.Singleton.DragableUI3DObject = Go.GetComponentInChildren<CameraModelScript>().gameObject;
+		//UIGlobalVariablesScript.Singleton.DragableUI3DObject = Go.GetComponentInChildren<CameraModelScript>().gameObject;
 	}
 
 	void Init()

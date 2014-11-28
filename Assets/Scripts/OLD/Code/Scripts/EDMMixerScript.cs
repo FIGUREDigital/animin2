@@ -42,7 +42,8 @@ public class EDMMixerScript : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-        if(!ProfilesManagementScript.Singleton.CurrentProfile.Settings.AudioEnabled) 
+		//UICOMMENT: if(!ProfilesManagementScript.Singleton.CurrentProfile.Settings.AudioEnabled) 
+		if(true)
 		{
 			if(isPlaying)
 			{

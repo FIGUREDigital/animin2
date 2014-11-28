@@ -34,6 +34,7 @@ public class CharacterSwapManagementScript : MonoBehaviour
 
 	void Awake()
 	{
+		Debug.Log ("CharacterSwapManagementScript AWAKE");
 		//AnimationsPerModel = new AnimationClip[(int)CreatureTypeId.Count, (int)CreatureAnimationId.Count];
 
 		//LoadAnimations(CreatureTypeId.TBOAdult, "Models/TBO/Adult", "/tbo_adult@");
@@ -169,7 +170,7 @@ public class CharacterSwapManagementScript : MonoBehaviour
 		animator.runtimeAnimatorController = overrideController;
 */
 
-
+		Debug.Log ("Getting Controller Script : ["+UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<AnimationControllerScript>()+"];");
 		if (UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<AnimationControllerScript>()!=null)
 			UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<AnimationControllerScript>().SetCharacter(instance);
 

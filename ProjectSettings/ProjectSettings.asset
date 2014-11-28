@@ -71,8 +71,8 @@ PlayerSettings:
   metroEnableIndependentInputSource: 0
   metroEnableLowLatencyPresentationAPI: 0
   productGUID: 24672a43cd39a4c73bfa1812abab8bc3
-  iPhoneBundleVersion: 2.0.1
-  AndroidBundleVersionCode: 3
+  iPhoneBundleVersion: 2.0.3
+  AndroidBundleVersionCode: 5
   AndroidMinSdkVersion: 9
   AndroidPreferredInstallLocation: 1
   aotOptions: 
@@ -109,7 +109,7 @@ PlayerSettings:
   m_BuildTargetIcons:
   - m_BuildTarget: 
     m_Icons:
-    - m_Icon: {fileID: 0}
+    - m_Icon: {fileID: 2800000, guid: 9614abf811faa49a9b40ff310bdc82e0, type: 3}
       m_Size: 128
   m_BuildTargetBatching:
   - m_BuildTarget: iPhone

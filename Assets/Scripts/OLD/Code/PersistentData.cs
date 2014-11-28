@@ -164,7 +164,7 @@ public class PersistentData
 
 		if(InventoryItemData.Items[(int)id].ItemType == PopupItemType.Food)
 		{
-			if(UIGlobalVariablesScript.Singleton.FoodButton.GetComponent<Button>().image.name == "empty_icon")
+			if(UIGlobalVariablesScript.Singleton.FoodButton!=null&&UIGlobalVariablesScript.Singleton.FoodButton.GetComponent<Button>().image.name == "empty_icon")
 			{
 				//UIGlobalVariablesScript.Singleton.FoodButton.GetComponent<Button>().normalSprite = InventoryItemData.Items[(int)id].SpriteName;
 				UIGlobalVariablesScript.Singleton.FoodButton.GetComponent<InterfaceItemLinkToModelScript>().ItemID = id;
@@ -173,7 +173,7 @@ public class PersistentData
 		}
 		else if(InventoryItemData.Items[(int)id].ItemType == PopupItemType.Item)
 		{
-			if(UIGlobalVariablesScript.Singleton.ItemsButton.GetComponent<Button>().image.name == "empty_icon")
+			if(UIGlobalVariablesScript.Singleton.ItemsButton!=null&&UIGlobalVariablesScript.Singleton.ItemsButton.GetComponent<Button>().image.name == "empty_icon")
 			{
 				//UIGlobalVariablesScript.Singleton.ItemsButton.GetComponent<Button>().normalSprite = InventoryItemData.Items[(int)id].SpriteName;
 				UIGlobalVariablesScript.Singleton.ItemsButton.GetComponent<InterfaceItemLinkToModelScript>().ItemID = id;
@@ -182,7 +182,7 @@ public class PersistentData
         }
         else if (InventoryItemData.Items[(int)id].ItemType == PopupItemType.Medicine)
         {
-            if (UIGlobalVariablesScript.Singleton.MedicineButton.GetComponent<Button>().image.name == "empty_icon")
+			if (UIGlobalVariablesScript.Singleton.MedicineButton!=null&&UIGlobalVariablesScript.Singleton.MedicineButton.GetComponent<Button>().image.name == "empty_icon")
             {
                 //UIGlobalVariablesScript.Singleton.MedicineButton.GetComponent<Button>().normalSprite = InventoryItemData.Items[(int)id].SpriteName;
                 UIGlobalVariablesScript.Singleton.MedicineButton.GetComponent<InterfaceItemLinkToModelScript>().ItemID = id;

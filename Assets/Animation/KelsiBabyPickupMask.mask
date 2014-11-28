@@ -1,0 +1,118 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1011 &101100000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: KelsiBabyPickupMask
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: ke_baby:ke_baby_1
+    m_Weight: 0
+  - m_Path: ke_baby:ke_baby_2
+    m_Weight: 0
+  - m_Path: ke_baby:ke_baby_3
+    m_Weight: 0
+  - m_Path: ke_baby:ke_baby_4
+    m_Weight: 0
+  - m_Path: ke_baby:ke_baby_5
+    m_Weight: 0
+  - m_Path: ke_baby:ke_baby_6
+    m_Weight: 0
+  - m_Path: ke_baby:ke_baby_7
+    m_Weight: 0
+  - m_Path: ke_baby:ke_baby_8
+    m_Weight: 0
+  - m_Path: ke_baby:ke_baby_9
+    m_Weight: 0
+  - m_Path: ke_baby:ke_baby_10
+    m_Weight: 0
+  - m_Path: ke_baby:skin_bn_cog_01_joint
+    m_Weight: 0
+  - m_Path: ke_baby:skin_bn_cog_01_joint/ke_baby:skin_bn_l_leg_01_joint
+    m_Weight: 0
+  - m_Path: ke_baby:skin_bn_cog_01_joint/ke_baby:skin_bn_l_leg_01_joint/ke_baby:skin_bn_l_shin_01_joint
+    m_Weight: 0
+  - m_Path: ke_baby:skin_bn_cog_01_joint/ke_baby:skin_bn_l_leg_01_joint/ke_baby:skin_bn_l_shin_01_joint/ke_baby:skin_bn_l_leg_end_01_joint
+    m_Weight: 0
+  - m_Path: ke_baby:skin_bn_cog_01_joint/ke_baby:skin_bn_nappy_01_joint
+    m_Weight: 0
+  - m_Path: ke_baby:skin_bn_cog_01_joint/ke_baby:skin_bn_nappy_01_joint/ke_baby:skin_bn_l_nappy_01_joint
+    m_Weight: 0
+  - m_Path: ke_baby:skin_bn_cog_01_joint/ke_baby:skin_bn_nappy_01_joint/ke_baby:skin_bn_nappy_top_01_joint
+    m_Weight: 0
+  - m_Path: ke_baby:skin_bn_cog_01_joint/ke_baby:skin_bn_nappy_01_joint/ke_baby:skin_bn_r_nappy_01_joint
+    m_Weight: 0
+  - m_Path: ke_baby:skin_bn_cog_01_joint/ke_baby:skin_bn_r_reg_01_joint
+    m_Weight: 0
+  - m_Path: ke_baby:skin_bn_cog_01_joint/ke_baby:skin_bn_r_reg_01_joint/ke_baby:skin_bn_r_shin_01_joint
+    m_Weight: 0
+  - m_Path: ke_baby:skin_bn_cog_01_joint/ke_baby:skin_bn_r_reg_01_joint/ke_baby:skin_bn_r_shin_01_joint/ke_baby:skin_bn_r_reg_end_01_joint
+    m_Weight: 0
+  - m_Path: ke_baby:skin_bn_cog_01_joint/ke_baby:skin_bn_spine_01_joint
+    m_Weight: 0
+  - m_Path: ke_baby:skin_bn_cog_01_joint/ke_baby:skin_bn_spine_01_joint/ke_baby:skin_bn_spine_02_joint
+    m_Weight: 0
+  - m_Path: ke_baby:skin_bn_cog_01_joint/ke_baby:skin_bn_spine_01_joint/ke_baby:skin_bn_spine_02_joint/ke_baby:skin_bn_spine_03_joint
+    m_Weight: 0
+  - m_Path: ke_baby:skin_bn_cog_01_joint/ke_baby:skin_bn_spine_01_joint/ke_baby:skin_bn_spine_02_joint/ke_baby:skin_bn_spine_03_joint/ke_baby:skin_bn_spine_04_joint
+    m_Weight: 0
+  - m_Path: ke_baby:skin_bn_cog_01_joint/ke_baby:skin_bn_spine_01_joint/ke_baby:skin_bn_spine_02_joint/ke_baby:skin_bn_spine_03_joint/ke_baby:skin_bn_spine_04_joint/ke_baby:skin_bn_spine_05_joint
+    m_Weight: 0
+  - m_Path: ke_baby:skin_bn_cog_01_joint/ke_baby:skin_bn_spine_01_joint/ke_baby:skin_bn_spine_02_joint/ke_baby:skin_bn_spine_03_joint/ke_baby:skin_bn_spine_04_joint/ke_baby:skin_bn_spine_05_joint/ke_baby:skin_bn_spine_06_joint
+    m_Weight: 0
+  - m_Path: ke_baby:skin_bn_cog_01_joint/ke_baby:skin_bn_spine_01_joint/ke_baby:skin_bn_spine_02_joint/ke_baby:skin_bn_spine_03_joint/ke_baby:skin_bn_spine_04_joint/ke_baby:skin_bn_spine_05_joint/ke_baby:skin_bn_spine_06_joint/ke_baby:skin_bn_spine_07_joint
+    m_Weight: 0
+  - m_Path: ke_baby:skin_bn_cog_01_joint/ke_baby:skin_bn_spine_01_joint/ke_baby:skin_bn_spine_02_joint/ke_baby:skin_bn_spine_03_joint/ke_baby:skin_bn_spine_04_joint/ke_baby:skin_bn_spine_05_joint/ke_baby:skin_bn_spine_06_joint/ke_baby:skin_bn_spine_07_joint/ke_baby:skin_bn_l_shoulder_01_joint
+    m_Weight: 1
+  - m_Path: ke_baby:skin_bn_cog_01_joint/ke_baby:skin_bn_spine_01_joint/ke_baby:skin_bn_spine_02_joint/ke_baby:skin_bn_spine_03_joint/ke_baby:skin_bn_spine_04_joint/ke_baby:skin_bn_spine_05_joint/ke_baby:skin_bn_spine_06_joint/ke_baby:skin_bn_spine_07_joint/ke_baby:skin_bn_l_shoulder_01_joint/ke_baby:skin_bn_l_arm_01_joint
+    m_Weight: 1
+  - m_Path: ke_baby:skin_bn_cog_01_joint/ke_baby:skin_bn_spine_01_joint/ke_baby:skin_bn_spine_02_joint/ke_baby:skin_bn_spine_03_joint/ke_baby:skin_bn_spine_04_joint/ke_baby:skin_bn_spine_05_joint/ke_baby:skin_bn_spine_06_joint/ke_baby:skin_bn_spine_07_joint/ke_baby:skin_bn_l_shoulder_01_joint/ke_baby:skin_bn_l_arm_01_joint/ke_baby:skin_bn_l_forearm_01_joint
+    m_Weight: 1
+  - m_Path: ke_baby:skin_bn_cog_01_joint/ke_baby:skin_bn_spine_01_joint/ke_baby:skin_bn_spine_02_joint/ke_baby:skin_bn_spine_03_joint/ke_baby:skin_bn_spine_04_joint/ke_baby:skin_bn_spine_05_joint/ke_baby:skin_bn_spine_06_joint/ke_baby:skin_bn_spine_07_joint/ke_baby:skin_bn_l_shoulder_01_joint/ke_baby:skin_bn_l_arm_01_joint/ke_baby:skin_bn_l_forearm_01_joint/ke_baby:skin_bn_l_arm_end_01_joint
+    m_Weight: 1
+  - m_Path: ke_baby:skin_bn_cog_01_joint/ke_baby:skin_bn_spine_01_joint/ke_baby:skin_bn_spine_02_joint/ke_baby:skin_bn_spine_03_joint/ke_baby:skin_bn_spine_04_joint/ke_baby:skin_bn_spine_05_joint/ke_baby:skin_bn_spine_06_joint/ke_baby:skin_bn_spine_07_joint/ke_baby:skin_bn_neck_01_joint
+    m_Weight: 1
+  - m_Path: ke_baby:skin_bn_cog_01_joint/ke_baby:skin_bn_spine_01_joint/ke_baby:skin_bn_spine_02_joint/ke_baby:skin_bn_spine_03_joint/ke_baby:skin_bn_spine_04_joint/ke_baby:skin_bn_spine_05_joint/ke_baby:skin_bn_spine_06_joint/ke_baby:skin_bn_spine_07_joint/ke_baby:skin_bn_neck_01_joint/ke_baby:skin_bn_head_01_joint
+    m_Weight: 1
+  - m_Path: ke_baby:skin_bn_cog_01_joint/ke_baby:skin_bn_spine_01_joint/ke_baby:skin_bn_spine_02_joint/ke_baby:skin_bn_spine_03_joint/ke_baby:skin_bn_spine_04_joint/ke_baby:skin_bn_spine_05_joint/ke_baby:skin_bn_spine_06_joint/ke_baby:skin_bn_spine_07_joint/ke_baby:skin_bn_neck_01_joint/ke_baby:skin_bn_head_01_joint/ke_baby:skin_bn_hair_01_joint
+    m_Weight: 0
+  - m_Path: ke_baby:skin_bn_cog_01_joint/ke_baby:skin_bn_spine_01_joint/ke_baby:skin_bn_spine_02_joint/ke_baby:skin_bn_spine_03_joint/ke_baby:skin_bn_spine_04_joint/ke_baby:skin_bn_spine_05_joint/ke_baby:skin_bn_spine_06_joint/ke_baby:skin_bn_spine_07_joint/ke_baby:skin_bn_neck_01_joint/ke_baby:skin_bn_head_01_joint/ke_baby:skin_bn_hair_01_joint/ke_baby:skin_bn_hair_02_joint
+    m_Weight: 0
+  - m_Path: ke_baby:skin_bn_cog_01_joint/ke_baby:skin_bn_spine_01_joint/ke_baby:skin_bn_spine_02_joint/ke_baby:skin_bn_spine_03_joint/ke_baby:skin_bn_spine_04_joint/ke_baby:skin_bn_spine_05_joint/ke_baby:skin_bn_spine_06_joint/ke_baby:skin_bn_spine_07_joint/ke_baby:skin_bn_neck_01_joint/ke_baby:skin_bn_head_01_joint/ke_baby:skin_bn_hair_01_joint/ke_baby:skin_bn_hair_02_joint/ke_baby:skin_bn_hair_03_joint
+    m_Weight: 0
+  - m_Path: ke_baby:skin_bn_cog_01_joint/ke_baby:skin_bn_spine_01_joint/ke_baby:skin_bn_spine_02_joint/ke_baby:skin_bn_spine_03_joint/ke_baby:skin_bn_spine_04_joint/ke_baby:skin_bn_spine_05_joint/ke_baby:skin_bn_spine_06_joint/ke_baby:skin_bn_spine_07_joint/ke_baby:skin_bn_neck_01_joint/ke_baby:skin_bn_head_01_joint/ke_baby:skin_bn_hair_01_joint/ke_baby:skin_bn_hair_02_joint/ke_baby:skin_bn_hair_03_joint/ke_baby:skin_bn_hair_04_joint
+    m_Weight: 0
+  - m_Path: ke_baby:skin_bn_cog_01_joint/ke_baby:skin_bn_spine_01_joint/ke_baby:skin_bn_spine_02_joint/ke_baby:skin_bn_spine_03_joint/ke_baby:skin_bn_spine_04_joint/ke_baby:skin_bn_spine_05_joint/ke_baby:skin_bn_spine_06_joint/ke_baby:skin_bn_spine_07_joint/ke_baby:skin_bn_neck_01_joint/ke_baby:skin_bn_head_01_joint/ke_baby:skin_bn_hair_01_joint/ke_baby:skin_bn_hair_02_joint/ke_baby:skin_bn_hair_03_joint/ke_baby:skin_bn_hair_04_joint/ke_baby:skin_bn_hair_05_joint
+    m_Weight: 0
+  - m_Path: ke_baby:skin_bn_cog_01_joint/ke_baby:skin_bn_spine_01_joint/ke_baby:skin_bn_spine_02_joint/ke_baby:skin_bn_spine_03_joint/ke_baby:skin_bn_spine_04_joint/ke_baby:skin_bn_spine_05_joint/ke_baby:skin_bn_spine_06_joint/ke_baby:skin_bn_spine_07_joint/ke_baby:skin_bn_neck_01_joint/ke_baby:skin_bn_head_01_joint/ke_baby:skin_bn_hair_01_joint/ke_baby:skin_bn_hair_02_joint/ke_baby:skin_bn_hair_03_joint/ke_baby:skin_bn_hair_04_joint/ke_baby:skin_bn_hair_05_joint/ke_baby:skin_bn_hair_06_joint
+    m_Weight: 0
+  - m_Path: ke_baby:skin_bn_cog_01_joint/ke_baby:skin_bn_spine_01_joint/ke_baby:skin_bn_spine_02_joint/ke_baby:skin_bn_spine_03_joint/ke_baby:skin_bn_spine_04_joint/ke_baby:skin_bn_spine_05_joint/ke_baby:skin_bn_spine_06_joint/ke_baby:skin_bn_spine_07_joint/ke_baby:skin_bn_neck_01_joint/ke_baby:skin_bn_head_01_joint/ke_baby:skin_bn_hair_01_joint/ke_baby:skin_bn_hair_02_joint/ke_baby:skin_bn_hair_03_joint/ke_baby:skin_bn_hair_04_joint/ke_baby:skin_bn_hair_05_joint/ke_baby:skin_bn_hair_06_joint/ke_baby:skin_bn_hair_07_joint
+    m_Weight: 0
+  - m_Path: ke_baby:skin_bn_cog_01_joint/ke_baby:skin_bn_spine_01_joint/ke_baby:skin_bn_spine_02_joint/ke_baby:skin_bn_spine_03_joint/ke_baby:skin_bn_spine_04_joint/ke_baby:skin_bn_spine_05_joint/ke_baby:skin_bn_spine_06_joint/ke_baby:skin_bn_spine_07_joint/ke_baby:skin_bn_neck_01_joint/ke_baby:skin_bn_head_01_joint/ke_baby:skin_bn_head_end_01_joint
+    m_Weight: 0
+  - m_Path: ke_baby:skin_bn_cog_01_joint/ke_baby:skin_bn_spine_01_joint/ke_baby:skin_bn_spine_02_joint/ke_baby:skin_bn_spine_03_joint/ke_baby:skin_bn_spine_04_joint/ke_baby:skin_bn_spine_05_joint/ke_baby:skin_bn_spine_06_joint/ke_baby:skin_bn_spine_07_joint/ke_baby:skin_bn_neck_01_joint/ke_baby:skin_bn_head_01_joint/ke_baby:skin_bn_l_ear_01_joint
+    m_Weight: 1
+  - m_Path: ke_baby:skin_bn_cog_01_joint/ke_baby:skin_bn_spine_01_joint/ke_baby:skin_bn_spine_02_joint/ke_baby:skin_bn_spine_03_joint/ke_baby:skin_bn_spine_04_joint/ke_baby:skin_bn_spine_05_joint/ke_baby:skin_bn_spine_06_joint/ke_baby:skin_bn_spine_07_joint/ke_baby:skin_bn_neck_01_joint/ke_baby:skin_bn_head_01_joint/ke_baby:skin_bn_l_ear_01_joint/ke_baby:skin_bn_l_earTip_joint
+    m_Weight: 1
+  - m_Path: ke_baby:skin_bn_cog_01_joint/ke_baby:skin_bn_spine_01_joint/ke_baby:skin_bn_spine_02_joint/ke_baby:skin_bn_spine_03_joint/ke_baby:skin_bn_spine_04_joint/ke_baby:skin_bn_spine_05_joint/ke_baby:skin_bn_spine_06_joint/ke_baby:skin_bn_spine_07_joint/ke_baby:skin_bn_neck_01_joint/ke_baby:skin_bn_head_01_joint/ke_baby:skin_bn_nose_01_joint
+    m_Weight: 1
+  - m_Path: ke_baby:skin_bn_cog_01_joint/ke_baby:skin_bn_spine_01_joint/ke_baby:skin_bn_spine_02_joint/ke_baby:skin_bn_spine_03_joint/ke_baby:skin_bn_spine_04_joint/ke_baby:skin_bn_spine_05_joint/ke_baby:skin_bn_spine_06_joint/ke_baby:skin_bn_spine_07_joint/ke_baby:skin_bn_neck_01_joint/ke_baby:skin_bn_head_01_joint/ke_baby:skin_bn_nose_01_joint/ke_baby:skin_bn_nose_end_01_joint
+    m_Weight: 1
+  - m_Path: ke_baby:skin_bn_cog_01_joint/ke_baby:skin_bn_spine_01_joint/ke_baby:skin_bn_spine_02_joint/ke_baby:skin_bn_spine_03_joint/ke_baby:skin_bn_spine_04_joint/ke_baby:skin_bn_spine_05_joint/ke_baby:skin_bn_spine_06_joint/ke_baby:skin_bn_spine_07_joint/ke_baby:skin_bn_neck_01_joint/ke_baby:skin_bn_head_01_joint/ke_baby:skin_bn_r_ear_01_joint
+    m_Weight: 1
+  - m_Path: ke_baby:skin_bn_cog_01_joint/ke_baby:skin_bn_spine_01_joint/ke_baby:skin_bn_spine_02_joint/ke_baby:skin_bn_spine_03_joint/ke_baby:skin_bn_spine_04_joint/ke_baby:skin_bn_spine_05_joint/ke_baby:skin_bn_spine_06_joint/ke_baby:skin_bn_spine_07_joint/ke_baby:skin_bn_neck_01_joint/ke_baby:skin_bn_head_01_joint/ke_baby:skin_bn_r_ear_01_joint/ke_baby:skin_bn_r_earTip_joint
+    m_Weight: 1
+  - m_Path: ke_baby:skin_bn_cog_01_joint/ke_baby:skin_bn_spine_01_joint/ke_baby:skin_bn_spine_02_joint/ke_baby:skin_bn_spine_03_joint/ke_baby:skin_bn_spine_04_joint/ke_baby:skin_bn_spine_05_joint/ke_baby:skin_bn_spine_06_joint/ke_baby:skin_bn_spine_07_joint/ke_baby:skin_bn_r_shourder_01_joint
+    m_Weight: 1
+  - m_Path: ke_baby:skin_bn_cog_01_joint/ke_baby:skin_bn_spine_01_joint/ke_baby:skin_bn_spine_02_joint/ke_baby:skin_bn_spine_03_joint/ke_baby:skin_bn_spine_04_joint/ke_baby:skin_bn_spine_05_joint/ke_baby:skin_bn_spine_06_joint/ke_baby:skin_bn_spine_07_joint/ke_baby:skin_bn_r_shourder_01_joint/ke_baby:skin_bn_r_arm_01_joint
+    m_Weight: 1
+  - m_Path: ke_baby:skin_bn_cog_01_joint/ke_baby:skin_bn_spine_01_joint/ke_baby:skin_bn_spine_02_joint/ke_baby:skin_bn_spine_03_joint/ke_baby:skin_bn_spine_04_joint/ke_baby:skin_bn_spine_05_joint/ke_baby:skin_bn_spine_06_joint/ke_baby:skin_bn_spine_07_joint/ke_baby:skin_bn_r_shourder_01_joint/ke_baby:skin_bn_r_arm_01_joint/ke_baby:skin_bn_r_forearm_01_joint
+    m_Weight: 1
+  - m_Path: ke_baby:skin_bn_cog_01_joint/ke_baby:skin_bn_spine_01_joint/ke_baby:skin_bn_spine_02_joint/ke_baby:skin_bn_spine_03_joint/ke_baby:skin_bn_spine_04_joint/ke_baby:skin_bn_spine_05_joint/ke_baby:skin_bn_spine_06_joint/ke_baby:skin_bn_spine_07_joint/ke_baby:skin_bn_r_shourder_01_joint/ke_baby:skin_bn_r_arm_01_joint/ke_baby:skin_bn_r_forearm_01_joint/ke_baby:skin_bn_r_arm_end_01_joint
+    m_Weight: 1
+  - m_Path: ke_baby:skin_bn_cog_01_joint/ke_baby:skin_object_joint
+    m_Weight: 0

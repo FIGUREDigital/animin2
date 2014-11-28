@@ -60,7 +60,7 @@ public class FlurryLogger
         #elif UNITY_ANDROID
 		FlurryAndroid.endTimedEvent ("SessionTime");
         #endif
-        ProfilesManagementScript.Singleton.SendRealTimeNotification("LoggedIn",-1);
+        //ProfilesManagementScript.Singleton.SendRealTimeNotification("LoggedIn",-1);
     }
 
 

@@ -41,7 +41,7 @@ public class UIGlobalVariablesScript : MonoBehaviour
 	public GameObject NonSceneRef;
 	public GameObject NonARWorldRef;
 	public GameObject ARWorldRef;
-	public GameObject DragableUI3DObject;
+		public GameObject DragableUI3DObject;
 	//public GameObject ARSceneContainer;
 
 
@@ -64,10 +64,10 @@ public class UIGlobalVariablesScript : MonoBehaviour
 	public Sprite EvolutionProgressSprite;
 
 	public GameObject PopupIndicator;
-	public GameObject ImageTarget;
+	//public GameObject ImageTarget;
 	public GameObject MinigameInterruptedMenu;
 
-	public TrackVuforiaScript Vuforia;
+	//public TrackVuforiaScript Vuforia;
 	//public GameObject IndicatorAboveHead;
 	public GameObject AlarmUI;
 	public SoundEngineScript SoundEngine;

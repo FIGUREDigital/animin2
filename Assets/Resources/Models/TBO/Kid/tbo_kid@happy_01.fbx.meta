@@ -1,0 +1,368 @@
+fileFormatVersion: 2
+guid: 30dd52eb3e8b34debb2b91238b2b61de
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: tbo_kid:skin_bn_l_arm_01
+    100002: tbo_kid:skin_bn_l_arm_02
+    100004: tbo_kid:skin_bn_l_arm_03
+    100006: tbo_kid:skin_bn_l_arm_04
+    100008: tbo_kid:skin_bn_l_arm_05
+    100010: tbo_kid:skin_bn_l_arm_06
+    100012: tbo_kid:skin_bn_l_arm_07
+    100014: tbo_kid:skin_bn_l_arm_08
+    100016: tbo_kid:skin_bn_l_arm_09
+    100018: tbo_kid:skin_bn_l_arm_10
+    100020: tbo_kid:skin_bn_l_arm_11
+    100022: tbo_kid:skin_bn_l_arm_12
+    100024: tbo_kid:skin_bn_l_ear_01
+    100026: tbo_kid:skin_bn_l_ear_02
+    100028: tbo_kid:skin_bn_l_leg_01
+    100030: tbo_kid:skin_bn_l_leg_02
+    100032: tbo_kid:skin_bn_l_leg_03
+    100034: tbo_kid:skin_bn_l_leg_04
+    100036: tbo_kid:skin_bn_l_leg_05
+    100038: tbo_kid:skin_bn_l_leg_06
+    100040: tbo_kid:skin_bn_l_leg_07
+    100042: tbo_kid:skin_bn_l_shin_01
+    100044: tbo_kid:skin_bn_l_shin_02
+    100046: tbo_kid:skin_bn_l_shin_03
+    100048: tbo_kid:skin_bn_l_shin_04
+    100050: tbo_kid:skin_bn_l_shin_05
+    100052: tbo_kid:skin_bn_l_shin_06
+    100054: tbo_kid:skin_bn_l_shin_07
+    100056: tbo_kid:skin_bn_l_shoulder_01
+    100058: tbo_kid:skin_bn_r_arm_01
+    100060: tbo_kid:skin_bn_r_arm_02
+    100062: tbo_kid:skin_bn_r_arm_03
+    100064: tbo_kid:skin_bn_r_arm_04
+    100066: tbo_kid:skin_bn_r_arm_05
+    100068: tbo_kid:skin_bn_r_arm_06
+    100070: tbo_kid:skin_bn_r_arm_07
+    100072: tbo_kid:skin_bn_r_arm_08
+    100074: tbo_kid:skin_bn_r_arm_09
+    100076: tbo_kid:skin_bn_r_arm_10
+    100078: tbo_kid:skin_bn_r_arm_11
+    100080: tbo_kid:skin_bn_r_arm_12
+    100082: tbo_kid:skin_bn_r_ear_01
+    100084: tbo_kid:skin_bn_r_ear_02
+    100086: tbo_kid:skin_bn_r_reg_01
+    100088: tbo_kid:skin_bn_r_reg_02
+    100090: tbo_kid:skin_bn_r_reg_03
+    100092: tbo_kid:skin_bn_r_reg_04
+    100094: tbo_kid:skin_bn_r_reg_05
+    100096: tbo_kid:skin_bn_r_reg_06
+    100098: tbo_kid:skin_bn_r_reg_07
+    100100: tbo_kid:skin_bn_r_shin_01
+    100102: tbo_kid:skin_bn_r_shin_02
+    100104: tbo_kid:skin_bn_r_shin_03
+    100106: tbo_kid:skin_bn_r_shin_04
+    100108: tbo_kid:skin_bn_r_shin_05
+    100110: tbo_kid:skin_bn_r_shin_06
+    100112: tbo_kid:skin_bn_r_shin_07
+    100114: tbo_kid:skin_bn_r_shourder_01
+    100116: tbo_kid:skin_jCOG
+    100118: tbo_kid:skin_jHead
+    100120: tbo_kid:skin_jNeck
+    100122: tbo_kid:skin_jNose
+    100124: tbo_kid:skin_jShoulders
+    100126: tbo_kid:skin_jSpine_1
+    100128: tbo_kid:skin_jSpine_2
+    100130: tbo_kid:skin_jSpine_3
+    100132: tbo_kid:skin_jSpine_4
+    100134: tbo_kid:skin_jSpine_5
+    100136: //RootNode
+    100138: tbo_kid:skin_object_joint
+    400000: tbo_kid:skin_bn_l_arm_01
+    400002: tbo_kid:skin_bn_l_arm_02
+    400004: tbo_kid:skin_bn_l_arm_03
+    400006: tbo_kid:skin_bn_l_arm_04
+    400008: tbo_kid:skin_bn_l_arm_05
+    400010: tbo_kid:skin_bn_l_arm_06
+    400012: tbo_kid:skin_bn_l_arm_07
+    400014: tbo_kid:skin_bn_l_arm_08
+    400016: tbo_kid:skin_bn_l_arm_09
+    400018: tbo_kid:skin_bn_l_arm_10
+    400020: tbo_kid:skin_bn_l_arm_11
+    400022: tbo_kid:skin_bn_l_arm_12
+    400024: tbo_kid:skin_bn_l_ear_01
+    400026: tbo_kid:skin_bn_l_ear_02
+    400028: tbo_kid:skin_bn_l_leg_01
+    400030: tbo_kid:skin_bn_l_leg_02
+    400032: tbo_kid:skin_bn_l_leg_03
+    400034: tbo_kid:skin_bn_l_leg_04
+    400036: tbo_kid:skin_bn_l_leg_05
+    400038: tbo_kid:skin_bn_l_leg_06
+    400040: tbo_kid:skin_bn_l_leg_07
+    400042: tbo_kid:skin_bn_l_shin_01
+    400044: tbo_kid:skin_bn_l_shin_02
+    400046: tbo_kid:skin_bn_l_shin_03
+    400048: tbo_kid:skin_bn_l_shin_04
+    400050: tbo_kid:skin_bn_l_shin_05
+    400052: tbo_kid:skin_bn_l_shin_06
+    400054: tbo_kid:skin_bn_l_shin_07
+    400056: tbo_kid:skin_bn_l_shoulder_01
+    400058: tbo_kid:skin_bn_r_arm_01
+    400060: tbo_kid:skin_bn_r_arm_02
+    400062: tbo_kid:skin_bn_r_arm_03
+    400064: tbo_kid:skin_bn_r_arm_04
+    400066: tbo_kid:skin_bn_r_arm_05
+    400068: tbo_kid:skin_bn_r_arm_06
+    400070: tbo_kid:skin_bn_r_arm_07
+    400072: tbo_kid:skin_bn_r_arm_08
+    400074: tbo_kid:skin_bn_r_arm_09
+    400076: tbo_kid:skin_bn_r_arm_10
+    400078: tbo_kid:skin_bn_r_arm_11
+    400080: tbo_kid:skin_bn_r_arm_12
+    400082: tbo_kid:skin_bn_r_ear_01
+    400084: tbo_kid:skin_bn_r_ear_02
+    400086: tbo_kid:skin_bn_r_reg_01
+    400088: tbo_kid:skin_bn_r_reg_02
+    400090: tbo_kid:skin_bn_r_reg_03
+    400092: tbo_kid:skin_bn_r_reg_04
+    400094: tbo_kid:skin_bn_r_reg_05
+    400096: tbo_kid:skin_bn_r_reg_06
+    400098: tbo_kid:skin_bn_r_reg_07
+    400100: tbo_kid:skin_bn_r_shin_01
+    400102: tbo_kid:skin_bn_r_shin_02
+    400104: tbo_kid:skin_bn_r_shin_03
+    400106: tbo_kid:skin_bn_r_shin_04
+    400108: tbo_kid:skin_bn_r_shin_05
+    400110: tbo_kid:skin_bn_r_shin_06
+    400112: tbo_kid:skin_bn_r_shin_07
+    400114: tbo_kid:skin_bn_r_shourder_01
+    400116: tbo_kid:skin_jCOG
+    400118: tbo_kid:skin_jHead
+    400120: tbo_kid:skin_jNeck
+    400122: tbo_kid:skin_jNose
+    400124: tbo_kid:skin_jShoulders
+    400126: tbo_kid:skin_jSpine_1
+    400128: tbo_kid:skin_jSpine_2
+    400130: tbo_kid:skin_jSpine_3
+    400132: tbo_kid:skin_jSpine_4
+    400134: tbo_kid:skin_jSpine_5
+    400136: //RootNode
+    400138: tbo_kid:skin_object_joint
+    7400000: happy_01
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 3
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: happy_01
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 110
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: tbo_kid:skin_jCOG
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_bn_l_leg_01
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_bn_l_leg_01/tbo_kid:skin_bn_l_leg_02
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_bn_l_leg_01/tbo_kid:skin_bn_l_leg_02/tbo_kid:skin_bn_l_leg_03
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_bn_l_leg_01/tbo_kid:skin_bn_l_leg_02/tbo_kid:skin_bn_l_leg_03/tbo_kid:skin_bn_l_leg_04
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_bn_l_leg_01/tbo_kid:skin_bn_l_leg_02/tbo_kid:skin_bn_l_leg_03/tbo_kid:skin_bn_l_leg_04/tbo_kid:skin_bn_l_leg_05
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_bn_l_leg_01/tbo_kid:skin_bn_l_leg_02/tbo_kid:skin_bn_l_leg_03/tbo_kid:skin_bn_l_leg_04/tbo_kid:skin_bn_l_leg_05/tbo_kid:skin_bn_l_leg_06
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_bn_l_leg_01/tbo_kid:skin_bn_l_leg_02/tbo_kid:skin_bn_l_leg_03/tbo_kid:skin_bn_l_leg_04/tbo_kid:skin_bn_l_leg_05/tbo_kid:skin_bn_l_leg_06/tbo_kid:skin_bn_l_leg_07
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_bn_l_leg_01/tbo_kid:skin_bn_l_leg_02/tbo_kid:skin_bn_l_leg_03/tbo_kid:skin_bn_l_leg_04/tbo_kid:skin_bn_l_leg_05/tbo_kid:skin_bn_l_leg_06/tbo_kid:skin_bn_l_leg_07/tbo_kid:skin_bn_l_shin_01
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_bn_l_leg_01/tbo_kid:skin_bn_l_leg_02/tbo_kid:skin_bn_l_leg_03/tbo_kid:skin_bn_l_leg_04/tbo_kid:skin_bn_l_leg_05/tbo_kid:skin_bn_l_leg_06/tbo_kid:skin_bn_l_leg_07/tbo_kid:skin_bn_l_shin_01/tbo_kid:skin_bn_l_shin_02
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_bn_l_leg_01/tbo_kid:skin_bn_l_leg_02/tbo_kid:skin_bn_l_leg_03/tbo_kid:skin_bn_l_leg_04/tbo_kid:skin_bn_l_leg_05/tbo_kid:skin_bn_l_leg_06/tbo_kid:skin_bn_l_leg_07/tbo_kid:skin_bn_l_shin_01/tbo_kid:skin_bn_l_shin_02/tbo_kid:skin_bn_l_shin_03
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_bn_l_leg_01/tbo_kid:skin_bn_l_leg_02/tbo_kid:skin_bn_l_leg_03/tbo_kid:skin_bn_l_leg_04/tbo_kid:skin_bn_l_leg_05/tbo_kid:skin_bn_l_leg_06/tbo_kid:skin_bn_l_leg_07/tbo_kid:skin_bn_l_shin_01/tbo_kid:skin_bn_l_shin_02/tbo_kid:skin_bn_l_shin_03/tbo_kid:skin_bn_l_shin_04
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_bn_l_leg_01/tbo_kid:skin_bn_l_leg_02/tbo_kid:skin_bn_l_leg_03/tbo_kid:skin_bn_l_leg_04/tbo_kid:skin_bn_l_leg_05/tbo_kid:skin_bn_l_leg_06/tbo_kid:skin_bn_l_leg_07/tbo_kid:skin_bn_l_shin_01/tbo_kid:skin_bn_l_shin_02/tbo_kid:skin_bn_l_shin_03/tbo_kid:skin_bn_l_shin_04/tbo_kid:skin_bn_l_shin_05
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_bn_l_leg_01/tbo_kid:skin_bn_l_leg_02/tbo_kid:skin_bn_l_leg_03/tbo_kid:skin_bn_l_leg_04/tbo_kid:skin_bn_l_leg_05/tbo_kid:skin_bn_l_leg_06/tbo_kid:skin_bn_l_leg_07/tbo_kid:skin_bn_l_shin_01/tbo_kid:skin_bn_l_shin_02/tbo_kid:skin_bn_l_shin_03/tbo_kid:skin_bn_l_shin_04/tbo_kid:skin_bn_l_shin_05/tbo_kid:skin_bn_l_shin_06
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_bn_l_leg_01/tbo_kid:skin_bn_l_leg_02/tbo_kid:skin_bn_l_leg_03/tbo_kid:skin_bn_l_leg_04/tbo_kid:skin_bn_l_leg_05/tbo_kid:skin_bn_l_leg_06/tbo_kid:skin_bn_l_leg_07/tbo_kid:skin_bn_l_shin_01/tbo_kid:skin_bn_l_shin_02/tbo_kid:skin_bn_l_shin_03/tbo_kid:skin_bn_l_shin_04/tbo_kid:skin_bn_l_shin_05/tbo_kid:skin_bn_l_shin_06/tbo_kid:skin_bn_l_shin_07
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_bn_r_reg_01
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_bn_r_reg_01/tbo_kid:skin_bn_r_reg_02
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_bn_r_reg_01/tbo_kid:skin_bn_r_reg_02/tbo_kid:skin_bn_r_reg_03
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_bn_r_reg_01/tbo_kid:skin_bn_r_reg_02/tbo_kid:skin_bn_r_reg_03/tbo_kid:skin_bn_r_reg_04
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_bn_r_reg_01/tbo_kid:skin_bn_r_reg_02/tbo_kid:skin_bn_r_reg_03/tbo_kid:skin_bn_r_reg_04/tbo_kid:skin_bn_r_reg_05
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_bn_r_reg_01/tbo_kid:skin_bn_r_reg_02/tbo_kid:skin_bn_r_reg_03/tbo_kid:skin_bn_r_reg_04/tbo_kid:skin_bn_r_reg_05/tbo_kid:skin_bn_r_reg_06
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_bn_r_reg_01/tbo_kid:skin_bn_r_reg_02/tbo_kid:skin_bn_r_reg_03/tbo_kid:skin_bn_r_reg_04/tbo_kid:skin_bn_r_reg_05/tbo_kid:skin_bn_r_reg_06/tbo_kid:skin_bn_r_reg_07
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_bn_r_reg_01/tbo_kid:skin_bn_r_reg_02/tbo_kid:skin_bn_r_reg_03/tbo_kid:skin_bn_r_reg_04/tbo_kid:skin_bn_r_reg_05/tbo_kid:skin_bn_r_reg_06/tbo_kid:skin_bn_r_reg_07/tbo_kid:skin_bn_r_shin_01
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_bn_r_reg_01/tbo_kid:skin_bn_r_reg_02/tbo_kid:skin_bn_r_reg_03/tbo_kid:skin_bn_r_reg_04/tbo_kid:skin_bn_r_reg_05/tbo_kid:skin_bn_r_reg_06/tbo_kid:skin_bn_r_reg_07/tbo_kid:skin_bn_r_shin_01/tbo_kid:skin_bn_r_shin_02
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_bn_r_reg_01/tbo_kid:skin_bn_r_reg_02/tbo_kid:skin_bn_r_reg_03/tbo_kid:skin_bn_r_reg_04/tbo_kid:skin_bn_r_reg_05/tbo_kid:skin_bn_r_reg_06/tbo_kid:skin_bn_r_reg_07/tbo_kid:skin_bn_r_shin_01/tbo_kid:skin_bn_r_shin_02/tbo_kid:skin_bn_r_shin_03
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_bn_r_reg_01/tbo_kid:skin_bn_r_reg_02/tbo_kid:skin_bn_r_reg_03/tbo_kid:skin_bn_r_reg_04/tbo_kid:skin_bn_r_reg_05/tbo_kid:skin_bn_r_reg_06/tbo_kid:skin_bn_r_reg_07/tbo_kid:skin_bn_r_shin_01/tbo_kid:skin_bn_r_shin_02/tbo_kid:skin_bn_r_shin_03/tbo_kid:skin_bn_r_shin_04
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_bn_r_reg_01/tbo_kid:skin_bn_r_reg_02/tbo_kid:skin_bn_r_reg_03/tbo_kid:skin_bn_r_reg_04/tbo_kid:skin_bn_r_reg_05/tbo_kid:skin_bn_r_reg_06/tbo_kid:skin_bn_r_reg_07/tbo_kid:skin_bn_r_shin_01/tbo_kid:skin_bn_r_shin_02/tbo_kid:skin_bn_r_shin_03/tbo_kid:skin_bn_r_shin_04/tbo_kid:skin_bn_r_shin_05
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_bn_r_reg_01/tbo_kid:skin_bn_r_reg_02/tbo_kid:skin_bn_r_reg_03/tbo_kid:skin_bn_r_reg_04/tbo_kid:skin_bn_r_reg_05/tbo_kid:skin_bn_r_reg_06/tbo_kid:skin_bn_r_reg_07/tbo_kid:skin_bn_r_shin_01/tbo_kid:skin_bn_r_shin_02/tbo_kid:skin_bn_r_shin_03/tbo_kid:skin_bn_r_shin_04/tbo_kid:skin_bn_r_shin_05/tbo_kid:skin_bn_r_shin_06
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_bn_r_reg_01/tbo_kid:skin_bn_r_reg_02/tbo_kid:skin_bn_r_reg_03/tbo_kid:skin_bn_r_reg_04/tbo_kid:skin_bn_r_reg_05/tbo_kid:skin_bn_r_reg_06/tbo_kid:skin_bn_r_reg_07/tbo_kid:skin_bn_r_shin_01/tbo_kid:skin_bn_r_shin_02/tbo_kid:skin_bn_r_shin_03/tbo_kid:skin_bn_r_shin_04/tbo_kid:skin_bn_r_shin_05/tbo_kid:skin_bn_r_shin_06/tbo_kid:skin_bn_r_shin_07
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_jSpine_1
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_jSpine_1/tbo_kid:skin_jSpine_2
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_jSpine_1/tbo_kid:skin_jSpine_2/tbo_kid:skin_jSpine_3
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_jSpine_1/tbo_kid:skin_jSpine_2/tbo_kid:skin_jSpine_3/tbo_kid:skin_jSpine_4
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_jSpine_1/tbo_kid:skin_jSpine_2/tbo_kid:skin_jSpine_3/tbo_kid:skin_jSpine_4/tbo_kid:skin_jSpine_5
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_jSpine_1/tbo_kid:skin_jSpine_2/tbo_kid:skin_jSpine_3/tbo_kid:skin_jSpine_4/tbo_kid:skin_jSpine_5/tbo_kid:skin_bn_l_shoulder_01
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_jSpine_1/tbo_kid:skin_jSpine_2/tbo_kid:skin_jSpine_3/tbo_kid:skin_jSpine_4/tbo_kid:skin_jSpine_5/tbo_kid:skin_bn_l_shoulder_01/tbo_kid:skin_bn_l_arm_01
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_jSpine_1/tbo_kid:skin_jSpine_2/tbo_kid:skin_jSpine_3/tbo_kid:skin_jSpine_4/tbo_kid:skin_jSpine_5/tbo_kid:skin_bn_l_shoulder_01/tbo_kid:skin_bn_l_arm_01/tbo_kid:skin_bn_l_arm_02
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_jSpine_1/tbo_kid:skin_jSpine_2/tbo_kid:skin_jSpine_3/tbo_kid:skin_jSpine_4/tbo_kid:skin_jSpine_5/tbo_kid:skin_bn_l_shoulder_01/tbo_kid:skin_bn_l_arm_01/tbo_kid:skin_bn_l_arm_02/tbo_kid:skin_bn_l_arm_03
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_jSpine_1/tbo_kid:skin_jSpine_2/tbo_kid:skin_jSpine_3/tbo_kid:skin_jSpine_4/tbo_kid:skin_jSpine_5/tbo_kid:skin_bn_l_shoulder_01/tbo_kid:skin_bn_l_arm_01/tbo_kid:skin_bn_l_arm_02/tbo_kid:skin_bn_l_arm_03/tbo_kid:skin_bn_l_arm_04
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_jSpine_1/tbo_kid:skin_jSpine_2/tbo_kid:skin_jSpine_3/tbo_kid:skin_jSpine_4/tbo_kid:skin_jSpine_5/tbo_kid:skin_bn_l_shoulder_01/tbo_kid:skin_bn_l_arm_01/tbo_kid:skin_bn_l_arm_02/tbo_kid:skin_bn_l_arm_03/tbo_kid:skin_bn_l_arm_04/tbo_kid:skin_bn_l_arm_05
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_jSpine_1/tbo_kid:skin_jSpine_2/tbo_kid:skin_jSpine_3/tbo_kid:skin_jSpine_4/tbo_kid:skin_jSpine_5/tbo_kid:skin_bn_l_shoulder_01/tbo_kid:skin_bn_l_arm_01/tbo_kid:skin_bn_l_arm_02/tbo_kid:skin_bn_l_arm_03/tbo_kid:skin_bn_l_arm_04/tbo_kid:skin_bn_l_arm_05/tbo_kid:skin_bn_l_arm_06
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_jSpine_1/tbo_kid:skin_jSpine_2/tbo_kid:skin_jSpine_3/tbo_kid:skin_jSpine_4/tbo_kid:skin_jSpine_5/tbo_kid:skin_bn_l_shoulder_01/tbo_kid:skin_bn_l_arm_01/tbo_kid:skin_bn_l_arm_02/tbo_kid:skin_bn_l_arm_03/tbo_kid:skin_bn_l_arm_04/tbo_kid:skin_bn_l_arm_05/tbo_kid:skin_bn_l_arm_06/tbo_kid:skin_bn_l_arm_07
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_jSpine_1/tbo_kid:skin_jSpine_2/tbo_kid:skin_jSpine_3/tbo_kid:skin_jSpine_4/tbo_kid:skin_jSpine_5/tbo_kid:skin_bn_l_shoulder_01/tbo_kid:skin_bn_l_arm_01/tbo_kid:skin_bn_l_arm_02/tbo_kid:skin_bn_l_arm_03/tbo_kid:skin_bn_l_arm_04/tbo_kid:skin_bn_l_arm_05/tbo_kid:skin_bn_l_arm_06/tbo_kid:skin_bn_l_arm_07/tbo_kid:skin_bn_l_arm_08
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_jSpine_1/tbo_kid:skin_jSpine_2/tbo_kid:skin_jSpine_3/tbo_kid:skin_jSpine_4/tbo_kid:skin_jSpine_5/tbo_kid:skin_bn_l_shoulder_01/tbo_kid:skin_bn_l_arm_01/tbo_kid:skin_bn_l_arm_02/tbo_kid:skin_bn_l_arm_03/tbo_kid:skin_bn_l_arm_04/tbo_kid:skin_bn_l_arm_05/tbo_kid:skin_bn_l_arm_06/tbo_kid:skin_bn_l_arm_07/tbo_kid:skin_bn_l_arm_08/tbo_kid:skin_bn_l_arm_09
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_jSpine_1/tbo_kid:skin_jSpine_2/tbo_kid:skin_jSpine_3/tbo_kid:skin_jSpine_4/tbo_kid:skin_jSpine_5/tbo_kid:skin_bn_l_shoulder_01/tbo_kid:skin_bn_l_arm_01/tbo_kid:skin_bn_l_arm_02/tbo_kid:skin_bn_l_arm_03/tbo_kid:skin_bn_l_arm_04/tbo_kid:skin_bn_l_arm_05/tbo_kid:skin_bn_l_arm_06/tbo_kid:skin_bn_l_arm_07/tbo_kid:skin_bn_l_arm_08/tbo_kid:skin_bn_l_arm_09/tbo_kid:skin_bn_l_arm_10
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_jSpine_1/tbo_kid:skin_jSpine_2/tbo_kid:skin_jSpine_3/tbo_kid:skin_jSpine_4/tbo_kid:skin_jSpine_5/tbo_kid:skin_bn_l_shoulder_01/tbo_kid:skin_bn_l_arm_01/tbo_kid:skin_bn_l_arm_02/tbo_kid:skin_bn_l_arm_03/tbo_kid:skin_bn_l_arm_04/tbo_kid:skin_bn_l_arm_05/tbo_kid:skin_bn_l_arm_06/tbo_kid:skin_bn_l_arm_07/tbo_kid:skin_bn_l_arm_08/tbo_kid:skin_bn_l_arm_09/tbo_kid:skin_bn_l_arm_10/tbo_kid:skin_bn_l_arm_11
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_jSpine_1/tbo_kid:skin_jSpine_2/tbo_kid:skin_jSpine_3/tbo_kid:skin_jSpine_4/tbo_kid:skin_jSpine_5/tbo_kid:skin_bn_l_shoulder_01/tbo_kid:skin_bn_l_arm_01/tbo_kid:skin_bn_l_arm_02/tbo_kid:skin_bn_l_arm_03/tbo_kid:skin_bn_l_arm_04/tbo_kid:skin_bn_l_arm_05/tbo_kid:skin_bn_l_arm_06/tbo_kid:skin_bn_l_arm_07/tbo_kid:skin_bn_l_arm_08/tbo_kid:skin_bn_l_arm_09/tbo_kid:skin_bn_l_arm_10/tbo_kid:skin_bn_l_arm_11/tbo_kid:skin_bn_l_arm_12
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_jSpine_1/tbo_kid:skin_jSpine_2/tbo_kid:skin_jSpine_3/tbo_kid:skin_jSpine_4/tbo_kid:skin_jSpine_5/tbo_kid:skin_bn_r_shourder_01
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_jSpine_1/tbo_kid:skin_jSpine_2/tbo_kid:skin_jSpine_3/tbo_kid:skin_jSpine_4/tbo_kid:skin_jSpine_5/tbo_kid:skin_bn_r_shourder_01/tbo_kid:skin_bn_r_arm_01
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_jSpine_1/tbo_kid:skin_jSpine_2/tbo_kid:skin_jSpine_3/tbo_kid:skin_jSpine_4/tbo_kid:skin_jSpine_5/tbo_kid:skin_bn_r_shourder_01/tbo_kid:skin_bn_r_arm_01/tbo_kid:skin_bn_r_arm_02
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_jSpine_1/tbo_kid:skin_jSpine_2/tbo_kid:skin_jSpine_3/tbo_kid:skin_jSpine_4/tbo_kid:skin_jSpine_5/tbo_kid:skin_bn_r_shourder_01/tbo_kid:skin_bn_r_arm_01/tbo_kid:skin_bn_r_arm_02/tbo_kid:skin_bn_r_arm_03
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_jSpine_1/tbo_kid:skin_jSpine_2/tbo_kid:skin_jSpine_3/tbo_kid:skin_jSpine_4/tbo_kid:skin_jSpine_5/tbo_kid:skin_bn_r_shourder_01/tbo_kid:skin_bn_r_arm_01/tbo_kid:skin_bn_r_arm_02/tbo_kid:skin_bn_r_arm_03/tbo_kid:skin_bn_r_arm_04
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_jSpine_1/tbo_kid:skin_jSpine_2/tbo_kid:skin_jSpine_3/tbo_kid:skin_jSpine_4/tbo_kid:skin_jSpine_5/tbo_kid:skin_bn_r_shourder_01/tbo_kid:skin_bn_r_arm_01/tbo_kid:skin_bn_r_arm_02/tbo_kid:skin_bn_r_arm_03/tbo_kid:skin_bn_r_arm_04/tbo_kid:skin_bn_r_arm_05
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_jSpine_1/tbo_kid:skin_jSpine_2/tbo_kid:skin_jSpine_3/tbo_kid:skin_jSpine_4/tbo_kid:skin_jSpine_5/tbo_kid:skin_bn_r_shourder_01/tbo_kid:skin_bn_r_arm_01/tbo_kid:skin_bn_r_arm_02/tbo_kid:skin_bn_r_arm_03/tbo_kid:skin_bn_r_arm_04/tbo_kid:skin_bn_r_arm_05/tbo_kid:skin_bn_r_arm_06
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_jSpine_1/tbo_kid:skin_jSpine_2/tbo_kid:skin_jSpine_3/tbo_kid:skin_jSpine_4/tbo_kid:skin_jSpine_5/tbo_kid:skin_bn_r_shourder_01/tbo_kid:skin_bn_r_arm_01/tbo_kid:skin_bn_r_arm_02/tbo_kid:skin_bn_r_arm_03/tbo_kid:skin_bn_r_arm_04/tbo_kid:skin_bn_r_arm_05/tbo_kid:skin_bn_r_arm_06/tbo_kid:skin_bn_r_arm_07
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_jSpine_1/tbo_kid:skin_jSpine_2/tbo_kid:skin_jSpine_3/tbo_kid:skin_jSpine_4/tbo_kid:skin_jSpine_5/tbo_kid:skin_bn_r_shourder_01/tbo_kid:skin_bn_r_arm_01/tbo_kid:skin_bn_r_arm_02/tbo_kid:skin_bn_r_arm_03/tbo_kid:skin_bn_r_arm_04/tbo_kid:skin_bn_r_arm_05/tbo_kid:skin_bn_r_arm_06/tbo_kid:skin_bn_r_arm_07/tbo_kid:skin_bn_r_arm_08
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_jSpine_1/tbo_kid:skin_jSpine_2/tbo_kid:skin_jSpine_3/tbo_kid:skin_jSpine_4/tbo_kid:skin_jSpine_5/tbo_kid:skin_bn_r_shourder_01/tbo_kid:skin_bn_r_arm_01/tbo_kid:skin_bn_r_arm_02/tbo_kid:skin_bn_r_arm_03/tbo_kid:skin_bn_r_arm_04/tbo_kid:skin_bn_r_arm_05/tbo_kid:skin_bn_r_arm_06/tbo_kid:skin_bn_r_arm_07/tbo_kid:skin_bn_r_arm_08/tbo_kid:skin_bn_r_arm_09
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_jSpine_1/tbo_kid:skin_jSpine_2/tbo_kid:skin_jSpine_3/tbo_kid:skin_jSpine_4/tbo_kid:skin_jSpine_5/tbo_kid:skin_bn_r_shourder_01/tbo_kid:skin_bn_r_arm_01/tbo_kid:skin_bn_r_arm_02/tbo_kid:skin_bn_r_arm_03/tbo_kid:skin_bn_r_arm_04/tbo_kid:skin_bn_r_arm_05/tbo_kid:skin_bn_r_arm_06/tbo_kid:skin_bn_r_arm_07/tbo_kid:skin_bn_r_arm_08/tbo_kid:skin_bn_r_arm_09/tbo_kid:skin_bn_r_arm_10
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_jSpine_1/tbo_kid:skin_jSpine_2/tbo_kid:skin_jSpine_3/tbo_kid:skin_jSpine_4/tbo_kid:skin_jSpine_5/tbo_kid:skin_bn_r_shourder_01/tbo_kid:skin_bn_r_arm_01/tbo_kid:skin_bn_r_arm_02/tbo_kid:skin_bn_r_arm_03/tbo_kid:skin_bn_r_arm_04/tbo_kid:skin_bn_r_arm_05/tbo_kid:skin_bn_r_arm_06/tbo_kid:skin_bn_r_arm_07/tbo_kid:skin_bn_r_arm_08/tbo_kid:skin_bn_r_arm_09/tbo_kid:skin_bn_r_arm_10/tbo_kid:skin_bn_r_arm_11
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_jSpine_1/tbo_kid:skin_jSpine_2/tbo_kid:skin_jSpine_3/tbo_kid:skin_jSpine_4/tbo_kid:skin_jSpine_5/tbo_kid:skin_bn_r_shourder_01/tbo_kid:skin_bn_r_arm_01/tbo_kid:skin_bn_r_arm_02/tbo_kid:skin_bn_r_arm_03/tbo_kid:skin_bn_r_arm_04/tbo_kid:skin_bn_r_arm_05/tbo_kid:skin_bn_r_arm_06/tbo_kid:skin_bn_r_arm_07/tbo_kid:skin_bn_r_arm_08/tbo_kid:skin_bn_r_arm_09/tbo_kid:skin_bn_r_arm_10/tbo_kid:skin_bn_r_arm_11/tbo_kid:skin_bn_r_arm_12
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_jSpine_1/tbo_kid:skin_jSpine_2/tbo_kid:skin_jSpine_3/tbo_kid:skin_jSpine_4/tbo_kid:skin_jSpine_5/tbo_kid:skin_jShoulders
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_jSpine_1/tbo_kid:skin_jSpine_2/tbo_kid:skin_jSpine_3/tbo_kid:skin_jSpine_4/tbo_kid:skin_jSpine_5/tbo_kid:skin_jShoulders/tbo_kid:skin_jNeck
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_jSpine_1/tbo_kid:skin_jSpine_2/tbo_kid:skin_jSpine_3/tbo_kid:skin_jSpine_4/tbo_kid:skin_jSpine_5/tbo_kid:skin_jShoulders/tbo_kid:skin_jNeck/tbo_kid:skin_jHead
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_jSpine_1/tbo_kid:skin_jSpine_2/tbo_kid:skin_jSpine_3/tbo_kid:skin_jSpine_4/tbo_kid:skin_jSpine_5/tbo_kid:skin_jShoulders/tbo_kid:skin_jNeck/tbo_kid:skin_jHead/tbo_kid:skin_bn_l_ear_01
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_jSpine_1/tbo_kid:skin_jSpine_2/tbo_kid:skin_jSpine_3/tbo_kid:skin_jSpine_4/tbo_kid:skin_jSpine_5/tbo_kid:skin_jShoulders/tbo_kid:skin_jNeck/tbo_kid:skin_jHead/tbo_kid:skin_bn_l_ear_01/tbo_kid:skin_bn_l_ear_02
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_jSpine_1/tbo_kid:skin_jSpine_2/tbo_kid:skin_jSpine_3/tbo_kid:skin_jSpine_4/tbo_kid:skin_jSpine_5/tbo_kid:skin_jShoulders/tbo_kid:skin_jNeck/tbo_kid:skin_jHead/tbo_kid:skin_bn_r_ear_01
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_jSpine_1/tbo_kid:skin_jSpine_2/tbo_kid:skin_jSpine_3/tbo_kid:skin_jSpine_4/tbo_kid:skin_jSpine_5/tbo_kid:skin_jShoulders/tbo_kid:skin_jNeck/tbo_kid:skin_jHead/tbo_kid:skin_bn_r_ear_01/tbo_kid:skin_bn_r_ear_02
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_jSpine_1/tbo_kid:skin_jSpine_2/tbo_kid:skin_jSpine_3/tbo_kid:skin_jSpine_4/tbo_kid:skin_jSpine_5/tbo_kid:skin_jShoulders/tbo_kid:skin_jNeck/tbo_kid:skin_jHead/tbo_kid:skin_jNose
+        weight: 1
+      - path: tbo_kid:skin_jCOG/tbo_kid:skin_object_joint
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 1
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 8f9eabd9214e74810bd3de47a49bbad0,
+    type: 3}
+  animationType: 2
+  additionalBone: 0
+  userData: 

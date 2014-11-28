@@ -1,0 +1,144 @@
+fileFormatVersion: 2
+guid: 52de75b58ada14cd8bbb0ad3e7ab4d61
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: pi_baby:skin_bn_COG_joint
+    100002: pi_baby:skin_bn_head_01_joint
+    100004: pi_baby:skin_bn_head_midtip_01_joint
+    100006: pi_baby:skin_bn_head_midtip_end_01_joint
+    100008: pi_baby:skin_bn_l_arm_01_joint
+    100010: pi_baby:skin_bn_l_arm_02_joint
+    100012: pi_baby:skin_bn_l_arm_03_joint
+    100014: pi_baby:skin_bn_l_arm_04_joint
+    100016: pi_baby:skin_bn_l_ear_01_joint
+    100018: pi_baby:skin_bn_l_ear_tip_01_joint
+    100020: pi_baby:skin_bn_l_leg_01_joint
+    100022: pi_baby:skin_bn_l_leg_end_01_joint
+    100024: pi_baby:skin_bn_l_shin_01_joint
+    100026: pi_baby:skin_bn_l_shoulder_01_joint
+    100028: pi_baby:skin_bn_neck_01_joint
+    100030: pi_baby:skin_bn_r_arm_01_joint
+    100032: pi_baby:skin_bn_r_arm_02_joint
+    100034: pi_baby:skin_bn_r_arm_03_joint
+    100036: pi_baby:skin_bn_r_arm_04_joint
+    100038: pi_baby:skin_bn_r_ear_01_joint
+    100040: pi_baby:skin_bn_r_ear_tip_01_joint
+    100042: pi_baby:skin_bn_r_reg_01_joint
+    100044: pi_baby:skin_bn_r_reg_end_01_joint
+    100046: pi_baby:skin_bn_r_shin_01_joint
+    100048: pi_baby:skin_bn_r_shoulder_01_joint
+    100050: pi_baby:skin_collar_01_joint
+    100052: pi_baby:skin_collar_02_joint
+    100054: pi_baby:skin_collar_03_joint
+    100056: pi_baby:skin_collar_04_joint
+    100058: pi_baby:skin_collar_05_joint
+    100060: pi_baby:skin_joint1_seg_1_joint
+    100062: pi_baby:skin_joint1_seg_2_joint
+    100064: pi_baby:skin_joint1_seg_3_joint
+    100066: pi_baby:skin_joint1_seg_4_joint
+    100068: pi_baby:skin_joint1_seg_5_joint
+    100070: pi_baby:skin_joint1_seg_6_joint
+    100072: pi_baby:skin_joint1_seg_7_joint
+    100074: pi_baby:skin_joint2_joint
+    100076: pi_baby:skin_joint3_joint
+    100078: //RootNode
+    100080: pi_baby:skin_object_joint
+    400000: pi_baby:skin_bn_COG_joint
+    400002: pi_baby:skin_bn_head_01_joint
+    400004: pi_baby:skin_bn_head_midtip_01_joint
+    400006: pi_baby:skin_bn_head_midtip_end_01_joint
+    400008: pi_baby:skin_bn_l_arm_01_joint
+    400010: pi_baby:skin_bn_l_arm_02_joint
+    400012: pi_baby:skin_bn_l_arm_03_joint
+    400014: pi_baby:skin_bn_l_arm_04_joint
+    400016: pi_baby:skin_bn_l_ear_01_joint
+    400018: pi_baby:skin_bn_l_ear_tip_01_joint
+    400020: pi_baby:skin_bn_l_leg_01_joint
+    400022: pi_baby:skin_bn_l_leg_end_01_joint
+    400024: pi_baby:skin_bn_l_shin_01_joint
+    400026: pi_baby:skin_bn_l_shoulder_01_joint
+    400028: pi_baby:skin_bn_neck_01_joint
+    400030: pi_baby:skin_bn_r_arm_01_joint
+    400032: pi_baby:skin_bn_r_arm_02_joint
+    400034: pi_baby:skin_bn_r_arm_03_joint
+    400036: pi_baby:skin_bn_r_arm_04_joint
+    400038: pi_baby:skin_bn_r_ear_01_joint
+    400040: pi_baby:skin_bn_r_ear_tip_01_joint
+    400042: pi_baby:skin_bn_r_reg_01_joint
+    400044: pi_baby:skin_bn_r_reg_end_01_joint
+    400046: pi_baby:skin_bn_r_shin_01_joint
+    400048: pi_baby:skin_bn_r_shoulder_01_joint
+    400050: pi_baby:skin_collar_01_joint
+    400052: pi_baby:skin_collar_02_joint
+    400054: pi_baby:skin_collar_03_joint
+    400056: pi_baby:skin_collar_04_joint
+    400058: pi_baby:skin_collar_05_joint
+    400060: pi_baby:skin_joint1_seg_1_joint
+    400062: pi_baby:skin_joint1_seg_2_joint
+    400064: pi_baby:skin_joint1_seg_3_joint
+    400066: pi_baby:skin_joint1_seg_4_joint
+    400068: pi_baby:skin_joint1_seg_5_joint
+    400070: pi_baby:skin_joint1_seg_6_joint
+    400072: pi_baby:skin_joint1_seg_7_joint
+    400074: pi_baby:skin_joint2_joint
+    400076: pi_baby:skin_joint3_joint
+    400078: //RootNode
+    400080: pi_baby:skin_object_joint
+    7400000: Take 001
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 1
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: a0c50a99615dc9f488483455fa941ded,
+    type: 3}
+  animationType: 2
+  additionalBone: 0
+  userData: 

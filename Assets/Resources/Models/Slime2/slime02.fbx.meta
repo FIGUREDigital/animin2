@@ -1,0 +1,121 @@
+fileFormatVersion: 2
+guid: 920caf00c917046cbba019b186799719
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: Null_1
+    100002: skin_bn_head_01
+    100004: skin_bn_head_end_01
+    100006: skin_bn_hip_01
+    100008: skin_bn_l_arm_01
+    100010: skin_bn_l_arm_02
+    100012: skin_bn_l_arm_03
+    100014: skin_bn_l_eye_01
+    100016: skin_bn_l_eye_end_01
+    100018: skin_bn_l_fin1_01
+    100020: skin_bn_l_fin2_01
+    100022: skin_bn_l_fin3_01
+    100024: skin_bn_lowLip_01
+    100026: skin_bn_lowLip_end_01
+    100028: skin_bn_neck_01
+    100030: skin_bn_r_arm_01
+    100032: skin_bn_r_arm_02
+    100034: skin_bn_r_arm_03
+    100036: skin_bn_r_eye_01
+    100038: skin_bn_r_eye_end_01
+    100040: skin_bn_r_fin1_01
+    100042: skin_bn_r_fin2_01
+    100044: skin_bn_r_fin3_01
+    100046: skin_bn_Tail1_01
+    100048: skin_bn_Tail2_01
+    100050: skin_bn_Tail3_01
+    100052: skin_bn_upLip_01
+    100054: skin_bn_upLip_end_01
+    100056: //RootNode
+    400000: Null_1
+    400002: skin_bn_head_01
+    400004: skin_bn_head_end_01
+    400006: skin_bn_hip_01
+    400008: skin_bn_l_arm_01
+    400010: skin_bn_l_arm_02
+    400012: skin_bn_l_arm_03
+    400014: skin_bn_l_eye_01
+    400016: skin_bn_l_eye_end_01
+    400018: skin_bn_l_fin1_01
+    400020: skin_bn_l_fin2_01
+    400022: skin_bn_l_fin3_01
+    400024: skin_bn_lowLip_01
+    400026: skin_bn_lowLip_end_01
+    400028: skin_bn_neck_01
+    400030: skin_bn_r_arm_01
+    400032: skin_bn_r_arm_02
+    400034: skin_bn_r_arm_03
+    400036: skin_bn_r_eye_01
+    400038: skin_bn_r_eye_end_01
+    400040: skin_bn_r_fin1_01
+    400042: skin_bn_r_fin2_01
+    400044: skin_bn_r_fin3_01
+    400046: skin_bn_Tail1_01
+    400048: skin_bn_Tail2_01
+    400050: skin_bn_Tail3_01
+    400052: skin_bn_upLip_01
+    400054: skin_bn_upLip_end_01
+    400056: //RootNode
+    4300000: Null_1
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: Null_1
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

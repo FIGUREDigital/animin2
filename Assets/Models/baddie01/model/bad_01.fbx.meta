@@ -1,0 +1,140 @@
+fileFormatVersion: 2
+guid: cb2793c19fb1f4614999840e0acb5bec
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: baddie_01:_character
+    100004: baddie_01:body_01
+    100006: baddie_01:eyebrow_l_01
+    100008: baddie_01:eyebrow_r_01
+    100010: baddie_01:model
+    100012: baddie_01:skin_ankle_l
+    100014: baddie_01:skin_ankle_r
+    100016: baddie_01:skin_cog
+    100018: baddie_01:skin_hip_l
+    100020: baddie_01:skin_hip_r
+    100022: baddie_01:skin_jaw
+    100024: baddie_01:skin_knee_l
+    100026: baddie_01:skin_knee_r
+    100028: baddie_01:skin_spine_1
+    100030: baddie_01:skin_spine_2
+    100032: baddie_01:skin_spine_3
+    100034: baddie_01:skin_spine_4
+    100036: baddie_01:skin_spine_5
+    100038: baddie_01:skin_spine_6
+    100040: baddie_01:skin_tail_1
+    100042: baddie_01:skin_tail_10
+    100044: baddie_01:skin_tail_11
+    100046: baddie_01:skin_tail_12
+    100048: baddie_01:skin_tail_2
+    100050: baddie_01:skin_tail_3
+    100052: baddie_01:skin_tail_4
+    100054: baddie_01:skin_tail_5
+    100056: baddie_01:skin_tail_6
+    100058: baddie_01:skin_tail_7
+    100060: baddie_01:skin_tail_8
+    100062: baddie_01:skin_tail_9
+    100064: baddie_01:skin_world_root
+    100066: baddie_01:teeth_l_01
+    100068: baddie_01:teeth_r_01
+    400000: //RootNode
+    400002: baddie_01:_character
+    400004: baddie_01:body_01
+    400006: baddie_01:eyebrow_l_01
+    400008: baddie_01:eyebrow_r_01
+    400010: baddie_01:model
+    400012: baddie_01:skin_ankle_l
+    400014: baddie_01:skin_ankle_r
+    400016: baddie_01:skin_cog
+    400018: baddie_01:skin_hip_l
+    400020: baddie_01:skin_hip_r
+    400022: baddie_01:skin_jaw
+    400024: baddie_01:skin_knee_l
+    400026: baddie_01:skin_knee_r
+    400028: baddie_01:skin_spine_1
+    400030: baddie_01:skin_spine_2
+    400032: baddie_01:skin_spine_3
+    400034: baddie_01:skin_spine_4
+    400036: baddie_01:skin_spine_5
+    400038: baddie_01:skin_spine_6
+    400040: baddie_01:skin_tail_1
+    400042: baddie_01:skin_tail_10
+    400044: baddie_01:skin_tail_11
+    400046: baddie_01:skin_tail_12
+    400048: baddie_01:skin_tail_2
+    400050: baddie_01:skin_tail_3
+    400052: baddie_01:skin_tail_4
+    400054: baddie_01:skin_tail_5
+    400056: baddie_01:skin_tail_6
+    400058: baddie_01:skin_tail_7
+    400060: baddie_01:skin_tail_8
+    400062: baddie_01:skin_tail_9
+    400064: baddie_01:skin_world_root
+    400066: baddie_01:teeth_l_01
+    400068: baddie_01:teeth_r_01
+    4300000: baddie_01:eyebrow_l_01
+    4300002: baddie_01:eyebrow_r_01
+    4300004: baddie_01:teeth_r_01
+    4300006: baddie_01:teeth_l_01
+    4300008: baddie_01:body_01
+    9500000: //RootNode
+    13700000: baddie_01:body_01
+    13700002: baddie_01:eyebrow_l_01
+    13700004: baddie_01:eyebrow_r_01
+    13700006: baddie_01:teeth_l_01
+    13700008: baddie_01:teeth_r_01
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 3
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

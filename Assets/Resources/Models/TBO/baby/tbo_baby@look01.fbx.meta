@@ -1,0 +1,134 @@
+fileFormatVersion: 2
+guid: 9658d8941f476405a8cf1b7c5d6d2e3b
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: tbo_baby:skin_belly_end_joint
+    100002: tbo_baby:skin_belly_joint
+    100004: tbo_baby:skin_head_end_joint
+    100006: tbo_baby:skin_head_joint
+    100008: tbo_baby:skin_hips_joint
+    100010: tbo_baby:skin_left_arm_01_joint
+    100012: tbo_baby:skin_left_arm_02_joint
+    100014: tbo_baby:skin_left_arm_03_joint
+    100016: tbo_baby:skin_left_clavicle_01_joint
+    100018: tbo_baby:skin_left_ear_01_joint
+    100020: tbo_baby:skin_left_ear_02_joint
+    100022: tbo_baby:skin_left_ear_end_joint
+    100024: tbo_baby:skin_left_leg_01_joint
+    100026: tbo_baby:skin_left_leg_02_joint
+    100028: tbo_baby:skin_left_leg_03_joint
+    100030: tbo_baby:skin_neck_joint
+    100032: tbo_baby:skin_nose_end_joint
+    100034: tbo_baby:skin_nose_joint
+    100036: tbo_baby:skin_object_joint
+    100038: tbo_baby:skin_right_arm_01_joint
+    100040: tbo_baby:skin_right_arm_02_joint
+    100042: tbo_baby:skin_right_arm_03_joint
+    100044: tbo_baby:skin_right_clavicle_01_joint
+    100046: tbo_baby:skin_right_ear_01_joint
+    100048: tbo_baby:skin_right_ear_02_joint
+    100050: tbo_baby:skin_right_ear_end_joint
+    100052: tbo_baby:skin_right_leg_01_joint
+    100054: tbo_baby:skin_right_leg_02_joint
+    100056: tbo_baby:skin_right_leg_03_joint
+    100058: tbo_baby:skin_spine_01_joint
+    100060: tbo_baby:skin_spine_02_joint
+    100062: tbo_baby:skin_spine_03_joint
+    100064: tbo_baby:skin_spine_04_joint
+    100066: tbo_baby:skin_spine_05_joint
+    100068: tbo_baby:skin_world_root
+    100070: //RootNode
+    400000: tbo_baby:skin_belly_end_joint
+    400002: tbo_baby:skin_belly_joint
+    400004: tbo_baby:skin_head_end_joint
+    400006: tbo_baby:skin_head_joint
+    400008: tbo_baby:skin_hips_joint
+    400010: tbo_baby:skin_left_arm_01_joint
+    400012: tbo_baby:skin_left_arm_02_joint
+    400014: tbo_baby:skin_left_arm_03_joint
+    400016: tbo_baby:skin_left_clavicle_01_joint
+    400018: tbo_baby:skin_left_ear_01_joint
+    400020: tbo_baby:skin_left_ear_02_joint
+    400022: tbo_baby:skin_left_ear_end_joint
+    400024: tbo_baby:skin_left_leg_01_joint
+    400026: tbo_baby:skin_left_leg_02_joint
+    400028: tbo_baby:skin_left_leg_03_joint
+    400030: tbo_baby:skin_neck_joint
+    400032: tbo_baby:skin_nose_end_joint
+    400034: tbo_baby:skin_nose_joint
+    400036: tbo_baby:skin_object_joint
+    400038: tbo_baby:skin_right_arm_01_joint
+    400040: tbo_baby:skin_right_arm_02_joint
+    400042: tbo_baby:skin_right_arm_03_joint
+    400044: tbo_baby:skin_right_clavicle_01_joint
+    400046: tbo_baby:skin_right_ear_01_joint
+    400048: tbo_baby:skin_right_ear_02_joint
+    400050: tbo_baby:skin_right_ear_end_joint
+    400052: tbo_baby:skin_right_leg_01_joint
+    400054: tbo_baby:skin_right_leg_02_joint
+    400056: tbo_baby:skin_right_leg_03_joint
+    400058: tbo_baby:skin_spine_01_joint
+    400060: tbo_baby:skin_spine_02_joint
+    400062: tbo_baby:skin_spine_03_joint
+    400064: tbo_baby:skin_spine_04_joint
+    400066: tbo_baby:skin_spine_05_joint
+    400068: tbo_baby:skin_world_root
+    400070: //RootNode
+    7400000: Take 001
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 1
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 26174e35a9ec44926856066c77f6caa3,
+    type: 3}
+  animationType: 2
+  additionalBone: 0
+  userData: 

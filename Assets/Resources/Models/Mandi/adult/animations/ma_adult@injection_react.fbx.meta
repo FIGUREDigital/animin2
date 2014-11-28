@@ -1,0 +1,146 @@
+fileFormatVersion: 2
+guid: c26319e9f4c43384e955932da95589b1
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: ma_adult:skin_bn_head_01
+    100002: ma_adult:skin_bn_head_02
+    100004: ma_adult:skin_bn_l_arm_01
+    100006: ma_adult:skin_bn_l_arm_02
+    100008: ma_adult:skin_bn_l_arm_03
+    100010: ma_adult:skin_bn_l_ear_01
+    100012: ma_adult:skin_bn_l_ear_02
+    100014: ma_adult:skin_bn_l_ear_03
+    100016: ma_adult:skin_bn_l_ear_04
+    100018: ma_adult:skin_bn_l_ear_05
+    100020: ma_adult:skin_bn_l_ear_06
+    100022: ma_adult:skin_bn_l_leg_01
+    100024: ma_adult:skin_bn_l_leg_02
+    100026: ma_adult:skin_bn_l_shoulder_01
+    100028: ma_adult:skin_bn_lowMask_01
+    100030: ma_adult:skin_bn_lowMask_02
+    100032: ma_adult:skin_bn_maskHead_01
+    100034: ma_adult:skin_bn_maskHead_02
+    100036: ma_adult:skin_bn_r_arm_01
+    100038: ma_adult:skin_bn_r_arm_02
+    100040: ma_adult:skin_bn_r_arm_03
+    100042: ma_adult:skin_bn_r_ear_01
+    100044: ma_adult:skin_bn_r_ear_02
+    100046: ma_adult:skin_bn_r_ear_03
+    100048: ma_adult:skin_bn_r_ear_04
+    100050: ma_adult:skin_bn_r_ear_05
+    100052: ma_adult:skin_bn_r_ear_06
+    100054: ma_adult:skin_bn_r_reg_01
+    100056: ma_adult:skin_bn_r_reg_02
+    100058: ma_adult:skin_bn_r_shoulder_01
+    100060: ma_adult:skin_bn_spine_02
+    100062: ma_adult:skin_bn_spine_03
+    100064: ma_adult:skin_bn_spine_04
+    100066: ma_adult:skin_bn_spine_05
+    100068: ma_adult:skin_bn_spine_06
+    100070: ma_adult:skin_bn_spine_07
+    100072: ma_adult:skin_bn_upMask_01
+    100074: ma_adult:skin_bn_upMask_02
+    100076: ma_adult:skin_root
+    100078: //RootNode
+    100080: ma_adult:skin_bn_spine_01
+    100082: ma_adult:skin_object_joint
+    400000: ma_adult:skin_bn_head_01
+    400002: ma_adult:skin_bn_head_02
+    400004: ma_adult:skin_bn_l_arm_01
+    400006: ma_adult:skin_bn_l_arm_02
+    400008: ma_adult:skin_bn_l_arm_03
+    400010: ma_adult:skin_bn_l_ear_01
+    400012: ma_adult:skin_bn_l_ear_02
+    400014: ma_adult:skin_bn_l_ear_03
+    400016: ma_adult:skin_bn_l_ear_04
+    400018: ma_adult:skin_bn_l_ear_05
+    400020: ma_adult:skin_bn_l_ear_06
+    400022: ma_adult:skin_bn_l_leg_01
+    400024: ma_adult:skin_bn_l_leg_02
+    400026: ma_adult:skin_bn_l_shoulder_01
+    400028: ma_adult:skin_bn_lowMask_01
+    400030: ma_adult:skin_bn_lowMask_02
+    400032: ma_adult:skin_bn_maskHead_01
+    400034: ma_adult:skin_bn_maskHead_02
+    400036: ma_adult:skin_bn_r_arm_01
+    400038: ma_adult:skin_bn_r_arm_02
+    400040: ma_adult:skin_bn_r_arm_03
+    400042: ma_adult:skin_bn_r_ear_01
+    400044: ma_adult:skin_bn_r_ear_02
+    400046: ma_adult:skin_bn_r_ear_03
+    400048: ma_adult:skin_bn_r_ear_04
+    400050: ma_adult:skin_bn_r_ear_05
+    400052: ma_adult:skin_bn_r_ear_06
+    400054: ma_adult:skin_bn_r_reg_01
+    400056: ma_adult:skin_bn_r_reg_02
+    400058: ma_adult:skin_bn_r_shoulder_01
+    400060: ma_adult:skin_bn_spine_02
+    400062: ma_adult:skin_bn_spine_03
+    400064: ma_adult:skin_bn_spine_04
+    400066: ma_adult:skin_bn_spine_05
+    400068: ma_adult:skin_bn_spine_06
+    400070: ma_adult:skin_bn_spine_07
+    400072: ma_adult:skin_bn_upMask_01
+    400074: ma_adult:skin_bn_upMask_02
+    400076: ma_adult:skin_root
+    400078: //RootNode
+    400080: ma_adult:skin_bn_spine_01
+    400082: ma_adult:skin_object_joint
+    7400000: Take 001
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 1
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 3e9712b9d7639cd4d91b924f69ed00d5,
+    type: 3}
+  animationType: 2
+  additionalBone: 0
+  userData: 

@@ -1,0 +1,200 @@
+fileFormatVersion: 2
+guid: 75e8aeaa6c38e46368154d56af48de58
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: baddie_01:skin_ankle_l
+    100004: baddie_01:skin_ankle_r
+    100006: baddie_01:skin_cog
+    100008: baddie_01:skin_hip_l
+    100010: baddie_01:skin_hip_r
+    100012: baddie_01:skin_jaw
+    100014: baddie_01:skin_knee_l
+    100016: baddie_01:skin_knee_r
+    100018: baddie_01:skin_spine_1
+    100020: baddie_01:skin_spine_2
+    100022: baddie_01:skin_spine_3
+    100024: baddie_01:skin_spine_4
+    100026: baddie_01:skin_spine_5
+    100028: baddie_01:skin_spine_6
+    100030: baddie_01:skin_tail_1
+    100032: baddie_01:skin_tail_10
+    100034: baddie_01:skin_tail_11
+    100036: baddie_01:skin_tail_12
+    100038: baddie_01:skin_tail_2
+    100040: baddie_01:skin_tail_3
+    100042: baddie_01:skin_tail_4
+    100044: baddie_01:skin_tail_5
+    100046: baddie_01:skin_tail_6
+    100048: baddie_01:skin_tail_7
+    100050: baddie_01:skin_tail_8
+    100052: baddie_01:skin_tail_9
+    100054: baddie_01:skin_world_root
+    400000: //RootNode
+    400002: baddie_01:skin_ankle_l
+    400004: baddie_01:skin_ankle_r
+    400006: baddie_01:skin_cog
+    400008: baddie_01:skin_hip_l
+    400010: baddie_01:skin_hip_r
+    400012: baddie_01:skin_jaw
+    400014: baddie_01:skin_knee_l
+    400016: baddie_01:skin_knee_r
+    400018: baddie_01:skin_spine_1
+    400020: baddie_01:skin_spine_2
+    400022: baddie_01:skin_spine_3
+    400024: baddie_01:skin_spine_4
+    400026: baddie_01:skin_spine_5
+    400028: baddie_01:skin_spine_6
+    400030: baddie_01:skin_tail_1
+    400032: baddie_01:skin_tail_10
+    400034: baddie_01:skin_tail_11
+    400036: baddie_01:skin_tail_12
+    400038: baddie_01:skin_tail_2
+    400040: baddie_01:skin_tail_3
+    400042: baddie_01:skin_tail_4
+    400044: baddie_01:skin_tail_5
+    400046: baddie_01:skin_tail_6
+    400048: baddie_01:skin_tail_7
+    400050: baddie_01:skin_tail_8
+    400052: baddie_01:skin_tail_9
+    400054: baddie_01:skin_world_root
+    7400000: walk
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 3
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: walk
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 29
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: baddie_01:skin_world_root
+        weight: 1
+      - path: baddie_01:skin_world_root/baddie_01:skin_cog
+        weight: 1
+      - path: baddie_01:skin_world_root/baddie_01:skin_cog/baddie_01:skin_hip_l
+        weight: 1
+      - path: baddie_01:skin_world_root/baddie_01:skin_cog/baddie_01:skin_hip_l/baddie_01:skin_knee_l
+        weight: 1
+      - path: baddie_01:skin_world_root/baddie_01:skin_cog/baddie_01:skin_hip_l/baddie_01:skin_knee_l/baddie_01:skin_ankle_l
+        weight: 1
+      - path: baddie_01:skin_world_root/baddie_01:skin_cog/baddie_01:skin_hip_r
+        weight: 1
+      - path: baddie_01:skin_world_root/baddie_01:skin_cog/baddie_01:skin_hip_r/baddie_01:skin_knee_r
+        weight: 1
+      - path: baddie_01:skin_world_root/baddie_01:skin_cog/baddie_01:skin_hip_r/baddie_01:skin_knee_r/baddie_01:skin_ankle_r
+        weight: 1
+      - path: baddie_01:skin_world_root/baddie_01:skin_cog/baddie_01:skin_jaw
+        weight: 1
+      - path: baddie_01:skin_world_root/baddie_01:skin_cog/baddie_01:skin_spine_1
+        weight: 1
+      - path: baddie_01:skin_world_root/baddie_01:skin_cog/baddie_01:skin_spine_1/baddie_01:skin_spine_2
+        weight: 1
+      - path: baddie_01:skin_world_root/baddie_01:skin_cog/baddie_01:skin_spine_1/baddie_01:skin_spine_2/baddie_01:skin_spine_3
+        weight: 1
+      - path: baddie_01:skin_world_root/baddie_01:skin_cog/baddie_01:skin_spine_1/baddie_01:skin_spine_2/baddie_01:skin_spine_3/baddie_01:skin_spine_4
+        weight: 1
+      - path: baddie_01:skin_world_root/baddie_01:skin_cog/baddie_01:skin_spine_1/baddie_01:skin_spine_2/baddie_01:skin_spine_3/baddie_01:skin_spine_4/baddie_01:skin_spine_5
+        weight: 1
+      - path: baddie_01:skin_world_root/baddie_01:skin_cog/baddie_01:skin_spine_1/baddie_01:skin_spine_2/baddie_01:skin_spine_3/baddie_01:skin_spine_4/baddie_01:skin_spine_5/baddie_01:skin_spine_6
+        weight: 1
+      - path: baddie_01:skin_world_root/baddie_01:skin_cog/baddie_01:skin_tail_1
+        weight: 1
+      - path: baddie_01:skin_world_root/baddie_01:skin_cog/baddie_01:skin_tail_1/baddie_01:skin_tail_2
+        weight: 1
+      - path: baddie_01:skin_world_root/baddie_01:skin_cog/baddie_01:skin_tail_1/baddie_01:skin_tail_2/baddie_01:skin_tail_3
+        weight: 1
+      - path: baddie_01:skin_world_root/baddie_01:skin_cog/baddie_01:skin_tail_1/baddie_01:skin_tail_2/baddie_01:skin_tail_3/baddie_01:skin_tail_4
+        weight: 1
+      - path: baddie_01:skin_world_root/baddie_01:skin_cog/baddie_01:skin_tail_1/baddie_01:skin_tail_2/baddie_01:skin_tail_3/baddie_01:skin_tail_4/baddie_01:skin_tail_5
+        weight: 1
+      - path: baddie_01:skin_world_root/baddie_01:skin_cog/baddie_01:skin_tail_1/baddie_01:skin_tail_2/baddie_01:skin_tail_3/baddie_01:skin_tail_4/baddie_01:skin_tail_5/baddie_01:skin_tail_6
+        weight: 1
+      - path: baddie_01:skin_world_root/baddie_01:skin_cog/baddie_01:skin_tail_1/baddie_01:skin_tail_2/baddie_01:skin_tail_3/baddie_01:skin_tail_4/baddie_01:skin_tail_5/baddie_01:skin_tail_6/baddie_01:skin_tail_7
+        weight: 1
+      - path: baddie_01:skin_world_root/baddie_01:skin_cog/baddie_01:skin_tail_1/baddie_01:skin_tail_2/baddie_01:skin_tail_3/baddie_01:skin_tail_4/baddie_01:skin_tail_5/baddie_01:skin_tail_6/baddie_01:skin_tail_7/baddie_01:skin_tail_8
+        weight: 1
+      - path: baddie_01:skin_world_root/baddie_01:skin_cog/baddie_01:skin_tail_1/baddie_01:skin_tail_2/baddie_01:skin_tail_3/baddie_01:skin_tail_4/baddie_01:skin_tail_5/baddie_01:skin_tail_6/baddie_01:skin_tail_7/baddie_01:skin_tail_8/baddie_01:skin_tail_9
+        weight: 1
+      - path: baddie_01:skin_world_root/baddie_01:skin_cog/baddie_01:skin_tail_1/baddie_01:skin_tail_2/baddie_01:skin_tail_3/baddie_01:skin_tail_4/baddie_01:skin_tail_5/baddie_01:skin_tail_6/baddie_01:skin_tail_7/baddie_01:skin_tail_8/baddie_01:skin_tail_9/baddie_01:skin_tail_10
+        weight: 1
+      - path: baddie_01:skin_world_root/baddie_01:skin_cog/baddie_01:skin_tail_1/baddie_01:skin_tail_2/baddie_01:skin_tail_3/baddie_01:skin_tail_4/baddie_01:skin_tail_5/baddie_01:skin_tail_6/baddie_01:skin_tail_7/baddie_01:skin_tail_8/baddie_01:skin_tail_9/baddie_01:skin_tail_10/baddie_01:skin_tail_11
+        weight: 1
+      - path: baddie_01:skin_world_root/baddie_01:skin_cog/baddie_01:skin_tail_1/baddie_01:skin_tail_2/baddie_01:skin_tail_3/baddie_01:skin_tail_4/baddie_01:skin_tail_5/baddie_01:skin_tail_6/baddie_01:skin_tail_7/baddie_01:skin_tail_8/baddie_01:skin_tail_9/baddie_01:skin_tail_10/baddie_01:skin_tail_11/baddie_01:skin_tail_12
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 1
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: cb2793c19fb1f4614999840e0acb5bec,
+    type: 3}
+  animationType: 2
+  additionalBone: 0
+  userData: 

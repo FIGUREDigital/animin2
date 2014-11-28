@@ -1,0 +1,146 @@
+fileFormatVersion: 2
+guid: 3790c64e18a47064cb4cbc26908001c6
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: worm:andy_wormhole
+    100004: worm:Cspine_1_joint
+    100006: worm:gIKSpine
+    100008: worm:gIKSpineXTR
+    100010: worm:head_anim
+    100012: worm:hipCtrl
+    100014: worm:hipCtrlOrientGrp
+    100016: worm:IKSpineCl_0Handle
+    100018: worm:IKSpineCl_1Handle
+    100020: worm:IKSpineCl_2Handle
+    100022: worm:IKSpineCl_3Handle
+    100024: worm:IKSpineCl_4Handle
+    100026: worm:IKSpineCurve
+    100028: worm:phipCtrl
+    100030: worm:pshoulderCtrl
+    100032: worm:shoulderCtrl
+    100034: worm:skin_spine_10_joint
+    100036: worm:skin_spine_11_joint
+    100038: worm:skin_spine_12_joint
+    100040: worm:skin_spine_1_joint
+    100042: worm:skin_spine_2_joint
+    100044: worm:skin_spine_3_joint
+    100046: worm:skin_spine_4_joint
+    100048: worm:skin_spine_5_joint
+    100050: worm:skin_spine_6_joint
+    100052: worm:skin_spine_7_joint
+    100054: worm:skin_spine_8_joint
+    100056: worm:skin_spine_9_joint
+    100058: worm:spine_10_joint
+    100060: worm:spine_11_joint
+    100062: worm:spine_12_joint
+    100064: worm:spine_1_joint
+    100066: worm:spine_2_joint
+    100068: worm:spine_3_joint
+    100070: worm:spine_4_joint
+    100072: worm:spine_5_joint
+    100074: worm:spine_6_joint
+    100076: worm:spine_7_joint
+    100078: worm:spine_8_joint
+    100080: worm:spine_9_joint
+    100082: worm:worm
+    400000: //RootNode
+    400002: worm:andy_wormhole
+    400004: worm:Cspine_1_joint
+    400006: worm:gIKSpine
+    400008: worm:gIKSpineXTR
+    400010: worm:head_anim
+    400012: worm:hipCtrl
+    400014: worm:hipCtrlOrientGrp
+    400016: worm:IKSpineCl_0Handle
+    400018: worm:IKSpineCl_1Handle
+    400020: worm:IKSpineCl_2Handle
+    400022: worm:IKSpineCl_3Handle
+    400024: worm:IKSpineCl_4Handle
+    400026: worm:IKSpineCurve
+    400028: worm:phipCtrl
+    400030: worm:pshoulderCtrl
+    400032: worm:shoulderCtrl
+    400034: worm:skin_spine_10_joint
+    400036: worm:skin_spine_11_joint
+    400038: worm:skin_spine_12_joint
+    400040: worm:skin_spine_1_joint
+    400042: worm:skin_spine_2_joint
+    400044: worm:skin_spine_3_joint
+    400046: worm:skin_spine_4_joint
+    400048: worm:skin_spine_5_joint
+    400050: worm:skin_spine_6_joint
+    400052: worm:skin_spine_7_joint
+    400054: worm:skin_spine_8_joint
+    400056: worm:skin_spine_9_joint
+    400058: worm:spine_10_joint
+    400060: worm:spine_11_joint
+    400062: worm:spine_12_joint
+    400064: worm:spine_1_joint
+    400066: worm:spine_2_joint
+    400068: worm:spine_3_joint
+    400070: worm:spine_4_joint
+    400072: worm:spine_5_joint
+    400074: worm:spine_6_joint
+    400076: worm:spine_7_joint
+    400078: worm:spine_8_joint
+    400080: worm:spine_9_joint
+    400082: worm:worm
+    4300000: worm:andy_wormhole
+    9500000: //RootNode
+    13700000: worm:andy_wormhole
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

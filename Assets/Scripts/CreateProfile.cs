@@ -23,7 +23,7 @@ public class CreateProfile : MonoBehaviour {
 		}
 		Account.Instance.UserName = text;
 		StartCoroutine( Account.Instance.WWWSendData( true, text, "","","", "","" ) );
-		UiPages.LeavePage(gameObject, Pages.AniminSelectPage);
+		UiPages.Next( Pages.AniminSelectPage);
 
 	}
 }

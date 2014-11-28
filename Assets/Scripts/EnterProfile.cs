@@ -34,12 +34,12 @@ public class EnterProfile : MonoBehaviour {
 	{
 		if(IsNew)
 		{
-			UiPages.LeavePage(gameObject, Pages.NewProfilePage);
+			UiPages.Next(Pages.NewProfilePage);
 		}
 		else
 		{
 			ProfilesManagementScript.Singleton.LoginExistingUser(ThisProfile);
-			UiPages.LeavePage(gameObject, Pages.AniminSelectPage);
+			UiPages.Next(Pages.AniminSelectPage);
 		}
 	}
 }

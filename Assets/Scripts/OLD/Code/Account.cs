@@ -84,6 +84,7 @@ public class Account
         webForm.AddField( "Character", character );
 //		Debug.Log (character);
 
+		Debug.Log ("creating user: " + UserName);
         WWW w = new WWW( SERVER_SEND_URL, webForm );
 
         yield return w;

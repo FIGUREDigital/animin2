@@ -110,8 +110,6 @@ public class ProfilesManagementScript : MonoBehaviour
 
     public void NewUserProfileAdded(string name, string id)
 	{
-		NewUser.SetActive(false);
-		AniminsScreen.SetActive(true);
         PlayerProfileData tempData = new PlayerProfileData();
         tempData = PlayerProfileData.CreateNewProfile(name);
         tempData.UniqueID = id;

@@ -12,6 +12,7 @@ public enum Pages
 	MinigamesPage,
 	SettingsPage,
 	AchievementsPage,
+	PrivacyPolicyPage,
 	CreditsPage,
 	Count
 }
@@ -31,6 +32,7 @@ public class UiPages : MonoBehaviour
 	public const string MINIGAMES_PAGE = "MinigamesPage";
 	public const string SETTINGS_PAGE = "SettingsPage";
 	public const string ACHIEVEMENTS_PAGE = "AchievementsPage";
+	public const string PRIVICY_POLICY_PAGE = "PrivacyPolicyPage";
 	public const string CREDITS_PAGE = "CreditsPage";
 	private static Pages mCurrentPage;
 	private static GameObject[] mPages;
@@ -81,6 +83,7 @@ public class UiPages : MonoBehaviour
 		mBackMap [(int)Pages.MinigamesPage] = mPages [(int)Pages.CaringPage];
 		mBackMap [(int)Pages.SettingsPage] = mPages [(int)Pages.CaringPage];
 		mBackMap [(int)Pages.AchievementsPage] = mPages [(int)Pages.CaringPage];
+		mBackMap [(int)Pages.PrivacyPolicyPage] = mPages [(int)Pages.SettingsPage];
 		mBackMap [(int)Pages.CreditsPage] = mPages [(int)Pages.SettingsPage];
 	}
 	private static string GetPrefabName(Pages page)
@@ -114,6 +117,9 @@ public class UiPages : MonoBehaviour
 			break;
 		case Pages.AchievementsPage:
 			name = ACHIEVEMENTS_PAGE;
+			break;
+		case Pages.PrivacyPolicyPage:
+			name = PRIVICY_POLICY_PAGE;
 			break;
 		case Pages.CreditsPage:
 			name = CREDITS_PAGE;

@@ -30,7 +30,7 @@ public class UiPages : MonoBehaviour
 	public const string STATS_PAGE = "StatsPage";
 	public const string MINIGAMES_PAGE = "MinigamesPage";
 	public const string SETTINGS_PAGE = "SettingsPage";
-	public const string ACHIEVEMENTS_PAGE = "AchievementPage";
+	public const string ACHIEVEMENTS_PAGE = "AchievementsPage";
 	public const string CREDITS_PAGE = "CreditsPage";
 	private static Pages mCurrentPage;
 	private static GameObject[] mPages;

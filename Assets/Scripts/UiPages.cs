@@ -7,6 +7,12 @@ public enum Pages
 	NewProfilePage,
 	AniminSelectPage,
 	DemoCardPage,
+	CaringPage,
+	StatsPage,
+	MinigamesPage,
+	SettingsPage,
+	AchievementsPage,
+	CreditsPage,
 	Count
 }
 public class PageID : MonoBehaviour
@@ -20,6 +26,12 @@ public class UiPages : MonoBehaviour
 	public const string NEW_PROFILE_PAGE = "NewProfilePage";
 	public const string ANIMIN_SELECT_PAGE = "AniminSelectPage";
 	public const string DEMO_CARD_PAGE = "DemoCardPage";
+	public const string CARING_PAGE = "CaringPage";
+	public const string STATS_PAGE = "StatsPage";
+	public const string MINIGAMES_PAGE = "MinigamesPage";
+	public const string SETTINGS_PAGE = "SettingsPage";
+	public const string ACHIEVEMENTS_PAGE = "AchievementPage";
+	public const string CREDITS_PAGE = "CreditsPage";
 	private static Pages mCurrentPage;
 	private static GameObject[] mPages;
 	private static GameObject[] mBackMap;
@@ -32,7 +44,14 @@ public class UiPages : MonoBehaviour
 	}
 	void Init()
 	{
-		mCurrentPage = Pages.ProfileSelectPage;
+		if(Application.loadedLevelName == "Menu")
+		{
+			mCurrentPage = Pages.ProfileSelectPage;
+		}
+		else
+		{
+			mCurrentPage = Pages.CaringPage;
+		}
 		mPages [(int)mCurrentPage].SetActive (true);
 	}
 
@@ -57,6 +76,12 @@ public class UiPages : MonoBehaviour
 		mBackMap [(int)Pages.NewProfilePage] = mPages[(int)Pages.ProfileSelectPage];
 		mBackMap [(int)Pages.AniminSelectPage] = mPages[(int)Pages.ProfileSelectPage];
 		mBackMap [(int)Pages.DemoCardPage] = mPages[(int)Pages.ProfileSelectPage];
+		mBackMap [(int)Pages.CaringPage] = null;
+		mBackMap [(int)Pages.StatsPage] = mPages [(int)Pages.CaringPage];
+		mBackMap [(int)Pages.MinigamesPage] = mPages [(int)Pages.CaringPage];
+		mBackMap [(int)Pages.SettingsPage] = mPages [(int)Pages.CaringPage];
+		mBackMap [(int)Pages.AchievementsPage] = mPages [(int)Pages.CaringPage];
+		mBackMap [(int)Pages.CreditsPage] = mPages [(int)Pages.SettingsPage];
 	}
 	private static string GetPrefabName(Pages page)
 	{
@@ -74,6 +99,24 @@ public class UiPages : MonoBehaviour
 			break;
 		case Pages.DemoCardPage:
 			name = DEMO_CARD_PAGE;
+			break;
+		case Pages.CaringPage:
+			name = CARING_PAGE;
+			break;
+		case Pages.StatsPage:
+			name = STATS_PAGE;
+			break;
+		case Pages.MinigamesPage:
+			name = MINIGAMES_PAGE;
+			break;
+		case Pages.SettingsPage:
+			name = SETTINGS_PAGE;
+			break;
+		case Pages.AchievementsPage:
+			name = ACHIEVEMENTS_PAGE;
+			break;
+		case Pages.CreditsPage:
+			name = CREDITS_PAGE;
 			break;
 		default:
 			Debug.LogError("NO SUCH PAGE");

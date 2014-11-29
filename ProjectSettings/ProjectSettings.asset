@@ -156,7 +156,7 @@ PlayerSettings:
   psp2TrophyPackagePath: 
   psp2PackagedResourcesPath: 
   flashStrippingLevel: 2
-  spritePackerPolicy: 
+  spritePackerPolicy: TightPackerPolicy
   scriptingDefineSymbols: {}
   metroPackageName: Animin2
   metroPackageLogo: 

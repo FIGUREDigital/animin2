@@ -1,12 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//Defines the different sections of menu which will be loaded and used
+public enum UiState
+{
+	Frontend,
+	MainScene,
+	Count
+}
+//Defines all pages, seperated by their counts
+
 public enum Pages
 {
 	ProfileSelectPage,
 	NewProfilePage,
 	AniminSelectPage,
 	DemoCardPage,
+	FRONTEND_COUNT,
 	CaringPage,
 	StatsPage,
 	MinigamesPage,
@@ -14,8 +24,10 @@ public enum Pages
 	AchievementsPage,
 	PrivacyPolicyPage,
 	CreditsPage,
-	Count
+	MAINSCENE_COUNT
 }
+
+
 public class PageID : MonoBehaviour
 {
 	public Pages ID;
@@ -37,30 +49,50 @@ public class UiPages : MonoBehaviour
 	private static Pages mCurrentPage;
 	private static GameObject[] mPages;
 	private static GameObject[] mBackMap;
+	private static UiState mCurrentState;
 
 	void Start ()
 	{
 		LoadPrefabs ();
 		SetupBackMap();
+		SwitchState();
 		Init ();
 	}
-	void Init()
+	void SwitchState()
 	{
 		if(Application.loadedLevelName == "Menu")
 		{
-			mCurrentPage = Pages.ProfileSelectPage;
+			mCurrentState = UiState.Frontend;
 		}
-		else
+		else //TODO Update to a proper switch
 		{
-			mCurrentPage = Pages.CaringPage;
+			mCurrentState = UiState.MainScene;
 		}
+	}
+	void Init()
+	{
+		switch(mCurrentState)
+		{
+		case UiState.Frontend:
+			mCurrentPage = Pages.ProfileSelectPage;
+			break;
+		case UiState.MainScene:
+			mCurrentPage = Pages.CaringPage;
+			break;
+		default:
+			mCurrentPage = Pages.ProfileSelectPage;
+			break;
+		}
+
 		mPages [(int)mCurrentPage].SetActive (true);
 	}
 
 	private void LoadPrefabs()
 	{
-		mPages = new GameObject[(int)Pages.Count];
-		for (int i = 0; i < (int)Pages.Count; i++)
+		mPages = new GameObject[(int)Pages.MAINSCENE_COUNT];
+		int start =(int)( mCurrentState == UiState.Frontend ? 0 : Pages.FRONTEND_COUNT);
+		int end =(int)( mCurrentState == UiState.Frontend ? Pages.FRONTEND_COUNT : Pages.MAINSCENE_COUNT);
+		for (int i = start; i < end; i++)
 		{
 			Pages page = (Pages)i;
 			string name = GetPrefabName(page);
@@ -73,7 +105,7 @@ public class UiPages : MonoBehaviour
 	}
 	private void SetupBackMap()
 	{
-		mBackMap = new GameObject[(int)Pages.Count];
+		mBackMap = new GameObject[(int)Pages.MAINSCENE_COUNT];
 		mBackMap [(int)Pages.ProfileSelectPage] = null;
 		mBackMap [(int)Pages.NewProfilePage] = mPages[(int)Pages.ProfileSelectPage];
 		mBackMap [(int)Pages.AniminSelectPage] = mPages[(int)Pages.ProfileSelectPage];

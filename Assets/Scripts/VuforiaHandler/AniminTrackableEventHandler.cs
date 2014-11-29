@@ -39,7 +39,6 @@ ITrackableEventHandler
 		TrackableBehaviour.Status previousStatus,
 		TrackableBehaviour.Status newStatus)
 	{
-		Debug.Log ("OnTrackableStateChanged");
 		if (ARHandler !=null) ARHandler.OnTrackableStateChanged (this, previousStatus, newStatus);
 	}
 

@@ -76,6 +76,10 @@ public class MainARHandler : MonoBehaviour
 		if (!isTracking) {
 			isTracking = true;
 			Debug.Log ("OnTrackingFound : [" + mLastTrack.TrackableBehaviour.TrackableName + "];");
+            if (m_CurrentGameScene == GameScenes.Caring)
+            {
+
+            }
 		}
 	}
 
@@ -85,9 +89,19 @@ public class MainARHandler : MonoBehaviour
 	{
 		if (isTracking) {
 			isTracking = false;
-			Debug.Log ("OnTrackingLost : [" + mLastTrack.TrackableBehaviour.TrackableName + "];");
+            Debug.Log ("OnTrackingLost : [" + mLastTrack.TrackableBehaviour.TrackableName + "];");
+            if (m_CurrentGameScene == GameScenes.Caring)
+            {
+
+            }
 		}
 	}
+
+    private void CaringARScene(bool ActivateAR){
+        UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.parent = (ActivateAR ? UIGlobalVariablesScript.Singleton.ARWorldRef.transform : UIGlobalVariablesScript.Singleton.NonARWorldRef.transform);
+        UIGlobalVariablesScript.Singleton.ARWorldRef.SetActive(ActivateAR);
+        UIGlobalVariablesScript.Singleton.NonARWorldRef.SetActive(!ActivateAR);
+    }
 
 	public void ChangeSceneToCaring ()
 	{

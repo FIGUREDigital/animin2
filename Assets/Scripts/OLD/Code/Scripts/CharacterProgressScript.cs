@@ -751,7 +751,7 @@ public class CharacterProgressScript : MonoBehaviour
             {
                 // pos is the Vector3 representing the screen position of the input
 				Ray inputRay = uiCam.ScreenPointToRay(Input.mousePosition);  
-								Debug.DrawRay(uiCam.transform.position ,uiCam.ScreenPointToRay(Input.mousePosition).direction*100,Color.green,5,false); 
+								Debug.DrawRay(uiCam.transform.position ,uiCam.ScreenPointToRay(Input.mousePosition).direction*1000,Color.green,5,false); 
 
 
 

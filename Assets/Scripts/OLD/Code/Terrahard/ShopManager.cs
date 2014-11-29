@@ -124,8 +124,6 @@ public class ShopManager
         CurrentRestoreStatus = RestoreStatus.Fail;
 		Debug.Log( "restoreTransactionsFailed: " + error );
 
-		ProfilesManagementScript.Singleton.LoadingSpinner.SetActive(false);
-		ProfilesManagementScript.Singleton.ErrorBox.SetActive(true);
 	}
 	
 	
@@ -133,9 +131,7 @@ public class ShopManager
 	{
         CurrentRestoreStatus = RestoreStatus.Success;
 		Debug.Log( "restoreTransactionsFinished" );
-		
-		ProfilesManagementScript.Singleton.LoadingSpinner.SetActive(false);
-		ProfilesManagementScript.Singleton.AniminsScreen.SetActive(true);
+
 	}
 
 #if UNITY_IOS

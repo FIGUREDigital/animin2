@@ -26,8 +26,6 @@ public class RestorePurchases : MonoBehaviour {
 		Debug.Log("Restore Purchases");
 		if(!Application.isEditor)
 		{
-			ProfilesManagementScript.Singleton.AniminsScreen.SetActive(false);
-			ProfilesManagementScript.Singleton.LoadingSpinner.SetActive(true);
 			
 			if(ShopManager.Instance.HasBought(UnlockCharacterManager.TBOADULT_PURCHASE) || ShopManager.Instance.HasBought(UnlockCharacterManager.TBOADULT_UNLOCK))
 			{
@@ -56,7 +54,5 @@ public class RestorePurchases : MonoBehaviour {
 
 	void Return()
 	{
-		ProfilesManagementScript.Singleton.AniminsScreen.SetActive(true);
-		ProfilesManagementScript.Singleton.LoadingSpinner.SetActive(false);
 	}
 }

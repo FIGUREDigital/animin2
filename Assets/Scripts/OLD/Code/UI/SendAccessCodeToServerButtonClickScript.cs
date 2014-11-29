@@ -18,8 +18,6 @@ public class SendAccessCodeToServerButtonClickScript : MonoBehaviour {
 	{
 		if (SubmitFunction.gameObject.GetComponent<InputField>().text == "18271425")
         {
-            ProfilesManagementScript.Singleton.PurchaseChoiceScreen.SetActive(false);
-            ProfilesManagementScript.Singleton.AniminsScreen.SetActive(true);
 
             UnlockCharacterManager.Instance.ID = PersistentData.TypesOfAnimin.TboAdult;
             UnlockCharacterManager.Instance.UnlockCharacter();
@@ -47,8 +45,6 @@ public class SendAccessCodeToServerButtonClickScript : MonoBehaviour {
 #elif UNITY_ANDROID
     void purchaseSuccessful(GooglePurchase transaction)
 	{
-		ProfilesManagementScript.Singleton.LoadingSpinner.SetActive(false);
-		ProfilesManagementScript.Singleton.AniminsScreen.SetActive(true);
 		UnregisterListeners();
 	}
 #endif
@@ -58,8 +54,6 @@ public class SendAccessCodeToServerButtonClickScript : MonoBehaviour {
 		void purchaseUnsuccessful( string transaction, int errorcode )
 		#endif
 	{
-		ProfilesManagementScript.Singleton.LoadingSpinner.SetActive(false);
-		ProfilesManagementScript.Singleton.AniminsScreen.SetActive(true);
 		UnregisterListeners();
 	}
 	void RegisterListeners()

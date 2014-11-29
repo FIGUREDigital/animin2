@@ -15,8 +15,6 @@ public class StartCreateProfileButtonScript : MonoBehaviour {
 
 	void Onclick()
 	{
-		ProfilesManagementScript.Singleton.CreateUsernameScreen.SetActive(true);
-		ProfilesManagementScript.Singleton.OLD_ProfilesScreen.SetActive(false);
 
 	}
 }

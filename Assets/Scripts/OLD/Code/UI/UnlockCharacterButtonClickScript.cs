@@ -21,13 +21,10 @@ public class UnlockCharacterButtonClickScript : MonoBehaviour
         //if( Application.isEditor)
         if (true)
         {
-            ProfilesManagementScript.Singleton.AniminsScreen.SetActive(false);
             ProfilesManagementScript.Singleton.ContinueToInAppPurchase(true);
         }
         else
         {
-            ProfilesManagementScript.Singleton.AniminsScreen.SetActive(false);
-            ProfilesManagementScript.Singleton.LoadingSpinner.SetActive(true);
             ProfilesManagementScript.Singleton.ActivateShopItemCheck();
         }
 		

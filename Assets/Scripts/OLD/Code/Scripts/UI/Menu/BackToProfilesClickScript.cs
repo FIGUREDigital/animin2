@@ -11,16 +11,7 @@ public class BackToProfilesClickScript : MonoBehaviour
 //		if (ProfilesManagementScript.Singleton.LoadingScreen.activeInHierarchy) 
 //		{
 
-			if (ProfilesManagementScript.Singleton.SelectProfile.activeInHierarchy) 
-			{
-				AniminScreen.SetActive (true);
-			ProfilesManagementScript.Singleton.SelectProfile.SetActive (false);
-			}
-			else 
-			{
-				AniminScreen.SetActive (false);
-			ProfilesManagementScript.Singleton.SelectProfile.SetActive (true);
-			}
+
 //		}
 	}
 }

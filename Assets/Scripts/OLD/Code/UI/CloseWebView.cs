@@ -10,8 +10,6 @@ public class CloseWebView : MonoBehaviour
 
 		if (Application.loadedLevelName == "Menu") 
         {
-			ProfilesManagementScript.Singleton.CloseWebview.SetActive (false);
-			ProfilesManagementScript.Singleton.AniminsScreen.SetActive (true);
 		} 
         else if (Application.loadedLevelName == "VuforiaTest") 
         {

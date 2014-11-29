@@ -31,9 +31,6 @@ public class SelectCharacterClickScript : MonoBehaviour
         ProfilesManagementScript.Singleton.AssignCurrentAniminToVariable();
 //        ProfilesManagementScript.Singleton.CurrentAnimin = ProfilesManagementScript.Singleton.CurrentProfile.Characters[(int)Animin];
 
-		if (!ProfilesManagementScript.Singleton.BeginLoadLevel) {	
-			ProfilesManagementScript.Singleton.BeginLoadLevel = true;
-		}
 		//AsyncOperation asyncOp = Application.LoadLevelAsync("VuforiaTest");
 		//yield return asyncOp;
 		//Debug.Log("Loading complete");

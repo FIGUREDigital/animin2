@@ -11,7 +11,5 @@ public class SendAddress : MonoBehaviour
 		{
 			screen.Send();
 		}
-		ProfilesManagementScript.Singleton.AddressInput.SetActive(false);
-		ProfilesManagementScript.Singleton.AniminsScreen.SetActive(true);
 	}
 }

@@ -9,11 +9,7 @@ public class BuyWithItunes : MonoBehaviour
 		UnlockCharacterManager.Instance.BuyCharacter(ProfilesManagementScript.Singleton.AniminToUnlockId, false);
 		if(Application.isEditor)
 		{
-			ProfilesManagementScript.Singleton.PurchaseChoiceScreen.SetActive(false);
-			ProfilesManagementScript.Singleton.AniminsScreen.SetActive(true);
 			return;
 		}
-		ProfilesManagementScript.Singleton.LoadingSpinner.SetActive(true);
-		ProfilesManagementScript.Singleton.PurchaseChoiceScreen.SetActive(false);
 	}
 }

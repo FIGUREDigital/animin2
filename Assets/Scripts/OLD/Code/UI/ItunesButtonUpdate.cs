@@ -61,16 +61,11 @@ public class ItunesButtonUpdate : MonoBehaviour
 
 	void ReturnToMainScreen()
 	{
-		ProfilesManagementScript.Singleton.LoadingSpinner.SetActive(false);
-		ProfilesManagementScript.Singleton.AniminsScreen.SetActive(true);
 		UnregisterListeners();
 	}
 
 	void GoToAddress()
 	{
-		ProfilesManagementScript.Singleton.LoadingSpinner.SetActive(false);
-        //ProfilesManagementScript.Singleton.AddressInput.SetActive(true);
-        ProfilesManagementScript.Singleton.AniminsScreen.SetActive(true);
 	}
 
 #if UNITY_IOS
@@ -110,8 +105,6 @@ public class ItunesButtonUpdate : MonoBehaviour
 		#endif
 	{
 		Debug.Log("Purchase Unsuccessful, response: " + response);
-		ProfilesManagementScript.Singleton.LoadingSpinner.SetActive(false);
-		ProfilesManagementScript.Singleton.AniminsScreen.SetActive(true);
 		ShopManager.Instance.EndStore();
 		UnregisterListeners();
 	}

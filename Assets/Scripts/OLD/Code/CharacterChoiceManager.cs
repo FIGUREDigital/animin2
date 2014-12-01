@@ -65,13 +65,13 @@ public class CharacterChoiceManager {
             }
         }
 
-        for (int i = 0; i< CharactersToPick.Count; i++)
-        {
-            if (CharactersToPick[i].ThisCharacter == typeToUnlock)
-            {
-                CharactersToPick[i].ChangeLockedState(true);
-            }
-        }
+//        for (int i = 0; i< CharactersToPick.Count; i++)
+//        {
+//            if (CharactersToPick[i].ThisCharacter == typeToUnlock)
+//            {
+//                CharactersToPick[i].ChangeLockedState(true);
+//            }
+//        }
 
     }
 	

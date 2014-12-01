@@ -53,9 +53,9 @@ public class UiPages : MonoBehaviour
 
 	void Start ()
 	{
+		SwitchState();
 		LoadPrefabs ();
 		SetupBackMap();
-		SwitchState();
 		Init ();
 	}
 	void SwitchState()
@@ -90,7 +90,7 @@ public class UiPages : MonoBehaviour
 	private void LoadPrefabs()
 	{
 		mPages = new GameObject[(int)Pages.MAINSCENE_COUNT];
-		int start =(int)( mCurrentState == UiState.Frontend ? 0 : Pages.FRONTEND_COUNT);
+		int start = mCurrentState == UiState.Frontend ? 0 : ((int)Pages.FRONTEND_COUNT) + 1;
 		int end =(int)( mCurrentState == UiState.Frontend ? Pages.FRONTEND_COUNT : Pages.MAINSCENE_COUNT);
 		for (int i = start; i < end; i++)
 		{
@@ -157,7 +157,7 @@ public class UiPages : MonoBehaviour
 			name = CREDITS_PAGE;
 			break;
 		default:
-			Debug.LogError("NO SUCH PAGE");
+			Debug.LogError("NO SUCH PAGE: " + page.ToString());
 			name = null;
 			break;
 		}

@@ -85,32 +85,27 @@ public class Account
 //		Debug.Log (character);
 
 		Debug.Log ("creating user: " + UserName);
-        WWW w = new WWW( SERVER_SEND_URL, webForm );
+		WWW w = new WWW( SERVER_SEND_URL, webForm );
+		yield return w;
 
-        yield return w;
+		if (w.error != null) {
+				Debug.Log (w.error);
+		} else {
+				if (newUser) {
 
-        if( w.error != null )
-        {
-            Debug.Log( w.error );
-        }
-        else
-        {
-            if( newUser )
-            {
-
-                string tempID = w.text.Replace(System.Environment.NewLine, "");
+						string tempID = w.text.Replace (System.Environment.NewLine, "");
 //				Debug.Log("test"+UniqueID+"test");
-                ProfilesManagementScript.Singleton.NewUserProfileAdded(name, tempID);
-            }
+						ProfilesManagementScript.Singleton.NewUserProfileAdded (name, tempID);
+				}
 
 //            Debug.Log( w.text );
-            Debug.Log( "Finished uploading name data" );
-        }
-
-		if (newUser) 
-		{
-			
+				Debug.Log ("Finished uploading name data");
 		}
+
+		if (newUser) {
+
+		}
+
 
     }
 	public IEnumerator WWWCheckLoginCode( string code )

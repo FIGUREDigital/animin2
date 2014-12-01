@@ -195,7 +195,7 @@ public class UnlockCharacterManager
 		Debug.Log("just saved...unlock");
         ShopManager.Instance.EndStore(); 
 
-        ProfilesManagementScript.Singleton.SendRealTimeNotification("AniminUnlocked",1);
+       // ProfilesManagementScript.Singleton.SendRealTimeNotification("AniminUnlocked",1);
 	}
 
 	public void CheckInitialCharacterUnlock()

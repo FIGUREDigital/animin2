@@ -35,12 +35,6 @@ public class ProfilesManagementScript : MonoBehaviour
 		Singleton = this;
 		if(!Initialized)
 		{
-			Initialized = true;
-			GameObject go = new GameObject();
-			go.name = "ArCameraManager";
-			go.AddComponent<ArCameraManager>();
-            //TempDebugPanel.text = "Awake";
-            SendRealTimeNotification("LoggedIn", 1);
 
 		}
 

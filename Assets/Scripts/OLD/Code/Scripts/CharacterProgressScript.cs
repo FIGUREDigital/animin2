@@ -270,10 +270,7 @@ public class CharacterProgressScript : MonoBehaviour
         //ProfilesManagementScript.Singleton.CurrentAnimin.Load();
 
 		Debug.Log ("CharacterProgressScript AWAKE");
-		if (ProfilesManagementScript.Singleton == null) {
-			ProfilesManagementScript.Singleton = new ProfilesManagementScript ();
-		}
-		if (ProfilesManagementScript.Singleton!=null && ProfilesManagementScript.Singleton.CurrentProfile == null)
+		if (ProfilesManagementScript.Singleton.CurrentProfile == null)
         {
             ProfilesManagementScript.Singleton.CurrentProfile = PlayerProfileData.CreateNewProfile("buildintest");
             ProfilesManagementScript.Singleton.CurrentAnimin = ProfilesManagementScript.Singleton.CurrentProfile.Characters[(int)PersistentData.TypesOfAnimin.Tbo];
@@ -298,11 +295,6 @@ public class CharacterProgressScript : MonoBehaviour
     {	
         GetComponent<CharacterControllerScript>().SetLocal(true);
         UIClickButtonMasterScript.SetSoundSprite();
-
-
-		if (ProfilesManagementScript.Singleton == null) {
-			ProfilesManagementScript.Singleton = new ProfilesManagementScript ();
-		}
 
 		if (ProfilesManagementScript.Singleton.CurrentAnimin == null) {
 			ProfilesManagementScript.Singleton.CurrentAnimin = new PersistentData ();

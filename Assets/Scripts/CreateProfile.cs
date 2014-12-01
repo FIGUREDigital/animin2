@@ -22,7 +22,15 @@ public class CreateProfile : MonoBehaviour {
 			return;
 		}
 		Account.Instance.UserName = text;
-		StartCoroutine( Account.Instance.WWWSendData( true, text, "","","", "","" ) );
+		bool offlineMode = true;
+		if(offlineMode)
+		{
+			ProfilesManagementScript.Singleton.NewUserProfileAdded (text, text);
+		}
+		else
+		{
+			StartCoroutine( Account.Instance.WWWSendData( true, text, "","","", "","" ) );
+		}
 		UiPages.Next( Pages.AniminSelectPage);
 
 	}

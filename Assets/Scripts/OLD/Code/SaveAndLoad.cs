@@ -58,7 +58,7 @@ public class SaveAndLoad {
 			FileStream file = File.Open(Application.persistentDataPath + "/savedGames.anidat", FileMode.Open);
             StateData = (ProfileStateData)bf.Deserialize(file);
 			file.Close();
-			Debug.Log ("Save data loaded");
+			Debug.Log ("Save data loaded from " + Application.persistentDataPath + "/savedGames.anidat");
             RepopulateData();
 		}
 		else

@@ -4,38 +4,40 @@ using System.Collections;
 public class AniminNameSprite : MonoBehaviour {
 
 	[SerializeField]
-	private string mPiSprite;
+	private RectTransform mPiSprite;
 	[SerializeField]
-	private string mTboSprite;
+	private RectTransform mTboSprite;
 	[SerializeField]
-	private string mKelseySprite;
+	private RectTransform mKelseySprite;
 	[SerializeField]
-	private string mMandiSprite;
+	private RectTransform mMandiSprite;
 	// Use this for initialization
 	void Start () 
 	{
-		//Image sprite = GetComponent<Image>();
-		//sprite.atlas = mAtlas;
+		mPiSprite.gameObject.SetActive (false);
+		mTboSprite.gameObject.SetActive (false);
+		mKelseySprite.gameObject.SetActive (false);
+		mMandiSprite.gameObject.SetActive (false);
 
-		string name = "";
         switch(ProfilesManagementScript.Singleton.CurrentProfile.ActiveAnimin)
 		{
             case PersistentData.TypesOfAnimin.Pi:
-			name = mPiSprite;
+			mPiSprite.gameObject.SetActive (true);
 			break;
+			case PersistentData.TypesOfAnimin.TboAdult:
             case PersistentData.TypesOfAnimin.Tbo:
-			name = mTboSprite;
+			mTboSprite.gameObject.SetActive (true);
 			break;
             case PersistentData.TypesOfAnimin.Kelsey:
-			name = mKelseySprite;
+			mKelseySprite.gameObject.SetActive (true);
 			break;
             case PersistentData.TypesOfAnimin.Mandi:
-			name = mMandiSprite;
+			
+			mMandiSprite.gameObject.SetActive (true);
 			break;
 		default:
 			break;
 		}
-		//sprite.spriteName = name;
 
 	}
 

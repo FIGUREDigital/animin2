@@ -38,8 +38,6 @@ public class SendAccessCodeToServerButtonClickScript : MonoBehaviour {
 #if UNITY_IOS
 	void purchaseSuccessful( StoreKitTransaction transaction )
 	{
-		ProfilesManagementScript.Singleton.LoadingSpinner.SetActive(false);
-		ProfilesManagementScript.Singleton.AniminsScreen.SetActive(true);
 		UnregisterListeners();
 	}
 #elif UNITY_ANDROID

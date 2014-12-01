@@ -249,7 +249,7 @@ public class SoundEngineScript : MonoBehaviour
 	{
 		//Debug.Log("LOOP: " + soundId.ToString());
 
-		SoundFxLooper1.clip = CreatureSounds[(int)animin, (int)creatureId, (int)soundId];
+        if (SoundFxLooper1!=null) SoundFxLooper1.clip = CreatureSounds[(int)animin, (int)creatureId, (int)soundId];
 		LooperPlaying = true;
 
 	}
@@ -265,7 +265,7 @@ public class SoundEngineScript : MonoBehaviour
 
 	public void StopLoop()
 	{
-		SoundFxLooper1.Stop();
+        if (SoundFxLooper1!=null)SoundFxLooper1.Stop();
 		LooperPlaying = false;
 
 	}
@@ -291,6 +291,7 @@ public class SoundEngineScript : MonoBehaviour
 		//Debug.Log ("Is Ready to Play? : [" + CreatureSounds [(int)animin, (int)creatureId, (int)soundId].isReadyToPlay + "];");
 
 		this.GetComponent<AudioSource>().PlayOneShot(CreatureSounds[(int)animin, (int)creatureId, (int)soundId]);
+
 	}
 }
 

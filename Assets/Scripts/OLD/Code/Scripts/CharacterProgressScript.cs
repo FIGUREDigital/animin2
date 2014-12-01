@@ -270,8 +270,13 @@ public class CharacterProgressScript : MonoBehaviour
         //ProfilesManagementScript.Singleton.CurrentAnimin.Load();
 
 		Debug.Log ("CharacterProgressScript AWAKE");
+        if (ProfilesManagementScript.Singleton == null)
+        {
+            ProfilesManagementScript.Singleton = new ProfilesManagementScript();
+        }
 		if (ProfilesManagementScript.Singleton.CurrentProfile == null)
         {
+            Debug.Log("NO PROFILE FOUND");
             ProfilesManagementScript.Singleton.CurrentProfile = PlayerProfileData.CreateNewProfile("buildintest");
             ProfilesManagementScript.Singleton.CurrentAnimin = ProfilesManagementScript.Singleton.CurrentProfile.Characters[(int)PersistentData.TypesOfAnimin.Tbo];
         }
@@ -1334,7 +1339,7 @@ public class CharacterProgressScript : MonoBehaviour
                                     UIGlobalVariablesScript.Singleton.TutHandler.TriggerAdHocStartCond("Fart");
                                     UIGlobalVariablesScript.Singleton.SoundEngine.PlayFart();
                                 }
-                                else if (ObjectHolding == null && UIGlobalVariablesScript.Singleton.DragableUI3DObject.transform.childCount == 0 && !animationController.IsPat)
+                                else if (ObjectHolding == null && CameraModelScript.Instance.transform.childCount == 0 && !animationController.IsPat)
                                 {
                                     //Debug.Log("HIT THE CHARACTER FOR INTERACTION 4");
                                     Stop(true);

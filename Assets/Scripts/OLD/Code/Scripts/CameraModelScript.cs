@@ -4,11 +4,29 @@ using UnityEngine.UI;
 
 public class CameraModelScript : MonoBehaviour 
 {
+    #region Singleton
+
+    private static CameraModelScript s_Instance;
+
+    public static CameraModelScript Instance
+    {
+        get
+        {
+            if ( s_Instance == null )
+            {
+                s_Instance = new CameraModelScript();
+            }
+            return s_Instance;
+        }
+    }
+
+    #endregion
+
 	public GameObject SpriteRef;
 
 	// Use this for initialization
 	void Start () {
-	
+        s_Instance = this;
 	}
 	
 	// Update is called once per frame

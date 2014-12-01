@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-
+/*
 public class ValueSmoother
 {
     public float ValueNow;
@@ -26,6 +26,7 @@ public class ValueSmootherVector3
             ValueNow = Vector3.Lerp(ValueNow, ValueNext, Time.deltaTime * 6);
     }
 }
+*/
 
 public class TrackVuforiaScript : MonoBehaviour, ITrackableEventHandler
 {

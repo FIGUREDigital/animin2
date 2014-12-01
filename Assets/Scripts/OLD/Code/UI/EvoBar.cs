@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class EvoBar : MonoBehaviour 
 {
 	[SerializeField]
-	private Sprite mEvoFill;
+	private UnityEngine.UI.Image mEvoFill;
 	private int mSpriteWidth = 1330;
 	private List<GameObject> mMarkers = new List<GameObject>();
 	private const string EVO_EX_NAME = "evoMarker_exclamation";
@@ -43,8 +43,13 @@ public class EvoBar : MonoBehaviour
 		default:
 			break;
 		}
+
+		CalcEvolution ();
 	}
-	
+	private void CalcEvolution()
+	{
+		mEvoFill.fillAmount = ProfilesManagementScript.Singleton.CurrentAnimin.Evolution;
+	}
 	private void PlaceMarkers()
 	{
 		mEvoID = ProfilesManagementScript.Singleton.CurrentAnimin.AniminEvolutionId;

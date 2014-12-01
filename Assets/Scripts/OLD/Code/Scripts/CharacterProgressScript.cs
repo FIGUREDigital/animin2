@@ -951,7 +951,10 @@ public class CharacterProgressScript : MonoBehaviour
 
                         UIGlobalVariablesScript.Singleton.NonSceneRef.SetActive(false);
                         UIGlobalVariablesScript.Singleton.ARSceneRef.SetActive(true);
+
+					//STUFF FOR MONDAY. SORT THIS SHIT OUT
                         //UIGlobalVariablesScript.Singleton.Vuforia.OnCharacterEnterARScene();
+                        MainARHandler.Get.OnCharacterEnterARScene();
 
 
                         //UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<AnimateCharacterOutPortalScript>().Timer = 0;
@@ -1292,7 +1295,8 @@ public class CharacterProgressScript : MonoBehaviour
                         IsDetectingMouseMoveForDrag = false;
 
 
-                        if (UIGlobalVariablesScript.Singleton.DragableUI3DObject.transform.childCount == 1 && UIGlobalVariablesScript.Singleton.DragableUI3DObject.transform.GetChild(0).name == "Broom")
+                        //if (UIGlobalVariablesScript.Singleton.DragableUI3DObject.transform.childCount == 1 && UIGlobalVariablesScript.Singleton.DragableUI3DObject.transform.GetChild(0).name == "Broom")
+                        if (CameraModelScript.Instance.transform.childCount == 1 && CameraModelScript.Instance.transform.GetChild(00).name == "Broom")
                         {
                             if (hadRayCollision && (hitInfo.collider.tag == "Items" || hitInfo.collider.tag == "Shit") && GroundItems.Contains(hitInfo.collider.gameObject))
                             {

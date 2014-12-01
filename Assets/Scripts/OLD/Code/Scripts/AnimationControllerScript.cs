@@ -816,7 +816,8 @@ public class AnimationControllerScript : MonoBehaviour
 
                             if (TrueOrFalse() || randomItem == null)
                             {
-                                script.MoveTo(new Vector3(Random.Range(-150, 150), script.transform.position.y, Random.Range(150, 500)), TrueOrFalse());
+                                //Debug.Log("Moving Autonomously!");
+                                script.MoveTo(new Vector3(Random.Range(-150, 150), script.transform.position.y, Random.Range(-150, 150)), TrueOrFalse());
                             }
                             else if (randomItem != null)
                             {

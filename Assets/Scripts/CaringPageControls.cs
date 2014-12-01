@@ -10,7 +10,8 @@ public enum InventoryPages
 public class CaringPageControls : MonoBehaviour {
 
 	[SerializeField]
-	private RectTransform Inventory;
+    private RectTransform Inventory;
+    [SerializeField]
 	private RectTransform Indicator;
 	bool InventoryOpen = false;
 	InventoryPages CurrentPage;
@@ -39,11 +40,11 @@ public class CaringPageControls : MonoBehaviour {
 		}
 		else // switch page
 		{
-			InventoryOpen = false;
+			//InventoryOpen = false;
 		}
 		Inventory.gameObject.SetActive(InventoryOpen);
-		Indicator.anchorMin = new Vector2 (110, Indicator.anchorMin.y);
-		Indicator.anchorMax = new Vector2 (350, Indicator.anchorMax.y);
+        Indicator.localPosition = new Vector2(-120, Indicator.localPosition.y);
+        CurrentPage = InventoryPages.Food;
 	}
 	public void ItemsButton()
 	{
@@ -57,12 +58,12 @@ public class CaringPageControls : MonoBehaviour {
 		}
 		else // switch page
 		{
-			InventoryOpen = false;
+			//InventoryOpen = false;
 		}
 		Inventory.gameObject.SetActive(InventoryOpen);
-		
-		Indicator.anchorMin = new Vector2 (90, Indicator.anchorMin.y);
-		Indicator.anchorMax = new Vector2 (90, Indicator.anchorMax.y);
+
+        Indicator.localPosition = new Vector2(0, Indicator.localPosition.y);
+        CurrentPage = InventoryPages.Items;
 	}
 	public void MedicineButton()
 	{
@@ -76,11 +77,11 @@ public class CaringPageControls : MonoBehaviour {
 		}
 		else // switch page
 		{
-			InventoryOpen = false;
+			//InventoryOpen = false;
 		}
-		Inventory.gameObject.SetActive(InventoryOpen);
-		Indicator.anchorMin = new Vector2 (350, Indicator.anchorMin.y);
-		Indicator.anchorMax = new Vector2 (110, Indicator.anchorMax.y);
+        Inventory.gameObject.SetActive(InventoryOpen);
+        Indicator.localPosition = new Vector2(120, Indicator.localPosition.y);
+        CurrentPage = InventoryPages.Medicine;
 	}
 	public void BroomButton()
 	{

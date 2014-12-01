@@ -5,7 +5,6 @@ using System.IO;
 
 public class SceneZero : MonoBehaviour
 {
-	private const string NextScene = "Menu";
 	private static bool LoadedOBB = false;
 	private Text errormess;
 
@@ -18,10 +17,13 @@ public class SceneZero : MonoBehaviour
 		Debug.Log ("SceneZero");
 
 		#if UNITY_ANDROID
+        if(!Application.isEditor){
 		GetOBB ();
 		StartCoroutine(ExtractObbDatasets());
+        } else
+            Application.LoadLevel (Application.loadedLevel+1);
 		#else
-		Application.LoadLevel (NextScene);
+        Application.LoadLevel (Application.loadedLevel+1);
 		#endif
 	}
 
@@ -74,7 +76,7 @@ public class SceneZero : MonoBehaviour
 		}
 
 		// When done extracting the datasets, Start Vuforia AR scene
-		Application.LoadLevel(NextScene);
+        Application.LoadLevel(Application.loadedLevel+1);
 	} 
 	private void Save(WWW www, string outputPath) {
 		File.WriteAllBytes(outputPath, www.bytes);

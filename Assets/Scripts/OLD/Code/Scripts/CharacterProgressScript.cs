@@ -257,6 +257,8 @@ public class CharacterProgressScript : MonoBehaviour
     private bool m_IsBlinking;
     private float m_BlinkTimer;
 
+    private GUITexture[] m_UITextures;
+
     // Use this for initialization
     void Awake()
     {
@@ -741,6 +743,7 @@ public class CharacterProgressScript : MonoBehaviour
         // CHECK FOR UI TOUCH
         if (Input.GetButton("Fire1") || Input.GetButtonDown("Fire1") || Input.GetButtonUp("Fire1"))
         {
+            /* OLD NGUI HADUITOUCH CODE
             // This grabs the camera attached to the NGUI UI_Root object.
             Camera uiCam = Camera.main;
 			
@@ -768,6 +771,19 @@ public class CharacterProgressScript : MonoBehaviour
 
                 }
             }
+            */
+            /*
+            GUITexture[] UITextures = GameObject.FindObjectsOfType<GUITexture>();
+            Debug.Log("Testing : [" + UITextures.Length + "];");
+            for (int i = 0; i < UITextures.Length; i++)
+            {
+                if (UITextures[i].HitTest(Input.mousePosition)){
+                    hadUItouch = true;
+                    break;
+                }
+            }
+            */
+            //ADRIAN. We need to fill this out so that it can tell us Yes/No whether or not the mouse is currently over the UI. Apparently "GUIElement.HitTest(Vector3)" will work, but we need to find a way to get the UITextures to work. Perhaps we should parent all the UIs to a single object which we can access with a singleton?
         }
 
 
@@ -1923,7 +1939,7 @@ public class CharacterProgressScript : MonoBehaviour
 
     public void MoveTo(Vector3 location, bool run)
     {
-//		Debug.Log("Moving to point: " + location.ToString());
+		Debug.Log("Moving to point: " + location.ToString());
         IsMovingTowardsLocation = true;
 	
         DestinationLocation = location;
@@ -1939,6 +1955,7 @@ public class CharacterProgressScript : MonoBehaviour
         Vector3 direction = Vector3.Normalize(location - this.transform.position);
 
 //		Debug.Log(direction.ToString());
+        Debug.DrawLine(this.transform.position, location, Color.red, 10);
         this.gameObject.GetComponent<CharacterControllerScript>().MovementDirection = direction;
     }
 

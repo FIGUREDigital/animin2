@@ -20,10 +20,11 @@ public class SliderController : MonoBehaviour
 
 	void Start()
 	{
-		mImage = GetComponent<RectTransform> ();
+
 	}
 	void OnEnable()
 	{
+		mImage = GetComponent<RectTransform> ();
 		float leftResult = 0;
 		float rightResult = 0;
 		/*Remember to comment these back in when UI is working.

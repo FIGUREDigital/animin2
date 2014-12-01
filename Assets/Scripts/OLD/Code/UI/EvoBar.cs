@@ -48,7 +48,7 @@ public class EvoBar : MonoBehaviour
 	}
 	private void CalcEvolution()
 	{
-		mEvoFill.fillAmount = ProfilesManagementScript.Singleton.CurrentAnimin.Evolution;
+		mEvoFill.fillAmount = ProfilesManagementScript.Singleton.CurrentAnimin.Evolution/100;
 	}
 	private void PlaceMarkers()
 	{

@@ -35,6 +35,7 @@ public class InventoryControls : MonoBehaviour
 		set
 		{
 			m_CurrentMode = value;
+			prefabButton = Resources.Load(PREFAB_PATH);
 		}
 	}
 	
@@ -52,8 +53,9 @@ public class InventoryControls : MonoBehaviour
 			{
 				Destroy(go);
 			}
+			
+			mCurrentDisplayed.Clear ();
 		}
-		mCurrentDisplayed.Clear ();
 	}
 	void Populate(PopupItemType type)
 	{
@@ -64,7 +66,7 @@ public class InventoryControls : MonoBehaviour
 			if(InventoryItemData.Items[(int)ProfilesManagementScript.Singleton.CurrentAnimin.Inventory[i].Id].ItemType == type)
 			{
 				InventoryItemBankData data = InventoryItemData.Items[(int)ProfilesManagementScript.Singleton.CurrentAnimin.Inventory[i].Id];
-				InventoryItemControls button = (InventoryItemControls)Instantiate(prefabButton);
+				InventoryItemControls button = ((GameObject)Instantiate(prefabButton)).GetComponent<InventoryItemControls>();
 				button.ID = data.Id;
 				button.GetComponent<UnityEngine.UI.Image>().sprite = data.SpriteName;
 				mCurrentDisplayed.Add(button.gameObject);
@@ -82,5 +84,21 @@ public class InventoryControls : MonoBehaviour
 		CurrentMode = CurrentPage;
 		InventoryLabel.text = CurrentPage.ToString ();
 		m_InventoryRect.horizontalNormalizedPosition = -0.2f;
+		PopupItemType type = PopupItemType.Count;
+		switch (CurrentPage) 
+		{
+		case InventoryPages.Food:
+			type = PopupItemType.Food;
+			break;
+		case InventoryPages.Items:
+			type = PopupItemType.Item;
+			break;
+		case InventoryPages.Medicine:
+			type = PopupItemType.Medicine;
+			break;
+		default:
+			break;
+		}
+		Populate (type);
 	}
 }

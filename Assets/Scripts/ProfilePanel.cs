@@ -11,7 +11,7 @@ public class ProfilePanel : MonoBehaviour
 	private PlayerProfileData mCurrentProfile;
 	private Object mProfilePrefab;
 
-	void OnEnable()
+	void Start()
 	{
 		mProfilePrefab = Resources.Load (PROFILE_PREFAB);
 		Populate ();

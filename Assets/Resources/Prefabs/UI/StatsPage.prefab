@@ -1509,7 +1509,7 @@ MonoBehaviour:
   mPiSprite: {fileID: 22400062}
   mTboSprite: {fileID: 22400064}
   mKelseySprite: {fileID: 22400060}
-  mMandiSprite: {fileID: 0}
+  mMandiSprite: {fileID: 22400036}
 --- !u!114 &11400078
 MonoBehaviour:
   m_ObjectHideFlags: 1

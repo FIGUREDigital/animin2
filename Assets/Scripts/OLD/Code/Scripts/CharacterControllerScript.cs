@@ -3,303 +3,308 @@ using System.Collections.Generic;
 
 public class CharacterForces
 {
-	public Vector3 Direction;
-	public float Speed;
-	public float Length;
+    public Vector3 Direction;
+    public float Speed;
+    public float Length;
 }
 
 public class CharacterControllerScript : MonoBehaviour //Photon.MonoBehaviour 
 {
 	
-	// SHAUN START
-	// ---------------------------------------------------------------------------------------------------------------------------------------------------
+    // SHAUN START
+    // ---------------------------------------------------------------------------------------------------------------------------------------------------
 	
-	private		bool	__local;
-	
-	public bool local { get { return __local;} }
-	//public Animations currentAnimation { get { return __currentAnimation;} }
-	//public Animations currentAnimation { get { return this.GetComponent<AnimationControllerScript>().currentAnimation;} }
-	
-	public void SetLocal(bool local) { __local = local; }
+    private		bool	__local;
 
-	public void UpdatePositionRemotely(Vector3 position) {
-		transform.position = Vector3.Lerp(transform.position, position, Time.deltaTime * 5);
-	}
+    public bool local { get { return __local; } }
+    //public Animations currentAnimation { get { return __currentAnimation;} }
+    //public Animations currentAnimation { get { return this.GetComponent<AnimationControllerScript>().currentAnimation;} }
 	
-	public void UpdateRotationRemotely(Quaternion rotation) {
-		transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * 5);
-	}
+    public void SetLocal(bool local)
+    {
+        __local = local;
+    }
+
+    public void UpdatePositionRemotely(Vector3 position)
+    {
+        transform.position = Vector3.Lerp(transform.position, position, Time.deltaTime * 5);
+    }
+
+    public void UpdateRotationRemotely(Quaternion rotation)
+    {
+        transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * 5);
+    }
 	
-	// SHAUN END
-	// ---------------------------------------------------------------------------------------------------------------------------------------------------
+    // SHAUN END
+    // ---------------------------------------------------------------------------------------------------------------------------------------------------
 	
 
 
-	public Camera CameraRef;
+    public Camera CameraRef;
 
-	enum CharacterState {
+    enum CharacterState
+    {
 		
-		Idle = 0,
+        Idle = 0,
 		
-		Walking = 1,
+        Walking = 1,
 		
-		Trotting = 2,
+        Trotting = 2,
 		
-		Running = 3,
+        Running = 3,
 		
-		Jumping = 4,    
+        Jumping = 4,
 		
-	}
+    }
+
+    private CharacterState _characterState;
 	
-	private CharacterState _characterState;
+    // The speed when walking
 	
-	// The speed when walking
+    public float walkSpeed = 2.0F;
 	
-	public float walkSpeed = 2.0F;
+    // after trotAfterSeconds of walking we trot with trotSpeed
 	
-	// after trotAfterSeconds of walking we trot with trotSpeed
+    public float trotSpeed = 4.0F;
 	
-	public float trotSpeed = 4.0F;
+    // when pressing "Fire3" button (cmd) we start running
 	
-	// when pressing "Fire3" button (cmd) we start running
+    //public float runSpeed = 6.0F;
 	
-	//public float runSpeed = 6.0F;
 	
 	
+    public float inAirControlAcceleration = 3.0F;
 	
-	public float inAirControlAcceleration = 3.0F;
 	
 	
+    // How high do we jump when pressing jump and letting go immediately
 	
-	// How high do we jump when pressing jump and letting go immediately
+    public float jumpHeight = 0.5F;
 	
-	public float jumpHeight = 0.5F;
+    //public AnimationControllerScript animationController;
 	
-	//public AnimationControllerScript animationController;
+    // The gravity for the character
 	
-	// The gravity for the character
+    public float gravity = 200.0F;
 	
-	public float gravity = 200.0F;
+    // The gravity in controlled descent mode
 	
-	// The gravity in controlled descent mode
+    public float speedSmoothing = 100.0F;
 	
-	public float speedSmoothing = 100.0F;
+    public float rotateSpeed = 500.0F;
 	
-	public float rotateSpeed = 500.0F;
+    public float trotAfterSeconds = 3.0F;
 	
-	public float trotAfterSeconds = 3.0F;
 	
 	
+    public bool canJump = true;
 	
-	public bool canJump= true;
 	
 	
+    private float jumpRepeatTime = 0.05F;
 	
-	private float jumpRepeatTime = 0.05F;
+    private float jumpTimeout = 0.15F;
 	
-	private float jumpTimeout = 0.15F;
+    private float groundedTimeout = 0.25F;
 	
-	private float groundedTimeout = 0.25F;
 	
 	
+    // The camera doesnt start following the target immediately but waits for a split second to avoid too much waving around.
 	
-	// The camera doesnt start following the target immediately but waits for a split second to avoid too much waving around.
+    private float lockCameraTimer = 0.0F;
 	
-	private float lockCameraTimer = 0.0F;
 	
 	
+    // The current move direction in x-z
 	
-	// The current move direction in x-z
+    //public Vector3 moveDirection = Vector3.zero;
 	
-	//public Vector3 moveDirection = Vector3.zero;
+    // The current vertical speed
 	
-	// The current vertical speed
+    private float verticalSpeed = 0.0F;
 	
-	private float verticalSpeed = 0.0F;
+    // The current x-z move speed
 	
-	// The current x-z move speed
+    private float moveSpeed = 0.0F;
 	
-	private float moveSpeed = 0.0F;
 	
 	
+    // The last collision flags returned from controller.Move
 	
-	// The last collision flags returned from controller.Move
+    private CollisionFlags collisionFlags;
 	
-	private CollisionFlags collisionFlags ; 
 	
 	
+    // Are we jumping? (Initiated with jump button and not grounded yet)
 	
-	// Are we jumping? (Initiated with jump button and not grounded yet)
+    private bool jumping = false;
 	
-	private bool jumping = false;
+    private bool jumpingReachedApex = false;
 	
-	private bool jumpingReachedApex = false;
 	
 	
+    // Are we moving backwards (This locks the camera to not do a 180 degree spin)
 	
-	// Are we moving backwards (This locks the camera to not do a 180 degree spin)
+    private bool movingBack = false;
 	
-	private bool movingBack = false;
+    // Is the user pressing any keys?
 	
-	// Is the user pressing any keys?
+    private bool isMoving = false;
 	
-	private bool isMoving = false;
+    // When did the user start walking (Used for going into trot after a while)
 	
-	// When did the user start walking (Used for going into trot after a while)
+    private float walkTimeStart = 0.0F;
 	
-	private float walkTimeStart = 0.0F;
+    // Last time the jump button was clicked down
 	
-	// Last time the jump button was clicked down
+    private float lastJumpButtonTime = -10.0F;
 	
-	private float lastJumpButtonTime = -10.0F;
+    // Last time we performed a jump
 	
-	// Last time we performed a jump
+    private float lastJumpTime = -1.0F;
 	
-	private float lastJumpTime = -1.0F;
 	
 	
 	
 	
+    // the height we jumped from (Used to determine for how long to apply extra jump power after jumping.)
 	
-	// the height we jumped from (Used to determine for how long to apply extra jump power after jumping.)
+    private float lastJumpStartHeight = 0.0F;
 	
-	private float lastJumpStartHeight = 0.0F;
 	
 	
 	
 	
+    private Vector3 inAirVelocity = Vector3.zero;
 	
-	private Vector3 inAirVelocity = Vector3.zero;
 	
 	
-	
-	private float lastGroundedTime = 0.0F;
+    private float lastGroundedTime = 0.0F;
 
 
-	public List<CharacterForces> Forces = new List<CharacterForces>();
+    public List<CharacterForces> Forces = new List<CharacterForces>();
 	
 	
 	
 	
-	private bool isControllable = true;
+    private bool isControllable = true;
 
-	public Vector3 MovementDirection;
-	//public float HorizontalDirection;
-	//public float VerticalDirection;
-	public bool IsResetFalling;
+    public Vector3 MovementDirection;
+    //public float HorizontalDirection;
+    //public float VerticalDirection;
+    public bool IsResetFalling;
 	
-	//public MinigameCollectorScript MinigameRef;
+    //public MinigameCollectorScript MinigameRef;
 	
-	// Use this for initialization
+    // Use this for initialization
 	
-	void  Awake (){
+    void  Awake()
+    {
 		
-		//moveDirection = transform.TransformDirection(Vector3.forward);
+        //moveDirection = transform.TransformDirection(Vector3.forward);
 		
 	
-	}
+    }
 
 
-	public void  UpdateSmoothedMovementDirection ()
-	{
-		if (UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef!= null && UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef.GetComponent<MinigameCollectorScript> ().Paused)
-						return;
+    public void  UpdateSmoothedMovementDirection()
+    {
+        if (UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef != null && UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef.GetComponent<MinigameCollectorScript>().Paused)
+            return;
 
-		bool grounded = IsGrounded();
+        bool grounded = IsGrounded();
 
 			
-		movingBack = false;
+        movingBack = false;
 		
 		
 		
-		bool wasMoving= isMoving;
+        bool wasMoving = isMoving;
 		
-		isMoving = Mathf.Abs (MovementDirection.x) > 0.0f || Mathf.Abs (MovementDirection.z) > 0.0f;
+        isMoving = Mathf.Abs(MovementDirection.x) > 0.0f || Mathf.Abs(MovementDirection.z) > 0.0f;
 		
 		
 		
-		// Target direction relative to the camera
+        // Target direction relative to the camera
 		
-		Vector3 targetDirection= MovementDirection;//h * right + v * forward;
+        Vector3 targetDirection = MovementDirection;//h * right + v * forward;
 
 
 
 		
-		// Grounded controls
+        // Grounded controls
 		
-		if (grounded)
-		{
-			IsResetFalling = false;
+        if (grounded)
+        {
+            IsResetFalling = false;
 			
-			// Lock camera for short period when transitioning moving & standing still
+            // Lock camera for short period when transitioning moving & standing still
 			
-			lockCameraTimer += Time.deltaTime;
+            lockCameraTimer += Time.deltaTime;
 			
-			if (isMoving != wasMoving)
+            if (isMoving != wasMoving)
+                lockCameraTimer = 0.0f;
+			
+			
+			
+            // We store speed and direction seperately,
+			
+            // so that when the character stands still we still have a valid forward direction
+			
+            // moveDirection is always normalized, and we only update it if there is user input.
+			
+            if (targetDirection != Vector3.zero)
+            {
 				
-				lockCameraTimer = 0.0f;
-			
-			
-			
-			// We store speed and direction seperately,
-			
-			// so that when the character stands still we still have a valid forward direction
-			
-			// moveDirection is always normalized, and we only update it if there is user input.
-			
-			if (targetDirection != Vector3.zero)
+                // If we are really slow, just snap to the target direction
 				
-			{
+                //if (moveSpeed < walkSpeed * 0.9f && grounded)
+					
+                {
+					
+                    //moveDirection = targetDirection.normalized;
+					
+                }
 				
-				// If we are really slow, just snap to the target direction
+                // Otherwise smoothly turn towards it
 				
-				//if (moveSpeed < walkSpeed * 0.9f && grounded)
+                //else
 					
-				{
+                {
 					
-					//moveDirection = targetDirection.normalized;
+                    //moveDirection = Vector3.RotateTowards(moveDirection, targetDirection, rotateSpeed * Mathf.Deg2Rad * Time.deltaTime * 0.1f, 1000);
 					
-				}
+					
+					
+                    //moveDirection = moveDirection.normalized;
+					
+                }
 				
-				// Otherwise smoothly turn towards it
-				
-				//else
-					
-				{
-					
-					//moveDirection = Vector3.RotateTowards(moveDirection, targetDirection, rotateSpeed * Mathf.Deg2Rad * Time.deltaTime * 0.1f, 1000);
-					
-					
-					
-					//moveDirection = moveDirection.normalized;
-					
-				}
-				
-			}
+            }
 			
 			
 			
-			// Smooth the speed based on the current target direction
+            // Smooth the speed based on the current target direction
 			
-			float curSmooth= speedSmoothing * Time.deltaTime;
-			
-			
-			
-			// Choose target speed
-			
-			//* We want to support analog input but make sure you cant walk faster diagonally than just forward or sideways
-			
-			float targetSpeed= Mathf.Min(targetDirection.magnitude, 1.0f);
+            float curSmooth = speedSmoothing * Time.deltaTime;
 			
 			
 			
-			//_characterState = CharacterState.Idle;
+            // Choose target speed
+			
+            //* We want to support analog input but make sure you cant walk faster diagonally than just forward or sideways
+			
+            float targetSpeed = Mathf.Min(targetDirection.magnitude, 1.0f);
 			
 			
 			
-			// Pick speed modifier
+            //_characterState = CharacterState.Idle;
 			
-			/*if (Input.GetKey (KeyCode.LeftShift) || Input.GetKey (KeyCode.RightShift))
+			
+			
+            // Pick speed modifier
+			
+            /*if (Input.GetKey (KeyCode.LeftShift) || Input.GetKey (KeyCode.RightShift))
 				
 			{
 				
@@ -323,449 +328,455 @@ public class CharacterControllerScript : MonoBehaviour //Photon.MonoBehaviour
 				
 			{*/
 				
-				targetSpeed *= walkSpeed;
+            targetSpeed *= walkSpeed;
 				
-				//_characterState = CharacterState.Walking;
+            //_characterState = CharacterState.Walking;
 				
-			//}
+            //}
 			
 			
 			
-			moveSpeed = Mathf.Lerp(moveSpeed, targetSpeed, curSmooth);
+            moveSpeed = Mathf.Lerp(moveSpeed, targetSpeed, curSmooth);
 					
 			
-			// Reset walk time start when we slow down
+            // Reset walk time start when we slow down
 			
-			if (moveSpeed < walkSpeed * 0.3f)
-				
-				walkTimeStart = Time.time;
+            if (moveSpeed < walkSpeed * 0.3f)
+                walkTimeStart = Time.time;
 			
-		}
+        }
 		
 		// In air controls
 		
 		else
+        {
 			
-		{
+            // Lock camera while in air
 			
-			// Lock camera while in air
-			
-			if (jumping)
-				
-				lockCameraTimer = 0.0f;
+            if (jumping)
+                lockCameraTimer = 0.0f;
 			
 			
 			
-			if (isMoving)
-				
-				inAirVelocity += targetDirection.normalized * Time.deltaTime * inAirControlAcceleration;
+            if (isMoving)
+                inAirVelocity += targetDirection.normalized * Time.deltaTime * inAirControlAcceleration;
 			
-		}
-	}
-	
-	void  ApplyJumping ()
-	{	
-		// Prevent jumping too fast after each other	
-		if (lastJumpTime + jumpRepeatTime > Time.time)
-			return;
+        }
+    }
 
-		if (IsGrounded()) 
-		{
-			// Jump
-			
-			// - Only when pressing the button down
-			
-			// - With a timeout so you can press the button slightly before landing     
-			
-			if (canJump && Time.time < lastJumpButtonTime + jumpTimeout && !UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef.GetComponent<MinigameCollectorScript>().Paused) {
+    void  ApplyJumping()
+    {	
+        // Prevent jumping too fast after each other	
+        if (lastJumpTime + jumpRepeatTime > Time.time)
+            return;
 
-				UIGlobalVariablesScript.Singleton.SoundEngine.Play(GenericSoundId.Jump);
-				
-				verticalSpeed = CalculateJumpVerticalSpeed (jumpHeight);
-				
-				SendMessage("DidJump", SendMessageOptions.DontRequireReceiver);
-			}
-		}
-	}
+        if (IsGrounded())
+        {
+            // Jump
+			
+            // - Only when pressing the button down
+			
+            // - With a timeout so you can press the button slightly before landing     
+			
+            if (canJump && Time.time < lastJumpButtonTime + jumpTimeout && !UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef.GetComponent<MinigameCollectorScript>().Paused)
+            {
 
-	public bool PressedJumb;
+                UIGlobalVariablesScript.Singleton.SoundEngine.Play(GenericSoundId.Jump);
+				
+                verticalSpeed = CalculateJumpVerticalSpeed(jumpHeight);
+				
+                SendMessage("DidJump", SendMessageOptions.DontRequireReceiver);
+            }
+        }
+    }
+
+    public bool PressedJumb;
 
 	
-	void  ApplyGravity ()
-	{
-		if (isControllable) // don't move player at all if not controllable.
-		{
-			// Apply gravity
-			bool jumpButton = PressedJumb;//Input.GetButton("Jump");
+    void  ApplyGravity()
+    {
+        if (isControllable) // don't move player at all if not controllable.
+        {
+            // Apply gravity
+            bool jumpButton = PressedJumb;//Input.GetButton("Jump");
 
-			// When we reach the apex of the jump we send out a message
-			if (jumping && !jumpingReachedApex && verticalSpeed <= 0.0f)
-			{
-				jumpingReachedApex = true;
-				SendMessage("DidJumpReachApex", SendMessageOptions.DontRequireReceiver);
-			}
+            // When we reach the apex of the jump we send out a message
+            if (jumping && !jumpingReachedApex && verticalSpeed <= 0.0f)
+            {
+                jumpingReachedApex = true;
+                SendMessage("DidJumpReachApex", SendMessageOptions.DontRequireReceiver);
+            }
 			
-			if (IsGrounded ())
-				verticalSpeed = 0.0f;
-			else
-				verticalSpeed -= gravity * Time.deltaTime;
-		}
-	}
+            if (IsGrounded())
+                verticalSpeed = 0.0f;
+            else
+                verticalSpeed -= gravity * Time.deltaTime;
+        }
+    }
+
+    float  CalculateJumpVerticalSpeed(float targetJumpHeight)
+    {
+		
+        // From the jump height and gravity we deduce the upwards speed 
+		
+        // for the character to reach at the apex.
+		
+        return Mathf.Sqrt(2 * targetJumpHeight * gravity);
+		
+    }
+
+    void  DidJump()
+    {
+		
+        jumping = true;
+		
+        jumpingReachedApex = false;
+		
+        lastJumpTime = Time.time;
+		
+        lastJumpStartHeight = transform.position.y;
+		
+        lastJumpButtonTime = -10;
+		
+		
+		
+        _characterState = CharacterState.Jumping;
+		
+    }
+
+    public bool FreezeCollisionDetection;
+
+    void  Update()
+    {
+        if (!__local)
+            return;
+        if (FreezeCollisionDetection)
+            return;
+        if (UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef != null && UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef.GetComponent<MinigameCollectorScript>().Paused)
+            return;
+        if (!isControllable)
+        {
+			
+            // kill all inputs if not controllable.
+			
+            Input.ResetInputAxes();
+			
+        }
+		
+		
+		
+        if (PressedJumb)
+        {
+			
+            lastJumpButtonTime = Time.time;
+			
+        }
+		
+		
+		
+        UpdateSmoothedMovementDirection();
+		
+		
+		
+        // Apply gravity
+		
+        // - extra power jump modifies gravity
+		
+        // - controlledDescent mode modifies gravity
+		
+        ApplyGravity();
+		
+		
+		
+        // Apply jumping logic
+        ApplyJumping();
+		
+
+        // Calculate actual motion
+
 	
-	float  CalculateJumpVerticalSpeed ( float targetJumpHeight  ){
-		
-		// From the jump height and gravity we deduce the upwards speed 
-		
-		// for the character to reach at the apex.
-		
-		return Mathf.Sqrt(2 * targetJumpHeight * gravity);
-		
-	}   
-	
-	void  DidJump (){
-		
-		jumping = true;
-		
-		jumpingReachedApex = false;
-		
-		lastJumpTime = Time.time;
-		
-		lastJumpStartHeight = transform.position.y;
-		
-		lastJumpButtonTime = -10;
-		
-		
-		
-		_characterState = CharacterState.Jumping;
-		
-	}
-
-	public bool FreezeCollisionDetection;
-	
-	void  Update ()
-	{
-		if(!__local) return;
-		if(FreezeCollisionDetection) return;
-		if (UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef != null && UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef.GetComponent<MinigameCollectorScript> ().Paused) return;
-		if (!isControllable)
+        Vector3 movement = MovementDirection * moveSpeed + new Vector3(0, verticalSpeed, 0) + inAirVelocity;
 			
-		{
-			
-			// kill all inputs if not controllable.
-			
-			Input.ResetInputAxes();
-			
-		}
-		
-		
-		
-		if (PressedJumb)
-			
-		{
-			
-			lastJumpButtonTime = Time.time;
-			
-		}
-		
-		
-		
-		UpdateSmoothedMovementDirection();
-		
-		
-		
-		// Apply gravity
-		
-		// - extra power jump modifies gravity
-		
-		// - controlledDescent mode modifies gravity
-		
-		ApplyGravity ();
-		
-		
-		
-		// Apply jumping logic
-		ApplyJumping ();
-		
-
-		// Calculate actual motion
-
-	
-			Vector3 movement= MovementDirection * moveSpeed + new Vector3 (0, verticalSpeed, 0) + inAirVelocity;
-			
-			movement *= Time.deltaTime;
+        movement *= Time.deltaTime;
 
 
-			if(IsResetFalling)
-			{
-				movement.x = 0;
-				movement.z = 0;
-				speedSmoothing = 10000;
-			}
-			else
-			{
-				speedSmoothing = 90;
-			}
+        if (IsResetFalling)
+        {
+            movement.x = 0;
+            movement.z = 0;
+            speedSmoothing = 10000;
+        }
+        else
+        {
+            speedSmoothing = 90;
+        }
 
 
-			for(int i=0; i<Forces.Count;++i)
-			{
-				Forces[i].Speed = Mathf.Lerp(Forces[i].Speed, 0, Time.deltaTime * 6);
-				Vector3 totalForce = Forces[i].Direction * Forces[i].Speed * Time.deltaTime;
-				movement += totalForce;
-				Forces[i].Length -= Time.deltaTime;
-				if(Forces[i].Length <= 0)
-				{
-					Forces.RemoveAt(i);
-					i--;
-				}
-			}
+        for (int i = 0; i < Forces.Count; ++i)
+        {
+            Forces[i].Speed = Mathf.Lerp(Forces[i].Speed, 0, Time.deltaTime * 6);
+            Vector3 totalForce = Forces[i].Direction * Forces[i].Speed * Time.deltaTime;
+            movement += totalForce;
+            Forces[i].Length -= Time.deltaTime;
+            if (Forces[i].Length <= 0)
+            {
+                Forces.RemoveAt(i);
+                i--;
+            }
+        }
 			
 			
-			// Move the controller
-			CharacterController controller = GetComponent<CharacterController>();
-			collisionFlags = controller.Move(movement);
+        // Move the controller
+        CharacterController controller = GetComponent<CharacterController>();
+        collisionFlags = controller.Move(movement);
 				
 		
-		// We are in jump mode but just became grounded
+        // We are in jump mode but just became grounded
 		
-		if (IsGrounded())
-		{
+        if (IsGrounded())
+        {
 			
-			lastGroundedTime = Time.time;
+            lastGroundedTime = Time.time;
 			
-			inAirVelocity = Vector3.zero;
+            inAirVelocity = Vector3.zero;
 			
-			if (jumping)
+            if (jumping)
+            {
 				
-			{
+                jumping = false;
 				
-				jumping = false;
+                SendMessage("DidLand", SendMessageOptions.DontRequireReceiver);
 				
-				SendMessage("DidLand", SendMessageOptions.DontRequireReceiver);
-				
-			}
-		}
+            }
+        }
 
-		if(this.GetComponent<MinigameAnimationControllerScript>() != null)
-			this.GetComponent<MinigameAnimationControllerScript>().IsJumbing = IsJumping();
+        if (this.GetComponent<MinigameAnimationControllerScript>() != null)
+            this.GetComponent<MinigameAnimationControllerScript>().IsJumbing = IsJumping();
 	
-		/*if(IsJumping())
+        /*if(IsJumping())
 		{
 			Debug.Log("JUMBING");
 		}*/
-		UpdateRotationLookAt();
+        UpdateRotationLookAt();
 	
-		PressedJumb = false;
-	}
+        PressedJumb = false;
+    }
 
-	[RPC]
-	protected void ReceiveHitByEnemy(int enemyViewId, int playerCharacterViewId)
-	{
+    [RPC]
+    protected void ReceiveHitByEnemy(int enemyViewId, int playerCharacterViewId)
+    {
 //		GameObject hitenemy = PhotonView.Find(enemyViewId).gameObject;
 //		GameObject playerCharacter = PhotonView.Find(playerCharacterViewId).gameObject;
 //		if(hitenemy != null && playerCharacter != null)
 //		{
 //			UIGlobalVariablesScript.Singleton.GunGameScene.GetComponent<GunsMinigameScript>().OnHitByEnemy(hitenemy, playerCharacter);
 //		}
-	}
-	
-	public void SendEventHitByEnemy(GameObject hit, GameObject player)
-	{
-		//GetComponent<PhotonView>().RPC("ReceiveHitByEnemy", PhotonTargets.All, hit.GetComponent<PhotonView>().viewID, player.GetComponent<PhotonView>().viewID);
-	}
-	
-	void  OnControllerColliderHit ( ControllerColliderHit hit   )
-	{
-		CharacterProgressScript script = this.GetComponent<CharacterProgressScript>();
+    }
 
-		if(hit.gameObject.tag == "Items" && hit.gameObject/*.GetComponent<ReferencedObjectScript>().Reference*/.GetComponent<UIPopupItemScript>().Type == PopupItemType.Token)
-		{
-			if(this.GetComponent<CharacterProgressScript>().OnInteractWithPopupItem(hit.gameObject/*.GetComponent<ReferencedObjectScript>().Reference*/.GetComponent<UIPopupItemScript>()))
-			{
-				this.GetComponent<CharacterProgressScript>().GroundItems.Remove(hit.gameObject);
-				Destroy(hit.gameObject);
+    public void SendEventHitByEnemy(GameObject hit, GameObject player)
+    {
+        //GetComponent<PhotonView>().RPC("ReceiveHitByEnemy", PhotonTargets.All, hit.GetComponent<PhotonView>().viewID, player.GetComponent<PhotonView>().viewID);
+    }
+
+    void  OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        CharacterProgressScript script = this.GetComponent<CharacterProgressScript>();
+
+        if (hit.gameObject.tag == "Items" && hit.gameObject/*.GetComponent<ReferencedObjectScript>().Reference*/.GetComponent<UIPopupItemScript>().Type == PopupItemType.Token)
+        {
+            if (this.GetComponent<CharacterProgressScript>().OnInteractWithPopupItem(hit.gameObject/*.GetComponent<ReferencedObjectScript>().Reference*/.GetComponent<UIPopupItemScript>()))
+            {
+                this.GetComponent<CharacterProgressScript>().GroundItems.Remove(hit.gameObject);
+                Destroy(hit.gameObject);
 				
-			}
-		}
+            }
+        }
 
-		if(hit.gameObject.tag == "EnemyGunGame")
-		{
-			if(GameController.instance.gameType == GameType.NETWORK)
-			{
-				SendEventHitByEnemy(hit.gameObject, this.gameObject);
-			}
-			else
-			{
-				UIGlobalVariablesScript.Singleton.GunGameScene.GetComponent<GunsMinigameScript>().OnHitByEnemy(hit.gameObject, this.gameObject);
-			}
-		}
+        if (hit.gameObject.tag == "EnemyGunGame")
+        {
+            if (GameController.instance.gameType == GameType.NETWORK)
+            {
+                SendEventHitByEnemy(hit.gameObject, this.gameObject);
+            }
+            else
+            {
+                UIGlobalVariablesScript.Singleton.GunGameScene.GetComponent<GunsMinigameScript>().OnHitByEnemy(hit.gameObject, this.gameObject);
+            }
+        }
 
-		if(hit.gameObject.tag == "RandomCubeGunGame")
-		{
-			UIGlobalVariablesScript.Singleton.SoundEngine.Play(GenericSoundId.GunGame_bonus_box);
-			//UIGlobalVariablesScript.Singleton.GunGameScene.GetComponent<GunsMinigameScript>().OnHitByEnemy(hit.gameObject);
-			//UIGlobalVariablesScript.Singleton.GunGameScene.GetComponent<GunsMinigameScript>().SpawnedObjects.Remove(hit.gameObject);
-			Destroy(hit.gameObject);
-		}
+        if (hit.gameObject.tag == "RandomCubeGunGame")
+        {
+            UIGlobalVariablesScript.Singleton.SoundEngine.Play(GenericSoundId.GunGame_bonus_box);
+            //UIGlobalVariablesScript.Singleton.GunGameScene.GetComponent<GunsMinigameScript>().OnHitByEnemy(hit.gameObject);
+            //UIGlobalVariablesScript.Singleton.GunGameScene.GetComponent<GunsMinigameScript>().SpawnedObjects.Remove(hit.gameObject);
+            Destroy(hit.gameObject);
+        }
 
-		if(hit.gameObject.tag == "Items" && this.GetComponent<CharacterProgressScript>().IsGoingToPickUpObject == hit.gameObject)
-		{
-			PopupItemType itemType = hit.gameObject/*.GetComponent<ReferencedObjectScript>().Reference*/.GetComponent<UIPopupItemScript>().Type;
+        if (hit.gameObject.tag == "Items" && this.GetComponent<CharacterProgressScript>().IsGoingToPickUpObject == hit.gameObject)
+        {
+            PopupItemType itemType = hit.gameObject/*.GetComponent<ReferencedObjectScript>().Reference*/.GetComponent<UIPopupItemScript>().Type;
 
 
-			if(script.InteractWithItemOnPickup && hit.gameObject.GetComponent<LighbulbSwitchOnOffScript>() != null)
-			{
-				script.Stop(true);
-				hit.gameObject.GetComponent<LighbulbSwitchOnOffScript>().Switch();
-			}
-			else if(this.GetComponent<CharacterProgressScript>().ShouldThrowObjectAfterPickup)
-			{
-				this.GetComponent<CharacterProgressScript>().PickupItem(hit.gameObject/*.GetComponent<ReferencedObjectScript>().Reference.GetComponent<UIPopupItemScript>()*/);
-				this.GetComponent<CharacterProgressScript>().CurrentAction = ActionId.ThrowItemAfterPickup;
+            if (script.InteractWithItemOnPickup && hit.gameObject.GetComponent<LighbulbSwitchOnOffScript>() != null)
+            {
+                script.Stop(true);
+                hit.gameObject.GetComponent<LighbulbSwitchOnOffScript>().Switch();
+            }
+            else if (this.GetComponent<CharacterProgressScript>().ShouldThrowObjectAfterPickup)
+            {
+                this.GetComponent<CharacterProgressScript>().PickupItem(hit.gameObject/*.GetComponent<ReferencedObjectScript>().Reference.GetComponent<UIPopupItemScript>()*/);
+                this.GetComponent<CharacterProgressScript>().CurrentAction = ActionId.ThrowItemAfterPickup;
 
-			}
-
-			else if(itemType == PopupItemType.Food && ProfilesManagementScript.Singleton.CurrentAnimin.Hungry < CharacterProgressScript.ConsideredHungryLevels)
-			{
-				this.GetComponent<CharacterProgressScript>().PickupItem(hit.gameObject);
-				this.GetComponent<CharacterProgressScript>().CurrentAction = ActionId.EatItem;
+            }
+            else if (itemType == PopupItemType.Food && ProfilesManagementScript.Singleton.CurrentAnimin.Hungry < CharacterProgressScript.ConsideredHungryLevels)
+            {
+                this.GetComponent<CharacterProgressScript>().PickupItem(hit.gameObject);
+                this.GetComponent<CharacterProgressScript>().CurrentAction = ActionId.EatItem;
 			
-			}
-			else
-			{
-				this.GetComponent<CharacterProgressScript>().PickupItem(hit.gameObject/*.GetComponent<ReferencedObjectScript>().Reference.GetComponent<UIPopupItemScript>()*/);
+            }
+            else
+            {
+                this.GetComponent<CharacterProgressScript>().PickupItem(hit.gameObject/*.GetComponent<ReferencedObjectScript>().Reference.GetComponent<UIPopupItemScript>()*/);
 			
-			}
-				//Destroy(hit.gameObject);
-		}
+            }
+            //Destroy(hit.gameObject);
+        }
 
-		if(hit.gameObject.tag == "EnemyJumbTop")
-		{
-			Debug.Log("HIT ENEMY");
-			// hit from above
-			if(hit.normal.y >= 0.5f)
-			{
-				Debug.Log("HIT FROM TOP");
-				UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef.GetComponent<MinigameCollectorScript>().OnEvilCharacterHitFromTop(hit.gameObject);
-			}
-			else
-			{
-				Debug.Log("HIT FROM SIDES");
+        if (hit.gameObject.tag == "EnemyJumbTop")
+        {
+            Debug.Log("HIT ENEMY");
+            // hit from above
+            if (hit.normal.y >= 0.5f)
+            {
+                Debug.Log("HIT FROM TOP");
+                UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef.GetComponent<MinigameCollectorScript>().OnEvilCharacterHitFromTop(hit.gameObject);
+            }
+            else
+            {
+                Debug.Log("HIT FROM SIDES");
 
-				UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef.GetComponent<MinigameCollectorScript>().OnEvilCharacterHit(hit.gameObject);
+                UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef.GetComponent<MinigameCollectorScript>().OnEvilCharacterHit(hit.gameObject);
 
 
-				//CharacterController controller = GetComponent<CharacterController>();
+                //CharacterController controller = GetComponent<CharacterController>();
 
-			 	//Vector3 movement =	-hit.moveDirection * moveSpeed + new Vector3 (0, verticalSpeed, 0) + inAirVelocity;
-				//
-				//collisionFlags = controller.Move(movement);
-			}
-		}
+                //Vector3 movement =	-hit.moveDirection * moveSpeed + new Vector3 (0, verticalSpeed, 0) + inAirVelocity;
+                //
+                //collisionFlags = controller.Move(movement);
+            }
+        }
 
-		if (hit.moveDirection.y > 0.01f) 
-			
-			return;
+        if (hit.moveDirection.y > 0.01f)
+            return;
 		
-	}   
+    }
+
+    float  GetSpeed()
+    {
+		
+        return moveSpeed;
+		
+    }
+
 	
-	float  GetSpeed (){
-		
-		return moveSpeed;
-		
-	}
 	
-	
-	
-	bool  IsJumping (){
+    bool  IsJumping()
+    {
 		
-		return jumping;
+        return jumping;
 		
-	}
+    }
 
-	private void UpdateRotationLookAt()
-	{
-		transform.rotation = Quaternion.Slerp(transform.rotation, RotateDirectionLookAt, Time.deltaTime * 6);
-	}
+    private void UpdateRotationLookAt()
+    {
+        transform.rotation = Quaternion.Slerp(transform.rotation, RotateDirectionLookAt, Time.deltaTime * 6);
+    }
 
-	public void ResetRotation()
-	{
-		RotateDirectionLookAt = transform.rotation;
-	}
+    public void ResetRotation()
+    {
+        RotateDirectionLookAt = transform.rotation;
+    }
 
-	private Quaternion RotateDirectionLookAt = Quaternion.Euler(0, 180, 0);
+    private Quaternion RotateDirectionLookAt = Quaternion.Euler(0, 180, 0);
 
-	public void RotateToLookAtPoint(Vector3 worldPoint)
-	{
-		//float angle = Vector3.Angle(transform.forward, Vector3.Normalize(worldPoint - transform.position));
+    public void RotateToLookAtPoint(Vector3 worldPoint)
+    {
+        //float angle = Vector3.Angle(transform.forward, Vector3.Normalize(worldPoint - transform.position));
 //		Debug.Log("ANGLE: " + angle.ToString());
 
-		RotateDirectionLookAt = Quaternion.LookRotation(Vector3.Normalize(worldPoint - transform.position));
-	//	transform.Rotate(new Vector3(0, angle, 0));
-	}
-	
+        RotateDirectionLookAt = Quaternion.LookRotation(Vector3.Normalize(worldPoint - transform.position));
+        //	transform.Rotate(new Vector3(0, angle, 0));
+    }
 
-	bool  IsGrounded (){
+
+    bool  IsGrounded()
+    {
 		
-		return (collisionFlags & CollisionFlags.CollidedBelow) != 0;
+        return (collisionFlags & CollisionFlags.CollidedBelow) != 0;
 		
-	}
+    }
 	
 	
 	
-//	Vector3  GetDirection (){
-//		
-//		return moveDirection;
-//		
-//	}
+    //	Vector3  GetDirection (){
+    //
+    //		return moveDirection;
+    //
+    //	}
 	
 	
 	
-	bool  IsMovingBackwards (){
+    bool  IsMovingBackwards()
+    {
 		
-		return movingBack;
+        return movingBack;
 		
-	}
+    }
+
 	
 	
-	
-	float  GetLockCameraTimer (){
+    float  GetLockCameraTimer()
+    {
 		
-		return lockCameraTimer;
+        return lockCameraTimer;
 		
-	}
+    }
+
 	
 	
-	
-	bool IsMoving (){
+    bool IsMoving()
+    {
 		
-		return MovementDirection != Vector3.zero;
+        return MovementDirection != Vector3.zero;
 		
-	}
+    }
+
 	
 	
-	
-	bool  HasJumpReachedApex (){
+    bool  HasJumpReachedApex()
+    {
 		
-		return jumpingReachedApex;
+        return jumpingReachedApex;
 		
-	}
+    }
+
 	
 	
-	
-	bool  IsGroundedWithTimeout (){
+    bool  IsGroundedWithTimeout()
+    {
 		
-		return lastGroundedTime + groundedTimeout > Time.time;
+        return lastGroundedTime + groundedTimeout > Time.time;
 		
-	}
+    }
+
 	
 	
-	
-	void  Reset (){
+    void  Reset()
+    {
 		
-		gameObject.tag = "Player";
+        gameObject.tag = "Player";
 		
-	}
+    }
 	
 	
 	

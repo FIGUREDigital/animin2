@@ -6,20 +6,23 @@ using UnityEngine.UI;
 
 public class ProfilesManagementScript : MonoBehaviour 
 {
-    public static ProfilesManagementScript m_Singleton;
+    private static bool m_Set = false;
+    private static ProfilesManagementScript m_Singleton;
     public static ProfilesManagementScript Singleton
     {
         get
         {
-            Debug.Log("ProfilesManagementScript Singleton GET : ["+ m_Singleton +"];");
             return m_Singleton;
         }
         set
         {
             Debug.Log("ProfilesManagementScript Singleton SET");
+            if (value != null)
+                m_Set = true;
             m_Singleton = value;
         }
     }
+    public static bool isSet{ get { return m_Set; } }
 	public static bool Initialized;
 
     private GameObject EvolveTboToAdultWarning;

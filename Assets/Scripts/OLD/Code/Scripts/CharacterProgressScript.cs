@@ -274,9 +274,10 @@ public class CharacterProgressScript : MonoBehaviour
         //ProfilesManagementScript.Singleton.CurrentAnimin.Load();
 
 		Debug.Log ("CharacterProgressScript AWAKE");
-        if (ProfilesManagementScript.Singleton == null)
+        Debug.Log("ProfilesManagementScript set : [" + ProfilesManagementScript.isSet + "];");
+        if (ProfilesManagementScript.isSet == false)
         {
-            //ProfilesManagementScript.Singleton = new ProfilesManagementScript();
+            ProfilesManagementScript.Singleton = new ProfilesManagementScript();
         }
 		if (ProfilesManagementScript.Singleton.CurrentProfile == null)
         {
@@ -1367,7 +1368,7 @@ public class CharacterProgressScript : MonoBehaviour
                                     UIGlobalVariablesScript.Singleton.SoundEngine.Play(ProfilesManagementScript.Singleton.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Singleton.CurrentAnimin.AniminEvolutionId, CreatureSoundId.PatReact);
                                 }
                                 Debug.Log("Tap");
-                                UIGlobalVariablesScript.Singleton.TutHandler.TriggerAdHocExitCond("Attention", "tap");
+                                //UIGlobalVariablesScript.Singleton.TutHandler.TriggerAdHocExitCond("Attention", "tap");
                             }
                             else if ((hitInfo.collider.tag == "Items") && hitInfo.collider/*.GetComponent<ReferencedObjectScript>().Reference*/.GetComponent<UIPopupItemScript>().Type == PopupItemType.Token)
                             {

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System;
 
 public enum InventoryPages
 {
@@ -24,7 +25,9 @@ public class CaringPageControls : MonoBehaviour {
 	private UnityEngine.UI.Image Icon2;
 	[SerializeField]
 	private UnityEngine.UI.Image Icon3;
-
+	[SerializeField]
+	private GameObject PhotoSaved;
+	
 	void Start()
 	{
 		mInventoryControls = Inventory.GetComponent<InventoryControls> ();
@@ -35,17 +38,26 @@ public class CaringPageControls : MonoBehaviour {
 		{
 			if(InventoryItemData.Items[(int)ProfilesManagementScript.Singleton.CurrentAnimin.Inventory[i].Id].ItemType == PopupItemType.Food && !FoodIconSet)
 			{
-				Icon1.sprite = InventoryItemData.Items[(int)ProfilesManagementScript.Singleton.CurrentAnimin.Inventory[i].Id].SpriteName;
+				InventoryItemBankData data = InventoryItemData.Items[(int)ProfilesManagementScript.Singleton.CurrentAnimin.Inventory[i].Id];
+				Icon1.sprite = data.SpriteName;
+				Icon1.GetComponent<InterfaceItemLinkToModelScript>().Item3DPrefab = data.PrefabId;
+				Icon1.GetComponent<InterfaceItemLinkToModelScript>().ItemID = data.Id;
 				FoodIconSet = true;
 			} 
 			else if(InventoryItemData.Items[(int)ProfilesManagementScript.Singleton.CurrentAnimin.Inventory[i].Id].ItemType == PopupItemType.Item && !ItemIconSet)
 			{
-				Icon2.sprite = InventoryItemData.Items[(int)ProfilesManagementScript.Singleton.CurrentAnimin.Inventory[i].Id].SpriteName;
+				InventoryItemBankData data = InventoryItemData.Items[(int)ProfilesManagementScript.Singleton.CurrentAnimin.Inventory[i].Id];
+				Icon2.sprite = data.SpriteName;
+				Icon2.GetComponent<InterfaceItemLinkToModelScript>().Item3DPrefab = data.PrefabId;
+				Icon2.GetComponent<InterfaceItemLinkToModelScript>().ItemID = data.Id;
 				ItemIconSet = true;
 			}
 			else if(InventoryItemData.Items[(int)ProfilesManagementScript.Singleton.CurrentAnimin.Inventory[i].Id].ItemType == PopupItemType.Medicine && !MediIconSet)
 			{
-				Icon3.sprite = InventoryItemData.Items[(int)ProfilesManagementScript.Singleton.CurrentAnimin.Inventory[i].Id].SpriteName;
+				InventoryItemBankData data = InventoryItemData.Items[(int)ProfilesManagementScript.Singleton.CurrentAnimin.Inventory[i].Id];
+				Icon3.sprite = data.SpriteName;
+				Icon3.GetComponent<InterfaceItemLinkToModelScript>().Item3DPrefab = data.PrefabId;
+				Icon3.GetComponent<InterfaceItemLinkToModelScript>().ItemID = data.Id;
 				MediIconSet = true;
 			}
 		}
@@ -60,7 +72,43 @@ public class CaringPageControls : MonoBehaviour {
 	}
 	public void PhotoButton()
 	{
+		if(Application.isEditor)
+		{
+			Application.CaptureScreenshot("screenshot.png");
+		}
+		else
+		{
+			
+			string screenshotName = "screenshot"  + DateTime.Now.ToString("s") + ".png";
+			Debug.Log("Saving photo to: " + screenshotName);
+			#if UNITY_IOS
+			StartCoroutine( EtceteraBinding.takeScreenShot( screenshotName, imagePath =>
+			                                               {EtceteraBinding.saveImageToPhotoAlbum (imagePath);}) );
+			#elif UNITY_ANDROID
+			string path = Application.persistentDataPath + screenshotName;
+			Application.CaptureScreenshot(screenshotName);
+			Debug.Log("Moving file from " + path);
+			bool saved = EtceteraAndroid.saveImageToGallery(path,screenshotName);
+			if(saved)
+			{
+				Debug.Log("File moved");
+			}
+			else
+			{
+				Debug.Log("File moved fail!");
+			}
+			#endif
+		}
+		Invoke("PopPhotoSaved",0.3f);
 	}
+	
+	void PopPhotoSaved()
+	{
+				if (PhotoSaved != null && PhotoSaved.GetComponent<PhotoFadeOut> () != null) {
+					PhotoSaved.gameObject.SetActive(true);
+				}
+	}
+
 	public void FoodButton()
 	{
 		if(!InventoryOpen)
@@ -141,8 +189,33 @@ public class CaringPageControls : MonoBehaviour {
 		}
 	}
 
+	public void CloseInventory()
+	{
+		Inventory.gameObject.SetActive(false);
+	}
+
 	public void BroomButton()
 	{
+		CharacterProgressScript script = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript> ();
+		
+		for (int i = 0; i < script.GroundItems.Count; ++i) {
+			if (script.GroundItems [i].GetComponent<UIPopupItemScript> () != null) {
+				if (script.GroundItems [i].GetComponent<UIPopupItemScript> ().Type == PopupItemType.Token) {
+					continue;
+				} else {
+					ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory (script.GroundItems [i].GetComponent<UIPopupItemScript> ().Id, 1);
+				}
+			}
+			Destroy (script.GroundItems [i]);
+		}
+		
+		script.GroundItems.Clear ();
+		UIGlobalVariablesScript.Singleton.SoundEngine.Play (GenericSoundId.CleanPooPiss);
+		UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript> ().HidePopupMenus ();
+		
+		for (int i = 0; i < EDMMixerScript.Singleton.KeysOn.Length; ++i) {
+			EDMMixerScript.Singleton.KeysOn [i] = false;
+		}
 	}
 
 	public void SetIcon(PopupItemType p, Sprite s)
@@ -164,4 +237,23 @@ public class CaringPageControls : MonoBehaviour {
 
 	}
 
+	public GameObject GetIcon (PopupItemType p)
+	{
+		switch(p)
+		{
+		case PopupItemType.Food:
+			return Icon1.gameObject;
+			break;
+		case PopupItemType.Item:
+			return Icon2.gameObject;
+			break;
+		case PopupItemType.Medicine:
+			return Icon3.gameObject;
+			break;
+		default:
+			break;
+		}
+		return null;
+
+	}
 }

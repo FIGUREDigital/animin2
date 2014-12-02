@@ -124,7 +124,7 @@ class MyEditorScript {
 		int iOfEnd = text.IndexOf ("</dict>");
 
 		if (iOfEnd != -1) {
-			string s1 = text.Insert (iOfEnd, "\t<key>UIInterfaceOrientation</key>\n\t<string>UIInterfaceOrientationPortrait</string>");
+			text.Insert (iOfEnd, "\t<key>UIInterfaceOrientation</key>\n\t<string>UIInterfaceOrientationPortrait</string>");
 		} 
 
 		File.WriteAllText(file, text);

@@ -23,7 +23,8 @@ public class InventoryControls : MonoBehaviour
 	private ScrollRect m_InventoryRect;
 	[SerializeField]
 	private GridLayoutGroup m_InventoryGrid;
-	private List<GameObject> mCurrentDisplayed;
+	private List<GameObject> m_CurrentDisplayed;
+	private CaringPageControls m_CaringPage;
 
 	private InventoryPages m_CurrentMode;
 	public InventoryPages CurrentMode
@@ -47,29 +48,32 @@ public class InventoryControls : MonoBehaviour
 	}
 	void Clear()
 	{
-		if(mCurrentDisplayed != null)
+		if(m_CurrentDisplayed != null)
 		{
-			foreach(GameObject go in mCurrentDisplayed)
+			foreach(GameObject go in m_CurrentDisplayed)
 			{
 				Destroy(go);
 			}
 			
-			mCurrentDisplayed.Clear ();
+			m_CurrentDisplayed.Clear ();
 		}
 	}
 	void Populate(PopupItemType type)
 	{
 		Clear ();
-		mCurrentDisplayed = new List<GameObject> ();
+		
+		m_CaringPage = transform.parent.parent.GetComponent<CaringPageControls> ();
+		m_CurrentDisplayed = new List<GameObject> ();
 		for (int i=0; i<ProfilesManagementScript.Singleton.CurrentAnimin.Inventory.Count; ++i)
 		{
 			if(InventoryItemData.Items[(int)ProfilesManagementScript.Singleton.CurrentAnimin.Inventory[i].Id].ItemType == type)
 			{
 				InventoryItemBankData data = InventoryItemData.Items[(int)ProfilesManagementScript.Singleton.CurrentAnimin.Inventory[i].Id];
 				InventoryItemControls button = ((GameObject)Instantiate(prefabButton)).GetComponent<InventoryItemControls>();
-				button.ID = data.Id;
+				button.data = data;
+				button.caringPage = m_CaringPage;
 				button.GetComponent<UnityEngine.UI.Image>().sprite = data.SpriteName;
-				mCurrentDisplayed.Add(button.gameObject);
+				m_CurrentDisplayed.Add(button.gameObject);
 				button.transform.parent = m_InventoryGrid.transform;
 			}
 		}

@@ -35,17 +35,17 @@ public class CaringPageControls : MonoBehaviour {
 		{
 			if(InventoryItemData.Items[(int)ProfilesManagementScript.Singleton.CurrentAnimin.Inventory[i].Id].ItemType == PopupItemType.Food && !FoodIconSet)
 			{
-				Icon1.overrideSprite = InventoryItemData.Items[(int)ProfilesManagementScript.Singleton.CurrentAnimin.Inventory[i].Id].SpriteName;
+				Icon1.sprite = InventoryItemData.Items[(int)ProfilesManagementScript.Singleton.CurrentAnimin.Inventory[i].Id].SpriteName;
 				FoodIconSet = true;
 			} 
 			else if(InventoryItemData.Items[(int)ProfilesManagementScript.Singleton.CurrentAnimin.Inventory[i].Id].ItemType == PopupItemType.Item && !ItemIconSet)
 			{
-				Icon2.overrideSprite = InventoryItemData.Items[(int)ProfilesManagementScript.Singleton.CurrentAnimin.Inventory[i].Id].SpriteName;
+				Icon2.sprite = InventoryItemData.Items[(int)ProfilesManagementScript.Singleton.CurrentAnimin.Inventory[i].Id].SpriteName;
 				ItemIconSet = true;
 			}
 			else if(InventoryItemData.Items[(int)ProfilesManagementScript.Singleton.CurrentAnimin.Inventory[i].Id].ItemType == PopupItemType.Medicine && !MediIconSet)
 			{
-				Icon3.overrideSprite = InventoryItemData.Items[(int)ProfilesManagementScript.Singleton.CurrentAnimin.Inventory[i].Id].SpriteName;
+				Icon3.sprite = InventoryItemData.Items[(int)ProfilesManagementScript.Singleton.CurrentAnimin.Inventory[i].Id].SpriteName;
 				MediIconSet = true;
 			}
 		}
@@ -143,6 +143,25 @@ public class CaringPageControls : MonoBehaviour {
 
 	public void BroomButton()
 	{
+	}
+
+	public void SetIcon(PopupItemType p, Sprite s)
+	{
+		switch(p)
+		{
+		case PopupItemType.Food:
+			Icon1.sprite = s;
+			break;
+		case PopupItemType.Item:
+			Icon2.sprite = s;
+			break;
+		case PopupItemType.Medicine:
+			Icon3.sprite = s;
+			break;
+		default:
+			break;
+		}
+
 	}
 
 }

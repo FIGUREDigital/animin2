@@ -3,13 +3,10 @@ using System.Collections;
 
 public class InventoryItemControls : MonoBehaviour {
 
-	public InventoryItemId ID;
+	public CaringPageControls caringPage;
+	public InventoryItemBankData data;
 	public void OnClick()
 	{
-		switch(ID)
-		{
-		default:
-			break;
-		}
+		caringPage.SetIcon(data.ItemType, data.SpriteName);
 	}
 }

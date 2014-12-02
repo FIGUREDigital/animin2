@@ -64,52 +64,54 @@ public class InventoryItemBankData
 {
     public InventoryItemId Id;
     public string PrefabId;
-    public string SpriteName;
+    public Sprite SpriteName;
     public PopupItemType ItemType;
 }
 
 [System.Serializable]
 public class InventoryItemData
 {
+	
+	private const string ITEM_PATH = "Texture/UI/";
     public static InventoryItemBankData[] Items;
 
     public static void Initialize()
     {
         Items = new InventoryItemBankData[(int)InventoryItemId.Count];
 
-        /*00*/Items[(int)InventoryItemId.Strawberry] = new InventoryItemBankData() { Id = InventoryItemId.Strawberry, PrefabId = "Prefabs/strawberry2", SpriteName = "strawberry", ItemType = PopupItemType.Food };
-        /*01*/Items[(int)InventoryItemId.Spinach] = new InventoryItemBankData() { Id = InventoryItemId.Spinach, PrefabId = "Prefabs/spinach", SpriteName = "spinach_icon", ItemType = PopupItemType.Food };
-        /*02*/Items[(int)InventoryItemId.Blueberry] = new InventoryItemBankData() { Id = InventoryItemId.Blueberry, PrefabId = "Prefabs/blueberry", SpriteName = "blueberry_icon", ItemType = PopupItemType.Food };
-        /*03*/Items[(int)InventoryItemId.AlmondMilk] = new InventoryItemBankData() { Id = InventoryItemId.AlmondMilk, PrefabId = "Prefabs/almondMilk", SpriteName = "almondmilk_icon", ItemType = PopupItemType.Food };
-        /*04*/Items[(int)InventoryItemId.Avocado] = new InventoryItemBankData() { Id = InventoryItemId.Avocado, PrefabId = "Prefabs/avocado", SpriteName = "avocado_icon", ItemType = PopupItemType.Food };
-        /*05*///Items[(int)InventoryItemId.Noodles] = new InventoryItemBankData() { Id = InventoryItemId.Blueberry, PrefabId = "Prefabs/blueberry", SpriteName = "blueberry_icon", ItemType = PopupItemType.Food };
-        /*06*/Items[(int)InventoryItemId.Carrot] = new InventoryItemBankData() { Id = InventoryItemId.Carrot, PrefabId = "Prefabs/carrot", SpriteName = "carrot_icon", ItemType = PopupItemType.Food };
-        /*07*/Items[(int)InventoryItemId.Chips] = new InventoryItemBankData() { Id = InventoryItemId.Chips, PrefabId = "Prefabs/chips", SpriteName = "chips_icon", ItemType = PopupItemType.Food };
-        /*08*/Items[(int)InventoryItemId.Toast] = new InventoryItemBankData() { Id = InventoryItemId.Toast, PrefabId = "Prefabs/toast", SpriteName = "jam_icon", ItemType = PopupItemType.Food };
-        /*09*/Items[(int)InventoryItemId.watermelon] = new InventoryItemBankData() { Id = InventoryItemId.watermelon, PrefabId = "Prefabs/watermelon", SpriteName = "watermelon_icon", ItemType = PopupItemType.Food };
-        /*10*///Items[(int)InventoryItemId.Noodles] = new InventoryItemBankData() { Id = InventoryItemId.Noodles, PrefabId = "Prefabs/Noodles", SpriteName = "blueberry_icon", ItemType = PopupItemType.Food };
-        /*11*/Items[(int)InventoryItemId.Carrot] = new InventoryItemBankData() { Id = InventoryItemId.Carrot, PrefabId = "Prefabs/Carrot", SpriteName = "carrot_icon", ItemType = PopupItemType.Food };
-        /*12*///Items[(int)InventoryItemId.Banana] = new InventoryItemBankData() { Id = InventoryItemId.Banana, PrefabId = "Prefabs/banana", SpriteName = "banana_icon", ItemType = PopupItemType.Food };
+        /*00*/Items[(int)InventoryItemId.Strawberry] = new InventoryItemBankData() { Id = InventoryItemId.Strawberry, PrefabId = "Prefabs/strawberry2", SpriteName = (Sprite)Resources.Load(ITEM_PATH + "strawberry"), ItemType = PopupItemType.Food };
+        /*01*/Items[(int)InventoryItemId.Spinach] = new InventoryItemBankData() { Id = InventoryItemId.Spinach, PrefabId = "Prefabs/spinach", SpriteName = (Sprite)Resources.Load(ITEM_PATH + "spinach_icon"), ItemType = PopupItemType.Food };
+        /*02*/Items[(int)InventoryItemId.Blueberry] = new InventoryItemBankData() { Id = InventoryItemId.Blueberry, PrefabId = "Prefabs/blueberry", SpriteName = (Sprite)Resources.Load(ITEM_PATH + "blueberry_icon"), ItemType = PopupItemType.Food };
+        /*03*/Items[(int)InventoryItemId.AlmondMilk] = new InventoryItemBankData() { Id = InventoryItemId.AlmondMilk, PrefabId = "Prefabs/almondMilk", SpriteName = (Sprite)Resources.Load(ITEM_PATH + "almondmilk_icon"), ItemType = PopupItemType.Food };
+        /*04*/Items[(int)InventoryItemId.Avocado] = new InventoryItemBankData() { Id = InventoryItemId.Avocado, PrefabId = "Prefabs/avocado", SpriteName = (Sprite)Resources.Load(ITEM_PATH + "avocado_icon"), ItemType = PopupItemType.Food };
+        /*05*///Items[(int)InventoryItemId.Noodles] = new InventoryItemBankData() { Id = InventoryItemId.Blueberry, PrefabId = "Prefabs/blueberry", SpriteName = (Sprite)Resources.Load(ITEM_PATH + "blueberry_icon"), ItemType = PopupItemType.Food };
+        /*06*/Items[(int)InventoryItemId.Carrot] = new InventoryItemBankData() { Id = InventoryItemId.Carrot, PrefabId = "Prefabs/carrot", SpriteName = (Sprite)Resources.Load(ITEM_PATH + "carrot_icon"), ItemType = PopupItemType.Food };
+        /*07*/Items[(int)InventoryItemId.Chips] = new InventoryItemBankData() { Id = InventoryItemId.Chips, PrefabId = "Prefabs/chips", SpriteName = (Sprite)Resources.Load(ITEM_PATH + "chips_icon"), ItemType = PopupItemType.Food };
+        /*08*/Items[(int)InventoryItemId.Toast] = new InventoryItemBankData() { Id = InventoryItemId.Toast, PrefabId = "Prefabs/toast", SpriteName = (Sprite)Resources.Load(ITEM_PATH + "jam_icon"), ItemType = PopupItemType.Food };
+        /*09*/Items[(int)InventoryItemId.watermelon] = new InventoryItemBankData() { Id = InventoryItemId.watermelon, PrefabId = "Prefabs/watermelon", SpriteName = (Sprite)Resources.Load(ITEM_PATH + "watermelon_icon"), ItemType = PopupItemType.Food };
+        /*10*///Items[(int)InventoryItemId.Noodles] = new InventoryItemBankData() { Id = InventoryItemId.Noodles, PrefabId = "Prefabs/Noodles", SpriteName = (Sprite)Resources.Load(ITEM_PATH + "blueberry_icon"), ItemType = PopupItemType.Food };
+        /*11*/Items[(int)InventoryItemId.Carrot] = new InventoryItemBankData() { Id = InventoryItemId.Carrot, PrefabId = "Prefabs/Carrot", SpriteName = (Sprite)Resources.Load(ITEM_PATH + "carrot_icon"), ItemType = PopupItemType.Food };
+        /*12*///Items[(int)InventoryItemId.Banana] = new InventoryItemBankData() { Id = InventoryItemId.Banana, PrefabId = "Prefabs/banana", SpriteName = (Sprite)Resources.Load(ITEM_PATH + "banana_icon"), ItemType = PopupItemType.Food };
 
-        /*13*/Items[(int)InventoryItemId.Boombox] = new InventoryItemBankData() { Id = InventoryItemId.Boombox, PrefabId = "Prefabs/boombox", SpriteName = "boombox_icon", ItemType = PopupItemType.Item };
-        /*14*/Items[(int)InventoryItemId.Clock] = new InventoryItemBankData() { Id = InventoryItemId.Clock, PrefabId = "Prefabs/mintclock", SpriteName = "mintclock_icon", ItemType = PopupItemType.Item };
-        /*15*/Items[(int)InventoryItemId.EDMJuno] = new InventoryItemBankData() { Id = InventoryItemId.EDMJuno, PrefabId = "Prefabs/juno", SpriteName = "juno_icon", ItemType = PopupItemType.Item };
-        /*16*/Items[(int)InventoryItemId.EDM808] = new InventoryItemBankData() { Id = InventoryItemId.EDM808, PrefabId = "Prefabs/808", SpriteName = "808_icon", ItemType = PopupItemType.Item };
-        /*17*/Items[(int)InventoryItemId.EDMKsynth] = new InventoryItemBankData() { Id = InventoryItemId.EDMKsynth, PrefabId = "Prefabs/ksynth", SpriteName = "ksynth_icon", ItemType = PopupItemType.Item };
-        /*18*/Items[(int)InventoryItemId.Lightbulb] = new InventoryItemBankData() { Id = InventoryItemId.Lightbulb, PrefabId = "Prefabs/Lightbulb", SpriteName = "lightbulb_icon", ItemType = PopupItemType.Item };
-        /*19*///Items[(int)InventoryItemId.mintclock] = new InventoryItemBankData() { Id = InventoryItemId.mintclock, PrefabId = "Prefabs/mintclock", SpriteName = "mintclock_icon", ItemType = PopupItemType.Item };
-        /*20*/Items[(int)InventoryItemId.paperCalendar] = new InventoryItemBankData() { Id = InventoryItemId.paperCalendar, PrefabId = "Prefabs/paperCalendar", SpriteName = "calendar_icon", ItemType = PopupItemType.Item };
-        /*21*/Items[(int)InventoryItemId.Camera] = new InventoryItemBankData() { Id = InventoryItemId.Camera, PrefabId = "Prefabs/camera", SpriteName = "camera_icon", ItemType = PopupItemType.Item };
-        /*22*/Items[(int)InventoryItemId.FartButton] = new InventoryItemBankData() { Id = InventoryItemId.FartButton, PrefabId = "Prefabs/fartbutton", SpriteName = "fartbutton_icon", ItemType = PopupItemType.Item };
+        /*13*/Items[(int)InventoryItemId.Boombox] = new InventoryItemBankData() { Id = InventoryItemId.Boombox, PrefabId = "Prefabs/boombox", SpriteName = (Sprite)Resources.Load(ITEM_PATH + "boombox_icon"), ItemType = PopupItemType.Item };
+        /*14*/Items[(int)InventoryItemId.Clock] = new InventoryItemBankData() { Id = InventoryItemId.Clock, PrefabId = "Prefabs/mintclock", SpriteName = (Sprite)Resources.Load(ITEM_PATH + "mintclock_icon"), ItemType = PopupItemType.Item };
+        /*15*/Items[(int)InventoryItemId.EDMJuno] = new InventoryItemBankData() { Id = InventoryItemId.EDMJuno, PrefabId = "Prefabs/juno", SpriteName = (Sprite)Resources.Load(ITEM_PATH + "juno_icon"), ItemType = PopupItemType.Item };
+        /*16*/Items[(int)InventoryItemId.EDM808] = new InventoryItemBankData() { Id = InventoryItemId.EDM808, PrefabId = "Prefabs/808", SpriteName = (Sprite)Resources.Load(ITEM_PATH + "808_icon"), ItemType = PopupItemType.Item };
+        /*17*/Items[(int)InventoryItemId.EDMKsynth] = new InventoryItemBankData() { Id = InventoryItemId.EDMKsynth, PrefabId = "Prefabs/ksynth", SpriteName = (Sprite)Resources.Load(ITEM_PATH + "ksynth_icon"), ItemType = PopupItemType.Item };
+        /*18*/Items[(int)InventoryItemId.Lightbulb] = new InventoryItemBankData() { Id = InventoryItemId.Lightbulb, PrefabId = "Prefabs/Lightbulb", SpriteName = (Sprite)Resources.Load(ITEM_PATH + "lightbulb_icon"), ItemType = PopupItemType.Item };
+        /*19*///Items[(int)InventoryItemId.mintclock] = new InventoryItemBankData() { Id = InventoryItemId.mintclock, PrefabId = "Prefabs/mintclock", SpriteName = (Sprite)Resources.Load(ITEM_PATH + "mintclock_icon"), ItemType = PopupItemType.Item };
+        /*20*/Items[(int)InventoryItemId.paperCalendar] = new InventoryItemBankData() { Id = InventoryItemId.paperCalendar, PrefabId = "Prefabs/paperCalendar", SpriteName = (Sprite)Resources.Load(ITEM_PATH + "calendar_icon"), ItemType = PopupItemType.Item };
+        /*21*/Items[(int)InventoryItemId.Camera] = new InventoryItemBankData() { Id = InventoryItemId.Camera, PrefabId = "Prefabs/camera", SpriteName = (Sprite)Resources.Load(ITEM_PATH + "camera_icon"), ItemType = PopupItemType.Item };
+        /*22*/Items[(int)InventoryItemId.FartButton] = new InventoryItemBankData() { Id = InventoryItemId.FartButton, PrefabId = "Prefabs/fartbutton", SpriteName = (Sprite)Resources.Load(ITEM_PATH + "fartbutton_icon"), ItemType = PopupItemType.Item };
 
-        /*24*/Items[(int)InventoryItemId.woodSword] = new InventoryItemBankData() { Id = InventoryItemId.woodSword, PrefabId = "Prefabs/woodSword", SpriteName = "woodSword_icon", ItemType = PopupItemType.Item };
-        /*25*/Items[(int)InventoryItemId.woodFrame] = new InventoryItemBankData() { Id = InventoryItemId.woodFrame, PrefabId = "Prefabs/woodFrame", SpriteName = "woodFrame_icon", ItemType = PopupItemType.Item };
+        /*24*/Items[(int)InventoryItemId.woodSword] = new InventoryItemBankData() { Id = InventoryItemId.woodSword, PrefabId = "Prefabs/woodSword", SpriteName = (Sprite)Resources.Load(ITEM_PATH + "woodSword_icon"), ItemType = PopupItemType.Item };
+        /*25*/Items[(int)InventoryItemId.woodFrame] = new InventoryItemBankData() { Id = InventoryItemId.woodFrame, PrefabId = "Prefabs/woodFrame", SpriteName = (Sprite)Resources.Load(ITEM_PATH + "woodFrame_icon"), ItemType = PopupItemType.Item };
 
 
-        /*26*/Items[(int)InventoryItemId.Pill] = new InventoryItemBankData() { Id = InventoryItemId.Pill, PrefabId = "Prefabs/capsule", SpriteName = "mediumpill_icon", ItemType = PopupItemType.Medicine };
-        /*27*/Items[(int)InventoryItemId.Plaster] = new InventoryItemBankData() { Id = InventoryItemId.Plaster, PrefabId = "Prefabs/plaster", SpriteName = "plaster_icon", ItemType = PopupItemType.Medicine };
+        /*26*/Items[(int)InventoryItemId.Pill] = new InventoryItemBankData() { Id = InventoryItemId.Pill, PrefabId = "Prefabs/capsule", SpriteName = (Sprite)Resources.Load(ITEM_PATH + "mediumpill_icon"), ItemType = PopupItemType.Medicine };
+        /*27*/Items[(int)InventoryItemId.Plaster] = new InventoryItemBankData() { Id = InventoryItemId.Plaster, PrefabId = "Prefabs/plaster", SpriteName = (Sprite)Resources.Load(ITEM_PATH + "plaster_icon"), ItemType = PopupItemType.Medicine };
 
-        /*23*/Items[(int)InventoryItemId.Radio] = new InventoryItemBankData() { Id = InventoryItemId.Radio, PrefabId = "Prefabs/radio", SpriteName = "radio_icon", ItemType = PopupItemType.Item };
+        /*23*/Items[(int)InventoryItemId.Radio] = new InventoryItemBankData() { Id = InventoryItemId.Radio, PrefabId = "Prefabs/radio", SpriteName = (Sprite)Resources.Load(ITEM_PATH + "radio_icon"), ItemType = PopupItemType.Item };
     }
 
     public InventoryItemId Id;

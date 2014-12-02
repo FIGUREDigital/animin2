@@ -24,6 +24,8 @@ public class ObjectLookAtDeviceScript : MonoBehaviour
 
 	void Update () 
 	{
+        if (UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>() == null)
+            return;
 		angle += speed*Time.deltaTime; //if you want to switch direction, use -= instead of +=
 
 
@@ -52,6 +54,7 @@ public class ObjectLookAtDeviceScript : MonoBehaviour
 
 		float dotProduct = Vector3.Dot(Camera.main.transform.forward, this.transform.forward);
 		//Debug.Log(dotProduct.ToString());
+
 		if(!UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().IsMovingTowardsLocation &&
 			(GetComponent<AnimationControllerScript>().IsIdle 
 		 	|| GetComponent<AnimationControllerScript>().IsIdleWave 

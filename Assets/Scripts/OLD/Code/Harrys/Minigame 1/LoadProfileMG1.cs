@@ -12,13 +12,13 @@ public class LoadProfileMG1 : MonoBehaviour {
 		//		UIGlobalVariablesScript.Singleton.ARWorldRef.SetActive(false);
 		//		UIGlobalVariablesScript.Singleton.NonARWorldRef.SetActive(false);
 		
-		UIGlobalVariablesScript.Singleton.PauseGameButton.SetActive(true);
-		UIGlobalVariablesScript.Singleton.PausedScreen.SetActive(false);
+		//UIGlobalVariablesScript.Singleton.PauseGameButton.SetActive(true);
+		//UIGlobalVariablesScript.Singleton.PausedScreen.SetActive(false);
 		
-		UIGlobalVariablesScript.Singleton.InsideMinigamesMasterScreenRef.SetActive(true);
+		//UIGlobalVariablesScript.Singleton.InsideMinigamesMasterScreenRef.SetActive(true);
 		//		UIGlobalVariablesScript.Singleton.MinigamesMenuMasterScreenRef.SetActive(false);
 		//	UIGlobalVariablesScript.Singleton.SpaceshipGameScreenRef.SetActive(false);
-		UIGlobalVariablesScript.Singleton.CuberunnerGamesScreenRef.SetActive(false);
+		//UIGlobalVariablesScript.Singleton.CuberunnerGamesScreenRef.SetActive(false);
 		
 		//UIGlobalVariablesScript.Singleton.MainCharacterRef.SetActive(false);
 		//		UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().enabled = false;
@@ -29,8 +29,8 @@ public class LoadProfileMG1 : MonoBehaviour {
 		
 		
 		//UIGlobalVariablesScript.Singleton.ARSceneRef.SetActive(false);
-		UIGlobalVariablesScript.Singleton.JumbButton.SetActive(false);
-		UIGlobalVariablesScript.Singleton.ShootButton.SetActive(false);
+		//UIGlobalVariablesScript.Singleton.JumbButton.SetActive(false);
+		//UIGlobalVariablesScript.Singleton.ShootButton.SetActive(false);
 		
 		UIGlobalVariablesScript.Singleton.Shadow.transform.localScale = new Vector3(0.79f, 0.79f, 0.79f);
 		
@@ -42,7 +42,7 @@ public class LoadProfileMG1 : MonoBehaviour {
 		
 		//From case UIFunctionalityId.PlayMinigameCubeRunners:
 		
-		UIGlobalVariablesScript.Singleton.CuberunnerGamesScreenRef.SetActive(true);
+		//UIGlobalVariablesScript.Singleton.CuberunnerGamesScreenRef.SetActive(true);
 		UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef.SetActive(true);
 		UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef.GetComponent<MinigameCollectorScript>().HardcoreReset();
 		
@@ -50,17 +50,17 @@ public class LoadProfileMG1 : MonoBehaviour {
 		UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterController>().radius = 0.51f;
 		UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterControllerScript>().SetLocal(true);
 		
-		UIGlobalVariablesScript.Singleton.Joystick.gameObject.SetActive(true);	
-		UIGlobalVariablesScript.Singleton.JoystickArt.SetActive(true);	
+		//UIGlobalVariablesScript.Singleton.Joystick.gameObject.SetActive(true);	
+		//UIGlobalVariablesScript.Singleton.JoystickArt.SetActive(true);	
 		
 		
-		UIGlobalVariablesScript.Singleton.Joystick.CharacterAnimationRef = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<MinigameAnimationControllerScript>();
-		UIGlobalVariablesScript.Singleton.Joystick.CharacterControllerRef = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterControllerScript>();
+		//UIGlobalVariablesScript.Singleton.Joystick.CharacterAnimationRef = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<MinigameAnimationControllerScript>();
+		//UIGlobalVariablesScript.Singleton.Joystick.CharacterControllerRef = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterControllerScript>();
 		
 		
 		//UIGlobalVariablesScript.Singleton.Joystick.ResetJoystick();
 		
-		UIGlobalVariablesScript.Singleton.JumbButton.SetActive(true);
+		//UIGlobalVariablesScript.Singleton.JumbButton.SetActive(true);
 		
 		UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.parent = UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef.transform;
 		

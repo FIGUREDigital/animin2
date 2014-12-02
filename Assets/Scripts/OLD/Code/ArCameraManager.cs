@@ -32,7 +32,7 @@ public class ArCameraManager : MonoBehaviour {
 		if(level == 0)
 		{
 		}
-		UIGlobalVariablesScript.Singleton.ARCamera = Go;
+		//UIGlobalVariablesScript.Singleton.ARCamera = Go;
 		//UIGlobalVariablesScript.Singleton.DragableUI3DObject = Go.GetComponentInChildren<CameraModelScript>().gameObject;
 	}
 
@@ -47,7 +47,7 @@ public class ArCameraManager : MonoBehaviour {
 		this.transform.parent = Go.transform;
 		if(UIGlobalVariablesScript.Singleton != null)
 		{
-			UIGlobalVariablesScript.Singleton.ARCamera = Go;
+			//UIGlobalVariablesScript.Singleton.ARCamera = Go;
 		}
 	}
 }

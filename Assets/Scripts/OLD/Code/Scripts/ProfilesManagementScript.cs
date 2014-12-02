@@ -6,7 +6,20 @@ using UnityEngine.UI;
 
 public class ProfilesManagementScript : MonoBehaviour 
 {
-	public static ProfilesManagementScript Singleton;
+    public static ProfilesManagementScript m_Singleton;
+    public static ProfilesManagementScript Singleton
+    {
+        get
+        {
+            Debug.Log("ProfilesManagementScript Singleton GET : ["+ m_Singleton +"];");
+            return m_Singleton;
+        }
+        set
+        {
+            Debug.Log("ProfilesManagementScript Singleton SET");
+            m_Singleton = value;
+        }
+    }
 	public static bool Initialized;
 
     private GameObject EvolveTboToAdultWarning;
@@ -27,6 +40,8 @@ public class ProfilesManagementScript : MonoBehaviour
     public PlayerProfileData CurrentProfile; 
 
     public PersistentData CurrentAnimin;
+
+    public bool BeginLoadLevel;
 
 
 
@@ -274,7 +289,12 @@ public class ProfilesManagementScript : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-
+        if(BeginLoadLevel)
+        {
+            BeginLoadLevel = false;
+            Debug.Log("Loading New level");
+            StartCoroutine(LoadLevel(@"ARBase"));
+        }
 	}
 
 	

@@ -64,9 +64,31 @@ public class MinigameCollectorScript : MonoBehaviour
 	public GameObject[] HeartUI;
 	public GameObject[] StarsUI;
 
+    void Start(){
+        UIGlobalVariablesScript.Singleton.Shadow.transform.localScale = new Vector3(0.79f, 0.79f, 0.79f);
+        UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef.SetActive(true);
+        UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef.GetComponent<MinigameCollectorScript>().HardcoreReset();
+
+        UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterController>().radius = 0.51f;
+        UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterControllerScript>().SetLocal(true);
+
+        UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.parent = UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef.transform;
+
+        UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.localScale = new Vector3(0.026f, 0.026f, 0.025f);
+    }
+
 	// Use this for initialization
 	void Awake () 
 	{
+        if (ProfilesManagementScript.Singleton.CurrentProfile == null) {
+            Debug.Log ("PlayerProfileData.ActiveProfile = null!");
+            ProfilesManagementScript.Singleton.CurrentProfile = PlayerProfileData.CreateNewProfile("Dummy");
+            ProfilesManagementScript.Singleton.CurrentAnimin = ProfilesManagementScript.Singleton.CurrentProfile.Characters [(int)PersistentData.TypesOfAnimin.Pi];
+        }
+
+        UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterSwapManagementScript>().LoadCharacter(ProfilesManagementScript.Singleton.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Singleton.CurrentAnimin.AniminEvolutionId);
+        UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<MinigameAnimationControllerScript>().LoadAnimator(UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterSwapManagementScript>().CurrentModel);
+
 		//Debug.Log("STAGES AWAKE!!: " + Stage.transform.childCount.ToString());
 
 		for(int i=0;i<Stage.transform.childCount;++i)
@@ -120,6 +142,7 @@ public class MinigameCollectorScript : MonoBehaviour
 
 	public void AdvanceTutorial()
 	{
+        return;
 		TutorialHandGraphic.SetActive(false);
 		TutorialJumbGraphic.SetActive(false);
 		TutorialMoveGraphic.SetActive(false);
@@ -241,51 +264,8 @@ public class MinigameCollectorScript : MonoBehaviour
 	
 	private void ExitMinigame(bool succesfullyCompleted)
 	{
-		//CharacterProgressScript progressScript = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>();
-
 		UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterControllerScript>().Forces.Clear();
-
-		//if(succesfullyCompleted)
-		{
-//			UIGlobalVariablesScript.Singleton.SoundEngine.Play(progressScript.CreaturePlayerId, CreatureSoundId.JumbInPortal);
-//			UIGlobalVariablesScript.Singleton.MainCharacterAnimationControllerRef.IsEnterPortal = true;
-//			progressScript.CurrentAction = ActionId.EnterPortalToAR;
-//			
-//			UIGlobalVariablesScript.Singleton.ARPortal.GetComponent<PortalScript>().Show(PortalStageId.MinigameCuberRunners, true);
-//			progressScript.PortalTimer = 0;
-		}
-		//else
-		{
-			UIClickButtonMasterScript.HandleClick(UIFunctionalityId.CloseCurrentMinigame, null);
-			//progressScript.Stop(true);
-			//progressScript.CurrentAction = ActionId.SmallCooldownPeriod;
-			//progressScript.SmallCooldownTimer = 0.5f;
-			//progressScript.CurrentAction = ActionId.ExitPortalMainStage;
-
-			/*
-			UIGlobalVariablesScript.Singleton.MainCharacterAnimationControllerRef.IsExitPortal = true;
-			UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.rotation = Quaternion.Euler(0, 180, 0);
-			UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterControllerScript>().ResetRotation();
-			
-			UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<AnimateCharacterOutPortalScript>().Timer = 0;
-			UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<AnimateCharacterOutPortalScript>().JumbId = AnimateCharacterOutPortalScript.JumbStateId.Jumbout;
-			UIGlobalVariablesScript.Singleton.SoundEngine.Play(progressScript.CreaturePlayerId, CreatureSoundId.JumbOutPortal);
-			//progressScript.CurrentAction = ActionId.EnterPortalToNonAR;
-
-			if(UIGlobalVariablesScript.Singleton.ARSceneRef.activeSelf)
-				UIGlobalVariablesScript.Singleton.ARPortal.GetComponent<PortalScript>().Show(PortalStageId.ARscene, false);
-			else
-				UIGlobalVariablesScript.Singleton.ARPortal.GetComponent<PortalScript>().Show(PortalStageId.NonARScene, false);
-			*/
-		}
-
-		/*if(Points >= 10000)
-			AchievementsScript.Singleton.Show(AchievementTypeId.Gold, Points);
-		else if(Points >= 5000)
-			AchievementsScript.Singleton.Show(AchievementTypeId.Silver, Points);
-		else 
-			AchievementsScript.Singleton.Show(AchievementTypeId.Bronze, Points);
-			*/
+        UIClickButtonMasterScript.HandleClick(UIFunctionalityId.CloseCurrentMinigame, null);
 	}
 	
 	
@@ -320,7 +300,7 @@ public class MinigameCollectorScript : MonoBehaviour
 	{
         if (Paused) return;
 
-		PointsLabel.GetComponent<Text>().text = Points.ToString() + " pts";
+		//UICOMMENT: PointsLabel.GetComponent<Text>().text = Points.ToString() + " pts";
 		BetweenSceneData.Instance.Points = Points;
 		CharacterProgressScript progressScript = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>();
 
@@ -453,7 +433,7 @@ public class MinigameCollectorScript : MonoBehaviour
 					LoseHeart(true);
 				}
 			}
-			UIGlobalVariablesScript.Singleton.TextForStarsInMiniCollector.text = StarsCollected.ToString();
+			//UICOMMENT: UIGlobalVariablesScript.Singleton.TextForStarsInMiniCollector.text = StarsCollected.ToString();
 		}
 	}
 	private void LoseHeart(bool resetIfZero)
@@ -597,6 +577,8 @@ public class MinigameCollectorScript : MonoBehaviour
 				int starsActive = 0;
 				for(int a=0;a<StarsUI.Length;++a)
 				{
+                    if (StarsUI[a] == null)
+                        continue;
 					if(!StarsUI[a].activeSelf)
 					{
 						starsActive++;
@@ -654,9 +636,9 @@ public class MinigameCollectorScript : MonoBehaviour
 		StarsCollected = 0;
 
 		for(int i=0;i<StarsUI.Length;++i)
-			StarsUI[i].SetActive(false);
+            if (StarsUI[i] != null) StarsUI[i].SetActive(false);
 		for(int i=0;i<HeartUI.Length;++i)
-			HeartUI[i].SetActive(true);
+            if (HeartUI[i] != null) HeartUI[i].SetActive(true);
 
 		LevelsToComplete.Clear();
 		for(int i=0;i<Stage.transform.childCount;++i)
@@ -713,7 +695,7 @@ public class MinigameCollectorScript : MonoBehaviour
 
 
 		for(int i=0;i<StarsUI.Length;++i)
-			StarsUI[i].SetActive(false);
+            if (StarsUI[i]!=null) StarsUI[i].SetActive(false);
 
 		for(int i=0;i<EvilCharacterPool.Length;++i)
 		{

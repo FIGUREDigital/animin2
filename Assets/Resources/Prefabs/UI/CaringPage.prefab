@@ -986,9 +986,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Inventory: {fileID: 22400060}
   Indicator: {fileID: 22400062}
-  Icon1: {fileID: 0}
-  Icon2: {fileID: 0}
-  Icon3: {fileID: 0}
+  Icon1: {fileID: 11400060}
+  Icon2: {fileID: 11400070}
+  Icon3: {fileID: 11400052}
 --- !u!114 &11400086
 MonoBehaviour:
   m_ObjectHideFlags: 1

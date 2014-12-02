@@ -12,7 +12,10 @@ public class GoToGameButton : MonoBehaviour {
 	void Update () {
 	
 	}
-	public void OnClick(){
-				Application.LoadLevel ("ARBase");
+    public void OnClick(int AniminID){
+        //Application.LoadLevel ("ARBase");
+        ProfilesManagementScript.Singleton.CurrentAnimin = ProfilesManagementScript.Singleton.CurrentProfile.Characters[AniminID];
+        ProfilesManagementScript.Singleton.AssignCurrentAniminToVariable();
+        ProfilesManagementScript.Singleton.BeginLoadLevel = true;
 	}
 }

@@ -79,9 +79,15 @@ public class MainARHandler : MonoBehaviour
     private GameObject CurrentGameSceneGameObject;
 
     private bool m_IsTracking, m_CameraUnlock;
+    public bool CameraUnlock{
+        get { return m_CameraUnlock; }
+    }
     private AniminTrackableEventHandler mLastTrack;
 
     private Transform NonARCameraPositionRef;
+    public Transform NonARPosRef{
+        get { return NonARCameraPositionRef;}
+    }
 
     private ValueSmoother SmootherAxisX = new ValueSmoother();
     private ValueSmoother SmootherAxisY = new ValueSmoother();

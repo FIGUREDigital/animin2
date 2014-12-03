@@ -62,21 +62,38 @@ public class PortalAnimationScript : MonoBehaviour
             //this.transform.localScale = Vector3.Lerp(new Vector3(160,160,160), new Vector3(20, 20, 20), 1 - alpha);
         }
 
+        /*
         if (isJumpingIn)
         {
             //WARNING. HARDCODED STUFF. I tried to make it track the camera, but the AR Doesn't like it. That means if it ever moves, we're done for. Or we have to reset it.
+            if (MainARHandler.Get.CameraUnlock)
+            {
+
+            }
             this.transform.eulerAngles = new Vector3(-22.67542f, 180, 0);
             Debug.DrawLine(this.transform.position, new Vector3(-22.67542f, 180, 0), Color.red);
         }
         else
         {
-            if( UIGlobalVariablesScript.Singleton.ARCamera != null )
+            if( MainARHandler.Get.MainARCamera != null )
             {
-                transform.LookAt( UIGlobalVariablesScript.Singleton.ARCamera.transform );
+                transform.LookAt( MainARHandler.Get.MainARCamera.transform );
+                Debug.DrawLine(this.transform.position, new Vector3(-22.67542f, 180, 0), Color.red);
             }
-            
         }
-
+        */
+        Transform LookAt;
+        if (MainARHandler.Get.CameraUnlock)
+        {
+            LookAt = MainARHandler.Get.MainARCamera.transform;
+        }
+        else
+        {
+            LookAt = MainARHandler.Get.NonARPosRef;
+        }
+        transform.LookAt( MainARHandler.Get.MainARCamera.transform );
+        Debug.DrawLine(this.transform.position, LookAt.transform.position, Color.red);
+    
 
         Transform outer = this.transform.Find("Portal");
         if (outer != null)

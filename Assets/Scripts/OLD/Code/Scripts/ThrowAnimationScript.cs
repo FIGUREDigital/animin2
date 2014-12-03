@@ -55,12 +55,12 @@ public class ThrowAnimationScript : MonoBehaviour
 
 				if(this.transform.position.y <= UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.position.y)
 				{
-					if(isNonArScene && (this.transform.position.x <= -183 || this.transform.position.x>= 190 || this.transform.position.z <= 156 || this.transform.position.z >= 525))
+					if(isNonArScene && (this.transform.position.x <= -150 || this.transform.position.x>= 150 || this.transform.position.z <= -150 || this.transform.position.z >= 150))
 					{
 						if(this.transform.position.y <= -350)
 						{
 							//hasLanded = true;
-						this.transform.position =  new Vector3(Random.Range(-140, 140), 100, Random.Range(180, 500));
+						this.transform.position =  new Vector3(Random.Range(-140, 140), 100, Random.Range(-140, 140));
 						}
 					}
 					else

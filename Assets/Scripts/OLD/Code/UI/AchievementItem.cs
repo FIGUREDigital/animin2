@@ -4,8 +4,8 @@ using UnityEngine.UI;
 
 public class AchievementItem : MonoBehaviour 
 {
-	private Image mTick;
-	private Image mDot;
+	private UnityEngine.UI.Image mTick;
+	private UnityEngine.UI.Image mDot;
 	public Text mDescription;
 
 	public bool Achieved;
@@ -19,10 +19,10 @@ public class AchievementItem : MonoBehaviour
 
 	void Init()
 	{
-		//mTick = gameObject.transform.FindChild("Tick").gameObject.GetComponent<Image>();
+		mDot = gameObject.transform.FindChild("Dot").gameObject.GetComponent<UnityEngine.UI.Image>();
+		if(mDot == null){Debug.Log("Error: dot not found");}
+		mTick = gameObject.transform.FindChild("Tick").gameObject.GetComponent<UnityEngine.UI.Image>();
 		if(mTick == null){Debug.Log("Error: tick not found");}
-		//mDot = gameObject.transform.FindChild("Dot").gameObject.GetComponent<Image>();
-		if(mTick == null){Debug.Log("Error: dot not found");}
 		mDescription = gameObject.GetComponentInChildren<Text>();
 		if(mDescription == null){Debug.Log("Error: tick not found");};
 	}
@@ -32,8 +32,8 @@ public class AchievementItem : MonoBehaviour
 		{
 			Init();
 		}
-//		mTick.gameObject.SetActive(Achieved?true:false);
-//		mDot.gameObject.SetActive(Achieved?false:true);
+		mTick.gameObject.SetActive(Achieved?true:false);
+		mDot.gameObject.SetActive(Achieved?false:true);
 	}
 
 	public void Description(string text)

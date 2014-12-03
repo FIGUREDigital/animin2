@@ -26,7 +26,6 @@ public class MinigameCollectorScript : MonoBehaviour
 
 	private List<GameObject> Collections = new List<GameObject>();
 	public GameObject CharacterRef;
-	public GameObject PointsLabel;
 
 	//private List<GameObject> AvailableSpotsToPlaceStars = new List<GameObject>();
 
@@ -61,8 +60,8 @@ public class MinigameCollectorScript : MonoBehaviour
 	public GameObject Stage;
 	private float? GameStartDelay;
 
-	public GameObject[] HeartUI;
-	public GameObject[] StarsUI;
+    private GameObject[] HeartUI{ get { return UiPages.GetPage(Pages.CubeMinigamePage).GetComponent<CubeMinigamesPageControls>().Hearts; } }
+    private GameObject[] StarsUI{ get { return UiPages.GetPage(Pages.CubeMinigamePage).GetComponent<CubeMinigamesPageControls>().Stars; } }
 
     void Start(){
         UIGlobalVariablesScript.Singleton.Shadow.transform.localScale = new Vector3(0.79f, 0.79f, 0.79f);
@@ -306,7 +305,7 @@ public class MinigameCollectorScript : MonoBehaviour
         if (Paused) return;
 
 		//UICOMMENT: PointsLabel.GetComponent<Text>().text = Points.ToString() + " pts";
-        UiPages.GetPage(Pages.CubeMinigamePage).GetComponent<CubeMinigamesPageControls>().LevelCounter.text = Points.ToString() + " pts";
+        UiPages.GetPage(Pages.CubeMinigamePage).GetComponent<CubeMinigamesPageControls>().PointLabel.text = Points.ToString() + " pts";
 		BetweenSceneData.Instance.Points = Points;
 		CharacterProgressScript progressScript = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>();
 
@@ -429,6 +428,7 @@ public class MinigameCollectorScript : MonoBehaviour
 				}
 			}
 			//UICOMMENT: UIGlobalVariablesScript.Singleton.TextForStarsInMiniCollector.text = StarsCollected.ToString();
+            UiPages.GetPage(Pages.CubeMinigamePage).GetComponent<CubeMinigamesPageControls>().LevelCounter.text= StarsCollected.ToString();
 		}
 	}
 	private void LoseHeart(bool resetIfZero)
@@ -436,7 +436,8 @@ public class MinigameCollectorScript : MonoBehaviour
 		Hearts--;
 		if( Hearts >0)
 		{
-            if (HeartUI[Hearts]!=null) HeartUI[Hearts].SetActive(false);
+            GameObject heart = UiPages.GetPage(Pages.CubeMinigamePage).GetComponent<CubeMinigamesPageControls>().Hearts[Hearts];
+            if (heart!=null) heart.SetActive(false);
 
 			if(resetIfZero) Reset();
 		}

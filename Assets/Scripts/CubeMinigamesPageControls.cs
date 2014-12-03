@@ -12,6 +12,8 @@ public class CubeMinigamesPageControls : MonoBehaviour {
 
     [SerializeField]
     private GameObject[] m_Hearts, m_Stars;
+    public GameObject[] Hearts { get { return m_Hearts; } }
+    public GameObject[] Stars { get { return m_Stars; } }
 
     [SerializeField]
     private GameObject m_JoystickFront, m_JoystickBack;
@@ -19,6 +21,7 @@ public class CubeMinigamesPageControls : MonoBehaviour {
     [SerializeField]
     private Text m_LevelCounter, m_Points;
     public Text LevelCounter { get { return m_LevelCounter; } }
+    public Text PointLabel { get { return m_Points; } }
 
     private bool isButtonDown = false;
     private int fingerID = -1;
@@ -33,7 +36,7 @@ public class CubeMinigamesPageControls : MonoBehaviour {
         CharacterControllerRef = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterControllerScript>();
         CharacterAnimationRef = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<MinigameAnimationControllerScript>();
 
-        if (UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef.GetComponent<MinigameCollectorScript>().Paused)
+        if (UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef==null || UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef.GetComponent<MinigameCollectorScript>().Paused)
             return;
         Debug.DrawLine(m_JoystickBack.transform.position, Input.mousePosition, Color.blue);
         Vector3 mousePosition = Vector3.zero;

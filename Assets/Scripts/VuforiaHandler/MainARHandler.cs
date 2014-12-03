@@ -62,6 +62,7 @@ public class MainARHandler : MonoBehaviour
     public Camera MainARCamera { get { return ARCamera; } }
 
     private GameScenes m_CurrentGameScene;
+    private GameScenes m_PreviousGameScene;
 
     public GameScenes CurrentGameScene
     {
@@ -136,6 +137,7 @@ public class MainARHandler : MonoBehaviour
     {
         if (!m_IsTracking)
         {
+            AchievementManager.Instance.AddToAchievment(AchievementManager.Achievements.ArMode);
             m_IsTracking = true;
             Debug.Log("OnTrackingFound : [" + mLastTrack.TrackableBehaviour.TrackableName + "];");
             if (m_CurrentGameScene == GameScenes.Caring)
@@ -353,17 +355,21 @@ public class MainARHandler : MonoBehaviour
             UnityEngine.Object.Destroy(UIGlobalVariablesScript.Singleton.NonARWorldRef);
             UnityEngine.Object.Destroy(UIGlobalVariablesScript.Singleton.MainCharacterRef);
         }
+        m_PreviousGameScene = m_CurrentGameScene;
         m_CurrentGameScene = newScene;
         UnityEngine.Object.Destroy(CurrentGameSceneGameObject);
         switch (m_CurrentGameScene)
         {
             case GameScenes.Caring:
                 CurrentGameSceneGameObject = (GameObject)GameObject.Instantiate(Resources.Load("Prefabs/ScenePrefabs/Caring"));
+                if (m_PreviousGameScene != null && (m_PreviousGameScene == GameScenes.MinigameCubeRunner || m_PreviousGameScene == GameScenes.MinigameCannon))
+                    UiPages.Next(Pages.CaringPage);
                 break;
 
             case GameScenes.MinigameCubeRunner:
                 CurrentGameSceneGameObject = (GameObject)GameObject.Instantiate(Resources.Load("Prefabs/ScenePrefabs/CubeMinigame"));
                 UiPages.Next(Pages.CubeMinigamePage);
+
                 break;
 
             case GameScenes.MinigameCannon:

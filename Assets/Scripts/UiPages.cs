@@ -54,6 +54,7 @@ public class UiPages : MonoBehaviour
     public const string CUBE_MINIGAME_PAGE = "CubeMinigamePage";
 	public const string CREDITS_PAGE = "CreditsPage";
 	private static Pages mCurrentPage;
+    public static Pages CurrentPage{ get { return mCurrentPage; } }
 	private static GameObject[] mPages;
 	private static GameObject[] mBackMap;
 	private static UiState mCurrentState;

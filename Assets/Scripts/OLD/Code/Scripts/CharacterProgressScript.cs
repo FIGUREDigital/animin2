@@ -163,6 +163,15 @@ public class HappyStateRange
 
 public class CharacterProgressScript : MonoBehaviour
 {
+    private CaringPageControls m_CaringPageControls;
+    public CaringPageControls CaringPageControls{
+        get{
+            if (m_CaringPageControls == null)
+                m_CaringPageControls = UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>();
+            return m_CaringPageControls;
+        }
+    }
+
     //public List<AchievementId> Achievements = new List<AchievementId>();
     public DateTime NextHappynBonusTimeAt;
     public DateTime LastSavePerformed;
@@ -541,12 +550,12 @@ public class CharacterProgressScript : MonoBehaviour
     {
         Debug.Log("Hiding popup menus");
 				//UICOMMENT
-        //UIGlobalVariablesScript.Singleton.AlarmUI.SetActive(false);
-        //UIGlobalVariablesScript.Singleton.StereoUI.SetActive(false);
-        //UIGlobalVariablesScript.Singleton.LightbulbUI.SetActive(false);
-        //UIGlobalVariablesScript.Singleton.EDMBoxUI.SetActive(false);
-        //UIGlobalVariablesScript.Singleton.JunoUI.SetActive(false);
-        //UIGlobalVariablesScript.Singleton.PianoUI.SetActive(false);
+        CaringPageControls.AlarmUI.SetActive(false);
+        CaringPageControls.PianoUI.SetActive(false);
+        CaringPageControls.LightbulbUI.SetActive(false);
+        CaringPageControls.EDMBoxUI.SetActive(false);
+        CaringPageControls.JunoUI.SetActive(false);
+        CaringPageControls.PianoUI.SetActive(false);
     }
 
     private GameObject GetClosestFoodToEat()
@@ -798,6 +807,7 @@ public class CharacterProgressScript : MonoBehaviour
             }
             */
             //ADRIAN. We need to fill this out so that it can tell us Yes/No whether or not the mouse is currently over the UI. Apparently "GUIElement.HitTest(Vector3)" will work, but we need to find a way to get the UITextures to work. Perhaps we should parent all the UIs to a single object which we can access with a singleton?
+            hadUItouch = UiPages.IsMouseOverUI();
         }
 
 
@@ -1448,12 +1458,12 @@ public class CharacterProgressScript : MonoBehaviour
 							
 
                                 bool isItemAlreadyOn = false;
-                                if ((UIGlobalVariablesScript.Singleton.AlarmUI.activeInHierarchy
-                                    || UIGlobalVariablesScript.Singleton.StereoUI.activeInHierarchy
-                                    || UIGlobalVariablesScript.Singleton.JunoUI.activeInHierarchy
-                                    || UIGlobalVariablesScript.Singleton.EDMBoxUI.activeInHierarchy
-                                    || UIGlobalVariablesScript.Singleton.PianoUI.activeInHierarchy
-                                    || UIGlobalVariablesScript.Singleton.LightbulbUI.activeInHierarchy)
+                                if ((CaringPageControls.AlarmUI.activeInHierarchy
+                                    || CaringPageControls.PianoUI.activeInHierarchy
+                                    || CaringPageControls.JunoUI.activeInHierarchy
+                                    || CaringPageControls.EDMBoxUI.activeInHierarchy
+                                    || CaringPageControls.PianoUI.activeInHierarchy
+                                    || CaringPageControls.LightbulbUI.activeInHierarchy)
                                     && (LastKnownObjectWithMenuUp == moveHitInfo.collider.gameObject))
                                 {
                                     isItemAlreadyOn = true;
@@ -1465,9 +1475,9 @@ public class CharacterProgressScript : MonoBehaviour
                                     {
                                         HidePopupMenus();
 									
-                                        //UIGlobalVariablesScript.Singleton.AlarmUI.GetComponent<UIWidget>().SetAnchor(moveHitInfo.collider.gameObject);
+                                        CaringPageControls.TargetItem = moveHitInfo.collider.gameObject;
                                         //TriggeredHoldAction = true;
-                                        UIGlobalVariablesScript.Singleton.AlarmUI.SetActive(true);
+                                        CaringPageControls.AlarmUI.SetActive(true);
                                         LastKnownObjectWithMenuUp = moveHitInfo.collider.gameObject;
                                         preventMovingTo = true;
                                     }
@@ -1478,9 +1488,9 @@ public class CharacterProgressScript : MonoBehaviour
 
                                         if (edmScript != null)
                                         {
-                                            edmScript.SetInterface(UIGlobalVariablesScript.Singleton.EDMBoxUI);
-                                            //UIGlobalVariablesScript.Singleton.EDMBoxUI.GetComponent<UIWidget>().SetAnchor(moveHitInfo.collider.gameObject);
-                                            UIGlobalVariablesScript.Singleton.EDMBoxUI.SetActive(true);
+                                            edmScript.SetInterface(CaringPageControls.EDMBoxUI);
+                                            CaringPageControls.TargetItem = moveHitInfo.collider.gameObject;
+                                            CaringPageControls.EDMBoxUI.SetActive(true);
                                         }
                                         else
                                         {
@@ -1494,9 +1504,9 @@ public class CharacterProgressScript : MonoBehaviour
                                     {
 
                                         HidePopupMenus();
-                                        moveHitInfo.collider.gameObject.GetComponent<EDMBoxScript>().SetInterface(UIGlobalVariablesScript.Singleton.JunoUI);
-                                        //UIGlobalVariablesScript.Singleton.JunoUI.GetComponent<UIWidget>().SetAnchor(moveHitInfo.collider.gameObject);
-                                        UIGlobalVariablesScript.Singleton.JunoUI.SetActive(true);
+                                        moveHitInfo.collider.gameObject.GetComponent<EDMBoxScript>().SetInterface(CaringPageControls.JunoUI);
+                                        CaringPageControls.TargetItem = moveHitInfo.collider.gameObject;
+                                        CaringPageControls.JunoUI.SetActive(true);
 									
                                         LastKnownObjectWithMenuUp = moveHitInfo.collider.gameObject;
                                         preventMovingTo = true;
@@ -1505,9 +1515,9 @@ public class CharacterProgressScript : MonoBehaviour
                                     {
                                         HidePopupMenus();
 
-                                        moveHitInfo.collider.gameObject.GetComponent<EDMBoxScript>().SetInterface(UIGlobalVariablesScript.Singleton.PianoUI);
-                                        //UIGlobalVariablesScript.Singleton.PianoUI.GetComponent<UIWidget>().SetAnchor(moveHitInfo.collider.gameObject);
-                                        UIGlobalVariablesScript.Singleton.PianoUI.SetActive(true);
+                                        moveHitInfo.collider.gameObject.GetComponent<EDMBoxScript>().SetInterface(CaringPageControls.PianoUI);
+                                        CaringPageControls.TargetItem = moveHitInfo.collider.gameObject;
+                                        CaringPageControls.PianoUI.SetActive(true);
 									
                                         LastKnownObjectWithMenuUp = moveHitInfo.collider.gameObject;
                                         preventMovingTo = true;
@@ -1515,17 +1525,18 @@ public class CharacterProgressScript : MonoBehaviour
                                     else if (moveHitInfo.collider/*.GetComponent<ReferencedObjectScript>().Reference*/.GetComponent<UIPopupItemScript>().Menu == MenuFunctionalityUI.Mp3Player)
                                     {
                                         HidePopupMenus();
-                                        //UIGlobalVariablesScript.Singleton.StereoUI.GetComponent<UIWidget>().SetAnchor(moveHitInfo.collider.gameObject);
-                                        UIGlobalVariablesScript.Singleton.StereoUI.SetActive(true);
+                                        CaringPageControls.TargetItem = moveHitInfo.collider.gameObject;
+                                        CaringPageControls.PianoUI.SetActive(true);
 
                                         LastKnownObjectWithMenuUp = moveHitInfo.collider.gameObject;
                                         preventMovingTo = true;
                                     }
-                                    else if (moveHitInfo.collider/*.GetComponent<ReferencedObjectScript>().Reference*/.GetComponent<UIPopupItemScript>().Menu == MenuFunctionalityUI.Lightbulb)
+                                    else if (moveHitInfo.collider.GetComponent<UIPopupItemScript>().Menu == MenuFunctionalityUI.Lightbulb)
                                     {
                                         HidePopupMenus();
-                                        //UIGlobalVariablesScript.Singleton.LightbulbUI.GetComponent<UIWidget>().SetAnchor(moveHitInfo.collider.gameObject);
-                                        UIGlobalVariablesScript.Singleton.LightbulbUI.SetActive(true);
+                                        //CaringPageControls.LightbulbUI.GetComponent<UIWidget>().SetAnchor(moveHitInfo.collider.gameObject);
+                                        CaringPageControls.TargetItem = moveHitInfo.collider.gameObject;
+                                        CaringPageControls.LightbulbUI.SetActive(true);
 									
                                         LastKnownObjectWithMenuUp = moveHitInfo.collider.gameObject;
                                         preventMovingTo = true;
@@ -1650,7 +1661,7 @@ public class CharacterProgressScript : MonoBehaviour
 
                     if (!Input.GetButton("Fire1"))
                     {
-                        if (hitInfo.collider.name.StartsWith("Extended"))
+                        if (hitInfo.collider!=null && hitInfo.collider.name.StartsWith("Extended"))
                         {
                             DragableObject.AddComponent<DroppedItemScript>();
                         }

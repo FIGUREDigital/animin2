@@ -27,9 +27,56 @@ public class CaringPageControls : MonoBehaviour {
 	private UnityEngine.UI.Image Icon3;
 	[SerializeField]
 	private GameObject PhotoSaved;
+
+
+    [SerializeField]
+    private GameObject m_StereoUI;
+    public GameObject StereoUI{ get { return m_StereoUI; } }
+    [SerializeField]
+    private GameObject m_AlarmUI;
+    public GameObject AlarmUI{ get { return m_AlarmUI; } }
+    [SerializeField]
+    private GameObject m_LightbulbUI;
+    public GameObject LightbulbUI{ get { return m_LightbulbUI; } }
+    [SerializeField]
+    private GameObject m_EDMBoxUI;
+    public GameObject EDMBoxUI{ get { return m_EDMBoxUI; } }
+    [SerializeField]
+    private GameObject m_JunoUI;
+    public GameObject JunoUI{ get { return m_JunoUI; } }
+    [SerializeField]
+    private GameObject m_PianoUI;
+    public GameObject PianoUI{ get { return m_PianoUI; } }
+
+    private GameObject m_TargetItem;
+    public GameObject TargetItem{
+        get { return m_TargetItem; }
+        set { m_TargetItem = value;}
+    }
+
+    private GameObject[] m_PopupUIs;
+    private GameObject[] PopupUIs{ get { return m_PopupUIs; } }
+
+    private LighbulbSwitchOnOffScript m_LightScript;
+    private LighbulbSwitchOnOffScript LightScript{
+        get {
+            if (m_LightScript == null)
+                m_LightScript = TargetItem.GetComponent<LighbulbSwitchOnOffScript>();
+            return m_LightScript;
+        }
+    }
+    private EDMBoxScript m_EDMScript;
+    private EDMBoxScript EDMScript {
+        get {
+            if (m_EDMScript == null)
+                m_EDMScript = TargetItem.GetComponent<EDMBoxScript>();
+            return m_EDMScript;
+        }
+    }
 	
 	void Start()
 	{
+        m_PopupUIs = new GameObject[]{ AlarmUI, LightbulbUI, EDMBoxUI, JunoUI, PianoUI };
 		mInventoryControls = Inventory.GetComponent<InventoryControls> ();
 		PopulateButtons ();
 	}
@@ -266,13 +313,49 @@ public class CaringPageControls : MonoBehaviour {
 		return null;
 
 	}
+
+    public void LightSwitch(){
+        LighbulbSwitchOnOffScript script = TargetItem.GetComponent<LighbulbSwitchOnOffScript>();
+        if (TargetItem.GetComponent<LighbulbSwitchOnOffScript>() != null)
+        {
+            script.Switch();
+        }
+    }
+    public void JunoToggle(int Key){
+        Debug.Log("JunoToggle");
+        int k = 16 + Key;
+        EDMMixerScript.Singleton.KeysOn[k] = !EDMMixerScript.Singleton.KeysOn[k];
+    }
+    public void EDMToggle(int Key){
+        Debug.Log("EDMToggle");
+        int k = 8 + Key;
+        EDMMixerScript.Singleton.KeysOn[k] = !EDMMixerScript.Singleton.KeysOn[k];
+    }
+    public void PianoToggle(int Key){
+        Debug.Log("PianoToggle");
+        int k = 0 + Key;
+        EDMMixerScript.Singleton.KeysOn[k] = !EDMMixerScript.Singleton.KeysOn[k];
+    }
+
 	void Update()
 	{
-
 		if(PersistentData.InventoryUpdated)
 		{
 			PersistentData.InventoryUpdated = false;
 			PopulateButtons();
 		}
+        if(m_TargetItem!=null){
+            for (int i = 0; i < PopupUIs.Length; i++)
+            {
+                if (PopupUIs[i] != null && PopupUIs[i].activeInHierarchy)
+                {
+                    Vector3 pos;
+                    pos = Camera.main.WorldToScreenPoint(m_TargetItem.transform.position);
+                    pos -= new Vector3(Screen.width, Screen.height, 0) / 2;
+                    pos.z = 0;
+                    PopupUIs[i].transform.localPosition = pos;
+                }
+            }
+        }
 	}
 }

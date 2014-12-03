@@ -15,8 +15,8 @@ public class SliderController : MonoBehaviour
 	[SerializeField]
 	private Slider mSlider;
 	private RectTransform mImage;
-	private const float min = -16;
-	private const float max = 136;
+	private const float min = 0;
+	private const float max = 100;
 
 	void Start()
 	{
@@ -35,7 +35,10 @@ public class SliderController : MonoBehaviour
         UIGlobalVariablesScript.Singleton.FitnessControlBarRef.transform.localPosition = new Vector3(Mathf.Lerp(-80.51972f, 617.2906f, ProfilesManagementScript.Singleton.CurrentAnimin.Fitness / 100.0f), UIGlobalVariablesScript.Singleton.FitnessControlBarRef.transform.localPosition.y, 0);
         //UIGlobalVariablesScript.Singleton.EvolutionControlBarRef.GetComponent<UISlider>().value = Evolution / 100.0f;
 		*/
-		switch(mSlider)
+        Debug.Log("ProfilesManagementScript.Singleton : [" + ProfilesManagementScript.Singleton + "];");
+        Debug.Log("ProfilesManagementScript.Singleton.CurrentAnimin : [" + ProfilesManagementScript.Singleton.CurrentAnimin + "];");
+        Debug.Log("ProfilesManagementScript.Singleton.CurrentAnimin.Happy : [" + ProfilesManagementScript.Singleton.CurrentAnimin.Happy + "];");
+        switch(mSlider)
 		{
 		case Slider.Happiness:
 			leftResult = Mathf.Lerp(min, max, ProfilesManagementScript.Singleton.CurrentAnimin.Happy / PersistentData.MaxHappy);
@@ -58,8 +61,9 @@ public class SliderController : MonoBehaviour
 			break;
 		}
 
-		mImage.anchorMin = new Vector2(leftResult, mImage.anchorMin.y);
-		mImage.anchorMax = new Vector2(rightResult, mImage.anchorMax.y);
+		//mImage.anchorMin = new Vector2(leftResult, mImage.anchorMin.y);
+		//mImage.anchorMax = new Vector2(rightResult, mImage.anchorMax.y);
+        mImage.transform.localPosition = new Vector3(leftResult, mImage.transform.localPosition.y, 0);
 
 	}
 }

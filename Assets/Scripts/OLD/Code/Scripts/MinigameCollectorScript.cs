@@ -60,8 +60,19 @@ public class MinigameCollectorScript : MonoBehaviour
 	public GameObject Stage;
 	private float? GameStartDelay;
 
-    private GameObject[] HeartUI{ get { return UiPages.GetPage(Pages.CubeMinigamePage).GetComponent<CubeMinigamesPageControls>().Hearts; } }
-    private GameObject[] StarsUI{ get { return UiPages.GetPage(Pages.CubeMinigamePage).GetComponent<CubeMinigamesPageControls>().Stars; } }
+    private GameObject[] m_HeartUI, m_StarsUI;
+    private GameObject[] HeartUI{
+        get {
+            if (m_HeartUI==null)m_HeartUI = UiPages.GetPage(Pages.CubeMinigamePage).GetComponent<CubeMinigamesPageControls>().Hearts;
+            return m_HeartUI;
+        }
+    }
+    private GameObject[] StarsUI{ 
+        get {
+            if (m_StarsUI==null)m_StarsUI = UiPages.GetPage(Pages.CubeMinigamePage).GetComponent<CubeMinigamesPageControls>().Stars;
+            return m_StarsUI;
+        }
+    }
 
     void Start(){
         UIGlobalVariablesScript.Singleton.Shadow.transform.localScale = new Vector3(0.79f, 0.79f, 0.79f);

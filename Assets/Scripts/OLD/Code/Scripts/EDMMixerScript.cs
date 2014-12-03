@@ -43,7 +43,7 @@ public class EDMMixerScript : MonoBehaviour
 	void Update () 
 	{
 		//UICOMMENT: if(!ProfilesManagementScript.Singleton.CurrentProfile.Settings.AudioEnabled) 
-		if(true)
+		if(false)
 		{
 			if(isPlaying)
 			{

@@ -21,7 +21,16 @@ public class DragDropMainBarItem : MonoBehaviour, IBeginDragHandler, IDragHandle
 	{
 		Debug.Log("DETECTED DRAG DROP RELEASE");
 
-
+		RaycastHit hit;
+		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+		if (Physics.Raycast(ray, out hit))
+		{
+			Debug.Log(hit.point);
+		}
+		if(hit.collider.gameObject.layer != 12) // Gross, check the floor layer
+		{
+			return;
+		}
 			
 				//ReferencedObjectScript refScript = this.GetComponent<ReferencedObjectScript>();
 				InterfaceItemLinkToModelScript modelLink = GetComponent<InterfaceItemLinkToModelScript>();
@@ -30,6 +39,7 @@ public class DragDropMainBarItem : MonoBehaviour, IBeginDragHandler, IDragHandle
 					GameObject resourceLoaded = (GameObject)Resources.Load(modelLink.Item3DPrefab);
 					GameObject child = (GameObject)GameObject.Instantiate(resourceLoaded);
 					UIPopupItemScript popScript = child.GetComponent<UIPopupItemScript>();
+					ProfilesManagementScript.Singleton.CurrentAnimin.RemoveItemFromInventory (modelLink.ItemID,1);
 					
 					child.transform.parent = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().ActiveWorld.transform;
 					
@@ -47,9 +57,8 @@ public class DragDropMainBarItem : MonoBehaviour, IBeginDragHandler, IDragHandle
 						UIGlobalVariablesScript.Singleton.SoundEngine.Play(GenericSoundId.DropItem);
 					else if(popScript.Type == PopupItemType.Medicine)
 						UIGlobalVariablesScript.Singleton.SoundEngine.Play(GenericSoundId.DropMeds);
-					
 					Transform trans = child.transform;
-					trans.position = eventData.worldPosition;
+					trans.position = hit.point;
 					UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().GroundItems.Add(child);
 				
 		

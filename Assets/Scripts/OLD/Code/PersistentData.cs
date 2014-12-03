@@ -33,6 +33,7 @@ public class PersistentData
 	public List<AniminSubevolutionStageId> SubstagesCompleted = new List<AniminSubevolutionStageId>(); 
 	public string Username;
 	public System.DateTime CreatedOn;
+	public static bool InventoryUpdated;
 
 
 	private int age;
@@ -223,6 +224,9 @@ public class PersistentData
 			if(Inventory[i].Id == id)
 			{
 				Inventory[i].Count -= count;
+				Debug.Log ("Removed "+ count + " " + id.ToString());
+
+				InventoryUpdated = true;
 				if(Inventory[i].Count <= 0)
 				{
 					Inventory.RemoveAt(i);

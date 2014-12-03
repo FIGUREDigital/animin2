@@ -31,6 +31,11 @@ public class CaringPageControls : MonoBehaviour {
 	void Start()
 	{
 		mInventoryControls = Inventory.GetComponent<InventoryControls> ();
+		PopulateButtons ();
+	}
+	void PopulateButtons ()
+	{
+		Debug.Log ("Populating buttons");
 		bool FoodIconSet = false;
 		bool ItemIconSet = false;
 		bool MediIconSet = false;
@@ -43,6 +48,7 @@ public class CaringPageControls : MonoBehaviour {
 				Icon1.GetComponent<InterfaceItemLinkToModelScript>().Item3DPrefab = data.PrefabId;
 				Icon1.GetComponent<InterfaceItemLinkToModelScript>().ItemID = data.Id;
 				FoodIconSet = true;
+				Debug.Log ("Food buttons set to " + data.Id.ToString() +"\n Currently there are "+ ProfilesManagementScript.Singleton.CurrentAnimin.Inventory[i].Count + " " + data.Id.ToString());
 			} 
 			else if(InventoryItemData.Items[(int)ProfilesManagementScript.Singleton.CurrentAnimin.Inventory[i].Id].ItemType == PopupItemType.Item && !ItemIconSet)
 			{
@@ -51,6 +57,8 @@ public class CaringPageControls : MonoBehaviour {
 				Icon2.GetComponent<InterfaceItemLinkToModelScript>().Item3DPrefab = data.PrefabId;
 				Icon2.GetComponent<InterfaceItemLinkToModelScript>().ItemID = data.Id;
 				ItemIconSet = true;
+				Debug.Log ("Item buttons set to " + data.Id.ToString() +"\n Currently there are "+ ProfilesManagementScript.Singleton.CurrentAnimin.Inventory[i].Count + " " + data.Id.ToString());
+
 			}
 			else if(InventoryItemData.Items[(int)ProfilesManagementScript.Singleton.CurrentAnimin.Inventory[i].Id].ItemType == PopupItemType.Medicine && !MediIconSet)
 			{
@@ -59,6 +67,8 @@ public class CaringPageControls : MonoBehaviour {
 				Icon3.GetComponent<InterfaceItemLinkToModelScript>().Item3DPrefab = data.PrefabId;
 				Icon3.GetComponent<InterfaceItemLinkToModelScript>().ItemID = data.Id;
 				MediIconSet = true;
+				Debug.Log ("Medicine buttons set to " + data.Id.ToString() +"\n Currently there are "+ ProfilesManagementScript.Singleton.CurrentAnimin.Inventory[i].Count + " " + data.Id.ToString());
+
 			}
 		}
 	}
@@ -255,5 +265,14 @@ public class CaringPageControls : MonoBehaviour {
 		}
 		return null;
 
+	}
+	void Update()
+	{
+
+		if(PersistentData.InventoryUpdated)
+		{
+			PersistentData.InventoryUpdated = false;
+			PopulateButtons();
+		}
 	}
 }

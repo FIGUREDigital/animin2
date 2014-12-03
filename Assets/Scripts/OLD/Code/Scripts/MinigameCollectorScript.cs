@@ -199,6 +199,9 @@ public class MinigameCollectorScript : MonoBehaviour
 
 	private bool CanBeginLevelSwipe()
 	{
+        return false;
+        return !UiPages.IsMouseOverUI();
+
 		// CHECK FOR UI TOUCH
 
 			// This grabs the camera attached to the NGUI UI_Root object.
@@ -265,7 +268,9 @@ public class MinigameCollectorScript : MonoBehaviour
 	private void ExitMinigame(bool succesfullyCompleted)
 	{
 		UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterControllerScript>().Forces.Clear();
-        UIClickButtonMasterScript.HandleClick(UIFunctionalityId.CloseCurrentMinigame, null);
+        //UIClickButtonMasterScript.HandleClick(UIFunctionalityId.CloseCurrentMinigame, null);
+        BetweenSceneData.Instance.ReturnFromMiniGame = true;
+        MainARHandler.Get.ChangeSceneToCaring();
 	}
 	
 	
@@ -301,6 +306,7 @@ public class MinigameCollectorScript : MonoBehaviour
         if (Paused) return;
 
 		//UICOMMENT: PointsLabel.GetComponent<Text>().text = Points.ToString() + " pts";
+        UiPages.GetPage(Pages.CubeMinigamePage).GetComponent<CubeMinigamesPageControls>().LevelCounter.text = Points.ToString() + " pts";
 		BetweenSceneData.Instance.Points = Points;
 		CharacterProgressScript progressScript = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>();
 
@@ -329,8 +335,6 @@ public class MinigameCollectorScript : MonoBehaviour
 			{
 				if(UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef.GetComponent<MinigameCollectorScript>().TutorialId == MinigameCollectorScript.TutorialStateId.ShowSwipeLevel)
 					UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef.GetComponent<MinigameCollectorScript>().AdvanceTutorial();
-
-
 				//fast swipe
 				if((Time.time - TimeStartedSwipe) <= 0.4f)
 				{
@@ -343,7 +347,6 @@ public class MinigameCollectorScript : MonoBehaviour
 						snapAngle = (int)(snapAngle / 90.0f) * 90f;
 						//Debug.Log("PATH A");/
 					}
-
 					// rotate left
 					else
 					{
@@ -351,23 +354,15 @@ public class MinigameCollectorScript : MonoBehaviour
 						snapAngle = (int)(snapAngle / 90.0f) * 90f;
 						//Debug.Log("PATH B");
 					}
-					
-
 				}
-
 				// slow swipe
 				else
 				{
-
-
 				}
-
-
-			}
+            }
 			else
 			{
-
-				isSwipingAllowed = false;
+                isSwipingAllowed = false;
 			}
 
 
@@ -441,7 +436,7 @@ public class MinigameCollectorScript : MonoBehaviour
 		Hearts--;
 		if( Hearts >0)
 		{
-			HeartUI[Hearts].SetActive(false);
+            if (HeartUI[Hearts]!=null) HeartUI[Hearts].SetActive(false);
 
 			if(resetIfZero) Reset();
 		}

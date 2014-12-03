@@ -59,6 +59,7 @@ public class MainARHandler : MonoBehaviour
 
     [SerializeField]
     private Camera ARCamera;
+    public Camera MainARCamera { get { return ARCamera; } }
 
     private GameScenes m_CurrentGameScene;
 
@@ -346,6 +347,12 @@ public class MainARHandler : MonoBehaviour
 
     private void LoadNewGameScene(GameScenes newScene)
     {
+        if (mLastTrack!=null && mLastTrack.gameObject.transform.childCount!=0)
+        {
+            UnityEngine.Object.Destroy(UIGlobalVariablesScript.Singleton.ARWorldRef);
+            UnityEngine.Object.Destroy(UIGlobalVariablesScript.Singleton.NonARWorldRef);
+            UnityEngine.Object.Destroy(UIGlobalVariablesScript.Singleton.MainCharacterRef);
+        }
         m_CurrentGameScene = newScene;
         UnityEngine.Object.Destroy(CurrentGameSceneGameObject);
         switch (m_CurrentGameScene)
@@ -356,6 +363,7 @@ public class MainARHandler : MonoBehaviour
 
             case GameScenes.MinigameCubeRunner:
                 CurrentGameSceneGameObject = (GameObject)GameObject.Instantiate(Resources.Load("Prefabs/ScenePrefabs/CubeMinigame"));
+                UiPages.Next(Pages.CubeMinigamePage);
                 break;
 
             case GameScenes.MinigameCannon:

@@ -12,7 +12,8 @@ public class MinigameCharacterControllerKeyboard : MonoBehaviour {
         CharacterAnimationRef = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<MinigameAnimationControllerScript>();
 	}
 	
-	// Update is called once per frame
+    // Update is called once per frame
+    /*
 	void Update () {
         Vector3 vel = Vector3.zero;
         if (Input.GetKey(KeyCode.UpArrow))
@@ -34,11 +35,12 @@ public class MinigameCharacterControllerKeyboard : MonoBehaviour {
         CharacterController.MovementDirection = vel;
         if(vel != Vector3.zero)CharacterController.RotateToLookAtPoint(CharacterController.gameObject.transform.position + vel);
 
-        CharacterAnimationRef.IsRunning = vel != Vector3.zero;
+        if (!CharacterAnimationRef.IsRunning)CharacterAnimationRef.IsRunning = vel != Vector3.zero;
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
             CharacterController.PressedJumb = true;
         }
     }
+        */
 }

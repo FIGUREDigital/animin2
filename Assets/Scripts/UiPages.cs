@@ -2,6 +2,11 @@
 using System.Collections;
 
 //Defines the different sections of menu which will be loaded and used
+using UnityEngine.EventSystems;
+using System.Collections.Generic;
+using UnityEngine.UI;
+
+
 public enum UiState
 {
 	Frontend,
@@ -24,6 +29,7 @@ public enum Pages
 	AchievementsPage,
 	PrivacyPolicyPage,
 	CreditsPage,
+    CubeMinigamePage,
 	MAINSCENE_COUNT
 }
 
@@ -43,13 +49,18 @@ public class UiPages : MonoBehaviour
 	public const string STATS_PAGE = "StatsPage";
 	public const string MINIGAMES_PAGE = "MinigamesPage";
 	public const string SETTINGS_PAGE = "SettingsPage";
-	public const string ACHIEVEMENTS_PAGE = "AchievementsPage";
-	public const string PRIVICY_POLICY_PAGE = "PrivacyPolicyPage";
+    public const string ACHIEVEMENTS_PAGE = "AchievementsPage";
+    public const string PRIVICY_POLICY_PAGE = "PrivacyPolicyPage";
+    public const string CUBE_MINIGAME_PAGE = "CubeMinigamePage";
 	public const string CREDITS_PAGE = "CreditsPage";
 	private static Pages mCurrentPage;
 	private static GameObject[] mPages;
 	private static GameObject[] mBackMap;
 	private static UiState mCurrentState;
+
+    public static GameObject GetPage(Pages page){
+        return mPages[(int)page];
+    }
 
 	void Start ()
 	{
@@ -117,6 +128,7 @@ public class UiPages : MonoBehaviour
 		mBackMap [(int)Pages.AchievementsPage] = mPages [(int)Pages.CaringPage];
 		mBackMap [(int)Pages.PrivacyPolicyPage] = mPages [(int)Pages.SettingsPage];
 		mBackMap [(int)Pages.CreditsPage] = mPages [(int)Pages.SettingsPage];
+        mBackMap[(int)Pages.MinigamesPage] = mPages[(int)Pages.CaringPage];
 	}
 	private static string GetPrefabName(Pages page)
 	{
@@ -152,10 +164,13 @@ public class UiPages : MonoBehaviour
 			break;
 		case Pages.PrivacyPolicyPage:
 			name = PRIVICY_POLICY_PAGE;
-			break;
-		case Pages.CreditsPage:
-			name = CREDITS_PAGE;
-			break;
+                break;
+        case Pages.CreditsPage:
+            name = CREDITS_PAGE;
+            break;
+        case Pages.CubeMinigamePage:
+            name = CUBE_MINIGAME_PAGE;
+            break;
 		default:
 			Debug.LogError("NO SUCH PAGE: " + page.ToString());
 			name = null;
@@ -200,10 +215,38 @@ public class UiPages : MonoBehaviour
 
 	private static void Transition(GameObject from, GameObject to)
 	{
-		from.SetActive (false);
+        if(from!=null)from.SetActive (false);
 		to.SetActive (true);
 		mCurrentPage = to.GetComponent<PageID> ().ID;
 	}
 
 
+
+    public static bool IsMouseOverUI(){
+        PointerEventData pe = new PointerEventData(EventSystem.current);
+        pe.position =  Input.mousePosition;
+
+        List<RaycastResult> hits = new List<RaycastResult>();
+        EventSystem.current.RaycastAll( pe, hits );
+
+        bool hit = false;
+        GameObject hgo = null;
+        string gos = "";
+        foreach(RaycastResult h in hits)
+        {
+            GameObject g = h.gameObject;
+            gos += (gos == "") ? g.name : " | " + g.name;
+            hit = ( g.name != "BackgroundEventCatcher" &&
+                (g.GetComponent<Button>() || g.GetComponent<Canvas>() || g.GetComponent<InputField>())
+            );
+            if(hit)
+            {
+                break;
+            }
+        }
+        //Debug.Log("gos : ["+gos+"];");
+        if (hit)
+            Debug.Log("Hit");
+        return hit;
+    }
 }

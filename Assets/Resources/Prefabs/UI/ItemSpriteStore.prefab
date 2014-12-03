@@ -64,6 +64,16 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 30c02857666e247719bc909fc569535f, type: 3}
   - {fileID: 21300000, guid: 6e9fa9b01753a4848b6a756d1a9ed396, type: 3}
   - {fileID: 21300000, guid: 9d578b940e38c6f4ab19055555ff0d12, type: 3}
+  MedelSprites:
+  - {fileID: 21300000, guid: d8a52f4433faf1e4992316ebc9cb274d, type: 3}
+  - {fileID: 21300000, guid: faf30d8d5b5d46245b42b8a7cf49ae3d, type: 3}
+  - {fileID: 21300000, guid: 1f8b93f67a8b0ba478ac18c910bb91ac, type: 3}
+  - {fileID: 21300000, guid: 2976748e4894a4047b439a1f2a7a841e, type: 3}
+  - {fileID: 21300000, guid: 6efaa1c14bbacfa47b820e2a4dadb269, type: 3}
+  - {fileID: 21300000, guid: 2e2160d82e1248e40a4e21ed140a4a2a, type: 3}
+  - {fileID: 21300000, guid: 6863bf0393721a9459da96d488d61e65, type: 3}
+  - {fileID: 21300000, guid: e703942ef7d80bd4185da7267c4f3366, type: 3}
+  - {fileID: 21300000, guid: b36aeacb29a9e8041842f035e41ef18f, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

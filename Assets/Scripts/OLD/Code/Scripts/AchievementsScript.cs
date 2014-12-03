@@ -1,22 +1,34 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-
+public enum AchievementMedels
+{
+	achievementIconGold,
+	achievementIconSilver,
+	achievementIconBronze,
+	achievementIconStar,
+	achievementIconMarker1,
+	achievementIconMarker2,
+	achievementIconMarker3,
+	achievementIconWorm,
+	achievementIconBirthday,
+	Count
+}
 public class AchievementsScript : MonoBehaviour 
 {
 	public static AchievementsScript Singleton;
 
 	public GameObject AchievementObject;
-	public Image MedalIcon;
+	public UnityEngine.UI.Image MedalIcon;
 	public Text Title;
 	public Text Description;
-	public Image BackgroundGradient;
+	public UnityEngine.UI.Image BackgroundGradient;
 
 	private float Timer;
 	private float Alpha = 0;
 	private float VerticalMovement;
 
-	void Awake()
+	void Start()
 	{
 		Singleton = this;
 		//Show(AchievementTypeId.Gold, 400);
@@ -27,92 +39,87 @@ public class AchievementsScript : MonoBehaviour
 		AchievementObject.SetActive(true);
 		Timer = 5;
 		VerticalMovement = 0;
-		//AchievementObject.GetComponent<UIWidget>().bottomAnchor.absolute = -509;
-
+		//AchievementObject.GetComponent<RectTransform>().bottomAnchor.absolute = -509;
+		SpriteStore store = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript> ().SpriteStore;
 		switch(id)
 		{
 		case AchievementTypeId.Gold:
 			{
 				Title.text = "Gold Award!";
-				//BackgroundGradient.color = new Color32(247,255,38,255);
+				BackgroundGradient.color = new Color32(247,255,38,255);
 				Description.text = string.Format(@"Well done! you scored {0} points.", points);
-				//MedalIcon.spriteName = @"achievementIconGold";
+				MedalIcon.sprite = store.GetMedel(AchievementMedels.achievementIconGold);
 				break;
 			}
 		case AchievementTypeId.Bronze:
 			{
 				Title.text = "Bronze Award!";
-				//BackgroundGradient.color = new Color32(247,255,38,255);
+				BackgroundGradient.color = new Color32(247,255,38,255);
 				Description.text = string.Format(@"Well done! you scored {0} points.", points);
-				//MedalIcon.spriteName = @"achievementBGBronze";
+				MedalIcon.sprite = store.GetMedel(AchievementMedels.achievementIconBronze);
 				break;
 			}
 		case AchievementTypeId.Silver:
 			{
 				Title.text = "Silver Award!!";
-				//BackgroundGradient.color = new Color32(247,255,38,255);
+				BackgroundGradient.color = new Color32(247,255,38,255);
 				Description.text = string.Format(@"Well done! you scored {0} points.", points);
-				//MedalIcon.spriteName = @"achievementIconSilver";
+				MedalIcon.sprite = store.GetMedel(AchievementMedels.achievementIconSilver);
 				break;
 			}
 		case AchievementTypeId.Achievement:
 			{
 				Title.text = "Achievement!";
-				//BackgroundGradient.color = new Color32(89,255,38,255);
+				BackgroundGradient.color = new Color32(89,255,38,255);
 				Description.text = "Congratulations, you got an achievement.";
-				//MedalIcon.spriteName = @"achievementIconStar";
+				MedalIcon.sprite = store.GetMedel(AchievementMedels.achievementIconStar);
 				break;
 			}
 
 		case AchievementTypeId.Evolution:
 			{
 				Title.text = "Your Animin has evolved!";
-				//BackgroundGradient.color = new Color32(89,255,38,255);
+				BackgroundGradient.color = new Color32(89,255,38,255);
 				Description.text = "Well done! Keep taking care of your Animin and training them up.";
-				//MedalIcon.spriteName = @"achievementMarker3";
+				MedalIcon.sprite = store.GetMedel(AchievementMedels.achievementIconMarker3);
 				break;
 			}
 
 		case AchievementTypeId.EvolutionExclamation:
 			{
 				Title.text = "Your animin has grown!";
-				//BackgroundGradient.color = new Color32(89,255,38,255);
+				BackgroundGradient.color = new Color32(89,255,38,255);
 				Description.text = "Well done! Keep taking care of your Animin and training them up.";
-				//MedalIcon.spriteName = @"achievementMarker3";
+				MedalIcon.sprite = store.GetMedel(AchievementMedels.achievementIconMarker3);
 				break;
 			}
 		case AchievementTypeId.EvolutionStar:
 			{
 				Title.text = "You unlocked a surprise!";
-				//BackgroundGradient.color = new Color32(89,255,38,255);
+				BackgroundGradient.color = new Color32(89,255,38,255);
 				Description.text = "Well done! Keep taking care of your Animin and training them up.";
-				//MedalIcon.spriteName = @"achievementMarker1";
+				MedalIcon.sprite = store.GetMedel(AchievementMedels.achievementIconMarker1);
 				break;
 			}
 		case AchievementTypeId.Tutorial:
 			{
 				Title.text = "Yo!";
-				//BackgroundGradient.color = new Color32(255,190,38,255);
+				BackgroundGradient.color = new Color32(255,190,38,255);
 				Description.text = "Well done! Keep taking care of your Animin and training them up.";
-				//MedalIcon.spriteName = @"achievementWorm";
+				MedalIcon.sprite = store.GetMedel(AchievementMedels.achievementIconWorm);
 				break;
 			}
 		case AchievementTypeId.Birthday:
 			{
 				Title.text = "Happy Birthday!";
-				//BackgroundGradient.color = new Color32(255,38,124,255);
+				BackgroundGradient.color = new Color32(255,38,124,255);
 				Description.text = "Well done! Keep taking care of your Animin and training them up.";
-				//MedalIcon.spriteName = @"achievementBirthday";
+				MedalIcon.sprite = store.GetMedel(AchievementMedels.achievementIconBirthday);
 				break;
 			}
 		}
 	}
-	
-	// Use this for initialization
-	void Start () 
-	{
-	
-	}
+
 	
 	// Update is called once per frame
 	void Update () 

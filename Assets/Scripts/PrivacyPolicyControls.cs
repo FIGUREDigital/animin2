@@ -5,6 +5,6 @@ public class PrivacyPolicyControls : MonoBehaviour {
 
 	public void CloseButton()
 	{
-		UiPages.Back ();
+		UiPages.Close ();
 	}
 }

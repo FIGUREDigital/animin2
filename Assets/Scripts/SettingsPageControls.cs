@@ -20,10 +20,15 @@ public class SettingsPageControls : MonoBehaviour {
 
 	public void CloseButton()
 	{
-		UiPages.Back ();
+		UiPages.Close ();
 	}
 
 	public void MuteButton()
 	{
+		AudioListener audio = FindObjectOfType<AudioListener> ();
+		if(audio != null)
+		{
+			audio.enabled = !audio.enabled;
+		}
 	}
 }

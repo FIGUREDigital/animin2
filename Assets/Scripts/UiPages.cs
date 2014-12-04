@@ -54,6 +54,7 @@ public class UiPages : MonoBehaviour
     public const string CUBE_MINIGAME_PAGE = "CubeMinigamePage";
 	public const string CREDITS_PAGE = "CreditsPage";
 	private static Pages mCurrentPage;
+	private static Pages mPrevPage;
     public static Pages CurrentPage{ get { return mCurrentPage; } }
 	private static GameObject[] mPages;
 	private static GameObject[] mBackMap;
@@ -212,6 +213,21 @@ public class UiPages : MonoBehaviour
 		GameObject oldPage = mPages [(int)mCurrentPage];
 		GameObject newPage = mPages [(int)next];
 		Transition (oldPage, newPage);
+	}
+
+	public static void OpenSettings()
+	{
+		mPrevPage = mCurrentPage;
+		mCurrentPage = Pages.SettingsPage;
+		mPages [(int)mCurrentPage].SetActive (true);
+		mPages [(int)mPrevPage].SetActive (false);
+	}
+
+	public static void Close()
+	{
+		mPages [(int)mCurrentPage].SetActive (false);
+		mPages [(int)mPrevPage].SetActive (true);
+		mCurrentPage = mPrevPage;
 	}
 
 	private static void Transition(GameObject from, GameObject to)

@@ -341,7 +341,10 @@ public class ShopManager
     {
 
 		Debug.Log( "AAAAAAAAAAAAAAAAAAAAAAAAAA " + CurrentPurchaseStatus + " " + productID );
-
+		if (CurrentPurchaseStatus == PurchaseStatus.Cancel || CurrentPurchaseStatus == PurchaseStatus.Fail || CurrentPurchaseStatus == PurchaseStatus.Success) 
+		{
+			UiPages.Back();
+		}
         if( CurrentPurchaseStatus == PurchaseStatus.Idle )
         {
             CurrentPurchaseStatus = PurchaseStatus.InProgress;

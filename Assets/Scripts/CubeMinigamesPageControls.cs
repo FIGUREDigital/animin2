@@ -162,6 +162,13 @@ public class CubeMinigamesPageControls : MonoBehaviour {
         MinigameScript.ExitMinigame(false);
     }
     public void ToggleSound(){
-        ProfilesManagementScript.Singleton.CurrentProfile.Settings.AudioEnabled = !ProfilesManagementScript.Singleton.CurrentProfile.Settings.AudioEnabled;
+        //ProfilesManagementScript.Singleton.CurrentProfile.Settings.AudioEnabled = !ProfilesManagementScript.Singleton.CurrentProfile.Settings.AudioEnabled;
+
+
+        AudioListener audio = FindObjectOfType<AudioListener> ();
+        if(audio != null)
+        {
+            audio.enabled = !audio.enabled;
+        }
     }
 }

@@ -74,6 +74,14 @@ public class CharacterChoiceItem : MonoBehaviour
 
 	void OnEnable()
 	{
+		mUnlocked = false;
+		for(int i =0; i < ProfilesManagementScript.Singleton.CurrentProfile.UnlockedAnimins.Count; i++)
+		{
+			if(ProfilesManagementScript.Singleton.CurrentProfile.UnlockedAnimins[i] == ThisCharacter)
+			{
+				mUnlocked = true;
+			}
+		}
         ChangeLockedState(mUnlocked);
 		Invoke ("UpdateAge", 0.1f);
 	}
@@ -81,9 +89,9 @@ public class CharacterChoiceItem : MonoBehaviour
 	private void UpdateAge()
 	{
 		Text label = mAgeLabel.GetComponent<Text>();
-        if(ProfilesManagementScript.Singleton.CurrentProfile != null)
+		if(ProfilesManagementScript.Singleton.CurrentProfile.Characters[(int)ThisCharacter] != null)
 		{
-            PersistentData pd = ProfilesManagementScript.Singleton.CurrentAnimin;
+			PersistentData pd = ProfilesManagementScript.Singleton.CurrentProfile.Characters[(int)ThisCharacter];
 			label.text = "Age " + pd.Age;
 		}
 		else

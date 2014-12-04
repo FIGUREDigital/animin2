@@ -21,7 +21,8 @@ public class UnlockCharacterButtonClickScript : MonoBehaviour
         //if( Application.isEditor)
         if (true)
         {
-            ProfilesManagementScript.Singleton.ContinueToInAppPurchase(true);
+			UiPages.Next(Pages.PurchasePage);
+           // ProfilesManagementScript.Singleton.ContinueToInAppPurchase(true);
         }
         else
         {

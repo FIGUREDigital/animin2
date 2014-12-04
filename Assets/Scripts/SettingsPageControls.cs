@@ -5,7 +5,7 @@ public class SettingsPageControls : MonoBehaviour {
 
 	public void MainMenuButton()
 	{
-		Application.LoadLevel (Application.loadedLevel + 1);
+		Application.LoadLevel (Application.loadedLevel - 1);
 	}
 
 	public void PrivacyPolicyButton()

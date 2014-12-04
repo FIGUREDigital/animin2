@@ -19,7 +19,7 @@ public class PressEdmBoxKeyScript : MonoBehaviour
 
 	void OnClick()
 	{
-        UIGlobalVariablesScript.Singleton.TutHandler.TriggerAdHocStartCond("EDM");
+        TutorialHandler.Instance.TriggerAdHocStartCond("EDM");
 
 		//EDMBoxScript script = this.transform.parent.transform.parent.GetComponent<UIWidget>().bottomAnchor.target.GetComponent<EDMBoxScript>();//GameObject.FindObjectOfType<EDMBoxScript>();
 		//script.SetKeyOn(KeyIndex, SwitchOn);

@@ -137,7 +137,7 @@ public class ChestScript : MonoBehaviour
 					Timer = 4;
 					State = AnimationStateId.LidOpened;
 
-                        //UIGlobalVariablesScript.Singleton.TutHandler.TriggerAdHocStartCond("Prize");
+                        TutorialHandler.Instance.TriggerAdHocStartCond("Prize");
 				}
 
 				

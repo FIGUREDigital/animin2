@@ -246,11 +246,11 @@ public class CameraModelScript : MonoBehaviour
 
 			}
 
-            UIGlobalVariablesScript.Singleton.TutHandler.TriggerAdHocExitCond("Hungry", "EatStrawberry");
+            TutorialHandler.Instance.TriggerAdHocExitCond("Hungry", "EatStrawberry");
 
             if (popScript.Id == InventoryItemId.Boombox)
             {
-                UIGlobalVariablesScript.Singleton.TutHandler.TriggerAdHocStartCond("BBPlace");
+                TutorialHandler.Instance.TriggerAdHocStartCond("BBPlace");
             }
 
 

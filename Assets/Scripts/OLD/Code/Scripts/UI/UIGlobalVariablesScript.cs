@@ -111,11 +111,6 @@ public class UIGlobalVariablesScript : MonoBehaviour
     public GameObject ParentalGateway;
     public GameObject PurchaseAniminViaPaypal;
 
-    [SerializeField]
-    private TutorialHandler TutorialHandler;
-
-    public TutorialHandler TutHandler{ get { return TutorialHandler; } }
-
 
     public enum ActiveState
     {

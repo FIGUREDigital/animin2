@@ -403,25 +403,25 @@ public class CharacterProgressScript : MonoBehaviour
             }
             if (BetweenSceneData.Instance.minigame == BetweenSceneData.Minigame.Collector)
             {
-                UIGlobalVariablesScript.Singleton.TutHandler.TriggerAdHocStartCond("BoxLandReturn");
+                TutorialHandler.Instance.TriggerAdHocStartCond("BoxLandReturn");
                 if (BetweenSceneData.Instance.Points >= 7000)
                 {
-                    UIGlobalVariablesScript.Singleton.TutHandler.TriggerAdHocStartCond("BoxLandScoreBreak1");
+                    TutorialHandler.Instance.TriggerAdHocStartCond("BoxLandScoreBreak1");
                 }
             }
             exitSleep();
         }
 
-		/*
+		
         if (DateTime.Now.Subtract(ProfilesManagementScript.Singleton.CurrentAnimin.CreatedOn).Days >= 1)
         {
-            UIGlobalVariablesScript.Singleton.TutHandler.TriggerAdHocStartCond("1DayEvolve");
+            TutorialHandler.Instance.TriggerAdHocStartCond("1DayEvolve");
         }
         if (DateTime.Now.Subtract(ProfilesManagementScript.Singleton.CurrentAnimin.CreatedOn).Days >= 3)
         {
-            UIGlobalVariablesScript.Singleton.TutHandler.TriggerAdHocStartCond("3DayEvolve");
+            TutorialHandler.Instance.TriggerAdHocStartCond("3DayEvolve");
         }
-		*/
+		
 
 
 
@@ -817,10 +817,10 @@ public class CharacterProgressScript : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hitInfo))
         {
-            //Debug.Log("TUTORIAL PLAYING? : ["+UIGlobalVariablesScript.Singleton.TutHandler.IsPlaying+"]");
-            //if (UIGlobalVariablesScript.Singleton.TutHandler.IsPlaying)
+            //Debug.Log("TUTORIAL PLAYING? : ["+TutorialHandler.Instance.IsPlaying+"]");
+            //if (TutorialHandler.Instance.IsPlaying)
             //{
-            //    hadRayCollision = UIGlobalVariablesScript.Singleton.TutHandler.CheckCharacterProgress(this, hitInfo);
+            //    hadRayCollision = TutorialHandler.Instance.CheckCharacterProgress(this, hitInfo);
             //}
             //else
                 hadRayCollision = true;
@@ -1298,7 +1298,7 @@ public class CharacterProgressScript : MonoBehaviour
                             if (cleanedShit)
                             {
                                 UIGlobalVariablesScript.Singleton.SoundEngine.Play(GenericSoundId.CleanPooPiss);
-                                UIGlobalVariablesScript.Singleton.TutHandler.TriggerAdHocStartCond("CleanPiss");
+                                TutorialHandler.Instance.TriggerAdHocStartCond("CleanPiss");
                             }
 												
                             if (TouchesObjcesWhileSwiping.Contains(this.gameObject) && !cleanedShit && !animationController.IsTickled)
@@ -1376,7 +1376,7 @@ public class CharacterProgressScript : MonoBehaviour
                                 else if (ObjectHolding != null && ObjectHolding/*.GetComponent<ReferencedObjectScript>().Reference*/.GetComponent<UIPopupItemScript>().NonInteractable)
                                 {
                                     //Debug.Log("HIT THE CHARACTER FOR INTERACTION 3");
-                                    UIGlobalVariablesScript.Singleton.TutHandler.TriggerAdHocStartCond("Fart");
+                                    TutorialHandler.Instance.TriggerAdHocStartCond("Fart");
                                     UIGlobalVariablesScript.Singleton.SoundEngine.PlayFart();
                                 }
                                 else if (ObjectHolding == null && CameraModelScript.Instance.transform.childCount == 0 && !animationController.IsPat)
@@ -1389,7 +1389,7 @@ public class CharacterProgressScript : MonoBehaviour
                                     UIGlobalVariablesScript.Singleton.SoundEngine.Play(ProfilesManagementScript.Singleton.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Singleton.CurrentAnimin.AniminEvolutionId, CreatureSoundId.PatReact);
                                 }
                                 Debug.Log("Tap");
-                                //UIGlobalVariablesScript.Singleton.TutHandler.TriggerAdHocExitCond("Attention", "tap");
+                                //TutorialHandler.Instance.TriggerAdHocExitCond("Attention", "tap");
                             }
                             else if ((hitInfo.collider.tag == "Items") && hitInfo.collider/*.GetComponent<ReferencedObjectScript>().Reference*/.GetComponent<UIPopupItemScript>().Type == PopupItemType.Token)
                             {
@@ -1469,7 +1469,7 @@ public class CharacterProgressScript : MonoBehaviour
                                     isItemAlreadyOn = true;
                                 }
 
-                                if (RequestedToMoveToCounter == 1 && !isItemAlreadyOn && (moveHitInfo.collider/*.GetComponent<ReferencedObjectScript>().Reference*/.GetComponent<UIPopupItemScript>().Menu != MenuFunctionalityUI.None) && !hadUItouch)
+                                if (RequestedToMoveToCounter == 1 && !isItemAlreadyOn && (moveHitInfo.collider.GetComponent<UIPopupItemScript>().Menu != MenuFunctionalityUI.None) && !hadUItouch)
                                 {
                                     if (moveHitInfo.collider/*.GetComponent<ReferencedObjectScript>().Reference*/.GetComponent<UIPopupItemScript>().Menu == MenuFunctionalityUI.Clock)
                                     {
@@ -1522,7 +1522,8 @@ public class CharacterProgressScript : MonoBehaviour
                                         LastKnownObjectWithMenuUp = moveHitInfo.collider.gameObject;
                                         preventMovingTo = true;
                                     }
-                                    else if (moveHitInfo.collider/*.GetComponent<ReferencedObjectScript>().Reference*/.GetComponent<UIPopupItemScript>().Menu == MenuFunctionalityUI.Mp3Player)
+                                    //else if (moveHitInfo.collider/*.GetComponent<ReferencedObjectScript>().Reference*/.GetComponent<UIPopupItemScript>().Menu == MenuFunctionalityUI.Mp3Player)
+                                    else if (false)
                                     {
                                         HidePopupMenus();
                                         CaringPageControls.TargetItem = moveHitInfo.collider.gameObject;
@@ -1562,12 +1563,12 @@ public class CharacterProgressScript : MonoBehaviour
                                 if (RequestedToMoveToCounter > 1)
                                 {
                                     MoveTo(point, true);
-                                    //UICOMMENT: UIGlobalVariablesScript.Singleton.TutHandler.TriggerAdHocExitCond("Walk", "runto");
+                                    //UICOMMENT: TutorialHandler.Instance.TriggerAdHocExitCond("Walk", "runto");
                                 }
                                 else
                                 {
                                     MoveTo(point, false);
-																//UICOMMENT: UIGlobalVariablesScript.Singleton.TutHandler.TriggerAdHocExitCond("Walk", "walkto");
+																//UICOMMENT: TutorialHandler.Instance.TriggerAdHocExitCond("Walk", "walkto");
                                 }
                             }
 						
@@ -1680,7 +1681,7 @@ public class CharacterProgressScript : MonoBehaviour
             {
                 newPoo = GameObject.Instantiate(PooPrefab) as GameObject;
                 UIGlobalVariablesScript.Singleton.SoundEngine.Play(GenericSoundId.TakePoo);
-                UIGlobalVariablesScript.Singleton.TutHandler.TriggerAdHocStartCond("Shit"); //Hey, we have naming conventions. I'm gonna stick to them.
+                TutorialHandler.Instance.TriggerAdHocStartCond("Shit"); //Hey, we have naming conventions. I'm gonna stick to them.
             }
             else
             {
@@ -1801,7 +1802,7 @@ public class CharacterProgressScript : MonoBehaviour
         UIGlobalVariablesScript.Singleton.SoundEngine.Play(ProfilesManagementScript.Singleton.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Singleton.CurrentAnimin.AniminEvolutionId, CreatureSoundId.SleepToIdle);
         UIGlobalVariablesScript.Singleton.SoundEngine.StopLoop();
 		
-//        UIGlobalVariablesScript.Singleton.TutHandler.TriggerExitCond("Initial", "WakeUp");
+//        TutorialHandler.Instance.TriggerExitCond("Initial", "WakeUp");
     }
 
 
@@ -1932,7 +1933,7 @@ public class CharacterProgressScript : MonoBehaviour
 
                     if (ProfilesManagementScript.Singleton.CurrentAnimin.Health / PersistentData.MaxHealth <= 0.4f)
                     {
-                        UIGlobalVariablesScript.Singleton.TutHandler.TriggerAdHocStartCond("HealFrom40");
+                        TutorialHandler.Instance.TriggerAdHocStartCond("HealFrom40");
                     }
 
                     //ShowText("I feel good");

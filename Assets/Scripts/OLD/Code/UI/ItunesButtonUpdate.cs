@@ -73,7 +73,8 @@ public class ItunesButtonUpdate : MonoBehaviour
 	{
 		Debug.Log(string.Format("Purchase of {0} Successful",transaction.productIdentifier));
 		UnlockCharacterManager.Instance.UnlockCharacter();
-		GoToAddress();
+		//GoToAddress();
+		UiPages.Back ();
 	}
 
 	void purchaseCancelled( string response )
@@ -81,6 +82,7 @@ public class ItunesButtonUpdate : MonoBehaviour
 		Debug.Log("Purchase Cancelled. Response "+ response);
 		ShopManager.Instance.EndStore();
 		ReturnToMainScreen();
+		UiPages.Back ();
 	}
 
 #elif UNITY_ANDROID
@@ -88,13 +90,14 @@ public class ItunesButtonUpdate : MonoBehaviour
 	{
 		Debug.Log(string.Format("Purchase of {0} Successful",transaction.productId));
 		UnlockCharacterManager.Instance.UnlockCharacter();
-		GoToAddress();
+		//GoToAddress();
+		UiPages.Back ();
 	}
 	void purchaseCancelled( string response )
 	{
 		Debug.Log("Purchase Cancelled. Response "+ response);
 		ShopManager.Instance.EndStore();
-		ReturnToMainScreen();
+		UiPages.Back ();
 	}
 #endif
 
@@ -107,6 +110,7 @@ public class ItunesButtonUpdate : MonoBehaviour
 		Debug.Log("Purchase Unsuccessful, response: " + response);
 		ShopManager.Instance.EndStore();
 		UnregisterListeners();
+		UiPages.Back();
 	}
 
 	void RegisterListeners()

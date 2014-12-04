@@ -19,7 +19,7 @@ public class SelectCharacterClickScript : MonoBehaviour
 	
 	}
 
-	void OnClick()
+	public void OnClick()
 	{
 		//ProfilesManagementScript.Singleton.CurrentAnimin.SetDefault();
 		//ProfilesManagementScript.Singleton.CurrentAnimin.PlayerAniminId = Animin;

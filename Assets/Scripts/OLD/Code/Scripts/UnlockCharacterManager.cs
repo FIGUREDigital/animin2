@@ -88,6 +88,7 @@ public class UnlockCharacterManager
 			
 		}
 		ShopManager.Instance.BuyItem (mBuyItem);
+		UiPages.Next (Pages.LoadingPage);
 	}
 
 	public void OpenShop()

@@ -20,6 +20,8 @@ public enum Pages
 	ProfileSelectPage,
 	NewProfilePage,
 	AniminSelectPage,
+	PurchasePage,
+	LoadingPage,
 	DemoCardPage,
 	FRONTEND_COUNT,
 	CaringPage,
@@ -44,6 +46,8 @@ public class UiPages : MonoBehaviour
 	public const string PROFILE_SELECT_PAGE = "ProfilePage";
 	public const string NEW_PROFILE_PAGE = "NewProfilePage";
 	public const string ANIMIN_SELECT_PAGE = "AniminSelectPage";
+	public const string PURCHASE_PAGE = "PurchasePage";
+	public const string LOADING_PAGE = "LoadingPage";
 	public const string DEMO_CARD_PAGE = "DemoCardPage";
 	public const string CARING_PAGE = "CaringPage";
 	public const string STATS_PAGE = "StatsPage";
@@ -122,6 +126,8 @@ public class UiPages : MonoBehaviour
 		mBackMap [(int)Pages.ProfileSelectPage] = null;
 		mBackMap [(int)Pages.NewProfilePage] = mPages[(int)Pages.ProfileSelectPage];
 		mBackMap [(int)Pages.AniminSelectPage] = mPages[(int)Pages.ProfileSelectPage];
+		mBackMap [(int)Pages.PurchasePage] = mPages[(int)Pages.AniminSelectPage];
+		mBackMap [(int)Pages.LoadingPage] = mPages[(int)Pages.PurchasePage];
 		mBackMap [(int)Pages.DemoCardPage] = mPages[(int)Pages.ProfileSelectPage];
 		mBackMap [(int)Pages.CaringPage] = null;
 		mBackMap [(int)Pages.StatsPage] = mPages [(int)Pages.CaringPage];
@@ -145,6 +151,12 @@ public class UiPages : MonoBehaviour
 			break;
 		case Pages.AniminSelectPage:
 			name = ANIMIN_SELECT_PAGE;
+			break;
+		case Pages.PurchasePage:
+			name = PURCHASE_PAGE;
+			break;
+		case Pages.LoadingPage:
+			name = LOADING_PAGE;
 			break;
 		case Pages.DemoCardPage:
 			name = DEMO_CARD_PAGE;

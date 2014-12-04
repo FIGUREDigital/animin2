@@ -12,7 +12,7 @@ public class UnlockCharacterButtonClickScript : MonoBehaviour
 	private const string MANDI_PURCHASE = "com.apples.animin.characterpurchase3";
     public PersistentData.TypesOfAnimin Id;
 
-	void OnClick()
+	public void OnClick()
 	{
 		ProfilesManagementScript.Singleton.AniminToUnlockId = Id;
         

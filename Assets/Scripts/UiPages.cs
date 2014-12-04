@@ -238,7 +238,7 @@ public class UiPages : MonoBehaviour
             GameObject g = h.gameObject;
             gos += (gos == "") ? g.name : " | " + g.name;
             hit = ( g.name != "BackgroundEventCatcher" &&
-                (g.GetComponent<Button>() || g.GetComponent<Canvas>() || g.GetComponent<InputField>())
+                (g.GetComponent<Button>() || g.GetComponent<Canvas>() || g.GetComponent<InputField>() || g.GetComponent<UnityEngine.UI.Image>())
             );
             if(hit)
             {
@@ -246,8 +246,7 @@ public class UiPages : MonoBehaviour
             }
         }
         //Debug.Log("gos : ["+gos+"];");
-        if (hit)
-            Debug.Log("Hit");
+        if (hit) Debug.Log("Hit");
         return hit;
     }
 }

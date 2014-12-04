@@ -209,49 +209,8 @@ public class MinigameCollectorScript : MonoBehaviour
 
 	private bool CanBeginLevelSwipe()
 	{
-        return false;
+        //Debug.Log("Begin Level Swipe : [" + UiPages.IsMouseOverUI() + "];");
         return !UiPages.IsMouseOverUI();
-
-		// CHECK FOR UI TOUCH
-
-			// This grabs the camera attached to the NGUI UI_Root object.
-			Camera nguiCam = Camera.main;
-			
-			if( nguiCam != null )
-			{
-				// pos is the Vector3 representing the screen position of the input
-				Ray inputRay = nguiCam.ScreenPointToRay( Input.mousePosition );    
-				RaycastHit hit;
-				
-				if (Physics.Raycast(inputRay, out hit))
-				{
-					//Debug.Log("TOUCH: " + hit.collider.gameObject.layer.ToString());
-					
-					//Debug.Log("normalUIRAY:" + hit.collider.gameObject);
-					if(hit.collider.gameObject.layer == LayerMask.NameToLayer( "NGUI" ))
-					{
-						return false;
-					}
-					
-				}
-			}
-
-		
-		
-		/*RaycastHit hitInfo;
-	
-		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-		if (Physics.Raycast(ray, out hitInfo))
-		{
-			if(!hitInfo.collider.name.StartsWith("Border1")) 
-			{
-
-				Debug.Log("normalUIRAY:" + hitInfo.collider.gameObject);
-				return false;
-			}
-		}*/
-
-		return true;
 	}
 
 
@@ -275,7 +234,7 @@ public class MinigameCollectorScript : MonoBehaviour
 	}
 	
 	
-	private void ExitMinigame(bool succesfullyCompleted)
+	public void ExitMinigame(bool succesfullyCompleted)
 	{
 		UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterControllerScript>().Forces.Clear();
         //UIClickButtonMasterScript.HandleClick(UIFunctionalityId.CloseCurrentMinigame, null);
@@ -300,7 +259,7 @@ public class MinigameCollectorScript : MonoBehaviour
         {
             m_Paused = value;
 
-            UIGlobalVariablesScript.Singleton.Joystick.GetComponent<JoystiqScript>().Paused = value;                                //Disable the joystick
+            //UIGlobalVariablesScript.Singleton.Joystick.GetComponent<JoystiqScript>().Paused = value;                                //Disable the joystick
             UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponentInChildren<Animator>().enabled = !value;                           //Pause the character's Animation
             EvilCharacterPatternMovementScript[] evilScripts = this.GetComponentsInChildren<EvilCharacterPatternMovementScript>();
             for (int i = 0; i < evilScripts.Length; i++)

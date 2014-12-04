@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 public class CubeMinigamesPageControls : MonoBehaviour {
 
-
+    MinigameCollectorScript MinigameScript;
     MinigameAnimationControllerScript CharacterAnimationRef;
     CharacterControllerScript CharacterControllerRef;
 
@@ -23,18 +23,25 @@ public class CubeMinigamesPageControls : MonoBehaviour {
     public Text LevelCounter { get { return m_LevelCounter; } }
     public Text PointLabel { get { return m_Points; } }
 
+    [SerializeField]
+    private GameObject m_PauseButton, m_PauseMenu;
+
     private bool isButtonDown = false;
     private int fingerID = -1;
+
+    private bool m_Paused;
 	// Use this for initialization
     void Start () {
+        MinigameScript = UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef.GetComponent<MinigameCollectorScript>();
         CharacterControllerRef = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterControllerScript>();
         CharacterAnimationRef = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<MinigameAnimationControllerScript>();
     }
 	
 	// Update is called once per frame
     void Update () {
-        CharacterControllerRef = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterControllerScript>();
-        CharacterAnimationRef = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<MinigameAnimationControllerScript>();
+
+        if (m_Paused)
+            return;
 
         if (UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef==null || UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef.GetComponent<MinigameCollectorScript>().Paused)
             return;
@@ -99,13 +106,13 @@ public class CubeMinigamesPageControls : MonoBehaviour {
             movementSpeed = diff.magnitude / maxRadius;
             if(movementSpeed < 0.5f)
             {
-                Debug.Log("Walking");
+                //Debug.Log("Walking");
                 CharacterAnimationRef.IsRunning = false;
                 CharacterAnimationRef.IsWalking = true;
             }
             else
             {
-                Debug.Log("Running");
+                //Debug.Log("Running");
                 CharacterAnimationRef.IsRunning = true;
                 CharacterAnimationRef.IsWalking = false;
             }
@@ -114,7 +121,7 @@ public class CubeMinigamesPageControls : MonoBehaviour {
         }
         else
         {
-            Debug.Log("Not Moving");
+            //Debug.Log("Not Moving");
             m_JoystickFront.transform.localPosition = m_JoystickBack.transform.localPosition;
             CharacterAnimationRef.IsRunning = false;
             CharacterAnimationRef.IsWalking = false;
@@ -141,6 +148,20 @@ public class CubeMinigamesPageControls : MonoBehaviour {
     }
 
     public void JumpButton(){
+        if (m_Paused)
+            return;
         CharacterControllerRef.PressedJumb = true;
+    }
+    public void SetPause(bool On){
+        m_Paused = On;
+        m_PauseMenu.SetActive(On);
+        m_PauseButton.SetActive(!On);
+        UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef.GetComponent<MinigameCollectorScript>().Paused = On;
+    }
+    public void ExitGame(){
+        MinigameScript.ExitMinigame(false);
+    }
+    public void ToggleSound(){
+        ProfilesManagementScript.Singleton.CurrentProfile.Settings.AudioEnabled = !ProfilesManagementScript.Singleton.CurrentProfile.Settings.AudioEnabled;
     }
 }

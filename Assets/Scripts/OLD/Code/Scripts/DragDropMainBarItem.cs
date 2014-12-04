@@ -27,7 +27,7 @@ public class DragDropMainBarItem : MonoBehaviour, IBeginDragHandler, IDragHandle
 		{
 			Debug.Log(hit.point);
 		}
-		if(hit.collider.gameObject.layer != 12) // Gross, check the floor layer
+        if(!hit.collider.gameObject.CompareTag("Ground")) // Gross, check the floor layer
 		{
 			return;
 		}

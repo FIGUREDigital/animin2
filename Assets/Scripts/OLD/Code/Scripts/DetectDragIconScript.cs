@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DetectDragIconScript : MonoBehaviour {
+using UnityEngine.EventSystems;
+
+public class DetectDragIconScript : MonoBehaviour, IBeginDragHandler {
 
 	// Use this for initialization
 	void Start () 
@@ -15,12 +17,12 @@ public class DetectDragIconScript : MonoBehaviour {
 	
 	}
 
-	void OnDragStart ()
+	public void OnBeginDrag(PointerEventData eventData)
 	{
 		InterfaceItemLinkToModelScript refScript = this.GetComponent<InterfaceItemLinkToModelScript>();
 		if(refScript.ItemID == InventoryItemId.None) return;
 
-		UIGlobalVariablesScript.Singleton.DragableUI3DObject.GetComponent<CameraModelScript>().SpriteRef = this.gameObject;
+        MainARHandler.Get.MainARCamera.GetComponentInChildren<CameraModelScript>().SpriteRef = this.gameObject;
 		//InterfaceItemLinkToModelScript popScript = refScript.Reference.GetComponent<InterfaceItemLinkToModelScript>();
 
 
@@ -30,10 +32,11 @@ public class DetectDragIconScript : MonoBehaviour {
 
 		child.GetComponent<BoxCollider>().enabled = false;
 
-		child.transform.parent = UIGlobalVariablesScript.Singleton.DragableUI3DObject.transform;
+        child.transform.parent = MainARHandler.Get.MainARCamera.GetComponentInChildren<CameraModelScript>().transform;
 		child.transform.position = Vector3.zero;
+        child.transform.localPosition += new Vector3(0, 0, 30f);
 		child.transform.rotation = Quaternion.identity;
-		child.transform.localScale = Vector3.one;
+        child.transform.localScale = Vector3.one / 10f;
 		child.transform.localRotation = Quaternion.identity;
 		child.transform.localPosition = Vector3.zero;
 

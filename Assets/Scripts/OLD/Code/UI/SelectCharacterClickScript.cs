@@ -21,18 +21,10 @@ public class SelectCharacterClickScript : MonoBehaviour
 
 	public void OnClick()
 	{
-		//ProfilesManagementScript.Singleton.CurrentAnimin.SetDefault();
-		//ProfilesManagementScript.Singleton.CurrentAnimin.PlayerAniminId = Animin;
-		//ProfilesManagementScript.Singleton.CurrentAnimin.AniminEvolutionId = AniminEvolutionStageId.Baby;
-		//ProfilesManagementScript.Singleton.CurrentAnimin.Save();
-
         ProfilesManagementScript.Singleton.CurrentProfile.ActiveAnimin = Animin;
-
         ProfilesManagementScript.Singleton.AssignCurrentAniminToVariable();
-//        ProfilesManagementScript.Singleton.CurrentAnimin = ProfilesManagementScript.Singleton.CurrentProfile.Characters[(int)Animin];
+		ProfilesManagementScript.Singleton.BeginLoadLevel = true;
+		UiPages.Next (Pages.LoadingPage);
 
-		//AsyncOperation asyncOp = Application.LoadLevelAsync("VuforiaTest");
-		//yield return asyncOp;
-		//Debug.Log("Loading complete");
 	}
 }

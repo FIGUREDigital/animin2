@@ -74,9 +74,8 @@ public class CharacterChoiceItem : MonoBehaviour
 
 	void OnEnable()
 	{
-//        CheckLockedState();
-//        ChangeLockedState(mUnlocked);
-//		Invoke ("UpdateAge", 0.1f);
+        ChangeLockedState(mUnlocked);
+		Invoke ("UpdateAge", 0.1f);
 	}
 
 	private void UpdateAge()

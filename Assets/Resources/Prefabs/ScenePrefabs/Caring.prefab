@@ -20047,7 +20047,6 @@ MonoBehaviour:
   MinigamesButton: {fileID: 0}
   ParentalGateway: {fileID: 0}
   PurchaseAniminViaPaypal: {fileID: 0}
-  TutorialHandler: {fileID: 0}
 --- !u!114 &11400014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20197,8 +20196,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2409619028c204c609ff5d036cb4ec9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PooPrefab: {fileID: 0}
-  PissPrefab: {fileID: 0}
+  PooPrefab: {fileID: 100012, guid: b13d7669cfbae4c25a9ebbace7dfe07c, type: 2}
+  PissPrefab: {fileID: 100000, guid: 86c25af4269844ee39b3d626ef5eb507, type: 2}
   animationController: {fileID: 0}
   IsMovingTowardsLocation: 0
   ObjectHolding: {fileID: 0}

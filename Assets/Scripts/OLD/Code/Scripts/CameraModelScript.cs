@@ -246,11 +246,11 @@ public class CameraModelScript : MonoBehaviour
 
 			}
 
-            TutorialHandler.Instance.TriggerAdHocExitCond("Hungry", "EatStrawberry");
+            UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHocExitCond("Hungry", "EatStrawberry");
 
             if (popScript.Id == InventoryItemId.Boombox)
             {
-                TutorialHandler.Instance.TriggerAdHocStartCond("BBPlace");
+                UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHocStartCond("BBPlace");
             }
 
 

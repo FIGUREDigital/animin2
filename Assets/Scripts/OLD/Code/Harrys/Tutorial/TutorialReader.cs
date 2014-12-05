@@ -142,7 +142,13 @@ public class TutEntry{
 public class TutorialReader{
 
 	private ArrayOfTutorials m_Tutorials;
-	public Tutorial[] Tutorials{ get { return m_Tutorials.Tutorials; } }
+	public Tutorial[] Tutorials{
+        get
+        { 
+            if (m_Tutorials == null) Deserialize();
+           return m_Tutorials.Tutorials;
+        }
+    }
 	private bool[] m_Finished;
 	//public bool[] TutorialFinished{ get { return m_Finished; } }
 

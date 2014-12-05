@@ -137,7 +137,7 @@ public class ChestScript : MonoBehaviour
 					Timer = 4;
 					State = AnimationStateId.LidOpened;
 
-                        TutorialHandler.Instance.TriggerAdHocStartCond("Prize");
+                        UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHocStartCond("Prize");
 				}
 
 				

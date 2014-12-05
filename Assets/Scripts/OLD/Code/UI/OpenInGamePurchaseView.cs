@@ -18,7 +18,7 @@ public class OpenInGamePurchaseView : MonoBehaviour
 	void OnClick()
     {
         if (Application.loadedLevelName == "VuforiaTest")
-            TutorialHandler.Instance.Lock = !mOpen;
+            UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.Lock = !mOpen;
 
 		mOpen = !mOpen;
 		Debug.Log( "opening" + name );

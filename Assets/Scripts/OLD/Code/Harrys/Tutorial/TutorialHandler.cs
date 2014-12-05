@@ -6,18 +6,13 @@ using UnityEngine.UI;
 
 public class TutorialHandler : MonoBehaviour
 {
-    private static TutorialHandler m_Instance;
-
-    public static TutorialHandler Instance
-    {
-        get{ return m_Instance; }
-        set { m_Instance = value; }
-    }
 
     private Tutorial[] Tutorials
     {
         get { return TutorialReader.Instance.Tutorials; }
     }
+    private bool m_Inited;
+    public bool Inited { get { return m_Inited; } }
 
     //-Gameobject Stuff -------
     [SerializeField]
@@ -140,14 +135,18 @@ public class TutorialHandler : MonoBehaviour
 
 
     // Use this for initialization
-    void Start()
+    void Start(){
+        Init();
+    }
+    public void Init()
     {
-        Instance = this;
+        if (m_Inited)
+            return;
+        m_Inited = true;
         m_WormAnimator.gameObject.SetActive(false);
         m_TutorialUIParent.SetActive(false);
         m_TutorialHand.gameObject.SetActive(false);
 
-        TutorialReader.Instance.Deserialize();
         for (int i = 0; i < Tutorials.Length; i++)
         {
             if (PlayerPrefs.GetString(TutorialPlayerPrefID + i) == null)
@@ -178,7 +177,7 @@ public class TutorialHandler : MonoBehaviour
                 }
                 */
             }
-                 }
+        }
     }
 	
 
@@ -348,6 +347,7 @@ public class TutorialHandler : MonoBehaviour
     {
         if (IsPlaying)
             return;
+        Init();
 
         for (int i = 0; i < Tutorials.Length; i++)
         {

@@ -18,7 +18,7 @@ public class NonARSceneReadout : MonoBehaviour {
 	void Update () {
 		if (gameObject.activeInHierarchy) {
 			bool isActive = UIGlobalVariablesScript.Singleton.NonARWorldRef.activeInHierarchy;
-            m_label.text = ("Tutorial Playing : [" + (TutorialHandler.Instance.IsPlaying) + "]");
+            m_label.text = ("Tutorial Playing : [" + (UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.IsPlaying) + "]");
 		}
 	}
 }

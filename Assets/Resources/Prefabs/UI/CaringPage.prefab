@@ -3424,6 +3424,7 @@ MonoBehaviour:
   m_EDMBoxUI: {fileID: 100100}
   m_JunoUI: {fileID: 100102}
   m_PianoUI: {fileID: 100108}
+  m_TutorialHandler: {fileID: 11400276}
 --- !u!114 &11400086
 MonoBehaviour:
   m_ObjectHideFlags: 1

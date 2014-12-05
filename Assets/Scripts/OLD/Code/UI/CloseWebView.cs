@@ -13,7 +13,7 @@ public class CloseWebView : MonoBehaviour
 		} 
         else if (Application.loadedLevelName == "VuforiaTest") 
         {
-            TutorialHandler.Instance.Lock = false;
+            UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.Lock = false;
 			
 			UIGlobalVariablesScript.Singleton.CaringScreenRef.SetActive(true);
 			UIGlobalVariablesScript.Singleton.CaringScreenRef.GetComponent<CloseButtons>().Open();

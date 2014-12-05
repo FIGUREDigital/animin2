@@ -48,6 +48,15 @@ public class CaringPageControls : MonoBehaviour {
     private GameObject m_PianoUI;
     public GameObject PianoUI{ get { return m_PianoUI; } }
 
+    [SerializeField]
+    private TutorialHandler m_TutorialHandler;
+    public TutorialHandler TutorialHandler{
+        get {
+            if (m_TutorialHandler.Inited) m_TutorialHandler.Init();
+            return m_TutorialHandler;
+        }
+    }
+
     private GameObject m_TargetItem;
     public GameObject TargetItem{
         get { return m_TargetItem; }

@@ -403,10 +403,10 @@ public class CharacterProgressScript : MonoBehaviour
             }
             if (BetweenSceneData.Instance.minigame == BetweenSceneData.Minigame.Collector)
             {
-                TutorialHandler.Instance.TriggerAdHocStartCond("BoxLandReturn");
+                UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHocStartCond("BoxLandReturn");
                 if (BetweenSceneData.Instance.Points >= 7000)
                 {
-                    TutorialHandler.Instance.TriggerAdHocStartCond("BoxLandScoreBreak1");
+                    UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHocStartCond("BoxLandScoreBreak1");
                 }
             }
             exitSleep();
@@ -415,11 +415,11 @@ public class CharacterProgressScript : MonoBehaviour
 		
         if (DateTime.Now.Subtract(ProfilesManagementScript.Singleton.CurrentAnimin.CreatedOn).Days >= 1)
         {
-            TutorialHandler.Instance.TriggerAdHocStartCond("1DayEvolve");
+			if (UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler!=null) UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHocStartCond("1DayEvolve");
         }
         if (DateTime.Now.Subtract(ProfilesManagementScript.Singleton.CurrentAnimin.CreatedOn).Days >= 3)
-        {
-            TutorialHandler.Instance.TriggerAdHocStartCond("3DayEvolve");
+		{
+			if (UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler!=null) UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHocStartCond("3DayEvolve");
         }
 		
 
@@ -817,10 +817,10 @@ public class CharacterProgressScript : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hitInfo))
         {
-            //Debug.Log("TUTORIAL PLAYING? : ["+TutorialHandler.Instance.IsPlaying+"]");
-            //if (TutorialHandler.Instance.IsPlaying)
+            //Debug.Log("TUTORIAL PLAYING? : ["+UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.IsPlaying+"]");
+            //if (UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.IsPlaying)
             //{
-            //    hadRayCollision = TutorialHandler.Instance.CheckCharacterProgress(this, hitInfo);
+            //    hadRayCollision = UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.CheckCharacterProgress(this, hitInfo);
             //}
             //else
                 hadRayCollision = true;
@@ -1298,7 +1298,7 @@ public class CharacterProgressScript : MonoBehaviour
                             if (cleanedShit)
                             {
                                 UIGlobalVariablesScript.Singleton.SoundEngine.Play(GenericSoundId.CleanPooPiss);
-                                TutorialHandler.Instance.TriggerAdHocStartCond("CleanPiss");
+                                UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHocStartCond("CleanPiss");
                             }
 												
                             if (TouchesObjcesWhileSwiping.Contains(this.gameObject) && !cleanedShit && !animationController.IsTickled)
@@ -1376,7 +1376,7 @@ public class CharacterProgressScript : MonoBehaviour
                                 else if (ObjectHolding != null && ObjectHolding/*.GetComponent<ReferencedObjectScript>().Reference*/.GetComponent<UIPopupItemScript>().NonInteractable)
                                 {
                                     //Debug.Log("HIT THE CHARACTER FOR INTERACTION 3");
-                                    TutorialHandler.Instance.TriggerAdHocStartCond("Fart");
+                                    UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHocStartCond("Fart");
                                     UIGlobalVariablesScript.Singleton.SoundEngine.PlayFart();
                                 }
                                 else if (ObjectHolding == null && CameraModelScript.Instance.transform.childCount == 0 && !animationController.IsPat)
@@ -1389,7 +1389,7 @@ public class CharacterProgressScript : MonoBehaviour
                                     UIGlobalVariablesScript.Singleton.SoundEngine.Play(ProfilesManagementScript.Singleton.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Singleton.CurrentAnimin.AniminEvolutionId, CreatureSoundId.PatReact);
                                 }
                                 Debug.Log("Tap");
-                                //TutorialHandler.Instance.TriggerAdHocExitCond("Attention", "tap");
+                                //UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHocExitCond("Attention", "tap");
                             }
                             else if ((hitInfo.collider.tag == "Items") && hitInfo.collider/*.GetComponent<ReferencedObjectScript>().Reference*/.GetComponent<UIPopupItemScript>().Type == PopupItemType.Token)
                             {
@@ -1563,12 +1563,12 @@ public class CharacterProgressScript : MonoBehaviour
                                 if (RequestedToMoveToCounter > 1)
                                 {
                                     MoveTo(point, true);
-                                    //UICOMMENT: TutorialHandler.Instance.TriggerAdHocExitCond("Walk", "runto");
+                                    //UICOMMENT: UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHocExitCond("Walk", "runto");
                                 }
                                 else
                                 {
                                     MoveTo(point, false);
-																//UICOMMENT: TutorialHandler.Instance.TriggerAdHocExitCond("Walk", "walkto");
+																//UICOMMENT: UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHocExitCond("Walk", "walkto");
                                 }
                             }
 						
@@ -1681,7 +1681,7 @@ public class CharacterProgressScript : MonoBehaviour
             {
                 newPoo = GameObject.Instantiate(PooPrefab) as GameObject;
                 UIGlobalVariablesScript.Singleton.SoundEngine.Play(GenericSoundId.TakePoo);
-                TutorialHandler.Instance.TriggerAdHocStartCond("Shit"); //Hey, we have naming conventions. I'm gonna stick to them.
+                UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHocStartCond("Shit"); //Hey, we have naming conventions. I'm gonna stick to them.
             }
             else
             {
@@ -1802,7 +1802,7 @@ public class CharacterProgressScript : MonoBehaviour
         UIGlobalVariablesScript.Singleton.SoundEngine.Play(ProfilesManagementScript.Singleton.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Singleton.CurrentAnimin.AniminEvolutionId, CreatureSoundId.SleepToIdle);
         UIGlobalVariablesScript.Singleton.SoundEngine.StopLoop();
 		
-//        TutorialHandler.Instance.TriggerExitCond("Initial", "WakeUp");
+//        UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerExitCond("Initial", "WakeUp");
     }
 
 
@@ -1933,7 +1933,7 @@ public class CharacterProgressScript : MonoBehaviour
 
                     if (ProfilesManagementScript.Singleton.CurrentAnimin.Health / PersistentData.MaxHealth <= 0.4f)
                     {
-                        TutorialHandler.Instance.TriggerAdHocStartCond("HealFrom40");
+                        UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHocStartCond("HealFrom40");
                     }
 
                     //ShowText("I feel good");

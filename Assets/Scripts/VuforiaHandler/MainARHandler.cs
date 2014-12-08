@@ -109,14 +109,70 @@ public class MainARHandler : MonoBehaviour
     {
         if (!m_CameraUnlock &&
             ARCamera != null)
-        {
-            if (NonARCameraPositionRef != null)
-            {
-                ARCamera.gameObject.transform.position = NonARCameraPositionRef.position;
-                ARCamera.gameObject.transform.rotation = NonARCameraPositionRef.rotation;
-            }
+//        {
+//            if (NonARCameraPositionRef != null)
+//            {
+//                ARCamera.gameObject.transform.position = NonARCameraPositionRef.position;
+//                ARCamera.gameObject.transform.rotation = NonARCameraPositionRef.rotation;
+//            }
+//
+//        }
+		//if (UIGlobalVariablesScript.Singleton.NonSceneRef.activeInHierarchy)
+		{
+			float stableAccelerationX = (float)System.Math.Round(Input.acceleration.x, 2);
+			float stableAccelerationY = (float)System.Math.Round(Input.acceleration.y, 2);
+			float angle = Mathf.Lerp(180, 360, (stableAccelerationX + 1) / 2 /*(Mathf.Sin(Time.time) + 1) / 2*/);
+			SmootherAxisX.ValueNext = (float)System.Math.Round(angle);
+			
+			Vector3 newPosition = new Vector3(
+				Mathf.Cos(SmootherAxisX.ValueNow * Mathf.Deg2Rad) * 220,
+				0,
+				(Mathf.Sin(SmootherAxisX.ValueNow * Mathf.Deg2Rad) * 220) * 0.2f);
+			
+			
+			
+			
+			float value = stableAccelerationY;
+			if (value > 0) value = 0;
+			if (value < -1) value = -1;
+			value *= -1;
+			//value = 1 - value;
+			
+			float angle2 = Mathf.Lerp(360, 180, value/*(Mathf.Sin(Time.time) + 1) / 2*/);
+			SmootherAxisY.ValueNext = (float)System.Math.Round(angle2);
+			
+			Vector3 newPosition2 = new Vector3(
+				0,
+				Mathf.Cos(SmootherAxisY.ValueNow * Mathf.Deg2Rad) * 90,
+				(Mathf.Sin(SmootherAxisY.ValueNow * Mathf.Deg2Rad) * 90) * 0.2f);
+			
+			Vector3 cameraPoint = CurrentGameSceneGameObject.GetComponent<NonARPosRef>().NonARCameraPositionReference.position;// new Vector3(0, 430f, -630f);
+			Transform target = UIGlobalVariablesScript.Singleton.NonSceneRef.transform;
+			
+			Vector3 finalpos = cameraPoint + newPosition2 + newPosition;
 
-        }
+				
+				Transform t = ARCamera.gameObject.transform;
+				t.localPosition = finalpos;
+				
+				Vector3 up = Input.acceleration;
+				float tempX = up.x;
+				up.x=up.z;
+				up.z = tempX;
+				
+				up.z = 0;
+				
+				//up  = Quaternion.AngleAxis(Time.timeSinceLevelLoad,Vector3.forward) * up;
+				
+				t.rotation = Quaternion.LookRotation(target.transform.position-t.position,Vector3.up);
+				
+				Debug.DrawRay(t.position,t.forward);
+
+		}
+		
+		
+		SmootherAxisX.Update();
+		SmootherAxisY.Update();
     }
 
     public void OnTrackableStateChanged(

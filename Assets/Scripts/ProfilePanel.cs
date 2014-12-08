@@ -24,7 +24,7 @@ public class ProfilePanel : MonoBehaviour
 
 	void OnEnable()
 	{
-		Populate ();
+		Init ();
 	}
 	void OnDisable()
 	{

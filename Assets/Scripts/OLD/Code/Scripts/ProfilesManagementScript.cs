@@ -263,10 +263,13 @@ public class ProfilesManagementScript : MonoBehaviour
     {
         if(shouldContinue)
         {
+			UiPages.Next(Pages.PurchasePage);
         }
         else
         {
             Debug.Log("Shop Unavailable");
+			//error box
+			UiPages.Next(Pages.ConnectionErrorPage);
         }
 
     }

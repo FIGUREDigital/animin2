@@ -209,7 +209,7 @@ MonoBehaviour:
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 480}
-  m_ScreenMatchMode: 2
+  m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -386,7 +386,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: .20784314, g: .964705884, b: .972549021, a: .97647059}
+  m_Color: {r: 1, g: 1, b: 1, a: .97647059}
   m_FontData:
     m_Font: {fileID: 12800000, guid: 950fcd2e8e7846545b38c255edcbfa59, type: 3}
     m_FontSize: 14
@@ -411,12 +411,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d342aed155276cf45b0578d07a2e262b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topColor:
-    serializedVersion: 2
-    rgba: 4294967295
-  bottomColor:
-    serializedVersion: 2
-    rgba: 4294440245
+  gradientMode: 1
+  gradientDir: 0
+  overwriteAllColor: 1
+  vertex1: {r: 1, g: 1, b: 1, a: 1}
+  vertex2: {r: .20784314, g: .960784316, b: .968627453, a: 1}
 --- !u!222 &22200000
 CanvasRenderer:
   m_ObjectHideFlags: 1

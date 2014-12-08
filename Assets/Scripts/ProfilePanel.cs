@@ -13,15 +13,27 @@ public class ProfilePanel : MonoBehaviour
 
 	void Start()
 	{
+		Init ();
+	}
+
+	void Init()
+	{
 		mProfilePrefab = Resources.Load (PROFILE_PREFAB);
 		Populate ();
 	}
 
-	void OnDiable()
+	void OnEnable()
 	{
-		foreach(GameObject button in mButtons)
+		Populate ();
+	}
+	void OnDisable()
+	{
+		if(mButtons != null)
 		{
-			Destroy(button);
+			foreach(GameObject button in mButtons)
+			{
+				Destroy(button);
+			}
 		}
 	}
 

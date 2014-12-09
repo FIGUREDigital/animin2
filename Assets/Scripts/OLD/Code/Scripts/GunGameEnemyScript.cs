@@ -253,7 +253,7 @@ public class GunGameEnemyScript : MonoBehaviour //Photon.MonoBehaviour
                         script.TargetToFollow = gunGame.PlayersCharacters[Random.Range(0, gunGame.PlayersCharacters.Count)];
                     }
                 }
-                gunGame.Points += 50;
+                gunGame.Points += 200;
 
                 ReceiveEventMerged();
                 Destroy(this.gameObject);

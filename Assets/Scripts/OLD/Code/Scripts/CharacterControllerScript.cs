@@ -166,6 +166,8 @@ public class CharacterControllerScript : MonoBehaviour //Photon.MonoBehaviour
     //public float HorizontalDirection;
     //public float VerticalDirection;
     public bool IsResetFalling;
+
+    CharacterController m_Controller;
 	
     //public MinigameCollectorScript MinigameRef;
 	
@@ -173,6 +175,9 @@ public class CharacterControllerScript : MonoBehaviour //Photon.MonoBehaviour
 	
     void  Awake()
     {
+        m_Controller = GetComponent<CharacterController>();
+
+        m_Controller.material.staticFriction = 1;
 		
         //moveDirection = transform.TransformDirection(Vector3.forward);
 		
@@ -498,8 +503,7 @@ public class CharacterControllerScript : MonoBehaviour //Photon.MonoBehaviour
 			
 			
         // Move the controller
-        CharacterController controller = GetComponent<CharacterController>();
-        collisionFlags = controller.Move(movement);
+        collisionFlags = m_Controller.Move(movement);
 				
 		
         // We are in jump mode but just became grounded
@@ -551,7 +555,7 @@ public class CharacterControllerScript : MonoBehaviour //Photon.MonoBehaviour
 
     void  OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if (MainARHandler.Instance.CurrentGameScene != GameScenes.MinigameCannon || MainARHandler.Instance.CurrentGameScene == GameScenes.MinigameCubeRunner)
+        if (!(MainARHandler.Instance.CurrentGameScene != GameScenes.MinigameCannon || MainARHandler.Instance.CurrentGameScene != GameScenes.MinigameCubeRunner))
             return;
         CharacterProgressScript script = this.GetComponent<CharacterProgressScript>();
 

@@ -941,6 +941,8 @@ public class CharacterProgressScript : MonoBehaviour
             case ActionId.ExitPortalMainStage:
                 {
                     Debug.Log("ExitPortalmainStage");
+
+                    ShaderColor = Color.white;
 			
                     UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<AnimateCharacterOutPortalScript>().Timer = 0;
                     UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<AnimateCharacterOutPortalScript>().JumbId = AnimateCharacterOutPortalScript.JumbStateId.Jumbout;

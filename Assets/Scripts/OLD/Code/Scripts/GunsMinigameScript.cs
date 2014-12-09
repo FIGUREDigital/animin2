@@ -556,7 +556,7 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
         CurrentBullets.Clear();
         CurrentBullets.AddRange(prefabs);
 
-        Points += 100;
+        Points += 400;
 
         UIGlobalVariablesScript.Singleton.SoundEngine.Play(GenericSoundId.GunGame_barrel_destroy);
 

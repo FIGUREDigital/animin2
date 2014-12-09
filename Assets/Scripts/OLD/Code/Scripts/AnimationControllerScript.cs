@@ -625,7 +625,9 @@ public class AnimationControllerScript : MonoBehaviour
         }
 
         CharacterProgressScript script = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>();
-
+        if (script == null) this.GetComponent<CharacterProgressScript>();
+        if (script == null)
+            return;
 
         if (IsHungry || IsNotWell)
         {

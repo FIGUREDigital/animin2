@@ -30,8 +30,8 @@ public class EnterFriendsNameSubmitScript : MonoBehaviour
 			ReportingLabel.gameObject.SetActive(true);
 			ReportingLabel.text = "Connecting...";
 
-			GameController.instance.SetFriendUsername(mInput.text);
-			GameObject.Find("MultiplayerObject").GetComponent<GameController>().SetMultiplayerJoinFriend();
+			//GameController.instance.SetFriendUsername(mInput.text);
+			//GameObject.Find("MultiplayerObject").GetComponent<GameController>().SetMultiplayerJoinFriend();
 			this.gameObject.SetActive(false);
 	
 			mInput.text = "";

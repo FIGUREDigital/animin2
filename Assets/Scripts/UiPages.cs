@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 //Defines the different sections of menu which will be loaded and used
@@ -9,9 +9,9 @@ using UnityEngine.UI;
 
 public enum UiState
 {
-	Frontend,
-	MainScene,
-	Count
+    Frontend,
+    MainScene,
+    Count
 }
 //Defines all pages, seperated by their counts
 
@@ -35,14 +35,17 @@ public enum Pages
 	PrivacyPolicyPage,
 	CreditsPage,
     CubeMinigamePage,
-	MAINSCENE_COUNT
+    GunMinigamePage,
+    JoystickPage,
+    MAINSCENE_COUNT
 }
 
 
 public class PageID : MonoBehaviour
 {
-	public Pages ID;
+    public Pages ID;
 }
+
 public class UiPages : MonoBehaviour
 {
 	public const string RESOURCE_PATH = "Prefabs/UI/";
@@ -62,53 +65,59 @@ public class UiPages : MonoBehaviour
     public const string ACHIEVEMENTS_PAGE = "AchievementsPage";
     public const string PRIVICY_POLICY_PAGE = "PrivacyPolicyPage";
     public const string CUBE_MINIGAME_PAGE = "CubeMinigamePage";
-	public const string CREDITS_PAGE = "CreditsPage";
-	private static Pages mCurrentPage;
-	private static Pages mPrevPage;
-    public static Pages CurrentPage{ get { return mCurrentPage; } }
-	private static GameObject[] mPages;
-	private static GameObject[] mBackMap;
-	private static UiState mCurrentState;
+    public const string GUN_MINIGAME_PAGE = "GunMinigamePage";
+    public const string JOYSTICK_PAGE = "JoystickPage";
+    public const string CREDITS_PAGE = "CreditsPage";
+    private static Pages mCurrentPage;
+    private static Pages mPrevPage;
 
-    public static GameObject GetPage(Pages page){
+    public static Pages CurrentPage{ get { return mCurrentPage; } }
+
+    private static GameObject[] mPages;
+    private static GameObject[] mBackMap;
+    private static UiState mCurrentState;
+
+    public static GameObject GetPage(Pages page)
+    {
         return mPages[(int)page];
     }
 
-	void Start ()
-	{
-		SwitchState();
-		LoadPrefabs ();
-		SetupBackMap();
-		Init ();
-	}
-	void SwitchState()
-	{
-		if(Application.loadedLevelName == "Menu")
-		{
-			mCurrentState = UiState.Frontend;
-		}
-		else //TODO Update to a proper switch
-		{
-			mCurrentState = UiState.MainScene;
-		}
-	}
-	void Init()
-	{
-		switch(mCurrentState)
-		{
-		case UiState.Frontend:
-			mCurrentPage = Pages.ProfileSelectPage;
-			break;
-		case UiState.MainScene:
-			mCurrentPage = Pages.CaringPage;
-			break;
-		default:
-			mCurrentPage = Pages.ProfileSelectPage;
-			break;
-		}
+    void Start()
+    {
+        SwitchState();
+        LoadPrefabs();
+        SetupBackMap();
+        Init();
+    }
+    void Init()
+    {
+        switch(mCurrentState)
+        {
+            case UiState.Frontend:
+                mCurrentPage = Pages.ProfileSelectPage;
+                break;
+            case UiState.MainScene:
+                mCurrentPage = Pages.CaringPage;
+                break;
+            default:
+                mCurrentPage = Pages.ProfileSelectPage;
+                break;
+        }
 
-		mPages [(int)mCurrentPage].SetActive (true);
-	}
+        mPages [(int)mCurrentPage].SetActive (true);
+    }
+
+    void SwitchState()
+    {
+        if (Application.loadedLevelName == "Menu")
+        {
+            mCurrentState = UiState.Frontend;
+        }
+        else //TODO Update to a proper switch
+        {
+            mCurrentState = UiState.MainScene;
+        }
+    }
 
 	private void LoadPrefabs()
 	{
@@ -197,96 +206,105 @@ public class UiPages : MonoBehaviour
 		case Pages.PrivacyPolicyPage:
 			name = PRIVICY_POLICY_PAGE;
                 break;
-        case Pages.CreditsPage:
-            name = CREDITS_PAGE;
-            break;
-        case Pages.CubeMinigamePage:
-            name = CUBE_MINIGAME_PAGE;
-            break;
-		default:
-			Debug.LogError("NO SUCH PAGE: " + page.ToString());
-			name = null;
-			break;
-		}
+	    case Pages.CreditsPage:
+	        name = CREDITS_PAGE;
+	        break;
+	    case Pages.CubeMinigamePage:
+	        name = CUBE_MINIGAME_PAGE;
+	        break;
+	    case Pages.GunMinigamePage:
+	        name = GUN_MINIGAME_PAGE;
+	        break;
+	    case Pages.JoystickPage:
+	        name = JOYSTICK_PAGE;
+	        break;
+	    default:
+	        Debug.LogError("NO SUCH PAGE: " + page.ToString());
+	        name = null;
+	        break;
+        }
 
-		return RESOURCE_PATH + name;
-	}
+        return RESOURCE_PATH + name;
+    }
 
-	private static GameObject findRoot(GameObject caller)
-	{
-		GameObject g = caller;
-		while (g.transform.parent != null) 
-		{
-			g = g.transform.parent.gameObject;
-		}
-		return g;
-	}
+    private static GameObject findRoot(GameObject caller)
+    {
+        GameObject g = caller;
+        while (g.transform.parent != null)
+        {
+            g = g.transform.parent.gameObject;
+        }
+        return g;
+    }
 
-	public static void LeaveScene(string name)
-	{
-		Application.LoadLevel (name);
-	}
+    public static void LeaveScene(string name)
+    {
+        Application.LoadLevel(name);
+    }
 
-	public static void LeaveScene(int num)
-	{
-	}
+    public static void LeaveScene(int num)
+    {
+    }
 
-	public static void Back()
-	{
-		GameObject oldPage = mPages [(int)mCurrentPage];
-		GameObject newPage = mBackMap [(int)mCurrentPage];
-		Transition (oldPage, newPage);
-	}
+    public static void Back()
+    {
+        GameObject oldPage = mPages[(int)mCurrentPage];
+        GameObject newPage = mBackMap[(int)mCurrentPage];
+        Transition(oldPage, newPage);
+    }
 
-	public static void Next(Pages next)
-	{
-		GameObject oldPage = mPages [(int)mCurrentPage];
-		GameObject newPage = mPages [(int)next];
-		Transition (oldPage, newPage);
-	}
+    public static void Next(Pages next)
+    {
+		Debug.Log ("Next Page : [" + next.ToString() + "]");
+        GameObject oldPage = mPages[(int)mCurrentPage];
+        GameObject newPage = mPages[(int)next];
+        Transition(oldPage, newPage);
+    }
 
-	public static void OpenSettings()
-	{
-		mPrevPage = mCurrentPage;
-		mCurrentPage = Pages.SettingsPage;
-		mPages [(int)mCurrentPage].SetActive (true);
-		mPages [(int)mPrevPage].SetActive (false);
-	}
+    public static void OpenSettings()
+    {
+        mPrevPage = mCurrentPage;
+        mCurrentPage = Pages.SettingsPage;
+        mPages[(int)mCurrentPage].SetActive(true);
+        mPages[(int)mPrevPage].SetActive(false);
+    }
 
-	public static void Close()
-	{
-		mPages [(int)mCurrentPage].SetActive (false);
-		mPages [(int)mPrevPage].SetActive (true);
-		mCurrentPage = mPrevPage;
-	}
+    public static void Close()
+    {
+        mPages[(int)mCurrentPage].SetActive(false);
+        mPages[(int)mPrevPage].SetActive(true);
+        mCurrentPage = mPrevPage;
+    }
 
-	private static void Transition(GameObject from, GameObject to)
-	{
-        if(from!=null)from.SetActive (false);
-		to.SetActive (true);
-		mCurrentPage = to.GetComponent<PageID> ().ID;
-	}
+    private static void Transition(GameObject from, GameObject to)
+    {
+        if (from != null)
+            from.SetActive(false);
+        to.SetActive(true);
+        mCurrentPage = to.GetComponent<PageID>().ID;
+    }
 
 
 
-    public static bool IsMouseOverUI(){
+    public static bool IsMouseOverUI()
+    {
         PointerEventData pe = new PointerEventData(EventSystem.current);
-        pe.position =  Input.mousePosition;
+        pe.position = Input.mousePosition;
 
         List<RaycastResult> hits = new List<RaycastResult>();
-        EventSystem.current.RaycastAll( pe, hits );
+        EventSystem.current.RaycastAll(pe, hits);
 
         bool hit = false;
         GameObject hgo = null;
         string gos = "";
-        foreach(RaycastResult h in hits)
+        foreach (RaycastResult h in hits)
         {
             GameObject g = h.gameObject;
             gos += (gos == "") ? g.name : " | " + g.name;
-            hit = ( g.name != "BackgroundEventCatcher" &&
-                (g.GetComponent<Button>() || g.GetComponent<Canvas>() || g.GetComponent<InputField>() || g.GetComponent<UnityEngine.UI.Image>())
+            hit = (g.name != "BackgroundEventCatcher" &&
+            (g.GetComponent<Button>() || g.GetComponent<Canvas>() || g.GetComponent<InputField>() || g.GetComponent<UnityEngine.UI.Image>())
             );
-            if(hit)
+            if (hit)
             {
                 break;
             }

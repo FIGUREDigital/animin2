@@ -8,6 +8,7 @@ public class MinigamesPageControls : MonoBehaviour {
         MainARHandler.Get.ChangeSceneToCubeRunner();
 	}
 	public void Minigame2Button()
-	{
+    {
+        MainARHandler.Get.ChangeSceneToCannon();
 	}
 }

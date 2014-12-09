@@ -49,13 +49,6 @@ public class ProjectileScript : MonoBehaviour
 
         GunsMinigameScript miniGame = UIGlobalVariablesScript.Singleton.GunGameScene.GetComponent<GunsMinigameScript>();
 
-        if (GameController.instance.gameType == GameType.NETWORK)
-        {
-          
-            //int playerIndex = int.Parse(GetComponent<PhotonView>().instantiationData[0].ToString());
-
-           // UIGlobalVariablesScript.Singleton.GunGameScene.GetComponent<GunsMinigameScript>().ShootBulletForwardEnd(this.gameObject, miniGame.PlayersCharacters[playerIndex]);
-        }
 	}
 	
 	// Update is called once per frame
@@ -140,8 +133,6 @@ public class ProjectileScript : MonoBehaviour
 
 	void OnCollisionEnter(Collision collision)
 	{
-        if (!__local) return;
-
  //       Debug.Log("Collision : [" + collision.gameObject + "];");
 
         if (collision.gameObject == UIGlobalVariablesScript.Singleton.MainCharacterRef) return;

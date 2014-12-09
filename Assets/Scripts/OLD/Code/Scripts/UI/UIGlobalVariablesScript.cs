@@ -134,26 +134,6 @@ Gun,
         }
     }
 
-    public System.Type CurrentVFType
-    {
-        get
-        {
-            switch (UIGlobalVariablesScript.Singleton.CurrentlyActive)
-            {
-                case UIGlobalVariablesScript.ActiveState.Caring:
-                    return typeof(TrackVuforiaScript);
-                    break;
-                case UIGlobalVariablesScript.ActiveState.Collecting:
-                    return typeof(TrackVFMG1);
-                    break;
-                case UIGlobalVariablesScript.ActiveState.Gun:
-                    return typeof(TrackVFMG2);
-                    break;
-            }
-            return null;
-        }
-    }
-
     public GameObject CurrentMiniGameSceneRef
     {
         get

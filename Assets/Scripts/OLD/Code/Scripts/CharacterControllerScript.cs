@@ -10,34 +10,7 @@ public class CharacterForces
 
 public class CharacterControllerScript : MonoBehaviour //Photon.MonoBehaviour 
 {
-	
-    // SHAUN START
-    // ---------------------------------------------------------------------------------------------------------------------------------------------------
-	
-    private		bool	__local;
 
-    public bool local { get { return __local; } }
-    //public Animations currentAnimation { get { return __currentAnimation;} }
-    //public Animations currentAnimation { get { return this.GetComponent<AnimationControllerScript>().currentAnimation;} }
-	
-    public void SetLocal(bool local)
-    {
-        __local = local;
-    }
-
-    public void UpdatePositionRemotely(Vector3 position)
-    {
-        transform.position = Vector3.Lerp(transform.position, position, Time.deltaTime * 5);
-    }
-
-    public void UpdateRotationRemotely(Quaternion rotation)
-    {
-        transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * 5);
-    }
-	
-    // SHAUN END
-    // ---------------------------------------------------------------------------------------------------------------------------------------------------
-	
 
 
     public Camera CameraRef;
@@ -448,8 +421,6 @@ public class CharacterControllerScript : MonoBehaviour //Photon.MonoBehaviour
 
     void  Update()
     {
-        if (!__local)
-            return;
         if (FreezeCollisionDetection)
             return;
         if (UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef != null && UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef.GetComponent<MinigameCollectorScript>().Paused)
@@ -580,6 +551,8 @@ public class CharacterControllerScript : MonoBehaviour //Photon.MonoBehaviour
 
     void  OnControllerColliderHit(ControllerColliderHit hit)
     {
+        if (MainARHandler.Get.CurrentGameScene != GameScenes.MinigameCannon || MainARHandler.Get.CurrentGameScene == GameScenes.MinigameCubeRunner)
+            return;
         CharacterProgressScript script = this.GetComponent<CharacterProgressScript>();
 
         if (hit.gameObject.tag == "Items" && hit.gameObject/*.GetComponent<ReferencedObjectScript>().Reference*/.GetComponent<UIPopupItemScript>().Type == PopupItemType.Token)
@@ -594,14 +567,8 @@ public class CharacterControllerScript : MonoBehaviour //Photon.MonoBehaviour
 
         if (hit.gameObject.tag == "EnemyGunGame")
         {
-            if (GameController.instance.gameType == GameType.NETWORK)
-            {
-                SendEventHitByEnemy(hit.gameObject, this.gameObject);
-            }
-            else
-            {
-                UIGlobalVariablesScript.Singleton.GunGameScene.GetComponent<GunsMinigameScript>().OnHitByEnemy(hit.gameObject, this.gameObject);
-            }
+			UIGlobalVariablesScript.Singleton.GunGameScene.GetComponent<GunsMinigameScript>().OnHitByEnemy(hit.gameObject, this.gameObject);
+            
         }
 
         if (hit.gameObject.tag == "RandomCubeGunGame")

@@ -25,10 +25,9 @@ public class IngamePauseMenu : MonoBehaviour
         m_PauseButton.SetActive(true);
     }
 	
-    // Update is called once per frame
-    void Update()
+    void OnEnable()
     {
-	    
+        //SetPause(false);
     }
 
 
@@ -50,6 +49,7 @@ public class IngamePauseMenu : MonoBehaviour
     public void ExitGame()
     {
         //MinigameScript.ExitMinigame(false);
+        SetPause(false);
         if (MainARHandler.Instance.CurrentGameScene == GameScenes.MinigameCubeRunner)
         {
             UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef.GetComponent<MinigameCollectorScript>().ExitMinigame(false);

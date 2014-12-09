@@ -13,19 +13,21 @@ public enum ReadyStates{
 public class GunMinigamePageControls : MonoBehaviour {
 
     [SerializeField]
-    private UnityEngine.UI.Image m_Bar, m_Go321, m_AmmoType;
+    private UnityEngine.UI.Image m_Bar, m_Go321, m_GunIcon;
 
 
     [SerializeField]
     private Sprite[] Go321Textures;
 
     public UnityEngine.UI.Image Bar { get { return m_Bar; } }
+    public UnityEngine.UI.Image Icon { get { return m_GunIcon; } }
     public UnityEngine.UI.Image Go321 { get { return m_Go321; } }
 
 
 
     [SerializeField]
     private UnityEngine.UI.Text m_Points;
+    public UnityEngine.UI.Text Points { get { return m_Points; } }
 
 	// Use this for initialization
 	void Start () {

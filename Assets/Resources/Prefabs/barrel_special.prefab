@@ -13,7 +13,6 @@ GameObject:
   - 95: {fileID: 9500000}
   - 114: {fileID: 11400000}
   - 65: {fileID: 6500000}
-  - 114: {fileID: 11400002}
   m_Layer: 0
   m_Name: barrel_special
   m_TagString: Barrel
@@ -99,32 +98,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BulletPrefabs:
-  - 507265666162732f42756c6c657420436c6f636b20414c4c
-  - 507265666162732f42756c6c65742043616d65726120414c4c
-  BarFrontTexture: {fileID: 2800000, guid: 3ed2105c7d520469d9cb9fdf474eaea7, type: 3}
-  BuletIcon: {fileID: 2800000, guid: 933911844d83148958e4ea809959854c, type: 3}
-  BarBackgroundTexture: 67756e4d6574657246726f6e74414c4c4247
+  - Prefabs/Bullet Clock ALL
+  - Prefabs/Bullet Camera ALL
+  BarFrontTexture: {fileID: 21300000, guid: 65bf8714b7fcd41fa98dc2338764a36b, type: 3}
+  BuletIcon: {fileID: 21300000, guid: e2d4138a258834270925e94ce8e305e9, type: 3}
+  BarBackgroundTexture: gunMeterFrontALLBG
   DestroyedPrefab: {fileID: 100000, guid: 41dac90b6ba7544f8867a6d6d73dbdb2, type: 2}
---- !u!114 &11400002
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  subId: 0
-  ownerId: 0
-  group: 0
-  prefixBackup: -1
-  observed: {fileID: 11400000}
-  synchronization: 3
-  onSerializeTransformOption: 3
-  onSerializeRigidBodyOption: 2
-  instantiationId: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

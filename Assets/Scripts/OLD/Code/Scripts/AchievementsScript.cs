@@ -39,7 +39,15 @@ public class AchievementsScript : MonoBehaviour
 		AchievementObject.SetActive(true);
 		Timer = 5;
 		VerticalMovement = 0;
-		//AchievementObject.GetComponent<RectTransform>().bottomAnchor.absolute = -509;
+        //AchievementObject.GetComponent<RectTransform>().bottomAnchor.absolute = -509;
+
+        if (UIGlobalVariablesScript.Singleton == null)
+            return;
+        if (UIGlobalVariablesScript.Singleton.MainCharacterRef == null)
+            return;
+        if (UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript> () == null)
+            return;
+
 		SpriteStore store = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript> ().SpriteStore;
 		switch(id)
 		{

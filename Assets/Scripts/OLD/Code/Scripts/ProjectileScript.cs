@@ -133,8 +133,6 @@ public class ProjectileScript : MonoBehaviour
 
 	void OnCollisionEnter(Collision collision)
 	{
-        if (!__local) return;
-
  //       Debug.Log("Collision : [" + collision.gameObject + "];");
 
         if (collision.gameObject == UIGlobalVariablesScript.Singleton.MainCharacterRef) return;

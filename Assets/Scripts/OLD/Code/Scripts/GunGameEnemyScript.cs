@@ -173,7 +173,7 @@ public class GunGameEnemyScript : MonoBehaviour //Photon.MonoBehaviour
         GameObject mainChara = UIGlobalVariablesScript.Singleton.MainCharacterRef;
 
         Vector3 charaPos = mainChara.transform.position;
-        float arb = 20f;
+        float arb = 10f;
         Vector3 dist = this.transform.position - charaPos;
         float dist_amt = (this.transform.position - charaPos).magnitude;
         if (dist.y > -0.5f)
@@ -253,6 +253,8 @@ public class GunGameEnemyScript : MonoBehaviour //Photon.MonoBehaviour
                         script.TargetToFollow = gunGame.PlayersCharacters[Random.Range(0, gunGame.PlayersCharacters.Count)];
                     }
                 }
+                gunGame.Points += 50;
+
                 ReceiveEventMerged();
                 Destroy(this.gameObject);
 

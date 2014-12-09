@@ -87,6 +87,23 @@ public class UiPages : MonoBehaviour
         SetupBackMap();
         Init();
     }
+    void Init()
+    {
+        switch(mCurrentState)
+        {
+            case UiState.Frontend:
+                mCurrentPage = Pages.ProfileSelectPage;
+                break;
+            case UiState.MainScene:
+                mCurrentPage = Pages.CaringPage;
+                break;
+            default:
+                mCurrentPage = Pages.ProfileSelectPage;
+                break;
+        }
+
+        mPages [(int)mCurrentPage].SetActive (true);
+    }
 
     void SwitchState()
     {
@@ -183,55 +200,22 @@ public class UiPages : MonoBehaviour
 		case Pages.PrivacyPolicyPage:
 			name = PRIVICY_POLICY_PAGE;
                 break;
-            case Pages.NewProfilePage:
-                name = NEW_PROFILE_PAGE;
-                break;
-            case Pages.AniminSelectPage:
-                name = ANIMIN_SELECT_PAGE;
-                break;
-            case Pages.PurchasePage:
-                name = PURCHASE_PAGE;
-                break;
-            case Pages.LoadingPage:
-                name = LOADING_PAGE;
-                break;
-            case Pages.DemoCardPage:
-                name = DEMO_CARD_PAGE;
-                break;
-            case Pages.CaringPage:
-                name = CARING_PAGE;
-                break;
-            case Pages.StatsPage:
-                name = STATS_PAGE;
-                break;
-            case Pages.MinigamesPage:
-                name = MINIGAMES_PAGE;
-                break;
-            case Pages.SettingsPage:
-                name = SETTINGS_PAGE;
-                break;
-            case Pages.AchievementsPage:
-                name = ACHIEVEMENTS_PAGE;
-                break;
-            case Pages.PrivacyPolicyPage:
-                name = PRIVICY_POLICY_PAGE;
-                break;
-            case Pages.CreditsPage:
-                name = CREDITS_PAGE;
-                break;
-            case Pages.CubeMinigamePage:
-                name = CUBE_MINIGAME_PAGE;
-                break;
-            case Pages.GunMinigamePage:
-                name = GUN_MINIGAME_PAGE;
-                break;
-            case Pages.JoystickPage:
-                name = JOYSTICK_PAGE;
-                break;
-            default:
-                Debug.LogError("NO SUCH PAGE: " + page.ToString());
-                name = null;
-                break;
+	    case Pages.CreditsPage:
+	        name = CREDITS_PAGE;
+	        break;
+	    case Pages.CubeMinigamePage:
+	        name = CUBE_MINIGAME_PAGE;
+	        break;
+	    case Pages.GunMinigamePage:
+	        name = GUN_MINIGAME_PAGE;
+	        break;
+	    case Pages.JoystickPage:
+	        name = JOYSTICK_PAGE;
+	        break;
+	    default:
+	        Debug.LogError("NO SUCH PAGE: " + page.ToString());
+	        name = null;
+	        break;
         }
 
         return RESOURCE_PATH + name;
@@ -265,6 +249,7 @@ public class UiPages : MonoBehaviour
 
     public static void Next(Pages next)
     {
+		Debug.Log ("Next Page : [" + next.ToString() + "]");
         GameObject oldPage = mPages[(int)mCurrentPage];
         GameObject newPage = mPages[(int)next];
         Transition(oldPage, newPage);

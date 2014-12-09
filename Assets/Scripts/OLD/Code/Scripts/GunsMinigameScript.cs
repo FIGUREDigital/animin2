@@ -373,7 +373,7 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
                     }
 
                       
-                    ReceiveEventAmmoTimer(AmmoTimer);
+                    //ReceiveEventAmmoTimer(AmmoTimer);
 
 
                     WaveTimerForNext -= Time.deltaTime;
@@ -445,7 +445,7 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
                 }
         }
 
-        //UICOMMENTPointsLabel.text = Points.ToString() + " pts";
+        UIControls.Points.text = Points.ToString() + " pts";
 
         if (m_TutorialID == TutorialStateId.ShowEnemies && Input.GetButtonUp("Fire1") && !m_TutPause)
             AdvanceTutorial();
@@ -482,38 +482,14 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
         else
             Debug.Log("False...");
     }
-
-    [RPC]
-    protected void ReceiveEventAmmoTimer(float ammo)
-    {
-//        MeterBar.width = (int)(1679 * ammo);
-//        MeterBar.uvRect = new Rect(0, 0, ammo, 1);
-//        MeterBar.MarkAsChanged();
-        //MeterBar.material.mainTextureOffset = new Vector2( AmmoTimer, 0);
-    }
-
-    protected void SendEventAmmoTimer()
-    {
-//        GetComponent<PhotonView>().RPC("ReceiveEventAmmoTimer", PhotonTargets.All, AmmoTimer);
-    }
-
-    [RPC]
     protected void ReceiveEventAcquireControlOfCharacter(int playerIndex)
     {
         UIGlobalVariablesScript.Singleton.Joystick.CharacterAnimationRef = PlayersCharacters[playerIndex].GetComponent<MinigameAnimationControllerScript>();
         UIGlobalVariablesScript.Singleton.Joystick.CharacterControllerRef = PlayersCharacters[playerIndex].GetComponent<CharacterControllerScript>();
     }
-
-
-    [RPC]
     protected void ReceiveBeginGame()
     {
         State = GameStateId.PrepareToStart3;
-    }
-
-    protected void SendEventBeginGame()
-    {
-        //GetComponent<PhotonView>().RPC("ReceiveBeginGame", PhotonTargets.All);
     }
 
 
@@ -582,11 +558,11 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
         //		UIGlobalVariablesScript.Singleton.GunGameScene.GetComponent<GunsMinigameScript>().SpawnedObjects.Add(instance);
     }
 
-    /*
+
     public void OnBulletHitBarrel(BarrelCollisionScript barrel)
     {
-        MeterBar.mainTexture = barrel.BarFrontTexture;
-        BulletIcon.mainTexture = barrel.BuletIcon;
+        UIControls.Bar.sprite = barrel.BarFrontTexture;
+        UIControls.Icon.sprite = barrel.BuletIcon;
 
         //Destroy(barrel);
         AmmoTimer += 0.07f;
@@ -614,7 +590,7 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
         //UIGlobalVariablesScript.Singleton.GunGameScene.GetComponent<GunsMinigameScript>().SpawnedObjects.Remove(this.gameObject);
         Destroy(barrel.gameObject);
     }
-	*/
+	
     public GameObject SpawnAniminStart(PersistentData.TypesOfAnimin animinid, AniminEvolutionStageId evolution)
     {
         //string modelPath = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterSwapManagementScript>().GetModelPath(animinid, evolution);

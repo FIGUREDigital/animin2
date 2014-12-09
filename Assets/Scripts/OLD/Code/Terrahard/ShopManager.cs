@@ -10,7 +10,7 @@ using System.Linq;
 
 public class ShopManager
 {
-	private const string publicKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqWSuyg1d82CxPSUf3S/qMjxGZ4JsCEMPzfTAbqxVUTS9QSt7bdtJP8EJyWfEr/OlNKWtAk+ZeqS6fzZnwv3Z+/F2Wv1UUIEkI8qFlwaFtljFCpR2AAZnUlK0myym5LNs8yTvmX5shGe3SNGW5tDsj4RLuP9pq+iiJer6ZjbXthubABF6VF6xPH4Dy4MOQOw52JaOJxPaLXpthEWdytlxOcSR1IlzDfOz+Ky7QH1Li0TV9PPlgGXlHLAOwGG5Tyw4iJmjeLuBrNLH0e8ihp2im9gWnrMzVMTMHN8xzfKv+ZiwDaFaP9FY5srMljdnyCtZg9tMjPVf6yAZKIeJGA2eFwIDAQAB";
+	private const string publicKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzurmIlaQm5eDm2Z+Kbjp7W2WGej+hySjBfIwThS988z3Y7TlJ4okru5bgc7d6coFxWEZVh59ytK/mnNXzaxgCQ9ZpxrbEghZ0icXGcxYNNUa6PMjJgrV3XJSGCKbVWkXpwkPnRudTz5Z+XvX274v0Cc9iQpkXtfwKsUU3SsQYFhX7K9dit9RXvKhHk7/OcHP3eAR8GUumm0XGYAhv6zC1TE14j7t377bF4K1899fR/6zG63EN2GyNHfpsfb2tJMUjg16nu/tL2U1F59+sU1Lz+YNHgvulqTcrd4FVjLIuOdseySpsesd+uQz3q32r6DLx8ntUyVyMaD8F18nIj0qKQIDAQAB"; //**REAL ONE**  "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqWSuyg1d82CxPSUf3S/qMjxGZ4JsCEMPzfTAbqxVUTS9QSt7bdtJP8EJyWfEr/OlNKWtAk+ZeqS6fzZnwv3Z+/F2Wv1UUIEkI8qFlwaFtljFCpR2AAZnUlK0myym5LNs8yTvmX5shGe3SNGW5tDsj4RLuP9pq+iiJer6ZjbXthubABF6VF6xPH4Dy4MOQOw52JaOJxPaLXpthEWdytlxOcSR1IlzDfOz+Ky7QH1Li0TV9PPlgGXlHLAOwGG5Tyw4iJmjeLuBrNLH0e8ihp2im9gWnrMzVMTMHN8xzfKv+ZiwDaFaP9FY5srMljdnyCtZg9tMjPVf6yAZKIeJGA2eFwIDAQAB";
     #region Singleton
 
     private static ShopManager s_Instance;
@@ -240,22 +240,23 @@ public class ShopManager
 			ProfilesManagementScript.Singleton.ContinueToInAppPurchase(false);
 			
 		}
+		Debug.Log ("Number of purchases: " + purchases.Count.ToString ());
         for( int i = 0; i < purchases.Count; i++ )
         {
-            //GUIDebug.Log( "purchases " + purchases[ i ] );
+            Debug.Log( "purchases " + purchases[ i ] );
         }
-        
+		Debug.Log ("Number of skus: " + skus.Count.ToString ());
         for( int i = 0; i < skus.Count; i++ )
         {
-            //GUIDebug.Log( "skus " + skus[ i ].productId );
+            Debug.Log( "skus " + skus[ i ].productId );
         }
     }
 
 
     void queryInventoryFailedEvent(string error)
     {
-        Debug.Log("queryInventoryFailedEvent: " + error);
-        //GUIDebug.Log("queryInventoryFailedEvent: " + error);
+		Debug.Log("queryInventoryFailedEvent: " + error);
+		StartStore(mItems);
     }
 
     void purchaseCompleteAwaitingVerificationEvent(string purchaseData, string signature)
@@ -341,10 +342,6 @@ public class ShopManager
     {
 
 		Debug.Log( "AAAAAAAAAAAAAAAAAAAAAAAAAA " + CurrentPurchaseStatus + " " + productID );
-		if (CurrentPurchaseStatus == PurchaseStatus.Cancel || CurrentPurchaseStatus == PurchaseStatus.Fail || CurrentPurchaseStatus == PurchaseStatus.Success) 
-		{
-			UiPages.Back();
-		}
         if( CurrentPurchaseStatus == PurchaseStatus.Idle )
         {
             CurrentPurchaseStatus = PurchaseStatus.InProgress;

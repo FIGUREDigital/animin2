@@ -67,11 +67,8 @@ public class SoundEngineScript : MonoBehaviour
 
 	void Update()
 	{
-		//NOT TO SELF. REMEMBER TO UNCOMMENT THIS SHITE WHEN REIMPLEMTING SOUNDS. FOR CHRIST'S SAKE II.
-
-        //if(!ProfilesManagementScript.Singleton.CurrentProfile.Settings.AudioEnabled) 
 		if (SoundFxLooper1 != null) {
-			if (false) {
+			if (!ProfilesManagementScript.Singleton.CurrentProfile.Settings.AudioEnabled) {
 				if (SoundFxLooper1.isPlaying)
 					SoundFxLooper1.Stop ();
 			} else {
@@ -280,7 +277,7 @@ public class SoundEngineScript : MonoBehaviour
 	{
         if (animin == PersistentData.TypesOfAnimin.TboAdult)
             animin = PersistentData.TypesOfAnimin.Tbo;
-		//UICOMMENT: if(!ProfilesManagementScript.Singleton.CurrentProfile.Settings.AudioEnabled) return;
+		if(!ProfilesManagementScript.Singleton.CurrentProfile.Settings.AudioEnabled) return;
 		if (CreatureSounds [(int)animin, (int)creatureId, (int)soundId] == null) {
 			Debug.Log ("Panic! Sound : [" + animin + "|" + creatureId + "|" + soundId + "] is not valid");
 			return;

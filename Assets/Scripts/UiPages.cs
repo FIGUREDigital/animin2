@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 //Defines the different sections of menu which will be loaded and used
@@ -17,20 +17,22 @@ public enum UiState
 
 public enum Pages
 {
-    ProfileSelectPage,
-    NewProfilePage,
-    AniminSelectPage,
-    PurchasePage,
-    LoadingPage,
-    DemoCardPage,
-    FRONTEND_COUNT,
-    CaringPage,
-    StatsPage,
-    MinigamesPage,
-    SettingsPage,
-    AchievementsPage,
-    PrivacyPolicyPage,
-    CreditsPage,
+	ProfileSelectPage,
+	NewProfilePage,
+	AniminSelectPage,
+	PurchasePage,
+	LoadingPage,
+	DemoCardPage,
+	ConnectionErrorPage,
+	AddressInputPage,
+	FRONTEND_COUNT,
+	CaringPage,
+	StatsPage,
+	MinigamesPage,
+	SettingsPage,
+	AchievementsPage,
+	PrivacyPolicyPage,
+	CreditsPage,
     CubeMinigamePage,
     GunMinigamePage,
     JoystickPage,
@@ -45,17 +47,19 @@ public class PageID : MonoBehaviour
 
 public class UiPages : MonoBehaviour
 {
-    public const string RESOURCE_PATH = "Prefabs/UI/";
-    public const string PROFILE_SELECT_PAGE = "ProfilePage";
-    public const string NEW_PROFILE_PAGE = "NewProfilePage";
-    public const string ANIMIN_SELECT_PAGE = "AniminSelectPage";
-    public const string PURCHASE_PAGE = "PurchasePage";
-    public const string LOADING_PAGE = "LoadingPage";
-    public const string DEMO_CARD_PAGE = "DemoCardPage";
-    public const string CARING_PAGE = "CaringPage";
-    public const string STATS_PAGE = "StatsPage";
-    public const string MINIGAMES_PAGE = "MinigamesPage";
-    public const string SETTINGS_PAGE = "SettingsPage";
+	public const string RESOURCE_PATH = "Prefabs/UI/";
+	public const string PROFILE_SELECT_PAGE = "ProfilePage";
+	public const string NEW_PROFILE_PAGE = "NewProfilePage";
+	public const string ANIMIN_SELECT_PAGE = "AniminSelectPage";
+	public const string PURCHASE_PAGE = "PurchasePage";
+	public const string LOADING_PAGE = "LoadingPage";
+	public const string DEMO_CARD_PAGE = "DemoCardPage";
+	public const string ADDRESS_INPUT_PAGE = "AddressInputPage";
+	public const string CONNECTION_ERROR_PAGE = "ConnectionErrorPage";
+	public const string CARING_PAGE = "CaringPage";
+	public const string STATS_PAGE = "StatsPage";
+	public const string MINIGAMES_PAGE = "MinigamesPage";
+	public const string SETTINGS_PAGE = "SettingsPage";
     public const string ACHIEVEMENTS_PAGE = "AchievementsPage";
     public const string PRIVICY_POLICY_PAGE = "PrivacyPolicyPage";
     public const string CUBE_MINIGAME_PAGE = "CubeMinigamePage";
@@ -96,67 +100,88 @@ public class UiPages : MonoBehaviour
         }
     }
 
-    void Init()
-    {
-        switch (mCurrentState)
-        {
-            case UiState.Frontend:
-                mCurrentPage = Pages.ProfileSelectPage;
-                break;
-            case UiState.MainScene:
-                mCurrentPage = Pages.CaringPage;
-                break;
-            default:
-                mCurrentPage = Pages.ProfileSelectPage;
-                break;
-        }
-
-        mPages[(int)mCurrentPage].SetActive(true);
-    }
-
-    private void LoadPrefabs()
-    {
-        mPages = new GameObject[(int)Pages.MAINSCENE_COUNT];
-        int start = mCurrentState == UiState.Frontend ? 0 : ((int)Pages.FRONTEND_COUNT) + 1;
-        int end = (int)(mCurrentState == UiState.Frontend ? Pages.FRONTEND_COUNT : Pages.MAINSCENE_COUNT);
-        for (int i = start; i < end; i++)
-        {
-            Pages page = (Pages)i;
-            string name = GetPrefabName(page);
-            Object obj = Resources.Load(name);
-            GameObject go = (GameObject)Instantiate(obj);
-            go.AddComponent<PageID>().ID = page;
-            go.SetActive(false);
-            mPages[i] = go;
-        }
-    }
-
-    private void SetupBackMap()
-    {
-        mBackMap = new GameObject[(int)Pages.MAINSCENE_COUNT];
-        mBackMap[(int)Pages.ProfileSelectPage] = null;
-        mBackMap[(int)Pages.NewProfilePage] = mPages[(int)Pages.ProfileSelectPage];
-        mBackMap[(int)Pages.AniminSelectPage] = mPages[(int)Pages.ProfileSelectPage];
-        mBackMap[(int)Pages.PurchasePage] = mPages[(int)Pages.AniminSelectPage];
-        mBackMap[(int)Pages.LoadingPage] = mPages[(int)Pages.PurchasePage];
-        mBackMap[(int)Pages.DemoCardPage] = mPages[(int)Pages.ProfileSelectPage];
-        mBackMap[(int)Pages.CaringPage] = null;
-        mBackMap[(int)Pages.StatsPage] = mPages[(int)Pages.CaringPage];
+	private void LoadPrefabs()
+	{
+		mPages = new GameObject[(int)Pages.MAINSCENE_COUNT];
+		int start = mCurrentState == UiState.Frontend ? 0 : ((int)Pages.FRONTEND_COUNT) + 1;
+		int end =(int)( mCurrentState == UiState.Frontend ? Pages.FRONTEND_COUNT : Pages.MAINSCENE_COUNT);
+		for (int i = start; i < end; i++)
+		{
+			Pages page = (Pages)i;
+			string name = GetPrefabName(page);
+			Object obj = Resources.Load(name);
+			GameObject go = (GameObject)Instantiate(obj);
+			go.AddComponent<PageID>().ID = page;
+			go.SetActive(false);
+			mPages[i] = go;
+		}
+	}
+	private void SetupBackMap()
+	{
+		mBackMap = new GameObject[(int)Pages.MAINSCENE_COUNT];
+		mBackMap [(int)Pages.ProfileSelectPage] = null;
+		mBackMap [(int)Pages.NewProfilePage] = mPages[(int)Pages.ProfileSelectPage];
+		mBackMap [(int)Pages.AniminSelectPage] = mPages[(int)Pages.ProfileSelectPage];
+		mBackMap [(int)Pages.PurchasePage] = mPages[(int)Pages.AniminSelectPage];
+		mBackMap [(int)Pages.LoadingPage] = mPages[(int)Pages.PurchasePage];
+		mBackMap [(int)Pages.DemoCardPage] = mPages[(int)Pages.ProfileSelectPage];
+		mBackMap [(int)Pages.AddressInputPage] = mPages[(int)Pages.AniminSelectPage];
+		mBackMap [(int)Pages.ConnectionErrorPage] = mPages[(int)Pages.AniminSelectPage];
+		mBackMap [(int)Pages.CaringPage] = null;
+		mBackMap [(int)Pages.StatsPage] = mPages [(int)Pages.CaringPage];
+		mBackMap [(int)Pages.MinigamesPage] = mPages [(int)Pages.CaringPage];
+		mBackMap [(int)Pages.SettingsPage] = mPages [(int)Pages.CaringPage];
+		mBackMap [(int)Pages.AchievementsPage] = mPages [(int)Pages.CaringPage];
+		mBackMap [(int)Pages.PrivacyPolicyPage] = mPages [(int)Pages.SettingsPage];
+		mBackMap [(int)Pages.CreditsPage] = mPages [(int)Pages.SettingsPage];
         mBackMap[(int)Pages.MinigamesPage] = mPages[(int)Pages.CaringPage];
-        mBackMap[(int)Pages.SettingsPage] = mPages[(int)Pages.CaringPage];
-        mBackMap[(int)Pages.AchievementsPage] = mPages[(int)Pages.CaringPage];
-        mBackMap[(int)Pages.PrivacyPolicyPage] = mPages[(int)Pages.SettingsPage];
-        mBackMap[(int)Pages.CreditsPage] = mPages[(int)Pages.SettingsPage];
-        mBackMap[(int)Pages.MinigamesPage] = mPages[(int)Pages.CaringPage];
-    }
-
-    private static string GetPrefabName(Pages page)
-    {
-        string name = "";
-        switch (page)
-        {
-            case Pages.ProfileSelectPage:
-                name = PROFILE_SELECT_PAGE;
+	}
+	private static string GetPrefabName(Pages page)
+	{
+		string name = "";
+		switch(page)
+		{
+		case Pages.ProfileSelectPage:
+			name = PROFILE_SELECT_PAGE;
+			break;
+		case Pages.NewProfilePage:
+			name = NEW_PROFILE_PAGE;
+			break;
+		case Pages.AniminSelectPage:
+			name = ANIMIN_SELECT_PAGE;
+			break;
+		case Pages.PurchasePage:
+			name = PURCHASE_PAGE;
+			break;
+		case Pages.LoadingPage:
+			name = LOADING_PAGE;
+			break;
+		case Pages.DemoCardPage:
+			name = DEMO_CARD_PAGE;
+			break;
+		case Pages.ConnectionErrorPage:
+			name = CONNECTION_ERROR_PAGE;
+			break;
+		case Pages.AddressInputPage:
+			name = ADDRESS_INPUT_PAGE;
+			break;
+		case Pages.CaringPage:
+			name = CARING_PAGE;
+			break;
+		case Pages.StatsPage:
+			name = STATS_PAGE;
+			break;
+		case Pages.MinigamesPage:
+			name = MINIGAMES_PAGE;
+			break;
+		case Pages.SettingsPage:
+			name = SETTINGS_PAGE;
+			break;
+		case Pages.AchievementsPage:
+			name = ACHIEVEMENTS_PAGE;
+			break;
+		case Pages.PrivacyPolicyPage:
+			name = PRIVICY_POLICY_PAGE;
                 break;
             case Pages.NewProfilePage:
                 name = NEW_PROFILE_PAGE;
@@ -294,8 +319,7 @@ public class UiPages : MonoBehaviour
             }
         }
         //Debug.Log("gos : ["+gos+"];");
-        if (hit)
-            Debug.Log("Hit");
+        //if (hit) Debug.Log("Hit");
         return hit;
     }
 }

@@ -18,16 +18,15 @@ public class UnlockCharacterButtonClickScript : MonoBehaviour
         
 //		UIManager.Instance.UITransition(ProfilesManagementScript.Singleton.AniminsScreen, ProfilesManagementScript.Singleton.PurchaseChoiceScreen);
 
-        //if( Application.isEditor)
-        if (true)
-        {
-			UiPages.Next(Pages.PurchasePage);
-           // ProfilesManagementScript.Singleton.ContinueToInAppPurchase(true);
-        }
-        else
+        if(! Application.isEditor)
         {
             ProfilesManagementScript.Singleton.ActivateShopItemCheck();
+			UiPages.Next(Pages.LoadingPage);
         }
+		else
+		{
+			UiPages.Next(Pages.PurchasePage);
+		}
 		
 	}
 

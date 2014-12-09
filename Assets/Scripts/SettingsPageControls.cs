@@ -25,10 +25,6 @@ public class SettingsPageControls : MonoBehaviour {
 
 	public void MuteButton()
 	{
-		AudioListener audio = FindObjectOfType<AudioListener> ();
-		if(audio != null)
-		{
-			audio.enabled = !audio.enabled;
-		}
+		ProfilesManagementScript.Singleton.CurrentProfile.Settings.AudioEnabled = !ProfilesManagementScript.Singleton.CurrentProfile.Settings.AudioEnabled;
 	}
 }

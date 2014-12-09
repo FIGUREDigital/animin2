@@ -12,6 +12,7 @@ public class AddressScreen : MonoBehaviour
 	private string realName;
 	private string secretCode;
 	private string deviceID;
+	private string animin;
 	private string address;
 
 
@@ -30,6 +31,7 @@ public class AddressScreen : MonoBehaviour
 		realName = Account.Instance.FirstName + " " + Account.Instance.LastName;
 		secretCode = Account.Instance.UniqueID;
 		deviceID = SystemInfo.deviceUniqueIdentifier;
+		animin = ProfilesManagementScript.Singleton.AniminToUnlockId.ToString ();
 		address = "";
 		InputField[] text = GetComponentsInChildren<InputField>();
 		foreach(InputField line in text)
@@ -113,6 +115,7 @@ public class AddressScreen : MonoBehaviour
 New Purchase by user: {0}
 Profile Id: {1}
 Device Id: {4}
+Animin Bought: {5}
 
 Name: {2}
 
@@ -120,6 +123,6 @@ Address: {3}
 
 With thanks,
 Team Animin
-", userName, secretCode, realName, address, deviceID);
+", userName, secretCode, realName, address, deviceID, animin);
 	}
 }

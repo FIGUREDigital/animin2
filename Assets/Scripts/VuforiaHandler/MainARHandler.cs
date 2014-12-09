@@ -199,6 +199,7 @@ public class MainARHandler : MonoBehaviour
         {
             OnTrackingLost();
         }
+
     }
 
 
@@ -217,6 +218,8 @@ public class MainARHandler : MonoBehaviour
             }
             else
             {
+                if (m_CurrentGameScene == GameScenes.MinigameCannon)
+                    GunMiniGameArenaVisible(false);
                 CurrentGameSceneGameObject.transform.parent = mLastTrack.gameObject.transform;
                 m_CameraUnlock = true;
             }
@@ -237,13 +240,22 @@ public class MainARHandler : MonoBehaviour
             }
             else
             {
+                if (m_CurrentGameScene == GameScenes.MinigameCannon)
+                    GunMiniGameArenaVisible(true);
                 CurrentGameSceneGameObject.transform.parent = this.gameObject.transform;
                 m_CameraUnlock = false;
             }
         }
     }
 
-	
+    private void GunMiniGameArenaVisible(bool on){
+        GunsMinigameScript script = UIGlobalVariablesScript.Singleton.GunGameScene.GetComponent<GunsMinigameScript>();
+        if (script == null)
+            return;
+        if (script.ArenaStage == null)
+            return;
+        script.ArenaStage.SetActive(on);
+    }
 
     private void CaringARScene(bool ActivateAR)
     {

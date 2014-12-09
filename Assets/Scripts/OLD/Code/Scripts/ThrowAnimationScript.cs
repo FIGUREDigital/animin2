@@ -55,7 +55,7 @@ public class ThrowAnimationScript : MonoBehaviour
 
 				if(this.transform.position.y <= UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.position.y)
 				{
-					if(isNonArScene && (this.transform.position.x <= -150 || this.transform.position.x>= 150 || this.transform.position.z <= -150 || this.transform.position.z >= 150))
+					if(isNonArScene && (this.transform.position.x <= -160 || this.transform.position.x>= 160 || this.transform.position.z <= -160 || this.transform.position.z >= 160))
 					{
 						if(this.transform.position.y <= -350)
 						{

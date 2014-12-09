@@ -48,8 +48,8 @@ public class RestorePurchases : MonoBehaviour {
 				UnlockCharacterManager.Instance.UnlockCharacter();
 			}
 			ShopManager.Instance.RestoreItems();
-			UiPages.Next(Pages.LoadingPage);
-			Invoke("Return",10);
+			UiPages.Next(Pages.AniminSelectPage);
+			//Invoke("Return",10);
 		}
 	}
 

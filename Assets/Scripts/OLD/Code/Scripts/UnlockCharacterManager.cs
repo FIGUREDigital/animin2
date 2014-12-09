@@ -176,13 +176,10 @@ public class UnlockCharacterManager
         switch(m_CurrentCharacterFocus)
 		{
             case PersistentData.TypesOfAnimin.Pi:
-            //PlayerPrefs.SetInt("piUnlocked", 1);
 			break;
             case PersistentData.TypesOfAnimin.Kelsey:
-            //PlayerPrefs.SetInt("kelseyUnlocked", 1);
 			break;
             case PersistentData.TypesOfAnimin.Mandi:
-            //PlayerPrefs.SetInt("mandiUnlocked", 1);
 			break;
             case PersistentData.TypesOfAnimin.TboAdult:
             break;

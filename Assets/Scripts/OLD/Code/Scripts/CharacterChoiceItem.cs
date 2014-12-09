@@ -11,6 +11,8 @@ public class CharacterChoiceItem : MonoBehaviour
 	[SerializeField]
 	private GameObject mLockedButton;
 	[SerializeField]
+	private GameObject mMailButton;
+	[SerializeField]
 	private GameObject mAgeLabel;
 	[SerializeField]
 	private bool mUnlocked;
@@ -107,6 +109,17 @@ public class CharacterChoiceItem : MonoBehaviour
         mSprite.SetActive(mUnlocked);
 		mDisabledSprite.SetActive(!mUnlocked);
 		mLockedButton.SetActive(!mUnlocked);
+		mMailButton.SetActive (mUnlocked);
+		if(ThisCharacter == PersistentData.TypesOfAnimin.Tbo)
+		{
+			mMailButton.SetActive (false);
+		}
 		mAgeLabel.SetActive(mUnlocked);
+	}
+
+	public void GoToAddress()
+	{
+		UnlockCharacterManager.Instance.ID = ThisCharacter;
+		UiPages.Next (Pages.AddressInputPage);
 	}
 }

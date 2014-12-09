@@ -280,7 +280,7 @@ public class UiPages : MonoBehaviour
             }
         }
         //Debug.Log("gos : ["+gos+"];");
-        if (hit) Debug.Log("Hit");
+        //if (hit) Debug.Log("Hit");
         return hit;
     }
 }

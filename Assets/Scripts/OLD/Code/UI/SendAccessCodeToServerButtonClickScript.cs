@@ -14,7 +14,7 @@ public class SendAccessCodeToServerButtonClickScript : MonoBehaviour {
 	{
 		//RegisterListeners();
 	}
-	void OnClick()
+	public void OnClick()
 	{
 		if (SubmitFunction.gameObject.GetComponent<InputField>().text == "18271425")
         {
@@ -24,35 +24,29 @@ public class SendAccessCodeToServerButtonClickScript : MonoBehaviour {
         }
         else
         {
-            IncorrectLabel.SetActive(true);
-            /*
-            ProfilesManagementScript.Singleton.PurchaseChoiceScreen.SetActive(false);
-            ProfilesManagementScript.Singleton.LoadingSpinner.SetActive(true);
             SubmitFunction.OnSubmit();
-            RegisterListeners();
-            */
         }
 	}
 
 
 #if UNITY_IOS
 	void purchaseSuccessful( StoreKitTransaction transaction )
-	{
-		UnregisterListeners();
-	}
 #elif UNITY_ANDROID
     void purchaseSuccessful(GooglePurchase transaction)
-	{
-		UnregisterListeners();
-	}
 #endif
-		#if UNITY_IOS
-		void purchaseUnsuccessful( string transaction )
-		#elif UNITY_ANDROID
-		void purchaseUnsuccessful( string transaction, int errorcode )
-		#endif
 	{
 		UnregisterListeners();
+		UiPages.Back();
+	}
+
+#if UNITY_IOS
+		void purchaseUnsuccessful( string transaction )
+#elif UNITY_ANDROID
+		void purchaseUnsuccessful( string transaction, int errorcode )
+#endif
+	{
+		UnregisterListeners();
+		UiPages.Back();
 	}
 	void RegisterListeners()
 	{

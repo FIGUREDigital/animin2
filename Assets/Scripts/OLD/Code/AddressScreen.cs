@@ -23,6 +23,7 @@ public class AddressScreen : MonoBehaviour
 		Debug.Log("Preparing email");
 		OpenExternalEmail();
 		Debug.Log("Email sent!");
+		UiPages.Next (Pages.AniminSelectPage);
 	}
 
 	void ReadAddress()

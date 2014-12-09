@@ -572,7 +572,8 @@ public class CharacterControllerScript : MonoBehaviour //Photon.MonoBehaviour
 
         if (hit.gameObject.tag == "EnemyGunGame")
         {
-			UIGlobalVariablesScript.Singleton.GunGameScene.GetComponent<GunsMinigameScript>().OnHitByEnemy(hit.gameObject, this.gameObject);
+            if (UIGlobalVariablesScript.Singleton.GunGameScene!=null)
+            UIGlobalVariablesScript.Singleton.GunGameScene.GetComponent<GunsMinigameScript>().OnHitByEnemy(hit.gameObject, this.gameObject);
             
         }
 

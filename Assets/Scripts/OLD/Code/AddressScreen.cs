@@ -11,6 +11,7 @@ public class AddressScreen : MonoBehaviour
 	private string userName;
 	private string realName;
 	private string secretCode;
+	private string deviceID;
 	private string address;
 
 
@@ -28,6 +29,7 @@ public class AddressScreen : MonoBehaviour
 		userName = Account.Instance.UserName;
 		realName = Account.Instance.FirstName + " " + Account.Instance.LastName;
 		secretCode = Account.Instance.UniqueID;
+		deviceID = SystemInfo.deviceUniqueIdentifier;
 		address = "";
 		InputField[] text = GetComponentsInChildren<InputField>();
 		foreach(InputField line in text)
@@ -110,6 +112,7 @@ public class AddressScreen : MonoBehaviour
 @"
 New Purchase by user: {0}
 Profile Id: {1}
+Device Id: {4}
 
 Name: {2}
 
@@ -117,6 +120,6 @@ Address: {3}
 
 With thanks,
 Team Animin
-", userName, secretCode, realName, address);
+", userName, secretCode, realName, address, deviceID);
 	}
 }

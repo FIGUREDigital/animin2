@@ -178,7 +178,7 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
         Vector3 LerpFrom = new Vector3(LerpFromVal, LerpFromVal, LerpFromVal);
         Vector3 LerpTo = new  Vector3(LerpToVal, LerpToVal, LerpToVal);
 
-        float LerpTime = 0.6f;
+        float LerpTime = 0.3f;
 
         switch (State)
         {

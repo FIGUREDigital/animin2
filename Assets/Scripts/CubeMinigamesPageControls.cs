@@ -36,28 +36,7 @@ public class CubeMinigamesPageControls : MonoBehaviour {
 
 
 	}
-    /*
-    public void SetPause(bool On){
-        m_Paused = On;
-        m_PauseMenu.SetActive(On);
-        m_PauseButton.SetActive(!On);
-        UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef.GetComponent<MinigameCollectorScript>().Paused = On;
-    }
-    */
-    public void ExitGame(){
-        MinigameScript.ExitMinigame(false);
-    }
-    public void ToggleSound()
-	{
-        ProfilesManagementScript.Singleton.CurrentProfile.Settings.AudioEnabled = !ProfilesManagementScript.Singleton.CurrentProfile.Settings.AudioEnabled;
 
-
-//        AudioListener audio = FindObjectOfType<AudioListener> ();
-//        if(audio != null)
-//        {
-//            audio.enabled = !audio.enabled;
-//        }
-    }
     void OnEnable(){
         if (UiPages.GetPage(Pages.JoystickPage)!=null)UiPages.GetPage(Pages.JoystickPage).SetActive(true);
     }

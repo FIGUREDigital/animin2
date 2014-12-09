@@ -640,7 +640,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SubmitFunction: {fileID: 11400006}
-  IncorrectLabel: {fileID: 0}
+  IncorrectLabel: {fileID: 100018}
 --- !u!222 &22200000
 CanvasRenderer:
   m_ObjectHideFlags: 1

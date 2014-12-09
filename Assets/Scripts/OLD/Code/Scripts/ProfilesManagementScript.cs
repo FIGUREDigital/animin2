@@ -199,7 +199,8 @@ public class ProfilesManagementScript : MonoBehaviour
 			UnlockCharacterManager.Instance.UnlockCharacter();
 			UiPages.Next(Pages.AniminSelectPage);
         }
-        else if(resultId == "Card number not valid")
+		else{UiPages.Next(Pages.CodeErrorPage);}
+        if(resultId == "Card number not valid")
         {
         }
         else if(resultId == "Card number already used")

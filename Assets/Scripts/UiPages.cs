@@ -24,6 +24,7 @@ public enum Pages
 	LoadingPage,
 	DemoCardPage,
 	ConnectionErrorPage,
+	CodeErrorPage,
 	AddressInputPage,
 	CodeInputPage,
 	FRONTEND_COUNT,
@@ -58,6 +59,7 @@ public class UiPages : MonoBehaviour
 	public const string ADDRESS_INPUT_PAGE = "AddressInputPage";
 	public const string CODE_INPUT_PAGE = "CodeInputPage";
 	public const string CONNECTION_ERROR_PAGE = "ConnectionErrorPage";
+	public const string CODE_ERROR_PAGE = "CodeErrorPage";
 	public const string CARING_PAGE = "CaringPage";
 	public const string STATS_PAGE = "StatsPage";
 	public const string MINIGAMES_PAGE = "MinigamesPage";
@@ -147,6 +149,7 @@ public class UiPages : MonoBehaviour
 		mBackMap [(int)Pages.AddressInputPage] = mPages[(int)Pages.AniminSelectPage];
 		mBackMap [(int)Pages.CodeInputPage] = mPages[(int)Pages.PurchasePage];
 		mBackMap [(int)Pages.ConnectionErrorPage] = mPages[(int)Pages.AniminSelectPage];
+		mBackMap [(int)Pages.CodeErrorPage] = mPages[(int)Pages.PurchasePage];
 		mBackMap [(int)Pages.CaringPage] = null;
 		mBackMap [(int)Pages.StatsPage] = mPages [(int)Pages.CaringPage];
 		mBackMap [(int)Pages.MinigamesPage] = mPages [(int)Pages.CaringPage];
@@ -181,6 +184,9 @@ public class UiPages : MonoBehaviour
 			break;
 		case Pages.ConnectionErrorPage:
 			name = CONNECTION_ERROR_PAGE;
+			break;
+		case Pages.CodeErrorPage:
+			name = CODE_ERROR_PAGE;
 			break;
 		case Pages.AddressInputPage:
 			name = ADDRESS_INPUT_PAGE;

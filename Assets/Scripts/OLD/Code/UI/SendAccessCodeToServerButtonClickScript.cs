@@ -25,6 +25,7 @@ public class SendAccessCodeToServerButtonClickScript : MonoBehaviour {
         else
         {
             SubmitFunction.OnSubmit();
+			UiPages.Next(Pages.LoadingPage);
         }
 	}
 

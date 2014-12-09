@@ -27,44 +27,12 @@ public class GunGameEnemyScript : MonoBehaviour //Photon.MonoBehaviour
     }
 
     public bool PreventMerge;
-
-
-    // SHAUN START
-    // ---------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-    //public bool local { get { return __local;} }
-
-    private Vector3 __networkPosition;
-    private Quaternion __networkRotation;
-
-
-    private void UpdatePositionRemotely(Vector3 position)
-    {
-        transform.position = Vector3.Lerp(transform.position, position, Time.deltaTime * 5);
-    }
-
-    private void UpdateRotationRemotely(Quaternion rotation)
-    {
-        transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * 5);
-    }
-
-    // SHAUN END
-    // ---------------------------------------------------------------------------------------------------------------------------------------------------
-
-
+    private GunsMinigameScript m_Minigame;
 
     // Use this for initialization
     void Start()
     {
-        //int level = int.Parse(GetComponent<PhotonView>().instantiationData[0].ToString());
-        //int textureIndex = int.Parse(GetComponent<PhotonView>().instantiationData[1].ToString());
-        //Vector3 positino = (Vector3)GetComponent<PhotonView>().instantiationData[2];
-        //		Debug.Log("RECEIVED level: " + level.ToString());
-        //UIGlobalVariablesScript.Singleton.GunGameScene.GetComponent<GunsMinigameScript>().SpawnEnemyEnd(this.gameObject, Level, 0, transform.position);
-
-        //PreventMerge = false;
-
+        m_Minigame = UIGlobalVariablesScript.Singleton.GunGameScene.GetComponent<GunsMinigameScript>();
     }
 
     // Update is called once per frame
@@ -77,20 +45,11 @@ public class GunGameEnemyScript : MonoBehaviour //Photon.MonoBehaviour
         pos.y = 0;
         transform.position = pos;
 
-
-
-        /////
-
-
-        //GameObject mainCharacter = UIGlobalVariablesScript.Singleton.MainCharacterRef;
         if (UIGlobalVariablesScript.Singleton.GunGameScene == null)
             return;
-        GunsMinigameScript minigame = UIGlobalVariablesScript.Singleton.GunGameScene.GetComponent<GunsMinigameScript>();
 
         if (HasMerged)
         {
-            // minigame.SpawnedObjects.Remove(this.gameObject);
-
             Destroy(this.gameObject);
 
             return;
@@ -119,8 +78,14 @@ public class GunGameEnemyScript : MonoBehaviour //Photon.MonoBehaviour
                 
             if (radius <= 0.06f)
             {
+
+                if (!(this.TargetToFollow == allEnemies[i] && enemyScript.TargetToFollow == this.gameObject))
+                {
+                    continue;
+                }
+
                 Debug.Log("the enemy has been merged");
-                GameObject newObject = minigame.SpawnEnemyStart(Level + 1);
+                GameObject newObject = m_Minigame.SpawnEnemyStart(Level + 1);
                 newObject.transform.localPosition = this.gameObject.transform.localPosition;
 
 

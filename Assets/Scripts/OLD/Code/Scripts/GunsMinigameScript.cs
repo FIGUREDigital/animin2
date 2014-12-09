@@ -113,6 +113,8 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
     private GameStateId m_StateBeforePaused = GameStateId.Paused;
     private bool m_Paused;
 
+    private float m_InvulnTimer = 0f;
+
     public bool Paused
     {
         set
@@ -450,6 +452,10 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
         if (m_TutorialID == TutorialStateId.ShowEnemies && Input.GetButtonUp("Fire1") && !m_TutPause)
             AdvanceTutorial();
         m_TutPause = false;
+
+        if (m_InvulnTimer >= 0)
+            m_InvulnTimer -= Time.deltaTime;
+        
     }
 
     public void AdvanceTutorial()
@@ -513,49 +519,28 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
                 childGun.SetActive(false);
             }
         }
-
-        //GunPrefab.SetActive(false);
         this.gameObject.SetActive(false);
 
         for (int i = 0; i < SpawnedObjectsAllOthers.transform.childCount; ++i)
             Destroy(SpawnedObjectsAllOthers.transform.GetChild(i).gameObject);
 
-        //for (int i = 0; i < PlayersCharacters.Count; ++i)
-        //    Destroy(PlayersCharacters[i]);
-
         PlayersCharacters.Clear();
         LocalPlayerCharacter = null;
-
-        // SpawnedObjects.Clear();
     }
 
     public void OnHitByEnemy(GameObject enemy, GameObject character)
     {
-        AmmoTimer -= 0.2f;
+        if (m_InvulnTimer > 0)
+            return;
+        m_InvulnTimer = 0.5f;
+        AmmoTimer -= 0.15f;
 
-        //TemporaryDisableCollisionEvent collisionEvent = new TemporaryDisableCollisionEvent(character);
-        //PresentationEventManager.Create(collisionEvent);
         character.GetComponent<CharacterControllerScript>().Forces.Add(
             new CharacterForces() { Speed = 800, Direction = -character.transform.forward, Length = 0.3f }
         );
 
 
-        //Debug.Log("OnHitByEnemy");
-
-        /*   int randomCount = Random.Range(5, 8);
-        for (int i = 0; i < randomCount; ++i)
-        {
-            ShootBulletLost(Random.Range(0.30f, 0.60f), character);
-        }*/
-
         UIGlobalVariablesScript.Singleton.SoundEngine.Play(GenericSoundId.GunGame_Bump_Into_Baddy);
-
-        //		GameObject instance = (GameObject)Instantiate(enemy.GetComponent<GunGameEnemyScript>().Splat);
-        //		instance.transform.parent = enemy.transform.parent;
-        //		instance.transform.position = enemy.transform.position;
-        //		instance.transform.rotation = Quaternion.Euler(instance.transform.rotation.eulerAngles.x, instance.transform.rotation.eulerAngles.y, Random.Range(0, 360));
-        //		
-        //		UIGlobalVariablesScript.Singleton.GunGameScene.GetComponent<GunsMinigameScript>().SpawnedObjects.Add(instance);
     }
 
 
@@ -583,23 +568,13 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
             newProjectile.transform.rotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
             newProjectile.transform.localScale = new Vector3(0.15f, 0.15f, 0.15f);
             newProjectile.transform.localPosition = barrel.transform.localPosition;
-            //UIGlobalVariablesScript.Singleton.GunGameScene.GetComponent<GunsMinigameScript>().SpawnedObjects.Add(newProjectile);
         
 		}
-
-        //UIGlobalVariablesScript.Singleton.GunGameScene.GetComponent<GunsMinigameScript>().SpawnedObjects.Remove(this.gameObject);
         Destroy(barrel.gameObject);
     }
 	
     public GameObject SpawnAniminStart(PersistentData.TypesOfAnimin animinid, AniminEvolutionStageId evolution)
     {
-        //string modelPath = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterSwapManagementScript>().GetModelPath(animinid, evolution);
-        //RuntimeAnimatorController controller = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterSwapManagementScript>().GetAnimationControlller(animinid, evolution);
-
-        //Object resource1 = Resources.Load("Prefabs/tbo_baby_multi");
-        //	Object resource = Resources.Load(modelPath);
-        //GameObject childModel = GameObject.Instantiate(resource) as GameObject;
-
         GameObject instance = null;//GameObject.Instantiate(resource1) as GameObject;
 
         Object resource1 = Resources.Load("Prefabs/tbo_baby_multi");

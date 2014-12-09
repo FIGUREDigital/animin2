@@ -63,7 +63,7 @@ public class GunGameEnemyScript : MonoBehaviour //Photon.MonoBehaviour
         //		Debug.Log("RECEIVED level: " + level.ToString());
         //UIGlobalVariablesScript.Singleton.GunGameScene.GetComponent<GunsMinigameScript>().SpawnEnemyEnd(this.gameObject, Level, 0, transform.position);
 
-        PreventMerge = true;
+        //PreventMerge = false;
 
     }
 

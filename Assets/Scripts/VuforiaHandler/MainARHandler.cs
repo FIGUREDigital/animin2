@@ -155,7 +155,7 @@ public class MainARHandler : MonoBehaviour
 				(Mathf.Sin(SmootherAxisY.ValueNow * Mathf.Deg2Rad) * 90) * 0.2f);
 			
 			Vector3 cameraPoint = CurrentGameSceneGameObject.GetComponent<NonARPosRef>().NonARCameraPositionReference.position;// new Vector3(0, 430f, -630f);
-			Transform target = UIGlobalVariablesScript.Singleton.NonSceneRef.transform;
+            Transform target = CurrentGameSceneGameObject.transform;
 			
 			Vector3 finalpos = cameraPoint + newPosition2 + newPosition;
 
@@ -419,6 +419,7 @@ public class MainARHandler : MonoBehaviour
 
     private void LoadNewGameScene(GameScenes newScene)
     {
+		Debug.Log ("LoadNewGameScene : [" + newScene.ToString () + "];");
         if (mLastTrack != null && mLastTrack.gameObject.transform.childCount != 0)
         {
             UnityEngine.Object.Destroy(UIGlobalVariablesScript.Singleton.ARWorldRef);

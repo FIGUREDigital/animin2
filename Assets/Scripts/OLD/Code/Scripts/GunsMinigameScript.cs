@@ -121,12 +121,13 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
         {
             m_Paused = value;
 
-            UIGlobalVariablesScript.Singleton.Joystick.GetComponent<JoystiqScript>().Paused = value;                //Disable the joystick
-            UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponentInChildren<Animator>().enabled = !value; //Pause the character's Animation
+            Animator animator = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponentInChildren<Animator>();
+            if (animator!=null) animator.enabled = !value;                           //Pause the character's Animation
+
             GunGameEnemyScript[] evilScripts = this.GetComponentsInChildren<GunGameEnemyScript>();
             for (int i = 0; i < evilScripts.Length; i++)
             {
-                //evilScripts[i].Paused = value;                                                                       //Pause each enemy individually
+                evilScripts[i].Paused = value;                                                                       //Pause each enemy individually
             }
             if (m_Paused)
             {
@@ -432,11 +433,7 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
 
             case GameStateId.PrepareToExit:
                 {
-                    UIClickButtonMasterScript.HandleClick(UIFunctionalityId.CloseCurrentMinigame, null);
-
-                    BetweenSceneData.Instance.Points = Points;
-                    CharacterProgressScript progressScript = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>();
-                    //progressScript.CurrentAction = ActionId.ExitPortalMainStage;
+                    ExitMinigame();
 
                     /*
                     UIGlobalVariablesScript.Singleton.GunGameInterface.SetActive(false);
@@ -456,6 +453,12 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
         if (m_InvulnTimer >= 0)
             m_InvulnTimer -= Time.deltaTime;
         
+    }
+
+    public void ExitMinigame(){
+        UIGlobalVariablesScript.Singleton.SoundEngine.StopLoop();
+        BetweenSceneData.Instance.Points = Points;
+        MainARHandler.Instance.ChangeSceneToCaring();
     }
 
     public void AdvanceTutorial()

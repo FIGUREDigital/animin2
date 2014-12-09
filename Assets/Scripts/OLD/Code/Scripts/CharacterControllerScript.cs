@@ -176,8 +176,6 @@ public class CharacterControllerScript : MonoBehaviour //Photon.MonoBehaviour
     void  Awake()
     {
         m_Controller = GetComponent<CharacterController>();
-
-        m_Controller.material.staticFriction = 1;
 		
         //moveDirection = transform.TransformDirection(Vector3.forward);
 		
@@ -429,6 +427,9 @@ public class CharacterControllerScript : MonoBehaviour //Photon.MonoBehaviour
         if (FreezeCollisionDetection)
             return;
         if (UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef != null && UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef.GetComponent<MinigameCollectorScript>().Paused)
+            return;
+
+        if (UIGlobalVariablesScript.Singleton.GunGameScene != null && UIGlobalVariablesScript.Singleton.GunGameScene.GetComponent<GunsMinigameScript>().Paused)
             return;
         if (!isControllable)
         {

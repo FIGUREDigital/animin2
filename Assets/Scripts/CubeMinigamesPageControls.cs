@@ -20,9 +20,6 @@ public class CubeMinigamesPageControls : MonoBehaviour {
     public Text LevelCounter { get { return m_LevelCounter; } }
     public Text PointLabel { get { return m_Points; } }
 
-    [SerializeField]
-    private GameObject m_PauseButton, m_PauseMenu;
-
     private bool m_Paused;
 	// Use this for initialization
     void Start () {
@@ -39,12 +36,14 @@ public class CubeMinigamesPageControls : MonoBehaviour {
 
 
 	}
+    /*
     public void SetPause(bool On){
         m_Paused = On;
         m_PauseMenu.SetActive(On);
         m_PauseButton.SetActive(!On);
         UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef.GetComponent<MinigameCollectorScript>().Paused = On;
     }
+    */
     public void ExitGame(){
         MinigameScript.ExitMinigame(false);
     }

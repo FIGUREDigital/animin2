@@ -258,8 +258,8 @@ public class MinigameCollectorScript : MonoBehaviour
         {
             m_Paused = value;
 
-            //UIGlobalVariablesScript.Singleton.Joystick.GetComponent<JoystiqScript>().Paused = value;                                //Disable the joystick
-            UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponentInChildren<Animator>().enabled = !value;                           //Pause the character's Animation
+            Animator animator = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponentInChildren<Animator>();
+            if (animator!=null) animator.enabled = !value;                           //Pause the character's Animation
             EvilCharacterPatternMovementScript[] evilScripts = this.GetComponentsInChildren<EvilCharacterPatternMovementScript>();
             for (int i = 0; i < evilScripts.Length; i++)
             {

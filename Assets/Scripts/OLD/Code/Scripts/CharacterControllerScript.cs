@@ -551,7 +551,7 @@ public class CharacterControllerScript : MonoBehaviour //Photon.MonoBehaviour
 
     void  OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if (MainARHandler.Get.CurrentGameScene != GameScenes.MinigameCannon || MainARHandler.Get.CurrentGameScene == GameScenes.MinigameCubeRunner)
+        if (MainARHandler.Instance.CurrentGameScene != GameScenes.MinigameCannon || MainARHandler.Instance.CurrentGameScene == GameScenes.MinigameCubeRunner)
             return;
         CharacterProgressScript script = this.GetComponent<CharacterProgressScript>();
 

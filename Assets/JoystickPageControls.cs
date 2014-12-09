@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
@@ -29,9 +29,9 @@ public class JoystickPageControls : MonoBehaviour
         CharacterControllerRef = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterControllerScript>();
         CharacterAnimationRef = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<MinigameAnimationControllerScript>();
 
-        if (MainARHandler.Get.CurrentGameScene == GameScenes.MinigameCubeRunner)
+        if (MainARHandler.Instance.CurrentGameScene == GameScenes.MinigameCubeRunner)
             m_JumpButton.SetActive(true);
-        else if (MainARHandler.Get.CurrentGameScene == GameScenes.MinigameCannon)
+        else if (MainARHandler.Instance.CurrentGameScene == GameScenes.MinigameCannon)
             m_JumpButton.SetActive(false);
         
     }

@@ -48,7 +48,7 @@ public class AchievementsScript : MonoBehaviour
         if (UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript> () == null)
             return;
 
-		SpriteStore store = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript> ().SpriteStore;
+		SpriteStore store = MainARHandler.Instance.SpriteStore;
 		switch(id)
 		{
 		case AchievementTypeId.Gold:

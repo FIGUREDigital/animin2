@@ -1,14 +1,14 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class MinigamesPageControls : MonoBehaviour {
 
 	public void Minigame1Button()
 	{
-        MainARHandler.Get.ChangeSceneToCubeRunner();
+        MainARHandler.Instance.ChangeSceneToCubeRunner();
 	}
 	public void Minigame2Button()
     {
-        MainARHandler.Get.ChangeSceneToCannon();
+        MainARHandler.Instance.ChangeSceneToCannon();
 	}
 }

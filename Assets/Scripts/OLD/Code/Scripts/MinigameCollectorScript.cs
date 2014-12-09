@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
@@ -238,7 +238,7 @@ public class MinigameCollectorScript : MonoBehaviour
 		UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterControllerScript>().Forces.Clear();
         //UIClickButtonMasterScript.HandleClick(UIFunctionalityId.CloseCurrentMinigame, null);
         BetweenSceneData.Instance.ReturnFromMiniGame = true;
-        MainARHandler.Get.ChangeSceneToCaring();
+        MainARHandler.Instance.ChangeSceneToCaring();
 	}
 	
 	

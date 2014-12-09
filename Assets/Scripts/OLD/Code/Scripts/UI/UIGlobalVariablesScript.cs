@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
@@ -6,8 +6,8 @@ public class UIGlobalVariablesScript : MonoBehaviour
 {
     public static UIGlobalVariablesScript Singleton;
 
-    public GameObject ARCamera{ get { return MainARHandler.Get.gameObject; } }
-    public Camera ARCameraComponent{ get { return MainARHandler.Get.gameObject.GetComponent<Camera>(); } }
+    public GameObject ARCamera{ get { return MainARHandler.Instance.gameObject; } }
+    public Camera ARCameraComponent{ get { return MainARHandler.Instance.gameObject.GetComponent<Camera>(); } }
     // Set from the Editor
 
     public GameObject MainMenuPopupObjectRef;

@@ -42,7 +42,7 @@ public class MainARHandler : MonoBehaviour
 
     private static MainARHandler s_Instance;
 
-    public static MainARHandler Get
+    public static MainARHandler Instance
     {
         get
         {
@@ -101,6 +101,16 @@ public class MainARHandler : MonoBehaviour
     private ValueSmoother SmootherAxisY = new ValueSmoother();
     private ValueSmootherVector3 CameraPositionSmoother = new ValueSmootherVector3();
     private ValueSmootherVector3 CameraRotationSmoother = new ValueSmootherVector3();
+
+	private SpriteStore mSpriteStore;
+	public SpriteStore SpriteStore
+	{
+		get
+		{
+			mSpriteStore = ((GameObject)Instantiate (Resources.Load ("Prefabs/UI/ItemSpriteStore"))).GetComponent<SpriteStore>();
+			return mSpriteStore;
+		}
+	}
 
     // Use this for initialization
     void Start()

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class PortalAnimationScript : MonoBehaviour
@@ -83,15 +83,15 @@ public class PortalAnimationScript : MonoBehaviour
         }
         */
         Transform LookAt;
-        if (MainARHandler.Get.CameraUnlock)
+        if (MainARHandler.Instance.CameraUnlock)
         {
-            LookAt = MainARHandler.Get.MainARCamera.transform;
+            LookAt = MainARHandler.Instance.MainARCamera.transform;
         }
         else
         {
-            LookAt = MainARHandler.Get.NonARPosRef;
+            LookAt = MainARHandler.Instance.NonARPosRef;
         }
-        transform.LookAt( MainARHandler.Get.MainARCamera.transform );
+        transform.LookAt( MainARHandler.Instance.MainARCamera.transform );
         Debug.DrawLine(this.transform.position, LookAt.transform.position, Color.red);
     
 

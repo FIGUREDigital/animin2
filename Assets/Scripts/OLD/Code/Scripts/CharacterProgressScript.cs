@@ -77,7 +77,7 @@ public class InventoryItemData
 
     public static void Initialize()
     {
-		SpriteStore store = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript> ().SpriteStore;
+		SpriteStore store = MainARHandler.Instance.SpriteStore;
         Items = new InventoryItemBankData[(int)InventoryItemId.Count];
 
         /*00*/Items[(int)InventoryItemId.Strawberry] = new InventoryItemBankData() { Id = InventoryItemId.Strawberry, PrefabId = "Prefabs/strawberry2", SpriteName = store.GetSprite(InventoryItemId.Strawberry), ItemType = PopupItemType.Food };
@@ -186,15 +186,7 @@ public class CharacterProgressScript : MonoBehaviour
 
     private List<GameObject> groundItemsOnARscene = new List<GameObject>();
     private List<GameObject> groundItemsOnNonARScene = new List<GameObject>();
-	private SpriteStore mSpriteStore;
-	public SpriteStore SpriteStore
-	{
-		get
-		{
-			mSpriteStore = ((GameObject)Instantiate (Resources.Load ("Prefabs/UI/ItemSpriteStore"))).GetComponent<SpriteStore>();
-			return mSpriteStore;
-		}
-	}
+
 
     public List<GameObject> GroundItems
     {
@@ -990,7 +982,7 @@ public class CharacterProgressScript : MonoBehaviour
 
 					//STUFF FOR MONDAY. SORT THIS SHIT OUT
                         //UIGlobalVariablesScript.Singleton.Vuforia.OnCharacterEnterARScene();
-                        MainARHandler.Get.OnCharacterEnterARScene();
+                        MainARHandler.Instance.OnCharacterEnterARScene();
 
 
                         //UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<AnimateCharacterOutPortalScript>().Timer = 0;

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Linq;
@@ -350,7 +350,7 @@ public class UIClickButtonMasterScript : MonoBehaviour
                         if (UIGlobalVariablesScript.Singleton.GunGameInterface != null)
                             UIGlobalVariablesScript.Singleton.GunGameInterface.SetActive(false);
                     }
-                    MainARHandler.Get.ChangeSceneToCaring();
+                    MainARHandler.Instance.ChangeSceneToCaring();
                     break;
 
                 }

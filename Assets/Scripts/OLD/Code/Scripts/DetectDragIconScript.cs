@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 using UnityEngine.EventSystems;
@@ -22,7 +22,7 @@ public class DetectDragIconScript : MonoBehaviour, IBeginDragHandler {
 		InterfaceItemLinkToModelScript refScript = this.GetComponent<InterfaceItemLinkToModelScript>();
 		if(refScript.ItemID == InventoryItemId.None) return;
 
-        MainARHandler.Get.MainARCamera.GetComponentInChildren<CameraModelScript>().SpriteRef = this.gameObject;
+        MainARHandler.Instance.MainARCamera.GetComponentInChildren<CameraModelScript>().SpriteRef = this.gameObject;
 		//InterfaceItemLinkToModelScript popScript = refScript.Reference.GetComponent<InterfaceItemLinkToModelScript>();
 
 
@@ -32,7 +32,7 @@ public class DetectDragIconScript : MonoBehaviour, IBeginDragHandler {
 
 		child.GetComponent<BoxCollider>().enabled = false;
 
-        child.transform.parent = MainARHandler.Get.MainARCamera.GetComponentInChildren<CameraModelScript>().transform;
+        child.transform.parent = MainARHandler.Instance.MainARCamera.GetComponentInChildren<CameraModelScript>().transform;
 		child.transform.position = Vector3.zero;
         child.transform.localPosition += new Vector3(0, 0, 30f);
 		child.transform.rotation = Quaternion.identity;

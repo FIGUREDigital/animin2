@@ -196,7 +196,8 @@ public class ProfilesManagementScript : MonoBehaviour
         Debug.Log("Access code result is... "+resultId);
         if(resultId == "Card successfully activated")
         {
-            UnlockCharacterManager.Instance.BuyCharacter(AniminToUnlockId, true);
+			UnlockCharacterManager.Instance.UnlockCharacter();
+			UiPages.Next(Pages.AniminSelectPage);
         }
         else if(resultId == "Card number not valid")
         {

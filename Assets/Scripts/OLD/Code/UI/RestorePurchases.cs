@@ -21,7 +21,7 @@ public class RestorePurchases : MonoBehaviour {
 #endif
 	}
 
-	void OnClick()
+	public void OnClick()
 	{
 		Debug.Log("Restore Purchases");
 		if(!Application.isEditor)
@@ -48,11 +48,13 @@ public class RestorePurchases : MonoBehaviour {
 				UnlockCharacterManager.Instance.UnlockCharacter();
 			}
 			ShopManager.Instance.RestoreItems();
-			//Invoke("Return",3);
+			UiPages.Next(Pages.LoadingPage);
+			Invoke("Return",10);
 		}
 	}
 
 	void Return()
 	{
+		UiPages.Back ();
 	}
 }

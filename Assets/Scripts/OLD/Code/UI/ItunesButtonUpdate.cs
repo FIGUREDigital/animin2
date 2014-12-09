@@ -30,6 +30,11 @@ public class ItunesButtonUpdate : MonoBehaviour
 		//UnregisterListeners();
 	}
 
+	public void GoToCodeScreen()
+	{
+		UiPages.Next (Pages.CodeInputPage);
+	}
+
     public void SetCharacterIcons(PersistentData.TypesOfAnimin typeToPurchase)
 	{
 		mPiHeader.SetActive(false);
@@ -70,6 +75,16 @@ public class ItunesButtonUpdate : MonoBehaviour
 		UnregisterListeners();
 		UiPages.Next (Pages.AddressInputPage);
 	}
+	void restoreTransactionsFailed( string error )
+	{
+		UiPages.Next (Pages.AniminSelectPage);		
+	}
+	
+	
+	void restoreTransactionsFinished()
+	{
+		UiPages.Next (Pages.AniminSelectPage);
+	}
 
 #if UNITY_IOS
 	void purchaseSuccessful( StoreKitTransaction transaction )
@@ -86,6 +101,7 @@ public class ItunesButtonUpdate : MonoBehaviour
 		ReturnToMainScreen();
 
 	}
+
 
 #elif UNITY_ANDROID
     void purchaseSuccessful( GooglePurchase transaction)
@@ -127,6 +143,8 @@ public class ItunesButtonUpdate : MonoBehaviour
 		StoreKitManager.purchaseSuccessfulEvent += purchaseSuccessful;
 		StoreKitManager.purchaseCancelledEvent += purchaseCancelled;
 		StoreKitManager.purchaseFailedEvent += purchaseUnsuccessful;
+		StoreKitManager.restoreTransactionsFinished += restoreTransactionsFinished;
+		StoreKitManager.restoreTransactionsFailed += restoreTransactionsFailed;
 #elif UNITY_ANDROID
 		GoogleIABManager.purchaseSucceededEvent += purchaseSuccessful;
 		GoogleIABManager.purchaseFailedEvent += purchaseUnsuccessful;
@@ -140,13 +158,14 @@ public class ItunesButtonUpdate : MonoBehaviour
 		}
 		mRegistered = false;
 		Debug.Log("Unregister Itunes Listeners");
-#if UNITY_IOS
 		if(Application.isEditor){ return; }
+#if UNITY_IOS
 		StoreKitManager.purchaseSuccessfulEvent -= purchaseSuccessful;
 		StoreKitManager.purchaseCancelledEvent -= purchaseCancelled;
 		StoreKitManager.purchaseFailedEvent -= purchaseUnsuccessful;
+		StoreKitManager.restoreTransactionsFinished -= restoreTransactionsFinished;
+		StoreKitManager.restoreTransactionsFailed -= restoreTransactionsFailed;
 #elif UNITY_ANDROID
-		if(Application.isEditor){ return; }
         GoogleIABManager.purchaseSucceededEvent -= purchaseSuccessful;
 		GoogleIABManager.purchaseFailedEvent -= purchaseUnsuccessful;
 #endif

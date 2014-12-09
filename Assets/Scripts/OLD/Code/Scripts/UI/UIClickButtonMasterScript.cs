@@ -350,7 +350,7 @@ public class UIClickButtonMasterScript : MonoBehaviour
                         if (UIGlobalVariablesScript.Singleton.GunGameInterface != null)
                             UIGlobalVariablesScript.Singleton.GunGameInterface.SetActive(false);
                     }
-                    Application.LoadLevel("VuforiaTest");
+                    MainARHandler.Get.ChangeSceneToCaring();
                     break;
 
                 }
@@ -364,7 +364,7 @@ public class UIClickButtonMasterScript : MonoBehaviour
                     AchievementManager.Instance.AddToAchievment(AchievementManager.Achievements.PlayMinigames);
                     UIGlobalVariablesScript.SelectedMinigameToPlay = sender.GetComponent<UIClickButtonMasterScript>().FunctionalityId;
 
-                    GameObject.Find("MultiplayerObject").GetComponent<GameController>().SetSinglePlayer();
+                    //GameObject.Find("MultiplayerObject").GetComponent<GameController>().SetSinglePlayer();
                     HandleClick(UIFunctionalityId.StartSelectedMinigame, sender);
 
                     //UIGlobalVariablesScript.Singleton.StartMinigameScreenRef.SetActive(true);
@@ -376,7 +376,7 @@ public class UIClickButtonMasterScript : MonoBehaviour
 
             case UIFunctionalityId.PlaySinglePlayer:
                 {
-                    GameObject.Find("MultiplayerObject").GetComponent<GameController>().SetSinglePlayer();
+                    //GameObject.Find("MultiplayerObject").GetComponent<GameController>().SetSinglePlayer();
                     HandleClick(UIFunctionalityId.StartSelectedMinigame, sender);
 
 
@@ -400,12 +400,12 @@ public class UIClickButtonMasterScript : MonoBehaviour
                 }
             case UIFunctionalityId.JoinRandomGame:
                 {
-                    GameObject.Find("MultiplayerObject").GetComponent<GameController>().SetMultiplayerJoinRandom();
+                    //GameObject.Find("MultiplayerObject").GetComponent<GameController>().SetMultiplayerJoinRandom();
                     break;
                 }
             case UIFunctionalityId.StartFriendGame:
                 {
-                    GameObject.Find("MultiplayerObject").GetComponent<GameController>().SetMultiplayerStartFriendGame();
+                    //GameObject.Find("MultiplayerObject").GetComponent<GameController>().SetMultiplayerStartFriendGame();
                     break;
                 }
             case UIFunctionalityId.JoinFriendGame:

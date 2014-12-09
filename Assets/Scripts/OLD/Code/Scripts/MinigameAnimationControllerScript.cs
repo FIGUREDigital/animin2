@@ -38,7 +38,21 @@ public class MinigameAnimationControllerScript : MonoBehaviour {
 		}
 	}
 	
-	protected Animator animator;
+    protected Animator animator
+    {
+        get
+        {
+            if (m_animator == null)
+            {
+                m_animator = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterSwapManagementScript>().CurrentModel.GetComponent<Animator>();
+            }
+            return m_animator;
+        }
+        set {
+            m_animator = value;
+        }
+    }
+    private Animator m_animator;
 
 	
 	public bool IsJumbing 

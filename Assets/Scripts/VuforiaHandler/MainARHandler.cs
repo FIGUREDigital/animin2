@@ -59,6 +59,9 @@ public class MainARHandler : MonoBehaviour
 
     [SerializeField]
     private Camera ARCamera;
+    [SerializeField]
+    private SoundEngineScript SoundEngine;
+
     public Camera MainARCamera { get { return ARCamera; } }
 
     private GameScenes m_CurrentGameScene;
@@ -79,14 +82,19 @@ public class MainARHandler : MonoBehaviour
     private GameObject CurrentGameSceneGameObject;
 
     private bool m_IsTracking, m_CameraUnlock;
-    public bool CameraUnlock{
+
+    public bool CameraUnlock
+    {
         get { return m_CameraUnlock; }
     }
+
     private AniminTrackableEventHandler mLastTrack;
 
     private Transform NonARCameraPositionRef;
-    public Transform NonARPosRef{
-        get { return NonARCameraPositionRef;}
+
+    public Transform NonARPosRef
+    {
+        get { return NonARCameraPositionRef; }
     }
 
     private ValueSmoother SmootherAxisX = new ValueSmoother();
@@ -103,7 +111,7 @@ public class MainARHandler : MonoBehaviour
         }
         ChangeSceneToCaring();
     }
-	
+
     // Update is called once per frame
     void LateUpdate()
     {
@@ -126,8 +134,8 @@ public class MainARHandler : MonoBehaviour
     {
         mLastTrack = AniminTrackScript;
         if (newStatus == TrackableBehaviour.Status.DETECTED ||
-        newStatus == TrackableBehaviour.Status.TRACKED ||
-        newStatus == TrackableBehaviour.Status.EXTENDED_TRACKED)
+            newStatus == TrackableBehaviour.Status.TRACKED ||
+            newStatus == TrackableBehaviour.Status.EXTENDED_TRACKED)
         {
             OnTrackingFound();
         }
@@ -204,7 +212,7 @@ public class MainARHandler : MonoBehaviour
         UIGlobalVariablesScript.Singleton.Shadow.transform.localScale = new Vector3(0.46f, 0.46f, 0.46f);
 
         if (UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().CurrentAction != ActionId.Sleep &&
-        UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().CurrentAction != ActionId.EnterSleep)
+            UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().CurrentAction != ActionId.EnterSleep)
         {
             UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().Stop(true);
             UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterControllerScript>().ResetRotation();
@@ -230,7 +238,7 @@ public class MainARHandler : MonoBehaviour
         UIGlobalVariablesScript.Singleton.Shadow.transform.localScale = new Vector3(0.46f, 0.46f, 0.46f);
 
         if (UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().CurrentAction != ActionId.Sleep &&
-        UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().CurrentAction != ActionId.EnterSleep)
+            UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().CurrentAction != ActionId.EnterSleep)
         {
             UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterControllerScript>().ResetRotation();
             UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().Stop(true);
@@ -242,7 +250,7 @@ public class MainARHandler : MonoBehaviour
         CharacterProgressScript progress = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>();
 
         if (UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().CurrentAction == ActionId.Sleep ||
-        UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().CurrentAction == ActionId.EnterSleep)
+            UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().CurrentAction == ActionId.EnterSleep)
         {
             //Debug.Log("OnTrackingFound: SLEEPING");
 
@@ -300,7 +308,7 @@ public class MainARHandler : MonoBehaviour
 
             //return;
             if (UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().CurrentAction == ActionId.Sleep ||
-            UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().CurrentAction == ActionId.EnterSleep)
+                UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().CurrentAction == ActionId.EnterSleep)
             {
 
                 //				Debug.Log("OnTrackingLost: sleeping");
@@ -355,7 +363,7 @@ public class MainARHandler : MonoBehaviour
 
     private void LoadNewGameScene(GameScenes newScene)
     {
-        if (mLastTrack!=null && mLastTrack.gameObject.transform.childCount!=0)
+        if (mLastTrack != null && mLastTrack.gameObject.transform.childCount != 0)
         {
             UnityEngine.Object.Destroy(UIGlobalVariablesScript.Singleton.ARWorldRef);
             UnityEngine.Object.Destroy(UIGlobalVariablesScript.Singleton.NonARWorldRef);
@@ -379,12 +387,14 @@ public class MainARHandler : MonoBehaviour
                 break;
 
             case GameScenes.MinigameCannon:
-                CurrentGameSceneGameObject = (GameObject)GameObject.Instantiate(Resources.Load("Prefabs/TestDummies/Gunner"));
+                CurrentGameSceneGameObject = (GameObject)GameObject.Instantiate(Resources.Load("Prefabs/ScenePrefabs/GunMinigame"));
+                UiPages.Next(Pages.GunMinigamePage);
                 break;
 
         }
         NonARPosRef CamPosRef = CurrentGameSceneGameObject.GetComponent<NonARPosRef>();
-        if (CamPosRef!=null) NonARCameraPositionRef = CamPosRef.NonARCameraPositionReference;
-        Debug.Log("NonARCameraPositionRef : [" + NonARCameraPositionRef + "];");
+        if (CamPosRef != null)
+            NonARCameraPositionRef = CamPosRef.NonARCameraPositionReference;
+        Debug.Log("NonARCameraPositionRef : [" + NonARCameraPositionRef.position + "];");
     }
 }

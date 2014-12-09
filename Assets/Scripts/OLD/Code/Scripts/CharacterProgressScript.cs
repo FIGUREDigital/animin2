@@ -323,7 +323,6 @@ public class CharacterProgressScript : MonoBehaviour
     void Start()
     {	
 
-        GetComponent<CharacterControllerScript>().SetLocal(true);
         UIClickButtonMasterScript.SetSoundSprite();
 
 		if (ProfilesManagementScript.Singleton.CurrentAnimin == null) {
@@ -1713,7 +1712,7 @@ public class CharacterProgressScript : MonoBehaviour
         }
 
 
-        if (UIGlobalVariablesScript.Singleton.NonSceneRef.activeInHierarchy && UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.localPosition.y <= -2)
+        if (UIGlobalVariablesScript.Singleton.NonSceneRef!=null && UIGlobalVariablesScript.Singleton.NonSceneRef.activeInHierarchy && UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.localPosition.y <= -2)
         {
 
             UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.localPosition = new Vector3(0, 1.01f, 0);

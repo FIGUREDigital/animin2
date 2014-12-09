@@ -19653,7 +19653,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100606}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400002}
@@ -28542,7 +28542,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 101962}
   m_LocalRotation: {x: .390836358, y: 0, z: 0, w: .920460224}
-  m_LocalPosition: {x: 0, y: 2.3900001, z: -1.95000005}
+  m_LocalPosition: {x: 0, y: 1.54999995, z: -1.95000005}
   m_LocalScale: {x: .00499999989, y: .00500000035, z: .00499999989}
   m_Children: []
   m_Father: {fileID: 401660}
@@ -42758,7 +42758,6 @@ MonoBehaviour:
   MinigamesButton: {fileID: 0}
   ParentalGateway: {fileID: 0}
   PurchaseAniminViaPaypal: {fileID: 0}
-  TutorialHandler: {fileID: 0}
 --- !u!114 &11400020
 MonoBehaviour:
   m_ObjectHideFlags: 1

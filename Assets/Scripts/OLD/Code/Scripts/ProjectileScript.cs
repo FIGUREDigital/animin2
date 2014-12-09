@@ -49,13 +49,6 @@ public class ProjectileScript : MonoBehaviour
 
         GunsMinigameScript miniGame = UIGlobalVariablesScript.Singleton.GunGameScene.GetComponent<GunsMinigameScript>();
 
-        if (GameController.instance.gameType == GameType.NETWORK)
-        {
-          
-            //int playerIndex = int.Parse(GetComponent<PhotonView>().instantiationData[0].ToString());
-
-           // UIGlobalVariablesScript.Singleton.GunGameScene.GetComponent<GunsMinigameScript>().ShootBulletForwardEnd(this.gameObject, miniGame.PlayersCharacters[playerIndex]);
-        }
 	}
 	
 	// Update is called once per frame

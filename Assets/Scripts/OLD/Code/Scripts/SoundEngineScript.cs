@@ -258,7 +258,7 @@ public class SoundEngineScript : MonoBehaviour
 	{
 		//Debug.Log("LOOP: " + soundId.ToString());
 		
-		SoundFxLooper1.clip = GenericSounds[(int)id];
+        if(SoundFxLooper1!=null)SoundFxLooper1.clip = GenericSounds[(int)id];
 		LooperPlaying = true;
 		
 	}

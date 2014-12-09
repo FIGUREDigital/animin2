@@ -33,7 +33,7 @@ public class CreatePasswordFromTextBox : MonoBehaviour {
 			//AppDataManager.SetUsername("serverProfile");
 			
 			
-			GameObject.Find("MultiplayerObject").GetComponent<GameController>().SetMultiplayerJoinFriend();
+			//GameObject.Find("MultiplayerObject").GetComponent<GameController>().SetMultiplayerJoinFriend();
 			
 			//ServerManager.Register("serverProfile");
 			

@@ -143,8 +143,8 @@ public class ItunesButtonUpdate : MonoBehaviour
 		StoreKitManager.purchaseSuccessfulEvent += purchaseSuccessful;
 		StoreKitManager.purchaseCancelledEvent += purchaseCancelled;
 		StoreKitManager.purchaseFailedEvent += purchaseUnsuccessful;
-		StoreKitManager.restoreTransactionsFinished += restoreTransactionsFinished;
-		StoreKitManager.restoreTransactionsFailed += restoreTransactionsFailed;
+		StoreKitManager.restoreTransactionsFinishedEvent += restoreTransactionsFinished;
+		StoreKitManager.restoreTransactionsFailedEvent += restoreTransactionsFailed;
 #elif UNITY_ANDROID
 		GoogleIABManager.purchaseSucceededEvent += purchaseSuccessful;
 		GoogleIABManager.purchaseFailedEvent += purchaseUnsuccessful;
@@ -163,8 +163,8 @@ public class ItunesButtonUpdate : MonoBehaviour
 		StoreKitManager.purchaseSuccessfulEvent -= purchaseSuccessful;
 		StoreKitManager.purchaseCancelledEvent -= purchaseCancelled;
 		StoreKitManager.purchaseFailedEvent -= purchaseUnsuccessful;
-		StoreKitManager.restoreTransactionsFinished -= restoreTransactionsFinished;
-		StoreKitManager.restoreTransactionsFailed -= restoreTransactionsFailed;
+        StoreKitManager.restoreTransactionsFinishedEvent -= restoreTransactionsFinished;
+        StoreKitManager.restoreTransactionsFailedEvent -= restoreTransactionsFailed;
 #elif UNITY_ANDROID
         GoogleIABManager.purchaseSucceededEvent -= purchaseSuccessful;
 		GoogleIABManager.purchaseFailedEvent -= purchaseUnsuccessful;

@@ -169,10 +169,10 @@ public class ProfilesManagementScript : MonoBehaviour
         Debug.Log("Activate shop");
         ShopManager.Instance.EndStore();
         UnlockCharacterManager.Instance.OpenShop();
-#if UNITY_ANDROID
+
 		Debug.Log("Set up timeout");
 		Invoke ("CheckTimeout", 30);
-#endif
+
     }
 
 	private void CheckTimeout()

@@ -63,7 +63,7 @@ public class GunGameEnemyScript : MonoBehaviour //Photon.MonoBehaviour
         //		Debug.Log("RECEIVED level: " + level.ToString());
         //UIGlobalVariablesScript.Singleton.GunGameScene.GetComponent<GunsMinigameScript>().SpawnEnemyEnd(this.gameObject, Level, 0, transform.position);
 
-        //PreventMerge = false;
+        PreventMerge = false;
 
     }
 
@@ -105,14 +105,20 @@ public class GunGameEnemyScript : MonoBehaviour //Photon.MonoBehaviour
         GameObject[] allEnemies = GameObject.FindGameObjectsWithTag("EnemyGunGame");
         for (int i = 0; i < allEnemies.Length; ++i)
         {
+            if (PreventMerge)
+                continue;
             if (allEnemies[i] == this.gameObject)
                 continue;
+
             GunGameEnemyScript enemyScript = allEnemies[i].GetComponent<GunGameEnemyScript>();
+
             if (enemyScript.Level != this.Level)
                 continue;
             if (enemyScript.Level != 0)
                 continue;
             if (enemyScript.HasMerged)
+                continue;
+            if (enemyScript.PreventMerge)
                 continue;
 
             float radius = Vector3.Distance(allEnemies[i].transform.localPosition, this.gameObject.transform.localPosition);
@@ -127,27 +133,11 @@ public class GunGameEnemyScript : MonoBehaviour //Photon.MonoBehaviour
                 HasMerged = true;
                 enemyScript.HasMerged = true;
 
-                //minigame.SpawnedObjects.Remove(this.gameObject);
-                //Destroy(this.gameObject);
-
-                //minigame.SpawnedObjects.Remove(allEnemies[i]);
-                //Destroy(allEnemies[i]);
-
                 ReceiveEventMerged();
 
             }
-
-                    //if enemies are close and they are following the player...
-                //else if (radius <= 0.6f && minigame.PlayersCharacters.Contains(TargetToFollow))
             else if (radius <= 0.6f)
             {
-                Debug.Log("Target : [" + TargetToFollow.name + "];");
-
-                if (PreventMerge)
-                    continue;
-                if (enemyScript.PreventMerge)
-                    continue;
-
                 this.TargetToFollow = allEnemies[i];
                 enemyScript.TargetToFollow = this.gameObject;
 

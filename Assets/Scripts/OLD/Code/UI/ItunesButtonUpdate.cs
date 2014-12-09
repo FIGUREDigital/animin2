@@ -73,6 +73,7 @@ public class ItunesButtonUpdate : MonoBehaviour
 	void GoToAddress()
 	{
 		UnregisterListeners();
+		Debug.Log ("Going to address screen");
 		UiPages.Next (Pages.AddressInputPage);
 	}
 	void restoreTransactionsFailed( string error )

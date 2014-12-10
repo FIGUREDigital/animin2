@@ -27,7 +27,7 @@ public class ItunesButtonUpdate : MonoBehaviour
 	
 	void OnDisable()
 	{
-		//UnregisterListeners();
+		UnregisterListeners();
 	}
 
 	public void GoToCodeScreen()

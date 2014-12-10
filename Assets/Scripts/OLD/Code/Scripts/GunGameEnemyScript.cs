@@ -58,7 +58,7 @@ public class GunGameEnemyScript : MonoBehaviour //Photon.MonoBehaviour
         Vector3 direction = Vector3.Normalize(TargetToFollow.transform.localPosition - this.transform.localPosition);
         this.transform.localPosition += direction * Speed * Time.deltaTime;
 
-        Debug.Log("Enemy : [" + this.name + "]; Speed : [" + Speed + "];");
+//        Debug.Log("Enemy : [" + this.name + "]; Speed : [" + Speed + "];");
 
 
         GameObject[] allEnemies = GameObject.FindGameObjectsWithTag("EnemyGunGame");

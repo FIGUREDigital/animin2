@@ -20,21 +20,66 @@ public class CubeMinigamesPageControls : MonoBehaviour {
     public Text LevelCounter { get { return m_LevelCounter; } }
     public Text PointLabel { get { return m_Points; } }
 
+    [SerializeField]
+    private GameObject m_TutorialMove, m_TutorialJump, m_TutorialSwipe;
+    private int TutorialCounter;
+
     private bool m_Paused;
+
+    private JoystickPageControls JoystickControls{
+        get{
+            if (m_JoystickControls == null)
+                m_JoystickControls = UiPages.GetPage(Pages.JoystickPage).GetComponent<JoystickPageControls>();
+
+            return m_JoystickControls;
+        }
+    }
+    private JoystickPageControls m_JoystickControls;
 	// Use this for initialization
     void Start () {
         MinigameScript = UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef.GetComponent<MinigameCollectorScript>();
+        m_TutorialMove.SetActive(false);
+        m_TutorialJump.SetActive(false);
+        m_TutorialSwipe.SetActive(false);
     }
 	
 	// Update is called once per frame
     void Update () {
-
-        UiPages.GetPage(Pages.JoystickPage).SetActive(this.gameObject.activeInHierarchy);
-
         if (m_Paused)
             return;
-
-
+        if (ProfilesManagementScript.Singleton.CurrentProfile.TutorialBoxLandPlayed == false)
+        {
+            switch(TutorialCounter){
+                case 0:
+                    m_TutorialMove.SetActive(true);
+                    TutorialCounter++;
+                    break;
+                case 1:
+                    if (JoystickControls.IsMovingWithJoystick)
+                    {
+                        m_TutorialMove.SetActive(false);
+                        m_TutorialJump.SetActive(true);
+                        TutorialCounter++;
+                    }
+                    break;
+                case 2:
+                    if (JoystickControls.PressedJump)
+                    {
+                        m_TutorialJump.SetActive(false);
+                        m_TutorialSwipe.SetActive(true);
+                        TutorialCounter++;
+                    }
+                    break;
+                case 3:
+                    if (MinigameScript.IsSwiping)
+                    {
+                        m_TutorialSwipe.SetActive(false);
+                        //ProfilesManagementScript.Singleton.CurrentProfile.TutorialBoxLandPlayed = true;
+                        TutorialCounter++;
+                    }
+                    break;
+            }
+        }
 	}
 
     void OnEnable(){

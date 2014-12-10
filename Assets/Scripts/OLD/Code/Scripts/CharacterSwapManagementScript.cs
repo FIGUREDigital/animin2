@@ -170,7 +170,7 @@ public class CharacterSwapManagementScript : MonoBehaviour
 		animator.runtimeAnimatorController = overrideController;
 */
 
-		Debug.Log ("Getting Controller Script : ["+UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<AnimationControllerScript>()+"];");
+//		Debug.Log ("Getting Controller Script : ["+UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<AnimationControllerScript>()+"];");
 		if (UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<AnimationControllerScript>()!=null)
 			UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<AnimationControllerScript>().SetCharacter(instance);
 

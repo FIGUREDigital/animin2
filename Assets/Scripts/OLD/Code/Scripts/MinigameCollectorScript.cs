@@ -251,6 +251,9 @@ public class MinigameCollectorScript : MonoBehaviour
 	private float SnapAngleDifference;
 	// Update is called once per frame
 
+    private bool m_IsSwiping;
+    public bool IsSwiping{ get { return m_IsSwiping; } }
+
     private bool m_Paused;
     public bool Paused
     {
@@ -283,10 +286,10 @@ public class MinigameCollectorScript : MonoBehaviour
 			progressScript.CurrentAction = ActionId.ExitPortalMainStage;
 		}
 		else
-		{
-
+        {
 			if(Input.GetButtonDown("Fire1") && CanBeginLevelSwipe())
-			{
+            {
+                m_IsSwiping = true;
 				lastMousePosition = Input.mousePosition;
 				isSwipingAllowed = true;
 				TimeStartedSwipe = Time.time;
@@ -294,15 +297,15 @@ public class MinigameCollectorScript : MonoBehaviour
 
 			}
 			else if(Input.GetButton("Fire1") && isSwipingAllowed)
-			{
+            {
+                m_IsSwiping = true;
 				SnapAngleDifference += (lastMousePosition.x - Input.mousePosition.x) * 0.09f;
 				snapAngle += (lastMousePosition.x - Input.mousePosition.x) * 0.09f;
 				lastMousePosition = Input.mousePosition;
 			}
 			else if(Input.GetButtonUp("Fire1") && isSwipingAllowed)
 			{
-				if(UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef.GetComponent<MinigameCollectorScript>().TutorialId == MinigameCollectorScript.TutorialStateId.ShowSwipeLevel)
-					UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef.GetComponent<MinigameCollectorScript>().AdvanceTutorial();
+                m_IsSwiping = true;
 				//fast swipe
 				if((Time.time - TimeStartedSwipe) <= 0.4f)
 				{
@@ -329,7 +332,8 @@ public class MinigameCollectorScript : MonoBehaviour
 				}
             }
 			else
-			{
+            {
+                m_IsSwiping = false;
                 isSwipingAllowed = false;
 			}
 

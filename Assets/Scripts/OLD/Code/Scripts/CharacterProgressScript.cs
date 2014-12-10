@@ -73,6 +73,7 @@ public class InventoryItemData
 {
 	
 	private const string ITEM_PATH = "Texture/UI/";
+    #region Static Nonsense
     public static InventoryItemBankData[] Items;
 
     public static void Initialize()
@@ -114,6 +115,7 @@ public class InventoryItemData
 
 		/*23*/Items[(int)InventoryItemId.Radio] = new InventoryItemBankData() { Id = InventoryItemId.Radio, PrefabId = "Prefabs/radio", SpriteName = store.GetSprite(InventoryItemId.Radio),  ItemType = PopupItemType.Item };
     }
+    #endregion
 
     public InventoryItemId Id;
     public int Count;

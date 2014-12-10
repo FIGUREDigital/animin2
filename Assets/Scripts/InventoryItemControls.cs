@@ -8,17 +8,16 @@ public class InventoryItemControls : MonoBehaviour {
 	private Text mText;
 	private GameObject CountPanel;
 	public CaringPageControls caringPage;
-	public InventoryControls inventoryControls;
 	public InventoryItemBankData data;
 	int count;
 	public void OnEnable()
 	{
 		for(int i = 0; i < ProfilesManagementScript.Singleton.CurrentAnimin.Inventory.Count; i++)
 		{
-			InventoryItemData data = ProfilesManagementScript.Singleton.CurrentAnimin.Inventory[i];
-			if(data.Id == data.Id)
+			InventoryItemData InvData = ProfilesManagementScript.Singleton.CurrentAnimin.Inventory[i];
+			if(data.Id == InvData.Id)
 			{
-				count = data.Count;
+				count = InvData.Count;
 			}
 		}
 		mText.text = count.ToString ();

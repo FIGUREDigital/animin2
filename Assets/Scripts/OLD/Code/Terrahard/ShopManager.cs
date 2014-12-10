@@ -283,16 +283,18 @@ public class ShopManager
 #if UNITY_IOS
 		StoreKitBinding.restoreCompletedTransactions();
 #elif UNITY_ANDROID
-
+		RestoreAndroidPurchases();
 #endif
 	}
 
 	private void RestoreAndroidPurchases()
 	{
+#if UNITY_ANDROID
 		foreach(GooglePurchase gp in IAP.androidPurchasedItems)
 		{
 
 		}
+#endif
 	}
 	
 

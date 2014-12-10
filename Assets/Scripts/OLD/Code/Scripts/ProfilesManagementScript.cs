@@ -303,20 +303,39 @@ public class ProfilesManagementScript : MonoBehaviour
             Debug.Log("Loading New level");
             StartCoroutine(LoadLevel(@"ARBase"));
         }
-	}
+		else
+		{
+			if(async != null)
+			{
+				Debug.Log("Loading " + async.progress.ToString());
 
+				if(async.progress >= 0.9f)
+				{
+					Debug.Log("ASync Finished");
+					async.allowSceneActivation = true;
+				}
+			}
+		}
+	}
+	AsyncOperation async;
 	
 	public IEnumerator LoadLevel(string name)
 	{
-		yield return new WaitForSeconds(0.1f);
-		
-		//nextLevel is one of the class fields
-		AsyncOperation	nextLevel = Application.LoadLevelAsync(name);
-		while (!nextLevel.isDone)
-		{ 
-			yield return new WaitForEndOfFrame(); 
-		}       
+//		yield return new WaitForSeconds(0.1f);
+//		
+//		//nextLevel is one of the class fields
+//		AsyncOperation	nextLevel = Application.LoadLevelAsync(name);
+//		while (!nextLevel.isDone)
+//		{ 
+//			yield return new WaitForEndOfFrame(); 
+//		}    
+
+		Debug.LogWarning("ASYNC LOAD STARTED - " +
+		                 "DO NOT EXIT PLAY MODE UNTIL SCENE LOADS... UNITY WILL CRASH");
+		async = Application.LoadLevelAsync(name);
+		async.allowSceneActivation = false;
+
+		yield return async;
 	}
-	
 
 }

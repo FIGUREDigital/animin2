@@ -76,20 +76,25 @@ public class SaveAndLoad {
 
 	public void SaveAllData()
 	{
+		Debug.Log ("Deleting old");
         File.Delete(Application.persistentDataPath + "/savedGames.anidat");
         StateData.ProfileList.Clear();
+		Debug.Log ("Saving Profiles");
         for (int i =0; i< ProfilesManagementScript.Singleton.ListOfPlayerProfiles.Count; i++)
         {
             PlayerProfileData tempProfile = new PlayerProfileData();
             tempProfile = ProfilesManagementScript.Singleton.ListOfPlayerProfiles[i];
             StateData.ProfileList.Add(tempProfile);
+			Debug.Log ("Adding profile " + i + ": " + tempProfile.ProfileName );
         }
         StateData.CurrentProfile = ProfilesManagementScript.Singleton.CurrentProfile;
         StateData.UpgradeTbo = ProfilesManagementScript.Singleton.SentToPurchaseAdultTBOFromMainScene;
 		BinaryFormatter bf = new BinaryFormatter();
+		Debug.Log ("Creating file");
 		FileStream file = File.Create (Application.persistentDataPath + "/savedGames.anidat");
+		Debug.Log ("Serializing");
         bf.Serialize(file, StateData);
-
+		Debug.Log ("Closing File");
 		file.Close();
 
 	}	

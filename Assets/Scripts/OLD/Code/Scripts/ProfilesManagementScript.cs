@@ -171,7 +171,7 @@ public class ProfilesManagementScript : MonoBehaviour
         UnlockCharacterManager.Instance.OpenShop();
 
 		Debug.Log("Set up timeout");
-		Invoke ("CheckTimeout", 30);
+		Invoke ("CheckTimeout", 15);
 
     }
 
@@ -179,7 +179,7 @@ public class ProfilesManagementScript : MonoBehaviour
 	{
 		if(!ShopManager.Instance.ShopReady)
 		{
-			Debug.Log("GIAB Timeout");
+			Debug.Log("IAP Timeout");
 			ShopManager.Instance.ShopReady = true;
 			ProfilesManagementScript.Singleton.ContinueToInAppPurchase(false);
 		}
@@ -321,6 +321,7 @@ public class ProfilesManagementScript : MonoBehaviour
 	
 	public IEnumerator LoadLevel(string name)
 	{
+
 //		yield return new WaitForSeconds(0.1f);
 //		
 //		//nextLevel is one of the class fields

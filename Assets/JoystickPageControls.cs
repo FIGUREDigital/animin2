@@ -17,6 +17,20 @@ public class JoystickPageControls : MonoBehaviour
     private bool isButtonDown = false;
     private int fingerID = -1;
 
+    private bool m_JumpButtonPressed;
+    private bool m_Jump;
+    public bool PressedJump{
+        get{
+            return m_Jump;
+        }
+    }
+    private bool m_IsMoving;
+    public bool IsMovingWithJoystick{
+        get{
+            return m_IsMoving;
+        }
+    }
+
     // Use this for initialization
     void Start(){
         Init();
@@ -86,12 +100,12 @@ public class JoystickPageControls : MonoBehaviour
             if (UIGlobalVariablesScript.Singleton.GunGameScene.GetComponent<GunsMinigameScript>().TutorialID == GunsMinigameScript.TutorialStateId.ShowMove)
                 UIGlobalVariablesScript.Singleton.GunGameScene.GetComponent<GunsMinigameScript>().AdvanceTutorial();
 
-            Vector3 diff = mousePosition - m_JoystickBack.transform.position;
-            float maxRadius = m_JoystickBack.GetComponent<UnityEngine.UI.Image>().sprite.bounds.extents.y * 10;
+            Vector3 diff = mousePosition - m_JoystickBack.GetComponent<RectTransform>().position;
+            float maxRadius = m_JoystickBack.GetComponent<RectTransform>().rect.width/2;
             if (diff.magnitude >= maxRadius)
                 diff = diff.normalized * maxRadius;
 
-            m_JoystickFront.transform.position = m_JoystickBack.transform.position + diff;
+            m_JoystickFront.transform.position = m_JoystickBack.GetComponent<RectTransform>().position + diff;
 
             CharacterControllerRef.MovementDirection = Camera.main.transform.right * diff.x;//new Vector3(VJRnormals.x, 0, VJRnormals.y);
             CharacterControllerRef.MovementDirection += Vector3.Normalize(new Vector3(Camera.main.transform.forward.x, 0, Camera.main.transform.transform.forward.z)) * diff.y;
@@ -100,28 +114,39 @@ public class JoystickPageControls : MonoBehaviour
             movementSpeed = diff.magnitude / maxRadius;
             if(movementSpeed < 0.5f)
             {
-                //Debug.Log("Walking");
                 CharacterAnimationRef.IsRunning = false;
                 CharacterAnimationRef.IsWalking = true;
             }
             else
             {
-                //Debug.Log("Running");
                 CharacterAnimationRef.IsRunning = true;
                 CharacterAnimationRef.IsWalking = false;
             }
-            CharacterControllerRef.walkSpeed =  movementSpeed * 5.0f;
+            CharacterControllerRef.walkSpeed =  movementSpeed * 2.0f;
             CharacterControllerRef.RotateToLookAtPoint(CharacterControllerRef.transform.position + CharacterControllerRef.MovementDirection * 6);
+
+            m_IsMoving = true;
         }
         else
         {
-            //Debug.Log("Not Moving");
             m_JoystickFront.transform.localPosition = m_JoystickBack.transform.localPosition;
             CharacterAnimationRef.IsRunning = false;
             CharacterAnimationRef.IsWalking = false;
             CharacterControllerRef.MovementDirection = Vector3.zero;
+
+            m_IsMoving = false;
         }
 
+    }
+    void LateUpdate(){
+        //I'm paranoid about script execution. That's why this stuff is doing all this. I don't know when events get called in the Update/LateUpdate cycle.
+        if (m_Jump)
+            m_Jump = false;
+        if (m_JumpButtonPressed)
+        {
+            m_JumpButtonPressed = false;
+            m_Jump = true;
+        }
     }
     private bool isHittingThumbBack(Vector3 position){
 
@@ -142,7 +167,8 @@ public class JoystickPageControls : MonoBehaviour
     }
 
     public void JumpButton(){
-        Debug.Log("Pressed Jump");
+        m_JumpButtonPressed = true;
+        Debug.Log("Jump Button Pressed");
         CharacterControllerRef.PressedJumb = true;
     }
 }

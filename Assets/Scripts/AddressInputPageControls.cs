@@ -16,7 +16,11 @@ public class AddressInputPageControls : MonoBehaviour {
 	void Update () {
 	
 	}
-
+    void OnEnable()
+    {
+        Address.SetActive (true);
+        Leave.SetActive (false);
+    }
 	public void GoToLeave()
 	{
 		Address.SetActive (false);

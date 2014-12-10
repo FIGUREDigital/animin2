@@ -5,8 +5,9 @@ using UnityEngine.UI;
 
 public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
 {
-	[SerializeField]
-	private GameObject m_MainCharacter;
+    [SerializeField]
+    private GameObject m_MainCharacter;
+
     public enum GameStateId
     {
         Initialize = 0,
@@ -122,7 +123,8 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
             m_Paused = value;
 
             Animator animator = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponentInChildren<Animator>();
-            if (animator!=null) animator.enabled = !value;                           //Pause the character's Animation
+            if (animator != null)
+                animator.enabled = !value;                           //Pause the character's Animation
 
             GunGameEnemyScript[] evilScripts = this.GetComponentsInChildren<GunGameEnemyScript>();
             for (int i = 0; i < evilScripts.Length; i++)
@@ -185,40 +187,23 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
 
             case GameStateId.Initialize:
                 {
-
+                    if (UIControls.WaitingForTouch)
+                        break;
+                    UIControls.Go321.gameObject.SetActive(true);
                     UIControls.SetReadyState(ReadyStates.Ready3);
 
                     if (TutorialID == TutorialStateId.ShowEnemies)
                         break;
                     FillUpTimer = 0;
                     AmmoTimer = 1;
-                    //				GunPrefab.SetActive(true);
                     
                     NextBarrelSpawnTimer = Random.Range(BarrelSpawnMinTime, BarrelSpawnMaxTime);
                     Wave = 0;
                     WaveTimerForNext = WaveTimers[0];
                     RandomCubeTimer = Random.Range(8, 20);
                     Points = 0;
-
-                    //if(GameController.instance.gameType == GameType.SOLO || PhotonNetwork.isMasterClient)
-
-                    //SpawnAnimin(AniminId.Tbo, AniminEvolutionStageId.Baby);
-//                    Go321Sprite.gameObject.SetActive(false);
-//                    Go321Sprite.mainTexture = Go321Textures[0];
-//                    Go321Sprite.gameObject.transform.localScale = new Vector3(0.9f, 0.9f, 0.9f);
-//                    TweenScale.Begin(Go321Sprite.gameObject, 0.6f, new Vector3(1.1f, 1.1f, 1.1f));
-//                    MeterBar.width = 0;
-//
-                    //if (GameController.instance.gameType == GameType.NETWORK)
-                    if (false)
-                    {
-                        State = GameStateId.WaitForPlayersToConnect;
-                    }
-                    else
-                    {
-                        State = GameStateId.PrepareToStart3;
-                    }
-
+                    State = GameStateId.PrepareToStart3;
+                    
                     LocalPlayerCharacter = UIGlobalVariablesScript.Singleton.MainCharacterRef;
                     PlayersCharacters.Add(UIGlobalVariablesScript.Singleton.MainCharacterRef);
 
@@ -230,39 +215,8 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
                             childGun.SetActive(true);
                         }
                     }
-
-                    // GameObject animin = SpawnAniminStart(AniminId.Tbo, AniminEvolutionStageId.Baby);
-
-                    // UIGlobalVariablesScript.Singleton.Joystick.CharacterAnimationRef = animin.GetComponent<AnimationControllerScript>();
-                    // UIGlobalVariablesScript.Singleton.Joystick.CharacterControllerRef = animin.GetComponent<CharacterControllerScript>();
-
-
                     break;
                 }
-        /*
-            case GameStateId.WaitForPlayersToConnect:
-                {
-                    if (PhotonNetwork.countOfPlayers == 2)
-                    {
-                        // List<GameObject> animinsSpawned = new List<GameObject>();
-
-                        //for (int i = 0; i < PhotonNetwork.countOfPlayers; ++i)
-                        // {
-                        //GameObject animin = SpawnAniminStart(AniminId.Tbo, AniminEvolutionStageId.Baby);
-                        //animinsSpawned.Add(animin);
-                        //GetComponent<PhotonView>().RPC("ReceiveEventAcquireControlOfCharacter", PhotonNetwork.playerList[i], i);
-                        // }
-
-                        //UIGlobalVariablesScript.Singleton.Joystick.CharacterAnimationRef = animin.GetComponent<AnimationControllerScript>();
-                        //UIGlobalVariablesScript.Singleton.Joystick.CharacterControllerRef = animin.GetComponent<CharacterControllerScript>();
-
-                        SendEventBeginGame();
-                        State = GameStateId.PrepareToStart3;
-                    }
-                    break;
-                }
-        */
-
             case GameStateId.PrepareToStart3:
                 {
                     UIControls.Go321.gameObject.SetActive(true);
@@ -298,7 +252,6 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
                 {
                     if (FillUpTimer >= 0.75f)
                     {
-                        UIControls.Go321.gameObject.SetActive(false);
                         UIControls.SetReadyState(ReadyStates.Go);
                         UIControls.Go321.gameObject.transform.localScale = LerpFrom;
                         State = GameStateId.PrepareToStartGO;
@@ -455,8 +408,10 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
         
     }
 
-    public void ExitMinigame(){
+    public void ExitMinigame()
+    {
         UIGlobalVariablesScript.Singleton.SoundEngine.StopLoop();
+        BetweenSceneData.Instance.ReturnFromMiniGame = true;
         BetweenSceneData.Instance.Points = Points;
         MainARHandler.Instance.ChangeSceneToCaring();
     }
@@ -491,11 +446,13 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
         else
             Debug.Log("False...");
     }
+
     protected void ReceiveEventAcquireControlOfCharacter(int playerIndex)
     {
         UIGlobalVariablesScript.Singleton.Joystick.CharacterAnimationRef = PlayersCharacters[playerIndex].GetComponent<MinigameAnimationControllerScript>();
         UIGlobalVariablesScript.Singleton.Joystick.CharacterControllerRef = PlayersCharacters[playerIndex].GetComponent<CharacterControllerScript>();
     }
+
     protected void ReceiveBeginGame()
     {
         State = GameStateId.PrepareToStart3;
@@ -554,7 +511,8 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
 
         //Destroy(barrel);
         AmmoTimer += 0.07f;
-        if (AmmoTimer >= 1) AmmoTimer = 1;
+        if (AmmoTimer >= 1)
+            AmmoTimer = 1;
         string[] prefabs = barrel.BulletPrefabs;
         CurrentBullets.Clear();
         CurrentBullets.AddRange(prefabs);
@@ -566,16 +524,16 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
         if (barrel.DestroyedPrefab != null)
         {
             GameObject newProjectile = Instantiate(barrel.DestroyedPrefab) as GameObject;
-			newProjectile.transform.parent = SpawnedObjectsAllOthers.transform;
+            newProjectile.transform.parent = SpawnedObjectsAllOthers.transform;
             newProjectile.transform.position = Vector3.zero;
             newProjectile.transform.rotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
             newProjectile.transform.localScale = new Vector3(0.15f, 0.15f, 0.15f);
             newProjectile.transform.localPosition = barrel.transform.localPosition;
         
-		}
+        }
         Destroy(barrel.gameObject);
     }
-	
+
     public GameObject SpawnAniminStart(PersistentData.TypesOfAnimin animinid, AniminEvolutionStageId evolution)
     {
         GameObject instance = null;//GameObject.Instantiate(resource1) as GameObject;
@@ -725,27 +683,22 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
 
         newProjectile.GetComponent<ProjectileScript>().SetLocal(true);
 
-        ShootBulletForwardEnd(newProjectile, PlayersCharacters[playerIndex]);
-    }
-
-    public void ShootBulletForwardEnd(GameObject newProjectile, GameObject characterShooting)
-    {
         newProjectile.transform.parent = SpawnedObjectsAllOthers.transform;
         newProjectile.transform.position = UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.position;
         newProjectile.transform.rotation = Quaternion.Euler(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
         newProjectile.transform.localScale = new Vector3(0.116f, 0.116f, 0.116f);
-        newProjectile.transform.position = characterShooting.transform.position + characterShooting.transform.forward * 0.14f + new Vector3(0, 0.05f, 0);
-        //newProjectile.AddComponent<ProjectileScript>();
-        //newProjectile.velocity = transform.TransformDirection( Vector3( 0, 0, speed) );
-        //newProjectile.AddComponent<MeshCollider>();
-        newProjectile.GetComponent<Rigidbody>().AddForce(characterShooting.transform.forward * 20000);
-        // SpawnedObjects.Add(newProjectile);
+        newProjectile.transform.position = PlayersCharacters[playerIndex].transform.position + ((PlayersCharacters[playerIndex].transform.forward * 20f) + new Vector3(0, 10f, 0));
+        newProjectile.GetComponent<Rigidbody>().AddForce(PlayersCharacters[playerIndex].transform.forward * 20000);
     }
+
+
+
 
 
 
     public void ShootBulletLost(float speedVariationFactor, GameObject character)
     {
+        Debug.Log("When am I called? If you see this Debug, let Harry know, and tell him when this was called. Also tell him he's looking good today.");
         GameObject resourceLoad = Resources.Load(CurrentBullets[Random.Range(0, CurrentBullets.Count)]) as GameObject;
 
         GameObject newProjectile = Instantiate(resourceLoad) as GameObject;
@@ -754,7 +707,7 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
         newProjectile.transform.position = UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.position;
         newProjectile.transform.rotation = Quaternion.Euler(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
         newProjectile.transform.localScale = new Vector3(0.116f, 0.116f, 0.116f) * Random.Range(0.80f, 1.0f);
-        newProjectile.transform.position = character.transform.position + character.transform.forward * 0.14f + new Vector3(0, 0.3f, 0);
+        newProjectile.transform.position = character.transform.position + character.transform.forward * 1f + new Vector3(0, 1f, 0);
         //newProjectile.AddComponent<ProjectileScript>();
         //newProjectile.velocity = transform.TransformDirection( Vector3( 0, 0, speed) );
         //newProjectile.AddComponent<MeshCollider>();

@@ -26,7 +26,7 @@ public class RestorePurchases : MonoBehaviour {
 		Debug.Log("Restore Purchases");
 		if(!Application.isEditor)
 		{
-			
+            ShopManager.Instance.RestoreItems();
 			if(ShopManager.Instance.HasBought(UnlockCharacterManager.TBOADULT_PURCHASE) || ShopManager.Instance.HasBought(UnlockCharacterManager.TBOADULT_UNLOCK))
 			{
 				UnlockCharacterManager.Instance.ID = PersistentData.TypesOfAnimin.TboAdult;
@@ -47,7 +47,7 @@ public class RestorePurchases : MonoBehaviour {
 				UnlockCharacterManager.Instance.ID = PersistentData.TypesOfAnimin.Mandi;
 				UnlockCharacterManager.Instance.UnlockCharacter();
 			}
-			ShopManager.Instance.RestoreItems();
+			
 			UiPages.Next(Pages.AniminSelectPage);
 			//Invoke("Return",10);
 		}

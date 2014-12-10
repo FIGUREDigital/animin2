@@ -76,8 +76,7 @@ public class SaveAndLoad {
 
 	public void SaveAllData()
 	{
-		Debug.Log ("Deleting old");
-        File.Delete(Application.persistentDataPath + "/savedGames.anidat");
+		
         StateData.ProfileList.Clear();
 		Debug.Log ("Saving Profiles");
         for (int i =0; i< ProfilesManagementScript.Singleton.ListOfPlayerProfiles.Count; i++)
@@ -88,14 +87,25 @@ public class SaveAndLoad {
 			Debug.Log ("Adding profile " + i + ": " + tempProfile.ProfileName );
         }
         StateData.CurrentProfile = ProfilesManagementScript.Singleton.CurrentProfile;
-        StateData.UpgradeTbo = ProfilesManagementScript.Singleton.SentToPurchaseAdultTBOFromMainScene;
+        //StateData.UpgradeTbo = ProfilesManagementScript.Singleton.SentToPurchaseAdultTBOFromMainScene;
+        StateData.UpgradeTbo = false;
 		BinaryFormatter bf = new BinaryFormatter();
 		Debug.Log ("Creating file");
-		FileStream file = File.Create (Application.persistentDataPath + "/savedGames.anidat");
+		FileStream file = File.Create (Application.persistentDataPath + "/savedGamesTemp.anidat");
 		Debug.Log ("Serializing");
         bf.Serialize(file, StateData);
 		Debug.Log ("Closing File");
 		file.Close();
+        if (File.Exists(Application.persistentDataPath + "/savedGames.anidat"))
+        {
+            Debug.Log("Deleting old");
+            File.Delete(Application.persistentDataPath + "/savedGamesBackup.anidat");
+            File.Replace(Application.persistentDataPath + "/savedGamesTemp.anidat", Application.persistentDataPath + "/savedGames.anidat", Application.persistentDataPath + "/savedGamesBackup.anidat");
+        }
+        else
+        {
+            File.Copy(Application.persistentDataPath + "/savedGamesTemp.anidat", Application.persistentDataPath + "/savedGames.anidat");
+        }
 
 	}	
 

@@ -531,7 +531,6 @@ public class AnimationControllerScript : MonoBehaviour
     public void SetCharacter(GameObject newCharacterModel)
     {
         CharacterModel = newCharacterModel;
-		Debug.Log ("!!!!!!!!!!Character Model : ["+CharacterModel.name+"]");
         animator = CharacterModel.GetComponent<Animator>();
     }
 

@@ -29,15 +29,68 @@ public class GunMinigamePageControls : MonoBehaviour {
     private UnityEngine.UI.Text m_Points;
     public UnityEngine.UI.Text Points { get { return m_Points; } }
 
+
+    [SerializeField]
+    private GameObject m_TutorialEnemies, m_TutorialMove;
+    private int TutorialCounter;
+
+
+    private JoystickPageControls JoystickControls{
+        get{
+            if (m_JoystickControls == null)
+                m_JoystickControls = UiPages.GetPage(Pages.JoystickPage).GetComponent<JoystickPageControls>();
+
+            return m_JoystickControls;
+        }
+    }
+    private JoystickPageControls m_JoystickControls;
+
+    public bool WaitingForTouch{
+        get{
+            return TutorialCounter == 0 || TutorialCounter == 1;
+        }
+    }
+
 	// Use this for initialization
 	void Start () {
 	
 	}
 	
 	// Update is called once per frame
-	void Update () {
-	
-	}
+    void Update () {
+        if (ProfilesManagementScript.Singleton.CurrentProfile.TutorialBoxLandPlayed == false)
+        {
+            switch(TutorialCounter){
+                case 0:
+                    m_Points.transform.parent.gameObject.SetActive(false);
+                    m_Go321.gameObject.SetActive(false);
+
+                    m_TutorialEnemies.SetActive(true);
+
+                    TutorialCounter++;
+                    break;
+                case 1:
+                    if (Input.GetButtonUp("Fire1"))
+                    {
+                        m_TutorialEnemies.SetActive(false);
+                        m_TutorialMove.SetActive(true);
+                        TutorialCounter++;
+                    }
+                    break;
+                case 2:
+                    if (JoystickControls.IsMovingWithJoystick)
+                    {
+
+                        m_TutorialMove.SetActive(false);
+                        m_Points.transform.parent.gameObject.SetActive(true);
+                        m_Go321.gameObject.SetActive(true);
+                        //ProfilesManagementScript.Singleton.CurrentProfile.TutorialBoxLandPlayed = true;
+                        TutorialCounter++;
+                    }
+                    break;
+            }
+        }
+    }
 
     public void SetReadyState(ReadyStates newState){
         switch (newState)

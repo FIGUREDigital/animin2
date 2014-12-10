@@ -3002,10 +3002,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 100068}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073b5133c85fb4d1aab7b3af95a83c13, type: 3}
+  m_Script: {fileID: 11500000, guid: f38ff07baf4d04afa8f8424870c50f81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EyesOpenTexture: {fileID: 2800000, guid: 1f52a761b2eac4dcb84d1e65229f23c3, type: 3}
   BlinkingTexture: {fileID: 2800000, guid: 30fb4b9b6cc4f46ffbe5610e0a7fa530, type: 3}
+  TexturesToSwap:
+  - {fileID: 13700004}
 --- !u!137 &13700000
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

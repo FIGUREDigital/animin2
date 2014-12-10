@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4d0bbb4fdc65c4deb8734fcdb6af73d1
+guid: 19c4c7069ff094f6fb631808a6fccd0d
 TextureImporter:
   fileIDToRecycleName: {}
   serializedVersion: 2
@@ -43,5 +43,5 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites: []
-  spritePackingTag: InGame
+  spritePackingTag: 
   userData: 

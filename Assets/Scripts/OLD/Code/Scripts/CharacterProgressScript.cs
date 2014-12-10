@@ -73,6 +73,7 @@ public class InventoryItemData
 {
 	
 	private const string ITEM_PATH = "Texture/UI/";
+    #region Static Nonsense
     public static InventoryItemBankData[] Items;
 
     public static void Initialize()
@@ -114,6 +115,7 @@ public class InventoryItemData
 
 		/*23*/Items[(int)InventoryItemId.Radio] = new InventoryItemBankData() { Id = InventoryItemId.Radio, PrefabId = "Prefabs/radio", SpriteName = store.GetSprite(InventoryItemId.Radio),  ItemType = PopupItemType.Item };
     }
+    #endregion
 
     public InventoryItemId Id;
     public int Count;
@@ -266,9 +268,6 @@ public class CharacterProgressScript : MonoBehaviour
     private const float M_SHIT_TIME = 300.0f;
     private const float M_GIFT_TIME = 100.0f;
     private const float M_HAPPINESS_DEGREDATION = 0.1f;
-
-    private bool m_IsBlinking;
-    private float m_BlinkTimer;
 
     private GUITexture[] m_UITextures;
 
@@ -679,35 +678,6 @@ public class CharacterProgressScript : MonoBehaviour
             (ProfilesManagementScript.Singleton.CurrentAnimin.Health / 100.0f))
         / 3.0f)
         * PersistentData.MaxHappy;
-
-        /*
-        if (GetComponentsInChildren<SkinnedMeshRenderer>() != null && this.GetComponentInChildren<BlinkRef>() != null)
-        {
-            m_BlinkTimer += Time.deltaTime;
-            if (!m_IsBlinking)
-            {
-                if (m_BlinkTimer >= 1f)
-                {
-                    m_BlinkTimer = 0;
-                    if (UnityEngine.Random.value <= 0.5f)
-                    {
-                        m_IsBlinking = true;
-                        ReplaceTexture(this.GetComponentInChildren<BlinkRef>().Blink);
-                    }
-                }
-            }
-            else
-            {
-                if (m_BlinkTimer >= 0.2f)
-                {
-                    m_BlinkTimer = 0;
-                    m_IsBlinking = false;
-                    ReplaceTexture(GetComponent<CharacterSwapManagementScript>().CurrentModel.renderer.material.mainTexture);
-                }
-            }
-        }
-        */
-
 
 
         //Debug.Log("Hungry: " + (Hungry / 100.0f).ToString());

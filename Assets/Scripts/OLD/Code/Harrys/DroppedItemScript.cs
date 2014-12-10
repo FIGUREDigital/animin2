@@ -12,6 +12,8 @@ public class DroppedItemScript : MonoBehaviour {
 	private float m_VerticalSpeed;
 	private UIPopupItemScript m_ItemScript;
 
+    CaringPageControls m_CaringPageControls;
+
 	StateEnum State;
 	// Use this for initialization
 	void Start () {
@@ -21,12 +23,8 @@ public class DroppedItemScript : MonoBehaviour {
 		
 		m_VerticalSpeed = 0;
 
-        DisappearUI(UIGlobalVariablesScript.Singleton.StereoUI);
-        DisappearUI(UIGlobalVariablesScript.Singleton.PianoUI);
-        DisappearUI(UIGlobalVariablesScript.Singleton.JunoUI);
-        DisappearUI(UIGlobalVariablesScript.Singleton.EDMBoxUI);
-        DisappearUI(UIGlobalVariablesScript.Singleton.AlarmUI);
-        DisappearUI(UIGlobalVariablesScript.Singleton.LightbulbUI);
+        m_CaringPageControls = UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>();
+
 	}
 	
 	// Update is called once per frame
@@ -41,13 +39,9 @@ public class DroppedItemScript : MonoBehaviour {
 			ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(m_ItemScript.Id,1);
 			UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().GroundItems.Remove(this.gameObject);
 
-
+            m_CaringPageControls.DisappearAllItemUIs();
 
 			UnityEngine.Object.Destroy(this.gameObject);
 		}
 	}
-    private void DisappearUI(GameObject go){
-        if (go != null && go.activeInHierarchy)
-            go.SetActive(false);
-    }
 }

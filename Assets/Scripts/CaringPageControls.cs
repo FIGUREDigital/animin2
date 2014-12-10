@@ -351,6 +351,16 @@ public class CaringPageControls : MonoBehaviour {
         EDMMixerScript.Singleton.KeysOn[k] = !EDMMixerScript.Singleton.KeysOn[k];
     }
 
+    public void DisappearAllItemUIs(){
+
+        AlarmUI.SetActive(false);
+        EDMBoxUI.SetActive(false);
+        JunoUI.SetActive(false);
+        LightbulbUI.SetActive(false);
+        PianoUI.SetActive(false);
+        StereoUI.SetActive(false);
+    }
+
 	void Update()
 	{
 		if(PersistentData.InventoryUpdated)

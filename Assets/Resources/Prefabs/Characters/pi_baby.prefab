@@ -4232,9 +4232,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f38ff07baf4d04afa8f8424870c50f81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EyesOpenTexture: {fileID: 0}
-  BlinkingTexture: {fileID: 0}
-  TexturesToSwap: []
+  EyesOpenTexture: {fileID: 2800000, guid: 9a53746aae6c96d4ebb0815df23bb326, type: 3}
+  BlinkingTexture: {fileID: 2800000, guid: b4ecf9f4fde6249a48b123a28accf722, type: 3}
+  TexturesToSwap:
+  - {fileID: 13700004}
 --- !u!137 &13700000
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

@@ -91,6 +91,7 @@ public class ShopManager
         GoogleIABManager.purchaseFailedEvent += purchaseFailed;
         GoogleIABManager.consumePurchaseSucceededEvent += consumePurchaseSucceededEvent;
         GoogleIABManager.consumePurchaseFailedEvent += consumePurchaseFailedEvent;
+
 		GoogleIAB.init(publicKey);
 #endif
         
@@ -285,6 +286,14 @@ public class ShopManager
 
 #endif
 	}
+
+	private void RestoreAndroidPurchases()
+	{
+		foreach(GooglePurchase gp in IAP.androidPurchasedItems)
+		{
+
+		}
+	}
 	
 
     public void Update()
@@ -351,6 +360,8 @@ public class ShopManager
 			if( HasBought() || Application.isEditor )
             {
                 CurrentPurchaseStatus = PurchaseStatus.Success;
+				UnlockCharacterManager.Instance.UnlockCharacter();
+				UiPages.Back();
             }
             else
             {
@@ -373,6 +384,15 @@ public class ShopManager
 		foreach( StoreKitTransaction storeKitTransaction in transactions )
 		{
 			if( storeKitTransaction.productIdentifier == productID )
+			{
+				beenBought = true;
+			}
+		}
+		#elif UNITY_ANDROID
+		List<GooglePurchase> transactions = IAP.androidPurchasedItems;
+		foreach( GooglePurchase storeKitTransaction in transactions )
+		{
+			if( storeKitTransaction.productId == productID )
 			{
 				beenBought = true;
 			}

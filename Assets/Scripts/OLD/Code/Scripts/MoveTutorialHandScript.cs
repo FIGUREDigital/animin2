@@ -44,7 +44,7 @@ public class MoveTutorialHandScript : MonoBehaviour {
 			}
 			//this.GetComponent<Image>().enabled = true;
 
-			this.transform.localPosition = new Vector3(Mathf.Lerp(-376, 530, Lerp), -209.999f, 0);
+            this.transform.localPosition = new Vector3(Mathf.Lerp(-121.8f, 120.6f, Lerp), -28f, 0);
 
 		
 		}

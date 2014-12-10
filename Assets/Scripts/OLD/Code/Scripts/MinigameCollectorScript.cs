@@ -276,7 +276,6 @@ public class MinigameCollectorScript : MonoBehaviour
 	{
         if (Paused) return;
 
-		//UICOMMENT: PointsLabel.GetComponent<Text>().text = Points.ToString() + " pts";
         UiPages.GetPage(Pages.CubeMinigamePage).GetComponent<CubeMinigamesPageControls>().PointLabel.text = Points.ToString() + " pts";
 		BetweenSceneData.Instance.Points = Points;
 		CharacterProgressScript progressScript = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>();

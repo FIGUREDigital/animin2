@@ -1966,7 +1966,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100028}
-  m_LocalRotation: {x: .288921267, y: .773196995, z: .528814077, w: -.197602451}
+  m_LocalRotation: {x: .288921237, y: .773196876, z: .528814018, w: -.197602421}
   m_LocalPosition: {x: -.0746885315, y: .0331483558, z: -.0279718824}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2460,7 +2460,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100104}
-  m_LocalRotation: {x: .288921267, y: .773196995, z: .528814077, w: -.197602451}
+  m_LocalRotation: {x: .288921237, y: .773196876, z: .528814018, w: -.197602421}
   m_LocalPosition: {x: -.0746885315, y: .0331483558, z: -.0279718824}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3470,10 +3470,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 100066}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073b5133c85fb4d1aab7b3af95a83c13, type: 3}
+  m_Script: {fileID: 11500000, guid: f38ff07baf4d04afa8f8424870c50f81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EyesOpenTexture: {fileID: 2800000, guid: 82767c6b27dfc644a98e9ed606574a74, type: 3}
   BlinkingTexture: {fileID: 2800000, guid: 194b52a60a2054045b6a5a6868ab9445, type: 3}
+  TexturesToSwap:
+  - {fileID: 13700000}
 --- !u!137 &13700000
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

@@ -25,10 +25,12 @@ public class CharacterSwapManagementScript : MonoBehaviour
 	//private AnimationClip[,] AnimationsPerModel;
 	private string[,] Models;
 	public GameObject CurrentModel;
+    public Texture2D CurrentEyesOpenTexture;
 
 	public AnimatorOverrideController TBOAdultAnimations;
     public AnimatorOverrideController[,] AnimationLists;
 
+    public Texture2D[,] Normals;
     public Texture2D[,] Blinks;
 
 
@@ -41,21 +43,21 @@ public class CharacterSwapManagementScript : MonoBehaviour
 		//LoadAnimations(CreatureTypeId.TBOAdult, "Models/TBO/Kid", "/tbo_kid@");
 	
         Models = new string[(int)PersistentData.TypesOfAnimin.Count, (int)AniminEvolutionStageId.Count];
-        Models[(int)PersistentData.TypesOfAnimin.Tbo, (int)AniminEvolutionStageId.Baby] = "Prefabs/tbo_baby";
-        Models[(int)PersistentData.TypesOfAnimin.Tbo, (int)AniminEvolutionStageId.Kid] = "Prefabs/tbo_kid";
-        Models[(int)PersistentData.TypesOfAnimin.Tbo, (int)AniminEvolutionStageId.Adult] = "Prefabs/tbo_adult";
+        Models[(int)PersistentData.TypesOfAnimin.Tbo, (int)AniminEvolutionStageId.Baby] = "Prefabs/Characters/tbo_baby";
+        Models[(int)PersistentData.TypesOfAnimin.Tbo, (int)AniminEvolutionStageId.Kid] = "Prefabs/Characters/tbo_kid";
+        Models[(int)PersistentData.TypesOfAnimin.Tbo, (int)AniminEvolutionStageId.Adult] = "Prefabs/Characters/tbo_adult";
 
-        Models[(int)PersistentData.TypesOfAnimin.Kelsey, (int)AniminEvolutionStageId.Baby] = "Prefabs/ke_baby";
-        Models[(int)PersistentData.TypesOfAnimin.Kelsey, (int)AniminEvolutionStageId.Kid] = "Prefabs/ke_kid";
-        Models[(int)PersistentData.TypesOfAnimin.Kelsey, (int)AniminEvolutionStageId.Adult] = "Prefabs/ke_adult";
+        Models[(int)PersistentData.TypesOfAnimin.Kelsey, (int)AniminEvolutionStageId.Baby] = "Prefabs/Characters/ke_baby";
+        Models[(int)PersistentData.TypesOfAnimin.Kelsey, (int)AniminEvolutionStageId.Kid] = "Prefabs/Characters/ke_kid";
+        Models[(int)PersistentData.TypesOfAnimin.Kelsey, (int)AniminEvolutionStageId.Adult] = "Prefabs/Characters/ke_adult";
 
-        Models[(int)PersistentData.TypesOfAnimin.Mandi, (int)AniminEvolutionStageId.Baby] = "Prefabs/ma_baby";
-        Models[(int)PersistentData.TypesOfAnimin.Mandi, (int)AniminEvolutionStageId.Kid] = "Prefabs/ma_kid";
-        Models[(int)PersistentData.TypesOfAnimin.Mandi, (int)AniminEvolutionStageId.Adult] = "Prefabs/ma_adult";
+        Models[(int)PersistentData.TypesOfAnimin.Mandi, (int)AniminEvolutionStageId.Baby] = "Prefabs/Characters/ma_baby";
+        Models[(int)PersistentData.TypesOfAnimin.Mandi, (int)AniminEvolutionStageId.Kid] = "Prefabs/Characters/ma_kid";
+        Models[(int)PersistentData.TypesOfAnimin.Mandi, (int)AniminEvolutionStageId.Adult] = "Prefabs/Characters/ma_adult";
 
-        Models[(int)PersistentData.TypesOfAnimin.Pi, (int)AniminEvolutionStageId.Baby] = "Prefabs/pi_baby";
-        Models[(int)PersistentData.TypesOfAnimin.Pi, (int)AniminEvolutionStageId.Kid] = "Prefabs/pi_kid";
-        Models[(int)PersistentData.TypesOfAnimin.Pi, (int)AniminEvolutionStageId.Adult] = "Prefabs/pi_adult";
+        Models[(int)PersistentData.TypesOfAnimin.Pi, (int)AniminEvolutionStageId.Baby] = "Prefabs/Characters/pi_baby";
+        Models[(int)PersistentData.TypesOfAnimin.Pi, (int)AniminEvolutionStageId.Kid] = "Prefabs/Characters/pi_kid";
+        Models[(int)PersistentData.TypesOfAnimin.Pi, (int)AniminEvolutionStageId.Adult] = "Prefabs/Characters/pi_adult";
 
         AnimationLists = new AnimatorOverrideController[(int)PersistentData.TypesOfAnimin.Count, (int)AniminEvolutionStageId.Count];
         AnimationLists[(int)PersistentData.TypesOfAnimin.Tbo, (int)AniminEvolutionStageId.Baby] = Resources.Load<AnimatorOverrideController>(@"AnimControllers/TBOBabyAnimations");
@@ -84,23 +86,21 @@ public class CharacterSwapManagementScript : MonoBehaviour
         */
 
         Blinks = new Texture2D[(int)PersistentData.TypesOfAnimin.Count, (int)AniminEvolutionStageId.Count];
-        Blinks[(int)PersistentData.TypesOfAnimin.Tbo, (int)AniminEvolutionStageId.Baby]     = Resources.Load<Texture2D>("Textures/Characters/tbo_baby_blink");
-        Blinks[(int)PersistentData.TypesOfAnimin.Tbo, (int)AniminEvolutionStageId.Kid]      = Resources.Load<Texture2D>("Textures/Characters/tbo_kid_blink");
-        Blinks[(int)PersistentData.TypesOfAnimin.Tbo, (int)AniminEvolutionStageId.Adult]    = Resources.Load<Texture2D>("Textures/Characters/tbo_baby_blink");
+        Blinks[(int)PersistentData.TypesOfAnimin.Tbo, (int)AniminEvolutionStageId.Baby]     = Resources.Load<Texture2D>("Texture/Characters/tbo_baby_blink");
+        Blinks[(int)PersistentData.TypesOfAnimin.Tbo, (int)AniminEvolutionStageId.Kid]      = Resources.Load<Texture2D>("Texture/Characters/tbo_kid_blink");
+        Blinks[(int)PersistentData.TypesOfAnimin.Tbo, (int)AniminEvolutionStageId.Adult]    = Resources.Load<Texture2D>("Texture/Characters/tbo_adult_blink");
 
-        Blinks[(int)PersistentData.TypesOfAnimin.Kelsey, (int)AniminEvolutionStageId.Baby]  = Resources.Load<Texture2D>("Textures/Characters/ke_baby_blink");
-        Blinks[(int)PersistentData.TypesOfAnimin.Kelsey, (int)AniminEvolutionStageId.Kid]   = Resources.Load<Texture2D>("Textures/Characters/ke_kid_blink");
-        Blinks[(int)PersistentData.TypesOfAnimin.Kelsey, (int)AniminEvolutionStageId.Adult] = Resources.Load<Texture2D>("Textures/Characters/ke_baby_blink");
+        Blinks[(int)PersistentData.TypesOfAnimin.Kelsey, (int)AniminEvolutionStageId.Baby]  = Resources.Load<Texture2D>("Texture/Characters/ke_baby_blink");
+        Blinks[(int)PersistentData.TypesOfAnimin.Kelsey, (int)AniminEvolutionStageId.Kid]   = Resources.Load<Texture2D>("Texture/Characters/ke_kid_blink");
+        Blinks[(int)PersistentData.TypesOfAnimin.Kelsey, (int)AniminEvolutionStageId.Adult] = Resources.Load<Texture2D>("Texture/Characters/ke_adult_blink");
 
-        Blinks[(int)PersistentData.TypesOfAnimin.Mandi, (int)AniminEvolutionStageId.Baby]   = Resources.Load<Texture2D>("Textures/Characters/tbo_baby_blink");
-        Blinks[(int)PersistentData.TypesOfAnimin.Mandi, (int)AniminEvolutionStageId.Kid]    = Resources.Load<Texture2D>("Textures/Characters/tbo_kid_blink");
-        Blinks[(int)PersistentData.TypesOfAnimin.Mandi, (int)AniminEvolutionStageId.Adult]  = Resources.Load<Texture2D>("Textures/Characters/tbo_baby_blink");
+        Blinks[(int)PersistentData.TypesOfAnimin.Mandi, (int)AniminEvolutionStageId.Baby]   = Resources.Load<Texture2D>("Texture/Characters/ma_baby_blink");
+        Blinks[(int)PersistentData.TypesOfAnimin.Mandi, (int)AniminEvolutionStageId.Kid]    = Resources.Load<Texture2D>("Texture/Characters/ma_kid_blink");
+        Blinks[(int)PersistentData.TypesOfAnimin.Mandi, (int)AniminEvolutionStageId.Adult]  = Resources.Load<Texture2D>("Texture/Characters/ma_adult_blink");
 
-        Blinks[(int)PersistentData.TypesOfAnimin.Pi, (int)AniminEvolutionStageId.Baby]      = Resources.Load<Texture2D>("Textures/Characters/tbo_baby_blink");
-        Blinks[(int)PersistentData.TypesOfAnimin.Pi, (int)AniminEvolutionStageId.Kid]       = Resources.Load<Texture2D>("Textures/Characters/tbo_kid_blink");
-        Blinks[(int)PersistentData.TypesOfAnimin.Pi, (int)AniminEvolutionStageId.Adult]     = Resources.Load<Texture2D>("Textures/Characters/tbo_baby_blink");
-
-
+        Blinks[(int)PersistentData.TypesOfAnimin.Pi, (int)AniminEvolutionStageId.Baby]      = Resources.Load<Texture2D>("Texture/Characters/pi_baby_blink");
+        Blinks[(int)PersistentData.TypesOfAnimin.Pi, (int)AniminEvolutionStageId.Kid]       = Resources.Load<Texture2D>("Texture/Characters/pi_kid_blink");
+        Blinks[(int)PersistentData.TypesOfAnimin.Pi, (int)AniminEvolutionStageId.Adult]     = Resources.Load<Texture2D>("Texture/Characters/pi_adult_blink");
 	}
 
 	void OnGUI()
@@ -138,6 +138,9 @@ public class CharacterSwapManagementScript : MonoBehaviour
 		Object resource = Resources.Load(Models[(int)animinId, (int)id]);
 
 		GameObject instance = GameObject.Instantiate(resource) as GameObject;
+
+        CurrentEyesOpenTexture = (Texture2D)instance.GetComponentInChildren<Renderer>().material.mainTexture;
+
 		Vector3 scale = instance.transform.localScale;
 		//RuntimeAnimatorController controller = CurrentModel.GetComponent<Animator>().runtimeAnimatorController;
 

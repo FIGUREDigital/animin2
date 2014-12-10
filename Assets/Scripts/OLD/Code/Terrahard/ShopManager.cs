@@ -286,7 +286,7 @@ public class ShopManager
 
 #endif
 	}
-
+    /*
 	private void RestoreAndroidPurchases()
 	{
 		foreach(GooglePurchase gp in IAP.androidPurchasedItems)
@@ -294,7 +294,7 @@ public class ShopManager
 
 		}
 	}
-	
+	*/
 
     public void Update()
     {

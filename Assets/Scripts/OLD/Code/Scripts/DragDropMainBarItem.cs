@@ -60,8 +60,5 @@ public class DragDropMainBarItem : MonoBehaviour, IBeginDragHandler, IDragHandle
 					Transform trans = child.transform;
 					trans.position = hit.point;
 					UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().GroundItems.Add(child);
-				
-		
-
 	}
 }

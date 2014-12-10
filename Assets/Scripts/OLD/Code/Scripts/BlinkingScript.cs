@@ -12,6 +12,10 @@ public class BlinkingScript : MonoBehaviour
     private bool m_IsBlinking;
     private float m_BlinkTimer;
 
+    void Start(){
+        m_BlinkTimer = 0;
+        m_HasSlept = false;
+    }
 
     private AnimationControllerScript AnimController{
         get {
@@ -29,24 +33,21 @@ public class BlinkingScript : MonoBehaviour
         if (EyesOpenTexture == null || BlinkingTexture == null)
             return;
 
-        if (AnimController != null && !m_HasSlept)
+        if (AnimController != null)
         {
-            if (AnimController.IsSleeping&& !m_IsBlinking)
+            if (AnimController.IsSleeping)
             {
-                Debug.Log("EYES CLOSED"); 
-                Blink(true);
+                Debug.Log("SLEEPING EYES CLOSED"); 
+                if (!m_IsBlinking)
+                    Blink(true);
+                return;
             }
-            else if (!AnimController.IsSleeping && m_IsBlinking)
+            else if (!AnimController.IsSleeping && !m_HasSlept)
             {
-                Debug.Log("EYES OPEN"); 
                 m_HasSlept = true;
                 Blink(false);
             }
-            return;
         }
-
-        Debug.Log("I SHOULDN'T GET HERE IF I AM SLEEPING"); 
-
 
         m_BlinkTimer += Time.deltaTime;
         if (!m_IsBlinking)
@@ -71,6 +72,7 @@ public class BlinkingScript : MonoBehaviour
         }
     }
     void Blink(bool on){
+        Debug.Log("Blink : ["+on+"];"); 
         m_IsBlinking = on;
         ReplaceTexture(on ? BlinkingTexture : EyesOpenTexture);
     }

@@ -2178,9 +2178,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f38ff07baf4d04afa8f8424870c50f81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EyesOpenTexture: {fileID: 0}
-  BlinkingTexture: {fileID: 0}
-  TexturesToSwap: []
+  EyesOpenTexture: {fileID: 2800000, guid: 1ed7458d3f1ec4a12a79c9f68c85a8d0, type: 3}
+  BlinkingTexture: {fileID: 2800000, guid: 4b2307a09221145bcaaea1894819d405, type: 3}
+  TexturesToSwap:
+  - {fileID: 13700000}
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1

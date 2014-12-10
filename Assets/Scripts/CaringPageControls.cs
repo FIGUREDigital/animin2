@@ -57,6 +57,10 @@ public class CaringPageControls : MonoBehaviour {
         }
     }
 
+    [SerializeField]
+    private RectTransform m_Triangle;
+    private Vector2 m_TriangleHeight;
+
     private GameObject m_TargetItem;
     public GameObject TargetItem{
         get { return m_TargetItem; }
@@ -88,6 +92,7 @@ public class CaringPageControls : MonoBehaviour {
         m_PopupUIs = new GameObject[]{ AlarmUI, LightbulbUI, EDMBoxUI, JunoUI, PianoUI };
 		mInventoryControls = Inventory.GetComponent<InventoryControls> ();
 		PopulateButtons ();
+        m_TriangleHeight = new Vector2(0,m_Triangle.sizeDelta.y);
 	}
 	void PopulateButtons ()
 	{
@@ -353,19 +358,12 @@ public class CaringPageControls : MonoBehaviour {
 			PersistentData.InventoryUpdated = false;
 			PopulateButtons();
 		}
+        m_Triangle.gameObject.SetActive(false);
         if(m_TargetItem!=null){
             for (int i = 0; i < PopupUIs.Length; i++)
             {
                 if (PopupUIs[i] != null && PopupUIs[i].activeInHierarchy)
                 {
-                    /*
-                    Vector3 pos;
-                    pos = Camera.main.WorldToScreenPoint(m_TargetItem.transform.position)/2;
-                    //pos -= new Vector3(Screen.width, Screen.height, 0) / 2;
-                    pos.z = 0;
-                    PopupUIs[i].transform.localPosition = pos;
-                    */
-
                     //this is your object that you want to have the UI element hovering over
 
                     //this is the ui element
@@ -384,7 +382,9 @@ public class CaringPageControls : MonoBehaviour {
                         ((ViewportPosition.y*CanvasRect.sizeDelta.y)-(CanvasRect.sizeDelta.y*0.5f)));
 
                     //now you can set the position of the ui element
-                    UI_Element.anchoredPosition=WorldObject_ScreenPosition;
+                    UI_Element.anchoredPosition=WorldObject_ScreenPosition + m_TriangleHeight;
+                    m_Triangle.anchoredPosition = WorldObject_ScreenPosition + m_TriangleHeight;
+                    m_Triangle.gameObject.SetActive(true);
                 }
             }
         }

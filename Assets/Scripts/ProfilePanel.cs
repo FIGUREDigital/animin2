@@ -18,7 +18,10 @@ public class ProfilePanel : MonoBehaviour
 
 	void Init()
 	{
-		mProfilePrefab = Resources.Load (PROFILE_PREFAB);
+		if(mProfilePrefab == null)
+		{
+			mProfilePrefab = Resources.Load (PROFILE_PREFAB);
+		}
 		Populate ();
 	}
 
@@ -28,6 +31,11 @@ public class ProfilePanel : MonoBehaviour
 	}
 	void OnDisable()
 	{
+		Depopulate ();
+	}
+
+	void Depopulate()
+	{
 		if(mButtons != null)
 		{
 			foreach(GameObject button in mButtons)
@@ -36,9 +44,9 @@ public class ProfilePanel : MonoBehaviour
 			}
 		}
 	}
-
 	void Populate () 
 	{
+		Depopulate ();
 		List<PlayerProfileData> profiles = SaveAndLoad.Instance.StateData.ProfileList;
 		int numUsers = profiles.Count + 1;
 		mButtons = new GameObject[numUsers];
@@ -49,7 +57,7 @@ public class ProfilePanel : MonoBehaviour
 			RectTransform rt = newProfile.GetComponent<RectTransform>();
 			rt.anchorMin = new Vector2(1,0.5f);
 			rt.anchorMax = new Vector2(1,0.5f);
-			rt.anchoredPosition = new Vector2(- (120 +(i * 240)), -27.7f);
+			rt.anchoredPosition = new Vector2(- (427.8f +(i * 240f)), -27.7f);
 			rt.SetParent(transform,false);
 
 			if(i != 0)

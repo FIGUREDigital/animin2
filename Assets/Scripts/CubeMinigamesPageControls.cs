@@ -95,7 +95,10 @@ public class CubeMinigamesPageControls : MonoBehaviour {
 		ProfilesManagementScript.Singleton.CurrentProfile.TutorialBoxLandPlayed = false;
 	}
 
-    void OnEnable(){
+	void OnEnable(){
+		m_TutorialJump.SetActive (false);
+		m_TutorialMove.SetActive (false);
+		m_TutorialSwipe.SetActive (false);
         if (UiPages.GetPage(Pages.JoystickPage)!=null)UiPages.GetPage(Pages.JoystickPage).SetActive(true);
     }
     void OnDisable(){

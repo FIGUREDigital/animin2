@@ -52,6 +52,7 @@ public class GunMinigamePageControls : MonoBehaviour {
 
     public bool WaitingForTouch{
         get{
+            Debug.Log("Waiting for Input : [" + (TutorialCounter == 0 || TutorialCounter == 1) + "];");
             return TutorialCounter == 0 || TutorialCounter == 1;
         }
     }
@@ -60,7 +61,7 @@ public class GunMinigamePageControls : MonoBehaviour {
 	void Start () {
 	
 	}
-	
+
 	// Update is called once per frame
     void Update () {
         if (ProfilesManagementScript.Singleton.CurrentProfile.TutorialBoxLandPlayed == false)
@@ -135,11 +136,14 @@ public class GunMinigamePageControls : MonoBehaviour {
     }
 
     void OnEnable(){
-        Debug.Log("onEnable");
+
+        m_Points.transform.parent.gameObject.SetActive(true);
+        m_Go321.gameObject.SetActive(true);
+        m_Go321.gameObject.SetActive(false);
+        m_TutorialEnemies.SetActive(false);
         if (UiPages.GetPage(Pages.JoystickPage)!=null)UiPages.GetPage(Pages.JoystickPage).SetActive(true);
     }
     void OnDisable(){
-        Debug.Log("onDisable");
         if (UiPages.GetPage(Pages.JoystickPage)!=null)UiPages.GetPage(Pages.JoystickPage).SetActive(false);
     }
 }

@@ -6,7 +6,13 @@ public class SoundEngineScript : MonoBehaviour
 	//private AudioClip[] MinigameCubeRunners;
 	private AudioClip[] GenericSounds;
 	private AudioClip[,,] CreatureSounds;
-	public AudioSource SoundFxLooper1;
+    public AudioSource SoundFxLooper1
+    {
+        get
+        {
+            return LoopingSFX.Instance;
+        }
+    }
 	public AudioClip[] FartSounds;
 	public AudioClip[] MusicSounds;
 

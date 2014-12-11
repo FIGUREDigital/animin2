@@ -539,7 +539,8 @@ public class CharacterProgressScript : MonoBehaviour
     public void HidePopupMenus()
     {
         Debug.Log("Hiding popup menus");
-				//UICOMMENT
+        //UICOMMENT
+        CaringPageControls.StereoUI.SetActive(false);
         CaringPageControls.AlarmUI.SetActive(false);
         CaringPageControls.PianoUI.SetActive(false);
         CaringPageControls.LightbulbUI.SetActive(false);
@@ -1486,7 +1487,7 @@ public class CharacterProgressScript : MonoBehaviour
                                         preventMovingTo = true;
                                     }
                                     else if (moveHitInfo.collider/*.GetComponent<ReferencedObjectScript>().Reference*/.GetComponent<UIPopupItemScript>().Menu == MenuFunctionalityUI.Mp3Player)
-                                   // else if (false)
+                                    //else if (false)
                                     {
                                         HidePopupMenus();
                                         CaringPageControls.TargetItem = moveHitInfo.collider.gameObject;

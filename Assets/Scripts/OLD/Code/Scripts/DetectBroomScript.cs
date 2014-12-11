@@ -40,14 +40,15 @@ public class DetectBroomScript : MonoBehaviour, IBeginDragHandler, IDragHandler,
         {
             Debug.Log("Broom Hit : ["+hit.collider.gameObject.name+"];");
         }
-        if(!hit.collider.gameObject.CompareTag("Ground")) // Gross, check the floor layer
+        if(hit.collider.gameObject.CompareTag("Ground")) // Gross, check the floor layer
         {
-            //return;
+            return;
         }
         UIPopupItemScript script = hit.collider.gameObject.GetComponent<UIPopupItemScript>();
         if (script != null)
         {
             ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(script.Id, 1);
+            UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().GroundItems.Remove(hit.collider.gameObject);
             UnityEngine.Object.Destroy(hit.collider.gameObject);
         }
     }

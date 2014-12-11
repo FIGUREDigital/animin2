@@ -37,7 +37,6 @@ public class BlinkingScript : MonoBehaviour
         {
             if (AnimController.IsSleeping)
             {
-                Debug.Log("SLEEPING EYES CLOSED"); 
                 if (!m_IsBlinking)
                     Blink(true);
                 return;
@@ -72,7 +71,6 @@ public class BlinkingScript : MonoBehaviour
         }
     }
     void Blink(bool on){
-        Debug.Log("Blink : ["+on+"];"); 
         m_IsBlinking = on;
         ReplaceTexture(on ? BlinkingTexture : EyesOpenTexture);
     }

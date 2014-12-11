@@ -148,43 +148,6 @@ public class CameraModelScript : MonoBehaviour
 					//SpriteRef.GetComponent<Button>().normalSprite = InventoryItemData.Items[(int)itemData.Id].SpriteName;
 					SpriteRef.GetComponent<InterfaceItemLinkToModelScript>().ItemID = itemData.Id;
 
-	//				List<GameObject> allSprites = new List<GameObject>();
-	//				UIClickButtonMasterScript.PopulateInterfaceItems(InventoryItemData.Items[(int)popScript.Id].ItemType, allSprites);
-	//
-	//				for(int i=0;i<allSprites.Count;++i)
-	//				{
-	//				
-	//					string prefabId = allSprites[i].GetComponent<InterfaceItemLinkToModelScript>().Item3DPrefab;
-	//					Debug.Log(prefabId);
-	//					if(prefabId == InventoryItemData.Items[(int)popScript.Id].PrefabId)
-	//					{
-	//						Debug.Log("FOUND!");
-	//						SpriteRef.GetComponent<Button>().normalSprite = InventoryItemData.Items[(int)popScript.Id].SpriteName;
-	//						SpriteRef.GetComponent<ReferencedObjectScript>().Reference  = allSprites[i];
-	//						break;
-	//					}
-	//				}
-
-					//subItems[panelCount].transform.GetChild(0).gameObject.GetComponent<InterfaceItemLinkToModelScript>().Item3DPrefab = InventoryItemData.Items[(int)inventoryItems[i + 0].Id].PrefabId;
-					//su
-				 	/*InventoryItemData itemData = ProfilesManagementScript.Singleton.CurrentAnimin.GetNextItemType(InventoryItemData.Items[(int)popScript.Id].ItemType);
-
-					if(itemData != null)
-					{
-						Debug.Log(itemData.Id.ToString());
-					}
-
-					//if(itemData == null)
-					{
-						SpriteRef.GetComponent<Button>().normalSprite = "empty_icon";
-						SpriteRef.GetComponent<ReferencedObjectScript>().Reference  = null;
-					}
-					//else
-					{
-					//	SpriteRef.GetComponent<Button>().normalSprite = InventoryItemData.Items[(int)popScript.Id].SpriteName;
-						//SpriteRef.GetComponent<ReferencedObjectScript>().Reference  = InventoryItemData.Items[(int)popScript.Id].PrefabId;
-
-					}*/
 				}
 				else
 				{

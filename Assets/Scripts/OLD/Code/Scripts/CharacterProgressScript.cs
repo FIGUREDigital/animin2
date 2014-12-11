@@ -356,7 +356,6 @@ public class CharacterProgressScript : MonoBehaviour
         /*20*/ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.woodFrame, 1);
         /*21*/ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.woodSword, 1);
 
-        /*21*/ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.Radio, 1);
 
         for (int i = 0; i < ProfilesManagementScript.Singleton.CurrentAnimin.Inventory.Count; i++)
         {

@@ -27,6 +27,7 @@ public class JoystickPageControls : MonoBehaviour
     private bool m_IsMoving;
     public bool IsMovingWithJoystick{
         get{
+			if (Paused) return false;
             return m_IsMoving;
         }
     }
@@ -51,7 +52,7 @@ public class JoystickPageControls : MonoBehaviour
     }
 	
     void Update () {
-
+		if (Paused)Debug.Log ("JoystickPaused!");
         if (Paused) return;
         Debug.DrawLine(m_JoystickBack.transform.position, Input.mousePosition, Color.blue);
         Vector3 mousePosition = Vector3.zero;

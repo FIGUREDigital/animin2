@@ -34,6 +34,11 @@ public class GunMinigamePageControls : MonoBehaviour {
     private GameObject m_TutorialEnemies, m_TutorialMove;
     private int TutorialCounter;
 
+	private bool m_Paused;
+	public bool Paused {
+		get{ return m_Paused;}
+		set{ m_Paused = value;}
+	}
 
     private JoystickPageControls JoystickControls{
         get{
@@ -62,12 +67,14 @@ public class GunMinigamePageControls : MonoBehaviour {
         {
             switch(TutorialCounter){
                 case 0:
-                    m_Points.transform.parent.gameObject.SetActive(false);
-                    m_Go321.gameObject.SetActive(false);
+					if (!m_Paused){
+	                    m_Points.transform.parent.gameObject.SetActive(false);
+	                    m_Go321.gameObject.SetActive(false);
 
-                    m_TutorialEnemies.SetActive(true);
+	                    m_TutorialEnemies.SetActive(true);
 
-                    TutorialCounter++;
+	                    TutorialCounter++;
+					}
                     break;
                 case 1:
                     if (Input.GetButtonUp("Fire1"))
@@ -83,14 +90,23 @@ public class GunMinigamePageControls : MonoBehaviour {
 
                         m_TutorialMove.SetActive(false);
                         m_Points.transform.parent.gameObject.SetActive(true);
-                        m_Go321.gameObject.SetActive(true);
-                        //ProfilesManagementScript.Singleton.CurrentProfile.TutorialBoxLandPlayed = true;
+						GunsMinigameScript script = UIGlobalVariablesScript.Singleton.GunGameScene.GetComponent<GunsMinigameScript>();
+						if (script!=null)
+							if (!script.Go321Done)
+                        		m_Go321.gameObject.SetActive(true);
+                        ProfilesManagementScript.Singleton.CurrentProfile.TutorialBoxLandPlayed = true;
                         TutorialCounter++;
                     }
                     break;
             }
         }
-    }
+	}
+	public void ResetTutorial(){
+		m_TutorialEnemies.SetActive (false);
+		m_TutorialMove.SetActive(false);
+		TutorialCounter = 0;
+		ProfilesManagementScript.Singleton.CurrentProfile.TutorialBoxLandPlayed = false;
+	}
 
     public void SetReadyState(ReadyStates newState){
         switch (newState)

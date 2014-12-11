@@ -32,9 +32,10 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
     public string[] BulletSplats;
 
     //public Image MeterBarBackground;
-    public List<string> CurrentBullets = new List<string>();
-    private GameStateId State;
-    private float AmmoTimer;
+	public List<string> CurrentBullets = new List<string>();
+	private GameStateId m_State;
+	public GameStateId State{ get { return m_State; } }
+	private float AmmoTimer;
     private float NextBarrelSpawnTimer;
     // public List<GameObject> SpawnedObjects = new List<GameObject>();
     public Texture2D[] SlimeTextures;
@@ -64,6 +65,9 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
 
     public GameObject SpawnedObjectsEnemies;
     public GameObject SpawnedObjectsAllOthers;
+
+	private bool m_Go321Done = false;
+	public bool Go321Done { get { return m_Go321Done; } }
 
     private float FillUpTimer;
 
@@ -133,13 +137,13 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
             }
             if (m_Paused)
             {
-                m_StateBeforePaused = State;
-                State = GameStateId.Paused;
+                m_StateBeforePaused = m_State;
+                m_State = GameStateId.Paused;
                 UIGlobalVariablesScript.Singleton.SoundEngine.StopLoop();
             }
             else
             {
-                State = m_StateBeforePaused;
+                m_State = m_StateBeforePaused;
                 UIGlobalVariablesScript.Singleton.SoundEngine.PlayLoop(GenericSoundId.GunLoop);
             }
         }
@@ -152,8 +156,8 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
         CurrentBullets.Clear();
         CurrentBullets.Add(BulletPrefab[Random.Range(0, BulletPrefab.Length)]);
 
-        State = GameStateId.Initialize;
-
+        m_State = GameStateId.Initialize;
+		m_Go321Done = false;
         //AdvanceTutorial();
     }
 
@@ -182,7 +186,7 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
 
         float LerpTime = 0.3f;
 
-        switch (State)
+        switch (m_State)
         {
 
             case GameStateId.Initialize:
@@ -202,7 +206,7 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
                     WaveTimerForNext = WaveTimers[0];
                     RandomCubeTimer = Random.Range(8, 20);
                     Points = 0;
-                    State = GameStateId.PrepareToStart3;
+                    m_State = GameStateId.PrepareToStart3;
                     
                     LocalPlayerCharacter = UIGlobalVariablesScript.Singleton.MainCharacterRef;
                     PlayersCharacters.Add(UIGlobalVariablesScript.Singleton.MainCharacterRef);
@@ -224,7 +228,7 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
                     {
                         UIControls.SetReadyState(ReadyStates.Ready2);
                         UIControls.Go321.gameObject.transform.localScale = LerpFrom;
-                        State = GameStateId.PrepareToStart2;
+                        m_State = GameStateId.PrepareToStart2;
                     }
                     UIControls.Go321.gameObject.transform.localScale = Vector3.Lerp(UIControls.Go321.gameObject.transform.localScale, LerpTo, LerpTime);
 
@@ -239,7 +243,7 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
                     {
                         UIControls.SetReadyState(ReadyStates.Ready1);
                         UIControls.Go321.gameObject.transform.localScale = LerpFrom;
-                        State = GameStateId.PrepareToStart1;
+                        m_State = GameStateId.PrepareToStart1;
                     }
                     UIControls.Go321.gameObject.transform.localScale = Vector3.Lerp(UIControls.Go321.gameObject.transform.localScale, LerpTo, LerpTime);
 
@@ -254,7 +258,7 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
                     {
                         UIControls.SetReadyState(ReadyStates.Go);
                         UIControls.Go321.gameObject.transform.localScale = LerpFrom;
-                        State = GameStateId.PrepareToStartGO;
+                        m_State = GameStateId.PrepareToStartGO;
                     }
                     UIControls.Go321.gameObject.transform.localScale = Vector3.Lerp(UIControls.Go321.gameObject.transform.localScale, LerpTo, LerpTime);
 
@@ -269,7 +273,7 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
                     {
                         UIControls.SetReadyState(ReadyStates.Ready3);
                         UIControls.Go321.gameObject.SetActive(false);
-                        State = GameStateId.Countdown;
+                        m_State = GameStateId.Countdown;
                     }
                     UIControls.Go321.gameObject.transform.localScale = Vector3.Lerp(UIControls.Go321.gameObject.transform.localScale, LerpTo, LerpTime);
 
@@ -284,13 +288,14 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
                 
             case GameStateId.PrepareToStart:
                 {
-                    State = GameStateId.Countdown;
+                    m_State = GameStateId.Countdown;
                     break;
                 }
 
             case GameStateId.Countdown:
-                {
-                    State = GameStateId.Playing;
+				{
+					m_Go321Done = true;
+                    m_State = GameStateId.Playing;
 
                     UIGlobalVariablesScript.Singleton.SoundEngine.PlayLoop(GenericSoundId.GunLoop);
                     //GameObject.Find("GunfireLoop").GetComponent<AudioSource>().Play();
@@ -302,6 +307,15 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
                 {
                     //if(Input.GetButtonDown("Fire1"))
                     //	ShootBulletForward();
+
+			if(UIControls.WaitingForTouch&&!Paused){
+				Paused = true;
+				Debug.Log ("Turn on Pause");
+			}
+			if (Paused){
+				Debug.Log ("Paused");
+				break;
+			}
 
 
                     NextBarrelSpawnTimer -= Time.deltaTime;
@@ -325,7 +339,7 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
                     if (AmmoTimer <= 0.001f)
                     {
                         AmmoTimer = 0.001f;
-                        State = GameStateId.Completed;
+                        m_State = GameStateId.Completed;
                     }
 
                       
@@ -338,7 +352,7 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
                         Wave++;
                         if (Wave == WaveTimers.Length)
                         {
-                            State = GameStateId.Completed;
+                            m_State = GameStateId.Completed;
                         }
                         else
                         {
@@ -372,12 +386,18 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
 
             case GameStateId.Paused:
                 {
+			
+			if(!UIControls.Paused && !UIControls.WaitingForTouch&&Paused){
+				Paused = false;
+				Debug.Log ("Turn off Pause");
+			}
+
                     break;
                 }
 
             case GameStateId.Completed:
                 {
-                    State = GameStateId.PrepareToExit;
+                    m_State = GameStateId.PrepareToExit;
                     UIGlobalVariablesScript.Singleton.SoundEngine.StopLoop();
                     //GameObject.Find("GunfireLoop").GetComponent<AudioSource>().Stop();
 
@@ -455,7 +475,7 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
 
     protected void ReceiveBeginGame()
     {
-        State = GameStateId.PrepareToStart3;
+        m_State = GameStateId.PrepareToStart3;
     }
 
 
@@ -464,7 +484,7 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
 
     public void Reset()
     {
-        State = GameStateId.Initialize;
+        m_State = GameStateId.Initialize;
     }
 
     public void CloseGame()

@@ -38,10 +38,12 @@ public class IngamePauseMenu : MonoBehaviour
         m_PauseMenu.SetActive(On);
         m_PauseButton.SetActive(!On);
         if (MainARHandler.Instance.CurrentGameScene == GameScenes.MinigameCubeRunner)
-        {
+		{
+			UiPages.GetPage(Pages.CubeMinigamePage).GetComponent<CubeMinigamesPageControls>().Paused = On;
             UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef.GetComponent<MinigameCollectorScript>().Paused = On;
         } else if (MainARHandler.Instance.CurrentGameScene == GameScenes.MinigameCannon)
-        {
+		{
+			UiPages.GetPage(Pages.GunMinigamePage).GetComponent<GunMinigamePageControls>().Paused = On;
             UIGlobalVariablesScript.Singleton.GunGameScene.GetComponent<GunsMinigameScript>().Paused = On;
         }
     }
@@ -58,6 +60,15 @@ public class IngamePauseMenu : MonoBehaviour
             UIGlobalVariablesScript.Singleton.GunGameScene.GetComponent<GunsMinigameScript>().ExitMinigame();
         }
     }
+	public void ResetInGameTutorials(){
+		if (MainARHandler.Instance.CurrentGameScene == GameScenes.MinigameCubeRunner)
+		{
+			UiPages.GetPage(Pages.CubeMinigamePage).GetComponent<CubeMinigamesPageControls>().ResetTutorial();
+		} else if (MainARHandler.Instance.CurrentGameScene == GameScenes.MinigameCannon)
+		{
+			UiPages.GetPage(Pages.GunMinigamePage).GetComponent<GunMinigamePageControls>().ResetTutorial();
+		}
+	}
 
     public void ToggleSound()
     {

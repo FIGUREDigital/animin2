@@ -25,6 +25,10 @@ public class CubeMinigamesPageControls : MonoBehaviour {
     private int TutorialCounter;
 
     private bool m_Paused;
+	public bool Paused {
+		get{ return m_Paused;}
+		set{ m_Paused = value;}
+	}
 
     private JoystickPageControls JoystickControls{
         get{
@@ -51,8 +55,10 @@ public class CubeMinigamesPageControls : MonoBehaviour {
         {
             switch(TutorialCounter){
                 case 0:
-                    m_TutorialMove.SetActive(true);
-                    TutorialCounter++;
+					if(!m_Paused){
+	                    m_TutorialMove.SetActive(true);
+	                    TutorialCounter++;
+					}
                     break;
                 case 1:
                     if (JoystickControls.IsMovingWithJoystick)
@@ -74,12 +80,19 @@ public class CubeMinigamesPageControls : MonoBehaviour {
                     if (MinigameScript.IsSwiping)
                     {
                         m_TutorialSwipe.SetActive(false);
-                        //ProfilesManagementScript.Singleton.CurrentProfile.TutorialBoxLandPlayed = true;
+                        ProfilesManagementScript.Singleton.CurrentProfile.TutorialBoxLandPlayed = true;
                         TutorialCounter++;
                     }
                     break;
             }
         }
+	}
+	public void ResetTutorial(){
+		m_TutorialJump.SetActive (false);
+		m_TutorialMove.SetActive (false);
+		m_TutorialSwipe.SetActive (false);
+		TutorialCounter = 0;
+		ProfilesManagementScript.Singleton.CurrentProfile.TutorialBoxLandPlayed = false;
 	}
 
     void OnEnable(){

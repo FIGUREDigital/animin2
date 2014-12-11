@@ -277,7 +277,6 @@ public class MainARHandler : MonoBehaviour
 
     #region Caring Screen Handler
 
-
     public void OnCharacterEnterARScene()
     {
         Debug.Log("OnCharacterEnterARScene");
@@ -299,7 +298,6 @@ public class MainARHandler : MonoBehaviour
         UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().AnimateJumpOutOfPortal();
 
         UIGlobalVariablesScript.Singleton.ARSceneRef.transform.parent = mLastTrack.gameObject.transform;
-
     }
 
     public void OnCharacterEnterNonARScene()
@@ -362,63 +360,27 @@ public class MainARHandler : MonoBehaviour
 
     public void CaringScreenOnTrackingLost()
     {
-        /*
-        bool isPlayingMinigame = false;
-
-
-        if(UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef.activeInHierarchy || 
-           UIGlobalVariablesScript.Singleton.GunGameScene.activeInHierarchy)
-            isPlayingMinigame = true;
-		*/
         UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.parent = UIGlobalVariablesScript.Singleton.NonARWorldRef.transform;
         if (UIGlobalVariablesScript.Singleton.NonSceneRef != null)
             UIGlobalVariablesScript.Singleton.NonSceneRef.SetActive(true);
         if (UIGlobalVariablesScript.Singleton.ARSceneRef != null)
             UIGlobalVariablesScript.Singleton.ARSceneRef.SetActive(false);
-
-        //		if(isPlayingMinigame)
-        {
-            //			Debug.Log("OnTrackingLost: playing mini game");
-        }
-        //		else
-        {
             OnCharacterEnterNonARScene();
 
-            //return;
-            if (UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().CurrentAction == ActionId.Sleep ||
-                UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().CurrentAction == ActionId.EnterSleep)
-            {
+            CharacterProgressScript progressScript = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>();
 
-                //				Debug.Log("OnTrackingLost: sleeping");
-            }
-            else
-            {
-                CharacterProgressScript progressScript = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>();
+            progressScript.CurrentAction = ActionId.None;
+            UIGlobalVariablesScript.Singleton.ARPortal.GetComponent<PortalScript>().Show(PortalStageId.NonARScene, false);
 
-                //				Debug.Log("OnTrackingLost: caring screen");
-                //UIGlobalVariablesScript.Singleton.MainUIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().PortalTimer = 0;
-                //Debug.Log("ENTERING NON AR STATE ");
-                //UIGlobalVariablesScript.Singleton.MainUIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().Stop(true);
-                //UIGlobalVariablesScript.Singleton.MainCharacterAnimationControllerRef.IsEnterPortal = true;
-                progressScript.CurrentAction = ActionId.None;
-                //UIGlobalVariablesScript.Singleton.Vuforia.OnExitAR();
-                UIGlobalVariablesScript.Singleton.ARPortal.GetComponent<PortalScript>().Show(PortalStageId.NonARScene, false);
+            UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<AnimationControllerScript>().IsExitPortal = true;
+            UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.rotation = Quaternion.Euler(0, 180, 0);
+            UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterControllerScript>().ResetRotation();
 
-                UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<AnimationControllerScript>().IsExitPortal = true;
-                UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.rotation = Quaternion.Euler(0, 180, 0);
-                UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterControllerScript>().ResetRotation();
-
-                UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<AnimateCharacterOutPortalScript>().Timer = 0;
-                UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<AnimateCharacterOutPortalScript>().JumbId = AnimateCharacterOutPortalScript.JumbStateId.Jumbout;
-                UIGlobalVariablesScript.Singleton.SoundEngine.Play(ProfilesManagementScript.Singleton.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Singleton.CurrentAnimin.AniminEvolutionId, CreatureSoundId.JumbOutPortal);
-                //UIGlobalVariablesScript.Singleton.ARPortal.GetComponent<PortalScript>().Show(true);
-                progressScript.CurrentAction = ActionId.SmallCooldownPeriod;
-                progressScript.SmallCooldownTimer = 0.5f;
-
-                //OnExitAR();
-                //UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().CurrentAction = ActionId.EnterPortalToNonAR;
-            }
-        }
+            UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<AnimateCharacterOutPortalScript>().Timer = 0;
+            UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<AnimateCharacterOutPortalScript>().JumbId = AnimateCharacterOutPortalScript.JumbStateId.Jumbout;
+            UIGlobalVariablesScript.Singleton.SoundEngine.Play(ProfilesManagementScript.Singleton.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Singleton.CurrentAnimin.AniminEvolutionId, CreatureSoundId.JumbOutPortal);
+            progressScript.CurrentAction = ActionId.SmallCooldownPeriod;
+            progressScript.SmallCooldownTimer = 0.5f;
     }
 
     #endregion

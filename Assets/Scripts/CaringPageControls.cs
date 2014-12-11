@@ -456,8 +456,8 @@ public class CaringPageControls : MonoBehaviour
 
                     Vector2 ViewportPosition = Camera.main.WorldToViewportPoint(m_TargetItem.transform.position);
                     Vector2 WorldObject_ScreenPosition = new Vector2(
-                                                            ((ViewportPosition.x * CanvasRect.sizeDelta.x) - (CanvasRect.sizeDelta.x * 0.5f)),
-                                                            ((ViewportPosition.y * CanvasRect.sizeDelta.y) - (CanvasRect.sizeDelta.y * 0.5f)));
+                                                             ((ViewportPosition.x * CanvasRect.sizeDelta.x) - (CanvasRect.sizeDelta.x * 0.5f)),
+                                                             ((ViewportPosition.y * CanvasRect.sizeDelta.y) - (CanvasRect.sizeDelta.y * 0.5f)));
 
                     //now you can set the position of the ui element
                     UI_Element.anchoredPosition = WorldObject_ScreenPosition + m_TriangleHeight * m_Triangle.localScale.y;
@@ -465,6 +465,10 @@ public class CaringPageControls : MonoBehaviour
                     m_Triangle.gameObject.SetActive(true);
                 }
             }
+        }
+        else
+        {
+            DisappearAllItemUIs();
         }
     }
 }

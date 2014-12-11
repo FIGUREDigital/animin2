@@ -472,6 +472,7 @@ GameObject:
   - 222: {fileID: 22200040}
   - 114: {fileID: 11400064}
   - 114: {fileID: 11400066}
+  - 114: {fileID: 11400338}
   m_Layer: 5
   m_Name: Broom
   m_TagString: Untagged
@@ -6929,6 +6930,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Instrument: 0
   m_ID: 2
+--- !u!114 &11400338
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63105b0c88532443693c94c846faeec7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BroomPrefab: {fileID: 100000, guid: d3590277ad58f4cacbe29f5ab848176b, type: 2}
 --- !u!137 &13700000
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -7589,10 +7602,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 22400004}
   m_RootOrder: 0
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: .5, y: .5}
+  m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 221, y: 0}
-  m_SizeDelta: {x: 432, y: -15}
+  m_SizeDelta: {x: 812, y: 245}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22400028
 RectTransform:

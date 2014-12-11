@@ -661,21 +661,21 @@ public class UIClickButtonMasterScript : MonoBehaviour
 
             case UIFunctionalityId.PlayPauseSong:
                 {
-                    //UIGlobalVariablesScript.Singleton.UIRoot.GetComponent<MediaPlayerPluginScript>().PlayPause();
-                    //UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<AnimationControllerScript>().IsDance = true;
+                    UIGlobalVariablesScript.Singleton.UIRoot.GetComponent<MediaPlayerPluginScript>().PlayPause();
+                    UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<AnimationControllerScript>().IsDance = true;
 
                     break;
                 }
 
             case UIFunctionalityId.NextSong:
                 {
-                    //UIGlobalVariablesScript.Singleton.UIRoot.GetComponent<MediaPlayerPluginScript>().NextSong();
+                    UIGlobalVariablesScript.Singleton.UIRoot.GetComponent<MediaPlayerPluginScript>().NextSong();
                     break;
                 }
 
             case UIFunctionalityId.PreviousSong:
                 {
-                    //UIGlobalVariablesScript.Singleton.UIRoot.GetComponent<MediaPlayerPluginScript>().PreviousSong();
+                    UIGlobalVariablesScript.Singleton.UIRoot.GetComponent<MediaPlayerPluginScript>().PreviousSong();
                     break;
                 }
 
@@ -701,8 +701,8 @@ public class UIClickButtonMasterScript : MonoBehaviour
                     UIGlobalVariablesScript.Singleton.TracklistPanel.SetActive(false);
                     UIGlobalVariablesScript.Singleton.PlaySongPanel.SetActive(true);
 
-                    //UIGlobalVariablesScript.Singleton.UIRoot.GetComponent<MediaPlayerPluginScript>().PlaySongAtIndex(
-                    //    sender.GetComponent<TrackSongIndexScript>().TrackIndex);
+                    UIGlobalVariablesScript.Singleton.UIRoot.GetComponent<MediaPlayerPluginScript>().PlaySongAtIndex(
+                        sender.GetComponent<TrackSongIndexScript>().TrackIndex);
 
 
                     break;

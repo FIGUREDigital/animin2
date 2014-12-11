@@ -286,7 +286,7 @@ public class ShopManager
 		RestoreAndroidPurchases();
 #endif
 	}
-    /*
+    
 	private void RestoreAndroidPurchases()
 	{
 #if UNITY_ANDROID
@@ -296,7 +296,7 @@ public class ShopManager
 		}
 #endif
 	}
-	*/
+
 
     public void Update()
     {

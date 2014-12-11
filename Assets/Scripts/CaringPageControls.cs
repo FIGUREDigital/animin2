@@ -94,12 +94,26 @@ public class CaringPageControls : MonoBehaviour {
 		PopulateButtons ();
         m_TriangleHeight = new Vector2(0,m_Triangle.sizeDelta.y);
 	}
+	void ResetButtons()
+	{
+		Sprite empty = MainARHandler.Instance.SpriteStore.GetSprite (InventoryItemId.Count);
+		Icon1.sprite = empty;
+		Icon1.GetComponent<InterfaceItemLinkToModelScript> ().Item3DPrefab = null;
+		Icon1.GetComponent<InterfaceItemLinkToModelScript>().ItemID = InventoryItemId.None;
+		Icon2.sprite = empty;
+		Icon2.GetComponent<InterfaceItemLinkToModelScript> ().Item3DPrefab = null;
+		Icon2.GetComponent<InterfaceItemLinkToModelScript>().ItemID = InventoryItemId.None;
+		Icon3.sprite = empty;
+		Icon3.GetComponent<InterfaceItemLinkToModelScript> ().Item3DPrefab = null;
+		Icon3.GetComponent<InterfaceItemLinkToModelScript>().ItemID = InventoryItemId.None;
+	}
 	void PopulateButtons ()
 	{
 		Debug.Log ("Populating buttons");
 		bool FoodIconSet = false;
 		bool ItemIconSet = false;
 		bool MediIconSet = false;
+		ResetButtons ();
 		for (int i=0; i<ProfilesManagementScript.Singleton.CurrentAnimin.Inventory.Count; ++i) 
 		{
 			if(InventoryItemData.Items[(int)ProfilesManagementScript.Singleton.CurrentAnimin.Inventory[i].Id].ItemType == PopupItemType.Food && !FoodIconSet)

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using System;
+using System.Xml.Serialization;
 
 public class SaveAndLoad {
 
@@ -54,7 +55,7 @@ public class SaveAndLoad {
 
         if(File.Exists(Application.persistentDataPath + "/savedGames.anidat")) 
 		{
-			BinaryFormatter bf = new BinaryFormatter();
+            XmlSerializer bf = new XmlSerializer(typeof(ProfileStateData));
 			FileStream file = File.Open(Application.persistentDataPath + "/savedGames.anidat", FileMode.Open);
             StateData = (ProfileStateData)bf.Deserialize(file);
 			file.Close();
@@ -89,10 +90,18 @@ public class SaveAndLoad {
         StateData.CurrentProfile = ProfilesManagementScript.Singleton.CurrentProfile;
         //StateData.UpgradeTbo = ProfilesManagementScript.Singleton.SentToPurchaseAdultTBOFromMainScene;
         StateData.UpgradeTbo = false;
-		BinaryFormatter bf = new BinaryFormatter();
+        XmlSerializer bf = new XmlSerializer(typeof(ProfileStateData));
 		Debug.Log ("Creating file");
 		FileStream file = File.Create (Application.persistentDataPath + "/savedGamesTemp.anidat");
-		Debug.Log ("Serializing");
+        Debug.Log ("Serializing");
+        string output = "StateData:\nProfiles:";
+        foreach (PlayerProfileData ppd in StateData.ProfileList)
+        {
+            output += "\n"  + ppd.ProfileName;
+        }
+        output += "\nCurrent Profile: " + StateData.CurrentProfile.ProfileName;
+        output += "\nTbo Unlock: " + StateData.UpgradeTbo;
+        Debug.Log(output);
         bf.Serialize(file, StateData);
 		Debug.Log ("Closing File");
 		file.Close();

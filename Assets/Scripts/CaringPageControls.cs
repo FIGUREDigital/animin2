@@ -89,7 +89,7 @@ public class CaringPageControls : MonoBehaviour {
 	
 	void Start()
 	{
-        m_PopupUIs = new GameObject[]{ AlarmUI, LightbulbUI, EDMBoxUI, JunoUI, PianoUI };
+        m_PopupUIs = new GameObject[]{ StereoUI, AlarmUI, LightbulbUI, EDMBoxUI, JunoUI, PianoUI };
 		mInventoryControls = Inventory.GetComponent<InventoryControls> ();
 		PopulateButtons ();
         m_TriangleHeight = new Vector2(0,m_Triangle.sizeDelta.y);
@@ -237,8 +237,6 @@ public class CaringPageControls : MonoBehaviour {
 		mInventoryControls.Init (CurrentPage);
         Inventory.gameObject.SetActive(InventoryOpen);
         Indicator.localPosition = new Vector2(120, Indicator.localPosition.y);
-
-        
 	}
 
 	private void SwitchInventory(InventoryPages page)
@@ -392,8 +390,8 @@ public class CaringPageControls : MonoBehaviour {
                         ((ViewportPosition.y*CanvasRect.sizeDelta.y)-(CanvasRect.sizeDelta.y*0.5f)));
 
                     //now you can set the position of the ui element
-                    UI_Element.anchoredPosition=WorldObject_ScreenPosition + m_TriangleHeight;
-                    m_Triangle.anchoredPosition = WorldObject_ScreenPosition + m_TriangleHeight;
+                    UI_Element.anchoredPosition=WorldObject_ScreenPosition + m_TriangleHeight* m_Triangle.localScale.y;
+                    m_Triangle.anchoredPosition = WorldObject_ScreenPosition + m_TriangleHeight* m_Triangle.localScale.y;
                     m_Triangle.gameObject.SetActive(true);
                 }
             }

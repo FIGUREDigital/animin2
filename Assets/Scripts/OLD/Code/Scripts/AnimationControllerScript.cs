@@ -66,7 +66,15 @@ public class AnimationControllerScript : MonoBehaviour
         }
     }
 
-    protected Animator animator;
+    protected Animator animator{
+        get{
+            if (m_Animator == null && CharacterModel!=null)
+                m_Animator = CharacterModel.GetComponent<Animator>();
+            return m_Animator;
+        }
+    }
+
+    private Animator m_Animator;
     private float TimeInIdleState;
     private bool HoldingWeightAnimationUp;
     private float TimeToPlayIdleSoundFX = 6;
@@ -531,7 +539,7 @@ public class AnimationControllerScript : MonoBehaviour
     public void SetCharacter(GameObject newCharacterModel)
     {
         CharacterModel = newCharacterModel;
-        animator = CharacterModel.GetComponent<Animator>();
+        m_Animator = CharacterModel.GetComponent<Animator>();
     }
 
 

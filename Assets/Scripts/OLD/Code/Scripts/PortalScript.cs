@@ -7,6 +7,18 @@ public class PortalScript : MonoBehaviour
     public PortalId Id;
     private float Timer;
 
+    ParticleSystem ParticleSys
+    {
+        get
+        {
+            if (m_System == null)
+                m_System = this.transform.GetChild(0).GetComponent<ParticleSystem>();
+            return m_System;
+        }
+    }
+
+    ParticleSystem m_System;
+
     // Use this for initialization
     void Start()
     {
@@ -17,9 +29,8 @@ public class PortalScript : MonoBehaviour
     {
         this.gameObject.SetActive(true);
 
-
-        this.transform.GetChild(0).GetComponent<PortalAnimationScript>().IsShowing = true;
-        this.transform.GetChild(0).GetComponent<PortalAnimationScript>().isJumpingIn = isJumbingIn;
+        ParticleSys.gameObject.SetActive(true);
+        ParticleSys.Play();
 
         if (stageId == PortalStageId.ARscene)
         {
@@ -33,17 +44,17 @@ public class PortalScript : MonoBehaviour
         this.transform.localPosition = UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.localPosition;
         if (isJumbingIn)
         {
-
             //[PTLP] HARRY'S MINE : PORTALPOSITION
             
         }
         if (stageId == PortalStageId.NonARScene)
         {
-
-            this.transform.localPosition += new Vector3(0, 0.3f, 0);
+            this.transform.localPosition += new Vector3(0, 0.2f, 0.1f);
         }
-        //this.transform.position = Vector3.zero;
-        this.transform.localPosition += new Vector3(0, 0, 0.5f);
+        else if (stageId == PortalStageId.ARscene)
+        {
+            this.transform.localPosition += new Vector3(0, 0.2f, 0.3f);
+        }
 
         Timer = 0;
     }
@@ -55,36 +66,8 @@ public class PortalScript : MonoBehaviour
 
         if (Timer >= 3)
         {
-            this.transform.GetChild(0).GetComponent<PortalAnimationScript>().IsHiding = true;
+            ParticleSys.Stop();
         }
-
-        /*if (Input.GetButtonDown("Fire1")) 
-        {
-            RaycastHit hitInfo;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hitInfo))
-            {
-                if(hitInfo.collider == this.collider)
-                {
-                    switch(Id)
-                    {
-                        case PortalId.Garden:
-                        {
-                            UIGlobalVariablesScript.Singleton.ARSceneRef.SetActive(false);
-                            UIGlobalVariablesScript.Singleton.GardenSceneRef.SetActive(true);
-                            break;
-                        }
-
-                        case PortalId.ExitGarden:
-                        {
-                        UIGlobalVariablesScript.Singleton.ARSceneRef.SetActive(true);
-                            UIGlobalVariablesScript.Singleton.GardenSceneRef.SetActive(false);
-                            break;
-                        }
-                    }
-                }
-            }
-        }*/
     }
 }
 
@@ -94,7 +77,8 @@ public enum PortalId
     ExitGarden,
 }
 
-public enum PortalStageId{
+public enum PortalStageId
+{
     ARscene,
     NonARScene,
     MinigameCuberRunners,

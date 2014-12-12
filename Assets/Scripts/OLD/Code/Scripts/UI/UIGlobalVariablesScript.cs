@@ -235,7 +235,7 @@ Gun,
 
     void Awake()
     {
-        Singleton = this;
+        Init();
     }
 
     // Use this for initialization
@@ -243,6 +243,11 @@ Gun,
     {
 
 	
+    }
+
+    public void Init(){
+        Debug.Log("New UIGlobalVariablesSingleton Set");
+        Singleton = this;
     }
 	
     // Update is called once per frame

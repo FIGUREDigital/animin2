@@ -52,7 +52,6 @@ public class JoystickPageControls : MonoBehaviour
     }
 	
     void Update () {
-		if (Paused)Debug.Log ("JoystickPaused!");
         if (Paused) return;
         Debug.DrawLine(m_JoystickBack.transform.position, Input.mousePosition, Color.blue);
         Vector3 mousePosition = Vector3.zero;
@@ -93,14 +92,6 @@ public class JoystickPageControls : MonoBehaviour
 
         if (isButtonDown)
         {
-            if (UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef != null && UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef.GetComponent<MinigameCollectorScript>() != null)
-            if (UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef.GetComponent<MinigameCollectorScript>().TutorialId == MinigameCollectorScript.TutorialStateId.ShowMovement)
-                UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef.GetComponent<MinigameCollectorScript>().AdvanceTutorial();
-
-            if (UIGlobalVariablesScript.Singleton.GunGameScene != null && UIGlobalVariablesScript.Singleton.GunGameScene.GetComponent<GunsMinigameScript>() != null)
-            if (UIGlobalVariablesScript.Singleton.GunGameScene.GetComponent<GunsMinigameScript>().TutorialID == GunsMinigameScript.TutorialStateId.ShowMove)
-                UIGlobalVariablesScript.Singleton.GunGameScene.GetComponent<GunsMinigameScript>().AdvanceTutorial();
-
             Vector3 diff = mousePosition - m_JoystickBack.GetComponent<RectTransform>().position;
             float maxRadius = m_JoystickBack.GetComponent<RectTransform>().rect.width/2;
             if (diff.magnitude >= maxRadius)
@@ -123,7 +114,7 @@ public class JoystickPageControls : MonoBehaviour
                 CharacterAnimationRef.IsRunning = true;
                 CharacterAnimationRef.IsWalking = false;
             }
-            CharacterControllerRef.walkSpeed =  movementSpeed * 2.0f;
+            CharacterControllerRef.walkSpeed =  movementSpeed * 2.4f;
             CharacterControllerRef.RotateToLookAtPoint(CharacterControllerRef.transform.position + CharacterControllerRef.MovementDirection * 6);
 
             m_IsMoving = true;

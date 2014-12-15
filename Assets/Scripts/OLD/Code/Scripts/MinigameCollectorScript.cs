@@ -149,40 +149,6 @@ public class MinigameCollectorScript : MonoBehaviour
 	}
 
 
-	public void AdvanceTutorial()
-	{
-        return;
-		TutorialHandGraphic.SetActive(false);
-		TutorialJumbGraphic.SetActive(false);
-		TutorialMoveGraphic.SetActive(false);
-		TutorialSwipeLevelGraphic.SetActive(false);
-
-        if (ProfilesManagementScript.Singleton.CurrentProfile.TutorialBoxLandPlayed == false)
-        {
-            TutorialId = (TutorialStateId)((int)TutorialId + 1);
-
-            if (TutorialId == TutorialStateId.ShowMovement)
-            {
-                TutorialMoveGraphic.SetActive(true);
-            }
-            else if (TutorialId == TutorialStateId.ShowJumb)
-            {
-                TutorialJumbGraphic.SetActive(true);
-            }
-            else if (TutorialId == TutorialStateId.ShowSwipeLevel)
-            {
-                TutorialSwipeLevelGraphic.SetActive(true);
-                TutorialHandGraphic.SetActive(true);
-            }
-            else if (TutorialId == TutorialStateId.Completed)
-            {
-                ProfilesManagementScript.Singleton.CurrentProfile.TutorialBoxLandPlayed = true;
-                SaveAndLoad.Instance.SaveAllData();
-            }
-        }
-	}
-
-
 	void OnGUI()
 	{
 //		GameObject obj = GameObject.Find("TextureBufferCamera");
@@ -275,7 +241,6 @@ public class MinigameCollectorScript : MonoBehaviour
 	void Update () 
 	{
         if (Paused) return;
-
         UiPages.GetPage(Pages.CubeMinigamePage).GetComponent<CubeMinigamesPageControls>().PointLabel.text = Points.ToString() + " pts";
 		BetweenSceneData.Instance.Points = Points;
 		CharacterProgressScript progressScript = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>();
@@ -648,12 +613,7 @@ public class MinigameCollectorScript : MonoBehaviour
 				}
 			}
 		}
-
-
 		Reset();
-
-		AdvanceTutorial();
-
 	}
 
 	public void Reset()

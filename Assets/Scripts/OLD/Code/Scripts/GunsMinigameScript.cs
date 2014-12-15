@@ -82,34 +82,6 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
             return m_UIControls;
         }
     }
-
-
-    public enum TutorialStateId
-    {
-        None = 0,
-        ShowEnemies,
-        ShowMove,
-        Completed,
-    }
-
-    private TutorialStateId m_TutorialID = TutorialStateId.None;
-
-    public TutorialStateId TutorialID
-    {
-        get
-        {
-            return m_TutorialID;
-        }
-    }
-
-    public void ResetTutorial()
-    {
-        m_TutorialID = TutorialStateId.None;
-        m_TutPause = true;
-    }
-
-    private bool m_TutPause;
-
     [SerializeField]
     private GameObject TutorialEnemies;
     [SerializeField]
@@ -158,7 +130,6 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
 
         m_State = GameStateId.Initialize;
 		m_Go321Done = false;
-        //AdvanceTutorial();
     }
 
     void Awake()
@@ -196,8 +167,6 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
                     UIControls.Go321.gameObject.SetActive(true);
                     UIControls.SetReadyState(ReadyStates.Ready3);
 
-                    if (TutorialID == TutorialStateId.ShowEnemies)
-                        break;
                     FillUpTimer = 0;
                     AmmoTimer = 1;
                     
@@ -419,10 +388,6 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
 
         UIControls.Points.text = Points.ToString() + " pts";
 
-        if (m_TutorialID == TutorialStateId.ShowEnemies && Input.GetButtonUp("Fire1") && !m_TutPause)
-            AdvanceTutorial();
-        m_TutPause = false;
-
         if (m_InvulnTimer >= 0)
             m_InvulnTimer -= Time.deltaTime;
         
@@ -435,38 +400,6 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
         BetweenSceneData.Instance.Points = Points;
         MainARHandler.Instance.ChangeSceneToCaring();
     }
-
-    public void AdvanceTutorial()
-    {
-        if (TutorialEnemies != null)
-            TutorialEnemies.SetActive(false);
-        if (TutorialMove != null)
-            TutorialMove.SetActive(false);
-
-        if (ProfilesManagementScript.Singleton.CurrentProfile.TutorialCanonClashPlayed == false)
-        {
-            m_TutorialID = (TutorialStateId)((int)m_TutorialID + 1);
-
-            if (m_TutorialID == TutorialStateId.ShowEnemies)
-            {
-                if (TutorialEnemies != null)
-                    TutorialEnemies.SetActive(true);
-            }
-            else if (m_TutorialID == TutorialStateId.ShowMove)
-            {
-                if (TutorialMove != null)
-                    TutorialMove.SetActive(true);
-            }
-            else if (m_TutorialID == TutorialStateId.Completed)
-            {
-                ProfilesManagementScript.Singleton.CurrentProfile.TutorialCanonClashPlayed = true;
-                SaveAndLoad.Instance.SaveAllData();
-            }
-        }
-        else
-            Debug.Log("False...");
-    }
-
     protected void ReceiveEventAcquireControlOfCharacter(int playerIndex)
     {
         UIGlobalVariablesScript.Singleton.Joystick.CharacterAnimationRef = PlayersCharacters[playerIndex].GetComponent<MinigameAnimationControllerScript>();

@@ -135,9 +135,9 @@ public class MainARHandler : MonoBehaviour
             SmootherAxisX.ValueNext = (float)System.Math.Round(angle);
 			
             Vector3 newPosition = new Vector3(
-                             Mathf.Cos(SmootherAxisX.ValueNow * Mathf.Deg2Rad) * 220,
-                             0,
-                             (Mathf.Sin(SmootherAxisX.ValueNow * Mathf.Deg2Rad) * 220) * 0.2f);
+                                      Mathf.Cos(SmootherAxisX.ValueNow * Mathf.Deg2Rad) * 220,
+                                      0,
+                                      (Mathf.Sin(SmootherAxisX.ValueNow * Mathf.Deg2Rad) * 220) * 0.2f);
 			
 			
 			
@@ -154,9 +154,9 @@ public class MainARHandler : MonoBehaviour
             SmootherAxisY.ValueNext = (float)System.Math.Round(angle2);
 			
             Vector3 newPosition2 = new Vector3(
-                              0,
-                              Mathf.Cos(SmootherAxisY.ValueNow * Mathf.Deg2Rad) * 90,
-                              (Mathf.Sin(SmootherAxisY.ValueNow * Mathf.Deg2Rad) * 90) * 0.2f);
+                                       0,
+                                       Mathf.Cos(SmootherAxisY.ValueNow * Mathf.Deg2Rad) * 90,
+                                       (Mathf.Sin(SmootherAxisY.ValueNow * Mathf.Deg2Rad) * 90) * 0.2f);
 			
             Vector3 cameraPoint = CurrentGameSceneGameObject.GetComponent<NonARPosRef>().NonARCameraPositionReference.position;// new Vector3(0, 430f, -630f);
             Transform target = CurrentGameSceneGameObject.transform;
@@ -274,14 +274,15 @@ public class MainARHandler : MonoBehaviour
 
     #region Enter Scene
 
-    public void PauseJumpOutIntoAR(){
+    public void PauseJumpOutIntoAR()
+    {
         Debug.Log("PauseJumpOutIntoAR");
         m_CameraUnlock = true;
 
-		UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.localPosition = new Vector3(0, 0.01f, 0);
-		UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.rotation = Quaternion.Euler(0, 180, 0);
-		UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.localScale = new Vector3(0.035f, 0.035f, 0.035f);
-		UIGlobalVariablesScript.Singleton.Shadow.transform.localScale = new Vector3(0.46f, 0.46f, 0.46f);
+        UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.localPosition = new Vector3(0, 0.01f, 0);
+        UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.rotation = Quaternion.Euler(0, 180, 0);
+        UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.localScale = new Vector3(0.035f, 0.035f, 0.035f);
+        UIGlobalVariablesScript.Singleton.Shadow.transform.localScale = new Vector3(0.46f, 0.46f, 0.46f);
 
         UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.parent = UIGlobalVariablesScript.Singleton.ARSceneRef.transform;
         UIGlobalVariablesScript.Singleton.ARSceneRef.transform.parent = mLastTrack.gameObject.transform;
@@ -290,6 +291,7 @@ public class MainARHandler : MonoBehaviour
     public void OnCharacterEnterARScene(bool SkipAnimation = false)
     {
         Debug.Log("OnCharacterEnterARScene");
+        CharacterProgressScript charprogress = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>();
         UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.parent = UIGlobalVariablesScript.Singleton.ARSceneRef.transform;
         m_CameraUnlock = true;
         //SavedARPosition.y = 0;
@@ -299,14 +301,14 @@ public class MainARHandler : MonoBehaviour
         UIGlobalVariablesScript.Singleton.Shadow.transform.localScale = new Vector3(0.46f, 0.46f, 0.46f);
 
         if (!SkipAnimation &&
-            UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().CurrentAction != ActionId.Sleep &&
-            UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().CurrentAction != ActionId.EnterSleep)
+            charprogress.CurrentAction != ActionId.Sleep &&
+            charprogress.CurrentAction != ActionId.EnterSleep)
         {
-            UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().Stop(true);
+            charprogress.Stop(true);
             UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterControllerScript>().ResetRotation();
         }
 
-        UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().AnimateJumpOutOfPortal();
+        charprogress.AnimateJumpOutOfPortal();
         UIGlobalVariablesScript.Singleton.ARSceneRef.transform.parent = mLastTrack.gameObject.transform;
 
     }
@@ -465,7 +467,8 @@ public class MainARHandler : MonoBehaviour
                     UIGlobalVariablesScript.Singleton.NonSceneRef.SetActive(false);
                     UIGlobalVariablesScript.Singleton.ARSceneRef.SetActive(true);
                     OnCharacterEnterARScene();
-                }else
+                }
+                else
                     OnCharacterEnterNonARScene();
 
                 break;

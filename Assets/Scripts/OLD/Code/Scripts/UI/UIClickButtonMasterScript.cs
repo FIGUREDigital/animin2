@@ -111,9 +111,6 @@ public class UIClickButtonMasterScript : MonoBehaviour
                 case UIFunctionalityId.JumbOnCubeRunner:
                     {
                         UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterControllerScript>().PressedJumb = true;
-					
-                        if (UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef.GetComponent<MinigameCollectorScript>().TutorialId == MinigameCollectorScript.TutorialStateId.ShowJumb)
-                            UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef.GetComponent<MinigameCollectorScript>().AdvanceTutorial();
 
 
                         break;

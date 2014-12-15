@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public enum ReadyStates{
+public enum ReadyStates
+{
     Ready3,
     Ready2,
     Ready1,
@@ -10,7 +11,8 @@ public enum ReadyStates{
 }
 
 
-public class GunMinigamePageControls : MonoBehaviour {
+public class GunMinigamePageControls : MonoBehaviour
+{
 
     [SerializeField]
     private UnityEngine.UI.Image m_Bar, m_Go321, m_GunIcon;
@@ -20,13 +22,16 @@ public class GunMinigamePageControls : MonoBehaviour {
     private Sprite[] Go321Textures;
 
     public UnityEngine.UI.Image Bar { get { return m_Bar; } }
+
     public UnityEngine.UI.Image Icon { get { return m_GunIcon; } }
+
     public UnityEngine.UI.Image Go321 { get { return m_Go321; } }
 
 
 
     [SerializeField]
     private UnityEngine.UI.Text m_Points;
+
     public UnityEngine.UI.Text Points { get { return m_Points; } }
 
 
@@ -34,48 +39,62 @@ public class GunMinigamePageControls : MonoBehaviour {
     private GameObject m_TutorialEnemies, m_TutorialMove;
     private int TutorialCounter;
 
-	private bool m_Paused;
-	public bool Paused {
-		get{ return m_Paused;}
-		set{ m_Paused = value;}
-	}
+    private bool m_Paused;
 
-    private JoystickPageControls JoystickControls{
-        get{
+    public bool Paused
+    {
+        get{ return m_Paused; }
+        set{ m_Paused = value; }
+    }
+
+    private JoystickPageControls JoystickControls
+    {
+        get
+        {
             if (m_JoystickControls == null)
                 m_JoystickControls = UiPages.GetPage(Pages.JoystickPage).GetComponent<JoystickPageControls>();
 
             return m_JoystickControls;
         }
     }
+
     private JoystickPageControls m_JoystickControls;
 
-    public bool WaitingForTouch{
-        get{
+    public bool WaitingForTouch
+    {
+        get
+        {
             Debug.Log("Waiting for Input : [" + (TutorialCounter == 0 || TutorialCounter == 1) + "];");
-            return TutorialCounter == 0 || TutorialCounter == 1;
+            return  (!ProfilesManagementScript.Singleton.CurrentProfile.TutorialCanonClashPlayed) && (TutorialCounter == 0 || TutorialCounter == 1);
         }
     }
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
 	
-	}
+    }
 
-	// Update is called once per frame
-    void Update () {
-        if (ProfilesManagementScript.Singleton.CurrentProfile.TutorialBoxLandPlayed == false)
+    // Update is called once per frame
+    void Update()
+    {
+        if (ProfilesManagementScript.Singleton.CurrentProfile.TutorialCanonClashPlayed == false)
         {
-            switch(TutorialCounter){
+            switch (TutorialCounter)
+            {
                 case 0:
-					if (!m_Paused){
-	                    m_Points.transform.parent.gameObject.SetActive(false);
-	                    m_Go321.gameObject.SetActive(false);
+                    if (!m_Paused)
+                    {
+                        SetBarWidth(0);
+                        m_TutorialMove.SetActive(true);
+                        m_Points.transform.parent.gameObject.SetActive(false);
+                        m_Go321.gameObject.SetActive(false);
+                        m_TutorialMove.SetActive(false);
 
-	                    m_TutorialEnemies.SetActive(true);
+                        m_TutorialEnemies.SetActive(true);
 
-	                    TutorialCounter++;
-					}
+                        TutorialCounter++;
+                    }
                     break;
                 case 1:
                     if (Input.GetButtonUp("Fire1"))
@@ -91,25 +110,28 @@ public class GunMinigamePageControls : MonoBehaviour {
 
                         m_TutorialMove.SetActive(false);
                         m_Points.transform.parent.gameObject.SetActive(true);
-						GunsMinigameScript script = UIGlobalVariablesScript.Singleton.GunGameScene.GetComponent<GunsMinigameScript>();
-						if (script!=null)
-							if (!script.Go321Done)
-                        		m_Go321.gameObject.SetActive(true);
-                        ProfilesManagementScript.Singleton.CurrentProfile.TutorialBoxLandPlayed = true;
+                        GunsMinigameScript script = UIGlobalVariablesScript.Singleton.GunGameScene.GetComponent<GunsMinigameScript>();
+                        if (script != null)
+                        if (!script.Go321Done)
+                            m_Go321.gameObject.SetActive(true);
+                        ProfilesManagementScript.Singleton.CurrentProfile.TutorialCanonClashPlayed = true;
                         TutorialCounter++;
                     }
                     break;
             }
         }
-	}
-	public void ResetTutorial(){
-		m_TutorialEnemies.SetActive (false);
-		m_TutorialMove.SetActive(false);
-		TutorialCounter = 0;
-		ProfilesManagementScript.Singleton.CurrentProfile.TutorialBoxLandPlayed = false;
-	}
+    }
 
-    public void SetReadyState(ReadyStates newState){
+    public void ResetTutorial()
+    {
+        m_TutorialEnemies.SetActive(false);
+        m_TutorialMove.SetActive(false);
+        TutorialCounter = 0;
+        ProfilesManagementScript.Singleton.CurrentProfile.TutorialCanonClashPlayed = false;
+    }
+
+    public void SetReadyState(ReadyStates newState)
+    {
         switch (newState)
         {
             case ReadyStates.Ready3:
@@ -127,23 +149,31 @@ public class GunMinigamePageControls : MonoBehaviour {
         }
     }
 
-    public void SetBarWidth(float width){
+    public void SetBarWidth(float width)
+    {
         m_Bar.fillAmount = width;
     }
 
-    public void SetAmmoType(){
+    public void SetAmmoType()
+    {
 
     }
 
-    void OnEnable(){
-
+    void OnEnable()
+    {
+        if (!ProfilesManagementScript.Singleton.CurrentProfile.TutorialCanonClashPlayed)
+            TutorialCounter = 0;
         m_Points.transform.parent.gameObject.SetActive(true);
         m_Go321.gameObject.SetActive(true);
         m_Go321.gameObject.SetActive(false);
         m_TutorialEnemies.SetActive(false);
-        if (UiPages.GetPage(Pages.JoystickPage)!=null)UiPages.GetPage(Pages.JoystickPage).SetActive(true);
+        if (UiPages.GetPage(Pages.JoystickPage) != null)
+            UiPages.GetPage(Pages.JoystickPage).SetActive(true);
     }
-    void OnDisable(){
-        if (UiPages.GetPage(Pages.JoystickPage)!=null)UiPages.GetPage(Pages.JoystickPage).SetActive(false);
+
+    void OnDisable()
+    {
+        if (UiPages.GetPage(Pages.JoystickPage) != null)
+            UiPages.GetPage(Pages.JoystickPage).SetActive(false);
     }
 }

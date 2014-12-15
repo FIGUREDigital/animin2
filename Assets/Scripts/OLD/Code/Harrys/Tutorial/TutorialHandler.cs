@@ -36,6 +36,9 @@ public class TutorialHandler : MonoBehaviour
         set { m_Locked = value; }
     }
 
+    private float m_BlockTimer;
+    private bool m_IsBlocking;
+    private const float TIME_TO_BLOCK = 5f;
 
     //-Start Conditions
     private bool[] m_StartConditions;
@@ -181,10 +184,25 @@ public class TutorialHandler : MonoBehaviour
     }
 	
 
+    void BeginBlock(){
+        m_BlockTimer = TIME_TO_BLOCK;
+        m_IsBlocking = true;
+    }
+
 
     // Update is called once per frame
     void Update()
     {
+        if (m_IsBlocking)
+        {
+            m_BlockTimer -= Time.deltaTime;
+            if (m_Timer <= 0)
+            {
+                m_Timer = 0;
+                m_IsBlocking = false;
+            } else
+                return;
+        }
         if (!m_PlayingTutorial)
         {
             if (!m_Locked)
@@ -245,6 +263,8 @@ public class TutorialHandler : MonoBehaviour
                 m_PlayingTutorial = false;
                 m_EndingTutorial = false;
                 m_TutorialUIParent.SetActive(false);
+
+                BeginBlock();
             }
         }
         if (m_IsTiming)

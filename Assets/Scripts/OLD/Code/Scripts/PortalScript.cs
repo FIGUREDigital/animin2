@@ -49,11 +49,14 @@ public class PortalScript : MonoBehaviour
         }
         if (stageId == PortalStageId.NonARScene)
         {
-            this.transform.localPosition += new Vector3(0, 0.2f, 0.1f);
+            if (isJumbingIn)
+                this.transform.localPosition += new Vector3(0, 0.2f, 0.1f);
+            else
+                this.transform.localPosition += new Vector3(0, 0.2f, 0f);
         }
         else if (stageId == PortalStageId.ARscene)
         {
-            this.transform.localPosition += new Vector3(0, 0.2f, 0.3f);
+            this.transform.localPosition += new Vector3(0, 0.2f, 0.0f);
         }
 
         Timer = 0;

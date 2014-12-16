@@ -124,6 +124,7 @@ public class ShopManager
 	{
         CurrentRestoreStatus = RestoreStatus.Fail;
 		Debug.Log( "restoreTransactionsFailed: " + error );
+		UiPages.Next(Pages.RestoreFailPage);
 
 	}
 	
@@ -132,6 +133,7 @@ public class ShopManager
 	{
         CurrentRestoreStatus = RestoreStatus.Success;
 		Debug.Log( "restoreTransactionsFinished" );
+		UiPages.Next(Pages.RestoreSuccessPage);
 
 	}
 

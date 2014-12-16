@@ -27,27 +27,27 @@ public class RestorePurchases : MonoBehaviour {
 		if(!Application.isEditor)
 		{
             ShopManager.Instance.RestoreItems();
-			if(ShopManager.Instance.HasBought(UnlockCharacterManager.TBOADULT_PURCHASE) || ShopManager.Instance.HasBought(UnlockCharacterManager.TBOADULT_UNLOCK))
-			{
-				UnlockCharacterManager.Instance.ID = PersistentData.TypesOfAnimin.TboAdult;
-				UnlockCharacterManager.Instance.UnlockCharacter();
-			}
-			if(ShopManager.Instance.HasBought(UnlockCharacterManager.PI_PURCHASE) || ShopManager.Instance.HasBought(UnlockCharacterManager.PI_UNLOCK))
-			{
-				UnlockCharacterManager.Instance.ID = PersistentData.TypesOfAnimin.Pi;
-				UnlockCharacterManager.Instance.UnlockCharacter();
-			}
-			if(ShopManager.Instance.HasBought(UnlockCharacterManager.KELSEY_PURCHASE) || ShopManager.Instance.HasBought(UnlockCharacterManager.KELSEY_UNLOCK))
-			{
-				UnlockCharacterManager.Instance.ID = PersistentData.TypesOfAnimin.Kelsey;
-				UnlockCharacterManager.Instance.UnlockCharacter();
-			}
-			if(ShopManager.Instance.HasBought(UnlockCharacterManager.MANDI_PURCHASE) || ShopManager.Instance.HasBought(UnlockCharacterManager.MANDI_UNLOCK))
-			{
-				UnlockCharacterManager.Instance.ID = PersistentData.TypesOfAnimin.Mandi;
-				UnlockCharacterManager.Instance.UnlockCharacter();
-			}
-			
+//			if(ShopManager.Instance.HasBought(UnlockCharacterManager.TBOADULT_PURCHASE) || ShopManager.Instance.HasBought(UnlockCharacterManager.TBOADULT_UNLOCK))
+//			{
+//				UnlockCharacterManager.Instance.ID = PersistentData.TypesOfAnimin.TboAdult;
+//				UnlockCharacterManager.Instance.UnlockCharacter();
+//			}
+//			if(ShopManager.Instance.HasBought(UnlockCharacterManager.PI_PURCHASE) || ShopManager.Instance.HasBought(UnlockCharacterManager.PI_UNLOCK))
+//			{
+//				UnlockCharacterManager.Instance.ID = PersistentData.TypesOfAnimin.Pi;
+//				UnlockCharacterManager.Instance.UnlockCharacter();
+//			}
+//			if(ShopManager.Instance.HasBought(UnlockCharacterManager.KELSEY_PURCHASE) || ShopManager.Instance.HasBought(UnlockCharacterManager.KELSEY_UNLOCK))
+//			{
+//				UnlockCharacterManager.Instance.ID = PersistentData.TypesOfAnimin.Kelsey;
+//				UnlockCharacterManager.Instance.UnlockCharacter();
+//			}
+//			if(ShopManager.Instance.HasBought(UnlockCharacterManager.MANDI_PURCHASE) || ShopManager.Instance.HasBought(UnlockCharacterManager.MANDI_UNLOCK))
+//			{
+//				UnlockCharacterManager.Instance.ID = PersistentData.TypesOfAnimin.Mandi;
+//				UnlockCharacterManager.Instance.UnlockCharacter();
+//			}
+//			
 			UiPages.Next(Pages.AniminSelectPage);
 			//Invoke("Return",10);
 		}

@@ -27,6 +27,8 @@ public enum Pages
 	CodeErrorPage,
 	AddressInputPage,
 	CodeInputPage,
+	RestoreSuccessPage,
+	RestoreFailPage,
 	FRONTEND_COUNT,
 	CaringPage,
 	StatsPage,
@@ -59,6 +61,8 @@ public class UiPages : MonoBehaviour
 	public const string ADDRESS_INPUT_PAGE = "AddressInputPage";
 	public const string CODE_INPUT_PAGE = "CodeInputPage";
 	public const string CONNECTION_ERROR_PAGE = "ConnectionErrorPage";
+	public const string RESTORE_SUCCESS_PAGE = "RestoreSuccessPage";
+	public const string RESTORE_FAIL_PAGE = "RestoreFailPage";
 	public const string CODE_ERROR_PAGE = "CodeErrorPage";
 	public const string CARING_PAGE = "CaringPage";
 	public const string STATS_PAGE = "StatsPage";
@@ -149,6 +153,8 @@ public class UiPages : MonoBehaviour
 		mBackMap [(int)Pages.AddressInputPage] = mPages[(int)Pages.AniminSelectPage];
 		mBackMap [(int)Pages.CodeInputPage] = mPages[(int)Pages.PurchasePage];
 		mBackMap [(int)Pages.ConnectionErrorPage] = mPages[(int)Pages.AniminSelectPage];
+		mBackMap [(int)Pages.RestoreSuccessPage] = mPages[(int)Pages.AniminSelectPage];
+		mBackMap [(int)Pages.RestoreFailPage] = mPages[(int)Pages.AniminSelectPage];
 		mBackMap [(int)Pages.CodeErrorPage] = mPages[(int)Pages.PurchasePage];
 		mBackMap [(int)Pages.CaringPage] = null;
 		mBackMap [(int)Pages.StatsPage] = mPages [(int)Pages.CaringPage];
@@ -193,6 +199,12 @@ public class UiPages : MonoBehaviour
 			break;
 		case Pages.CodeInputPage:
 			name = CODE_INPUT_PAGE;
+			break;
+		case Pages.RestoreSuccessPage:
+			name = RESTORE_SUCCESS_PAGE;
+			break;
+		case Pages.RestoreFailPage:
+			name = RESTORE_FAIL_PAGE;
 			break;
 		case Pages.CaringPage:
 			name = CARING_PAGE;

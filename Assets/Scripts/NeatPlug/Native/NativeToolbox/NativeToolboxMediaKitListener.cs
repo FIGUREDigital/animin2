@@ -22,7 +22,7 @@ using System.Collections;
 public class NativeToolboxMediaKitListener : MonoBehaviour {
 	
 	// Turn this _debug switch on to see debug information.
-	private bool _debug = true;	
+	private bool _debug = false;	
 	
 	private static bool _instanceFound = false;
 	
@@ -82,6 +82,8 @@ public class NativeToolboxMediaKitListener : MonoBehaviour {
 				+ audioInfo.uri
 			    + ", artFile -> "
 			    + audioInfo.artFile);
+
+		UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().StereoScript.AddAudio(audioInfo);
 
 		/// Your code here...
 	}

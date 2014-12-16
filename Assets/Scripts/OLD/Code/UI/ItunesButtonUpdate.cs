@@ -74,25 +74,59 @@ public class ItunesButtonUpdate : MonoBehaviour
 	{
 		Debug.Log ("Going to address screen");
 		UiPages.Next (Pages.AddressInputPage);
-        UnregisterListeners();
+		//UnregisterListeners ();
 	}
 	void restoreTransactionsFailed( string error )
 	{
-		UiPages.Next (Pages.AniminSelectPage);		
+		//UiPages.Next(Pages.RestoreFailPage);
 	}
 	
 	
 	void restoreTransactionsFinished()
 	{
-		UiPages.Next (Pages.AniminSelectPage);
+		//UiPages.Next(Pages.RestoreSuccessPage);
+	}
+	
+	private void SetRestoreType(string trans)
+	{
+
+				Debug.Log ("Setting Restore Type to: " + trans);
+				switch (trans) {
+				case UnlockCharacterManager.TBOADULT_PURCHASE:
+				case UnlockCharacterManager.TBOADULT_UNLOCK:
+						UnlockCharacterManager.Instance.ID = PersistentData.TypesOfAnimin.TboAdult;
+						break;
+				case UnlockCharacterManager.PI_PURCHASE:
+				case UnlockCharacterManager.PI_UNLOCK:
+						UnlockCharacterManager.Instance.ID = PersistentData.TypesOfAnimin.Pi;
+						break;
+				case UnlockCharacterManager.KELSEY_PURCHASE:
+				case UnlockCharacterManager.KELSEY_UNLOCK:
+						UnlockCharacterManager.Instance.ID = PersistentData.TypesOfAnimin.Kelsey;
+						break;
+				case UnlockCharacterManager.MANDI_PURCHASE:
+				case UnlockCharacterManager.MANDI_UNLOCK:
+						UnlockCharacterManager.Instance.ID = PersistentData.TypesOfAnimin.Mandi;
+						break;
+				default:
+						break;
+				}
 	}
 
 #if UNITY_IOS
 	void purchaseSuccessful( StoreKitTransaction transaction )
 	{
 		Debug.Log(string.Format("Purchase of {0} Successful",transaction.productIdentifier));
+		SetRestoreType (transaction.productIdentifier);
 		UnlockCharacterManager.Instance.UnlockCharacter();
-		GoToAddress();
+				if (ShopManager.GoToAddress) {
+						GoToAddress ();
+				}
+				else 
+				{
+					UiPages.Next(Pages.RestoreSuccessPage, 1f);
+				}
+
 	}
 
 	void purchaseCancelled( string response )
@@ -144,8 +178,8 @@ public class ItunesButtonUpdate : MonoBehaviour
 		StoreKitManager.purchaseSuccessfulEvent += purchaseSuccessful;
 		StoreKitManager.purchaseCancelledEvent += purchaseCancelled;
 		StoreKitManager.purchaseFailedEvent += purchaseUnsuccessful;
-		StoreKitManager.restoreTransactionsFinishedEvent += restoreTransactionsFinished;
 		StoreKitManager.restoreTransactionsFailedEvent += restoreTransactionsFailed;
+		StoreKitManager.restoreTransactionsFinishedEvent += restoreTransactionsFinished;
 #elif UNITY_ANDROID
 		GoogleIABManager.purchaseSucceededEvent += purchaseSuccessful;
 		GoogleIABManager.purchaseFailedEvent += purchaseUnsuccessful;
@@ -164,8 +198,9 @@ public class ItunesButtonUpdate : MonoBehaviour
 		StoreKitManager.purchaseSuccessfulEvent -= purchaseSuccessful;
 		StoreKitManager.purchaseCancelledEvent -= purchaseCancelled;
 		StoreKitManager.purchaseFailedEvent -= purchaseUnsuccessful;
-        StoreKitManager.restoreTransactionsFinishedEvent -= restoreTransactionsFinished;
-        StoreKitManager.restoreTransactionsFailedEvent -= restoreTransactionsFailed;
+
+		StoreKitManager.restoreTransactionsFailedEvent -= restoreTransactionsFailed;
+		StoreKitManager.restoreTransactionsFinishedEvent -= restoreTransactionsFinished;
 #elif UNITY_ANDROID
         GoogleIABManager.purchaseSucceededEvent -= purchaseSuccessful;
 		GoogleIABManager.purchaseFailedEvent -= purchaseUnsuccessful;

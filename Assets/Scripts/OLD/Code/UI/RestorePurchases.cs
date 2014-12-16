@@ -48,7 +48,7 @@ public class RestorePurchases : MonoBehaviour {
 //				UnlockCharacterManager.Instance.UnlockCharacter();
 //			}
 //			
-			UiPages.Next(Pages.AniminSelectPage);
+			UiPages.Next(Pages.LoadingPage);
 			//Invoke("Return",10);
 		}
 	}

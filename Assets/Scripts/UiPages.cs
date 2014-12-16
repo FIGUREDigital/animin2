@@ -82,6 +82,9 @@ public class UiPages : MonoBehaviour
     private static GameObject[] mPages;
     private static GameObject[] mBackMap;
     private static UiState mCurrentState;
+	private static bool mNextScheduled;
+	private static float mCountdown;
+	private static Pages mScheduledPage; 
 
     public static GameObject GetPage(Pages page)
     {
@@ -270,9 +273,16 @@ public class UiPages : MonoBehaviour
         GameObject newPage = mBackMap[(int)mCurrentPage];
         Transition(oldPage, newPage);
     }
-
+	
+	public static void Next(Pages next, float delay)
+	{
+		mNextScheduled = true;
+		mCountdown = delay;
+		mScheduledPage = next;
+	}
     public static void Next(Pages next)
     {
+		mNextScheduled = false;
 		Debug.Log ("Next Page : [" + next.ToString() + "]");
         GameObject oldPage = mPages[(int)mCurrentPage];
         GameObject newPage = mPages[(int)next];
@@ -331,4 +341,18 @@ public class UiPages : MonoBehaviour
         //if (hit) Debug.Log("Hit");
         return hit;
     }
+
+		void Update()
+		{
+				if (mNextScheduled)
+				{
+						if (mCountdown > 0) {
+								mCountdown -= Time.deltaTime;
+						} 
+						else 
+						{
+								Next (mScheduledPage);
+						}
+				}
+		}
 }

@@ -4,6 +4,9 @@ using UnityEngine.UI;
 
 public class CreateProfile : MonoBehaviour {
 
+    [SerializeField]
+    private Text TextBox;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -14,9 +17,10 @@ public class CreateProfile : MonoBehaviour {
 	
 	}
 
-	public void Submit(Text input)
+	public void Submit()
 	{
-		string text = input.text.Trim();
+        Debug.Log ("Text Submitted");
+        string text = TextBox.text.Trim();
 		if (text == null || text == "")
 		{
 			return;

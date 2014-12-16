@@ -41,7 +41,6 @@ public class CubeMinigamesPageControls : MonoBehaviour {
     private JoystickPageControls m_JoystickControls;
 	// Use this for initialization
     void Start () {
-        MinigameScript = UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef.GetComponent<MinigameCollectorScript>();
         m_TutorialMove.SetActive(false);
         m_TutorialJump.SetActive(false);
         m_TutorialSwipe.SetActive(false);
@@ -96,10 +95,13 @@ public class CubeMinigamesPageControls : MonoBehaviour {
 	}
 
 	void OnEnable(){
+        if (!ProfilesManagementScript.Singleton.CurrentProfile.TutorialBoxLandPlayed)
+            TutorialCounter = 0;
 		m_TutorialJump.SetActive (false);
 		m_TutorialMove.SetActive (false);
 		m_TutorialSwipe.SetActive (false);
         if (UiPages.GetPage(Pages.JoystickPage)!=null)UiPages.GetPage(Pages.JoystickPage).SetActive(true);
+        if (UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef!=null) MinigameScript = UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef.GetComponent<MinigameCollectorScript>();
     }
     void OnDisable(){
         if (UiPages.GetPage(Pages.JoystickPage)!=null)UiPages.GetPage(Pages.JoystickPage).SetActive(false);

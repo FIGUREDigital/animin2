@@ -51,7 +51,7 @@ public enum InventoryItemId
     FartButton,
 
     Pill,
-   // Syringe,
+    // Syringe,
     Plaster,
 
     Radio,
@@ -72,49 +72,76 @@ public class InventoryItemBankData
 public class InventoryItemData
 {
 	
-	private const string ITEM_PATH = "Texture/UI/";
+    private const string ITEM_PATH = "Texture/UI/";
+
     #region Static Nonsense
+
     public static InventoryItemBankData[] Items;
 
     public static void Initialize()
     {
-		SpriteStore store = MainARHandler.Instance.SpriteStore;
+        SpriteStore store = MainARHandler.Instance.SpriteStore;
         Items = new InventoryItemBankData[(int)InventoryItemId.Count];
 
-        /*00*/Items[(int)InventoryItemId.Strawberry] = new InventoryItemBankData() { Id = InventoryItemId.Strawberry, PrefabId = "Prefabs/strawberry2", SpriteName = store.GetSprite(InventoryItemId.Strawberry), ItemType = PopupItemType.Food };
-		/*01*/Items[(int)InventoryItemId.Spinach] = new InventoryItemBankData() { Id = InventoryItemId.Spinach, PrefabId = "Prefabs/spinach", SpriteName = store.GetSprite(InventoryItemId.Spinach),  ItemType = PopupItemType.Food };
-		/*02*/Items[(int)InventoryItemId.Blueberry] = new InventoryItemBankData() { Id = InventoryItemId.Blueberry, PrefabId = "Prefabs/blueberry", SpriteName = store.GetSprite(InventoryItemId.Blueberry),  ItemType = PopupItemType.Food };
-		/*03*/Items[(int)InventoryItemId.AlmondMilk] = new InventoryItemBankData() { Id = InventoryItemId.AlmondMilk, PrefabId = "Prefabs/almondMilk", SpriteName = store.GetSprite(InventoryItemId.AlmondMilk),  ItemType = PopupItemType.Food };
-		/*04*/Items[(int)InventoryItemId.Avocado] = new InventoryItemBankData() { Id = InventoryItemId.Avocado, PrefabId = "Prefabs/avocado", SpriteName = store.GetSprite(InventoryItemId.Avocado),  ItemType = PopupItemType.Food };
+        /*00*/
+        Items[(int)InventoryItemId.Strawberry] = new InventoryItemBankData() { Id = InventoryItemId.Strawberry, PrefabId = "Prefabs/strawberry2", SpriteName = store.GetSprite(InventoryItemId.Strawberry), ItemType = PopupItemType.Food };
+        /*01*/
+        Items[(int)InventoryItemId.Spinach] = new InventoryItemBankData() { Id = InventoryItemId.Spinach, PrefabId = "Prefabs/spinach", SpriteName = store.GetSprite(InventoryItemId.Spinach),  ItemType = PopupItemType.Food };
+        /*02*/
+        Items[(int)InventoryItemId.Blueberry] = new InventoryItemBankData() { Id = InventoryItemId.Blueberry, PrefabId = "Prefabs/blueberry", SpriteName = store.GetSprite(InventoryItemId.Blueberry),  ItemType = PopupItemType.Food };
+        /*03*/
+        Items[(int)InventoryItemId.AlmondMilk] = new InventoryItemBankData() { Id = InventoryItemId.AlmondMilk, PrefabId = "Prefabs/almondMilk", SpriteName = store.GetSprite(InventoryItemId.AlmondMilk),  ItemType = PopupItemType.Food };
+        /*04*/
+        Items[(int)InventoryItemId.Avocado] = new InventoryItemBankData() { Id = InventoryItemId.Avocado, PrefabId = "Prefabs/avocado", SpriteName = store.GetSprite(InventoryItemId.Avocado),  ItemType = PopupItemType.Food };
         /*05*///Items[(int)InventoryItemId.Noodles] = new InventoryItemBankData() { Id = InventoryItemId.Blueberry, PrefabId = "Prefabs/blueberry", SpriteName = Resources.Load(ITEM_PATH + "blueberry_icon") as Sprite,  ItemType = PopupItemType.Food };
-		/*06*/Items[(int)InventoryItemId.Carrot] = new InventoryItemBankData() { Id = InventoryItemId.Carrot, PrefabId = "Prefabs/carrot", SpriteName = store.GetSprite(InventoryItemId.Carrot),  ItemType = PopupItemType.Food };
-		/*07*/Items[(int)InventoryItemId.Chips] = new InventoryItemBankData() { Id = InventoryItemId.Chips, PrefabId = "Prefabs/chips", SpriteName = store.GetSprite(InventoryItemId.Chips),  ItemType = PopupItemType.Food };
-		/*08*/Items[(int)InventoryItemId.Toast] = new InventoryItemBankData() { Id = InventoryItemId.Toast, PrefabId = "Prefabs/toast", SpriteName = store.GetSprite(InventoryItemId.Toast),  ItemType = PopupItemType.Food };
-		/*09*/Items[(int)InventoryItemId.watermelon] = new InventoryItemBankData() { Id = InventoryItemId.watermelon, PrefabId = "Prefabs/watermelon", SpriteName = store.GetSprite(InventoryItemId.watermelon),  ItemType = PopupItemType.Food };
+        /*06*/
+        Items[(int)InventoryItemId.Carrot] = new InventoryItemBankData() { Id = InventoryItemId.Carrot, PrefabId = "Prefabs/carrot", SpriteName = store.GetSprite(InventoryItemId.Carrot),  ItemType = PopupItemType.Food };
+        /*07*/
+        Items[(int)InventoryItemId.Chips] = new InventoryItemBankData() { Id = InventoryItemId.Chips, PrefabId = "Prefabs/chips", SpriteName = store.GetSprite(InventoryItemId.Chips),  ItemType = PopupItemType.Food };
+        /*08*/
+        Items[(int)InventoryItemId.Toast] = new InventoryItemBankData() { Id = InventoryItemId.Toast, PrefabId = "Prefabs/toast", SpriteName = store.GetSprite(InventoryItemId.Toast),  ItemType = PopupItemType.Food };
+        /*09*/
+        Items[(int)InventoryItemId.watermelon] = new InventoryItemBankData() { Id = InventoryItemId.watermelon, PrefabId = "Prefabs/watermelon", SpriteName = store.GetSprite(InventoryItemId.watermelon),  ItemType = PopupItemType.Food };
         /*10*///Items[(int)InventoryItemId.Noodles] = new InventoryItemBankData() { Id = InventoryItemId.Noodles, PrefabId = "Prefabs/Noodles", SpriteName = Resources.Load(ITEM_PATH + "blueberry_icon") as Sprite,  ItemType = PopupItemType.Food };
-		/*11*/Items[(int)InventoryItemId.Carrot] = new InventoryItemBankData() { Id = InventoryItemId.Carrot, PrefabId = "Prefabs/Carrot", SpriteName = store.GetSprite(InventoryItemId.Carrot),  ItemType = PopupItemType.Food };
+        /*11*/
+        Items[(int)InventoryItemId.Carrot] = new InventoryItemBankData() { Id = InventoryItemId.Carrot, PrefabId = "Prefabs/Carrot", SpriteName = store.GetSprite(InventoryItemId.Carrot),  ItemType = PopupItemType.Food };
         /*12*///Items[(int)InventoryItemId.Banana] = new InventoryItemBankData() { Id = InventoryItemId.Banana, PrefabId = "Prefabs/banana", SpriteName = Resources.Load(ITEM_PATH + "banana_icon") as Sprite,  ItemType = PopupItemType.Food };
 
-		/*13*/Items[(int)InventoryItemId.Boombox] = new InventoryItemBankData() { Id = InventoryItemId.Boombox, PrefabId = "Prefabs/boombox", SpriteName = store.GetSprite(InventoryItemId.Boombox),  ItemType = PopupItemType.Item };
-		/*14*/Items[(int)InventoryItemId.Clock] = new InventoryItemBankData() { Id = InventoryItemId.Clock, PrefabId = "Prefabs/mintclock", SpriteName = store.GetSprite(InventoryItemId.Clock),  ItemType = PopupItemType.Item };
-		/*15*/Items[(int)InventoryItemId.EDMJuno] = new InventoryItemBankData() { Id = InventoryItemId.EDMJuno, PrefabId = "Prefabs/juno", SpriteName = store.GetSprite(InventoryItemId.EDMJuno),  ItemType = PopupItemType.Item };
-		/*16*/Items[(int)InventoryItemId.EDM808] = new InventoryItemBankData() { Id = InventoryItemId.EDM808, PrefabId = "Prefabs/808", SpriteName = store.GetSprite(InventoryItemId.EDM808),  ItemType = PopupItemType.Item };
-		/*17*/Items[(int)InventoryItemId.EDMKsynth] = new InventoryItemBankData() { Id = InventoryItemId.EDMKsynth, PrefabId = "Prefabs/ksynth", SpriteName = store.GetSprite(InventoryItemId.EDMKsynth),  ItemType = PopupItemType.Item };
-		/*18*/Items[(int)InventoryItemId.Lightbulb] = new InventoryItemBankData() { Id = InventoryItemId.Lightbulb, PrefabId = "Prefabs/Lightbulb", SpriteName = store.GetSprite(InventoryItemId.Lightbulb),  ItemType = PopupItemType.Item };
+        /*13*/
+        Items[(int)InventoryItemId.Boombox] = new InventoryItemBankData() { Id = InventoryItemId.Boombox, PrefabId = "Prefabs/boombox", SpriteName = store.GetSprite(InventoryItemId.Boombox),  ItemType = PopupItemType.Item };
+        /*14*/
+        Items[(int)InventoryItemId.Clock] = new InventoryItemBankData() { Id = InventoryItemId.Clock, PrefabId = "Prefabs/mintclock", SpriteName = store.GetSprite(InventoryItemId.Clock),  ItemType = PopupItemType.Item };
+        /*15*/
+        Items[(int)InventoryItemId.EDMJuno] = new InventoryItemBankData() { Id = InventoryItemId.EDMJuno, PrefabId = "Prefabs/juno", SpriteName = store.GetSprite(InventoryItemId.EDMJuno),  ItemType = PopupItemType.Item };
+        /*16*/
+        Items[(int)InventoryItemId.EDM808] = new InventoryItemBankData() { Id = InventoryItemId.EDM808, PrefabId = "Prefabs/808", SpriteName = store.GetSprite(InventoryItemId.EDM808),  ItemType = PopupItemType.Item };
+        /*17*/
+        Items[(int)InventoryItemId.EDMKsynth] = new InventoryItemBankData() { Id = InventoryItemId.EDMKsynth, PrefabId = "Prefabs/ksynth", SpriteName = store.GetSprite(InventoryItemId.EDMKsynth),  ItemType = PopupItemType.Item };
+        /*18*/
+        Items[(int)InventoryItemId.Lightbulb] = new InventoryItemBankData() { Id = InventoryItemId.Lightbulb, PrefabId = "Prefabs/Lightbulb", SpriteName = store.GetSprite(InventoryItemId.Lightbulb),  ItemType = PopupItemType.Item };
         /*19*///Items[(int)InventoryItemId.mintclock] = new InventoryItemBankData() { Id = InventoryItemId.mintclock, PrefabId = "Prefabs/mintclock", SpriteName = Resources.Load(ITEM_PATH + "mintclock_icon") as Sprite,  ItemType = PopupItemType.Item };
-		/*20*/Items[(int)InventoryItemId.paperCalendar] = new InventoryItemBankData() { Id = InventoryItemId.paperCalendar, PrefabId = "Prefabs/paperCalendar", SpriteName = store.GetSprite(InventoryItemId.paperCalendar),  ItemType = PopupItemType.Item };
-		/*21*/Items[(int)InventoryItemId.Camera] = new InventoryItemBankData() { Id = InventoryItemId.Camera, PrefabId = "Prefabs/camera", SpriteName = store.GetSprite(InventoryItemId.Camera),  ItemType = PopupItemType.Item };
-		/*22*/Items[(int)InventoryItemId.FartButton] = new InventoryItemBankData() { Id = InventoryItemId.FartButton, PrefabId = "Prefabs/fartbutton", SpriteName = store.GetSprite(InventoryItemId.FartButton),  ItemType = PopupItemType.Item };
+        /*20*/
+        Items[(int)InventoryItemId.paperCalendar] = new InventoryItemBankData() { Id = InventoryItemId.paperCalendar, PrefabId = "Prefabs/paperCalendar", SpriteName = store.GetSprite(InventoryItemId.paperCalendar),  ItemType = PopupItemType.Item };
+        /*21*/
+        Items[(int)InventoryItemId.Camera] = new InventoryItemBankData() { Id = InventoryItemId.Camera, PrefabId = "Prefabs/camera", SpriteName = store.GetSprite(InventoryItemId.Camera),  ItemType = PopupItemType.Item };
+        /*22*/
+        Items[(int)InventoryItemId.FartButton] = new InventoryItemBankData() { Id = InventoryItemId.FartButton, PrefabId = "Prefabs/fartbutton", SpriteName = store.GetSprite(InventoryItemId.FartButton),  ItemType = PopupItemType.Item };
 
-		/*24*/Items[(int)InventoryItemId.woodSword] = new InventoryItemBankData() { Id = InventoryItemId.woodSword, PrefabId = "Prefabs/woodSword", SpriteName = store.GetSprite(InventoryItemId.woodSword),  ItemType = PopupItemType.Item };
-		/*25*/Items[(int)InventoryItemId.woodFrame] = new InventoryItemBankData() { Id = InventoryItemId.woodFrame, PrefabId = "Prefabs/woodFrame", SpriteName = store.GetSprite(InventoryItemId.woodFrame),  ItemType = PopupItemType.Item };
+        /*24*/
+        Items[(int)InventoryItemId.woodSword] = new InventoryItemBankData() { Id = InventoryItemId.woodSword, PrefabId = "Prefabs/woodSword", SpriteName = store.GetSprite(InventoryItemId.woodSword),  ItemType = PopupItemType.Item };
+        /*25*/
+        Items[(int)InventoryItemId.woodFrame] = new InventoryItemBankData() { Id = InventoryItemId.woodFrame, PrefabId = "Prefabs/woodFrame", SpriteName = store.GetSprite(InventoryItemId.woodFrame),  ItemType = PopupItemType.Item };
 
 
-		/*26*/Items[(int)InventoryItemId.Pill] = new InventoryItemBankData() { Id = InventoryItemId.Pill, PrefabId = "Prefabs/capsule", SpriteName = store.GetSprite(InventoryItemId.Pill),  ItemType = PopupItemType.Medicine };
-		/*27*/Items[(int)InventoryItemId.Plaster] = new InventoryItemBankData() { Id = InventoryItemId.Plaster, PrefabId = "Prefabs/plaster", SpriteName = store.GetSprite(InventoryItemId.Plaster),  ItemType = PopupItemType.Medicine };
+        /*26*/
+        Items[(int)InventoryItemId.Pill] = new InventoryItemBankData() { Id = InventoryItemId.Pill, PrefabId = "Prefabs/capsule", SpriteName = store.GetSprite(InventoryItemId.Pill),  ItemType = PopupItemType.Medicine };
+        /*27*/
+        Items[(int)InventoryItemId.Plaster] = new InventoryItemBankData() { Id = InventoryItemId.Plaster, PrefabId = "Prefabs/plaster", SpriteName = store.GetSprite(InventoryItemId.Plaster),  ItemType = PopupItemType.Medicine };
 
-		/*23*/Items[(int)InventoryItemId.Radio] = new InventoryItemBankData() { Id = InventoryItemId.Radio, PrefabId = "Prefabs/radio", SpriteName = store.GetSprite(InventoryItemId.Radio),  ItemType = PopupItemType.Item };
+        /*23*/
+        Items[(int)InventoryItemId.Radio] = new InventoryItemBankData() { Id = InventoryItemId.Radio, PrefabId = "Prefabs/radio", SpriteName = store.GetSprite(InventoryItemId.Radio),  ItemType = PopupItemType.Item };
     }
+
     #endregion
 
     public InventoryItemId Id;
@@ -166,8 +193,11 @@ public class HappyStateRange
 public class CharacterProgressScript : MonoBehaviour
 {
     private CaringPageControls m_CaringPageControls;
-    public CaringPageControls CaringPageControls{
-        get{
+
+    public CaringPageControls CaringPageControls
+    {
+        get
+        {
             if (m_CaringPageControls == null)
                 m_CaringPageControls = UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>();
             return m_CaringPageControls;
@@ -264,6 +294,7 @@ public class CharacterProgressScript : MonoBehaviour
     private bool TriggeredHoldAction;
     private List<Vector3> SwipeHistoryPositions = new List<Vector3>();
     public float PortalTimer;
+    private bool m_JumpedIn = false;
     public float SmallCooldownTimer;
     private const float M_SHIT_TIME = 300.0f;
     private const float M_GIFT_TIME = 100.0f;
@@ -283,13 +314,13 @@ public class CharacterProgressScript : MonoBehaviour
         //ProfilesManagementScript.Singleton.CurrentAnimin.SetDefault();
         //ProfilesManagementScript.Singleton.CurrentAnimin.Load();
 
-		Debug.Log ("CharacterProgressScript AWAKE");
+        Debug.Log("CharacterProgressScript AWAKE");
         Debug.Log("ProfilesManagementScript set : [" + ProfilesManagementScript.isSet + "];");
         if (ProfilesManagementScript.isSet == false)
         {
             ProfilesManagementScript.Singleton = new ProfilesManagementScript();
         }
-		if (ProfilesManagementScript.Singleton.CurrentProfile == null)
+        if (ProfilesManagementScript.Singleton.CurrentProfile == null)
         {
             Debug.Log("NO PROFILE FOUND");
             ProfilesManagementScript.Singleton.CurrentProfile = PlayerProfileData.CreateNewProfile("buildintest");
@@ -316,11 +347,12 @@ public class CharacterProgressScript : MonoBehaviour
 
         UIClickButtonMasterScript.SetSoundSprite();
 
-		if (ProfilesManagementScript.Singleton.CurrentAnimin == null) {
-			ProfilesManagementScript.Singleton.CurrentAnimin = new PersistentData ();
-			ProfilesManagementScript.Singleton.CurrentAnimin.PlayerAniminId = PersistentData.TypesOfAnimin.Tbo;
-			ProfilesManagementScript.Singleton.CurrentAnimin.AniminEvolutionId = AniminEvolutionStageId.Baby;
-		}
+        if (ProfilesManagementScript.Singleton.CurrentAnimin == null)
+        {
+            ProfilesManagementScript.Singleton.CurrentAnimin = new PersistentData();
+            ProfilesManagementScript.Singleton.CurrentAnimin.PlayerAniminId = PersistentData.TypesOfAnimin.Tbo;
+            ProfilesManagementScript.Singleton.CurrentAnimin.AniminEvolutionId = AniminEvolutionStageId.Baby;
+        }
 
         //HARRY: REMEMEBR TO REMOVE THESE COMMENTS, FOR CHRIST'S SAKE.
         Debug.Log("ID  : [" + ProfilesManagementScript.Singleton.CurrentAnimin + "|" + ProfilesManagementScript.Singleton.CurrentAnimin.AniminEvolutionId + "];");
@@ -329,32 +361,54 @@ public class CharacterProgressScript : MonoBehaviour
         this.GetComponent<CharacterSwapManagementScript>().LoadCharacter(ProfilesManagementScript.Singleton.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Singleton.CurrentAnimin.AniminEvolutionId);
         //this.GetComponent<CharacterSwapManagementScript>().LoadCharacter(AniminId.Mandi   , AniminEvolutionStageId.Adult);
         
-        /*00*/ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.AlmondMilk, 3);
-        /*01*/ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.Avocado, 1);
+        /*00*/
+        ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.AlmondMilk, 3);
+        /*01*/
+        ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.Avocado, 1);
         //AddItemToInventory(InventoryItemId.Banana, 1);
-        /*02*/ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.Blueberry, 1);
-        /*03*/ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.Boombox, 1);
-        /*04*/ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.Camera, 1);
-        /*05*/ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.Carrot, 1);
-        /*06*/ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.Chips, 1);
-        /*07*/ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.Clock, 4);
-        /*08*/ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.EDM808, 1);
-        /*09*/ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.EDMJuno, 1);
-        /*10*/ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.EDMKsynth, 1);
-        /*11*/ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.FartButton, 1);
-        /*12*/ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.Lightbulb, 1);
+        /*02*/
+        ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.Blueberry, 1);
+        /*03*/
+        ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.Boombox, 1);
+        /*04*/
+        ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.Camera, 1);
+        /*05*/
+        ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.Carrot, 1);
+        /*06*/
+        ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.Chips, 1);
+        /*07*/
+        ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.Clock, 4);
+        /*08*/
+        ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.EDM808, 1);
+        /*09*/
+        ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.EDMJuno, 1);
+        /*10*/
+        ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.EDMKsynth, 1);
+        /*11*/
+        ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.FartButton, 1);
+        /*12*/
+        ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.Lightbulb, 1);
         //AddItemToInventory(InventoryItemId.mintclock, 1);
         //AddItemToInventory(InventoryItemId.Noodles, 1);
-        /*13*/ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.paperCalendar, 1);
-        /*14*/ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.Pill, 1);
-        /*15*/ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.Plaster, 1);
-        /*16*/ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.Spinach, 1);
-        /*17*/ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.Strawberry, 1);
+        /*13*/
+        ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.paperCalendar, 1);
+        /*14*/
+        ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.Pill, 1);
+        /*15*/
+        ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.Plaster, 1);
+        /*16*/
+        ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.Spinach, 1);
+        /*17*/
+        ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.Strawberry, 1);
         //	ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.Syringe, 1);	<< ADRIAN!!
-        /*18*/ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.Toast, 1);
-        /*19*/ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.watermelon, 1);
-        /*20*/ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.woodFrame, 1);
-        /*21*/ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.woodSword, 1);
+        /*18*/
+        ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.Toast, 1);
+        /*19*/
+        ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.watermelon, 1);
+        /*20*/
+        ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.woodFrame, 1);
+        /*21*/
+        ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.woodSword, 1);
 
 
         for (int i = 0; i < ProfilesManagementScript.Singleton.CurrentAnimin.Inventory.Count; i++)
@@ -404,11 +458,13 @@ public class CharacterProgressScript : MonoBehaviour
 		
         if (DateTime.Now.Subtract(ProfilesManagementScript.Singleton.CurrentAnimin.CreatedOn).Days >= 1)
         {
-			if (UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler!=null) UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHocStartCond("1DayEvolve");
+            if (UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler != null)
+                UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHocStartCond("1DayEvolve");
         }
         if (DateTime.Now.Subtract(ProfilesManagementScript.Singleton.CurrentAnimin.CreatedOn).Days >= 3)
-		{
-			if (UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler!=null) UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHocStartCond("3DayEvolve");
+        {
+            if (UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler != null)
+                UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHocStartCond("3DayEvolve");
         }
 		
 
@@ -647,6 +703,25 @@ public class CharacterProgressScript : MonoBehaviour
             }
         }
     }
+    public float ShaderAlpha
+    {
+        get
+        {
+            //For simplicity's sake this just returns the first colour it can find. However, because the set method changes all materials, it should all be the same. Regardless, let that be known.
+            return this.GetComponent<CharacterSwapManagementScript>().CurrentModel.GetComponentInChildren<SkinnedMeshRenderer>().material.color.a;
+        }
+        set
+        {
+            SkinnedMeshRenderer[] Meshes = this.GetComponent<CharacterSwapManagementScript>().CurrentModel.GetComponentsInChildren<SkinnedMeshRenderer>();
+            for (int i = 0; i < Meshes.Length; i++)
+            {
+                Color tmp = Meshes[i].material.color;
+                tmp.a = value;
+                Meshes[i].material.color = tmp;
+            }
+        }
+    }
+
 
     private void ReplaceTexture(Texture tex)
     {
@@ -784,7 +859,7 @@ public class CharacterProgressScript : MonoBehaviour
             //    hadRayCollision = UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.CheckCharacterProgress(this, hitInfo);
             //}
             //else
-                hadRayCollision = true;
+            hadRayCollision = true;
             //Debug.Log ("Ray Collision : ["+hitInfo.collider.gameObject.name+"];");
         }
 
@@ -912,7 +987,7 @@ public class CharacterProgressScript : MonoBehaviour
                 {
                     Debug.Log("ExitPortalmainStage");
 
-                    ShaderColor = Color.white;
+                    ShaderAlpha = 1;
 			
                     UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<AnimateCharacterOutPortalScript>().Timer = 0;
                     UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<AnimateCharacterOutPortalScript>().JumbId = AnimateCharacterOutPortalScript.JumbStateId.Jumbout;
@@ -936,73 +1011,75 @@ public class CharacterProgressScript : MonoBehaviour
 
             case ActionId.EnterPortalToAR:
                 {
-                    const float StopAt = 0.5f;
-                    const float StartFade = 0.2f;
+                    const float StartFade = 0.5f;
+                    const float StopAt = 0.7f;
+                    const float JumpOutAt = 1.5f;
                     //OnEnterARScene();
                     PortalTimer += Time.deltaTime;
 
                     //Debug.Log("Portal Timer : [" + PortalTimer + "];");
 
-                    if (PortalTimer >= StopAt)
+                    if (PortalTimer >= JumpOutAt)
                     {
-                        //[PTM1] Harry's Mine: Timer to transition to AR Scene
-                        //Debug.Log("EnterPortalToAR finished");
+                        GetComponent<CharacterSwapManagementScript> ().CurrentModel.gameObject.SetActive (true);
                         CurrentAction = ActionId.None;
-
-                        UIGlobalVariablesScript.Singleton.NonSceneRef.SetActive(false);
-                        UIGlobalVariablesScript.Singleton.ARSceneRef.SetActive(true);
-
-					//STUFF FOR MONDAY. SORT THIS SHIT OUT
-                        //UIGlobalVariablesScript.Singleton.Vuforia.OnCharacterEnterARScene();
                         MainARHandler.Instance.OnCharacterEnterARScene();
 
+                        m_JumpedIn = false;
+                    }
+                    else if (PortalTimer >= StopAt)
+                    {
+                        if (!m_JumpedIn)
+                        {
+                            m_JumpedIn = true;
+                            GetComponent<CharacterSwapManagementScript> ().CurrentModel.gameObject.SetActive (false);
 
-                        //UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<AnimateCharacterOutPortalScript>().Timer = 0;
-                        //UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<AnimateCharacterOutPortalScript>().JumbId = AnimateCharacterOutPortalScript.JumbStateId.Jumbout;
+                            MainARHandler.Instance.PauseJumpOutIntoAR();
 
-                        UIGlobalVariablesScript.Singleton.ARPortal.GetComponent<PortalScript>().Show(PortalStageId.ARscene, false);
+                            UIGlobalVariablesScript.Singleton.NonSceneRef.SetActive(false);
+                            UIGlobalVariablesScript.Singleton.ARSceneRef.SetActive(true);
 
-                        UIGlobalVariablesScript.Singleton.SoundEngine.Play(ProfilesManagementScript.Singleton.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Singleton.CurrentAnimin.AniminEvolutionId, CreatureSoundId.JumbOutPortal);
 
-                        ShaderColor = Color.white;
+                            UIGlobalVariablesScript.Singleton.ARPortal.GetComponent<PortalScript>().Show(PortalStageId.ARscene, false);
+
+                            UIGlobalVariablesScript.Singleton.SoundEngine.Play(ProfilesManagementScript.Singleton.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Singleton.CurrentAnimin.AniminEvolutionId, CreatureSoundId.JumbOutPortal);
+                        }
                     }
                     else if (PortalTimer >= StartFade)
                     {
                         /*
-                    Color c = ShaderColor;
+                        Color c = ShaderColor;
 
-                    float diff = PortalTimer * (1 / (StopAt - StartFade));
-                    float alpha = 1 - diff;
-                    c.a = alpha;
+                        float diff = PortalTimer * (1 / (StopAt - StartFade));
+                        float alpha = 1 - diff;
+                        c.a = alpha;
 
 
-                    Debug.Log("Diff : [" + diff + "]; Alpha : [" + alpha + "];");
+                        Debug.Log("Diff : [" + diff + "]; Alpha : [" + alpha + "];");
 
-                    ShaderColor = c;
-                     */
-                        ShaderColor = Color.Lerp(ShaderColor, Color.clear, 0.5f);
+                        ShaderColor = c;
+                        */
+                        //ShaderColor = Color.Lerp(ShaderColor, Color.clear, 0.5f);
                     }
 
                     break;
                 }
 
-        /*case ActionId.EnterPortalToNonAR:
-			{
-				PortalTimer += Time.deltaTime;
-			
-				if(PortalTimer >= 1.10f)
-				{
-					Debug.Log("EnterPortalToNonAR finished");
-					CurrentAction = ActionId.None;
-					UIGlobalVariablesScript.Singleton.Vuforia.OnExitAR();
-					UIGlobalVariablesScript.Singleton.ARPortal.GetComponent<PortalScript>().Show(false);
-				}
-				
-				break;
-			}
-*/
-
-
+                /*case ActionId.EnterPortalToNonAR:
+        			{
+        				PortalTimer += Time.deltaTime;
+        			
+        				if(PortalTimer >= 1.10f)
+        				{
+        					Debug.Log("EnterPortalToNonAR finished");
+        					CurrentAction = ActionId.None;
+        					UIGlobalVariablesScript.Singleton.Vuforia.OnExitAR();
+        					UIGlobalVariablesScript.Singleton.ARPortal.GetComponent<PortalScript>().Show(false);
+        				}
+        				
+        				break;
+        			}
+                */
             case ActionId.EnterSleep:
                 {
                     animationController.IsSleeping = true;
@@ -1531,7 +1608,7 @@ public class CharacterProgressScript : MonoBehaviour
                                 else
                                 {
                                     MoveTo(point, false);
-																//UICOMMENT: UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHocExitCond("Walk", "walkto");
+                                    //UICOMMENT: UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHocExitCond("Walk", "walkto");
                                 }
                             }
 						
@@ -1551,7 +1628,7 @@ public class CharacterProgressScript : MonoBehaviour
                                 Debug.Log("Feed myself!");
                                 GameObject closestFood = GetClosestFoodToEat();
 
-                                Debug.Log(closestFood==null?"Didn't find a closest food" : "Found a closest food");
+                                Debug.Log(closestFood == null ? "Didn't find a closest food" : "Found a closest food");
                                 if (closestFood != null)
                                 {
                                     IsGoingToPickUpObject = closestFood;
@@ -1625,7 +1702,7 @@ public class CharacterProgressScript : MonoBehaviour
 
                     if (!Input.GetButton("Fire1"))
                     {
-                        if (hitInfo.collider!=null && hitInfo.collider.name.StartsWith("Extended"))
+                        if (hitInfo.collider != null && hitInfo.collider.name.StartsWith("Extended"))
                         {
                             DragableObject.AddComponent<DroppedItemScript>();
                         }
@@ -1676,7 +1753,7 @@ public class CharacterProgressScript : MonoBehaviour
         }
 
 
-        if (UIGlobalVariablesScript.Singleton.NonSceneRef!=null && UIGlobalVariablesScript.Singleton.NonSceneRef.activeInHierarchy && UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.localPosition.y <= -2)
+        if (UIGlobalVariablesScript.Singleton.NonSceneRef != null && UIGlobalVariablesScript.Singleton.NonSceneRef.activeInHierarchy && UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.localPosition.y <= -2)
         {
 
             UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.localPosition = new Vector3(0, 1.01f, 0);
@@ -1707,7 +1784,7 @@ public class CharacterProgressScript : MonoBehaviour
 
         }
 		 
-		/*Remember to comment these back in when UI is working.
+        /*Remember to comment these back in when UI is working.
         UIGlobalVariablesScript.Singleton.HungryControlBarRef.transform.localPosition = new Vector3(Mathf.Lerp(-80.51972f, 617.2906f, ProfilesManagementScript.Singleton.CurrentAnimin.Hungry / 100.0f), UIGlobalVariablesScript.Singleton.HungryControlBarRef.transform.localPosition.y, 0);
         UIGlobalVariablesScript.Singleton.HealthControlBarRef.transform.localPosition = new Vector3(Mathf.Lerp(-80.51972f, 617.2906f, ProfilesManagementScript.Singleton.CurrentAnimin.Health / 100.0f), UIGlobalVariablesScript.Singleton.HealthControlBarRef.transform.localPosition.y, 0);
         UIGlobalVariablesScript.Singleton.HapynessControlBarRef.transform.localPosition = new Vector3(Mathf.Lerp(-80.51972f, 617.2906f, 
@@ -1928,7 +2005,7 @@ public class CharacterProgressScript : MonoBehaviour
 
     public void MoveTo(Vector3 location, bool run)
     {
-		Debug.Log("Moving to point: " + location.ToString());
+        Debug.Log("Moving to point: " + location.ToString());
         IsMovingTowardsLocation = true;
 	
         DestinationLocation = location;

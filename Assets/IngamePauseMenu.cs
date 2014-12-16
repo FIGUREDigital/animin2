@@ -67,7 +67,8 @@ public class IngamePauseMenu : MonoBehaviour
 		} else if (MainARHandler.Instance.CurrentGameScene == GameScenes.MinigameCannon)
 		{
 			UiPages.GetPage(Pages.GunMinigamePage).GetComponent<GunMinigamePageControls>().ResetTutorial();
-		}
+        }
+        SetPause(false);
 	}
 
     public void ToggleSound()

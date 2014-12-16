@@ -75,6 +75,8 @@ public class InventoryControls : MonoBehaviour
 				button.GetComponent<UnityEngine.UI.Image>().sprite = data.SpriteName;
 				m_CurrentDisplayed.Add(button.gameObject);
 				button.transform.parent = m_InventoryGrid.transform;
+
+                button.transform.localScale = Vector3.one * 0.8f;
 			}
 		}
 	}

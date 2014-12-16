@@ -84,23 +84,6 @@ public class CharacterSwapManagementScript : MonoBehaviour
         AnimationLists[(int)PersistentData.TypesOfAnimin.Pi, (int)AniminEvolutionStageId.Kid] = Resources.Load<AnimatorOverrideController>(@"AnimControllers/PiKidAnimations");
         AnimationLists[(int)PersistentData.TypesOfAnimin.Pi, (int)AniminEvolutionStageId.Adult] = Resources.Load<AnimatorOverrideController>(@"AnimControllers/PiAdultAnimations");
         */
-
-        Blinks = new Texture2D[(int)PersistentData.TypesOfAnimin.Count, (int)AniminEvolutionStageId.Count];
-        Blinks[(int)PersistentData.TypesOfAnimin.Tbo, (int)AniminEvolutionStageId.Baby]     = Resources.Load<Texture2D>("Texture/Characters/tbo_baby_blink");
-        Blinks[(int)PersistentData.TypesOfAnimin.Tbo, (int)AniminEvolutionStageId.Kid]      = Resources.Load<Texture2D>("Texture/Characters/tbo_kid_blink");
-        Blinks[(int)PersistentData.TypesOfAnimin.Tbo, (int)AniminEvolutionStageId.Adult]    = Resources.Load<Texture2D>("Texture/Characters/tbo_adult_blink");
-
-        Blinks[(int)PersistentData.TypesOfAnimin.Kelsey, (int)AniminEvolutionStageId.Baby]  = Resources.Load<Texture2D>("Texture/Characters/ke_baby_blink");
-        Blinks[(int)PersistentData.TypesOfAnimin.Kelsey, (int)AniminEvolutionStageId.Kid]   = Resources.Load<Texture2D>("Texture/Characters/ke_kid_blink");
-        Blinks[(int)PersistentData.TypesOfAnimin.Kelsey, (int)AniminEvolutionStageId.Adult] = Resources.Load<Texture2D>("Texture/Characters/ke_adult_blink");
-
-        Blinks[(int)PersistentData.TypesOfAnimin.Mandi, (int)AniminEvolutionStageId.Baby]   = Resources.Load<Texture2D>("Texture/Characters/ma_baby_blink");
-        Blinks[(int)PersistentData.TypesOfAnimin.Mandi, (int)AniminEvolutionStageId.Kid]    = Resources.Load<Texture2D>("Texture/Characters/ma_kid_blink");
-        Blinks[(int)PersistentData.TypesOfAnimin.Mandi, (int)AniminEvolutionStageId.Adult]  = Resources.Load<Texture2D>("Texture/Characters/ma_adult_blink");
-
-        Blinks[(int)PersistentData.TypesOfAnimin.Pi, (int)AniminEvolutionStageId.Baby]      = Resources.Load<Texture2D>("Texture/Characters/pi_baby_blink");
-        Blinks[(int)PersistentData.TypesOfAnimin.Pi, (int)AniminEvolutionStageId.Kid]       = Resources.Load<Texture2D>("Texture/Characters/pi_kid_blink");
-        Blinks[(int)PersistentData.TypesOfAnimin.Pi, (int)AniminEvolutionStageId.Adult]     = Resources.Load<Texture2D>("Texture/Characters/pi_adult_blink");
 	}
 
 	void OnGUI()

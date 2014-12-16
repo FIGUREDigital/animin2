@@ -7,7 +7,7 @@ using System;
 public class PlayerProfileData
 {
 
-    public bool FirstTimePlaying; 
+    public bool FirstTimePlaying;
 
     private int FileVersion = 1;
 
@@ -21,8 +21,36 @@ public class PlayerProfileData
 
     public bool BuyFullTbo;
 
-    public bool TutorialBoxLandPlayed;
-    public bool TutorialCanonClashPlayed;
+    public bool TutorialBoxLandPlayed
+    {
+        get
+        {
+            Debug.Log("TutorialBoxLandPlayed Fetched");
+            return m_TutorialBoxLandPlayed;
+        }
+        set
+        {
+            Debug.Log("TutorialBoxLandPlayed Set [" + value + "];");
+            m_TutorialBoxLandPlayed = value;
+        }
+    }
+
+    public bool TutorialCanonClashPlayed
+    {
+        get
+        { 
+            Debug.Log("TutorialBoxLandPlayed Fetched");
+            return m_TutorialCanonClashPlayed;
+        }
+        set
+        {
+            Debug.Log("m_TutorialCanonClashPlayed Set [" + value + "];");
+            m_TutorialCanonClashPlayed = value;
+        }
+    }
+
+    private bool m_TutorialBoxLandPlayed;
+    private bool m_TutorialCanonClashPlayed;
 
     public static PlayerProfileData GetDefaultProfile()
     {
@@ -44,7 +72,7 @@ public class PlayerProfileData
     {
         PlayerProfileData profile = new PlayerProfileData();
         profile.ProfileName = name;
-        for(int i=0;i<profile.Characters.Length;++i)
+        for (int i = 0; i < profile.Characters.Length; ++i)
         {
             profile.Characters[i] = new PersistentData();
             profile.Characters[i].SetDefault((PersistentData.TypesOfAnimin)i);
@@ -57,93 +85,93 @@ public class PlayerProfileData
     }
 
     /// <summary>No Description</summary>
-//    public static PlayerProfileData[] GetAllProfiles()
-//    {
-//        if(!Directory.Exists(Application.persistentDataPath + "/Profiles"))
-//            return null;
-//
-//        List<PlayerProfileData> allProfiles = new List<PlayerProfileData>();
-//
-//        string[] profileNames = Directory.GetFiles(Application.persistentDataPath + "/Profiles/");
-//        for(int i=0;i<profileNames.Length;++i)
-//        {
-//            Debug.Log(profileNames[i]);
-//            PlayerProfileData profile = new PlayerProfileData();
-//            profile.Load(Helpers.ExtraFilename(profileNames[i]));
-//            allProfiles.Add(profile);
-//        }
-//
-//        return allProfiles.ToArray();
-//    }
+    //    public static PlayerProfileData[] GetAllProfiles()
+    //    {
+    //        if(!Directory.Exists(Application.persistentDataPath + "/Profiles"))
+    //            return null;
+    //
+    //        List<PlayerProfileData> allProfiles = new List<PlayerProfileData>();
+    //
+    //        string[] profileNames = Directory.GetFiles(Application.persistentDataPath + "/Profiles/");
+    //        for(int i=0;i<profileNames.Length;++i)
+    //        {
+    //            Debug.Log(profileNames[i]);
+    //            PlayerProfileData profile = new PlayerProfileData();
+    //            profile.Load(Helpers.ExtraFilename(profileNames[i]));
+    //            allProfiles.Add(profile);
+    //        }
+    //
+    //        return allProfiles.ToArray();
+    //    }
 
     /// <summary>No Description</summary>
-//    public void Save()
-//    {
-//        if(!Directory.Exists(Application.persistentDataPath + "/Profiles"))
-//            Directory.CreateDirectory(Application.persistentDataPath + "/Profiles");
-//
-//        string fileName = Application.persistentDataPath + "/Profiles/" + ProfileName;
-//
-//        using (FileStream writer = new FileStream(fileName, FileMode.Create))
-//        {
-//            using(BinaryWriter binaryWriter = new BinaryWriter(writer))
-//            {
-//                binaryWriter.Write(FileVersion);
-//
-//                binaryWriter.Write(UnlockAnimins.Count);
-//
-//                for(int i=0;i<UnlockAnimins.Count;++i)
-//                {
-//                    binaryWriter.Write((int)UnlockAnimins[i]);
-//                }
-//
-//                SaveLoadDictionary settingsdictionary = new SaveLoadDictionary();
-//                Settings.Write(settingsdictionary);
-//                settingsdictionary.WriteToBytes(binaryWriter);
-//
-//                binaryWriter.Write(Characters.Length);
-//                for(int i=0;i<Characters.Length;++i)
-//                {
-//                    SaveLoadDictionary dictionary = new SaveLoadDictionary();
-//                    Characters[i].Save(dictionary);
-//                    dictionary.WriteToBytes(binaryWriter);
-//                }
-//            }
-//        }
-//    }
+    //    public void Save()
+    //    {
+    //        if(!Directory.Exists(Application.persistentDataPath + "/Profiles"))
+    //            Directory.CreateDirectory(Application.persistentDataPath + "/Profiles");
+    //
+    //        string fileName = Application.persistentDataPath + "/Profiles/" + ProfileName;
+    //
+    //        using (FileStream writer = new FileStream(fileName, FileMode.Create))
+    //        {
+    //            using(BinaryWriter binaryWriter = new BinaryWriter(writer))
+    //            {
+    //                binaryWriter.Write(FileVersion);
+    //
+    //                binaryWriter.Write(UnlockAnimins.Count);
+    //
+    //                for(int i=0;i<UnlockAnimins.Count;++i)
+    //                {
+    //                    binaryWriter.Write((int)UnlockAnimins[i]);
+    //                }
+    //
+    //                SaveLoadDictionary settingsdictionary = new SaveLoadDictionary();
+    //                Settings.Write(settingsdictionary);
+    //                settingsdictionary.WriteToBytes(binaryWriter);
+    //
+    //                binaryWriter.Write(Characters.Length);
+    //                for(int i=0;i<Characters.Length;++i)
+    //                {
+    //                    SaveLoadDictionary dictionary = new SaveLoadDictionary();
+    //                    Characters[i].Save(dictionary);
+    //                    dictionary.WriteToBytes(binaryWriter);
+    //                }
+    //            }
+    //        }
+    //    }
 
     /// <summary>No Description</summary>
-//    public void Load(string profileName)
-//    {
-//        ProfileName = profileName;
-//        string fileName = Application.persistentDataPath + "/Profiles/" + profileName;
-//
-//        using (FileStream reader = new FileStream(fileName, FileMode.Open))
-//        {
-//            using(BinaryReader binaryReader = new BinaryReader(reader))
-//            {
-//                int fileversion = binaryReader.ReadInt32();
-//
-//                int unlockedAnimins = binaryReader.ReadInt32();
-//                for(int i=0;i<unlockedAnimins;++i)
-//                {
-//                    UnlockAnimins.Add((AniminId)binaryReader.ReadInt32());
-//                }
-//
-//                SaveLoadDictionary settingsdictionary = new SaveLoadDictionary(binaryReader);
-//                Settings.Load(settingsdictionary);
-//
-//                int charactersLength = binaryReader.ReadInt32();
-//
-//                for(int i=0;i<charactersLength;++i)
-//                {
-//                    SaveLoadDictionary dictionary = new SaveLoadDictionary(binaryReader);
-//                    Characters[i] = new PersistentData();
-//                    Characters[i].Load(dictionary);
-//                }
-//            }
-//        }
-//    }
+    //    public void Load(string profileName)
+    //    {
+    //        ProfileName = profileName;
+    //        string fileName = Application.persistentDataPath + "/Profiles/" + profileName;
+    //
+    //        using (FileStream reader = new FileStream(fileName, FileMode.Open))
+    //        {
+    //            using(BinaryReader binaryReader = new BinaryReader(reader))
+    //            {
+    //                int fileversion = binaryReader.ReadInt32();
+    //
+    //                int unlockedAnimins = binaryReader.ReadInt32();
+    //                for(int i=0;i<unlockedAnimins;++i)
+    //                {
+    //                    UnlockAnimins.Add((AniminId)binaryReader.ReadInt32());
+    //                }
+    //
+    //                SaveLoadDictionary settingsdictionary = new SaveLoadDictionary(binaryReader);
+    //                Settings.Load(settingsdictionary);
+    //
+    //                int charactersLength = binaryReader.ReadInt32();
+    //
+    //                for(int i=0;i<charactersLength;++i)
+    //                {
+    //                    SaveLoadDictionary dictionary = new SaveLoadDictionary(binaryReader);
+    //                    Characters[i] = new PersistentData();
+    //                    Characters[i].Load(dictionary);
+    //                }
+    //            }
+    //        }
+    //    }
 }
 
 //public class SaveLoadDictionary
@@ -194,7 +222,7 @@ public class PlayerProfileData
 //		int tempValue = 0;
 //		if(ReadInt(key, ref tempValue))
 //            refValue = (PersistentData.TypesOfAnimin)tempValue;
-//		
+//
 //		return false;
 //	}
 //
@@ -203,10 +231,10 @@ public class PlayerProfileData
 //		int tempValue = 0;
 //		if(ReadInt(key, ref tempValue))
 //			refValue = (AniminEvolutionStageId)tempValue;
-//		
+//
 //		return false;
 //	}
-//	
+//
 //
 //
 //	public bool ReadInt(string key, ref int refValue)
@@ -229,7 +257,7 @@ public class PlayerProfileData
 //			refValue = bool.Parse(existingValue);
 //			return true;
 //		}
-//		
+//
 //		return false;
 //	}
 //
@@ -262,21 +290,21 @@ public class PlayerProfileData
 [System.Serializable]
 public class PlayerProfileSettings
 {
-	public bool AudioEnabled;
+    public bool AudioEnabled;
 
-	public PlayerProfileSettings()
-	{
-	}
+    public PlayerProfileSettings()
+    {
+    }
 
-//	public void Load(SaveLoadDictionary dictionary)
-//	{
-//		dictionary.ReadBool("AudioEnabled", ref AudioEnabled);
-//	}
+    //	public void Load(SaveLoadDictionary dictionary)
+    //	{
+    //		dictionary.ReadBool("AudioEnabled", ref AudioEnabled);
+    //	}
 
-//	public void Write(SaveLoadDictionary dictionary)
-//	{
-//		dictionary.Write("AudioEnabled", AudioEnabled);
-//	}
+    //	public void Write(SaveLoadDictionary dictionary)
+    //	{
+    //		dictionary.Write("AudioEnabled", AudioEnabled);
+    //	}
 }
 
 /// <summary>No Description</summary>

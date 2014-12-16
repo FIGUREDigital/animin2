@@ -118,14 +118,13 @@ public class ShopManager
 
     public static RestoreStatus CurrentRestoreStatus;
 
-
+	public static bool GoToAddress;
 
 	void restoreTransactionsFailed( string error )
 	{
         CurrentRestoreStatus = RestoreStatus.Fail;
 		Debug.Log( "restoreTransactionsFailed: " + error );
-		UiPages.Next(Pages.RestoreFailPage);
-
+		UiPages.Next(Pages.RestoreFailPage, 2f);
 	}
 	
 	
@@ -133,8 +132,7 @@ public class ShopManager
 	{
         CurrentRestoreStatus = RestoreStatus.Success;
 		Debug.Log( "restoreTransactionsFinished" );
-		UiPages.Next(Pages.RestoreSuccessPage);
-
+		UiPages.Next(Pages.RestoreSuccessPage, 2f);
 	}
 
 #if UNITY_IOS
@@ -191,13 +189,15 @@ public class ShopManager
 		Debug.Log( "purchase cancelled with error: " + error );
         //GUIDebug.Log("purchase cancelled with error: " + error);
 	}
+				
 
 #if UNITY_IOS
 	void purchaseSuccessful( StoreKitTransaction transaction )
 	{
+		
         if( CurrentRestoreStatus == RestoreStatus.InProgress || CurrentRestoreStatus == RestoreStatus.Success )
         {
-            // PlayerPrefs.SetInt("BOUGHT_" + ResourcesManager.Instance.GetProductFromID(transaction.productIdentifier), 1);
+
         }
         else
         {
@@ -281,6 +281,7 @@ public class ShopManager
 	
 	public void RestoreItems()
 	{
+		GoToAddress = false;
 		CurrentRestoreStatus = RestoreStatus.InProgress;
 #if UNITY_IOS
 		StoreKitBinding.restoreCompletedTransactions();
@@ -353,7 +354,7 @@ public class ShopManager
 
     public void BuyItem( string productID = "" )
     {
-
+		GoToAddress = true;
 		Debug.Log( "AAAAAAAAAAAAAAAAAAAAAAAAAA " + CurrentPurchaseStatus + " " + productID );
         if( CurrentPurchaseStatus == PurchaseStatus.Idle )
         {

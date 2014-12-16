@@ -546,7 +546,7 @@ public class AnimationControllerScript : MonoBehaviour
     {
         CharacterModel = newCharacterModel;
         m_Animator = CharacterModel.GetComponent<Animator>();
-    }
+	}
 
 
 

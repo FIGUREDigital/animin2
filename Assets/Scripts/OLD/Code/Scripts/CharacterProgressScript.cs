@@ -452,7 +452,6 @@ public class CharacterProgressScript : MonoBehaviour
                     UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHocStartCond("BoxLandScoreBreak1");
                 }
             }
-            exitSleep();
         }
 
 		

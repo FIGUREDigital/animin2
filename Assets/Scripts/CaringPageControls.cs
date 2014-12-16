@@ -74,6 +74,15 @@ public class CaringPageControls : MonoBehaviour
         }
     }
 
+	private Stereo m_StereoScript;
+	public Stereo StereoScript {
+		get {
+			if (m_StereoScript == null)
+				m_StereoScript = StereoUI.GetComponent<Stereo> ();
+			return m_StereoScript;
+		}
+	}
+
     [SerializeField]
     private RectTransform m_Triangle;
     private Vector2 m_TriangleHeight;

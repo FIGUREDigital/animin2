@@ -66,6 +66,12 @@ public class AnimationControllerScript : MonoBehaviour
         }
     }
 
+	public Animator RawAnimator {
+				get {
+						return m_Animator;
+				}
+		}
+
     protected Animator animator{
         get{
             if (m_Animator == null && CharacterModel!=null)

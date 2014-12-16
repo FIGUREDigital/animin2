@@ -2029,6 +2029,15 @@ public class CharacterProgressScript : MonoBehaviour
     {
         IsGoingToPickUpObject = null;
 
+		if (animationController.RawAnimator == null) {
+			Debug.Log("Animator not found!");
+			if (stopMovingAsWell)
+			{
+				this.gameObject.GetComponent<CharacterControllerScript>().MovementDirection = Vector3.zero;
+				IsMovingTowardsLocation = false;
+			}
+			return;
+		}
         animationController.IsNotWell = false;
         animationController.IsHungry = false;
         InteractWithItemOnPickup = false;

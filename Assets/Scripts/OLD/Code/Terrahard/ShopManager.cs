@@ -124,7 +124,7 @@ public class ShopManager
 	{
         CurrentRestoreStatus = RestoreStatus.Fail;
 		Debug.Log( "restoreTransactionsFailed: " + error );
-		UiPages.Next(Pages.RestoreFailPage, 2f);
+		UiPages.Next(Pages.RestoreFailPage);
 	}
 	
 	
@@ -132,7 +132,7 @@ public class ShopManager
 	{
         CurrentRestoreStatus = RestoreStatus.Success;
 		Debug.Log( "restoreTransactionsFinished" );
-		UiPages.Next(Pages.RestoreSuccessPage, 2f);
+		UiPages.Next(Pages.RestoreSuccessPage, 5f);
 	}
 
 #if UNITY_IOS

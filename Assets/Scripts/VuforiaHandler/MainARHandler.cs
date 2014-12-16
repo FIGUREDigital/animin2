@@ -452,11 +452,17 @@ public class MainARHandler : MonoBehaviour
                 UiPages.Next(Pages.GunMinigamePage);
                 break;
         }
+
+        Debug.Log("!script Re-initialisation attempted;");
         UIGlobalVariablesScript script = CurrentGameSceneGameObject.GetComponentInChildren<UIGlobalVariablesScript>();
         if (script != null)
         {
             script.Init();
             script.MainCharacterRef.GetComponent<CharacterSwapManagementScript>().LoadCharacter(ProfilesManagementScript.Singleton.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Singleton.CurrentAnimin.AniminEvolutionId);
+        }
+        else
+        {
+            Debug.Log("!SCRIPT NOT RE-INITED;");
         }
 
         switch (m_CurrentGameScene)
@@ -479,10 +485,16 @@ public class MainARHandler : MonoBehaviour
                 break;
         }
 
+        Debug.Log("m_PreviousGameScene = [" + m_PreviousGameScene + "]; Returning from minigame = ["+(m_PreviousGameScene == GameScenes.MinigameCannon || m_PreviousGameScene == GameScenes.MinigameCubeRunner)+"]");
+        if (m_PreviousGameScene == GameScenes.MinigameCannon || m_PreviousGameScene == GameScenes.MinigameCubeRunner)
+        {
+            Debug.Log("Minigame Cannon;");
+            script.MainCharacterRef.GetComponent<CharacterProgressScript>().CurrentAction = ActionId.ExitPortalMainStage;
+        }
+
 
         NonARPosRef CamPosRef = CurrentGameSceneGameObject.GetComponent<NonARPosRef>();
         if (CamPosRef != null)
             NonARCameraPositionRef = CamPosRef.NonARCameraPositionReference;
-        Debug.Log("NonARCameraPositionRef : [" + NonARCameraPositionRef.position + "];");
     }
 }

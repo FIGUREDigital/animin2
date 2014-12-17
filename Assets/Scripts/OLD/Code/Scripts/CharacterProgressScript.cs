@@ -51,7 +51,7 @@ public enum InventoryItemId
     FartButton,
 
     Pill,
-    // Syringe,
+    //Syringe,
     Plaster,
 
     Radio,
@@ -105,7 +105,8 @@ public class InventoryItemData
         /*10*///Items[(int)InventoryItemId.Noodles] = new InventoryItemBankData() { Id = InventoryItemId.Noodles, PrefabId = "Prefabs/Noodles", SpriteName = Resources.Load(ITEM_PATH + "blueberry_icon") as Sprite,  ItemType = PopupItemType.Food };
         /*11*/
         Items[(int)InventoryItemId.Carrot] = new InventoryItemBankData() { Id = InventoryItemId.Carrot, PrefabId = "Prefabs/Carrot", SpriteName = store.GetSprite(InventoryItemId.Carrot),  ItemType = PopupItemType.Food };
-        /*12*///Items[(int)InventoryItemId.Banana] = new InventoryItemBankData() { Id = InventoryItemId.Banana, PrefabId = "Prefabs/banana", SpriteName = Resources.Load(ITEM_PATH + "banana_icon") as Sprite,  ItemType = PopupItemType.Food };
+        /*12*/
+        //Items[(int)InventoryItemId.Banana] = new InventoryItemBankData() { Id = InventoryItemId.Banana, PrefabId = "Prefabs/banana", SpriteName = Resources.Load(ITEM_PATH + "banana_icon") as Sprite,  ItemType = PopupItemType.Food };
 
         /*13*/
         Items[(int)InventoryItemId.Boombox] = new InventoryItemBankData() { Id = InventoryItemId.Boombox, PrefabId = "Prefabs/boombox", SpriteName = store.GetSprite(InventoryItemId.Boombox),  ItemType = PopupItemType.Item };
@@ -137,6 +138,8 @@ public class InventoryItemData
         Items[(int)InventoryItemId.Pill] = new InventoryItemBankData() { Id = InventoryItemId.Pill, PrefabId = "Prefabs/capsule", SpriteName = store.GetSprite(InventoryItemId.Pill),  ItemType = PopupItemType.Medicine };
         /*27*/
         Items[(int)InventoryItemId.Plaster] = new InventoryItemBankData() { Id = InventoryItemId.Plaster, PrefabId = "Prefabs/plaster", SpriteName = store.GetSprite(InventoryItemId.Plaster),  ItemType = PopupItemType.Medicine };
+        /*28*/
+        //Items[(int)InventoryItemId.Syringe] = new InventoryItemBankData() { Id = InventoryItemId.Syringe, PrefabId = "Prefabs/syringe", SpriteName = store.GetSprite(InventoryItemId.Syringe),  ItemType = PopupItemType.Medicine };
 
         /*23*/
         Items[(int)InventoryItemId.Radio] = new InventoryItemBankData() { Id = InventoryItemId.Radio, PrefabId = "Prefabs/radio", SpriteName = store.GetSprite(InventoryItemId.Radio),  ItemType = PopupItemType.Item };
@@ -360,55 +363,33 @@ public class CharacterProgressScript : MonoBehaviour
 
         this.GetComponent<CharacterSwapManagementScript>().LoadCharacter(ProfilesManagementScript.Singleton.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Singleton.CurrentAnimin.AniminEvolutionId);
         //this.GetComponent<CharacterSwapManagementScript>().LoadCharacter(AniminId.Mandi   , AniminEvolutionStageId.Adult);
-        
-        /*00*/
+
+        /* OLD ADD ITEMS TO INVENTORY
         ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.AlmondMilk, 3);
-        /*01*/
         ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.Avocado, 1);
-        //AddItemToInventory(InventoryItemId.Banana, 1);
-        /*02*/
         ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.Blueberry, 1);
-        /*03*/
         ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.Boombox, 1);
-        /*04*/
         ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.Camera, 1);
-        /*05*/
         ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.Carrot, 1);
-        /*06*/
         ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.Chips, 1);
-        /*07*/
         ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.Clock, 4);
-        /*08*/
         ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.EDM808, 1);
-        /*09*/
         ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.EDMJuno, 1);
-        /*10*/
         ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.EDMKsynth, 1);
-        /*11*/
         ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.FartButton, 1);
-        /*12*/
         ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.Lightbulb, 1);
         //AddItemToInventory(InventoryItemId.mintclock, 1);
         //AddItemToInventory(InventoryItemId.Noodles, 1);
-        /*13*/
         ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.paperCalendar, 1);
-        /*14*/
         ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.Pill, 1);
-        /*15*/
         ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.Plaster, 1);
-        /*16*/
         ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.Spinach, 1);
-        /*17*/
         ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.Strawberry, 1);
-        //	ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.Syringe, 1);	<< ADRIAN!!
-        /*18*/
         ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.Toast, 1);
-        /*19*/
         ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.watermelon, 1);
-        /*20*/
         ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.woodFrame, 1);
-        /*21*/
         ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.woodSword, 1);
+        */
 
 
         for (int i = 0; i < ProfilesManagementScript.Singleton.CurrentAnimin.Inventory.Count; i++)
@@ -427,7 +408,7 @@ public class CharacterProgressScript : MonoBehaviour
         {
             if (BetweenSceneData.Instance.Points >= 0)
             {
-                if (BetweenSceneData.Instance.Points >= 7500)
+                if (BetweenSceneData.Instance.Points >= 15000)
                 {
                     AchievementsScript.Singleton.Show(AchievementTypeId.Gold, BetweenSceneData.Instance.Points);
                     SpawnChests(3);
@@ -437,7 +418,7 @@ public class CharacterProgressScript : MonoBehaviour
                     AchievementsScript.Singleton.Show(AchievementTypeId.Silver, BetweenSceneData.Instance.Points);
                     SpawnChests(2);
                 }
-                else if (BetweenSceneData.Instance.Points >= 2500)
+                else if (BetweenSceneData.Instance.Points >= 800)
                 {
                     AchievementsScript.Singleton.Show(AchievementTypeId.Bronze, BetweenSceneData.Instance.Points);
                     SpawnChests(1);
@@ -633,10 +614,12 @@ public class CharacterProgressScript : MonoBehaviour
 
         return closestFood;
     }
-
-    public void SpawnChests(int value)
+    public void SpawnChests(int value){
+        GetAndSpawnChests(value);
+    }
+    public GameObject GetAndSpawnChests(int value)
     {
-        string prefab = "Prefabs/chest_gold";
+        string prefab = "Prefabs/chest_bronze";
         switch (value)
         {
             case 1:
@@ -648,9 +631,12 @@ public class CharacterProgressScript : MonoBehaviour
             case 3:
                 prefab = "Prefabs/chest_gold";
                 break;
+            case 4:
+                prefab = "Prefabs/chest_evo";
+                break;
             case 0:
             default:
-                return;
+                return null;
                 break;
         }
         Debug.Log("Spawn Chests");
@@ -662,6 +648,8 @@ public class CharacterProgressScript : MonoBehaviour
         instance.transform.position = Vector3.zero;
         instance.transform.localPosition = new Vector3(UnityEngine.Random.Range(-0.67f, 0.67f), this.transform.localPosition.y, UnityEngine.Random.Range(-0.67f, 0.67f));
         instance.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+
+        return instance;
     }
 
     public void AnimateJumpOutOfPortal()
@@ -702,6 +690,7 @@ public class CharacterProgressScript : MonoBehaviour
             }
         }
     }
+
     public float ShaderAlpha
     {
         get
@@ -1020,7 +1009,7 @@ public class CharacterProgressScript : MonoBehaviour
 
                     if (PortalTimer >= JumpOutAt)
                     {
-                        GetComponent<CharacterSwapManagementScript> ().CurrentModel.gameObject.SetActive (true);
+                        GetComponent<CharacterSwapManagementScript>().CurrentModel.gameObject.SetActive(true);
                         CurrentAction = ActionId.None;
                         MainARHandler.Instance.OnCharacterEnterARScene();
 
@@ -1031,7 +1020,7 @@ public class CharacterProgressScript : MonoBehaviour
                         if (!m_JumpedIn)
                         {
                             m_JumpedIn = true;
-                            GetComponent<CharacterSwapManagementScript> ().CurrentModel.gameObject.SetActive (false);
+                            GetComponent<CharacterSwapManagementScript>().CurrentModel.gameObject.SetActive(false);
 
                             MainARHandler.Instance.PauseJumpOutIntoAR();
 
@@ -1064,7 +1053,7 @@ public class CharacterProgressScript : MonoBehaviour
                     break;
                 }
 
-                /*case ActionId.EnterPortalToNonAR:
+        /*case ActionId.EnterPortalToNonAR:
         			{
         				PortalTimer += Time.deltaTime;
         			
@@ -2028,15 +2017,16 @@ public class CharacterProgressScript : MonoBehaviour
     {
         IsGoingToPickUpObject = null;
 
-		if (animationController.RawAnimator == null) {
-			Debug.Log("Animator not found!");
-			if (stopMovingAsWell)
-			{
-				this.gameObject.GetComponent<CharacterControllerScript>().MovementDirection = Vector3.zero;
-				IsMovingTowardsLocation = false;
-			}
-			return;
-		}
+        if (animationController.RawAnimator == null)
+        {
+            Debug.Log("Animator not found!");
+            if (stopMovingAsWell)
+            {
+                this.gameObject.GetComponent<CharacterControllerScript>().MovementDirection = Vector3.zero;
+                IsMovingTowardsLocation = false;
+            }
+            return;
+        }
         animationController.IsNotWell = false;
         animationController.IsHungry = false;
         InteractWithItemOnPickup = false;

@@ -1550,7 +1550,7 @@ public class CharacterProgressScript : MonoBehaviour
                                         LastKnownObjectWithMenuUp = moveHitInfo.collider.gameObject;
                                         preventMovingTo = true;
                                     }
-                                    //else if (moveHitInfo.collider/*.GetComponent<ReferencedObjectScript>().Reference*/.GetComponent<UIPopupItemScript>().Menu == MenuFunctionalityUI.Mp3Player)
+                                    //else if (moveHitInfo.collider.GetComponent<UIPopupItemScript>().Menu == MenuFunctionalityUI.Mp3Player)
                                     else if (false)
                                     {
                                         HidePopupMenus();

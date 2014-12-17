@@ -136,7 +136,7 @@ public class CaringPageControls : MonoBehaviour
         Icon3.GetComponent<InterfaceItemLinkToModelScript>().ItemID = InventoryItemId.None;
     }
 
-    void PopulateButtons()
+    public void PopulateButtons()
     {
         Debug.Log("Populating buttons");
         bool FoodIconSet = false;

@@ -25,12 +25,10 @@ public class PlayerProfileData
     {
         get
         {
-            Debug.Log("TutorialBoxLandPlayed Fetched");
             return m_TutorialBoxLandPlayed;
         }
         set
         {
-            Debug.Log("TutorialBoxLandPlayed Set [" + value + "];");
             m_TutorialBoxLandPlayed = value;
         }
     }
@@ -39,12 +37,10 @@ public class PlayerProfileData
     {
         get
         { 
-            Debug.Log("TutorialBoxLandPlayed Fetched");
             return m_TutorialCanonClashPlayed;
         }
         set
         {
-            Debug.Log("m_TutorialCanonClashPlayed Set [" + value + "];");
             m_TutorialCanonClashPlayed = value;
         }
     }

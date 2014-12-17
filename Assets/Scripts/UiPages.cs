@@ -138,6 +138,10 @@ public class UiPages : MonoBehaviour
 			Pages page = (Pages)i;
 			string name = GetPrefabName(page);
 			Object obj = Resources.Load(name);
+            if(obj == null)
+            {
+                Debug.Log("Failed to load prefab for page " + page.ToString());
+            }
 			GameObject go = (GameObject)Instantiate(obj);
 			go.AddComponent<PageID>().ID = page;
 			go.SetActive(false);

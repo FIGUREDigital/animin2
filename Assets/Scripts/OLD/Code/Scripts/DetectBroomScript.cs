@@ -28,7 +28,7 @@ public class DetectBroomScript : MonoBehaviour, IBeginDragHandler, IDragHandler,
         child.transform.parent = MainARHandler.Instance.MainARCamera.GetComponentInChildren<CameraModelScript>().transform;
 		child.transform.position = Vector3.zero;
 		child.transform.rotation = Quaternion.identity;
-		child.transform.localScale *= 5;
+		child.transform.localScale *= 8;
 		child.transform.localRotation = Quaternion.identity;
 		child.transform.localPosition = Vector3.zero;
     }

@@ -162,7 +162,8 @@ public class PersistentData
 		}
 
 		Inventory.Add(new InventoryItemData() { Id = id, Count = count });
-
+				UiPages.GetPage (Pages.CaringPage).GetComponent<CaringPageControls> ().PopulateButtons ();
+				/*
 		if(InventoryItemData.Items[(int)id].ItemType == PopupItemType.Food)
 		{
 			if(UIGlobalVariablesScript.Singleton.FoodButton!=null&&UIGlobalVariablesScript.Singleton.FoodButton.GetComponent<Button>().image.name == "empty_icon")
@@ -189,6 +190,7 @@ public class PersistentData
                 UIGlobalVariablesScript.Singleton.MedicineButton.GetComponent<InterfaceItemLinkToModelScript>().ItemID = id;
             }
         }
+        */
 	}
 
 	public bool HasItem(InventoryItemId id)

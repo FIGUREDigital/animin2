@@ -102,7 +102,7 @@ MonoBehaviour:
   NonInteractable: 0
   Menu: 0
   SpecialId: 0
-  Id: 21
+  Id: 23
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

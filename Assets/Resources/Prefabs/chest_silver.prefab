@@ -633,6 +633,7 @@ MonoBehaviour:
   - {fileID: 100018}
   - {fileID: 100016}
   - {fileID: 100016}
+  m_ChestType: 1
 --- !u!137 &13700000
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -645,7 +646,7 @@ SkinnedMeshRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: dd6a1f7b227a64fa58c0caa624e76119, type: 2}
+  - {fileID: 2100000, guid: acf2da9721bba4dda9b2ada163cad5bc, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -677,7 +678,7 @@ SkinnedMeshRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 0ecb926cb9bda495992f98baa6770394, type: 2}
+  - {fileID: 2100000, guid: afa414888220a441e9e435b59ad2ea85, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0

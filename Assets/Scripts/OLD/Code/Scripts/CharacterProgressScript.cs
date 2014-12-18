@@ -1678,11 +1678,12 @@ public class CharacterProgressScript : MonoBehaviour
                     }
 
 
-
+                if(DragableObject != null)
+                {
                     DragableObject.GetComponent<BoxCollider>().enabled = true;
                     DragableObject = null;
                     CurrentAction = ActionId.None;
-
+                }
                     break;
                 }
 

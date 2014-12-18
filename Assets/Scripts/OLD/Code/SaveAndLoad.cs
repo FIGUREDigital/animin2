@@ -77,7 +77,6 @@ public class SaveAndLoad {
 
 	public void SaveAllData()
 	{
-		
         StateData.ProfileList.Clear();
 		Debug.Log ("Saving Profiles");
         for (int i =0; i< ProfilesManagementScript.Singleton.ListOfPlayerProfiles.Count; i++)

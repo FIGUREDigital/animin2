@@ -160,10 +160,13 @@ public class HappyStateRange
 public class CharacterProgressScript : MonoBehaviour
 {
     public delegate void DragAction();
+
     public static event DragAction OnDragItem;
-    
+
     public delegate void DropAction();
+
     public static event DropAction OnDropItem;
+
     private CaringPageControls m_CaringPageControls;
 
     public CaringPageControls CaringPageControls
@@ -318,14 +321,24 @@ public class CharacterProgressScript : MonoBehaviour
         //CurrentAction = ActionId.Sleep;
         //SleepBoundingBox.SetActive(true);
     }
-    void OnDestroy() {
+		void OnApplicationPause(){
+				CleanupItems();
+		}
+		void OnApplicationQuit(){
+				CleanupItems();
+		}
+    void OnDestroy()
+    {
+        CleanupItems();
+    }
 
+    public void CleanupItems()
+    {
+        Debug.Log("CleanupItems called");
         for (int i = 0; i < groundItemsOnARscene.Count; i++)
         {
-            ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(groundItemsOnARscene[i].GetComponent<UIPopupItemScript> ().Id,1);
+            ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(groundItemsOnARscene[i].GetComponent<UIPopupItemScript>().Id, 1);
         }
-
-        Debug.Log("ON DESTROYED! groundItemsOnNonARScene : ["+groundItemsOnNonARScene.Count+"];");
         ProfilesManagementScript.Singleton.CurrentAnimin.SaveCaringScreenItem(groundItemsOnNonARScene.ToArray());
         SaveAndLoad.Instance.SaveAllData();
     }
@@ -599,9 +612,12 @@ public class CharacterProgressScript : MonoBehaviour
 
         return closestFood;
     }
-    public void SpawnChests(int value){
+
+    public void SpawnChests(int value)
+    {
         GetAndSpawnChests(value);
     }
+
     public GameObject GetAndSpawnChests(int value)
     {
         string prefab = "Prefabs/chest_bronze";
@@ -1646,13 +1662,13 @@ public class CharacterProgressScript : MonoBehaviour
                         //GroundItems.Add(DragableObject);
                         DragableObject.layer = LayerMask.NameToLayer("Default");
 
-                        if(OnDropItem != null)
+                        if (OnDropItem != null)
                             OnDropItem();
                     }
                     else
                     {
                         Debug.Log("DROPED IN UNKNOWN LOCATION");
-                        if(OnDropItem != null)
+                        if (OnDropItem != null)
                             OnDropItem();
                     }
 
@@ -1667,8 +1683,8 @@ public class CharacterProgressScript : MonoBehaviour
                 {
 
 
-                if(OnDragItem != null)
-                    OnDragItem();
+                    if (OnDragItem != null)
+                        OnDragItem();
 
                     if (hadRayCollision && (hitInfo.collider.name.StartsWith("Invisible Ground Plane") || hitInfo.collider.name.StartsWith("Extended")))
 			//if(hadRayCollision && hitInfo.collider.name.StartsWith("SecondGroundPlane"))

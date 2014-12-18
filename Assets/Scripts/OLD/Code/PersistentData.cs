@@ -76,6 +76,7 @@ public class PersistentData
         GameObject[] returnGOs = new GameObject[m_CaringScreenItems.Length];
         for (int i = 0; i < m_CaringScreenItems.Length; i++)
         {
+						Debug.Log ("Prefab : [" + InventoryItemData.Items [(int)m_CaringScreenItems [i].Id].PrefabId + "];");
             GameObject resourceLoaded = (GameObject)Resources.Load(InventoryItemData.Items[(int)m_CaringScreenItems[i].Id].PrefabId);
             returnGOs[i] = (GameObject)GameObject.Instantiate(resourceLoaded);
 

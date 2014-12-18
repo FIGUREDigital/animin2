@@ -53,6 +53,8 @@ public enum InventoryItemId
     Radio,
 
     Banana,
+    Peanut,
+    Beetroot,
 
     Count,
 }
@@ -106,7 +108,10 @@ public class InventoryItemData
         Items[(int)InventoryItemId.Plaster] = new InventoryItemBankData() { Id = InventoryItemId.Plaster, PrefabId = "Prefabs/plaster", SpriteName = store.GetSprite(InventoryItemId.Plaster),  ItemType = PopupItemType.Medicine };
         //Items[(int)InventoryItemId.Syringe] = new InventoryItemBankData() { Id = InventoryItemId.Syringe, PrefabId = "Prefabs/syringe", SpriteName = store.GetSprite(InventoryItemId.Syringe),  ItemType = PopupItemType.Medicine };
         Items[(int)InventoryItemId.Radio] = new InventoryItemBankData() { Id = InventoryItemId.Radio, PrefabId = "Prefabs/radio", SpriteName = store.GetSprite(InventoryItemId.Radio),  ItemType = PopupItemType.Item };
-        Items[(int)InventoryItemId.Banana] = new InventoryItemBankData() { Id = InventoryItemId.Banana, PrefabId = "Prefabs/banana", SpriteName = Resources.Load(ITEM_PATH + "banana_icon") as Sprite,  ItemType = PopupItemType.Food };
+        Items[(int)InventoryItemId.Banana] = new InventoryItemBankData() { Id = InventoryItemId.Banana, PrefabId = "Prefabs/banana", SpriteName = store.GetSprite(InventoryItemId.Banana) as Sprite,  ItemType = PopupItemType.Food };
+        Items[(int)InventoryItemId.Peanut] = new InventoryItemBankData() { Id = InventoryItemId.Peanut, PrefabId = "Prefabs/peanut", SpriteName = store.GetSprite(InventoryItemId.Peanut)  as Sprite,  ItemType = PopupItemType.Food };
+        Items[(int)InventoryItemId.Beetroot] = new InventoryItemBankData() { Id = InventoryItemId.Beetroot, PrefabId = "Prefabs/beetroot", SpriteName = store.GetSprite(InventoryItemId.Beetroot)  as Sprite,  ItemType = PopupItemType.Food };
+
     }
 
     #endregion
@@ -340,7 +345,6 @@ public class CharacterProgressScript : MonoBehaviour
             ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(groundItemsOnARscene[i].GetComponent<UIPopupItemScript>().Id, 1);
         }
         ProfilesManagementScript.Singleton.CurrentAnimin.SaveCaringScreenItem(groundItemsOnNonARScene.ToArray());
-        SaveAndLoad.Instance.SaveAllData();
     }
 
     void Start()
@@ -1682,14 +1686,15 @@ public class CharacterProgressScript : MonoBehaviour
             case ActionId.DragItemAround:
                 {
 
-
                     if (OnDragItem != null)
                         OnDragItem();
 
                     if (hadRayCollision && (hitInfo.collider.name.StartsWith("Invisible Ground Plane") || hitInfo.collider.name.StartsWith("Extended")))
 			//if(hadRayCollision && hitInfo.collider.name.StartsWith("SecondGroundPlane"))
                     {
-                        Debug.Log("DRAGGING");
+										Debug.Log("DRAGGING");
+										MainARHandler.Instance.CurrentItem = DragableObject;
+										Debug.Log ("Current Item = " + MainARHandler.Instance.CurrentItem.name);
                         DragableObject.transform.position = hitInfo.point;
                         //DragableObject.transform.parent = hit.transform;
                     }

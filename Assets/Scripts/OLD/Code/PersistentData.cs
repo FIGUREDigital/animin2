@@ -62,12 +62,17 @@ public class PersistentData
 
     public void SaveCaringScreenItem(GameObject[] objects){
         Debug.Log("Objects.length : [" + objects.Length + "];");
-        m_CaringScreenItems = new CaringScreenItem[objects.Length];
+        //m_CaringScreenItems = new CaringScreenItem[objects.Length];
+        List<CaringScreenItem> ItemList = new List<CaringScreenItem>();
         for (int i = 0; i < objects.Length; i++)
         {
             Debug.Log("Saving Item : [" + i + "];");
-            m_CaringScreenItems[i] = new CaringScreenItem(objects[i].GetComponent<UIPopupItemScript>().Id, objects[i].transform.position);
+            UIPopupItemScript popup = objects[i].GetComponent<UIPopupItemScript>();
+            if (popup == null)
+                continue;
+            ItemList.Add(new CaringScreenItem(popup.Id, objects[i].transform.position));
         }
+        m_CaringScreenItems = ItemList.ToArray();
     }
     public GameObject[] LoadCaringScreenItem(){
         Debug.Log("LoadCaringScreenItem called! m_CaringScreenItems : [" + m_CaringScreenItems + "];");
@@ -76,7 +81,7 @@ public class PersistentData
         GameObject[] returnGOs = new GameObject[m_CaringScreenItems.Length];
         for (int i = 0; i < m_CaringScreenItems.Length; i++)
         {
-						Debug.Log ("Prefab : [" + InventoryItemData.Items [(int)m_CaringScreenItems [i].Id].PrefabId + "];");
+            Debug.Log ("Prefab : [" + InventoryItemData.Items [(int)m_CaringScreenItems [i].Id].PrefabId + "];");
             GameObject resourceLoaded = (GameObject)Resources.Load(InventoryItemData.Items[(int)m_CaringScreenItems[i].Id].PrefabId);
             returnGOs[i] = (GameObject)GameObject.Instantiate(resourceLoaded);
 

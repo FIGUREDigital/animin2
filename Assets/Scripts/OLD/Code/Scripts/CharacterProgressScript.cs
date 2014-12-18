@@ -177,13 +177,10 @@ public class HappyStateRange
 public class CharacterProgressScript : MonoBehaviour
 {
     public delegate void DragAction();
-
     public static event DragAction OnDragItem;
-
+    
     public delegate void DropAction();
-
     public static event DropAction OnDropItem;
-
     private CaringPageControls m_CaringPageControls;
 
     public CaringPageControls CaringPageControls
@@ -338,25 +335,16 @@ public class CharacterProgressScript : MonoBehaviour
         //CurrentAction = ActionId.Sleep;
         //SleepBoundingBox.SetActive(true);
     }
-		void OnApplicationPause(){
-				CleanupItems();
-		}
-		void OnApplicationQuit(){
-				CleanupItems();
-		}
-    void OnDestroy()
-    {
-        CleanupItems();
-    }
+    void OnDestroy() {
 
-    public void CleanupItems()
-    {
-        Debug.Log("CleanupItems called");
         for (int i = 0; i < groundItemsOnARscene.Count; i++)
         {
-            ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(groundItemsOnARscene[i].GetComponent<UIPopupItemScript>().Id, 1);
+            ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(groundItemsOnARscene[i].GetComponent<UIPopupItemScript> ().Id,1);
         }
+
+        Debug.Log("ON DESTROYED! groundItemsOnNonARScene : ["+groundItemsOnNonARScene.Count+"];");
         ProfilesManagementScript.Singleton.CurrentAnimin.SaveCaringScreenItem(groundItemsOnNonARScene.ToArray());
+        SaveAndLoad.Instance.SaveAllData();
     }
 
     void Start()
@@ -628,12 +616,9 @@ public class CharacterProgressScript : MonoBehaviour
 
         return closestFood;
     }
-
-    public void SpawnChests(int value)
-    {
+    public void SpawnChests(int value){
         GetAndSpawnChests(value);
     }
-
     public GameObject GetAndSpawnChests(int value)
     {
         string prefab = "Prefabs/chest_bronze";
@@ -1659,7 +1644,6 @@ public class CharacterProgressScript : MonoBehaviour
             case ActionId.DropItem:
                 {
                     bool validDrop = false;
-				
 				  
                     // DRAG ITEM ON TO THE CHARACTER
                     if (hadRayCollision && hitInfo.collider.name.StartsWith("MainCharacter") && !animationController.IsHoldingItem)
@@ -1678,46 +1662,63 @@ public class CharacterProgressScript : MonoBehaviour
                         //GroundItems.Add(DragableObject);
                         DragableObject.layer = LayerMask.NameToLayer("Default");
 
-                        if (OnDropItem != null)
+                        if(OnDropItem != null)
                             OnDropItem();
                     }
+                    else if(InvBoxControls.listening)
+                    {
+                        DragableObject = null;
+                        CurrentAction = ActionId.None;
+                    } 
                     else
                     {
                         Debug.Log("DROPED IN UNKNOWN LOCATION");
-                        if (OnDropItem != null)
+                        if(OnDropItem != null)
                             OnDropItem();
                     }
 
+
+                if(DragableObject != null)
+                {
                     DragableObject.GetComponent<BoxCollider>().enabled = true;
                     DragableObject = null;
                     CurrentAction = ActionId.None;
-	
+                }
                     break;
                 }
 
             case ActionId.DragItemAround:
                 {
 
-                    if (OnDragItem != null)
-                        OnDragItem();
 
+                if(OnDragItem != null)
+                    OnDragItem();
+
+                    MainARHandler.Instance.CurrentItem = DragableObject;
+                    
                     if (hadRayCollision && (hitInfo.collider.name.StartsWith("Invisible Ground Plane") || hitInfo.collider.name.StartsWith("Extended")))
 			//if(hadRayCollision && hitInfo.collider.name.StartsWith("SecondGroundPlane"))
                     {
-										Debug.Log("DRAGGING");
-										MainARHandler.Instance.CurrentItem = DragableObject;
-										Debug.Log ("Current Item = " + MainARHandler.Instance.CurrentItem.name);
+                        Debug.Log("DRAGGING");
                         DragableObject.transform.position = hitInfo.point;
                         //DragableObject.transform.parent = hit.transform;
                     }
 
                     if (!Input.GetButton("Fire1"))
                     {
-                        if (hitInfo.collider != null && hitInfo.collider.name.StartsWith("Extended"))
+                        if(InvBoxControls.listening)
                         {
-                            DragableObject.AddComponent<DroppedItemScript>();
+                            DragableObject = null;
+                            CurrentAction = ActionId.None;
+                        } 
+                        else
+                        {
+                            if (hitInfo.collider != null && hitInfo.collider.name.StartsWith("Extended"))
+                            {
+                                DragableObject.AddComponent<DroppedItemScript>();
+                            }
+                            CurrentAction = ActionId.DropItem;
                         }
-                        CurrentAction = ActionId.DropItem;
                     }
 				
 

@@ -67,6 +67,12 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d7af38e086dfc4be0b3798a17d509fd2, type: 3}
   - {fileID: 21300000, guid: 31e89b69bccba7448bc586d2b2b62a63, type: 3}
   - {fileID: 21300000, guid: 1698758ec27d3a1498eb0c82aa9f54fd, type: 3}
+  - {fileID: 21300000, guid: a4eb2a1bf2bc4b142bae7531d9f41997, type: 3}
+  - {fileID: 21300000, guid: 34b34e4903c7c6040bdcca0f12123d40, type: 3}
+  - {fileID: 21300000, guid: 1c079cf29b27996458c7447047c679f4, type: 3}
+  - {fileID: 21300000, guid: 0b0b61197d5cf464f8c77d0ec50ebbef, type: 3}
+  - {fileID: 21300000, guid: aed7a5d853834da49bc26856e499ec59, type: 3}
+  - {fileID: 21300000, guid: af81b7903463e4349871d696a6fdc11a, type: 3}
   - {fileID: 21300000, guid: 83d06456ddbfe48268c4f50957504bd2, type: 3}
   MedelSprites:
   - {fileID: 21300000, guid: d8a52f4433faf1e4992316ebc9cb274d, type: 3}

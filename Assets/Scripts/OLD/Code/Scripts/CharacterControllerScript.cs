@@ -158,6 +158,8 @@ public class CharacterControllerScript : MonoBehaviour //Photon.MonoBehaviour
     public List<CharacterForces> Forces = new List<CharacterForces>();
 	
 	
+    private Vector3 m_Movement;
+    public Vector3 Movement{ get { return m_Movement; } }
 	
 	
     private bool isControllable = true;
@@ -472,15 +474,15 @@ public class CharacterControllerScript : MonoBehaviour //Photon.MonoBehaviour
         // Calculate actual motion
 
 	
-        Vector3 movement = MovementDirection * moveSpeed + new Vector3(0, verticalSpeed, 0) + inAirVelocity;
+        m_Movement = MovementDirection * moveSpeed + new Vector3(0, verticalSpeed, 0) + inAirVelocity;
 			
-        movement *= Time.deltaTime;
+        m_Movement *= Time.deltaTime;
 
 
         if (IsResetFalling)
         {
-            movement.x = 0;
-            movement.z = 0;
+            m_Movement.x = 0;
+            m_Movement.z = 0;
             speedSmoothing = 10000;
         }
         else
@@ -493,7 +495,7 @@ public class CharacterControllerScript : MonoBehaviour //Photon.MonoBehaviour
         {
             Forces[i].Speed = Mathf.Lerp(Forces[i].Speed, 0, Time.deltaTime * 6);
             Vector3 totalForce = Forces[i].Direction * Forces[i].Speed * Time.deltaTime;
-            movement += totalForce;
+            m_Movement += totalForce;
             Forces[i].Length -= Time.deltaTime;
             if (Forces[i].Length <= 0)
             {
@@ -504,7 +506,7 @@ public class CharacterControllerScript : MonoBehaviour //Photon.MonoBehaviour
 			
 			
         // Move the controller
-        collisionFlags = m_Controller.Move(movement);
+        collisionFlags = m_Controller.Move(m_Movement);
 				
 		
         // We are in jump mode but just became grounded
@@ -662,6 +664,9 @@ public class CharacterControllerScript : MonoBehaviour //Photon.MonoBehaviour
 
     private void UpdateRotationLookAt()
     {
+				Vector3 dir = RotateDirectionLookAt.eulerAngles;
+				dir.z = 0;
+				RotateDirectionLookAt.eulerAngles = dir;
         transform.rotation = Quaternion.Slerp(transform.rotation, RotateDirectionLookAt, Time.deltaTime * 6);
     }
 

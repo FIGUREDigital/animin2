@@ -291,6 +291,8 @@ public class CharacterProgressScript : MonoBehaviour
 
     private GUITexture[] m_UITextures;
 
+    private bool m_HasStartedMoving;
+
     // Use this for initialization
     void Awake()
     {
@@ -656,6 +658,7 @@ public class CharacterProgressScript : MonoBehaviour
 
     public void AnimateJumpOutOfPortal()
     {
+
         //Harry copied this from OnTrackingLost
         CharacterProgressScript progressScript = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>();
 
@@ -1782,18 +1785,36 @@ public class CharacterProgressScript : MonoBehaviour
         if (IsMovingTowardsLocation)
         {
             Vector3 direction = Vector3.Normalize(DestinationLocation - this.transform.position);
-            this.gameObject.GetComponent<CharacterControllerScript>().MovementDirection = direction;
 
-            this.gameObject.GetComponent<CharacterControllerScript>().RotateToLookAtPoint(DestinationLocation);
+            CharacterControllerScript controller = this.gameObject.GetComponent<CharacterControllerScript>();
+
+            controller.MovementDirection = direction;
+            controller.RotateToLookAtPoint(DestinationLocation);
 
             if (Vector3.Distance(DestinationLocation, transform.position) <= 5)
             {
                 Stop(true);
             }
+            else
+            {
+                CharacterController charControl = GetComponent<CharacterController>();
+                //Debug.Log("Velocity : ["+(int)charControl.velocity.magnitude+"|"+(int)controller.Movement.magnitude+"];");
+
+                Vector3 proj = Vector3.Project(charControl.velocity, controller.Movement);
+                Debug.Log("Projection : [" + proj.magnitude + "];");
+                if (proj.magnitude >= 1f && !m_HasStartedMoving)
+                {
+                    m_HasStartedMoving = true;
+                } else if (proj.magnitude <= 1f && m_HasStartedMoving)
+                    {
+                    m_HasStartedMoving = false;
+                    Stop(true);
+                }
+            }
         }
         else
         {
-
+           m_HasStartedMoving = false;
         }
 		 
         /*Remember to comment these back in when UI is working.

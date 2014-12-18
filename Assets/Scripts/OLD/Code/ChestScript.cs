@@ -173,7 +173,7 @@ public class ChestScript : MonoBehaviour
                                 {
                                     case (ItemType.StrongFood):
                                         {
-                                            types = new InventoryItemId[]{ InventoryItemId.Spinach, InventoryItemId.Blueberry, InventoryItemId.Toast };
+                                            types = new InventoryItemId[]{ InventoryItemId.Spinach, InventoryItemId.Blueberry, InventoryItemId.Toast, InventoryItemId.ChocoCake };
                                         }
                                         break;
                                     case (ItemType.MediumFood):

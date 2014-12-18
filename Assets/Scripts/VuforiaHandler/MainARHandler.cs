@@ -294,31 +294,34 @@ public class MainARHandler : MonoBehaviour
 
     public void OnCharacterEnterARScene(bool SkipAnimation = false)
     {
-        Debug.Log("OnCharacterEnterARScene");
-        CharacterProgressScript charprogress = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>();
-        UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.parent = UIGlobalVariablesScript.Singleton.ARSceneRef.transform;
-        m_CameraUnlock = true;
-        //SavedARPosition.y = 0;
-        UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.localPosition = new Vector3(0, 0.01f, 0);
-        UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.rotation = Quaternion.Euler(0, 180, 0);
-        UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.localScale = new Vector3(0.035f, 0.035f, 0.035f);
-        UIGlobalVariablesScript.Singleton.Shadow.transform.localScale = new Vector3(0.46f, 0.46f, 0.46f);
+        if (m_IsTracking)
+        {
+            Debug.Log("OnCharacterEnterARScene");
+            CharacterProgressScript charprogress = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>();
+            UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.parent = UIGlobalVariablesScript.Singleton.ARSceneRef.transform;
+            m_CameraUnlock = true;
+            //SavedARPosition.y = 0;
+            UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.localPosition = new Vector3(0, 0.01f, 0);
+            UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.rotation = Quaternion.Euler(0, 180, 0);
+            UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.localScale = new Vector3(0.035f, 0.035f, 0.035f);
+            UIGlobalVariablesScript.Singleton.Shadow.transform.localScale = new Vector3(0.46f, 0.46f, 0.46f);
 
-        if (!SkipAnimation &&
+            if (!SkipAnimation &&
             charprogress.CurrentAction != ActionId.Sleep &&
             charprogress.CurrentAction != ActionId.EnterSleep)
-        {
-            charprogress.Stop(true);
-            UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterControllerScript>().ResetRotation();
+            {
+                charprogress.Stop(true);
+                UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterControllerScript>().ResetRotation();
+            }
+
+            charprogress.AnimateJumpOutOfPortal();
+            UIGlobalVariablesScript.Singleton.ARSceneRef.transform.parent = mLastTrack.gameObject.transform;
         }
-
-        charprogress.AnimateJumpOutOfPortal();
-        UIGlobalVariablesScript.Singleton.ARSceneRef.transform.parent = mLastTrack.gameObject.transform;
-
     }
 
     public void OnCharacterEnterNonARScene(bool SkipAnimation = false)
     {
+        Debug.Log("OnCharacterEnterNonARScene");
         m_CameraUnlock = false;
         //UIGlobalVariablesScript.Singleton.ARCameraComponent.transform.position = new Vector3(0, 123.1f, -198.3f);
         if (UIGlobalVariablesScript.Singleton.ARCameraComponent != null)
@@ -329,6 +332,8 @@ public class MainARHandler : MonoBehaviour
         UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.rotation = Quaternion.Euler(0, 180, 0);
         UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.localScale = new Vector3(0.035f, 0.035f, 0.035f);
         UIGlobalVariablesScript.Singleton.Shadow.transform.localScale = new Vector3(0.46f, 0.46f, 0.46f);
+
+        UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().ShaderAlpha = 1;
 
         if (!SkipAnimation &&
             UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().CurrentAction != ActionId.Sleep &&

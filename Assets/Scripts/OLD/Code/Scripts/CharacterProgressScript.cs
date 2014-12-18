@@ -1618,10 +1618,10 @@ public class CharacterProgressScript : MonoBehaviour
 
                             if (FeedMyselfTimer >= 1)
                             {
-                                Debug.Log("Feed myself!");
+                                //Debug.Log("Feed myself!");
                                 GameObject closestFood = GetClosestFoodToEat();
 
-                                Debug.Log(closestFood == null ? "Didn't find a closest food" : "Found a closest food");
+                                //Debug.Log(closestFood == null ? "Didn't find a closest food" : "Found a closest food");
                                 if (closestFood != null)
                                 {
                                     IsGoingToPickUpObject = closestFood;

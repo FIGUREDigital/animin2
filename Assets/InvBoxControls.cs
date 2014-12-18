@@ -8,6 +8,7 @@ public class InvBoxControls : MonoBehaviour {
     public static event DropAction OnDropItem;
     UnityEngine.UI.Image box;
     public static bool listening;
+    public static bool stopListening;
 
 	// Use this for initialization
 	void Start () 
@@ -18,22 +19,31 @@ public class InvBoxControls : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
     {
+        Debug.Log("Listening/StopListening : [" + listening + "|" + stopListening + "];");
         if (!listening)
             return;
-        if(Input.GetButtonUp("Fire1"))
+        Debug.Log("Button : ["+Input.GetButtonUp("Fire1")+"];");
+        if (Input.GetButtonUp("Fire1"))
         {
             DropItem();
+        }
+        if (stopListening)
+        {
+            stopListening = false;
+            listening = false;
         }
 	}
 
     public void OnHoverBegin()
     {
         listening = true;
+        stopListening = false;
         transform.parent.localScale = new Vector3(1.1f, 1.1f, 1.1f);
     }
     public void OnHoverEnd()
     {
-        listening = false;
+        //listening = false;
+        stopListening = true;
         transform.parent.localScale = Vector3.one;
     }
 

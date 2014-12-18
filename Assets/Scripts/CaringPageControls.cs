@@ -188,10 +188,16 @@ public class CaringPageControls : MonoBehaviour
 
     public void EnableInvBox()
     {
+        if (UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().CurrentAction == ActionId.Sleep)
+        {
+            return;
+        }
         SetInvBox(true);
     }
     public void DisableInvBox()
     {
+        
+        InvBox.GetComponentInChildren<InvBoxControls>().OnHoverEnd();
         SetInvBox(false);
     }
 

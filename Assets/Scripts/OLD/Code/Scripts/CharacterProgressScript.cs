@@ -1632,7 +1632,6 @@ public class CharacterProgressScript : MonoBehaviour
             case ActionId.DropItem:
                 {
                     bool validDrop = false;
-				
 				  
                     // DRAG ITEM ON TO THE CHARACTER
                     if (hadRayCollision && hitInfo.collider.name.StartsWith("MainCharacter") && !animationController.IsHoldingItem)
@@ -1661,10 +1660,12 @@ public class CharacterProgressScript : MonoBehaviour
                             OnDropItem();
                     }
 
+
+
                     DragableObject.GetComponent<BoxCollider>().enabled = true;
                     DragableObject = null;
                     CurrentAction = ActionId.None;
-	
+
                     break;
                 }
 
@@ -1675,6 +1676,8 @@ public class CharacterProgressScript : MonoBehaviour
                 if(OnDragItem != null)
                     OnDragItem();
 
+                    MainARHandler.Instance.CurrentItem = DragableObject;
+                    
                     if (hadRayCollision && (hitInfo.collider.name.StartsWith("Invisible Ground Plane") || hitInfo.collider.name.StartsWith("Extended")))
 			//if(hadRayCollision && hitInfo.collider.name.StartsWith("SecondGroundPlane"))
                     {
@@ -1685,11 +1688,19 @@ public class CharacterProgressScript : MonoBehaviour
 
                     if (!Input.GetButton("Fire1"))
                     {
-                        if (hitInfo.collider != null && hitInfo.collider.name.StartsWith("Extended"))
+                        if(InvBoxControls.listening)
                         {
-                            DragableObject.AddComponent<DroppedItemScript>();
+                            DragableObject = null;
+                            CurrentAction = ActionId.None;
+                        } 
+                        else
+                        {
+                            if (hitInfo.collider != null && hitInfo.collider.name.StartsWith("Extended"))
+                            {
+                                DragableObject.AddComponent<DroppedItemScript>();
+                            }
+                            CurrentAction = ActionId.DropItem;
                         }
-                        CurrentAction = ActionId.DropItem;
                     }
 				
 

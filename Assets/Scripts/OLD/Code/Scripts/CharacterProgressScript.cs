@@ -1665,6 +1665,11 @@ public class CharacterProgressScript : MonoBehaviour
                         if(OnDropItem != null)
                             OnDropItem();
                     }
+                    else if(InvBoxControls.listening)
+                    {
+                        DragableObject = null;
+                        CurrentAction = ActionId.None;
+                    } 
                     else
                     {
                         Debug.Log("DROPED IN UNKNOWN LOCATION");

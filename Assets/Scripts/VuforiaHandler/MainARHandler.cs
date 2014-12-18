@@ -109,7 +109,10 @@ public class MainARHandler : MonoBehaviour
     {
         get
         {
-            mSpriteStore = ((GameObject)Instantiate(Resources.Load("Prefabs/UI/ItemSpriteStore"))).GetComponent<SpriteStore>();
+            if(mSpriteStore == null)
+            {
+                mSpriteStore = ((GameObject)Instantiate(Resources.Load("Prefabs/UI/ItemSpriteStore"))).GetComponent<SpriteStore>();
+            }
             return mSpriteStore;
         }
     }

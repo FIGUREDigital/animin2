@@ -32,6 +32,8 @@ public class DragDropMainBarItem : MonoBehaviour, IBeginDragHandler, IDragHandle
         }
         if (!hit.collider.gameObject.CompareTag("Ground")) // Gross, check the floor layer
         {
+            if(OnClicked != null)
+                OnClicked();
             return;
         }
 			

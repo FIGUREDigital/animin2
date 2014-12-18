@@ -24,7 +24,7 @@ public class SelectCharacterClickScript : MonoBehaviour
         ProfilesManagementScript.Singleton.CurrentProfile.ActiveAnimin = Animin;
         ProfilesManagementScript.Singleton.AssignCurrentAniminToVariable();
 		ProfilesManagementScript.Singleton.BeginLoadLevel = true;
-		UiPages.Next (Pages.LoadingPage);
+		UiPages.Next (Pages.LevelLoadingPage);
 
 	}
 }

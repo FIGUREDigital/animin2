@@ -22,6 +22,7 @@ public enum Pages
 	AniminSelectPage,
 	PurchasePage,
 	LoadingPage,
+    LevelLoadingPage,
 	DemoCardPage,
 	ConnectionErrorPage,
 	CodeErrorPage,
@@ -57,6 +58,7 @@ public class UiPages : MonoBehaviour
 	public const string ANIMIN_SELECT_PAGE = "AniminSelectPage";
 	public const string PURCHASE_PAGE = "PurchasePage";
 	public const string LOADING_PAGE = "LoadingPage";
+    public const string LEVEL_LOADING_PAGE = "LevelLoadingPage";
 	public const string DEMO_CARD_PAGE = "DemoCardPage";
 	public const string ADDRESS_INPUT_PAGE = "AddressInputPage";
 	public const string CODE_INPUT_PAGE = "CodeInputPage";
@@ -192,6 +194,9 @@ public class UiPages : MonoBehaviour
 		case Pages.LoadingPage:
 			name = LOADING_PAGE;
 			break;
+        case Pages.LevelLoadingPage:
+            name = LEVEL_LOADING_PAGE;
+            break;
 		case Pages.DemoCardPage:
 			name = DEMO_CARD_PAGE;
 			break;

@@ -2978,13 +2978,13 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 10
-    m_MaxSize: 25
+    m_MaxSize: 22
     m_Alignment: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Well done! You scored 3000 points.
+  m_Text: Well done! you scored 5000 points.
 --- !u!114 &11400050
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7587,14 +7587,14 @@ MonoBehaviour:
     m_FontSize: 36
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 10
+    m_MinSize: 30
     m_MaxSize: 80
     m_Alignment: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Gold Award!
+  m_Text: Yo!
 --- !u!114 &11400380
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8202,8 +8202,8 @@ RectTransform:
   m_RootOrder: 2
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 14, y: -24.7000141}
-  m_SizeDelta: {x: 394, y: 65}
+  m_AnchoredPosition: {x: 21.6999722, y: -25.7999992}
+  m_SizeDelta: {x: 377.299988, y: 48.7000008}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22400020
 RectTransform:
@@ -9129,7 +9129,7 @@ RectTransform:
   m_RootOrder: 13
   m_AnchorMin: {x: .5, y: 1}
   m_AnchorMax: {x: .5, y: 1}
-  m_AnchoredPosition: {x: 28, y: -38.637001}
+  m_AnchoredPosition: {x: 28, y: -17}
   m_SizeDelta: {x: 451.899994, y: 114.82}
   m_Pivot: {x: .5, y: 1}
 --- !u!224 &22400122
@@ -9427,8 +9427,8 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -37.2999992, y: 30.1000004}
-  m_SizeDelta: {x: 291.399994, y: 48.2999992}
+  m_AnchoredPosition: {x: 21.7000008, y: 19.8999996}
+  m_SizeDelta: {x: 377.299988, y: 48.2999992}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22400156
 RectTransform:
@@ -9483,7 +9483,7 @@ RectTransform:
   m_RootOrder: 4
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 28, y: 185}
+  m_AnchoredPosition: {x: 28, y: 172.300003}
   m_SizeDelta: {x: -350, y: -340.554382}
   m_Pivot: {x: .5, y: .5}
 --- !u!1001 &100100000

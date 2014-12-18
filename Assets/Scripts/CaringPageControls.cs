@@ -28,6 +28,8 @@ public class CaringPageControls : MonoBehaviour
     [SerializeField]
     private UnityEngine.UI.Image Icon3;
     [SerializeField]
+    private GameObject InvBox;
+    [SerializeField]
     private GameObject PhotoSaved;
 
 
@@ -120,6 +122,12 @@ public class CaringPageControls : MonoBehaviour
         mInventoryControls = Inventory.GetComponent<InventoryControls>();
         PopulateButtons();
         m_TriangleHeight = new Vector2(0, m_Triangle.sizeDelta.y);
+        DetectDragIconScript.OnClicked += EnableInvBox;
+        DragDropMainBarItem.OnClicked += DisableInvBox;
+        CharacterProgressScript.OnDragItem += EnableInvBox;
+        CharacterProgressScript.OnDropItem += DisableInvBox;
+        InvBoxControls.OnDropItem += DisableInvBox;
+
     }
 
     void ResetButtons()
@@ -175,6 +183,29 @@ public class CaringPageControls : MonoBehaviour
 
             }
         }
+    }
+
+
+    public void EnableInvBox()
+    {
+        SetInvBox(true);
+    }
+    public void DisableInvBox()
+    {
+        SetInvBox(false);
+    }
+
+    private void SetInvBox(bool active)
+    {
+        InvBox.SetActive(active);
+        Icon1.enabled = !active;
+        Icon2.enabled = !active;
+        Icon3.enabled = !active;
+    }
+
+    public bool GetInvBox()
+    {
+        return InvBox.activeSelf;
     }
 
     public void StatsButton()

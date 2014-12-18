@@ -8,6 +8,8 @@ public class DragDropMainBarItem : MonoBehaviour, IBeginDragHandler, IDragHandle
 	
     private GameObject m_DraggingIcon;
     private RectTransform m_DraggingPlane;
+    public delegate void ClickAction();
+    public static event ClickAction OnClicked;
 
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -52,7 +54,8 @@ public class DragDropMainBarItem : MonoBehaviour, IBeginDragHandler, IDragHandle
         //child.GetComponent<ReferencedObjectScript>().Reference = refScript.Reference;
 					
         UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().DragedObjectedFromUIToWorld = true;
-					
+        if(OnClicked != null)
+            OnClicked();
 					
         if (popScript.Type == PopupItemType.Food)
             UIGlobalVariablesScript.Singleton.SoundEngine.Play(GenericSoundId.DropFood);

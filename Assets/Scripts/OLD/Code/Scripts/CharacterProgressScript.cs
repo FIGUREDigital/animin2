@@ -195,6 +195,11 @@ public class HappyStateRange
 
 public class CharacterProgressScript : MonoBehaviour
 {
+    public delegate void DragAction();
+    public static event DragAction OnDragItem;
+    
+    public delegate void DropAction();
+    public static event DropAction OnDropItem;
     private CaringPageControls m_CaringPageControls;
 
     public CaringPageControls CaringPageControls
@@ -1661,10 +1666,14 @@ public class CharacterProgressScript : MonoBehaviour
                         //GroundItems.Add(DragableObject);
                         DragableObject.layer = LayerMask.NameToLayer("Default");
 
+                        if(OnDropItem != null)
+                            OnDropItem();
                     }
                     else
                     {
                         Debug.Log("DROPED IN UNKNOWN LOCATION");
+                        if(OnDropItem != null)
+                            OnDropItem();
                     }
 
                     DragableObject.GetComponent<BoxCollider>().enabled = true;
@@ -1678,7 +1687,8 @@ public class CharacterProgressScript : MonoBehaviour
                 {
 
 
-
+                if(OnDragItem != null)
+                    OnDragItem();
 
                     if (hadRayCollision && (hitInfo.collider.name.StartsWith("Invisible Ground Plane") || hitInfo.collider.name.StartsWith("Extended")))
 			//if(hadRayCollision && hitInfo.collider.name.StartsWith("SecondGroundPlane"))

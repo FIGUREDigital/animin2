@@ -5,6 +5,8 @@ using UnityEngine.EventSystems;
 
 public class DetectDragIconScript : MonoBehaviour, IBeginDragHandler {
 
+    public delegate void ClickAction();
+    public static event ClickAction OnClicked;
 	// Use this for initialization
 	void Start () 
 	{
@@ -33,6 +35,7 @@ public class DetectDragIconScript : MonoBehaviour, IBeginDragHandler {
 		child.GetComponent<BoxCollider>().enabled = false;
 
         child.transform.parent = MainARHandler.Instance.MainARCamera.GetComponentInChildren<CameraModelScript>().transform;
+        MainARHandler.Instance.CurrentItem = child;
 		child.transform.position = Vector3.zero;
         child.transform.localPosition += new Vector3(0, 0, 30f);
 		child.transform.rotation = Quaternion.identity;
@@ -41,10 +44,11 @@ public class DetectDragIconScript : MonoBehaviour, IBeginDragHandler {
 		child.transform.localPosition = Vector3.zero;
 
 		child.transform.localRotation = Quaternion.Euler(0, 180, 0);
-
+        if(OnClicked != null)
+            OnClicked();
 		if (refScript.ItemID == InventoryItemId.woodSword)
 						child.transform.localScale *= 2.5f;
 		else if (refScript.ItemID == InventoryItemId.woodFrame)
-						child.transform.localScale *= 3f;
+						child.transform.localScale *= 6f;
 	}
 }

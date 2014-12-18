@@ -63,6 +63,7 @@ public class MainARHandler : MonoBehaviour
     private SoundEngineScript SoundEngine;
 
     public Camera MainARCamera { get { return ARCamera; } }
+    public GameObject CurrentItem;
 
     private GameScenes m_CurrentGameScene;
     private GameScenes m_PreviousGameScene;

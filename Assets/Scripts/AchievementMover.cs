@@ -5,7 +5,7 @@ public class AchievementMover : MonoBehaviour
 {
 	private Vector3 startPos;
 	private RectTransform rect;
-	private float speed = 20f;
+	private float speed = 3.5f;
 	void OnEnable()
 	{
 		rect = GetComponent<RectTransform> ();
@@ -17,6 +17,6 @@ public class AchievementMover : MonoBehaviour
 	}
 	void Update()
 	{
-		rect.transform.position = new Vector3 (rect.transform.position.x, rect.transform.position.y + (Time.deltaTime * speed), rect.transform.position.z);
+		rect.transform.position = new Vector3 (rect.transform.position.x, rect.transform.position.y - (Time.deltaTime * speed), rect.transform.position.z);
 	}
 }

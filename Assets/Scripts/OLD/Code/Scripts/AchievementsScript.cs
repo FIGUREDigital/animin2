@@ -112,7 +112,7 @@ public class AchievementsScript : MonoBehaviour
 		case AchievementTypeId.Tutorial:
 			{
 				Title.text = "Yo!";
-				BackgroundGradient.color = new Color32(255,190,38,255);
+				BackgroundGradient.color = new Color32(255,190,38,0);
 				Description.text = "Well done! Keep taking care of your Animin and training them up.";
 				MedalIcon.sprite = store.GetMedel(AchievementMedels.achievementIconWorm);
 				break;

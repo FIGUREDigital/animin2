@@ -140,7 +140,6 @@ public class EvolutionManager
     {
         while (ProfilesManagementScript.Singleton.CurrentAnimin.ZefTokens >= mNextMarker)
         {
-            Debug.Log("Updating Next Marker : [" + mNextMarker + "];");
             mNextMarker += MARKER_RATE;
             mEvoStar = !mEvoStar;
             mCurrentMarker++;

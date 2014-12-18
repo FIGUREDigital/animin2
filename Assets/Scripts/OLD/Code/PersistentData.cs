@@ -3,6 +3,17 @@ using System.Collections.Generic;
 using System;
 using UnityEngine.UI;
 
+
+[System.Serializable]
+public struct CaringScreenItem{
+    public InventoryItemId Id;
+    public Vector3 Position;
+    public CaringScreenItem(InventoryItemId id, Vector3 pos){
+        Id = id;
+        Position = pos;
+    }
+}
+
 [System.Serializable]
 public class PersistentData
 {
@@ -43,6 +54,43 @@ public class PersistentData
 	private float fitness;
 	private float evolution;
 	private float health;
+
+
+
+
+    public CaringScreenItem[] m_CaringScreenItems;
+
+    public void SaveCaringScreenItem(GameObject[] objects){
+        Debug.Log("Objects.length : [" + objects.Length + "];");
+        m_CaringScreenItems = new CaringScreenItem[objects.Length];
+        for (int i = 0; i < objects.Length; i++)
+        {
+            Debug.Log("Saving Item : [" + i + "];");
+            m_CaringScreenItems[i] = new CaringScreenItem(objects[i].GetComponent<UIPopupItemScript>().Id, objects[i].transform.position);
+        }
+    }
+    public GameObject[] LoadCaringScreenItem(){
+        Debug.Log("LoadCaringScreenItem called! m_CaringScreenItems : [" + m_CaringScreenItems + "];");
+        if (m_CaringScreenItems == null)
+            return null;
+        GameObject[] returnGOs = new GameObject[m_CaringScreenItems.Length];
+        for (int i = 0; i < m_CaringScreenItems.Length; i++)
+        {
+            GameObject resourceLoaded = (GameObject)Resources.Load(InventoryItemData.Items[(int)m_CaringScreenItems[i].Id].PrefabId);
+            returnGOs[i] = (GameObject)GameObject.Instantiate(resourceLoaded);
+
+            returnGOs[i].transform.parent = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().ActiveWorld.transform;
+
+            returnGOs[i].transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            returnGOs[i].transform.localRotation = Quaternion.Euler(0, UnityEngine.Random.Range(0, 360), 0);
+
+            returnGOs[i].transform.position = m_CaringScreenItems[i].Position;
+        }
+        return returnGOs;
+    }
+
+
+
 
 	public int Age
 	{

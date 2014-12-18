@@ -32,7 +32,6 @@ public class PlayerProfileData
             m_TutorialBoxLandPlayed = value;
         }
     }
-
     public bool TutorialCanonClashPlayed
     {
         get

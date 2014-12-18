@@ -30,12 +30,10 @@ public enum InventoryItemId
     Spinach,
     AlmondMilk,
     Avocado,
-    //Noodles,
     Carrot,
     Chips,
     Toast,
     watermelon,
-    //Banana,
 
     Boombox,
     Clock,
@@ -43,7 +41,6 @@ public enum InventoryItemId
     EDM808,
     EDMKsynth,
     Lightbulb,
-    //mintclock,
     paperCalendar,
     woodSword,
     woodFrame,
@@ -51,10 +48,11 @@ public enum InventoryItemId
     FartButton,
 
     Pill,
-    //Syringe,
     Plaster,
 
     Radio,
+
+    Banana,
 
     Count,
 }
@@ -83,66 +81,32 @@ public class InventoryItemData
         SpriteStore store = MainARHandler.Instance.SpriteStore;
         Items = new InventoryItemBankData[(int)InventoryItemId.Count];
 
-        /*00*/
         Items[(int)InventoryItemId.Strawberry] = new InventoryItemBankData() { Id = InventoryItemId.Strawberry, PrefabId = "Prefabs/strawberry2", SpriteName = store.GetSprite(InventoryItemId.Strawberry), ItemType = PopupItemType.Food };
-        /*01*/
         Items[(int)InventoryItemId.Spinach] = new InventoryItemBankData() { Id = InventoryItemId.Spinach, PrefabId = "Prefabs/spinach", SpriteName = store.GetSprite(InventoryItemId.Spinach),  ItemType = PopupItemType.Food };
-        /*02*/
         Items[(int)InventoryItemId.Blueberry] = new InventoryItemBankData() { Id = InventoryItemId.Blueberry, PrefabId = "Prefabs/blueberry", SpriteName = store.GetSprite(InventoryItemId.Blueberry),  ItemType = PopupItemType.Food };
-        /*03*/
         Items[(int)InventoryItemId.AlmondMilk] = new InventoryItemBankData() { Id = InventoryItemId.AlmondMilk, PrefabId = "Prefabs/almondMilk", SpriteName = store.GetSprite(InventoryItemId.AlmondMilk),  ItemType = PopupItemType.Food };
-        /*04*/
         Items[(int)InventoryItemId.Avocado] = new InventoryItemBankData() { Id = InventoryItemId.Avocado, PrefabId = "Prefabs/avocado", SpriteName = store.GetSprite(InventoryItemId.Avocado),  ItemType = PopupItemType.Food };
-        /*05*///Items[(int)InventoryItemId.Noodles] = new InventoryItemBankData() { Id = InventoryItemId.Blueberry, PrefabId = "Prefabs/blueberry", SpriteName = Resources.Load(ITEM_PATH + "blueberry_icon") as Sprite,  ItemType = PopupItemType.Food };
-        /*06*/
         Items[(int)InventoryItemId.Carrot] = new InventoryItemBankData() { Id = InventoryItemId.Carrot, PrefabId = "Prefabs/carrot", SpriteName = store.GetSprite(InventoryItemId.Carrot),  ItemType = PopupItemType.Food };
-        /*07*/
         Items[(int)InventoryItemId.Chips] = new InventoryItemBankData() { Id = InventoryItemId.Chips, PrefabId = "Prefabs/chips", SpriteName = store.GetSprite(InventoryItemId.Chips),  ItemType = PopupItemType.Food };
-        /*08*/
         Items[(int)InventoryItemId.Toast] = new InventoryItemBankData() { Id = InventoryItemId.Toast, PrefabId = "Prefabs/toast", SpriteName = store.GetSprite(InventoryItemId.Toast),  ItemType = PopupItemType.Food };
-        /*09*/
         Items[(int)InventoryItemId.watermelon] = new InventoryItemBankData() { Id = InventoryItemId.watermelon, PrefabId = "Prefabs/watermelon", SpriteName = store.GetSprite(InventoryItemId.watermelon),  ItemType = PopupItemType.Food };
-        /*10*///Items[(int)InventoryItemId.Noodles] = new InventoryItemBankData() { Id = InventoryItemId.Noodles, PrefabId = "Prefabs/Noodles", SpriteName = Resources.Load(ITEM_PATH + "blueberry_icon") as Sprite,  ItemType = PopupItemType.Food };
-        /*11*/
         Items[(int)InventoryItemId.Carrot] = new InventoryItemBankData() { Id = InventoryItemId.Carrot, PrefabId = "Prefabs/Carrot", SpriteName = store.GetSprite(InventoryItemId.Carrot),  ItemType = PopupItemType.Food };
-        /*12*/
-        //Items[(int)InventoryItemId.Banana] = new InventoryItemBankData() { Id = InventoryItemId.Banana, PrefabId = "Prefabs/banana", SpriteName = Resources.Load(ITEM_PATH + "banana_icon") as Sprite,  ItemType = PopupItemType.Food };
-
-        /*13*/
         Items[(int)InventoryItemId.Boombox] = new InventoryItemBankData() { Id = InventoryItemId.Boombox, PrefabId = "Prefabs/boombox", SpriteName = store.GetSprite(InventoryItemId.Boombox),  ItemType = PopupItemType.Item };
-        /*14*/
         Items[(int)InventoryItemId.Clock] = new InventoryItemBankData() { Id = InventoryItemId.Clock, PrefabId = "Prefabs/mintclock", SpriteName = store.GetSprite(InventoryItemId.Clock),  ItemType = PopupItemType.Item };
-        /*15*/
         Items[(int)InventoryItemId.EDMJuno] = new InventoryItemBankData() { Id = InventoryItemId.EDMJuno, PrefabId = "Prefabs/juno", SpriteName = store.GetSprite(InventoryItemId.EDMJuno),  ItemType = PopupItemType.Item };
-        /*16*/
         Items[(int)InventoryItemId.EDM808] = new InventoryItemBankData() { Id = InventoryItemId.EDM808, PrefabId = "Prefabs/808", SpriteName = store.GetSprite(InventoryItemId.EDM808),  ItemType = PopupItemType.Item };
-        /*17*/
         Items[(int)InventoryItemId.EDMKsynth] = new InventoryItemBankData() { Id = InventoryItemId.EDMKsynth, PrefabId = "Prefabs/ksynth", SpriteName = store.GetSprite(InventoryItemId.EDMKsynth),  ItemType = PopupItemType.Item };
-        /*18*/
         Items[(int)InventoryItemId.Lightbulb] = new InventoryItemBankData() { Id = InventoryItemId.Lightbulb, PrefabId = "Prefabs/Lightbulb", SpriteName = store.GetSprite(InventoryItemId.Lightbulb),  ItemType = PopupItemType.Item };
-        /*19*///Items[(int)InventoryItemId.mintclock] = new InventoryItemBankData() { Id = InventoryItemId.mintclock, PrefabId = "Prefabs/mintclock", SpriteName = Resources.Load(ITEM_PATH + "mintclock_icon") as Sprite,  ItemType = PopupItemType.Item };
-        /*20*/
         Items[(int)InventoryItemId.paperCalendar] = new InventoryItemBankData() { Id = InventoryItemId.paperCalendar, PrefabId = "Prefabs/paperCalendar", SpriteName = store.GetSprite(InventoryItemId.paperCalendar),  ItemType = PopupItemType.Item };
-        /*21*/
         Items[(int)InventoryItemId.Camera] = new InventoryItemBankData() { Id = InventoryItemId.Camera, PrefabId = "Prefabs/camera", SpriteName = store.GetSprite(InventoryItemId.Camera),  ItemType = PopupItemType.Item };
-        /*22*/
         Items[(int)InventoryItemId.FartButton] = new InventoryItemBankData() { Id = InventoryItemId.FartButton, PrefabId = "Prefabs/fartbutton", SpriteName = store.GetSprite(InventoryItemId.FartButton),  ItemType = PopupItemType.Item };
-
-        /*24*/
         Items[(int)InventoryItemId.woodSword] = new InventoryItemBankData() { Id = InventoryItemId.woodSword, PrefabId = "Prefabs/woodSword", SpriteName = store.GetSprite(InventoryItemId.woodSword),  ItemType = PopupItemType.Item };
-        /*25*/
         Items[(int)InventoryItemId.woodFrame] = new InventoryItemBankData() { Id = InventoryItemId.woodFrame, PrefabId = "Prefabs/woodFrame", SpriteName = store.GetSprite(InventoryItemId.woodFrame),  ItemType = PopupItemType.Item };
-
-
-        /*26*/
         Items[(int)InventoryItemId.Pill] = new InventoryItemBankData() { Id = InventoryItemId.Pill, PrefabId = "Prefabs/capsule", SpriteName = store.GetSprite(InventoryItemId.Pill),  ItemType = PopupItemType.Medicine };
-        /*27*/
         Items[(int)InventoryItemId.Plaster] = new InventoryItemBankData() { Id = InventoryItemId.Plaster, PrefabId = "Prefabs/plaster", SpriteName = store.GetSprite(InventoryItemId.Plaster),  ItemType = PopupItemType.Medicine };
-        /*28*/
         //Items[(int)InventoryItemId.Syringe] = new InventoryItemBankData() { Id = InventoryItemId.Syringe, PrefabId = "Prefabs/syringe", SpriteName = store.GetSprite(InventoryItemId.Syringe),  ItemType = PopupItemType.Medicine };
-
-        /*23*/
         Items[(int)InventoryItemId.Radio] = new InventoryItemBankData() { Id = InventoryItemId.Radio, PrefabId = "Prefabs/radio", SpriteName = store.GetSprite(InventoryItemId.Radio),  ItemType = PopupItemType.Item };
+        Items[(int)InventoryItemId.Banana] = new InventoryItemBankData() { Id = InventoryItemId.Banana, PrefabId = "Prefabs/banana", SpriteName = Resources.Load(ITEM_PATH + "banana_icon") as Sprite,  ItemType = PopupItemType.Food };
     }
 
     #endregion
@@ -340,9 +304,25 @@ public class CharacterProgressScript : MonoBehaviour
         animationController = GetComponent<AnimationControllerScript>();
         CurrentAction = ActionId.EnterSleep;
 
+        GameObject[] gos = ProfilesManagementScript.Singleton.CurrentAnimin.LoadCaringScreenItem();
+        if (gos != null)
+            for (int i = 0; i < gos.Length; i++)
+                GroundItems.Add(gos[i]);
+
         //animationController.IsSleeping = true;
         //CurrentAction = ActionId.Sleep;
         //SleepBoundingBox.SetActive(true);
+    }
+    void OnDestroy() {
+
+        for (int i = 0; i < groundItemsOnARscene.Count; i++)
+        {
+            ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(groundItemsOnARscene[i].GetComponent<UIPopupItemScript> ().Id,1);
+        }
+
+        Debug.Log("ON DESTROYED! groundItemsOnNonARScene : ["+groundItemsOnNonARScene.Count+"];");
+        ProfilesManagementScript.Singleton.CurrentAnimin.SaveCaringScreenItem(groundItemsOnNonARScene.ToArray());
+        SaveAndLoad.Instance.SaveAllData();
     }
 
     void Start()

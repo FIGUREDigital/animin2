@@ -82,6 +82,15 @@ public class TutorialHandler : MonoBehaviour
 
     public string CurrentAdHocExitCond{ get { return m_CurrentAdHocExitCond; } }
 
+    private GameObject m_AchievmentObject;
+    private GameObject AchievmentObject{
+        get{
+            if (m_AchievmentObject == null)
+                m_AchievmentObject = UiPages.GetPage(Pages.CaringPage).GetComponentInChildren<AchievementsScript>().AchievementObject;
+            return m_AchievmentObject;
+        }
+    }
+
     private bool m_WaitingForInput;
 
     private bool WaitingForInput
@@ -212,6 +221,8 @@ public class TutorialHandler : MonoBehaviour
                     if (CheckStartCondition(i))
                     {
                         if (m_TutorialUIParent == null)
+                            return;
+                        if (AchievmentObject.activeInHierarchy)
                             return;
                         m_TutorialUIParent.SetActive(true);
                         m_WormAnimator.gameObject.SetActive(true);

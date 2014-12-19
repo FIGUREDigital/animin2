@@ -73,6 +73,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 0b0b61197d5cf464f8c77d0ec50ebbef, type: 3}
   - {fileID: 21300000, guid: aed7a5d853834da49bc26856e499ec59, type: 3}
   - {fileID: 21300000, guid: af81b7903463e4349871d696a6fdc11a, type: 3}
+  - {fileID: 21300000, guid: 9949d33280cc91b4fa654c47718ca2c2, type: 3}
   - {fileID: 21300000, guid: 83d06456ddbfe48268c4f50957504bd2, type: 3}
   MedelSprites:
   - {fileID: 21300000, guid: d8a52f4433faf1e4992316ebc9cb274d, type: 3}

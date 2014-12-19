@@ -57,10 +57,11 @@ public enum InventoryItemId
     Beetroot,
     Chocolate,
     ChocoCake,
-    VanillaCake,
+    CakeVanilla,
     Pizza,
     Noodles,
     Kiwi,
+    Cereal,
 
     Count,
 }
@@ -119,10 +120,11 @@ public class InventoryItemData
         Items[(int)InventoryItemId.Beetroot] = new InventoryItemBankData() { Id = InventoryItemId.Beetroot, PrefabId = "Prefabs/Items/beetroot", SpriteName = store.GetSprite(InventoryItemId.Beetroot)  as Sprite,  ItemType = PopupItemType.Food };
         Items[(int)InventoryItemId.Chocolate] = new InventoryItemBankData() { Id = InventoryItemId.Chocolate, PrefabId = "Prefabs/Items/chocolate", SpriteName = store.GetSprite(InventoryItemId.Chocolate)  as Sprite,  ItemType = PopupItemType.Food };
         Items[(int)InventoryItemId.ChocoCake] = new InventoryItemBankData() { Id = InventoryItemId.ChocoCake, PrefabId = "Prefabs/Items/cakeChoco", SpriteName = store.GetSprite(InventoryItemId.ChocoCake)  as Sprite,  ItemType = PopupItemType.Food };
-        Items[(int)InventoryItemId.VanillaCake] = new InventoryItemBankData() { Id = InventoryItemId.VanillaCake, PrefabId = "Prefabs/Items/cakeVanilla", SpriteName = store.GetSprite(InventoryItemId.VanillaCake)  as Sprite,  ItemType = PopupItemType.Food };
+        Items[(int)InventoryItemId.CakeVanilla] = new InventoryItemBankData() { Id = InventoryItemId.CakeVanilla, PrefabId = "Prefabs/Items/cakeVanilla", SpriteName = store.GetSprite(InventoryItemId.CakeVanilla)  as Sprite,  ItemType = PopupItemType.Food };
         Items[(int)InventoryItemId.Pizza] = new InventoryItemBankData() { Id = InventoryItemId.Pizza, PrefabId = "Prefabs/Items/pizza", SpriteName = store.GetSprite(InventoryItemId.Pizza)  as Sprite,  ItemType = PopupItemType.Food };
         Items[(int)InventoryItemId.Noodles] = new InventoryItemBankData() { Id = InventoryItemId.Noodles, PrefabId = "Prefabs/Items/noodles", SpriteName = store.GetSprite(InventoryItemId.Noodles)  as Sprite,  ItemType = PopupItemType.Food };
         Items[(int)InventoryItemId.Kiwi] = new InventoryItemBankData() { Id = InventoryItemId.Kiwi, PrefabId = "Prefabs/Items/kiwi", SpriteName = store.GetSprite(InventoryItemId.Kiwi)  as Sprite,  ItemType = PopupItemType.Food };
+        Items[(int)InventoryItemId.Cereal] = new InventoryItemBankData() { Id = InventoryItemId.Cereal, PrefabId = "Prefabs/Items/cereal", SpriteName = store.GetSprite(InventoryItemId.Cereal)  as Sprite,  ItemType = PopupItemType.Food };
 
     }
 
@@ -602,6 +604,8 @@ public class CharacterProgressScript : MonoBehaviour
 
         for (int i = 0; i < GroundItems.Count; ++i)
         {
+            if (GroundItems[i] == null)
+                continue;
             if (GroundItems[i].GetComponent<UIPopupItemScript>() == null)
                 continue;
 

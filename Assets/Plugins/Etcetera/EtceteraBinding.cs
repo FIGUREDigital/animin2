@@ -459,8 +459,11 @@ public class EtceteraBinding
 	// Writes the given image to the users photo album
     public static void saveImageToPhotoAlbum( string filePath )
     {
-        if( Application.platform == RuntimePlatform.IPhonePlayer )
-			_etceteraSaveImageToPhotoAlbum( filePath );
+        if (Application.platform == RuntimePlatform.IPhonePlayer)
+        {
+            _etceteraSaveImageToPhotoAlbum(filePath);
+            File.Delete(filePath);
+        }
     }
 
 

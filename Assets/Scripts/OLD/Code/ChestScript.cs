@@ -59,6 +59,7 @@ public class ChestScript : MonoBehaviour
     };
 
     InventoryItemId[] StrongFoods = new InventoryItemId[]{
+        InventoryItemId.CakeVanilla,
         InventoryItemId.Noodles,
         InventoryItemId.Chocolate,
         InventoryItemId.Spinach,
@@ -68,11 +69,11 @@ public class ChestScript : MonoBehaviour
     InventoryItemId[] MediumFoods = new InventoryItemId[]{
         InventoryItemId.Chips, InventoryItemId.Pizza,
         InventoryItemId.ChocoCake,
-        InventoryItemId.ChocoCake,
         InventoryItemId.Avocado,
         InventoryItemId.AlmondMilk,
         InventoryItemId.Toast,
-        InventoryItemId.Banana
+        InventoryItemId.Banana,
+        InventoryItemId.Cereal
     };
     InventoryItemId[] WeakFoods = new InventoryItemId[]{
         InventoryItemId.Strawberry,

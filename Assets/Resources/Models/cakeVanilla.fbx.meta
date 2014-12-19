@@ -4,9 +4,15 @@ ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
     100000: //RootNode
+    100002: cake_van
+    100004: Cinema4D_Editor
     400000: //RootNode
+    400002: cake_van
+    400004: Cinema4D_Editor
     2300000: //RootNode
+    2300002: cake_van
     3300000: //RootNode
+    3300002: cake_van
     4300000: cake_van
     9500000: //RootNode
   materials:

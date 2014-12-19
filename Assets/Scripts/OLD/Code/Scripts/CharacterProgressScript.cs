@@ -1704,7 +1704,7 @@ public class CharacterProgressScript : MonoBehaviour
                     OnDragItem();
 
                     MainARHandler.Instance.CurrentItem = DragableObject;
-                    
+                    MainARHandler.Instance.DraggedFromStage = true;
                     if (hadRayCollision && (hitInfo.collider.name.StartsWith("Invisible Ground Plane") || hitInfo.collider.name.StartsWith("Extended")))
 			//if(hadRayCollision && hitInfo.collider.name.StartsWith("SecondGroundPlane"))
                     {
@@ -1807,7 +1807,6 @@ public class CharacterProgressScript : MonoBehaviour
                 //Debug.Log("Velocity : ["+(int)charControl.velocity.magnitude+"|"+(int)controller.Movement.magnitude+"];");
 
                 Vector3 proj = Vector3.Project(charControl.velocity, controller.Movement);
-                Debug.Log("Projection : [" + proj.magnitude + "];");
                 if (proj.magnitude >= 1f && !m_HasStartedMoving)
                 {
                     m_HasStartedMoving = true;

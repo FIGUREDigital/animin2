@@ -48,14 +48,8 @@ public class DragDropMainBarItem : MonoBehaviour, IBeginDragHandler, IDragHandle
 					
         child.transform.parent = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().ActiveWorld.transform;
 					
-
-
-        //child.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-        //child.transform.localScale *= 10;
         child.transform.localRotation = Quaternion.Euler(0, UnityEngine.Random.Range(0, 360), 0);
-					
-        //child.GetComponent<ReferencedObjectScript>().Reference = refScript.Reference;
-					
+
         UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().DragedObjectedFromUIToWorld = true;
         if(OnClicked != null)
             OnClicked();
@@ -66,8 +60,7 @@ public class DragDropMainBarItem : MonoBehaviour, IBeginDragHandler, IDragHandle
             UIGlobalVariablesScript.Singleton.SoundEngine.Play(GenericSoundId.DropItem);
         else if (popScript.Type == PopupItemType.Medicine)
             UIGlobalVariablesScript.Singleton.SoundEngine.Play(GenericSoundId.DropMeds);
-        Transform trans = child.transform;
-        trans.position = hit.point;
+        child.transform.position = hit.point;
         UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().GroundItems.Add(child);
     }
 }

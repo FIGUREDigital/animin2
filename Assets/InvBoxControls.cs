@@ -66,10 +66,13 @@ public class InvBoxControls : MonoBehaviour {
         
         bool isNonArScene = UIGlobalVariablesScript.Singleton.NonSceneRef.activeInHierarchy;
 
-        ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(m_ItemScript.Id,1);
-        UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().GroundItems.Remove(GO);
+        if (MainARHandler.Instance.DraggedFromStage)
+        {
+            ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(m_ItemScript.Id, 1);
+        }
         
         m_CaringPageControls.DisappearAllItemUIs();
+        
         
         UnityEngine.Object.Destroy(GO);
         OnDropItem();

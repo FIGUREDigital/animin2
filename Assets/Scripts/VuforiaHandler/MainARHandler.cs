@@ -64,7 +64,7 @@ public class MainARHandler : MonoBehaviour
 
     public Camera MainARCamera { get { return ARCamera; } }
     public GameObject CurrentItem;
-
+    public bool DraggedFromStage;
     private GameScenes m_CurrentGameScene;
     private GameScenes m_PreviousGameScene;
 

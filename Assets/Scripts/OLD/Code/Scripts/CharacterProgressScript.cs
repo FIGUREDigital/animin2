@@ -1704,7 +1704,7 @@ public class CharacterProgressScript : MonoBehaviour
                     OnDragItem();
 
                     MainARHandler.Instance.CurrentItem = DragableObject;
-                    
+                    MainARHandler.Instance.DraggedFromStage = true;
                     if (hadRayCollision && (hitInfo.collider.name.StartsWith("Invisible Ground Plane") || hitInfo.collider.name.StartsWith("Extended")))
 			//if(hadRayCollision && hitInfo.collider.name.StartsWith("SecondGroundPlane"))
                     {

@@ -36,6 +36,7 @@ public class DetectDragIconScript : MonoBehaviour, IBeginDragHandler {
 
         child.transform.parent = MainARHandler.Instance.MainARCamera.GetComponentInChildren<CameraModelScript>().transform;
         MainARHandler.Instance.CurrentItem = child;
+        MainARHandler.Instance.DraggedFromStage = false;
 		child.transform.position = Vector3.zero;
         child.transform.localPosition += new Vector3(0, 0, 30f);
 		child.transform.rotation = Quaternion.identity;

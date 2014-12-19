@@ -287,9 +287,14 @@ public class CharacterProgressScript : MonoBehaviour
     public float PortalTimer;
     private bool m_JumpedIn = false;
     public float SmallCooldownTimer;
-    private const float M_SHIT_TIME = 300.0f;
+    private const float M_SHIT_TIME = 120.0f;
     private const float M_GIFT_TIME = 100.0f;
     private const float M_HAPPINESS_DEGREDATION = 0.1f;
+    
+    private const float M_HEALTH_DEGREDATION = 0.1f;
+    private const float M_HUNGER_DEGREDATION = 0.3f;
+    private const float M_FITNESS_DEGREDATION = 0.4f;
+
 
     private GUITexture[] m_UITextures;
 
@@ -741,9 +746,9 @@ public class CharacterProgressScript : MonoBehaviour
         EvolutionManager.Instance.UpdateEvo();
 
 
-        ProfilesManagementScript.Singleton.CurrentAnimin.Hungry -= Time.deltaTime * M_HAPPINESS_DEGREDATION;
-        ProfilesManagementScript.Singleton.CurrentAnimin.Fitness -= Time.deltaTime * M_HAPPINESS_DEGREDATION;
-        ProfilesManagementScript.Singleton.CurrentAnimin.Health -= Time.deltaTime * M_HAPPINESS_DEGREDATION;
+        ProfilesManagementScript.Singleton.CurrentAnimin.Hungry -= Time.deltaTime * M_HUNGER_DEGREDATION;
+        ProfilesManagementScript.Singleton.CurrentAnimin.Fitness -= Time.deltaTime * M_FITNESS_DEGREDATION;
+        ProfilesManagementScript.Singleton.CurrentAnimin.Health -= Time.deltaTime * M_HEALTH_DEGREDATION;
 	
         //TextTest.color = new Color(1,1,1, TextTest.color.a - Time.deltaTime * 0.6f);
         //if(TextTest.color.a < 0)

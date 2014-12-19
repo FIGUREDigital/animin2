@@ -50,6 +50,8 @@ public class MinigameCollectorScript : MonoBehaviour
 	public GameObject TutorialSwipeLevelGraphic;
 	public GameObject TutorialHandGraphic;
 
+    private Object shardPrefab;
+
 	//private const int MapWidth = 5;
 	//private const int MapHeight = 5;
 
@@ -756,7 +758,13 @@ public class MinigameCollectorScript : MonoBehaviour
 					{
 						//GameObject randomParent = CubeMatrix [(int)builder.CollectionPoints[i].x, (int)builder.CollectionPoints[i].y];
 						
-						GameObject collection = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                        if(shardPrefab == null)
+                        {
+                            shardPrefab = Resources.Load("Prefabs/Shard");
+                        }
+
+                        GameObject collection = (GameObject)Instantiate(shardPrefab);
+//                        GameObject collection = GameObject.CreatePrimitive(PrimitiveType.Sphere);
 						Destroy (collection.rigidbody);
 						
 						Collections.Add (collection);
@@ -771,7 +779,7 @@ public class MinigameCollectorScript : MonoBehaviour
 						//collection.transform.localRotation = Quaternion.identity;
 						//collection.transform.localPosition = new Vector3(-1, 0.3f, -1.0f);
 						
-						collection.AddComponent<OscillationUpDownScript>();
+						//collection.AddComponent<OscillationUpDownScript>();
 						
 						SphereCollider colliderToKill = collection.GetComponent<SphereCollider>();
 						Destroy(colliderToKill);

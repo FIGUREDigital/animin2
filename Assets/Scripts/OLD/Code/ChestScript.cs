@@ -58,6 +58,34 @@ public class ChestScript : MonoBehaviour
         new ItemType[]{ ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.MediumFood, ItemType.MediumFood }
     };
 
+    InventoryItemId[] StrongFoods = new InventoryItemId[]{
+        InventoryItemId.Noodles,
+        InventoryItemId.Chocolate,
+        InventoryItemId.Spinach,
+        InventoryItemId.Kiwi,
+        InventoryItemId.Blueberry
+    };
+    InventoryItemId[] MediumFoods = new InventoryItemId[]{
+        InventoryItemId.Chips, InventoryItemId.Pizza,
+        InventoryItemId.ChocoCake,
+        InventoryItemId.ChocoCake,
+        InventoryItemId.Avocado,
+        InventoryItemId.AlmondMilk,
+        InventoryItemId.Toast,
+        InventoryItemId.Banana
+    };
+    InventoryItemId[] WeakFoods = new InventoryItemId[]{
+        InventoryItemId.Strawberry,
+        InventoryItemId.Beetroot,
+        InventoryItemId.Peanut,
+        InventoryItemId.watermelon,
+        InventoryItemId.Carrot
+    };
+
+    InventoryItemId[] StrongMeds = new InventoryItemId[]{ InventoryItemId.Pill };
+    InventoryItemId[] MediumMeds = new InventoryItemId[]{ InventoryItemId.Pill };
+    InventoryItemId[] WeakMeds = new InventoryItemId[]{ InventoryItemId.Plaster };
+
 
 
 
@@ -173,33 +201,33 @@ public class ChestScript : MonoBehaviour
                                 {
                                     case (ItemType.StrongFood):
                                         {
-                                            types = new InventoryItemId[]{ InventoryItemId.Spinach, InventoryItemId.Blueberry, InventoryItemId.Toast, InventoryItemId.ChocoCake };
+                                            types = StrongFoods;
                                         }
                                         break;
                                     case (ItemType.MediumFood):
                                         {
-                                            types = new InventoryItemId[]{ InventoryItemId.Chips, InventoryItemId.Avocado, InventoryItemId.AlmondMilk };
+                                            types = MediumFoods;
                                         }
                                         break;
                                     case (ItemType.WeakFood):
                                         {
-                                            types = new InventoryItemId[]{ InventoryItemId.Strawberry, InventoryItemId.watermelon, InventoryItemId.Carrot };
+                                            types = WeakFoods;
                                         }
                                         break;
 
                                     case (ItemType.StrongMed):
                                         {
-                                            types = new InventoryItemId[]{ InventoryItemId.Pill };
+                                            types = StrongMeds;
                                         }
                                         break;
                                     case (ItemType.MediumMed):
                                         {
-                                            types = new InventoryItemId[]{ InventoryItemId.Pill };
+                                            types = MediumMeds;
                                         }
                                         break;
                                     case (ItemType.WeakMed):
                                         {
-                                            types = new InventoryItemId[]{ InventoryItemId.Plaster };
+                                            types = WeakMeds;
                                         }
                                         break;
                                 }

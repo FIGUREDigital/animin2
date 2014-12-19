@@ -246,7 +246,7 @@ public class CaringPageControls : MonoBehaviour
                     }));
             Invoke("PopPhotoSaved", 0.3f);
             #elif UNITY_ANDROID
-            StartCoroutine(ScreenshotManager.Save( screenshotName, "Animin" ));
+            StartCoroutine(ScreenshotManager.Save( screenshotName, "Animin" , true));
             ScreenshotManager.ScreenshotFinishedSaving += PopPhoto;
             #endif
         }
@@ -255,10 +255,10 @@ public class CaringPageControls : MonoBehaviour
     void PopPhoto(string eat)
     {
         PopPhotoSaved();
+        ScreenshotManager.ScreenshotFinishedSaving -= PopPhoto;
     }
     void PopPhotoSaved()
     {
-        ScreenshotManager.ScreenshotFinishedSaving -= PopPhoto;
         if (PhotoSaved != null && PhotoSaved.GetComponent<PhotoFadeOut>() != null)
         {
             PhotoSaved.gameObject.SetActive(true);

@@ -75,6 +75,7 @@ public class InvBoxControls : MonoBehaviour {
         
         
         UnityEngine.Object.Destroy(GO);
+        UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().GroundItems.Remove(GO);
         OnDropItem();
     }
 }

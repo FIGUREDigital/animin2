@@ -102,11 +102,14 @@ public class TutorialHandler : MonoBehaviour
 
     private const string TutorialPlayerPrefID = "TUTORIALS_COMPLETED";
 
-    private bool CheckPref(int id)
+    private bool CheckTutsCompleted(int id)
     {
-        return PlayerPrefs.GetString(TutorialPlayerPrefID + id) == "true";
+        return TutorialsCompleted.Contains(Tutorials[id].Name);
     }
-
+    private List<string> TutorialsCompleted {
+        get { return ProfilesManagementScript.Singleton.CurrentProfile.TutorialsCompleted; }
+        set {ProfilesManagementScript.Singleton.CurrentProfile.TutorialsCompleted = value; }
+    }
 
 
 
@@ -159,11 +162,8 @@ public class TutorialHandler : MonoBehaviour
         m_TutorialUIParent.SetActive(false);
         m_TutorialHand.gameObject.SetActive(false);
 
-        for (int i = 0; i < Tutorials.Length; i++)
-        {
-            if (PlayerPrefs.GetString(TutorialPlayerPrefID + i) == null)
-                PlayerPrefs.SetString(TutorialPlayerPrefID + i, "false");
-        }
+        if (TutorialsCompleted == null)
+            TutorialsCompleted = new List<string>();
         StartConditions = new bool[Tutorials.Length];
 
         for (int i = 0; i < Tutorials.Length; i++)
@@ -204,10 +204,11 @@ public class TutorialHandler : MonoBehaviour
     {
         if (m_IsBlocking)
         {
+            Debug.Log("IsBlocking : [" + (int)m_BlockTimer + "];");
             m_BlockTimer -= Time.deltaTime;
-            if (m_Timer <= 0)
+            if (m_BlockTimer <= 0)
             {
-                m_Timer = 0;
+                m_BlockTimer = 0;
                 m_IsBlocking = false;
             } else
                 return;
@@ -224,6 +225,7 @@ public class TutorialHandler : MonoBehaviour
                             return;
                         if (AchievmentObject.activeInHierarchy)
                             return;
+                        m_TutorialText.text = "";
                         m_TutorialUIParent.SetActive(true);
                         m_WormAnimator.gameObject.SetActive(true);
                         //Blocker.gameObject.SetActive(true);
@@ -345,7 +347,7 @@ public class TutorialHandler : MonoBehaviour
     private bool CheckStartCondition(int id)
     {
 
-        if (CheckPref(id))
+        if (CheckTutsCompleted(id))
             return false;
 
         return StartConditions[id];
@@ -382,7 +384,7 @@ public class TutorialHandler : MonoBehaviour
 
         for (int i = 0; i < Tutorials.Length; i++)
         {
-            if (CheckPref(i) == true)
+            if (CheckTutsCompleted(i) == true)
                 continue;
             if (Tutorials[i].Condition == null)
                 continue;
@@ -402,7 +404,7 @@ public class TutorialHandler : MonoBehaviour
         {
             for (int i = 0; i < Tutorials.Length; i++)
             {
-                if (CheckPref(i) == true)
+                if (CheckTutsCompleted(i) == true)
                     continue;
                 if (Tutorials[i].Condition == null)
                     continue;
@@ -494,7 +496,10 @@ public class TutorialHandler : MonoBehaviour
 
         m_WormAnimator.SetTrigger("worm_GoIn");
 
-        PlayerPrefs.SetString(TutorialPlayerPrefID + m_CurTutorial_i, "true");
+        //PlayerPrefs.SetString(TutorialPlayerPrefID + m_CurTutorial_i, "true");
+        if (!TutorialsCompleted.Contains(Tutorials[m_CurTutorial_i].Name)){
+            TutorialsCompleted.Add(Tutorials[m_CurTutorial_i].Name);
+        }
 
         //TutorialReader.Instance.TutorialFinished[m_CurTutorial_i] = true;
 
@@ -512,7 +517,7 @@ public class TutorialHandler : MonoBehaviour
                 if (Tutorials[i].Condition.Timer != null)
                 {
                     int trig = Tutorials[i].Condition.Timer.trigi;
-                    if (trig == m_CurTutorial_i && !CheckPref(i))
+                    if (trig == m_CurTutorial_i && !CheckTutsCompleted(i))
                     {
                         SetTimerOnTutorial(i, Tutorials[i].Condition.Timer.secf);
                     }
@@ -529,11 +534,7 @@ public class TutorialHandler : MonoBehaviour
 
     public void ResetTutorials()
     {
-        for (int i = 0; i < Tutorials.Length; i++)
-        {
-            PlayerPrefs.SetString(TutorialPlayerPrefID + i, "false");
-            TurnOffTimer();
-        }
+        TutorialsCompleted = new List<string>();
     }
 
 

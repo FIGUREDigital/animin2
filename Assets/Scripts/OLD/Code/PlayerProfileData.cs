@@ -21,6 +21,8 @@ public class PlayerProfileData
 
     public bool BuyFullTbo;
 
+    public List<string> TutorialsCompleted;
+
     public bool TutorialBoxLandPlayed
     {
         get

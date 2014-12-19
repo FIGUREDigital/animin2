@@ -26,18 +26,18 @@ public class ScreenshotScript : MonoBehaviour {
 			{EtceteraBinding.saveImageToPhotoAlbum (imagePath);}) );
             iPhone.SetNoBackupFlag(path);
 #elif UNITY_ANDROID
-			
-			Application.CaptureScreenshot(screenshotName);
-			Debug.Log("Moving file from " + path);
-			bool saved = EtceteraAndroid.saveImageToGallery(path,screenshotName);
-			if(saved)
-			{
-				Debug.Log("File moved");
-			}
-			else
-			{
-				Debug.Log("File moved fail!");
-			}
+            StartCoroutine(ScreenshotManager.Save( screenshotName, "Animin" ));
+//			Application.CaptureScreenshot(screenshotName);
+//			Debug.Log("Moving file from " + path);
+//			bool saved = EtceteraAndroid.saveImageToGallery(path,screenshotName);
+//			if(saved)
+//			{
+//				Debug.Log("File moved");
+//			}
+//			else
+//			{
+//				Debug.Log("File moved fail!");
+//			}
 #endif
 		}
 		Invoke("PopPhotoSaved",0.3f);

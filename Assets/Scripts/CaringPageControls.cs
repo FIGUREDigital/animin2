@@ -232,6 +232,7 @@ public class CaringPageControls : MonoBehaviour
         if (Application.isEditor)
         {
             Application.CaptureScreenshot("screenshot.png");
+            Invoke("PopPhotoSaved", 0.3f);
         }
         else
         {
@@ -243,26 +244,21 @@ public class CaringPageControls : MonoBehaviour
                     {
                         EtceteraBinding.saveImageToPhotoAlbum(imagePath);
                     }));
+            Invoke("PopPhotoSaved", 0.3f);
             #elif UNITY_ANDROID
-			string path = Application.persistentDataPath + screenshotName;
-			Application.CaptureScreenshot(screenshotName);
-			Debug.Log("Moving file from " + path);
-			bool saved = EtceteraAndroid.saveImageToGallery(path,screenshotName);
-			if(saved)
-			{
-				Debug.Log("File moved");
-			}
-			else
-			{
-				Debug.Log("File moved fail!");
-			}
+            StartCoroutine(ScreenshotManager.Save( screenshotName, "Animin" ));
+            ScreenshotManager.ScreenshotFinishedSaving += PopPhoto;
             #endif
         }
-        Invoke("PopPhotoSaved", 0.3f);
     }
 
+    void PopPhoto(string eat)
+    {
+        PopPhotoSaved();
+    }
     void PopPhotoSaved()
     {
+        ScreenshotManager.ScreenshotFinishedSaving -= PopPhoto;
         if (PhotoSaved != null && PhotoSaved.GetComponent<PhotoFadeOut>() != null)
         {
             PhotoSaved.gameObject.SetActive(true);

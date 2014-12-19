@@ -340,9 +340,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Produced by\n\rBen Paterson\r\r\n\nDirector\n\rJoe Kletz\n\nLead Programmer\nAdrian
-    May\n\n\r\rProgramming\r \nHarry Evans\n\rJohn Hill\r\r\n\nCharacter design and
-    3D art\r\nJoe Kletz\r\n\r\nSound Effects\r\nSimon Epstein\r\n\r\nMusic\r\nAlex
+  m_Text: "Produced by\n\rBen Paterson\r\r\n\nDirector\n\rJoe Kletz\n\nChief Technical
+    Officer\nAdrian May\n\n\r\rProgramming\r \nHarry Evans\n\rJohn Hill\r\r\n\nCharacter
+    design and 3D art\r\nJoe Kletz\r\n\r\nSound Effects\r\nSimon Epstein\r\n\r\nMusic\r\nAlex
     Patten\r\n\r\n3D Generalist\r\nStuart Brown\r\n\r\nAnimation\r\nTomasz Grenda\r\n\r\nGalactic
     Overlord\r\nGavin Hay\r\n\r\nCopy Writer\r\nAdam Hartley\n\nAssistant Producer\n\rAoife
     Doherty\n\nOffice Pooch\nSuki"

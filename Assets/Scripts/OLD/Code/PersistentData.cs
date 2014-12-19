@@ -66,7 +66,7 @@ public class PersistentData
         List<CaringScreenItem> ItemList = new List<CaringScreenItem>();
         for (int i = 0; i < objects.Length; i++)
         {
-            Debug.Log("Saving Item : [" + i + "];");
+            Debug.Log("Saving Item : [" + objects[i] + "];");
             UIPopupItemScript popup = objects[i].GetComponent<UIPopupItemScript>();
             if (popup == null)
                 continue;

@@ -4,9 +4,15 @@ ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Cinema4D_Editor
+    100004: pizza
     400000: //RootNode
+    400002: Cinema4D_Editor
+    400004: pizza
     2300000: //RootNode
+    2300002: pizza
     3300000: //RootNode
+    3300002: pizza
     4300000: pizza
     9500000: //RootNode
   materials:

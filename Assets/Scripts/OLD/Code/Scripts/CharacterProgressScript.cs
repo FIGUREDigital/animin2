@@ -2052,7 +2052,7 @@ public class CharacterProgressScript : MonoBehaviour
 
     public void MoveTo(Vector3 location, bool run)
     {
-        if (Mathf.Abs(location.x) >= 180 || Mathf.Abs(location.y) >= 180)
+        if (Mathf.Abs(location.x) >= 180 || Mathf.Abs(location.z) >= 180)
             return;
         Debug.Log("Moving to point: " + location.ToString());
         IsMovingTowardsLocation = true;

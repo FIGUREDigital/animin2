@@ -4,13 +4,18 @@ using System.Collections;
 
 public class TextureImportSettings : MonoBehaviour
 {
+
+    public static void Build_Compression_Enable_Automatic_Compressed()
+    {
+        AutoCompressionSettings(TextureImporterFormat.AutomaticCompressed);
+    }
     [MenuItem("Custom/Texture/Toggle Texture/Automatic Compressed")]
-    static void ToggleCompression_Enable_Automatic_Compressed()
+    public static void ToggleCompression_Enable_Automatic_Compressed()
     {
         SelectedCompressionSettings(TextureImporterFormat.AutomaticCompressed);
     }
     [MenuItem("Custom/Texture/Toggle Texture/Automatic Truecolor")]
-    static void ToggleCompression_Enable_Automatic_Truecolor()
+    public static void ToggleCompression_Enable_Automatic_Truecolor()
     {
         SelectedCompressionSettings(TextureImporterFormat.AutomaticTruecolor);
     }
@@ -53,6 +58,19 @@ public class TextureImportSettings : MonoBehaviour
     }
     */
 
+    static void AutoCompressionSettings(TextureImporterFormat newFormat)
+    {
+        Object[] textures = GetSelectedTextures();
+        Selection.objects = new Object[0];
+        foreach (Texture tex in textures)
+        {
+            string path = AssetDatabase.GetAssetPath(tex);
+            TextureImporter textureImporter = AssetImporter.GetAtPath(path) as TextureImporter;
+            textureImporter.textureFormat = newFormat;
+            Debug.Log("Texture : [" + tex.name + "];");
+            AssetDatabase.ImportAsset(path);
+        }
+    }
     static void SelectedCompressionSettings(TextureImporterFormat newFormat)
     {
         Object[] textures = GetSelectedTextures();

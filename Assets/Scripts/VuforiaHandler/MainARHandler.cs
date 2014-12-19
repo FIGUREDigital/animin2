@@ -506,8 +506,9 @@ public class MainARHandler : MonoBehaviour
         if (CamPosRef != null)
             NonARCameraPositionRef = CamPosRef.NonARCameraPositionReference;
     }
-    void OnApplicationPause(){
-        Save();
+    void OnApplicationPause(bool pauseStatus){
+        if (pauseStatus)
+            Save();
     }
     void OnApplicationQuit(){
         Save();

@@ -28,6 +28,23 @@ class MyEditorScript {
 		CorrectBundleID ();
 	}
 
+    [MenuItem ("Custom/Build iOS/Release + Compress")]
+    static void PerformiOSBuildComp()
+    {
+        string target_dir = APP_NAME + IOS;
+        string target = TARGET_DIR + "/" + target_dir;
+        TextureImportSettings.ToggleCompression_Enable_Automatic_Compressed();
+        if(Directory.Exists(target))
+        {
+            GenericBuild(SCENES, target, BuildTarget.iPhone, BuildOptions.AcceptExternalModificationsToPlayer);
+        }
+        else
+        {
+            GenericBuild(SCENES, target, BuildTarget.iPhone, BuildOptions.None);
+        }
+        CorrectBundleID ();
+    }
+
 	[MenuItem ("Custom/Build iOS/Dev")]
 	static void PerformiOSBuildDev()
 	{

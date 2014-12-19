@@ -78,6 +78,12 @@ public class SaveAndLoad {
 	public void SaveAllData()
 	{
         StateData.ProfileList.Clear();
+        #if UNITY_IOS
+        iPhone.SetNoBackupFlag(Application.persistentDataPath);
+        iPhone.SetNoBackupFlag(Application.persistentDataPath + "/unity.txt");
+        iPhone.SetNoBackupFlag(Application.persistentDataPath + "/storeKitReceipts.archive");
+        #endif
+
 		Debug.Log ("Saving Profiles");
         for (int i =0; i< ProfilesManagementScript.Singleton.ListOfPlayerProfiles.Count; i++)
         {
@@ -109,11 +115,17 @@ public class SaveAndLoad {
             Debug.Log("Deleting old");
             File.Delete(Application.persistentDataPath + "/savedGamesBackup.anidat");
             File.Replace(Application.persistentDataPath + "/savedGamesTemp.anidat", Application.persistentDataPath + "/savedGames.anidat", Application.persistentDataPath + "/savedGamesBackup.anidat");
+            #if UNITY_IOS
+            iPhone.SetNoBackupFlag(Application.persistentDataPath + "/savedGamesBackup.anidat");
+            #endif
         }
         else
         {
             File.Copy(Application.persistentDataPath + "/savedGamesTemp.anidat", Application.persistentDataPath + "/savedGames.anidat");
         }
+        #if UNITY_IOS
+        iPhone.SetNoBackupFlag(Application.persistentDataPath + "/savedGames.anidat");
+        #endif
 
 	}	
 

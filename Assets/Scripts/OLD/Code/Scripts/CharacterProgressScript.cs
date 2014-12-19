@@ -117,7 +117,7 @@ public class InventoryItemData
         Items[(int)InventoryItemId.Banana] = new InventoryItemBankData() { Id = InventoryItemId.Banana, PrefabId = "Prefabs/banana", SpriteName = store.GetSprite(InventoryItemId.Banana) as Sprite,  ItemType = PopupItemType.Food };
         Items[(int)InventoryItemId.Peanut] = new InventoryItemBankData() { Id = InventoryItemId.Peanut, PrefabId = "Prefabs/peanut", SpriteName = store.GetSprite(InventoryItemId.Peanut)  as Sprite,  ItemType = PopupItemType.Food };
         Items[(int)InventoryItemId.Beetroot] = new InventoryItemBankData() { Id = InventoryItemId.Beetroot, PrefabId = "Prefabs/beetroot", SpriteName = store.GetSprite(InventoryItemId.Beetroot)  as Sprite,  ItemType = PopupItemType.Food };
-        Items[(int)InventoryItemId.Chocolate] = new InventoryItemBankData() { Id = InventoryItemId.Chocolate, PrefabId = "Prefabs/cholocate", SpriteName = store.GetSprite(InventoryItemId.Chocolate)  as Sprite,  ItemType = PopupItemType.Food };
+        Items[(int)InventoryItemId.Chocolate] = new InventoryItemBankData() { Id = InventoryItemId.Chocolate, PrefabId = "Prefabs/chocolate", SpriteName = store.GetSprite(InventoryItemId.Chocolate)  as Sprite,  ItemType = PopupItemType.Food };
         Items[(int)InventoryItemId.ChocoCake] = new InventoryItemBankData() { Id = InventoryItemId.ChocoCake, PrefabId = "Prefabs/cakeChoco", SpriteName = store.GetSprite(InventoryItemId.ChocoCake)  as Sprite,  ItemType = PopupItemType.Food };
         Items[(int)InventoryItemId.VanillaCake] = new InventoryItemBankData() { Id = InventoryItemId.VanillaCake, PrefabId = "Prefabs/cakeVanilla", SpriteName = store.GetSprite(InventoryItemId.VanillaCake)  as Sprite,  ItemType = PopupItemType.Food };
         Items[(int)InventoryItemId.Pizza] = new InventoryItemBankData() { Id = InventoryItemId.Pizza, PrefabId = "Prefabs/pizza", SpriteName = store.GetSprite(InventoryItemId.Pizza)  as Sprite,  ItemType = PopupItemType.Food };
@@ -337,17 +337,7 @@ public class CharacterProgressScript : MonoBehaviour
         //CurrentAction = ActionId.Sleep;
         //SleepBoundingBox.SetActive(true);
     }
-    void OnDestroy() {
 
-        for (int i = 0; i < groundItemsOnARscene.Count; i++)
-        {
-            ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(groundItemsOnARscene[i].GetComponent<UIPopupItemScript> ().Id,1);
-        }
-
-        Debug.Log("ON DESTROYED! groundItemsOnNonARScene : ["+groundItemsOnNonARScene.Count+"];");
-        ProfilesManagementScript.Singleton.CurrentAnimin.SaveCaringScreenItem(groundItemsOnNonARScene.ToArray());
-        SaveAndLoad.Instance.SaveAllData();
-    }
 
     void Start()
     {	
@@ -455,14 +445,30 @@ public class CharacterProgressScript : MonoBehaviour
 
 
     }
+    void CleanUpItems(){
+        for (int i = 0; i < groundItemsOnARscene.Count; i++)
+        {
+            ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(groundItemsOnARscene[i].GetComponent<UIPopupItemScript>().Id, 1);
+        }
 
-
-
+        Debug.Log("ON DESTROYED! groundItemsOnNonARScene : [" + groundItemsOnNonARScene.Count + "];");
+        ProfilesManagementScript.Singleton.CurrentAnimin.SaveCaringScreenItem(groundItemsOnNonARScene.ToArray());
+        SaveAndLoad.Instance.SaveAllData();
+    }
+    void OnDestroy()
+    {
+        CleanUpItems();
+    }
+    void OnApplicationQuit(){
+        CleanUpItems();
+    }
     void OnApplicationPause(bool pauseStatus)
     {
+
         //Debug.Log("pauseStatus:" + pauseStatus.ToString());
         if (pauseStatus)
         {
+            CleanUpItems();
             Stop(true);
             //CurrentAction = ActionId.EnterSleep;
         }

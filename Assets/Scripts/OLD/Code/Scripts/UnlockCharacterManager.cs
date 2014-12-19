@@ -208,10 +208,17 @@ public class UnlockCharacterManager
 
 	}
 
-	void OnApplicationPause()
+    void OnApplicationPause(bool pauseStatus)
 	{
-		ShopManager.Instance.EndStore();
-		PlayerPrefs.Save();
+        if (pauseStatus)
+        {
+            ShopManager.Instance.EndStore();
+            PlayerPrefs.Save();
+        }
+        else
+        {
+            UnlockCharacterManager.Instance.OpenShop();
+        }
 	}
 	void OnApplicationResume()
 	{

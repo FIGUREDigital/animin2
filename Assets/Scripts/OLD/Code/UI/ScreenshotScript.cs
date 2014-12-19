@@ -20,11 +20,13 @@ public class ScreenshotScript : MonoBehaviour {
 
 			string screenshotName = "screenshot"  + DateTime.Now.ToString("s") + ".png";
 			Debug.Log("Saving photo to: " + screenshotName);
+            string path = Application.persistentDataPath + screenshotName;
 #if UNITY_IOS
 			StartCoroutine( EtceteraBinding.takeScreenShot( screenshotName, imagePath =>
 			{EtceteraBinding.saveImageToPhotoAlbum (imagePath);}) );
+            iPhone.SetNoBackupFlag(path);
 #elif UNITY_ANDROID
-			string path = Application.persistentDataPath + screenshotName;
+			
 			Application.CaptureScreenshot(screenshotName);
 			Debug.Log("Moving file from " + path);
 			bool saved = EtceteraAndroid.saveImageToGallery(path,screenshotName);

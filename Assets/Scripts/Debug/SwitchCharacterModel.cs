@@ -19,4 +19,11 @@ public class SwitchCharacterModel : MonoBehaviour {
     public void AddZef(int amt){
         EvolutionManager.Instance.AddZef(amt);
     }
+    public void AddAllItems(){
+
+
+        for (int i = 0; i < (int)InventoryItemId.Count; i++){
+            ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory((InventoryItemId)i, 1);
+        }
+    }
 }

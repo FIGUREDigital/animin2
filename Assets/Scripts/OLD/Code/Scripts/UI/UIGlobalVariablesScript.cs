@@ -255,13 +255,4 @@ Gun,
     {
         //Debug.Log ("According to the scientific method, we're are in the state: "+CurrentlyActive+";");
     }
-
-    void OnApplicationPause()
-    {
-
-    }
-
-    void OnApplicationResume()
-    {
-    }
 }

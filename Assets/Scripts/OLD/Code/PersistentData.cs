@@ -87,7 +87,8 @@ public class PersistentData
 
             returnGOs[i].transform.parent = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().ActiveWorld.transform;
 
-            returnGOs[i].transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            //returnGOs[i].transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            returnGOs[i].transform.localScale *= 10;
             returnGOs[i].transform.localRotation = Quaternion.Euler(0, UnityEngine.Random.Range(0, 360), 0);
 
             returnGOs[i].transform.position = m_CaringScreenItems[i].Position;

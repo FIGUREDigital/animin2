@@ -89,40 +89,40 @@ public class InventoryItemData
         SpriteStore store = MainARHandler.Instance.SpriteStore;
         Items = new InventoryItemBankData[(int)InventoryItemId.Count];
 
-        Items[(int)InventoryItemId.Strawberry] = new InventoryItemBankData() { Id = InventoryItemId.Strawberry, PrefabId = "Prefabs/strawberry2", SpriteName = store.GetSprite(InventoryItemId.Strawberry), ItemType = PopupItemType.Food };
-        Items[(int)InventoryItemId.Spinach] = new InventoryItemBankData() { Id = InventoryItemId.Spinach, PrefabId = "Prefabs/spinach", SpriteName = store.GetSprite(InventoryItemId.Spinach),  ItemType = PopupItemType.Food };
-        Items[(int)InventoryItemId.Blueberry] = new InventoryItemBankData() { Id = InventoryItemId.Blueberry, PrefabId = "Prefabs/blueberry", SpriteName = store.GetSprite(InventoryItemId.Blueberry),  ItemType = PopupItemType.Food };
-        Items[(int)InventoryItemId.AlmondMilk] = new InventoryItemBankData() { Id = InventoryItemId.AlmondMilk, PrefabId = "Prefabs/almondMilk", SpriteName = store.GetSprite(InventoryItemId.AlmondMilk),  ItemType = PopupItemType.Food };
-        Items[(int)InventoryItemId.Avocado] = new InventoryItemBankData() { Id = InventoryItemId.Avocado, PrefabId = "Prefabs/avocado", SpriteName = store.GetSprite(InventoryItemId.Avocado),  ItemType = PopupItemType.Food };
-        Items[(int)InventoryItemId.Carrot] = new InventoryItemBankData() { Id = InventoryItemId.Carrot, PrefabId = "Prefabs/carrot", SpriteName = store.GetSprite(InventoryItemId.Carrot),  ItemType = PopupItemType.Food };
-        Items[(int)InventoryItemId.Chips] = new InventoryItemBankData() { Id = InventoryItemId.Chips, PrefabId = "Prefabs/chips", SpriteName = store.GetSprite(InventoryItemId.Chips),  ItemType = PopupItemType.Food };
-        Items[(int)InventoryItemId.Toast] = new InventoryItemBankData() { Id = InventoryItemId.Toast, PrefabId = "Prefabs/toast", SpriteName = store.GetSprite(InventoryItemId.Toast),  ItemType = PopupItemType.Food };
-        Items[(int)InventoryItemId.watermelon] = new InventoryItemBankData() { Id = InventoryItemId.watermelon, PrefabId = "Prefabs/watermelon", SpriteName = store.GetSprite(InventoryItemId.watermelon),  ItemType = PopupItemType.Food };
-        Items[(int)InventoryItemId.Carrot] = new InventoryItemBankData() { Id = InventoryItemId.Carrot, PrefabId = "Prefabs/Carrot", SpriteName = store.GetSprite(InventoryItemId.Carrot),  ItemType = PopupItemType.Food };
-        Items[(int)InventoryItemId.Boombox] = new InventoryItemBankData() { Id = InventoryItemId.Boombox, PrefabId = "Prefabs/boombox", SpriteName = store.GetSprite(InventoryItemId.Boombox),  ItemType = PopupItemType.Item };
-        Items[(int)InventoryItemId.Clock] = new InventoryItemBankData() { Id = InventoryItemId.Clock, PrefabId = "Prefabs/mintclock", SpriteName = store.GetSprite(InventoryItemId.Clock),  ItemType = PopupItemType.Item };
-        Items[(int)InventoryItemId.EDMJuno] = new InventoryItemBankData() { Id = InventoryItemId.EDMJuno, PrefabId = "Prefabs/juno", SpriteName = store.GetSprite(InventoryItemId.EDMJuno),  ItemType = PopupItemType.Item };
-        Items[(int)InventoryItemId.EDM808] = new InventoryItemBankData() { Id = InventoryItemId.EDM808, PrefabId = "Prefabs/808", SpriteName = store.GetSprite(InventoryItemId.EDM808),  ItemType = PopupItemType.Item };
-        Items[(int)InventoryItemId.EDMKsynth] = new InventoryItemBankData() { Id = InventoryItemId.EDMKsynth, PrefabId = "Prefabs/ksynth", SpriteName = store.GetSprite(InventoryItemId.EDMKsynth),  ItemType = PopupItemType.Item };
-        Items[(int)InventoryItemId.Lightbulb] = new InventoryItemBankData() { Id = InventoryItemId.Lightbulb, PrefabId = "Prefabs/Lightbulb", SpriteName = store.GetSprite(InventoryItemId.Lightbulb),  ItemType = PopupItemType.Item };
-        Items[(int)InventoryItemId.paperCalendar] = new InventoryItemBankData() { Id = InventoryItemId.paperCalendar, PrefabId = "Prefabs/paperCalendar", SpriteName = store.GetSprite(InventoryItemId.paperCalendar),  ItemType = PopupItemType.Item };
-        Items[(int)InventoryItemId.Camera] = new InventoryItemBankData() { Id = InventoryItemId.Camera, PrefabId = "Prefabs/camera", SpriteName = store.GetSprite(InventoryItemId.Camera),  ItemType = PopupItemType.Item };
-        Items[(int)InventoryItemId.FartButton] = new InventoryItemBankData() { Id = InventoryItemId.FartButton, PrefabId = "Prefabs/fartbutton", SpriteName = store.GetSprite(InventoryItemId.FartButton),  ItemType = PopupItemType.Item };
-        Items[(int)InventoryItemId.woodSword] = new InventoryItemBankData() { Id = InventoryItemId.woodSword, PrefabId = "Prefabs/woodSword", SpriteName = store.GetSprite(InventoryItemId.woodSword),  ItemType = PopupItemType.Item };
-        Items[(int)InventoryItemId.woodFrame] = new InventoryItemBankData() { Id = InventoryItemId.woodFrame, PrefabId = "Prefabs/woodFrame", SpriteName = store.GetSprite(InventoryItemId.woodFrame),  ItemType = PopupItemType.Item };
-        Items[(int)InventoryItemId.Pill] = new InventoryItemBankData() { Id = InventoryItemId.Pill, PrefabId = "Prefabs/capsule", SpriteName = store.GetSprite(InventoryItemId.Pill),  ItemType = PopupItemType.Medicine };
-        Items[(int)InventoryItemId.Plaster] = new InventoryItemBankData() { Id = InventoryItemId.Plaster, PrefabId = "Prefabs/plaster", SpriteName = store.GetSprite(InventoryItemId.Plaster),  ItemType = PopupItemType.Medicine };
-        //Items[(int)InventoryItemId.Syringe] = new InventoryItemBankData() { Id = InventoryItemId.Syringe, PrefabId = "Prefabs/syringe", SpriteName = store.GetSprite(InventoryItemId.Syringe),  ItemType = PopupItemType.Medicine };
-        Items[(int)InventoryItemId.Radio] = new InventoryItemBankData() { Id = InventoryItemId.Radio, PrefabId = "Prefabs/radio", SpriteName = store.GetSprite(InventoryItemId.Radio),  ItemType = PopupItemType.Item };
-        Items[(int)InventoryItemId.Banana] = new InventoryItemBankData() { Id = InventoryItemId.Banana, PrefabId = "Prefabs/banana", SpriteName = store.GetSprite(InventoryItemId.Banana) as Sprite,  ItemType = PopupItemType.Food };
-        Items[(int)InventoryItemId.Peanut] = new InventoryItemBankData() { Id = InventoryItemId.Peanut, PrefabId = "Prefabs/peanut", SpriteName = store.GetSprite(InventoryItemId.Peanut)  as Sprite,  ItemType = PopupItemType.Food };
-        Items[(int)InventoryItemId.Beetroot] = new InventoryItemBankData() { Id = InventoryItemId.Beetroot, PrefabId = "Prefabs/beetroot", SpriteName = store.GetSprite(InventoryItemId.Beetroot)  as Sprite,  ItemType = PopupItemType.Food };
-        Items[(int)InventoryItemId.Chocolate] = new InventoryItemBankData() { Id = InventoryItemId.Chocolate, PrefabId = "Prefabs/chocolate", SpriteName = store.GetSprite(InventoryItemId.Chocolate)  as Sprite,  ItemType = PopupItemType.Food };
-        Items[(int)InventoryItemId.ChocoCake] = new InventoryItemBankData() { Id = InventoryItemId.ChocoCake, PrefabId = "Prefabs/cakeChoco", SpriteName = store.GetSprite(InventoryItemId.ChocoCake)  as Sprite,  ItemType = PopupItemType.Food };
-        Items[(int)InventoryItemId.VanillaCake] = new InventoryItemBankData() { Id = InventoryItemId.VanillaCake, PrefabId = "Prefabs/cakeVanilla", SpriteName = store.GetSprite(InventoryItemId.VanillaCake)  as Sprite,  ItemType = PopupItemType.Food };
-        Items[(int)InventoryItemId.Pizza] = new InventoryItemBankData() { Id = InventoryItemId.Pizza, PrefabId = "Prefabs/pizza", SpriteName = store.GetSprite(InventoryItemId.Pizza)  as Sprite,  ItemType = PopupItemType.Food };
-        Items[(int)InventoryItemId.Noodles] = new InventoryItemBankData() { Id = InventoryItemId.Noodles, PrefabId = "Prefabs/noodles", SpriteName = store.GetSprite(InventoryItemId.Noodles)  as Sprite,  ItemType = PopupItemType.Food };
-        Items[(int)InventoryItemId.Kiwi] = new InventoryItemBankData() { Id = InventoryItemId.Kiwi, PrefabId = "Prefabs/kiwi", SpriteName = store.GetSprite(InventoryItemId.Kiwi)  as Sprite,  ItemType = PopupItemType.Food };
+        Items[(int)InventoryItemId.Strawberry] = new InventoryItemBankData() { Id = InventoryItemId.Strawberry, PrefabId = "Prefabs/Items/strawberry2", SpriteName = store.GetSprite(InventoryItemId.Strawberry), ItemType = PopupItemType.Food };
+        Items[(int)InventoryItemId.Spinach] = new InventoryItemBankData() { Id = InventoryItemId.Spinach, PrefabId = "Prefabs/Items/spinach", SpriteName = store.GetSprite(InventoryItemId.Spinach),  ItemType = PopupItemType.Food };
+        Items[(int)InventoryItemId.Blueberry] = new InventoryItemBankData() { Id = InventoryItemId.Blueberry, PrefabId = "Prefabs/Items/blueberry", SpriteName = store.GetSprite(InventoryItemId.Blueberry),  ItemType = PopupItemType.Food };
+        Items[(int)InventoryItemId.AlmondMilk] = new InventoryItemBankData() { Id = InventoryItemId.AlmondMilk, PrefabId = "Prefabs/Items/almondMilk", SpriteName = store.GetSprite(InventoryItemId.AlmondMilk),  ItemType = PopupItemType.Food };
+        Items[(int)InventoryItemId.Avocado] = new InventoryItemBankData() { Id = InventoryItemId.Avocado, PrefabId = "Prefabs/Items/avocado", SpriteName = store.GetSprite(InventoryItemId.Avocado),  ItemType = PopupItemType.Food };
+        Items[(int)InventoryItemId.Carrot] = new InventoryItemBankData() { Id = InventoryItemId.Carrot, PrefabId = "Prefabs/Items/carrot", SpriteName = store.GetSprite(InventoryItemId.Carrot),  ItemType = PopupItemType.Food };
+        Items[(int)InventoryItemId.Chips] = new InventoryItemBankData() { Id = InventoryItemId.Chips, PrefabId = "Prefabs/Items/chips", SpriteName = store.GetSprite(InventoryItemId.Chips),  ItemType = PopupItemType.Food };
+        Items[(int)InventoryItemId.Toast] = new InventoryItemBankData() { Id = InventoryItemId.Toast, PrefabId = "Prefabs/Items/toast", SpriteName = store.GetSprite(InventoryItemId.Toast),  ItemType = PopupItemType.Food };
+        Items[(int)InventoryItemId.watermelon] = new InventoryItemBankData() { Id = InventoryItemId.watermelon, PrefabId = "Prefabs/Items/watermelon", SpriteName = store.GetSprite(InventoryItemId.watermelon),  ItemType = PopupItemType.Food };
+        Items[(int)InventoryItemId.Carrot] = new InventoryItemBankData() { Id = InventoryItemId.Carrot, PrefabId = "Prefabs/Items/Carrot", SpriteName = store.GetSprite(InventoryItemId.Carrot),  ItemType = PopupItemType.Food };
+        Items[(int)InventoryItemId.Boombox] = new InventoryItemBankData() { Id = InventoryItemId.Boombox, PrefabId = "Prefabs/Items/boombox", SpriteName = store.GetSprite(InventoryItemId.Boombox),  ItemType = PopupItemType.Item };
+        Items[(int)InventoryItemId.Clock] = new InventoryItemBankData() { Id = InventoryItemId.Clock, PrefabId = "Prefabs/Items/mintclock", SpriteName = store.GetSprite(InventoryItemId.Clock),  ItemType = PopupItemType.Item };
+        Items[(int)InventoryItemId.EDMJuno] = new InventoryItemBankData() { Id = InventoryItemId.EDMJuno, PrefabId = "Prefabs/Items/juno", SpriteName = store.GetSprite(InventoryItemId.EDMJuno),  ItemType = PopupItemType.Item };
+        Items[(int)InventoryItemId.EDM808] = new InventoryItemBankData() { Id = InventoryItemId.EDM808, PrefabId = "Prefabs/Items/808", SpriteName = store.GetSprite(InventoryItemId.EDM808),  ItemType = PopupItemType.Item };
+        Items[(int)InventoryItemId.EDMKsynth] = new InventoryItemBankData() { Id = InventoryItemId.EDMKsynth, PrefabId = "Prefabs/Items/ksynth", SpriteName = store.GetSprite(InventoryItemId.EDMKsynth),  ItemType = PopupItemType.Item };
+        Items[(int)InventoryItemId.Lightbulb] = new InventoryItemBankData() { Id = InventoryItemId.Lightbulb, PrefabId = "Prefabs/Items/Lightbulb", SpriteName = store.GetSprite(InventoryItemId.Lightbulb),  ItemType = PopupItemType.Item };
+        Items[(int)InventoryItemId.paperCalendar] = new InventoryItemBankData() { Id = InventoryItemId.paperCalendar, PrefabId = "Prefabs/Items/paperCalendar", SpriteName = store.GetSprite(InventoryItemId.paperCalendar),  ItemType = PopupItemType.Item };
+        Items[(int)InventoryItemId.Camera] = new InventoryItemBankData() { Id = InventoryItemId.Camera, PrefabId = "Prefabs/Items/camera", SpriteName = store.GetSprite(InventoryItemId.Camera),  ItemType = PopupItemType.Item };
+        Items[(int)InventoryItemId.FartButton] = new InventoryItemBankData() { Id = InventoryItemId.FartButton, PrefabId = "Prefabs/Items/fartbutton", SpriteName = store.GetSprite(InventoryItemId.FartButton),  ItemType = PopupItemType.Item };
+        Items[(int)InventoryItemId.woodSword] = new InventoryItemBankData() { Id = InventoryItemId.woodSword, PrefabId = "Prefabs/Items/woodSword", SpriteName = store.GetSprite(InventoryItemId.woodSword),  ItemType = PopupItemType.Item };
+        Items[(int)InventoryItemId.woodFrame] = new InventoryItemBankData() { Id = InventoryItemId.woodFrame, PrefabId = "Prefabs/Items/woodFrame", SpriteName = store.GetSprite(InventoryItemId.woodFrame),  ItemType = PopupItemType.Item };
+        Items[(int)InventoryItemId.Pill] = new InventoryItemBankData() { Id = InventoryItemId.Pill, PrefabId = "Prefabs/Items/capsule", SpriteName = store.GetSprite(InventoryItemId.Pill),  ItemType = PopupItemType.Medicine };
+        Items[(int)InventoryItemId.Plaster] = new InventoryItemBankData() { Id = InventoryItemId.Plaster, PrefabId = "Prefabs/Items/plaster", SpriteName = store.GetSprite(InventoryItemId.Plaster),  ItemType = PopupItemType.Medicine };
+        //Items[(int)InventoryItemId.Syringe] = new InventoryItemBankData() { Id = InventoryItemId.Syringe, PrefabId = "Prefabs/Items/syringe", SpriteName = store.GetSprite(InventoryItemId.Syringe),  ItemType = PopupItemType.Medicine };
+        Items[(int)InventoryItemId.Radio] = new InventoryItemBankData() { Id = InventoryItemId.Radio, PrefabId = "Prefabs/Items/radio", SpriteName = store.GetSprite(InventoryItemId.Radio),  ItemType = PopupItemType.Item };
+        Items[(int)InventoryItemId.Banana] = new InventoryItemBankData() { Id = InventoryItemId.Banana, PrefabId = "Prefabs/Items/banana", SpriteName = store.GetSprite(InventoryItemId.Banana) as Sprite,  ItemType = PopupItemType.Food };
+        Items[(int)InventoryItemId.Peanut] = new InventoryItemBankData() { Id = InventoryItemId.Peanut, PrefabId = "Prefabs/Items/peanut", SpriteName = store.GetSprite(InventoryItemId.Peanut)  as Sprite,  ItemType = PopupItemType.Food };
+        Items[(int)InventoryItemId.Beetroot] = new InventoryItemBankData() { Id = InventoryItemId.Beetroot, PrefabId = "Prefabs/Items/beetroot", SpriteName = store.GetSprite(InventoryItemId.Beetroot)  as Sprite,  ItemType = PopupItemType.Food };
+        Items[(int)InventoryItemId.Chocolate] = new InventoryItemBankData() { Id = InventoryItemId.Chocolate, PrefabId = "Prefabs/Items/chocolate", SpriteName = store.GetSprite(InventoryItemId.Chocolate)  as Sprite,  ItemType = PopupItemType.Food };
+        Items[(int)InventoryItemId.ChocoCake] = new InventoryItemBankData() { Id = InventoryItemId.ChocoCake, PrefabId = "Prefabs/Items/cakeChoco", SpriteName = store.GetSprite(InventoryItemId.ChocoCake)  as Sprite,  ItemType = PopupItemType.Food };
+        Items[(int)InventoryItemId.VanillaCake] = new InventoryItemBankData() { Id = InventoryItemId.VanillaCake, PrefabId = "Prefabs/Items/cakeVanilla", SpriteName = store.GetSprite(InventoryItemId.VanillaCake)  as Sprite,  ItemType = PopupItemType.Food };
+        Items[(int)InventoryItemId.Pizza] = new InventoryItemBankData() { Id = InventoryItemId.Pizza, PrefabId = "Prefabs/Items/pizza", SpriteName = store.GetSprite(InventoryItemId.Pizza)  as Sprite,  ItemType = PopupItemType.Food };
+        Items[(int)InventoryItemId.Noodles] = new InventoryItemBankData() { Id = InventoryItemId.Noodles, PrefabId = "Prefabs/Items/noodles", SpriteName = store.GetSprite(InventoryItemId.Noodles)  as Sprite,  ItemType = PopupItemType.Food };
+        Items[(int)InventoryItemId.Kiwi] = new InventoryItemBankData() { Id = InventoryItemId.Kiwi, PrefabId = "Prefabs/Items/kiwi", SpriteName = store.GetSprite(InventoryItemId.Kiwi)  as Sprite,  ItemType = PopupItemType.Food };
 
     }
 
@@ -481,12 +481,10 @@ public class CharacterProgressScript : MonoBehaviour
     public GameObject SpawnStageItem(string prefabId, Vector3 position)
     {
 
-        CharacterProgressScript script = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>();
-		
         GameObject resource = Resources.Load<GameObject>(prefabId);
 		
         GameObject gameObject = GameObject.Instantiate(resource) as GameObject;
-        gameObject.transform.parent = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().ActiveWorld.transform;
+        gameObject.transform.parent = ActiveWorld.transform;
 		
         gameObject.transform.localPosition = position;
         //gameObject.transform.localRotation = Quaternion.Euler(0, UnityEngine.Random.Range(-180, 180), 0);
@@ -495,9 +493,11 @@ public class CharacterProgressScript : MonoBehaviour
 
         float scale = 0.1f;
         gameObject.transform.localScale = new Vector3(scale, scale, scale);
+
+		Debug.Log ("If somebody sees this, please tell Harry. Tell him [" + gameObject.name + "]; was a thing.");
         gameObject.transform.localRotation = Quaternion.Euler(0, UnityEngine.Random.Range(130, 230), 0);
 
-        script.GroundItems.Add(gameObject);
+        GroundItems.Add(gameObject);
         return gameObject;
     }
 

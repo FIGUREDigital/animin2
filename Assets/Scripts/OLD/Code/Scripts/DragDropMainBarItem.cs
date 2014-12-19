@@ -50,7 +50,8 @@ public class DragDropMainBarItem : MonoBehaviour, IBeginDragHandler, IDragHandle
 					
 
 
-        child.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+        //child.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+        //child.transform.localScale *= 10;
         child.transform.localRotation = Quaternion.Euler(0, UnityEngine.Random.Range(0, 360), 0);
 					
         //child.GetComponent<ReferencedObjectScript>().Reference = refScript.Reference;

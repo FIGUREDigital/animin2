@@ -11,11 +11,11 @@ GameObject:
   - 33: {fileID: 3300000}
   - 23: {fileID: 2300000}
   - 95: {fileID: 9500000}
-  - 65: {fileID: 6500000}
   - 114: {fileID: 11400000}
+  - 65: {fileID: 6500000}
   m_Layer: 0
   m_Name: cereal
-  m_TagString: Untagged
+  m_TagString: Items
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -69,8 +69,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: .443821073, y: .585784733, z: .186813429}
-  m_Center: {x: 0, y: .292892367, z: 0}
+  m_Size: {x: 1.77528429, y: 2.34313893, z: .747253716}
+  m_Center: {x: 0, y: 1.17156947, z: 0}
 --- !u!95 &9500000
 Animator:
   serializedVersion: 3

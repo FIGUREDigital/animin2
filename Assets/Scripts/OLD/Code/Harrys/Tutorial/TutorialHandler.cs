@@ -193,7 +193,7 @@ public class TutorialHandler : MonoBehaviour
     }
 	
 
-    void BeginBlock(){
+    public void BeginBlock(){
         m_BlockTimer = TIME_TO_BLOCK;
         m_IsBlocking = true;
     }
@@ -457,6 +457,8 @@ public class TutorialHandler : MonoBehaviour
     //- End of Lesson Processing ----------------------------------------------------------------
     public void NextButtonPress(bool ignoreCheck = false)
     {
+				if (!m_NextButton.gameObject.activeInHierarchy)
+						return;
         m_TutorialHand.gameObject.SetActive(false);
 
         Lesson CurrentLesson = Tutorials[m_CurTutorial_i].Lessons[m_Lesson_i];

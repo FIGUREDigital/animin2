@@ -392,6 +392,10 @@ public class CharacterProgressScript : MonoBehaviour
         ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.woodSword, 1);
         */
 
+				if (!ProfilesManagementScript.Singleton.CurrentProfile.StrawberryAdded) {
+						ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory (InventoryItemId.Strawberry, 1);
+						ProfilesManagementScript.Singleton.CurrentProfile.StrawberryAdded = true;
+				}
 
         for (int i = 0; i < ProfilesManagementScript.Singleton.CurrentAnimin.Inventory.Count; i++)
         {
@@ -428,6 +432,7 @@ public class CharacterProgressScript : MonoBehaviour
             }
             if (BetweenSceneData.Instance.minigame == BetweenSceneData.Minigame.Collector)
             {
+								UiPages.GetPage (Pages.CaringPage).GetComponent<CaringPageControls> ().TutorialHandler.BeginBlock ();
                 UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHocStartCond("BoxLandReturn");
                 if (BetweenSceneData.Instance.Points >= 7000)
                 {
@@ -1029,7 +1034,8 @@ public class CharacterProgressScript : MonoBehaviour
 
                     if (PortalTimer >= JumpOutAt)
                     {
-                        GetComponent<CharacterSwapManagementScript>().CurrentModel.gameObject.SetActive(true);
+                        //GetComponent<CharacterSwapManagementScript>().CurrentModel.gameObject.SetActive(true);
+                        ShaderAlpha = 1;
                         CurrentAction = ActionId.None;
                         MainARHandler.Instance.OnCharacterEnterARScene();
 
@@ -1040,8 +1046,8 @@ public class CharacterProgressScript : MonoBehaviour
                         if (!m_JumpedIn)
                         {
                             m_JumpedIn = true;
-                            GetComponent<CharacterSwapManagementScript>().CurrentModel.gameObject.SetActive(false);
-
+                            //GetComponent<CharacterSwapManagementScript>().CurrentModel.gameObject.SetActive(false);
+                            ShaderAlpha = 0;
                             MainARHandler.Instance.PauseJumpOutIntoAR();
 
                             UIGlobalVariablesScript.Singleton.NonSceneRef.SetActive(false);
@@ -1055,19 +1061,7 @@ public class CharacterProgressScript : MonoBehaviour
                     }
                     else if (PortalTimer >= StartFade)
                     {
-                        /*
-                        Color c = ShaderColor;
 
-                        float diff = PortalTimer * (1 / (StopAt - StartFade));
-                        float alpha = 1 - diff;
-                        c.a = alpha;
-
-
-                        Debug.Log("Diff : [" + diff + "]; Alpha : [" + alpha + "];");
-
-                        ShaderColor = c;
-                        */
-                        //ShaderColor = Color.Lerp(ShaderColor, Color.clear, 0.5f);
                     }
 
                     break;

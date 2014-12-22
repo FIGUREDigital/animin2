@@ -189,7 +189,7 @@ public class PersistentData
 		CreatedOn = System.DateTime.Now;
 		
 		Happy = MaxHappy;
-		Hungry = MaxHungry;
+		Hungry = MaxHungry * 0.65f;
 		Fitness = MaxFitness;
 		Health = MaxHealth;
 		ZefTokens = 0;
@@ -209,6 +209,31 @@ public class PersistentData
 			Debug.Log ("Cannot add item! /nID : [" + id + "]; Data : [" + InventoryItemData.Items [(int)id].ItemType + "];");
 			return;
 		}
+        int key = 0;
+        bool doThing = false;
+        if (id == InventoryItemId.EDMKsynth)
+        {
+            key = 0;
+            doThing = true;
+        }
+        if (id == InventoryItemId.EDM808)
+        {
+            key = 8;
+            doThing = true;
+
+        }
+        if (id == InventoryItemId.EDMJuno)
+        {
+            key = 16;
+            doThing = true;
+        }
+        if (doThing)
+        {
+            for (int i = key; i < key + 8; i++)
+            {
+                EDMMixerScript.Singleton.KeysOn[i] = false;
+            }
+        }
 		for(int i=0;i<Inventory.Count;++i)
 		{
 			if(Inventory[i].Id == id)

@@ -48,6 +48,7 @@ public class PlayerProfileData
 
     private bool m_TutorialBoxLandPlayed;
     private bool m_TutorialCanonClashPlayed;
+		public bool StrawberryAdded;
 
     public static PlayerProfileData GetDefaultProfile()
     {

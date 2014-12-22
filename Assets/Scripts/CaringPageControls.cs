@@ -196,19 +196,25 @@ public class CaringPageControls : MonoBehaviour
     }
     public void DisableInvBox()
     {
-        if (InvBox.GetComponentInChildren<InvBoxControls>() != null)
+        if (InvBox != null)
         {
-            InvBox.GetComponentInChildren<InvBoxControls>().OnHoverEnd();
-            SetInvBox(false);
+            if (InvBox.GetComponentInChildren<InvBoxControls>() != null)
+            {
+                InvBox.GetComponentInChildren<InvBoxControls>().OnHoverEnd();
+                SetInvBox(false);
+            }
         }
     }
 
     private void SetInvBox(bool active)
     {
-        InvBox.SetActive(active);
-        Icon1.enabled = !active;
-        Icon2.enabled = !active;
-        Icon3.enabled = !active;
+        if (InvBox != null)
+        {
+            InvBox.SetActive(active);
+            Icon1.enabled = !active;
+            Icon2.enabled = !active;
+            Icon3.enabled = !active;
+        }
     }
 
     public bool GetInvBox()

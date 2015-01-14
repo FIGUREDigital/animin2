@@ -199,18 +199,22 @@ public class ProfilesManagementScript : MonoBehaviour
 			UnlockCharacterManager.Instance.UnlockCharacter();
 			UiPages.Next(Pages.AniminSelectPage);
         }
-		else{UiPages.Next(Pages.CodeErrorPage);}
         if(resultId == "Card number not valid")
         {
+			UiPages.Next(Pages.NotValidCodeErrorPage);
         }
         else if(resultId == "Card number already used")
         {
+			UiPages.Next(Pages.CodeUsedErrorPage);
         }
         else if(resultId == "Animin already activated")
         {
+			Debug.Log("WHOA: Something went weird, we shouldn't be able to do this.");
+			UiPages.Next(Pages.AniminSelectPage);
         }
         else if(resultId == "Something went wrong, please try again in a bit...")
         {
+			UiPages.Next(Pages.CodeErrorPage);
         }
         else
         {

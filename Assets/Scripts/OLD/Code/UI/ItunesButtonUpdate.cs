@@ -32,6 +32,7 @@ public class ItunesButtonUpdate : MonoBehaviour
 
 	public void GoToCodeScreen()
 	{
+		UnlockCharacterManager.Instance.ID = ProfilesManagementScript.Singleton.AniminToUnlockId;
 		UiPages.Next (Pages.CodeInputPage);
 	}
 

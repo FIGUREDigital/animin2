@@ -144,23 +144,107 @@ public class Account
 		
 	}
 
+
+	//Customer Service Codes
+	private const string FakeCode1 = "FDG015S7";
+	private const string FakeCode2 = "GL04T9LY";
+	private const string FakeCode3 = "CY3877T2";
+	private const string FakeCode4 = "S4G984FS";
+	private const string FakeCode5 = "TTPM5PFS";
+	private const string FakeCode6 = "RR85FKL4";
+	private const string FakeCode7 = "54985TTS";
+	private const string FakeCode8 = "LS82THLM";
+	private const string FakeCode9 = "I7SMH42W";
+	private const string FakeCode10 = "6GWK0H6D";
+	private const string MasterReset = "AM989FTW";
+
+	//Custom Service Functions
+	bool FakeCodeUsed(string code)
+	{
+		if (PlayerPrefs.GetInt(code) > 0)
+		{
+			return true;
+		}
+		return false;
+	}
+	void SetCodeUsed(string code)
+	{
+		PlayerPrefs.SetInt(code, 1);
+	}
+	
+	void ResetCodes()
+	{
+		PlayerPrefs.SetInt(FakeCode1, 0);
+		PlayerPrefs.SetInt(FakeCode2, 0);
+		PlayerPrefs.SetInt(FakeCode3, 0);
+		PlayerPrefs.SetInt(FakeCode4, 0);
+		PlayerPrefs.SetInt(FakeCode5, 0);
+		PlayerPrefs.SetInt(FakeCode6, 0);
+		PlayerPrefs.SetInt(FakeCode7, 0);
+		PlayerPrefs.SetInt(FakeCode8, 0);
+		PlayerPrefs.SetInt(FakeCode9, 0);
+		PlayerPrefs.SetInt(FakeCode10, 0);
+		PlayerPrefs.SetInt(MasterReset, 0);
+	}
+	bool IsServiceCode(string code)
+	{
+		return code == FakeCode1 ||
+			   code == FakeCode2 ||
+			   code == FakeCode3 ||
+			   code == FakeCode4 ||
+			   code == FakeCode5 ||
+			   code == FakeCode6 ||
+			   code == FakeCode7 ||
+			   code == FakeCode8 ||
+			   code == FakeCode9 ||
+			   code == FakeCode10 ||
+			   code == MasterReset;
+
+
+	}
     public IEnumerator WWCheckPurchaseCode(string code) 
     {
         Debug.Log("Checking purchase code " + code);
 
-        bool demoCode = CheckDemoCode(code);
+		// OLD HARRY STUFF FOR REFERENCE
+//        bool demoCode = CheckDemoCode(code);
+//
+//        Debug.Log("It is a demo code... " + demoCode);
+//
+//        if (demoCode)
+//        {
+//            Debug.Log("Demo code entered. Current selected animin is " + ProfilesManagementScript.Singleton.AniminToUnlockId);
+//            ProfilesManagementScript.Singleton.AniminToUnlockId = PersistentData.TypesOfAnimin.TboAdult;
+//            ProfilesManagementScript.Singleton.ShowDemoCardPopup();
+//
+//        }
+		bool backdoorCode = code == MasterReset;
+		bool serviceCode = IsServiceCode(code);
 
-        Debug.Log("It is a demo code... " + demoCode);
-
-        if (demoCode)
-        {
-            Debug.Log("Demo code entered. Current selected animin is " + ProfilesManagementScript.Singleton.AniminToUnlockId);
-            ProfilesManagementScript.Singleton.AniminToUnlockId = PersistentData.TypesOfAnimin.TboAdult;
-            ProfilesManagementScript.Singleton.ShowDemoCardPopup();
-
-        }
+		if (serviceCode || backdoorCode)
+		{
+			Debug.Log("It is a service code... " + code);
+			if(backdoorCode)
+			{
+				Debug.Log("-------------Welcome back, Captain!-------------");
+				ResetCodes();
+			}
+			if(!FakeCodeUsed(code))
+			{
+				SetCodeUsed(code);
+				UnlockCharacterManager.Instance.UnlockCharacter();
+				UiPages.Next(Pages.AniminSelectPage);
+			}
+			else
+			{
+				Debug.Log("This service code has already been used: " + code);
+				UiPages.Next(Pages.CodeUsedErrorPage);
+			}
+			PlayerPrefs.Save();
+		}
         else
         {
+			Debug.Log("Sumbitting code: " + code);
             WWWForm data = new WWWForm();
 
             data.AddField( "CardNumber", code );
@@ -175,13 +259,14 @@ public class Account
 
             if (w.error != null)
             {
+				Debug.Log("GENERAL ERROR ON CODE SUBMIT: " + code);
                 Debug.Log(w.error);
                 ProfilesManagementScript.Singleton.OnAccessCodeResult("Something went wrong, please try again in a bit...");
             }
 
             else
             {           
-
+				Debug.Log("CODE RESULT RETURNED FOR: " + code);
                 Debug.Log(w.text);                              
                        
                 ProfilesManagementScript.Singleton.OnAccessCodeResult(w.text);

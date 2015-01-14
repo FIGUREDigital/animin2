@@ -26,6 +26,8 @@ public enum Pages
 	DemoCardPage,
 	ConnectionErrorPage,
 	CodeErrorPage,
+	CodeUsedErrorPage,
+	NotValidCodeErrorPage,
 	AddressInputPage,
 	CodeInputPage,
 	RestoreSuccessPage,
@@ -66,6 +68,8 @@ public class UiPages : MonoBehaviour
 	public const string RESTORE_SUCCESS_PAGE = "RestoreSuccessPage";
 	public const string RESTORE_FAIL_PAGE = "RestoreFailPage";
 	public const string CODE_ERROR_PAGE = "CodeErrorPage";
+	public const string NOT_VALID_CODE_ERROR_PAGE = "NotValidCodeErrorPage";
+	public const string CODE_USED_ERROR_PAGE = "CodeUsedErrorPage";
 	public const string CARING_PAGE = "CaringPage";
 	public const string STATS_PAGE = "StatsPage";
 	public const string MINIGAMES_PAGE = "MinigamesPage";
@@ -164,6 +168,8 @@ public class UiPages : MonoBehaviour
 		mBackMap [(int)Pages.ConnectionErrorPage] = mPages[(int)Pages.AniminSelectPage];
 		mBackMap [(int)Pages.RestoreSuccessPage] = mPages[(int)Pages.AniminSelectPage];
 		mBackMap [(int)Pages.RestoreFailPage] = mPages[(int)Pages.AniminSelectPage];
+		mBackMap [(int)Pages.NotValidCodeErrorPage] = mPages[(int)Pages.PurchasePage];
+		mBackMap [(int)Pages.CodeUsedErrorPage] = mPages[(int)Pages.PurchasePage];
 		mBackMap [(int)Pages.CodeErrorPage] = mPages[(int)Pages.PurchasePage];
 		mBackMap [(int)Pages.CaringPage] = null;
 		mBackMap [(int)Pages.StatsPage] = mPages [(int)Pages.CaringPage];
@@ -205,6 +211,12 @@ public class UiPages : MonoBehaviour
 			break;
 		case Pages.CodeErrorPage:
 			name = CODE_ERROR_PAGE;
+			break;
+		case Pages.CodeUsedErrorPage:
+			name = CODE_USED_ERROR_PAGE;
+			break;
+		case Pages.NotValidCodeErrorPage:
+			name = NOT_VALID_CODE_ERROR_PAGE;
 			break;
 		case Pages.AddressInputPage:
 			name = ADDRESS_INPUT_PAGE;

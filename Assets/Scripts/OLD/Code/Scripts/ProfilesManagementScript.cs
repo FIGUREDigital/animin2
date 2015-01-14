@@ -194,7 +194,7 @@ public class ProfilesManagementScript : MonoBehaviour
     public void OnAccessCodeResult(string resultId)
     {
         Debug.Log("Access code result is... "+resultId);
-        if(resultId == "Card successfully activated")
+		if(resultId == "Card successfully activated" || resultId == "Animin already activated")
         {
 			UnlockCharacterManager.Instance.UnlockCharacter();
 			UiPages.Next(Pages.AniminSelectPage);

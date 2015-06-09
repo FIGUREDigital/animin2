@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class Account
@@ -31,7 +31,7 @@ public class Account
 
     private const string SERVER_REALTIME_GET_URL = "http://terahard.org/Teratest/DatabaseAndScripts/RealtimeDataGet.php";
 
-    public string UniqueID{get {return ProfilesManagementScript.Singleton.CurrentProfile.UniqueID;}}
+    public string UniqueID{get {return ProfilesManagementScript.Instance.CurrentProfile.UniqueID;}}
 
 	public string UserName;
 
@@ -95,7 +95,7 @@ public class Account
 
 						string tempID = w.text.Replace (System.Environment.NewLine, "");
 //				Debug.Log("test"+UniqueID+"test");
-						ProfilesManagementScript.Singleton.NewUserProfileAdded (name, tempID);
+						ProfilesManagementScript.Instance.NewUserProfileAdded (name, tempID);
 				}
 
 //            Debug.Log( w.text );
@@ -138,7 +138,7 @@ public class Account
                 UserName = tempArray[1];
             }
 			
-			ProfilesManagementScript.Singleton.SuccessfulLogin(tempBool,code);						
+			ProfilesManagementScript.Instance.SuccessfulLogin(tempBool,code);						
 
 		}
 		
@@ -238,7 +238,10 @@ public class Account
 			else
 			{
 				Debug.Log("This service code has already been used: " + code);
-				UiPages.Next(Pages.CodeUsedErrorPage);
+				DialogPage.SetMessage("This code has already been used to unlock an Animin.");
+				//error box
+				UiPages.SetDialogBackPage(Pages.PurchasePage);
+				UiPages.Next(Pages.DialogPage);
 			}
 			PlayerPrefs.Save();
 		}
@@ -249,7 +252,7 @@ public class Account
 
             data.AddField( "CardNumber", code );
             data.AddField( "UserID", UniqueID );
-            data.AddField("Animin", ProfilesManagementScript.Singleton.AniminToUnlockId.ToString());
+            data.AddField("Animin", ProfilesManagementScript.Instance.AniminToUnlockId.ToString());
 
 
 
@@ -261,7 +264,7 @@ public class Account
             {
 				Debug.Log("GENERAL ERROR ON CODE SUBMIT: " + code);
                 Debug.Log(w.error);
-                ProfilesManagementScript.Singleton.OnAccessCodeResult("Something went wrong, please try again in a bit...");
+                ProfilesManagementScript.Instance.OnAccessCodeResult("Something went wrong, please try again in a bit...");
             }
 
             else
@@ -269,7 +272,7 @@ public class Account
 				Debug.Log("CODE RESULT RETURNED FOR: " + code);
                 Debug.Log(w.text);                              
                        
-                ProfilesManagementScript.Singleton.OnAccessCodeResult(w.text);
+                ProfilesManagementScript.Instance.OnAccessCodeResult(w.text);
 
             }
         }

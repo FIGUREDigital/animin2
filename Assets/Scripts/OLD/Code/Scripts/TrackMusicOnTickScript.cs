@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class TrackMusicOnTickScript : MonoBehaviour {
@@ -19,7 +19,7 @@ public class TrackMusicOnTickScript : MonoBehaviour {
 
 	void OnClick()
 	{
-        ProfilesManagementScript.Singleton.CurrentProfile.Settings.AudioEnabled = !ProfilesManagementScript.Singleton.CurrentProfile.Settings.AudioEnabled;
+        ProfilesManagementScript.Instance.CurrentProfile.Settings.AudioEnabled = !ProfilesManagementScript.Instance.CurrentProfile.Settings.AudioEnabled;
 
 	}
 }

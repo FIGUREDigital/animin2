@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 using System.IO;
 using System;
@@ -21,7 +21,7 @@ public class PlayerProfileData
 
     public bool BuyFullTbo;
 
-    public List<string> TutorialsCompleted;
+    public List<string> TutorialsCompleted = new List<string>();
 
     public bool TutorialBoxLandPlayed
     {
@@ -48,7 +48,12 @@ public class PlayerProfileData
 
     private bool m_TutorialBoxLandPlayed;
     private bool m_TutorialCanonClashPlayed;
-		public bool StrawberryAdded;
+    public bool m_StrawberryAdded = false;
+    public bool m_PhoneAdded = false;
+    public bool m_ShownStartEatStrawberry = false;
+    public bool m_GivenZef = false;
+    public bool m_GivenCrystals = false;
+    public int m_PhoneMessage = 0;
 
     public static PlayerProfileData GetDefaultProfile()
     {

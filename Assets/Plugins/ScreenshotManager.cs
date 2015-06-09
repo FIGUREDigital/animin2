@@ -53,7 +53,7 @@ public class ScreenshotManager : MonoBehaviour {
 				yield return instance.StartCoroutine(ScreenshotManager.Wait(.5f));
 			}
 		
-			iPhone.SetNoBackupFlag(path);
+			UnityEngine.iOS.Device.SetNoBackupFlag(path);
 		} 
 		else 
 		{
@@ -154,7 +154,7 @@ public class ScreenshotManager : MonoBehaviour {
 					yield return instance.StartCoroutine(ScreenshotManager.Wait(.5f));
 				}
 			
-				iPhone.SetNoBackupFlag(path);
+				UnityEngine.iOS.Device.SetNoBackupFlag(path);
 			}
 
 

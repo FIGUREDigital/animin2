@@ -17,7 +17,7 @@ public class NonARSceneReadout : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (gameObject.activeInHierarchy) {
-			bool isActive = UIGlobalVariablesScript.Singleton.NonARWorldRef.activeInHierarchy;
+			//bool isActive = UIGlobalVariablesScript.Singleton.NonARWorldRef.activeInHierarchy;
             m_label.text = ("Tutorial Playing : [" + (UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.IsPlaying) + "]");
 		}
 	}

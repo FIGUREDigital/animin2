@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.IO;
 using System;
+using Prime31;
 
 public class ScreenshotScript : MonoBehaviour {
 
@@ -24,7 +25,7 @@ public class ScreenshotScript : MonoBehaviour {
 #if UNITY_IOS
 			StartCoroutine( EtceteraBinding.takeScreenShot( screenshotName, imagePath =>
 			{EtceteraBinding.saveImageToPhotoAlbum (imagePath);}) );
-            iPhone.SetNoBackupFlag(path);
+            UnityEngine.iOS.Device.SetNoBackupFlag(path);
 #elif UNITY_ANDROID
             StartCoroutine(ScreenshotManager.Save( screenshotName, "Animin" ));
 //			Application.CaptureScreenshot(screenshotName);

@@ -74,7 +74,7 @@ public class SoundEngineScript : MonoBehaviour
 	void Update()
 	{
 		if (SoundFxLooper1 != null) {
-			if (!ProfilesManagementScript.Singleton.CurrentProfile.Settings.AudioEnabled) {
+			if (!ProfilesManagementScript.Instance.CurrentProfile.Settings.AudioEnabled) {
 				if (SoundFxLooper1.isPlaying)
 					SoundFxLooper1.Stop ();
 			} else {
@@ -241,9 +241,9 @@ public class SoundEngineScript : MonoBehaviour
 	
 	public void PlayFart()
 	{
-        if(!ProfilesManagementScript.Singleton.CurrentProfile.Settings.AudioEnabled) return;
+        if(!ProfilesManagementScript.Instance.CurrentProfile.Settings.AudioEnabled) return;
 
-		this.audio.PlayOneShot( FartSounds[Random.Range(0, FartSounds.Length)] );
+		this.GetComponent<AudioSource>().PlayOneShot( FartSounds[Random.Range(0, FartSounds.Length)] );
 	}
 
 
@@ -275,15 +275,15 @@ public class SoundEngineScript : MonoBehaviour
 
 	public void Play(GenericSoundId id)
 	{
-        if(!ProfilesManagementScript.Singleton.CurrentProfile.Settings.AudioEnabled) return;
-		this.audio.PlayOneShot(GenericSounds[(int)id]);
+        if(!ProfilesManagementScript.Instance.CurrentProfile.Settings.AudioEnabled) return;
+		this.GetComponent<AudioSource>().PlayOneShot(GenericSounds[(int)id]);
 	}
 
     public void Play(PersistentData.TypesOfAnimin animin, AniminEvolutionStageId creatureId, CreatureSoundId soundId)
 	{
         if (animin == PersistentData.TypesOfAnimin.TboAdult)
             animin = PersistentData.TypesOfAnimin.Tbo;
-		if(!ProfilesManagementScript.Singleton.CurrentProfile.Settings.AudioEnabled) return;
+		if(!ProfilesManagementScript.Instance.CurrentProfile.Settings.AudioEnabled) return;
 		if (CreatureSounds [(int)animin, (int)creatureId, (int)soundId] == null) {
 			Debug.Log ("Panic! Sound : [" + animin + "|" + creatureId + "|" + soundId + "] is not valid");
 			return;
@@ -293,7 +293,7 @@ public class SoundEngineScript : MonoBehaviour
 		//Debug.Log ("CreatureSounds : [" + CreatureSounds [(int)animin, (int)creatureId, (int)soundId] + "];");
 		//Debug.Log ("Is Ready to Play? : [" + CreatureSounds [(int)animin, (int)creatureId, (int)soundId].isReadyToPlay + "];");
 
-		this.GetComponent<AudioSource>().PlayOneShot(CreatureSounds[(int)animin, (int)creatureId, (int)soundId]);
+		this.GetComponent<AudioSource>().PlayOneShot(CreatureSounds[(int)animin, (int)creatureId, (int)soundId], 1);
 
 	}
 }

@@ -39,22 +39,25 @@ public class ChestScript : MonoBehaviour
         StrongMed,
     }
 
-    private ItemType[][] BronzeRewards = new ItemType[3][]
+    private ItemType[][] BronzeRewards = new ItemType[4][]
     {
         new ItemType[]{ ItemType.Zef, ItemType.WeakFood },
-        new ItemType[]{ ItemType.MediumFood },
+        new ItemType[]{ ItemType.WeakFood },
+		new ItemType[]{ ItemType.WeakFood, ItemType.WeakFood },
         new ItemType[]{ ItemType.Zef, ItemType.WeakMed }
     };
-    private ItemType[][] SilverRewards = new ItemType[3][]
+    private ItemType[][] SilverRewards = new ItemType[4][]
     {
-        new ItemType[]{ ItemType.Zef, ItemType.Zef, ItemType.MediumMed },
+		new ItemType[]{ ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.MediumMed },
         new ItemType[]{ ItemType.Zef, ItemType.Zef, ItemType.MediumFood },
-        new ItemType[]{ ItemType.WeakFood, ItemType.MediumFood }
+		new ItemType[]{ ItemType.Zef, ItemType.WeakFood, ItemType.MediumFood },
+		new ItemType[]{ ItemType.Zef, ItemType.MediumFood, ItemType.MediumFood  }
     };
-    private ItemType[][] GoldRewards = new ItemType[3][]
+    private ItemType[][] GoldRewards = new ItemType[4][]
     {
-        new ItemType[]{ ItemType.StrongFood, ItemType.MediumFood, ItemType.StrongMed, ItemType.Zef, ItemType.Zef, ItemType.Zef },
+		new ItemType[]{ ItemType.StrongFood, ItemType.MediumFood, ItemType.StrongMed, ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.Zef },
         new ItemType[]{ ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.StrongFood },
+		new ItemType[]{ ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.MediumFood, ItemType.StrongFood, ItemType.StrongFood },
         new ItemType[]{ ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.MediumFood, ItemType.MediumFood }
     };
 
@@ -87,9 +90,7 @@ public class ChestScript : MonoBehaviour
     InventoryItemId[] MediumMeds = new InventoryItemId[]{ InventoryItemId.Pill };
     InventoryItemId[] WeakMeds = new InventoryItemId[]{ InventoryItemId.Plaster };
 
-
-
-
+		
     // Use this for initialization
     void Start()
     {
@@ -122,11 +123,11 @@ public class ChestScript : MonoBehaviour
             if (Input.GetButtonUp("Fire1"))
             {
                 RaycastHit hitInfo;
-                bool hadRayCollision = false;
+//                bool hadRayCollision = false;
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(ray, out hitInfo))
                 {
-                    if (hitInfo.collider == this.collider)
+                    if (hitInfo.collider == this.GetComponent<Collider>())
                     {
                         State = AnimationStateId.StartingUp;
                     }
@@ -193,7 +194,7 @@ public class ChestScript : MonoBehaviour
 
                             if (m_ChestType == ChestType.Evo)
                             {
-                                zef = progressScript.SpawnStageItem(InventoryItemData.Items[(int)GetComponent<EvolutionChestItem>().id].PrefabId, Vector3.zero);
+								zef = progressScript.SpawnStageItem(InventoryItemData.GetDefinition(GetComponent<EvolutionChestItem>().id).PrefabId, Vector3.zero, true);
                             }
                             else if (items[cur][i] != ItemType.Zef)
                             {
@@ -232,7 +233,7 @@ public class ChestScript : MonoBehaviour
                                         }
                                         break;
                                 }
-                                zef = progressScript.SpawnStageItem(InventoryItemData.Items[(int)types[Random.Range(0, types.Length)]].PrefabId, Vector3.zero);
+                                zef = progressScript.SpawnStageItem(InventoryItemData.GetDefinition(types[Random.Range(0, types.Length)]).PrefabId, Vector3.zero);
                             }
                             else
                             {
@@ -275,7 +276,7 @@ public class ChestScript : MonoBehaviour
                         Timer = 4;
                         State = AnimationStateId.LidOpened;
 
-                        UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHocStartCond("Prize");
+                        UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHoc("Prize");
                     }
 
 				
@@ -361,10 +362,10 @@ public class ChestScript : MonoBehaviour
 
     private void RecurviseSetAlpha(GameObject gameObject, Color alphaColor)
     {
-        if (gameObject.renderer != null)
+        if (gameObject.GetComponent<Renderer>() != null)
         {
-            gameObject.renderer.material.shader = Shader.Find("Transparent/Diffuse"); 
-            gameObject.renderer.material.color = alphaColor;
+            gameObject.GetComponent<Renderer>().material.shader = Shader.Find("Transparent/Diffuse"); 
+            gameObject.GetComponent<Renderer>().material.color = alphaColor;
         }
 
         for (int i = 0; i < gameObject.transform.childCount; ++i)

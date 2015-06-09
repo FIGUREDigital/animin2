@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class SettingsPageControls : MonoBehaviour {
@@ -25,6 +25,6 @@ public class SettingsPageControls : MonoBehaviour {
 
 	public void MuteButton()
 	{
-		ProfilesManagementScript.Singleton.CurrentProfile.Settings.AudioEnabled = !ProfilesManagementScript.Singleton.CurrentProfile.Settings.AudioEnabled;
+		ProfilesManagementScript.Instance.CurrentProfile.Settings.AudioEnabled = !ProfilesManagementScript.Instance.CurrentProfile.Settings.AudioEnabled;
 	}
 }

@@ -4,7 +4,7 @@ using System.Collections;
 public class CheckMute : MonoBehaviour {
 
     void OnEnable(){
-        if (ProfilesManagementScript.Singleton.CurrentProfile.Settings.AudioEnabled)
+        if (ProfilesManagementScript.Instance.CurrentProfile.Settings.AudioEnabled)
         {
             this.GetComponent<ToggleableButtonScript>().SetOff();
         }

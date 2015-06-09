@@ -1,6 +1,8 @@
-﻿using UnityEngine;
+#define HACKARCAM
+using UnityEngine;
 using System.Collections;
 
+using Vuforia;
 public enum GameScenes
 {
     Caring,
@@ -48,7 +50,8 @@ public class MainARHandler : MonoBehaviour
         {
             if (s_Instance == null)
             {
-                s_Instance = new MainARHandler();
+				Debug.LogError ("This must exist in a scene!");
+                //s_Instance = new MainARHandler();
 
             }
             return s_Instance;
@@ -58,11 +61,11 @@ public class MainARHandler : MonoBehaviour
     #endregion
 
     [SerializeField]
-    private Camera ARCamera;
+	private Transform ARCameraTransform;
     [SerializeField]
     private SoundEngineScript SoundEngine;
 
-    public Camera MainARCamera { get { return ARCamera; } }
+	public Transform MainARCamera { get { return ARCameraTransform; } }
     public GameObject CurrentItem;
     public bool DraggedFromStage;
     private GameScenes m_CurrentGameScene;
@@ -103,35 +106,56 @@ public class MainARHandler : MonoBehaviour
     private ValueSmootherVector3 CameraPositionSmoother = new ValueSmootherVector3();
     private ValueSmootherVector3 CameraRotationSmoother = new ValueSmootherVector3();
 
+	[SerializeField]
     private SpriteStore mSpriteStore;
 
     public SpriteStore SpriteStore
     {
         get
         {
-            if(mSpriteStore == null)
-            {
-                mSpriteStore = ((GameObject)Instantiate(Resources.Load("Prefabs/UI/ItemSpriteStore"))).GetComponent<SpriteStore>();
-            }
             return mSpriteStore;
         }
     }
 
+	public Camera arCamera;
+	public Camera fovCamera;
+
+	void OnDestroy()
+	{
+		if (s_Instance == this)
+		{
+			s_Instance = null;
+		}
+	}
     // Use this for initialization
     void Start()
     {
         if (s_Instance == null)
         {
             s_Instance = this;
-        }
-        ChangeSceneToCaring();
+        }		
+		ARCameraTransform = Phi.SingletonPrefab.GetInstance ("ARCamera").transform;
+		arCamera = Phi.SingletonPrefab.GetInstance ("ARCamera").GetComponentInChildren<Camera>();
+		arCamera.tag = "Untagged";
+		fovCamera.tag = "MainCamera";
+		arCamera.enabled = false;
+		fovCamera.enabled = true;
+		m_IsTracking = false;
+		arCamera.cullingMask = fovCamera.cullingMask = (1 << LayerMask.NameToLayer("TransparentFX")) | (1 << LayerMask.NameToLayer("Default"))
+			| (1 << LayerMask.NameToLayer("Ignore Raycast")) | (1 << LayerMask.NameToLayer("Water"))
+				| /*(1 << LayerMask.NameToLayer("UI")) |*/ (1 << LayerMask.NameToLayer("ARCamera"))
+				| (1 << LayerMask.NameToLayer("Character")) | (1 << LayerMask.NameToLayer("IgnoreCollisionWithCharacter"))
+				| (1 << LayerMask.NameToLayer("Projectiles")) | (1 << LayerMask.NameToLayer("Floor"));
+		//arCamera.cullingMask = (1 << LayerMask.NameToLayer("Nothing"));
+
+		ChangeSceneToCaring();
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
         if (!m_CameraUnlock &&
-            ARCamera != null)
+            ARCameraTransform != null)
         {
             float stableAccelerationX = (float)System.Math.Round(Input.acceleration.x, 2);
             float stableAccelerationY = (float)System.Math.Round(Input.acceleration.y, 2);
@@ -161,15 +185,18 @@ public class MainARHandler : MonoBehaviour
                                        0,
                                        Mathf.Cos(SmootherAxisY.ValueNow * Mathf.Deg2Rad) * 90,
                                        (Mathf.Sin(SmootherAxisY.ValueNow * Mathf.Deg2Rad) * 90) * 0.2f);
-			
-            Vector3 cameraPoint = CurrentGameSceneGameObject.GetComponent<NonARPosRef>().NonARCameraPositionReference.position;// new Vector3(0, 430f, -630f);
-            Transform target = CurrentGameSceneGameObject.transform;
+
+			NonARPosRef nonARPosRef = CurrentGameSceneGameObject.GetComponent<NonARPosRef>();
+			Vector3 cameraPoint = nonARPosRef.NonARCameraPositionReference.position;// new Vector3(0, 430f, -630f);
+			Transform target = CurrentGameSceneGameObject.transform;
 			
             Vector3 finalpos = cameraPoint + newPosition2 + newPosition;
 
 				
-            Transform t = ARCamera.gameObject.transform;
+			Transform t = ARCameraTransform;
+			Transform f = fovCamera.gameObject.transform;
             t.localPosition = finalpos;
+			f.localPosition = finalpos;
 				
             Vector3 up = Input.acceleration;
             float tempX = up.x;
@@ -179,12 +206,26 @@ public class MainARHandler : MonoBehaviour
             up.z = 0;
 				
             //up  = Quaternion.AngleAxis(Time.timeSinceLevelLoad,Vector3.forward) * up;
-				
-            t.rotation = Quaternion.LookRotation(target.transform.position - t.position, Vector3.up);
-				
+			Vector3 pos = target.transform.position;
+			if(nonARPosRef != null)
+			{
+				pos += nonARPosRef.LookAtOffset;
+			}
+
+			t.rotation = Quaternion.LookRotation(pos - t.position, Vector3.up);
+			f.rotation = Quaternion.LookRotation(pos - f.position, Vector3.up);
+						
             Debug.DrawRay(t.position, t.forward);
 
         }
+#if HACKARCAM
+		if (m_IsTracking)
+		{
+			fovCamera.gameObject.transform.position = ARCameraTransform.transform.position;
+			fovCamera.gameObject.transform.rotation = ARCameraTransform.transform.rotation;
+			//fovCamera.fieldOfView = arCamera.fieldOfView;
+		}
+#endif
 		
 		
         SmootherAxisX.Update();
@@ -197,64 +238,68 @@ public class MainARHandler : MonoBehaviour
         TrackableBehaviour.Status newStatus)
     {
         mLastTrack = AniminTrackScript;
-        if (newStatus == TrackableBehaviour.Status.DETECTED ||
-            newStatus == TrackableBehaviour.Status.TRACKED ||
-            newStatus == TrackableBehaviour.Status.EXTENDED_TRACKED)
-        {
-            OnTrackingFound();
-        }
-        else
-        {
-            OnTrackingLost();
-        }
-
+		SetTracking (newStatus == TrackableBehaviour.Status.DETECTED ||
+			newStatus == TrackableBehaviour.Status.TRACKED ||
+			newStatus == TrackableBehaviour.Status.EXTENDED_TRACKED);
     }
+	void SetTracking(bool tracking)
+	{		
+		#if !HACKARCAM
+		if (tracking) {
+			AchievementManager.Instance.AddToAchievment (AchievementManager.Achievements.ArMode);			
+			arCamera.tag = "MainCamera";
+			fovCamera.tag = "Untagged";
+		} else 
+#endif
+		{		
+			arCamera.tag = "Untagged";
+			fovCamera.tag = "MainCamera";
+		}
+		
+		#if !HACKARCAM
+		arCamera.enabled = tracking;
+		fovCamera.enabled = !tracking;
+		#else
+		arCamera.enabled = false;
+		fovCamera.enabled = true;
+#endif
+		if (m_IsTracking != tracking) 
+		{			
+			m_IsTracking = tracking;
+			//Debug.Log("OnTrackingChange: "+tracking+" [" + mLastTrack.TrackableBehaviour.TrackableName + "];");
+			// Switcing			
+			GameObject caringPage = GameObject.FindGameObjectWithTag("caringpage");			
+			if(caringPage  != null)
+			{
+				CaringPageControls caringPageControls = caringPage.GetComponent<CaringPageControls>();
+				//caringPageControls.BroomButton();
+			}
 
+			// Switch this to call delegates!
+			if (m_CurrentGameScene == GameScenes.Caring)
+			{
+				CaringSceneOnTrackingChange(tracking);
+			}
+			else
+			{
+				if (m_CurrentGameScene == GameScenes.MinigameCannon)
+				{
+					GunMiniGameArenaVisible(!tracking);
+				}
+				if (tracking)
+				{
+					CurrentGameSceneGameObject.transform.parent = mLastTrack.gameObject.transform;
+				}
+				else
+				{
+					CurrentGameSceneGameObject.transform.parent = this.gameObject.transform;
+				}
+				m_CameraUnlock = tracking;
+			}
 
+		}
 
-    private void OnTrackingFound()
-    {
-        if (!m_IsTracking)
-        {
-            AchievementManager.Instance.AddToAchievment(AchievementManager.Achievements.ArMode);
-            m_IsTracking = true;
-            Debug.Log("OnTrackingFound : [" + mLastTrack.TrackableBehaviour.TrackableName + "];");
-            if (m_CurrentGameScene == GameScenes.Caring)
-            {
-                CaringSceneOnTrackingFound();
-
-            }
-            else
-            {
-                if (m_CurrentGameScene == GameScenes.MinigameCannon)
-                    GunMiniGameArenaVisible(false);
-                CurrentGameSceneGameObject.transform.parent = mLastTrack.gameObject.transform;
-                m_CameraUnlock = true;
-            }
-        }
-    }
-
-
-
-    private void OnTrackingLost()
-    {
-        if (m_IsTracking)
-        {
-            m_IsTracking = false;
-            Debug.Log("OnTrackingLost : [" + mLastTrack.TrackableBehaviour.TrackableName + "];");
-            if (m_CurrentGameScene == GameScenes.Caring)
-            {
-                CaringScreenOnTrackingLost();
-            }
-            else
-            {
-                if (m_CurrentGameScene == GameScenes.MinigameCannon)
-                    GunMiniGameArenaVisible(true);
-                CurrentGameSceneGameObject.transform.parent = this.gameObject.transform;
-                m_CameraUnlock = false;
-            }
-        }
-    }
+	}
 
     private void GunMiniGameArenaVisible(bool on)
     {
@@ -351,6 +396,18 @@ public class MainARHandler : MonoBehaviour
 
     #region On Tracking Lost or Found
 
+	private void CaringSceneOnTrackingChange(bool nowTracking)
+	{
+		if (nowTracking) 
+		{
+			CaringSceneOnTrackingFound ();
+		}
+		else 
+		{
+			CaringScreenOnTrackingLost();
+		}
+	}
+
     private void CaringSceneOnTrackingFound()
     {
         CharacterProgressScript progress = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>();
@@ -371,7 +428,7 @@ public class MainARHandler : MonoBehaviour
             //Debug.Log("OnTrackingFound: caring screen");
             {
                 //return;
-                UIGlobalVariablesScript.Singleton.SoundEngine.Play(ProfilesManagementScript.Singleton.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Singleton.CurrentAnimin.AniminEvolutionId, CreatureSoundId.JumbInPortal);
+                UIGlobalVariablesScript.Singleton.SoundEngine.Play(ProfilesManagementScript.Instance.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Instance.CurrentAnimin.AniminEvolutionId, CreatureSoundId.JumbInPortal);
                 UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<AnimationControllerScript>().IsEnterPortal = true;
                 progress.CurrentAction = ActionId.EnterPortalToAR;
 
@@ -408,7 +465,7 @@ public class MainARHandler : MonoBehaviour
 
         UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<AnimateCharacterOutPortalScript>().Timer = 0;
         UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<AnimateCharacterOutPortalScript>().JumbId = AnimateCharacterOutPortalScript.JumbStateId.Jumbout;
-        UIGlobalVariablesScript.Singleton.SoundEngine.Play(ProfilesManagementScript.Singleton.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Singleton.CurrentAnimin.AniminEvolutionId, CreatureSoundId.JumbOutPortal);
+        UIGlobalVariablesScript.Singleton.SoundEngine.Play(ProfilesManagementScript.Instance.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Instance.CurrentAnimin.AniminEvolutionId, CreatureSoundId.JumbOutPortal);
         progressScript.CurrentAction = ActionId.SmallCooldownPeriod;
         progressScript.SmallCooldownTimer = 0.5f;
     }
@@ -432,6 +489,11 @@ public class MainARHandler : MonoBehaviour
     {
         LoadNewGameScene(GameScenes.MinigameCannon);
     }
+
+	public void SetDefaultZoom()
+	{
+		fovCamera.fieldOfView = 31.3f;
+	}
 
     private void LoadNewGameScene(GameScenes newScene)
     {
@@ -470,7 +532,7 @@ public class MainARHandler : MonoBehaviour
         if (script != null)
         {
             script.Init();
-            script.MainCharacterRef.GetComponent<CharacterSwapManagementScript>().LoadCharacter(ProfilesManagementScript.Singleton.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Singleton.CurrentAnimin.AniminEvolutionId);
+            script.MainCharacterRef.GetComponent<CharacterSwapManagementScript>().LoadCharacter(ProfilesManagementScript.Instance.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Instance.CurrentAnimin.AniminEvolutionId, !ProfilesManagementScript.Instance.CurrentAnimin.Hatched);
         }
         else
         {
@@ -498,25 +560,28 @@ public class MainARHandler : MonoBehaviour
         }
 
         Debug.Log("m_PreviousGameScene = [" + m_PreviousGameScene + "]; Returning from minigame = ["+(m_PreviousGameScene == GameScenes.MinigameCannon || m_PreviousGameScene == GameScenes.MinigameCubeRunner)+"]");
-        if (m_PreviousGameScene == GameScenes.MinigameCannon || m_PreviousGameScene == GameScenes.MinigameCubeRunner)
+		if (m_PreviousGameScene == GameScenes.MinigameCannon || m_PreviousGameScene == GameScenes.MinigameCubeRunner)
         {
+			ZoomBehaviour.canZoom = true;
+			ConversionBehaviour.PlayVideo(false);
             Debug.Log("Minigame Cannon;");
             script.MainCharacterRef.GetComponent<CharacterProgressScript>().CurrentAction = ActionId.ExitPortalMainStage;
         }
 
+		if (m_PreviousGameScene == GameScenes.MinigameCannon)
+		{
+			ProfilesManagementScript.Instance.CurrentAnimin.CrystalCount -= 2;
+			PlayerPrefs.SetInt("Crystal Count", CollectiblesBehaviour.crystalCount);
+		}
+
+		if (m_PreviousGameScene == GameScenes.MinigameCubeRunner)
+		{
+			ProfilesManagementScript.Instance.CurrentAnimin.CrystalCount -= 1;
+			PlayerPrefs.SetInt("Crystal Count", CollectiblesBehaviour.crystalCount);
+		}
 
         NonARPosRef CamPosRef = CurrentGameSceneGameObject.GetComponent<NonARPosRef>();
         if (CamPosRef != null)
             NonARCameraPositionRef = CamPosRef.NonARCameraPositionReference;
-    }
-    void OnApplicationPause(bool pauseStatus){
-        if (pauseStatus)
-            Save();
-    }
-    void OnApplicationQuit(){
-        Save();
-    }
-    private void Save(){
-        SaveAndLoad.Instance.SaveAllData();
     }
 }

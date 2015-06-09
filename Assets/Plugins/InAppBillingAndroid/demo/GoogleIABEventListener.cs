@@ -29,7 +29,7 @@ public class GoogleIABEventListener : MonoBehaviour
 		GoogleIABManager.billingNotSupportedEvent -= billingNotSupportedEvent;
 		GoogleIABManager.queryInventorySucceededEvent -= queryInventorySucceededEvent;
 		GoogleIABManager.queryInventoryFailedEvent -= queryInventoryFailedEvent;
-		GoogleIABManager.purchaseCompleteAwaitingVerificationEvent += purchaseCompleteAwaitingVerificationEvent;
+		GoogleIABManager.purchaseCompleteAwaitingVerificationEvent -= purchaseCompleteAwaitingVerificationEvent;
 		GoogleIABManager.purchaseSucceededEvent -= purchaseSucceededEvent;
 		GoogleIABManager.purchaseFailedEvent -= purchaseFailedEvent;
 		GoogleIABManager.consumePurchaseSucceededEvent -= consumePurchaseSucceededEvent;

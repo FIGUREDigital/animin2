@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
 
@@ -24,8 +24,8 @@ public class DetectBroomScript : MonoBehaviour, IBeginDragHandler, IDragHandler,
 
 		GameObject child = GameObject.Instantiate(BroomPrefab) as GameObject;
 		child.name = "Broom";
-		
-        child.transform.parent = MainARHandler.Instance.MainARCamera.GetComponentInChildren<CameraModelScript>().transform;
+
+		CameraModelScript.Instance.SetDragging (child);
 		child.transform.position = Vector3.zero;
 		child.transform.rotation = Quaternion.identity;
 		child.transform.localScale *= 8;
@@ -33,7 +33,8 @@ public class DetectBroomScript : MonoBehaviour, IBeginDragHandler, IDragHandler,
 		child.transform.localPosition = Vector3.zero;
     }
     public void OnDrag(PointerEventData data)
-    {
+    {		
+		Debug.Log ("Main Camera: "+Camera.main.name);
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit))
@@ -47,13 +48,13 @@ public class DetectBroomScript : MonoBehaviour, IBeginDragHandler, IDragHandler,
         UIPopupItemScript script = hit.collider.gameObject.GetComponent<UIPopupItemScript>();
         if (script != null)
         {
-            ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(script.Id, 1);
+            ProfilesManagementScript.Instance.CurrentAnimin.AddItemToInventory(script.Id, 1);
             UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().GroundItems.Remove(hit.collider.gameObject);
             UnityEngine.Object.Destroy(hit.collider.gameObject);
         }
     }
     public void OnEndDrag(PointerEventData data)
-    {
-
+    {		
+		CameraModelScript.Instance.SetDragging (null);
     }
 }

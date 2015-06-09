@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class UnlockCharacterManager
@@ -188,8 +188,9 @@ public class UnlockCharacterManager
 		}	
 
         CharacterChoiceManager.Instance.UnlockCharacterPortrait(m_CurrentCharacterFocus);
-        ProfilesManagementScript.Singleton.CurrentProfile.UnlockedAnimins.Add(m_CurrentCharacterFocus);
-        SaveAndLoad.Instance.SaveAllData();
+        ProfilesManagementScript.Instance.CurrentProfile.UnlockedAnimins.Add(m_CurrentCharacterFocus);
+		
+		ProfilesManagementScript.Instance.Save();
 		Debug.Log("just saved...unlock");
         ShopManager.Instance.EndStore(); 
 
@@ -199,9 +200,9 @@ public class UnlockCharacterManager
 	public void CheckInitialCharacterUnlock()
 	{
         Debug.Log("Unlock started...");
-        for (int i = 0; i < ProfilesManagementScript.Singleton.CurrentProfile.UnlockedAnimins.Count; i++)
+        for (int i = 0; i < ProfilesManagementScript.Instance.CurrentProfile.UnlockedAnimins.Count; i++)
         {   
-            PersistentData.TypesOfAnimin typeToUnlock = ProfilesManagementScript.Singleton.CurrentProfile.UnlockedAnimins[i];
+            PersistentData.TypesOfAnimin typeToUnlock = ProfilesManagementScript.Instance.CurrentProfile.UnlockedAnimins[i];
             Debug.Log("Unlock Character " + typeToUnlock);
             CharacterChoiceManager.Instance.UnlockCharacterPortrait(typeToUnlock);
         }

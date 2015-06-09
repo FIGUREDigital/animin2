@@ -20,7 +20,11 @@ public class Gradient : BaseVertexEffect
 	
 	public override void ModifyVertices (List<UIVertex> vertexList)
 	{
-		if (!IsActive () || vertexList.Count == 0) {
+		if(targetGraphic == null)
+		{
+			targetGraphic = GetComponent<Graphic> ();
+		}
+		if (!IsActive () || vertexList.Count == 0 || targetGraphic == null) {
 			return;
 		}
 		int count = vertexList.Count;

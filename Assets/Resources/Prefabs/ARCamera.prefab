@@ -186,9 +186,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 772bc9e597a4a8849b5ad887b7fef10f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BackgroundCameraPrefab: {fileID: 2000000, guid: b46dcef02cf484544addced9f937c948,
-    type: 2}
   RenderTextureLayer: 30
+  mPlayModeRenderVideo: 1
   mDeviceNameSetInEditor: 
   mFlipHorizontally: 0
   mTurnOffWebCam: 0
@@ -203,12 +202,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67cbfb9153674e84d894cc7d53ffe720, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mDataSetsToLoad:
-  - animinVuforia
-  - Animin_release_targets
-  mDataSetsToActivate:
-  - animinVuforia
-  - Animin_release_targets
+  mDataSetsToLoad: []
+  mDataSetsToActivate: []
   mExternalDatasetRoots: []
 --- !u!114 &11400010
 MonoBehaviour:
@@ -232,13 +227,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4114ca95ba12f394a8ad43abfc86745c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  VuforiaLicenseKey: ARHRCVT/////AAAAAdbADzjH/EKTlVeB/Zns1PZMsKtHO69FaPvhAbJUffaU224r+R8thDQaBqXARHFHPBWEBy6BtB4XG+472pPdmD5yXAgmu4qgYyFxWIg+MKQi6aX1qUm+duZ0qZiUS3pgG/tHtjL4360aNEYo4/Jv5EjLZwhQiN688Voi7wfHQXSAomCBKnln57IulNd9pR+F1vZuOsiJSlXHbblcYr14nO9fsC+kuZ8NKoWYSHnmJVAXEnGrJeEc+WI5SKtC7wdSglwO4S77xmyYdvKB5qXpwhJZyPQaLXOw2ksdu2FVhEM+/NNJcrLjP/xfsfObwrLsgVKl9W4qZCvXwT2/a2cV6qWppamQDyTD/QWD852FeAGh
+  mCameraOffset: 0
+  mAutoAdjustStereoCameraSkewing: 1
+  mSceneScaleFactor: 0
   CameraDeviceModeSetting: -2
   MaxSimultaneousImageTargets: 1
-  SynchronousVideo: 0
-  mWorldCenterMode: 1
-  mWorldCenter: {fileID: 0}
+  MaxSimultaneousObjectTargets: 1
+  UseDelayedLoadingObjectTargets: 0
   CameraDirection: 0
   MirrorVideoBackground: 0
+  mWorldCenterMode: 1
+  mWorldCenter: {fileID: 0}
+  mPrimaryCamera: {fileID: 0}
+  mSecondaryCamera: {fileID: 0}
 --- !u!114 &11400016
 MonoBehaviour:
   m_ObjectHideFlags: 1

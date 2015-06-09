@@ -6,24 +6,26 @@ using System.IO;
 public class SceneZero : MonoBehaviour
 {
 	private static bool LoadedOBB = false;
-	private Text errormess;
+	public Text errormess;
 
 	void Start ()
 	{
-		GameObject go = GameObject.Find ("error");
-		if (go != null) {
-			errormess = go.GetComponent<Text> ();
-		}
-		Debug.Log ("SceneZero");
+		
+		Application.targetFrameRate = 60;
+		UITextTextMeshPro.Init();
+		UITextTextMeshProNG.Init();
+        Debug.Log ("SceneZero");
 
 		#if UNITY_ANDROID
-        if(!Application.isEditor){
-		GetOBB ();
-		StartCoroutine(ExtractObbDatasets());
-        } else
-            Application.LoadLevel (Application.loadedLevel+1);
+            if(!Application.isEditor)
+            {
+		        GetOBB ();
+		        StartCoroutine(ExtractObbDatasets());
+            } 
+            else
+                Application.LoadLevel (Application.loadedLevel+1);
 		#else
-        Application.LoadLevel (Application.loadedLevel+1);
+            Application.LoadLevel (Application.loadedLevel+1);
 		#endif
 	}
 

@@ -3,14 +3,20 @@ using System.Collections;
 
 public class DemoScreenControls : MonoBehaviour {
 
+	int curPage = 0;
 	[SerializeField]
-	private GameObject InstuctionsOverlay;
+	GameObject[] pages;
 
 	public void ShowDemoInstuctions()
 	{
-		if (InstuctionsOverlay != null) 
+		curPage = curPage + 1;
+		if (curPage >= pages.Length)
 		{
-			InstuctionsOverlay.SetActive(!InstuctionsOverlay.activeSelf);
+			curPage = 0;
+		}
+		for(int i = 0; i < pages.Length; i++)
+		{
+			pages[i].SetActive (i == curPage);
 		}
 	}
 }

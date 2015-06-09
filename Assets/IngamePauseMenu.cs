@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class IngamePauseMenu : MonoBehaviour
@@ -15,7 +15,7 @@ public class IngamePauseMenu : MonoBehaviour
     }
     private JoystickPageControls m_JoystickScript;
 
-    bool m_Paused;
+    public static bool m_Paused;
     // Use this for initialization
     void Awake()
     {
@@ -73,6 +73,6 @@ public class IngamePauseMenu : MonoBehaviour
 
     public void ToggleSound()
     {
-        ProfilesManagementScript.Singleton.CurrentProfile.Settings.AudioEnabled = !ProfilesManagementScript.Singleton.CurrentProfile.Settings.AudioEnabled;
+        ProfilesManagementScript.Instance.CurrentProfile.Settings.AudioEnabled = !ProfilesManagementScript.Instance.CurrentProfile.Settings.AudioEnabled;
     }
 }

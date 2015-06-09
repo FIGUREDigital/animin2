@@ -91,13 +91,13 @@ public class MinigameCollectorScript : MonoBehaviour
 	// Use this for initialization
 	void Awake () 
 	{
-        if (ProfilesManagementScript.Singleton.CurrentProfile == null) {
+        if (ProfilesManagementScript.Instance.CurrentProfile == null) {
             Debug.Log ("PlayerProfileData.ActiveProfile = null!");
-            ProfilesManagementScript.Singleton.CurrentProfile = PlayerProfileData.CreateNewProfile("Dummy");
-            ProfilesManagementScript.Singleton.CurrentAnimin = ProfilesManagementScript.Singleton.CurrentProfile.Characters [(int)PersistentData.TypesOfAnimin.Pi];
+            ProfilesManagementScript.Instance.CurrentProfile = PlayerProfileData.CreateNewProfile("Dummy");
+            ProfilesManagementScript.Instance.CurrentAnimin = ProfilesManagementScript.Instance.CurrentProfile.Characters [(int)PersistentData.TypesOfAnimin.Pi];
         }
 
-        UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterSwapManagementScript>().LoadCharacter(ProfilesManagementScript.Singleton.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Singleton.CurrentAnimin.AniminEvolutionId);
+        UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterSwapManagementScript>().LoadCharacter(ProfilesManagementScript.Instance.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Instance.CurrentAnimin.AniminEvolutionId, false);
         UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<MinigameAnimationControllerScript>().LoadAnimator(UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterSwapManagementScript>().CurrentModel);
 
 		//Debug.Log("STAGES AWAKE!!: " + Stage.transform.childCount.ToString());
@@ -150,30 +150,6 @@ public class MinigameCollectorScript : MonoBehaviour
 		}
 	}
 
-
-	void OnGUI()
-	{
-//		GameObject obj = GameObject.Find("TextureBufferCamera");
-//
-//		GameObject hole = GameObject.Find("insideHole");
-//
-//		Texture texture = obj.GetComponent<Camera>().targetTexture;
-//		hole.renderer.material.mainTexture = texture;
-//
-//
-//		hole.renderer.material.SetTextureScale (
-//			"_MainTex", 
-//			new Vector2(0.05f, 0.05f)
-//			);
-//		
-//		hole.renderer.material.SetTextureOffset (
-//			"_MainTex", 
-//			new Vector2(0.5f, 0.5f)
-//			);
-
-		//GUI.DrawTexture(new Rect(0, 0, 200, 200), texture);
-	}
-
 	private bool CanBeginLevelSwipe()
 	{
         //Debug.Log("Begin Level Swipe : [" + UiPages.IsMouseOverUI() + "];");
@@ -183,7 +159,7 @@ public class MinigameCollectorScript : MonoBehaviour
 
 	private void EnterMinigame()
 	{
-		CharacterProgressScript progressScript = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>();
+//		CharacterProgressScript progressScript = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>();
 
 		
 		
@@ -193,7 +169,7 @@ public class MinigameCollectorScript : MonoBehaviour
 		
 		UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<AnimateCharacterOutPortalScript>().Timer = 0;
 		UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<AnimateCharacterOutPortalScript>().JumbId = AnimateCharacterOutPortalScript.JumbStateId.Jumbout;
-		UIGlobalVariablesScript.Singleton.SoundEngine.Play(ProfilesManagementScript.Singleton.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Singleton.CurrentAnimin.AniminEvolutionId, CreatureSoundId.JumbOutPortal);
+		UIGlobalVariablesScript.Singleton.SoundEngine.Play(ProfilesManagementScript.Instance.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Instance.CurrentAnimin.AniminEvolutionId, CreatureSoundId.JumbOutPortal);
 		//progressScript.CurrentAction = ActionId.EnterPortalToNonAR;
 		
 
@@ -255,6 +231,7 @@ public class MinigameCollectorScript : MonoBehaviour
         {
 			if(Input.GetButtonDown("Fire1") && CanBeginLevelSwipe())
             {
+				Debug.Log ("Fire1 -1");
                 m_IsSwiping = true;
 				lastMousePosition = Input.mousePosition;
 				isSwipingAllowed = true;
@@ -263,7 +240,8 @@ public class MinigameCollectorScript : MonoBehaviour
 
 			}
 			else if(Input.GetButton("Fire1") && isSwipingAllowed)
-            {
+			{
+				Debug.Log ("Fire1 -2");
                 m_IsSwiping = true;
 				SnapAngleDifference += (lastMousePosition.x - Input.mousePosition.x) * 0.09f;
 				snapAngle += (lastMousePosition.x - Input.mousePosition.x) * 0.09f;
@@ -271,6 +249,7 @@ public class MinigameCollectorScript : MonoBehaviour
 			}
 			else if(Input.GetButtonUp("Fire1") && isSwipingAllowed)
 			{
+				Debug.Log ("Fire1 -3");
                 m_IsSwiping = true;
 				//fast swipe
 				if((Time.time - TimeStartedSwipe) <= 0.4f)
@@ -344,7 +323,7 @@ public class MinigameCollectorScript : MonoBehaviour
 					GameStartDelay = null;
 					ResetCharacter();
 
-					Transform newTransform = Stage.transform.GetChild(currentLevelId);
+					/*Transform newTransform = Stage.transform.GetChild(currentLevelId);
 					
 					for(int a=0;a<newTransform.childCount;++a)
 					{
@@ -352,7 +331,7 @@ public class MinigameCollectorScript : MonoBehaviour
 						{
 							Transform cubes = newTransform.GetChild(a);
 						}
-					}
+					}*/
 				}
 			}
 			else
@@ -503,8 +482,8 @@ public class MinigameCollectorScript : MonoBehaviour
 //			Debug.Log(d);
 			if(d <= 25)
 			{
-				Points += 200;
-				ProfilesManagementScript.Singleton.CurrentAnimin.Fitness += 10;
+				Points += 250;
+			//	ProfilesManagementScript.Singleton.CurrentAnimin.Fitness += 10;
 				GameObject.Destroy(Collections[i]);
 
 				UIGlobalVariablesScript.Singleton.SoundEngine.Play(GenericSoundId.Star_Collect);
@@ -550,7 +529,8 @@ public class MinigameCollectorScript : MonoBehaviour
 					break;
 				}
 				else if (Collections.Count <= 0) {
-					UIGlobalVariablesScript.Singleton.SoundEngine.Play(GenericSoundId.Star_Complete);
+					UIGlobalVariablesScript.Singleton.SoundEngine.Play(GenericSoundId.Star_Complete);					
+					AudioController.Play("SuperStar");
 					LevelsToComplete.Remove(currentLevelId);
 					Reset ();
 				}
@@ -765,7 +745,7 @@ public class MinigameCollectorScript : MonoBehaviour
 
                         GameObject collection = (GameObject)Instantiate(shardPrefab);
 //                        GameObject collection = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-						Destroy (collection.rigidbody);
+						Destroy (collection.GetComponent<Rigidbody>());
 						
 						Collections.Add (collection);
 						

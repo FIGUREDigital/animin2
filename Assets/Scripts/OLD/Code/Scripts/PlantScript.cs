@@ -20,12 +20,12 @@ public class PlantScript : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		if((DateTime.Now - TimeStarted).TotalSeconds >= 10)
+		if((DateTime.UtcNow - TimeStarted).TotalSeconds >= 10)
 		{
 			if(State == PlantStateId.Planted)
 			{
 				State = PlantStateId.ReadyForHarvest;
-				this.renderer.material = HarvestMaterial;
+				this.GetComponent<Renderer>().material = HarvestMaterial;
 			}
 		}
 
@@ -35,7 +35,7 @@ public class PlantScript : MonoBehaviour
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 			if (Physics.Raycast(ray, out hitInfo))
 			{
-				if(hitInfo.collider == this.collider)
+				if(hitInfo.collider == this.GetComponent<Collider>())
 				{
 					Interact();
 				}
@@ -46,17 +46,17 @@ public class PlantScript : MonoBehaviour
 
 	public void Interact()
 	{
-		TimeStarted = DateTime.Now;
+		TimeStarted = DateTime.UtcNow;
 
 		if(State == PlantStateId.Empty)
 		{
 			State = PlantStateId.Planted;
-			this.renderer.material = GrowingMaterial;
+			this.GetComponent<Renderer>().material = GrowingMaterial;
 		}
 		else if(State == PlantStateId.ReadyForHarvest)
 		{
 			State = PlantStateId.Empty;
-			this.renderer.material = HarvestMaterial;
+			this.GetComponent<Renderer>().material = HarvestMaterial;
 		}
 	}
 }

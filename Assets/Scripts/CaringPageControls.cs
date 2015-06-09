@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using System;
+using DG.Tweening;
 
 public enum InventoryPages
 {
@@ -37,6 +38,11 @@ public class CaringPageControls : MonoBehaviour
     private GameObject m_StereoUI;
 
     public GameObject StereoUI{ get { return m_StereoUI; } }
+
+	[SerializeField]
+	private GameObject m_PhoneUI;
+
+	public GameObject PhoneUI{ get { return m_PhoneUI; } }
 
     [SerializeField]
     private GameObject m_AlarmUI;
@@ -76,16 +82,82 @@ public class CaringPageControls : MonoBehaviour
         }
     }
 
+	public GameObject statsPointer;
+	public GameObject foodPointer;
+
     [SerializeField]
     private RectTransform m_Triangle;
     private Vector2 m_TriangleHeight;
+
+	
+	public float flipPos = 0.5f;
+	public float triangleLowOffset = 0.6f;
+	public float uiScale = 1;
+	
+	bool uiShouldBeVisble = false;
+	float tweeningDir = 0;
+	Tween uiTween = null; 
+	
+	RectTransform nextUI = null;
+	GameObject nextTarget = null;
+	RectTransform currentUI = null;
+
+	float GetUIScale()
+	{
+		return uiScale;
+	}
+
+	void SetUIScale(float scale)
+	{
+		uiScale = scale;
+	}
+	
+	public void ShowUI(GameObject target, GameObject ui)
+	{
+		if (ui == currentUI) {
+			m_TargetItem = target;
+			return;
+		}
+		nextUI = ui != null ? ui.transform as RectTransform : null;
+		nextTarget = target;
+		if (uiTween != null && tweeningDir > 0) {
+			// Currently tweening on so stop that and tween it off...
+			uiTween.Kill ();
+			uiTween = null;
+			tweeningDir = 0;
+		}
+		if (uiTween == null && uiScale > 0) {
+			// Tween off
+			tweeningDir = -1;
+			uiTween = DOTween.To( SetUIScale, uiScale, 0, 0.1f).OnComplete (FinishHidingUI).SetEase(Ease.InCirc);
+		} else {
+			FinishHidingUI ();
+		}
+	}
+
+	void FinishHidingUI()
+	{
+		uiScale = 0;
+		m_TargetItem = nextTarget;
+		if (currentUI != null) {
+			currentUI.gameObject.SetActive (false);
+		}
+		currentUI = nextUI;
+		if (currentUI != null) {
+			currentUI.gameObject.SetActive (true);			
+			tweeningDir = 1;
+			uiTween = DOTween.To (SetUIScale, uiScale, 1, 0.5f).SetEase(Ease.OutBounce);
+		} else {
+			tweeningDir = 0;
+		}
+	}
+
 
     private GameObject m_TargetItem;
 
     public GameObject TargetItem
     {
         get { return m_TargetItem; }
-        set { m_TargetItem = value; }
     }
 
     private GameObject[] m_PopupUIs;
@@ -118,10 +190,10 @@ public class CaringPageControls : MonoBehaviour
 
     void Start()
     {
-        m_PopupUIs = new GameObject[]{ StereoUI, AlarmUI, LightbulbUI, EDMBoxUI, JunoUI, PianoUI };
+        m_PopupUIs = new GameObject[]{ StereoUI, PhoneUI, AlarmUI, LightbulbUI, EDMBoxUI, JunoUI, PianoUI };
         mInventoryControls = Inventory.GetComponent<InventoryControls>();
         PopulateButtons();
-        m_TriangleHeight = new Vector2(0, m_Triangle.sizeDelta.y);
+        m_TriangleHeight = new Vector2(0, m_Triangle.sizeDelta.y * 2.0f);
         DetectDragIconScript.OnClicked += EnableInvBox;
         DragDropMainBarItem.OnClicked += DisableInvBox;
         CharacterProgressScript.OnDragItem += EnableInvBox;
@@ -132,7 +204,7 @@ public class CaringPageControls : MonoBehaviour
 
     void ResetButtons()
     {
-        Sprite empty = MainARHandler.Instance.SpriteStore.GetSprite(InventoryItemId.Count);
+		Sprite empty = MainARHandler.Instance.SpriteStore.GetSprite(InventoryItemId.Count);
         Icon1.sprite = empty;
         Icon1.GetComponent<InterfaceItemLinkToModelScript>().Item3DPrefab = null;
         Icon1.GetComponent<InterfaceItemLinkToModelScript>().ItemID = InventoryItemId.None;
@@ -151,35 +223,33 @@ public class CaringPageControls : MonoBehaviour
         bool ItemIconSet = false;
         bool MediIconSet = false;
         ResetButtons();
-        for (int i = 0; i < ProfilesManagementScript.Singleton.CurrentAnimin.Inventory.Count; ++i)
+        for (int i = 0; i < ProfilesManagementScript.Instance.CurrentAnimin.Inventory.Count; ++i)
         {
-            if (InventoryItemData.Items[(int)ProfilesManagementScript.Singleton.CurrentAnimin.Inventory[i].Id].ItemType == PopupItemType.Food && !FoodIconSet)
+			InventoryItemBankData data = ProfilesManagementScript.Instance.CurrentAnimin.Inventory[i].Definition;
+			if (data.ItemType == PopupItemType.Food && !FoodIconSet)
             {
-                InventoryItemBankData data = InventoryItemData.Items[(int)ProfilesManagementScript.Singleton.CurrentAnimin.Inventory[i].Id];
                 Icon1.sprite = data.SpriteName;
                 Icon1.GetComponent<InterfaceItemLinkToModelScript>().Item3DPrefab = data.PrefabId;
                 Icon1.GetComponent<InterfaceItemLinkToModelScript>().ItemID = data.Id;
                 FoodIconSet = true;
-                Debug.Log("Food buttons set to " + data.Id.ToString() + "\n Currently there are " + ProfilesManagementScript.Singleton.CurrentAnimin.Inventory[i].Count + " " + data.Id.ToString());
+                Debug.Log("Food buttons set to " + data.Id.ToString() + "\n Currently there are " + ProfilesManagementScript.Instance.CurrentAnimin.Inventory[i].Count + " " + data.Id.ToString());
             }
-            else if (InventoryItemData.Items[(int)ProfilesManagementScript.Singleton.CurrentAnimin.Inventory[i].Id].ItemType == PopupItemType.Item && !ItemIconSet)
+			else if (data.ItemType == PopupItemType.Item && !ItemIconSet)
             {
-                InventoryItemBankData data = InventoryItemData.Items[(int)ProfilesManagementScript.Singleton.CurrentAnimin.Inventory[i].Id];
                 Icon2.sprite = data.SpriteName;
                 Icon2.GetComponent<InterfaceItemLinkToModelScript>().Item3DPrefab = data.PrefabId;
                 Icon2.GetComponent<InterfaceItemLinkToModelScript>().ItemID = data.Id;
                 ItemIconSet = true;
-                Debug.Log("Item buttons set to " + data.Id.ToString() + "\n Currently there are " + ProfilesManagementScript.Singleton.CurrentAnimin.Inventory[i].Count + " " + data.Id.ToString());
+                Debug.Log("Item buttons set to " + data.Id.ToString() + "\n Currently there are " + ProfilesManagementScript.Instance.CurrentAnimin.Inventory[i].Count + " " + data.Id.ToString());
 
             }
-            else if (InventoryItemData.Items[(int)ProfilesManagementScript.Singleton.CurrentAnimin.Inventory[i].Id].ItemType == PopupItemType.Medicine && !MediIconSet)
+			else if (data.ItemType == PopupItemType.Medicine && !MediIconSet)
             {
-                InventoryItemBankData data = InventoryItemData.Items[(int)ProfilesManagementScript.Singleton.CurrentAnimin.Inventory[i].Id];
                 Icon3.sprite = data.SpriteName;
                 Icon3.GetComponent<InterfaceItemLinkToModelScript>().Item3DPrefab = data.PrefabId;
                 Icon3.GetComponent<InterfaceItemLinkToModelScript>().ItemID = data.Id;
                 MediIconSet = true;
-                Debug.Log("Medicine buttons set to " + data.Id.ToString() + "\n Currently there are " + ProfilesManagementScript.Singleton.CurrentAnimin.Inventory[i].Count + " " + data.Id.ToString());
+                Debug.Log("Medicine buttons set to " + data.Id.ToString() + "\n Currently there are " + ProfilesManagementScript.Instance.CurrentAnimin.Inventory[i].Count + " " + data.Id.ToString());
 
             }
         }
@@ -224,13 +294,18 @@ public class CaringPageControls : MonoBehaviour
 
     public void StatsButton()
     {
+		UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHoc("ViewStats");
         UiPages.Next(Pages.StatsPage);
+        AudioController.Play(ProfilesManagementScript.Instance.CurrentAnimin.PlayerAniminId.ToString());
+		statsPointer.SetActive(false);
     }
 
     public void MinigameButton()
     {
         DisappearAllItemUIs();
         UiPages.Next(Pages.MinigamesPage);
+        TutorialHandler.TriggerAdHocStatic("ViewPortals");
+        AudioController.Play("Portal");
     }
 
     public void PhotoButton()
@@ -246,14 +321,18 @@ public class CaringPageControls : MonoBehaviour
             string screenshotName = "screenshot" + DateTime.Now.ToString("s") + ".png";
             Debug.Log("Saving photo to: " + screenshotName);
             #if UNITY_IOS
-            StartCoroutine(EtceteraBinding.takeScreenShot(screenshotName, imagePath =>
-                    {
-                        EtceteraBinding.saveImageToPhotoAlbum(imagePath);
-                    }));
-            Invoke("PopPhotoSaved", 0.3f);
+           // StartCoroutine(EtceteraBinding.takeScreenShot(screenshotName, imagePath =>
+             //      	{
+               //         EtceteraBinding.saveImageToPhotoAlbum(imagePath);
+                 //   }));
+			StartCoroutine(ScreenshotManager.Save( screenshotName, "Animin" , true));
+			ScreenshotManager.ScreenshotFinishedSaving += PopPhoto;
+			GetComponent<AudioSource>().Play();
+         // Invoke("PopPhotoSaved", 0.3f);
             #elif UNITY_ANDROID
             StartCoroutine(ScreenshotManager.Save( screenshotName, "Animin" , true));
             ScreenshotManager.ScreenshotFinishedSaving += PopPhoto;
+			audio.Play();
             #endif
         }
     }
@@ -271,9 +350,27 @@ public class CaringPageControls : MonoBehaviour
         }
     }
 
+    public void PhoneButton()
+    {
+        CharacterProgressScript script = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>();
+        script.HidePopupMenus(false);
+        if (!TutorialHandler.CheckTutsCompleted("Phone"))
+        {
+            // Ah we are just phoning back
+            TutorialHandler.TriggerAdHocStatic("CallPhone");
+            return;
+        }
+        else
+        {
+            TutorialHandler.CallPhone();
+        }
+        // Show random phone quote
+    }
+
     public void FoodButton()
     {
         DisappearAllItemUIs();
+		foodPointer.SetActive(false);
         if (!InventoryOpen)
         {
             InventoryOpen = true;
@@ -289,7 +386,7 @@ public class CaringPageControls : MonoBehaviour
         CurrentPage = InventoryPages.Food;
         mInventoryControls.Init(CurrentPage);
         Inventory.gameObject.SetActive(InventoryOpen);
-        Indicator.localPosition = new Vector2(-120, Indicator.localPosition.y);
+        Indicator.localPosition = new Vector2(-343, Indicator.localPosition.y);
    
     }
 
@@ -332,7 +429,7 @@ public class CaringPageControls : MonoBehaviour
         CurrentPage = InventoryPages.Medicine;
         mInventoryControls.Init(CurrentPage);
         Inventory.gameObject.SetActive(InventoryOpen);
-        Indicator.localPosition = new Vector2(120, Indicator.localPosition.y);
+        Indicator.localPosition = new Vector2(343, Indicator.localPosition.y);
     }
 
     private void SwitchInventory(InventoryPages page)
@@ -373,7 +470,7 @@ public class CaringPageControls : MonoBehaviour
                 }
                 else
                 {
-                    ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(script.GroundItems[i].GetComponent<UIPopupItemScript>().Id, 1);
+                    ProfilesManagementScript.Instance.CurrentAnimin.AddItemToInventory(script.GroundItems[i].GetComponent<UIPopupItemScript>().Id, 1);
                 }
             }
             Destroy(script.GroundItems[i]);
@@ -381,7 +478,7 @@ public class CaringPageControls : MonoBehaviour
 		
         script.GroundItems.Clear();
         UIGlobalVariablesScript.Singleton.SoundEngine.Play(GenericSoundId.CleanPooPiss);
-        UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().HidePopupMenus();
+        UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().HidePopupMenus(false);
 		
         for (int i = 0; i < EDMMixerScript.Singleton.KeysOn.Length; ++i)
         {
@@ -414,13 +511,10 @@ public class CaringPageControls : MonoBehaviour
         {
             case PopupItemType.Food:
                 return Icon1.gameObject;
-                break;
             case PopupItemType.Item:
                 return Icon2.gameObject;
-                break;
             case PopupItemType.Medicine:
                 return Icon3.gameObject;
-                break;
             default:
                 break;
         }
@@ -460,56 +554,84 @@ public class CaringPageControls : MonoBehaviour
 
     public void DisappearAllItemUIs()
     {
-
-        AlarmUI.SetActive(false);
+		ShowUI (null, null);
+        /*AlarmUI.SetActive(false);
         EDMBoxUI.SetActive(false);
         JunoUI.SetActive(false);
         LightbulbUI.SetActive(false);
         PianoUI.SetActive(false);
         StereoUI.SetActive(false);
+		PhoneUI.SetActive(false);*/
     }
 
     void Update()
-    {
-        if (PersistentData.InventoryUpdated)
-        {
-            PersistentData.InventoryUpdated = false;
-            PopulateButtons();
-        }
-        m_Triangle.gameObject.SetActive(false);
+	{
+		if (PersistentData.InventoryUpdated) {
+			PersistentData.InventoryUpdated = false;
+			PopulateButtons ();
+		}
+		m_Triangle.gameObject.SetActive (false);
+	}
+	void LateUpdate()
+	{
         if (m_TargetItem != null)
         {
-            for (int i = 0; i < PopupUIs.Length; i++)
-            {
-                if (PopupUIs[i] != null && PopupUIs[i].activeInHierarchy)
-                {
-                    //this is your object that you want to have the UI element hovering over
-
-                    //this is the ui element
-                    RectTransform UI_Element = PopupUIs[i].GetComponent<RectTransform>();
-
-
-                    //first you need the RectTransform component of your canvas
-                    RectTransform CanvasRect = this.GetComponent<RectTransform>();
-
-                    //then you calculate the position of the UI element
-                    //0,0 for the canvas is at the center of the screen, whereas WorldToViewPortPoint treats the lower left corner as 0,0. Because of this, you need to subtract the height / width of the canvas * 0.5 to get the correct position.
-
-                    Vector2 ViewportPosition = Camera.main.WorldToViewportPoint(m_TargetItem.transform.position);
-                    Vector2 WorldObject_ScreenPosition = new Vector2(
-                                                             ((ViewportPosition.x * CanvasRect.sizeDelta.x) - (CanvasRect.sizeDelta.x * 0.5f)),
-                                                             ((ViewportPosition.y * CanvasRect.sizeDelta.y) - (CanvasRect.sizeDelta.y * 0.5f)));
-
-                    //now you can set the position of the ui element
-                    UI_Element.anchoredPosition = WorldObject_ScreenPosition + m_TriangleHeight * m_Triangle.localScale.y;
-                    m_Triangle.anchoredPosition = WorldObject_ScreenPosition + m_TriangleHeight * m_Triangle.localScale.y;
-                    m_Triangle.gameObject.SetActive(true);
-                }
-            }
+			UpdateTargetItem();
         }
         else
         {
-            DisappearAllItemUIs();
+            //DisappearAllItemUIs();
         }
     }
+
+	void UpdateTargetItem()
+	{
+		if (m_TargetItem == null) return;
+		for (int i = 0; i < PopupUIs.Length; i++)
+		{
+			if (PopupUIs[i] != null && PopupUIs[i].activeInHierarchy)
+			{
+				//this is your object that you want to have the UI element hovering over
+				
+				//this is the ui element
+				RectTransform UI_Element = PopupUIs[i].GetComponent<RectTransform>();
+				
+				
+				//first you need the RectTransform component of your canvas
+				RectTransform CanvasRect = this.GetComponent<RectTransform>();
+				
+				//then you calculate the position of the UI element
+				//0,0 for the canvas is at the center of the screen, whereas WorldToViewPortPoint treats the lower left corner as 0,0. Because of this, you need to subtract the height / width of the canvas * 0.5 to get the correct position.
+				
+				Vector2 ViewportPosition = Camera.main.WorldToViewportPoint(m_TargetItem.transform.position);
+				Vector2 WorldObject_ScreenPosition = new Vector2(
+					((ViewportPosition.x * CanvasRect.sizeDelta.x) - (CanvasRect.sizeDelta.x * 0.5f)),
+					((ViewportPosition.y * CanvasRect.sizeDelta.y) - (CanvasRect.sizeDelta.y * 0.5f)));
+				
+				//now you can set the position of the ui element
+				float sign = (WorldObject_ScreenPosition.y + CanvasRect.sizeDelta.y * 0.5f > CanvasRect.sizeDelta.y * flipPos) ? -1 : 1;
+				
+				float scale = sign;
+				Vector2 triangleHeight = m_TriangleHeight * scale;
+				if(sign < 0)
+				{
+					triangleHeight.y = triangleHeight.y * triangleLowOffset;
+				}
+				UI_Element.anchoredPosition = WorldObject_ScreenPosition + triangleHeight;
+				Vector2 pivot = UI_Element.pivot;
+				pivot.y = sign > 0 ? 0 : 1;
+				UI_Element.pivot = pivot;
+
+				//pivot.y = 1-pivot.y;
+				//m_Triangle.pivot = pivot;
+
+				m_Triangle.anchoredPosition = WorldObject_ScreenPosition + triangleHeight;
+				Vector3 scaleV = Vector3.one;
+				scaleV.y = scale;
+				m_Triangle.transform.localScale = scaleV * uiScale;
+				m_Triangle.gameObject.SetActive(true);
+				UI_Element.transform.localScale = Vector3.one * uiScale;
+			}
+		}
+	}
 }

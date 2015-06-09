@@ -12,7 +12,8 @@ public class ProgressBarUVScript : MonoBehaviour
 	private int SamplesTaken;
 
 
-
+	/*
+	 * AH Disable this spawning relly on one in CollectiblesBehaviour
 	// Use this for initialization
 	void Start () 
 	{
@@ -52,4 +53,5 @@ public class ProgressBarUVScript : MonoBehaviour
 			}
 		}
 	}
+	*/
 }

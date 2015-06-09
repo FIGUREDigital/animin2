@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class AniminNameSprite : MonoBehaviour {
@@ -19,7 +19,7 @@ public class AniminNameSprite : MonoBehaviour {
 		mKelseySprite.gameObject.SetActive (false);
 		mMandiSprite.gameObject.SetActive (false);
 
-        switch(ProfilesManagementScript.Singleton.CurrentProfile.ActiveAnimin)
+        switch(ProfilesManagementScript.Instance.CurrentProfile.ActiveAnimin)
 		{
             case PersistentData.TypesOfAnimin.Pi:
 			mPiSprite.gameObject.SetActive (true);

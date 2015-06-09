@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public enum EmotionId
@@ -23,8 +23,11 @@ public class EmotionPerModelData
 public class CharacterSwapManagementScript : MonoBehaviour 
 {
 	//private AnimationClip[,] AnimationsPerModel;
-	private string[,] Models;
-	public GameObject CurrentModel;
+    private string[,] Models;
+    private string[] EggModels;
+    public GameObject CurrentModel;
+	public Vector3 defaultScale;
+    public GameObject CurrentEgg;
     public Texture2D CurrentEyesOpenTexture;
 
 	public AnimatorOverrideController TBOAdultAnimations;
@@ -41,6 +44,12 @@ public class CharacterSwapManagementScript : MonoBehaviour
 
 		//LoadAnimations(CreatureTypeId.TBOAdult, "Models/TBO/Adult", "/tbo_adult@");
 		//LoadAnimations(CreatureTypeId.TBOAdult, "Models/TBO/Kid", "/tbo_kid@");
+
+        EggModels = new string[(int)PersistentData.TypesOfAnimin.Count];
+        EggModels[(int)PersistentData.TypesOfAnimin.Tbo] = "Prefabs/Characters/tbo_egg";
+		EggModels[(int)PersistentData.TypesOfAnimin.Kelsey] = "Prefabs/Characters/tbo_egg";	// All use tbo's egg and change it's color
+		EggModels[(int)PersistentData.TypesOfAnimin.Mandi] = "Prefabs/Characters/tbo_egg"; // All use tbo's egg and change it's color
+		EggModels[(int)PersistentData.TypesOfAnimin.Pi] = "Prefabs/Characters/tbo_egg"; // All use tbo's egg and change it's color
 	
         Models = new string[(int)PersistentData.TypesOfAnimin.Count, (int)AniminEvolutionStageId.Count];
         Models[(int)PersistentData.TypesOfAnimin.Tbo, (int)AniminEvolutionStageId.Baby] = "Prefabs/Characters/tbo_baby";
@@ -114,10 +123,33 @@ public class CharacterSwapManagementScript : MonoBehaviour
 		return AnimationLists[(int)animinId, (int)id];
 	}
 
-    public void LoadCharacter(PersistentData.TypesOfAnimin animinId, AniminEvolutionStageId id)
+    public void LoadCharacter(PersistentData.TypesOfAnimin animinId, AniminEvolutionStageId id, bool includeEgg)
 	{
         if (animinId == PersistentData.TypesOfAnimin.TboAdult)
             animinId = PersistentData.TypesOfAnimin.Tbo;
+
+        if (includeEgg)
+        {
+            Object resourceEgg = Resources.Load(EggModels[(int)animinId]);
+            GameObject instanceEgg = GameObject.Instantiate(resourceEgg) as GameObject;
+			MultipleModelMaterials mmm = instanceEgg.GetComponent<MultipleModelMaterials>();
+			if(mmm != null)
+			{
+				mmm.Index = (int)animinId;
+			}
+            Vector3 eggScale = instanceEgg.transform.localScale;
+            Vector3 eggPos = instanceEgg.transform.localPosition;
+            instanceEgg.transform.SetParent(UIGlobalVariablesScript.Singleton.MainCharacterRef.transform, true);
+            instanceEgg.transform.localScale = eggScale;
+            instanceEgg.transform.localPosition = eggPos;
+            if (CurrentEgg != null)
+            {
+                CurrentEgg.transform.parent = null;
+                Destroy(CurrentEgg);
+            }
+            CurrentEgg = instanceEgg;
+        }
+
 		Object resource = Resources.Load(Models[(int)animinId, (int)id]);
 
 		GameObject instance = GameObject.Instantiate(resource) as GameObject;
@@ -125,6 +157,11 @@ public class CharacterSwapManagementScript : MonoBehaviour
         CurrentEyesOpenTexture = (Texture2D)instance.GetComponentInChildren<Renderer>().material.mainTexture;
 
 		Vector3 scale = instance.transform.localScale;
+		defaultScale = scale;
+		if(includeEgg)
+        {
+			scale = new Vector3(4,4,4);
+        }
 		//RuntimeAnimatorController controller = CurrentModel.GetComponent<Animator>().runtimeAnimatorController;
 
 		instance.transform.parent = UIGlobalVariablesScript.Singleton.MainCharacterRef.transform;

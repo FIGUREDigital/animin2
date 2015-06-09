@@ -1,0 +1,139 @@
+fileFormatVersion: 2
+guid: cb233b0ad1d0b37418afec9e9e584e32
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: worm:skin_spine_10_joint
+    100002: worm:skin_spine_11_joint
+    100004: worm:skin_spine_12_joint
+    100006: worm:skin_spine_1_joint
+    100008: worm:skin_spine_2_joint
+    100010: worm:skin_spine_3_joint
+    100012: worm:skin_spine_4_joint
+    100014: worm:skin_spine_5_joint
+    100016: worm:skin_spine_6_joint
+    100018: worm:skin_spine_7_joint
+    100020: worm:skin_spine_8_joint
+    100022: worm:skin_spine_9_joint
+    100024: //RootNode
+    400000: worm:skin_spine_10_joint
+    400002: worm:skin_spine_11_joint
+    400004: worm:skin_spine_12_joint
+    400006: worm:skin_spine_1_joint
+    400008: worm:skin_spine_2_joint
+    400010: worm:skin_spine_3_joint
+    400012: worm:skin_spine_4_joint
+    400014: worm:skin_spine_5_joint
+    400016: worm:skin_spine_6_joint
+    400018: worm:skin_spine_7_joint
+    400020: worm:skin_spine_8_joint
+    400022: worm:skin_spine_9_joint
+    400024: //RootNode
+    7400000: idle
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 2
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: idle
+      takeName: Take 001
+      firstFrame: 112
+      lastFrame: 160
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: worm:skin_spine_1_joint
+        weight: 1
+      - path: worm:skin_spine_1_joint/worm:skin_spine_2_joint
+        weight: 1
+      - path: worm:skin_spine_1_joint/worm:skin_spine_2_joint/worm:skin_spine_3_joint
+        weight: 1
+      - path: worm:skin_spine_1_joint/worm:skin_spine_2_joint/worm:skin_spine_3_joint/worm:skin_spine_4_joint
+        weight: 1
+      - path: worm:skin_spine_1_joint/worm:skin_spine_2_joint/worm:skin_spine_3_joint/worm:skin_spine_4_joint/worm:skin_spine_5_joint
+        weight: 1
+      - path: worm:skin_spine_1_joint/worm:skin_spine_2_joint/worm:skin_spine_3_joint/worm:skin_spine_4_joint/worm:skin_spine_5_joint/worm:skin_spine_6_joint
+        weight: 1
+      - path: worm:skin_spine_1_joint/worm:skin_spine_2_joint/worm:skin_spine_3_joint/worm:skin_spine_4_joint/worm:skin_spine_5_joint/worm:skin_spine_6_joint/worm:skin_spine_7_joint
+        weight: 1
+      - path: worm:skin_spine_1_joint/worm:skin_spine_2_joint/worm:skin_spine_3_joint/worm:skin_spine_4_joint/worm:skin_spine_5_joint/worm:skin_spine_6_joint/worm:skin_spine_7_joint/worm:skin_spine_8_joint
+        weight: 1
+      - path: worm:skin_spine_1_joint/worm:skin_spine_2_joint/worm:skin_spine_3_joint/worm:skin_spine_4_joint/worm:skin_spine_5_joint/worm:skin_spine_6_joint/worm:skin_spine_7_joint/worm:skin_spine_8_joint/worm:skin_spine_9_joint
+        weight: 1
+      - path: worm:skin_spine_1_joint/worm:skin_spine_2_joint/worm:skin_spine_3_joint/worm:skin_spine_4_joint/worm:skin_spine_5_joint/worm:skin_spine_6_joint/worm:skin_spine_7_joint/worm:skin_spine_8_joint/worm:skin_spine_9_joint/worm:skin_spine_10_joint
+        weight: 1
+      - path: worm:skin_spine_1_joint/worm:skin_spine_2_joint/worm:skin_spine_3_joint/worm:skin_spine_4_joint/worm:skin_spine_5_joint/worm:skin_spine_6_joint/worm:skin_spine_7_joint/worm:skin_spine_8_joint/worm:skin_spine_9_joint/worm:skin_spine_10_joint/worm:skin_spine_11_joint
+        weight: 1
+      - path: worm:skin_spine_1_joint/worm:skin_spine_2_joint/worm:skin_spine_3_joint/worm:skin_spine_4_joint/worm:skin_spine_5_joint/worm:skin_spine_6_joint/worm:skin_spine_7_joint/worm:skin_spine_8_joint/worm:skin_spine_9_joint/worm:skin_spine_10_joint/worm:skin_spine_11_joint/worm:skin_spine_12_joint
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 3
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

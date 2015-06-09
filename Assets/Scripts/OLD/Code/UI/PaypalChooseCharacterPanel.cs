@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class PaypalChooseCharacterPanel : MonoBehaviour {
@@ -21,9 +21,9 @@ public class PaypalChooseCharacterPanel : MonoBehaviour {
         }
 
 
-        for (int i =0; i < ProfilesManagementScript.Singleton.CurrentProfile.UnlockedAnimins.Count; i++ )
+        for (int i =0; i < ProfilesManagementScript.Instance.CurrentProfile.UnlockedAnimins.Count; i++ )
         {
-            if (AniminType ==  ProfilesManagementScript.Singleton.CurrentProfile.UnlockedAnimins[i])
+            if (AniminType ==  ProfilesManagementScript.Instance.CurrentProfile.UnlockedAnimins[i])
             {
                 this.gameObject.SetActive(false);
             }

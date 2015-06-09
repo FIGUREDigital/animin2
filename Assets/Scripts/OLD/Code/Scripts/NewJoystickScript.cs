@@ -3,6 +3,7 @@
 /// If you use this, stop by and say thanks: http://forum.unity3d.com/threads/116076-VJR-(Virtual-Joystick-Region)-Sample?p=773620#post773620
 /// </summary>
 using UnityEngine;
+using Vuforia;
 
 public class NewJoystickScript : MonoBehaviour {
 	public static Vector2 VJRvector;    // Joystick's controls in Screen-Space.

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class EDMMixerScript : MonoBehaviour
@@ -42,7 +42,7 @@ public class EDMMixerScript : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		if(!ProfilesManagementScript.Singleton.CurrentProfile.Settings.AudioEnabled) 
+		if(!ProfilesManagementScript.Instance.CurrentProfile.Settings.AudioEnabled) 
 		{
 			if(isPlaying)
 			{

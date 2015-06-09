@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Net.Mail;
 using System.Net;
@@ -32,7 +32,7 @@ public class AddressScreen : MonoBehaviour
 		realName = Account.Instance.FirstName + " " + Account.Instance.LastName;
 		secretCode = Account.Instance.UniqueID;
 		deviceID = SystemInfo.deviceUniqueIdentifier;
-		animin = ProfilesManagementScript.Singleton.AniminToUnlockId.ToString ();
+		animin = ProfilesManagementScript.Instance.AniminToUnlockId.ToString ();
 		address = "";
 		InputField[] text = GetComponentsInChildren<InputField>();
 		foreach(InputField line in text)

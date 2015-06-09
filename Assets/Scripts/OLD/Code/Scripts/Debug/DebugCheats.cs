@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public enum CheatButtons
@@ -25,13 +25,9 @@ public class DebugCheats : MonoBehaviour
 {
     public CheatButtons button = CheatButtons.NotSet;
 
-    void Start()
-    {
-        
-    }
-
     public void OnClick()
     {
+#if DEBUGCHEATS
         switch (button)
         {
 
@@ -56,14 +52,14 @@ public class DebugCheats : MonoBehaviour
                 break;
 
             case CheatButtons.Evolve:
-                switch (ProfilesManagementScript.Singleton.CurrentAnimin.AniminEvolutionId)
+                switch (ProfilesManagementScript.Instance.CurrentAnimin.AniminEvolutionId)
                 {
                     case AniminEvolutionStageId.Baby:
-                        ProfilesManagementScript.Singleton.CurrentAnimin.ZefTokens = EvolutionManager.Instance.BabyEvolutionThreshold - 1;
+				ProfilesManagementScript.Instance.CurrentAnimin.ZefTokens = EvolutionManager.Instance.BabyEvolutionThreshold - 1;
                         EvolutionManager.Instance.RemoveZef(0);
                         break;
                     case AniminEvolutionStageId.Kid:
-                        ProfilesManagementScript.Singleton.CurrentAnimin.ZefTokens = EvolutionManager.Instance.KidEvolutionThreshold - 1;
+				ProfilesManagementScript.Instance.CurrentAnimin.ZefTokens = EvolutionManager.Instance.KidEvolutionThreshold - 1;
                         EvolutionManager.Instance.RemoveZef(0);
                         break;
                     case AniminEvolutionStageId.Adult:
@@ -73,24 +69,24 @@ public class DebugCheats : MonoBehaviour
                 break;
 
             case CheatButtons.Devolve:
-                switch (ProfilesManagementScript.Singleton.CurrentAnimin.AniminEvolutionId)
+			switch (ProfilesManagementScript.Instance.CurrentAnimin.AniminEvolutionId)
                 {
                     case AniminEvolutionStageId.Baby:
                     default:
                         break;
                     case AniminEvolutionStageId.Kid:
-                        ProfilesManagementScript.Singleton.CurrentAnimin.ZefTokens = EvolutionManager.Instance.BabyEvolutionThreshold - 50;
+				ProfilesManagementScript.Instance.CurrentAnimin.ZefTokens = EvolutionManager.Instance.BabyEvolutionThreshold - 50;
                         EvolutionManager.Instance.RemoveZef(0);
                         break;
                     case AniminEvolutionStageId.Adult:
-                        ProfilesManagementScript.Singleton.CurrentAnimin.ZefTokens = EvolutionManager.Instance.KidEvolutionThreshold - 50;
+				ProfilesManagementScript.Instance.CurrentAnimin.ZefTokens = EvolutionManager.Instance.KidEvolutionThreshold - 50;
                         EvolutionManager.Instance.RemoveZef(0);
                         break;
                 }
                 break;
 
             case CheatButtons.GiveZeff:
-                EvolutionManager.Instance.AddZef();
+                EvolutionManager.Instance.AddZef(3);
                 break;
 
             case CheatButtons.TakeZeff:
@@ -108,7 +104,7 @@ public class DebugCheats : MonoBehaviour
                 PlayerPrefs.SetString("ParentalPassword", "");
                 break;
             case CheatButtons.Starve:
-                ProfilesManagementScript.Singleton.CurrentAnimin.Hungry = 0;
+			ProfilesManagementScript.Instance.CurrentAnimin.Hungry = 0;
                 break;
             case CheatButtons.MediaDebug:
                 MediaDebugDummy.On = !MediaDebugDummy.On;
@@ -123,5 +119,6 @@ public class DebugCheats : MonoBehaviour
             default:
                 break;
         }
+#endif
     }
 }

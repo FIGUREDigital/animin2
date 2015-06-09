@@ -20,7 +20,8 @@ public class SpriteStore : MonoBehaviour
 
 	public Sprite GetSprite(InventoryItemId s)
 	{
-		return Sprites[(int)s];
+		int i = (int)s;
+		return Sprites[i];
 	}
 	public Sprite GetMedel(AchievementMedels s)
 	{

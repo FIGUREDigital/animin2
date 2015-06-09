@@ -14,6 +14,7 @@ public enum MenuFunctionalityUI
 {
 	None = 0,
 	Mp3Player,
+	Phone,
 	Clock,
 	Lightbulb,
 	EDMBox,

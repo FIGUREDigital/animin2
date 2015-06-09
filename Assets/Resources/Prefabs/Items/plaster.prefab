@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b8dab6596d544dd5bfcc636ad461382, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Points: 5
+  Points: 25
   Type: 2
   NonInteractable: 0
   Menu: 0

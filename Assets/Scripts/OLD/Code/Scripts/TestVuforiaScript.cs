@@ -18,15 +18,15 @@ public class TestVuforiaScript : MonoBehaviour {
 		//GameObject hole = GameObject.Find("insideHole");
 		
 		Texture texture = obj.GetComponent<Camera>().targetTexture;
-		this.renderer.material.mainTexture = texture;
+		this.GetComponent<Renderer>().material.mainTexture = texture;
 
 
-		this.renderer.material.SetTextureScale (
+		this.GetComponent<Renderer>().material.SetTextureScale (
 			"_MainTex", 
 			new Vector2(0.05f, 0.05f)
 			);
 
-		this.renderer.material.SetTextureOffset (
+		this.GetComponent<Renderer>().material.SetTextureOffset (
 			"_MainTex", 
 			new Vector2(0.5f, 0.5f)
 			);

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 using System;
 using System.Collections;
@@ -122,7 +122,7 @@ public class FlurryLogger
         Debug.Log("FLURRY LOGGER : [EndMinigame];");
 
         Dictionary<string,string> dict = new Dictionary<string,string>();
-        dict.Add("DateTime", DateTime.Now.ToString("dd:MM:yyyy hh:mm"));
+        dict.Add("DateTime", DateTime.UtcNow.ToString("dd:MM:yyyy hh:mm"));
         #if UNITY_IOS
             FlurryAnalytics.logEventWithParameters("TimeInMinigame", dict, true);
         #elif UNITY_ANDROID
@@ -162,15 +162,7 @@ public class FlurryLogger
 
     public void CharacterPurchasedIAP()
     {
-        for (int i = 1; i < ProfilesManagementScript.Singleton.CurrentProfile.Characters.Length; i++)
-        {
-            if (ProfilesManagementScript.Singleton.CurrentProfile.Characters[i].CreatedOn != null)
-            {
-                return;
-            }
-
-        }
-        TimeSpan useLength = DateTime.Now.Subtract(ProfilesManagementScript.Singleton.CurrentProfile.Characters[0].CreatedOn);
+        TimeSpan useLength = DateTime.UtcNow.Subtract(ProfilesManagementScript.Instance.CurrentProfile.Characters[0].CreatedOn);
         Debug.Log("FLURRY LOGGER : [ConversionTime];");
 
         Dictionary<string,string> dict = new Dictionary<string,string>();
@@ -186,16 +178,7 @@ public class FlurryLogger
 
     public void CharacterPurchasedWeb()
     {
-		
-        for (int i = 1; i < ProfilesManagementScript.Singleton.CurrentProfile.Characters.Length; i++)
-        {
-            if (ProfilesManagementScript.Singleton.CurrentProfile.Characters[i].CreatedOn != null)
-            {
-                return;
-            }
-			
-        }
-        TimeSpan useLength = DateTime.Now.Subtract(ProfilesManagementScript.Singleton.CurrentProfile.Characters[0].CreatedOn);
+        TimeSpan useLength = DateTime.UtcNow.Subtract(ProfilesManagementScript.Instance.CurrentProfile.Characters[0].CreatedOn);
         Debug.Log("FLURRY LOGGER : [ConversionTime];");
 		
         Dictionary<string,string> dict = new Dictionary<string,string>();

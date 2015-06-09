@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
@@ -29,7 +29,7 @@ public class CreateProfile : MonoBehaviour {
 		bool offlineMode = true;
 		if(offlineMode)
 		{
-			ProfilesManagementScript.Singleton.NewUserProfileAdded (text, text);
+			ProfilesManagementScript.Instance.NewUserProfileAdded (text, text);
 		}
 		else
 		{

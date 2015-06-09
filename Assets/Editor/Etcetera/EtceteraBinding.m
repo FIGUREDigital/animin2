@@ -31,9 +31,30 @@
 #define GetStringParamOrNil( _x_ ) ( _x_ != NULL && strlen( _x_ ) ) ? [NSString stringWithUTF8String:_x_] : nil
 
 
+
 BOOL _etceteraApplicationCanOpenUrl( const char * url )
 {
 	return [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:GetStringParam( url )]];
+}
+
+
+// pasteboard
+const char * _etceteraGetPasteboardString()
+{
+	return MakeStringCopy( [UIPasteboard generalPasteboard].string );
+}
+
+
+void _etceteraSetPasteboardString( const char * string )
+{
+	[UIPasteboard generalPasteboard].string = GetStringParamOrNil( string );
+}
+
+
+void _etceteraSetPasteboardImage( UInt8 *bytes, int length )
+{
+	NSData *data = [[NSData alloc] initWithBytes:(void*)bytes length:length];
+	[UIPasteboard generalPasteboard].image = [UIImage imageWithData:data];
 }
 
 

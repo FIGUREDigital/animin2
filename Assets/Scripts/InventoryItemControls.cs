@@ -1,19 +1,25 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-
+using TMPro;
 public class InventoryItemControls : MonoBehaviour {
 
 	[SerializeField]
-	private Text mText;
+	private TextMeshProUGUI mText;
 	private GameObject CountPanel;
+	public Image image;
 	public CaringPageControls caringPage;
 	public InventoryItemBankData data;
-	int count;
-	public void OnEnable()
+	public InventoryItemBankData Data
 	{
-        Invoke("Count",0.02f);
+		set
+		{
+			data = value;
+			image.sprite = data.SpriteName;
+			Count();
+		}
 	}
+	int count;
 
 	public void OnClick()
 	{
@@ -24,16 +30,11 @@ public class InventoryItemControls : MonoBehaviour {
 		caringPage.CloseInventory();
 	}
 
-    void Update()
-    {
-
-    }
-
     void Count()
     {
-        for(int i = 0; i < ProfilesManagementScript.Singleton.CurrentAnimin.Inventory.Count; i++)
+        for(int i = 0; i < ProfilesManagementScript.Instance.CurrentAnimin.Inventory.Count; i++)
         {
-            InventoryItemData InvData = ProfilesManagementScript.Singleton.CurrentAnimin.Inventory[i];
+            InventoryItemData InvData = ProfilesManagementScript.Instance.CurrentAnimin.Inventory[i];
             if(data.Id == InvData.Id)
             {
                 count = InvData.Count;

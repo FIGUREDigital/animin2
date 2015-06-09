@@ -6,79 +6,64 @@ public class LighbulbSwitchOnOffScript : MonoBehaviour
 	public Texture2D On;
 	public Texture2D Off;
 
-	// Use this for initialization
-	void Start () 
-	{
-	
-	}
-	
-	// Update is called once per frame
-	void Update () 
-	{
+	new Light light;
 
-	
+	public void Start()
+	{
+		light = GetComponentInChildren<Light>();
+	}
+
+	public bool IsOn
+	{
+		get
+		{
+			return light != null ? light.gameObject.activeSelf : false;
+		}
+		set
+		{			
+			if(light)
+			{
+				light.gameObject.SetActive (value);
+			}			
+			ChangeTexture(this.gameObject);
+		}
 	}
 
 	public void Switch()
 	{
-		for(int i=0;i<transform.childCount;++i)
+		if(light != null)
 		{
-			if(transform.GetChild(i).GetComponent<Light>() != null)
-			{
-				if(transform.GetChild(i).gameObject.activeSelf)
-				{
-					SetOff();
-				}
-				else
-				{
-					SetOn();
-				}
-				return;
-			}
-		}
+			light.gameObject.SetActive(!light.gameObject.activeSelf);
+		}		
+		ChangeTexture(this.gameObject);
 	}
 
 	public void SetOn()
 	{
-		ChangeTexture(this.gameObject, On);
-
-		for(int i=0;i<transform.childCount;++i)
-		{
-			if(transform.GetChild(i).GetComponent<Light>() != null)
-			{
-				transform.GetChild(i).gameObject.SetActive(true);
-			}
-		}
+		IsOn = true;
 	}
 
 	public void SetOff()
 	{
-		ChangeTexture(this.gameObject, Off);
-
-		for(int i=0;i<transform.childCount;++i)
-		{
-			if(transform.GetChild(i).GetComponent<Light>() != null)
-			{
-				transform.GetChild(i).gameObject.SetActive(false);
-			}
-		}
+		IsOn = false;
 	}
 
-	private void ChangeTexture(GameObject root, Texture2D textured)
+	private void ChangeTexture(GameObject root)
 	{
-		if(root.renderer != null)
+		Texture2D textured = IsOn ? On : Off;
+		if(root.GetComponent<Renderer>() != null)
 		{
 			//Material mat = root.renderer.sharedMaterial;
-			root.renderer.material.mainTexture = textured;
+			root.GetComponent<Renderer>().material.mainTexture = textured;
 			//root.renderer.sharedMaterial = mat;
 		}
 
 		for(int i=0;i<root.transform.childCount;++i)
 		{
-			if(root.transform.GetChild(i).renderer != null)
+			if(root.transform.GetChild(i).GetComponent<Renderer>() != null)
 			{
 				//Material mat = root.transform.GetChild(i).renderer.sharedMaterial;
-				root.transform.GetChild(i).renderer.material.mainTexture = textured;
+				root.transform.GetChild(i).GetComponent<Renderer>().material.mainTexture = textured;
 				//root.transform.GetChild(i).renderer.material = mat;
 			}
 		}

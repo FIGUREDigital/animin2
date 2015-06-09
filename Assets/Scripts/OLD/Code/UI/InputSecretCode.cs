@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
@@ -13,7 +13,7 @@ public class InputSecretCode : MonoBehaviour
 						mInput = gameObject.transform.parent.GetComponentInChildren<InputField> ();
 						string accessCode = mInput.text.Trim();
 
-						ProfilesManagementScript.Singleton.CheckProfileLoginPasscode (accessCode);
+						ProfilesManagementScript.Instance.CheckProfileLoginPasscode (accessCode);
 				}
 
 	}

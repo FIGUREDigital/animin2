@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class DroppedItemScript : MonoBehaviour {
@@ -33,10 +33,10 @@ public class DroppedItemScript : MonoBehaviour {
 		m_VerticalSpeed = m_VerticalSpeed + (Time.deltaTime * 600);
 		this.transform.position -= new Vector3(0, m_VerticalSpeed * Time.deltaTime, 0);
 
-		bool isNonArScene = UIGlobalVariablesScript.Singleton.NonSceneRef.activeInHierarchy;
+//		bool isNonArScene = UIGlobalVariablesScript.Singleton.NonSceneRef.activeInHierarchy;
 		
 		if (this.transform.position.y <= -350) {
-			ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(m_ItemScript.Id,1);
+			ProfilesManagementScript.Instance.CurrentAnimin.AddItemToInventory(m_ItemScript.Id,1);
 			UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().GroundItems.Remove(this.gameObject);
 
             m_CaringPageControls.DisappearAllItemUIs();

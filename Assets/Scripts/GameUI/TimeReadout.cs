@@ -2,17 +2,25 @@
 using System.Collections;
 using UnityEngine.UI;
 using System;
+using TMPro;
 
 public class TimeReadout : MonoBehaviour {
 
-    Text time;
-	// Use this for initialization
-	void Start () {
-        time = this.GetComponent<Text>();
+    public TextMeshProUGUI time;
+
+	void OnEnable()
+	{
+		DoUpdate();
 	}
 	
 	// Update is called once per frame
-	void Update () {
-        time.text = DateTime.Now.ToString ("hh:mm tt");
+	void Update () 
+	{
+		DoUpdate();
+	}
+
+	void DoUpdate()
+	{
+		time.text = DateTime.Now.ToString ("hh:mm tt");
 	}
 }

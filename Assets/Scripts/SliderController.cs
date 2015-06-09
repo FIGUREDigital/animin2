@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
@@ -15,7 +15,8 @@ public class SliderController : MonoBehaviour
 	[SerializeField]
 	private Slider mSlider;
 	private RectTransform mImage;
-	private const float min = 0;
+//	private const float min = 0;
+	private const float min = -100;
 	private const float max = 100;
 
 	void Start()
@@ -35,27 +36,27 @@ public class SliderController : MonoBehaviour
         UIGlobalVariablesScript.Singleton.FitnessControlBarRef.transform.localPosition = new Vector3(Mathf.Lerp(-80.51972f, 617.2906f, ProfilesManagementScript.Singleton.CurrentAnimin.Fitness / 100.0f), UIGlobalVariablesScript.Singleton.FitnessControlBarRef.transform.localPosition.y, 0);
         //UIGlobalVariablesScript.Singleton.EvolutionControlBarRef.GetComponent<UISlider>().value = Evolution / 100.0f;
 		*/
-        Debug.Log("ProfilesManagementScript.Singleton : [" + ProfilesManagementScript.Singleton + "];");
-        Debug.Log("ProfilesManagementScript.Singleton.CurrentAnimin : [" + ProfilesManagementScript.Singleton.CurrentAnimin + "];");
-        Debug.Log("ProfilesManagementScript.Singleton.CurrentAnimin.Happy : [" + ProfilesManagementScript.Singleton.CurrentAnimin.Happy + "];");
+        Debug.Log("ProfilesManagementScript.Singleton : [" + ProfilesManagementScript.Instance + "];");
+        Debug.Log("ProfilesManagementScript.Singleton.CurrentAnimin : [" + ProfilesManagementScript.Instance.CurrentAnimin + "];");
+        Debug.Log("ProfilesManagementScript.Singleton.CurrentAnimin.Happy : [" + ProfilesManagementScript.Instance.CurrentAnimin.Happy + "];");
         switch(mSlider)
 		{
 		case Slider.Happiness:
-			leftResult = Mathf.Lerp(min, max, ProfilesManagementScript.Singleton.CurrentAnimin.Happy / PersistentData.MaxHappy);
-			rightResult = Mathf.Lerp(max, min, ProfilesManagementScript.Singleton.CurrentAnimin.Happy / PersistentData.MaxHappy);
+			leftResult = Mathf.Lerp(min, max, ProfilesManagementScript.Instance.CurrentAnimin.Happy / PersistentData.MaxHappy);
+			rightResult = Mathf.Lerp(max, min, ProfilesManagementScript.Instance.CurrentAnimin.Happy / PersistentData.MaxHappy);
 			break;
 		case Slider.Health:
-			leftResult = Mathf.Lerp(min, max, ProfilesManagementScript.Singleton.CurrentAnimin.Health / PersistentData.MaxHealth);
-			rightResult = Mathf.Lerp(max, min, ProfilesManagementScript.Singleton.CurrentAnimin.Health / PersistentData.MaxHealth);
+			leftResult = Mathf.Lerp(min, max, ProfilesManagementScript.Instance.CurrentAnimin.Health / PersistentData.MaxHealth);
+			rightResult = Mathf.Lerp(max, min, ProfilesManagementScript.Instance.CurrentAnimin.Health / PersistentData.MaxHealth);
 			break;
 		case Slider.Hunger:
-			leftResult = Mathf.Lerp(min, max, ProfilesManagementScript.Singleton.CurrentAnimin.Hungry / PersistentData.MaxHungry);
-			rightResult = Mathf.Lerp(max, min, ProfilesManagementScript.Singleton.CurrentAnimin.Hungry / PersistentData.MaxHungry);
+			leftResult = Mathf.Lerp(min, max, ProfilesManagementScript.Instance.CurrentAnimin.Hungry / PersistentData.MaxHungry);
+			rightResult = Mathf.Lerp(max, min, ProfilesManagementScript.Instance.CurrentAnimin.Hungry / PersistentData.MaxHungry);
 			break;
 		case Slider.Fitness:
 			
-			leftResult = Mathf.Lerp(min, max, ProfilesManagementScript.Singleton.CurrentAnimin.Fitness / PersistentData.MaxFitness);
-			rightResult = Mathf.Lerp(max, min, ProfilesManagementScript.Singleton.CurrentAnimin.Fitness / PersistentData.MaxFitness);
+			leftResult = Mathf.Lerp(min, max, ProfilesManagementScript.Instance.CurrentAnimin.Fitness / PersistentData.MaxFitness);
+			rightResult = Mathf.Lerp(max, min, ProfilesManagementScript.Instance.CurrentAnimin.Fitness / PersistentData.MaxFitness);
 			break;
 		default:
 			break;

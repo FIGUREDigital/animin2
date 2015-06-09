@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -22,7 +22,7 @@ public class ItunesButtonUpdate : MonoBehaviour
 	void OnEnable()
 	{
 		RegisterListeners();
-        SetCharacterIcons(ProfilesManagementScript.Singleton.AniminToUnlockId);
+        SetCharacterIcons(ProfilesManagementScript.Instance.AniminToUnlockId);
 	}
 	
 	void OnDisable()
@@ -32,7 +32,7 @@ public class ItunesButtonUpdate : MonoBehaviour
 
 	public void GoToCodeScreen()
 	{
-		UnlockCharacterManager.Instance.ID = ProfilesManagementScript.Singleton.AniminToUnlockId;
+		UnlockCharacterManager.Instance.ID = ProfilesManagementScript.Instance.AniminToUnlockId;
 		UiPages.Next (Pages.CodeInputPage);
 	}
 
@@ -124,8 +124,10 @@ public class ItunesButtonUpdate : MonoBehaviour
 						GoToAddress ();
 				}
 				else 
-				{
-					UiPages.Next(Pages.RestoreSuccessPage, 1f);
+				{			
+					DialogPage.SetMessage("Your purchases have been successfully restored.\n\nThank you for purchasing Animin.");
+					UiPages.SetDialogBackPage(Pages.PurchasePage);
+					UiPages.Next(Pages.DialogPage, 1f);
 				}
 
 	}
@@ -158,6 +160,8 @@ public class ItunesButtonUpdate : MonoBehaviour
 		void purchaseUnsuccessful( string response )
 		#elif UNITY_ANDROID
 		void purchaseUnsuccessful( string response, int errorcode )
+        #else
+            void purchaseUnsuccessful(string response)
 		#endif
 	{
 		Debug.Log("Purchase Unsuccessful, response: " + response);

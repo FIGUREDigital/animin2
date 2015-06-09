@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class CannonClashTutorialOneAnimationScript : MonoBehaviour
 {
@@ -51,6 +52,7 @@ public class CannonClashTutorialOneAnimationScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         m_Timer += Time.deltaTime;
 
 

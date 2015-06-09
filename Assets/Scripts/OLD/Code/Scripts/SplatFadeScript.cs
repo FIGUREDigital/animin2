@@ -17,9 +17,9 @@ public class SplatFadeScript : MonoBehaviour
 
 		if(Timer >= 10)
 		{
-			float alpha = this.renderer.material.color.a;
+			float alpha = this.GetComponent<Renderer>().material.color.a;
 			alpha -= Time.deltaTime;
-			this.renderer.material.color = new Color(1,1,1, alpha);
+			this.GetComponent<Renderer>().material.color = new Color(1,1,1, alpha);
 
 			if(alpha <= 0)
 			{

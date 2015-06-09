@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
@@ -27,9 +27,9 @@ public class ProfileChecker : MonoBehaviour
 		else
 		{
             User.SetActive(true);
-            if (ProfilesManagementScript.Singleton.ListOfPlayerProfiles.Count > 0)
+            if (ProfilesManagementScript.Instance.ListOfPlayerProfiles.Count > 0)
             {
-                User.GetComponentInChildren<Text>().text = ProfilesManagementScript.Singleton.ListOfPlayerProfiles[0].ProfileName;				
+                User.GetComponentInChildren<Text>().text = ProfilesManagementScript.Instance.ListOfPlayerProfiles[0].ProfileName;				
             }
             else
             {

@@ -3,7 +3,7 @@ using System.Collections;
 
 using UnityEngine.EventSystems;
 
-public class DetectDragIconScript : MonoBehaviour, IBeginDragHandler {
+public class DetectDragIconScript : MonoBehaviour, IBeginDragHandler, IEndDragHandler {
 
     public delegate void ClickAction();
     public static event ClickAction OnClicked;
@@ -19,22 +19,26 @@ public class DetectDragIconScript : MonoBehaviour, IBeginDragHandler {
 	
 	}
 
-	public void OnBeginDrag(PointerEventData eventData)
+	
+	public void OnEndDrag(PointerEventData eventData)
+	{
+		CameraModelScript.Instance.SetDragging(null);
+	}
+        
+    public void OnBeginDrag(PointerEventData eventData)
 	{
 		InterfaceItemLinkToModelScript refScript = this.GetComponent<InterfaceItemLinkToModelScript>();
-		if(refScript.ItemID == InventoryItemId.None) return;
+        if (refScript.ItemID == InventoryItemId.None) return;
+        Debug.Log("Begin drag " + refScript.ItemID.ToString());
 
-        MainARHandler.Instance.MainARCamera.GetComponentInChildren<CameraModelScript>().SpriteRef = this.gameObject;
-		//InterfaceItemLinkToModelScript popScript = refScript.Reference.GetComponent<InterfaceItemLinkToModelScript>();
+		//CameraModelScript.Instance.SpriteRef = this.gameObject;
 
-
-
-		GameObject resourceLoaded = (GameObject)Resources.Load(InventoryItemData.Items[(int)refScript.ItemID].PrefabId);
+		GameObject resourceLoaded = (GameObject)Resources.Load(InventoryItemData.GetDefinition(refScript.ItemID).PrefabId);
 		GameObject child = (GameObject)GameObject.Instantiate(resourceLoaded);
 
 		child.GetComponent<BoxCollider>().enabled = false;
 
-        child.transform.parent = MainARHandler.Instance.MainARCamera.GetComponentInChildren<CameraModelScript>().transform;
+		CameraModelScript.Instance.SetDragging(child);
         MainARHandler.Instance.CurrentItem = child;
         MainARHandler.Instance.DraggedFromStage = false;
 		child.transform.position = Vector3.zero;

@@ -29,8 +29,8 @@ public class CardPostedUI : MonoBehaviour {
         }
     }
     public static void Instantiate(){
-        GameObject go = GameObject.Instantiate( (Resources.Load("Prefabs/UI - CardPosted")) ,Vector3.zero,Quaternion.identity) as GameObject;
-        go.transform.parent = UIGlobalVariablesScript.Singleton.UIRoot.transform;
-        go.transform.localScale = Vector3.one;
+        //GameObject go = GameObject.Instantiate( (Resources.Load("Prefabs/UI - CardPosted")) ,Vector3.zero,Quaternion.identity) as GameObject;
+        //go.transform.parent = UIGlobalVariablesScript.Singleton.UIRoot.transform;
+        //go.transform.localScale = Vector3.one;
     }
 }

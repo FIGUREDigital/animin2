@@ -170,7 +170,7 @@ public class FlashMaterialColorScript : MonoBehaviour
 
 		for(int i=0;i<transform.childCount;++i)
 		{
-			transform.GetChild(i).renderer.material.color = new Color(1.0f, 1.0f, 1.0f, alpha);
+			transform.GetChild(i).GetComponent<Renderer>().material.color = new Color(1.0f, 1.0f, 1.0f, alpha);
 		}
 
 		if(TimesFlashed == 5)

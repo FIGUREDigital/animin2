@@ -124,7 +124,10 @@ public class ShopManager
 	{
         CurrentRestoreStatus = RestoreStatus.Fail;
 		Debug.Log( "restoreTransactionsFailed: " + error );
-		UiPages.Next(Pages.RestoreFailPage);
+		
+		DialogPage.SetMessage("We're very sorry but there ha been an error restoring your purchases, please check your internet connection and try again.");
+		UiPages.SetDialogBackPage(Pages.AniminSelectPage);
+		UiPages.Next(Pages.DialogPage);
 	}
 	
 	
@@ -132,7 +135,10 @@ public class ShopManager
 	{
         CurrentRestoreStatus = RestoreStatus.Success;
 		Debug.Log( "restoreTransactionsFinished" );
-		UiPages.Next(Pages.RestoreSuccessPage, 5f);
+		
+		DialogPage.SetMessage("Your purchases have been successfully restored.\n\nThank you for purchasing Animin.");
+		UiPages.SetDialogBackPage(Pages.PurchasePage);
+		UiPages.Next(Pages.DialogPage, 5f);
 	}
 
 #if UNITY_IOS
@@ -148,14 +154,14 @@ public class ShopManager
 		{
                 mShopReady = true;
                 Debug.Log("Go to shop");
-            ProfilesManagementScript.Singleton.ContinueToInAppPurchase(true);
+			ProfilesManagementScript.Instance.ContinueToInAppPurchase(true);
 
 		}
         else if (productList.Count <= 0 && !mShopReady)
         {
                 mShopReady = true;
                 Debug.Log("Avoid shop");
-                ProfilesManagementScript.Singleton.ContinueToInAppPurchase(false);
+			ProfilesManagementScript.Instance.ContinueToInAppPurchase(false);
 
         }
 
@@ -172,6 +178,8 @@ public class ShopManager
 		void purchaseFailed( string error )
 		#elif UNITY_ANDROID
 		void purchaseFailed( string error, int errorcode )
+        #else
+        void purchaseFailed(string error)
 		#endif
 	{
         

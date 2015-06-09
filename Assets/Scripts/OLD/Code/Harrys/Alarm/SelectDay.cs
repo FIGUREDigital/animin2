@@ -30,7 +30,7 @@ public class SelectDay : MonoBehaviour {
 		//Debug.Log ("Clicked: : ["+this.name+"]; i : ["+my_i+"];");
 
 
-		Color col = (m_clicked?Color.white:Color.red);
+		//Color col = (m_clicked?Color.white:Color.red);
 		//GetComponent<Button> ().colors.normalColor = col;
 		m_clicked = !m_clicked;
 	}

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class InvBoxControls : MonoBehaviour {
@@ -64,11 +64,11 @@ public class InvBoxControls : MonoBehaviour {
         
         m_CaringPageControls = UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>();
         
-        bool isNonArScene = UIGlobalVariablesScript.Singleton.NonSceneRef.activeInHierarchy;
+//        bool isNonArScene = UIGlobalVariablesScript.Singleton.NonSceneRef.activeInHierarchy;
 
         if (MainARHandler.Instance.DraggedFromStage)
         {
-            ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(m_ItemScript.Id, 1);
+            ProfilesManagementScript.Instance.CurrentAnimin.AddItemToInventory(m_ItemScript.Id, 1);
         }
         
         m_CaringPageControls.DisappearAllItemUIs();

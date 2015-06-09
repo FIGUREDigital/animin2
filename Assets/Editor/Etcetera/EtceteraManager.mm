@@ -16,7 +16,11 @@
 #import <CommonCrypto/CommonDigest.h>
 
 
+#if UNITY_VERSION < 500
 void UnityPause( bool pause );
+#else
+void UnityPause( int pause );
+#endif
 
 void UnitySendMessage( const char * className, const char * methodName, const char * param );
 

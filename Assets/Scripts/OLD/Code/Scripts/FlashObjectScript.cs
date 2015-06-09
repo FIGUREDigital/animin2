@@ -22,12 +22,12 @@ public class FlashObjectScript : MonoBehaviour
 
 	private void SaveShaders(GameObject gameObject)
 	{
-		if(gameObject.renderer != null)
+		if(gameObject.GetComponent<Renderer>() != null)
 		{
-			if(gameObject.renderer.material != null)
+			if(gameObject.GetComponent<Renderer>().material != null)
 			{
-				if(!savedShader.ContainsKey(gameObject.renderer.material))
-					savedShader.Add(gameObject.renderer.material, gameObject.renderer.material.shader);
+				if(!savedShader.ContainsKey(gameObject.GetComponent<Renderer>().material))
+					savedShader.Add(gameObject.GetComponent<Renderer>().material, gameObject.GetComponent<Renderer>().material.shader);
 			}
 		}
 		
@@ -39,11 +39,11 @@ public class FlashObjectScript : MonoBehaviour
 
 	private void RestoreShaders(GameObject gameObject)
 	{
-		if(gameObject.renderer != null)
+		if(gameObject.GetComponent<Renderer>() != null)
 		{
-			if(gameObject.renderer.material != null)
+			if(gameObject.GetComponent<Renderer>().material != null)
 			{
-				gameObject.renderer.material.shader = savedShader[gameObject.renderer.material];
+				gameObject.GetComponent<Renderer>().material.shader = savedShader[gameObject.GetComponent<Renderer>().material];
 				//if(!savedShader.ContainsKey(gameObject.renderer.material))
 				//	savedShader.Add(gameObject.renderer.material, gameObject.renderer.material.shader);
 			}
@@ -57,14 +57,14 @@ public class FlashObjectScript : MonoBehaviour
 
 	private void RecursiveSetShader(GameObject gameObject, Shader shader)
 	{
-		if(gameObject.renderer != null)
+		if(gameObject.GetComponent<Renderer>() != null)
 		{
-			if(gameObject.renderer.material != null)
+			if(gameObject.GetComponent<Renderer>().material != null)
 			{
 				//if(gameObject.renderer.material.shader != savedShader)
 				//	savedShader = gameObject.renderer.material.shader;
 
-				gameObject.renderer.material.shader = shader;
+				gameObject.GetComponent<Renderer>().material.shader = shader;
 			}
 		}
 
@@ -76,11 +76,11 @@ public class FlashObjectScript : MonoBehaviour
 
 	private void SetBlendFactor(GameObject gameObject)
 	{
-		if(gameObject.renderer != null)
+		if(gameObject.GetComponent<Renderer>() != null)
 		{
-			if(gameObject.renderer.material != null)
+			if(gameObject.GetComponent<Renderer>().material != null)
 			{
-				gameObject.renderer.material.SetFloat("_BlendFactor", Lerp);
+				gameObject.GetComponent<Renderer>().material.SetFloat("_BlendFactor", Lerp);
 			}
 		}
 		

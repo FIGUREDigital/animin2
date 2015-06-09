@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -40,7 +40,7 @@ public class SendAccesCodeFromChatboxClickScript : MonoBehaviour {
 		if (!string.IsNullOrEmpty(text))
 		{
             Debug.Log("Code is not empty, continuing...");
-            ProfilesManagementScript.Singleton.CheckCharacterCodeValidity(text);
+            ProfilesManagementScript.Instance.CheckCharacterCodeValidity(text);
 
 			//ServerManager.Register(text);
 			mInput.enabled = false;

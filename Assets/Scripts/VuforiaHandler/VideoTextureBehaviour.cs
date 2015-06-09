@@ -4,12 +4,14 @@
 
 using System;
 using UnityEngine;
+using Vuforia;
 
 /// <summary>
 /// This Behaviour renders the video background from the camera in Unity.
 /// </summary>
 public class VideoTextureBehaviour : MonoBehaviour, IVideoBackgroundEventHandler
 {
+	public Material setMatToUseVideoTexture;
     #region PUBLIC_MEMBER_VARIABLES
     public Camera m_Camera = null;
     public int m_NumDivisions = 2;
@@ -70,7 +72,11 @@ public class VideoTextureBehaviour : MonoBehaviour, IVideoBackgroundEventHandler
         }
 
         // Ask the renderer to stop drawing the videobackground.
-        QCARRenderer.Instance.DrawVideoBackground = false;
+		//AH Not sure what we should be doing here,maybe enabling disabling the background plane.
+		//QCARRenderer.VideoBGCfgData config = QCARRenderer.Instance.GetVideoBackgroundConfig();
+		//config.enabled = 0;
+		//QCARRenderer.Instance.SetVideoBackgroundConfig(config);
+        //QCARRenderer.Instance.DrawVideoBackground = false;
     }
 
     public void UpdateBehaviour()
@@ -120,10 +126,15 @@ public class VideoTextureBehaviour : MonoBehaviour, IVideoBackgroundEventHandler
         }
 
         // Revert to default video background rendering
-        QCARRenderer.Instance.DrawVideoBackground = true;
+		
+		//AH Not sure what we should be doing here,maybe enabling disabling the background plane.
+		//QCARRenderer.VideoBGCfgData config = QCARRenderer.Instance.GetVideoBackgroundConfig();
+		//config.enabled = 1;
+		//QCARRenderer.Instance.SetVideoBackgroundConfig(config);
+        //QCARRenderer.Instance.DrawVideoBackground = true;
 
         // remove texture pointer
-        QCARRenderer.Instance.SetVideoBackgroundTexture(null);
+        QCARRenderer.Instance.SetVideoBackgroundTexture(null, -1);
     }
 
     #endregion PUBLIC_METHODS
@@ -153,10 +164,10 @@ public class VideoTextureBehaviour : MonoBehaviour, IVideoBackgroundEventHandler
         mTexture.wrapMode = TextureWrapMode.Clamp;
 
         // Assign texture to the renderer
-        renderer.material.mainTexture = mTexture;
+        GetComponent<Renderer>().material.mainTexture = mTexture;
 
         // Set the texture to render into:
-        if (!QCARRenderer.Instance.SetVideoBackgroundTexture(mTexture))
+        if (!QCARRenderer.Instance.SetVideoBackgroundTexture(mTexture, mTexture.GetNativeTextureID()))
         {
             Debug.Log("Failed to setVideoBackgroundTexture " + mTexture.GetNativeTextureID());
         }
@@ -164,6 +175,10 @@ public class VideoTextureBehaviour : MonoBehaviour, IVideoBackgroundEventHandler
         {
             Debug.Log("Successfully setVideoBackgroundTexture " + +mTexture.GetNativeTextureID());
         }
+		if (setMatToUseVideoTexture != null) 
+		{
+			setMatToUseVideoTexture.mainTexture = mTexture;
+		}
     }
 
     // Create a video mesh with the given number of rows and columns

@@ -58,9 +58,9 @@ public class ProjectileScript : MonoBehaviour
 		if(BeginFadeOut)
 		{
 			bool destroy = false;
-			if(renderer != null) 
+			if(GetComponent<Renderer>() != null) 
 			{
-				float alpha = renderer.material.color.a;
+				float alpha = GetComponent<Renderer>().material.color.a;
 				alpha -= Time.deltaTime *  7;
 				if(alpha <= 0) 
 				{
@@ -68,18 +68,18 @@ public class ProjectileScript : MonoBehaviour
 					destroy = true;
 				}
 
-				renderer.material.color = new Color(
-					renderer.material.color.r,
-					renderer.material.color.g,
-					renderer.material.color.b,
+				GetComponent<Renderer>().material.color = new Color(
+					GetComponent<Renderer>().material.color.r,
+					GetComponent<Renderer>().material.color.g,
+					GetComponent<Renderer>().material.color.b,
 					alpha);
 			}
 			
 			for(int a=0;a<transform.childCount;++a)
 			{
-				if(transform.GetChild(a).renderer == null) continue;
+				if(transform.GetChild(a).GetComponent<Renderer>() == null) continue;
 
-				float alpha = transform.GetChild(a).renderer.material.color.a;
+				float alpha = transform.GetChild(a).GetComponent<Renderer>().material.color.a;
 				alpha -= Time.deltaTime * 7;
 				if(alpha <= 0) 
 				{
@@ -87,10 +87,10 @@ public class ProjectileScript : MonoBehaviour
 					destroy = true;
 				}
 
-				transform.GetChild(a).renderer.material.color = new Color(
-					transform.GetChild(a).renderer.material.color.r,
-					transform.GetChild(a).renderer.material.color.g,
-					transform.GetChild(a).renderer.material.color.b,
+				transform.GetChild(a).GetComponent<Renderer>().material.color = new Color(
+					transform.GetChild(a).GetComponent<Renderer>().material.color.r,
+					transform.GetChild(a).GetComponent<Renderer>().material.color.g,
+					transform.GetChild(a).GetComponent<Renderer>().material.color.b,
 					alpha);
 			}
 			
@@ -140,16 +140,16 @@ public class ProjectileScript : MonoBehaviour
 //		Debug.Log("COLLISION DETECTED: " + collision.gameObject.name);
 		BeginFadeOut = true;
 
-		if(renderer != null) 
+		if(GetComponent<Renderer>() != null) 
 		{
-			renderer.material.shader = Shader.Find("Custom/ItemShader");
+			GetComponent<Renderer>().material.shader = Shader.Find("Custom/ItemShader");
 		}
 		
 		for(int a=0;a<transform.childCount;++a)
 		{
-			if(transform.GetChild(a).renderer == null) continue;
+			if(transform.GetChild(a).GetComponent<Renderer>() == null) continue;
 			
-			transform.GetChild(a).renderer.material.shader = Shader.Find("Custom/ItemShader");
+			transform.GetChild(a).GetComponent<Renderer>().material.shader = Shader.Find("Custom/ItemShader");
 		}
 	}
 }

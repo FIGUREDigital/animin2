@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -113,7 +113,7 @@ public class AchievementManager
 				ListOfAchievements = new List<AchievementDetails>();
 			}
 			ListOfAchievements.Add (tempAchievement);
-            ProfilesManagementScript.Singleton.CurrentProfile.Achievements = ListOfAchievements;
+            ProfilesManagementScript.Instance.CurrentProfile.Achievements = ListOfAchievements;
 			PlayerPrefs.SetInt("Achievement" + i, 0);
 			PlayerPrefs.SetInt("AchievementFired" + i, 0);
 		}
@@ -133,7 +133,7 @@ public class AchievementManager
 
         else
         {
-            ListOfAchievements = ProfilesManagementScript.Singleton.CurrentProfile.Achievements;
+            ListOfAchievements = ProfilesManagementScript.Instance.CurrentProfile.Achievements;
         }
 
 //		for(int i =0; i < (int)Achievements.Count; i++)
@@ -162,7 +162,7 @@ public class AchievementManager
 			PlayerPrefs.SetInt("AchievementFired" + i, mAchievmentsFired[i]?1:0);
 		}
 		PlayerPrefs.Save();
-        ProfilesManagementScript.Singleton.CurrentProfile.Achievements = ListOfAchievements;
+        ProfilesManagementScript.Instance.CurrentProfile.Achievements = ListOfAchievements;
 	}
 
 	public void AddToAchievment(Achievements item)
@@ -183,7 +183,7 @@ public class AchievementManager
 				mAchievmentsFired[i] = true;
 			}
 		}
-        ProfilesManagementScript.Singleton.CurrentProfile.Achievements = ListOfAchievements;
+        ProfilesManagementScript.Instance.CurrentProfile.Achievements = ListOfAchievements;
 	}
 
 

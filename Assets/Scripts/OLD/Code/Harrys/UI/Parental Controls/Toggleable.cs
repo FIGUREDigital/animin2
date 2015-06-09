@@ -25,7 +25,7 @@ public class Toggleable : MonoBehaviour {
 
 		m_On = !m_On;
 
-		string newSprite = (m_On ? OnSpriteName : OffSpriteName);
+//		string newSprite = (m_On ? OnSpriteName : OffSpriteName);
 
 
 		if (m_Toggle != null) m_Toggle (m_On);

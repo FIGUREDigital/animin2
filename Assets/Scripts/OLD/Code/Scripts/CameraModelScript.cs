@@ -2,40 +2,43 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
-public class CameraModelScript : MonoBehaviour 
+public class CameraModelScript : Phi.SingletonMonoBehaviour<CameraModelScript>
 {
-    #region Singleton
-
-    private static CameraModelScript s_Instance;
-
-    public static CameraModelScript Instance
-    {
-        get
-        {
-            if ( s_Instance == null )
-            {
-                s_Instance = new CameraModelScript();
-            }
-            return s_Instance;
-        }
-    }
-
-    #endregion
-
-	public GameObject SpriteRef;
-
 	// Use this for initialization
-	void Start () {
-        s_Instance = this;
+	public override void Init () {
 	}
-	
+
+	public void SetDragging(GameObject go)
+	{
+		//Debug.Log ("CameraModelScript SetDraggin: " + (go == null ? "null" : go.name));
+		if (transform.childCount > 0) {
+			if (go != null) {
+				Debug.LogError ("Should not be dragging something already - deleting old item!");
+			}
+			while (transform.childCount > 0)
+			{
+				Transform c = transform.GetChild(0);
+				c.parent = null;
+				Destroy (c.gameObject);
+			}
+		}
+		if (go != null) {
+			go.transform.parent = transform;
+		}
+	}
+
 	// Update is called once per frame
-	void Update () {
+	void LateUpdate () {
 
+		if (Camera.main == null)
+			return;
 		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-		this.transform.position = ray.origin + ray.direction * 0.25f;//new Vector3(ray.origin.x * 4, ray.origin.y * 4, this.transform.localPosition.z);
-		//this.transform.localScale = new Vector3(0.1f,0.1f,0.1f);
+		this.transform.position = ray.origin + ray.direction * 0.25f;
 
+		//new Vector3(ray.origin.x * 4, ray.origin.y * 4, this.transform.localPosition.z);
+		//this.transform.localScale = new Vector3(0.1f,0.1f,0.1f);
+#if false
+		// AH should no longer need this anything starting a drag should stop it!
 		if(this.transform.childCount > 0)
 		{
 			if(Input.GetButtonUp("Fire1"))
@@ -68,10 +71,10 @@ public class CameraModelScript : MonoBehaviour
 					}
 					else if(hitInfo.collider.gameObject == UIGlobalVariablesScript.Singleton.MainCharacterRef)
 					{
-						ReferencedObjectScript refScript = SpriteRef.GetComponent<ReferencedObjectScript>();
+						//ReferencedObjectScript refScript = SpriteRef.GetComponent<ReferencedObjectScript>();
 						//UIPopupItemScript popScript = refScript.Reference.GetComponent<UIPopupItemScript>();
 
-						CharacterProgressScript progressScript = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>();
+						//CharacterProgressScript progressScript = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>();
 
 
 						/*if(popScript.Type == PopupItemType.Food)
@@ -109,8 +112,10 @@ public class CameraModelScript : MonoBehaviour
 				}
 			}
 		}
+#endif
 	}
 
+	/*
 	private void DestroyChildModelAndHide()
 	{
 		for(int i=0;i<this.transform.childCount;++i)
@@ -129,19 +134,19 @@ public class CameraModelScript : MonoBehaviour
 			InterfaceItemLinkToModelScript refScript = SpriteRef.GetComponent<InterfaceItemLinkToModelScript>();
 //			InterfaceItemLinkToModelScript modelItem = refScript.Reference.GetComponent<InterfaceItemLinkToModelScript>();
 			
-			GameObject resourceLoaded = (GameObject)Resources.Load(InventoryItemData.Items[(int)refScript.ItemID].PrefabId);
+			GameObject resourceLoaded = (GameObject)Resources.Load(InventoryItemData.GetDefinition(refScript.ItemID).PrefabId);
 
 			GameObject child = (GameObject)GameObject.Instantiate(resourceLoaded);
 
 			UIPopupItemScript popScript = child.GetComponent<UIPopupItemScript>();
 
-			bool hasRemainingItemsOfThisId = ProfilesManagementScript.Singleton.CurrentAnimin.RemoveItemFromInventory(popScript.Id, 1);
+			bool hasRemainingItemsOfThisId = ProfilesManagementScript.Instance.CurrentAnimin.RemoveItemFromInventory(popScript.Id, 1);
 
 		
 			if(!hasRemainingItemsOfThisId)
 			{
 				//Debug.Log("!hasRemainingItemsOfThisId");
-				InventoryItemData itemData = ProfilesManagementScript.Singleton.CurrentAnimin.GetNextItemType(InventoryItemData.Items[(int)popScript.Id].ItemType);
+				InventoryItemData itemData = ProfilesManagementScript.Instance.CurrentAnimin.GetNextItemType(InventoryItemData.GetDefinition(popScript.Id).ItemType);
 
 				if(itemData != null)
 				{
@@ -203,27 +208,11 @@ public class CameraModelScript : MonoBehaviour
 			//CharacterProgressScript progressScript = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>();
 
 			UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().GroundItems.Add(child);
-			if(holdInHands)
-			{
-				UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().PickupItem(child);
 
-			}
-
-            UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHocExitCond("Hungry", "EatStrawberry");
-
-            if (popScript.Id == InventoryItemId.Boombox)
-            {
-                UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHocStartCond("BBPlace");
-            }
-
-
-			//Debug.Log("DCREATED!!!");
-			// Destroy this icon as it's no longer needed
-			//NGUITools.Destroy(gameObject);
-			//return;
 		}
 
 		DestroyChildModelAndHide();
 
 	}
+	*/
 }

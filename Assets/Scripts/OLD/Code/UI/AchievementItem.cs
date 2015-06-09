@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-
+using TMPro;
 public class AchievementItem : MonoBehaviour 
 {
 	private UnityEngine.UI.Image mTick;
 	private UnityEngine.UI.Image mDot;
-	public Text mDescription;
+	public TextMeshProUGUI mDescription;
 
 	public bool Achieved;
 
@@ -23,7 +23,7 @@ public class AchievementItem : MonoBehaviour
 		if(mDot == null){Debug.Log("Error: dot not found");}
 		mTick = gameObject.transform.FindChild("Tick").gameObject.GetComponent<UnityEngine.UI.Image>();
 		if(mTick == null){Debug.Log("Error: tick not found");}
-		mDescription = gameObject.GetComponentInChildren<Text>();
+		mDescription = gameObject.GetComponentInChildren<TextMeshProUGUI>();
 		if(mDescription == null){Debug.Log("Error: tick not found");};
 	}
 	void OnEnable()

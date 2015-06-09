@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class MusicScript : MonoBehaviour 
@@ -11,7 +11,7 @@ public class MusicScript : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-        if(!ProfilesManagementScript.Singleton.CurrentProfile.Settings.AudioEnabled) 
+        if(!ProfilesManagementScript.Instance.CurrentProfile.Settings.AudioEnabled) 
 		{
 			if(this.GetComponent<AudioSource>().isPlaying)
 				this.GetComponent<AudioSource>().Stop();

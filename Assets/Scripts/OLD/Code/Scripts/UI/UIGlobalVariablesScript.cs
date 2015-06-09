@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using Prime31;
 
 public class UIGlobalVariablesScript : MonoBehaviour
 {
@@ -177,8 +178,8 @@ Gun,
 
     public void LoadAniminPaypalPurchaseScreen()
     {
-        PurchaseAniminViaPaypal = (GameObject)GameObject.Instantiate(Resources.Load("NGUIPrefabs/UI - PaypalCharacterSelect"));
-        PurchaseAniminViaPaypal.SetActive(false);
+        //PurchaseAniminViaPaypal = (GameObject)GameObject.Instantiate(Resources.Load("NGUIPrefabs/UI - PaypalCharacterSelect"));
+        //PurchaseAniminViaPaypal.SetActive(false);
     }
 
     public void OpenParentalGateway(GameObject prev, GameObject next, bool LogPurchase = false)

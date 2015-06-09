@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 using System;
 using System.Collections;
@@ -65,13 +65,6 @@ public class InitialCond:TutorialCond{}
 public class TimerCond:TutorialCond{
     [System.Xml.Serialization.XmlAttribute("trigger")]
     public string trigger { get; set; }
-    public int trigi
-    {
-        get
-        {
-            return UInt16.Parse(trigger);
-        }
-    }
     [System.Xml.Serialization.XmlAttribute("seconds")]
     public string seconds { get; set; }
     public float secf
@@ -120,7 +113,10 @@ public class Tutorial{
 
 
 [Serializable()]
-public class Lesson{
+public class Lesson
+{
+    [System.Xml.Serialization.XmlAttribute("skip")]
+    public string skip { get; set; }
 	[XmlArray("TutEntries")]
 	[XmlArrayItem("TutEntry", typeof(TutEntry))]
 	public TutEntry[] TutEntries{ get; set; }
@@ -132,11 +128,10 @@ public class Lesson{
 public class TutEntry{
 	[System.Xml.Serialization.XmlAttribute("text")]
 	public string text { get; set; }
+
+    [System.Xml.Serialization.XmlAttribute("fire")]
+    public string fire { get; set; }
 }
-
-
-
-
 
 
 public class TutorialReader{
@@ -212,7 +207,7 @@ public class TutorialReader{
 				Debug.Log (" . . Counted : ["+t.Tutorials[i].Lessons[j].TutEntries.Length+"] entries;");
 				for (int k = 0; k < t.Tutorials[i].Lessons[j].TutEntries.Length; k++){
 					
-					Debug.Log (" . . TutName : ["+t.Tutorials[i].id+"]; TutEntry : ["+t.Tutorials[i].Lessons[j].TutEntries[k].text+"];");
+					Debug.Log (" . . TutName : ["+t.Tutorials[i].Name+"]; TutEntry : ["+t.Tutorials[i].Lessons[j].TutEntries[k].text+"];");
 				}
 			}
 		}

@@ -19,11 +19,11 @@ class MyEditorScript {
 		string target = TARGET_DIR + "/" + target_dir;
 		if(Directory.Exists(target))
 		{
-			GenericBuild(SCENES, target, BuildTarget.iPhone, BuildOptions.AcceptExternalModificationsToPlayer);
+			GenericBuild(SCENES, target, BuildTarget.iOS, BuildOptions.AcceptExternalModificationsToPlayer);
 		}
 		else
 		{
-			GenericBuild(SCENES, target, BuildTarget.iPhone, BuildOptions.None);
+			GenericBuild(SCENES, target, BuildTarget.iOS, BuildOptions.None);
 		}
 		CorrectBundleID ();
 	}
@@ -36,11 +36,11 @@ class MyEditorScript {
         TextureImportSettings.ToggleCompression_Enable_Automatic_Compressed();
         if(Directory.Exists(target))
         {
-            GenericBuild(SCENES, target, BuildTarget.iPhone, BuildOptions.AcceptExternalModificationsToPlayer);
+            GenericBuild(SCENES, target, BuildTarget.iOS, BuildOptions.AcceptExternalModificationsToPlayer);
         }
         else
         {
-            GenericBuild(SCENES, target, BuildTarget.iPhone, BuildOptions.None);
+            GenericBuild(SCENES, target, BuildTarget.iOS, BuildOptions.None);
         }
         CorrectBundleID ();
     }
@@ -52,11 +52,11 @@ class MyEditorScript {
 		string target = TARGET_DIR + "/" + target_dir;
 		if(Directory.Exists(target))
 		{
-			GenericBuild (SCENES, target, BuildTarget.iPhone, BuildOptions.Development | BuildOptions.AcceptExternalModificationsToPlayer);
+			GenericBuild (SCENES, target, BuildTarget.iOS, BuildOptions.Development | BuildOptions.AcceptExternalModificationsToPlayer);
 		}
 		else
 		{
-			GenericBuild (SCENES, target, BuildTarget.iPhone, BuildOptions.Development);
+			GenericBuild (SCENES, target, BuildTarget.iOS, BuildOptions.Development);
 		}
 		CorrectBundleID ();	
 	}

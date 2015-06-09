@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -16,48 +16,26 @@ public class EvoBar : MonoBehaviour
 	private AniminEvolutionStageId mEvoID;
 	private AniminEvolutionStageId mPrevEvoID;
 	private bool initial = true;
-	public GameObject overlay1;
-	public GameObject overlay2;
-	public GameObject overlay3;
 
 	void OnEnable()
 	{
-		//PlaceMarkers();
-		AniminEvolutionStageId id = ProfilesManagementScript.Singleton.CurrentAnimin.AniminEvolutionId;
-		overlay1.SetActive(false);
-		overlay2.SetActive(false);
-		overlay3.SetActive(false);
-
-		switch(id)
-		{
-		case AniminEvolutionStageId.Baby:
-			overlay1.SetActive(true);
-			break;
-		case AniminEvolutionStageId.Kid:
-			overlay2.SetActive(true);
-			break;
-		case AniminEvolutionStageId.Adult:
-			overlay3.SetActive(true);
-			break;
-		case AniminEvolutionStageId.Count:
-		default:
-			break;
-		}
+		PlaceMarkers();
+		AniminEvolutionStageId id = ProfilesManagementScript.Instance.CurrentAnimin.AniminEvolutionId;
 
 		CalcEvolution ();
 	}
 	private void CalcEvolution()
 	{
-		mEvoFill.fillAmount = ProfilesManagementScript.Singleton.CurrentAnimin.Evolution/100;
+		mEvoFill.fillAmount = ProfilesManagementScript.Instance.CurrentAnimin.Evolution/100;
 	}
 	private void PlaceMarkers()
 	{
-		mEvoID = ProfilesManagementScript.Singleton.CurrentAnimin.AniminEvolutionId;
+		mEvoID = ProfilesManagementScript.Instance.CurrentAnimin.AniminEvolutionId;
 		if(mEvoID == mPrevEvoID && !initial)
 		{
 			return;
 		}
-		mPrevEvoID = ProfilesManagementScript.Singleton.CurrentAnimin.AniminEvolutionId;
+		mPrevEvoID = ProfilesManagementScript.Instance.CurrentAnimin.AniminEvolutionId;
 		initial = false;
 
 		if(mMarkers.Count > 0)
@@ -77,7 +55,7 @@ public class EvoBar : MonoBehaviour
 		int min = 0;
 		int max = 0;
 		int diff = 0;
-		AniminEvolutionStageId stage = ProfilesManagementScript.Singleton.CurrentAnimin.AniminEvolutionId;
+		AniminEvolutionStageId stage = ProfilesManagementScript.Instance.CurrentAnimin.AniminEvolutionId;
 
 		switch(stage)
 		{

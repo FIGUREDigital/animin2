@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using TMPro;
 public class PhotoFadeOut : MonoBehaviour {
 
 
 	private bool m_Show;
 
-	private UnityEngine.UI.Image sprite;
+
+	public UnityEngine.UI.Graphic[] graphics;
+	public TextMeshProUGUI[] texts;
 
 	[SerializeField]
 	private float StartFadeoutAt = 2;
@@ -16,17 +18,11 @@ public class PhotoFadeOut : MonoBehaviour {
 
 	private float m_Timer;
 
-	void Start(){
-		sprite = this.GetComponent<UnityEngine.UI.Image> ();
-	}
 
 	void OnEnable(){
 		m_Show = true;
 		m_Timer = 0;
-		if (sprite != null) 
-		{
-			sprite.color = new Color (sprite.color.r, sprite.color.g, sprite.color.b, 1);
-		}
+		SetAlpha(1);
 		Debug.Log ("Enabled!");
 	}
 	void Update () {
@@ -34,11 +30,29 @@ public class PhotoFadeOut : MonoBehaviour {
 			m_Timer += Time.deltaTime;
 			if (m_Timer >= StopFadeoutAt){
 				m_Show = false;
-			} else if (m_Timer >= StartFadeoutAt && sprite!=null){
-				sprite.color = new Color(sprite.color.r,sprite.color.g,sprite.color.b, sprite.color.a - (1.0f/(StopFadeoutAt - StartFadeoutAt))*Time.deltaTime);
+			} else if (m_Timer >= StartFadeoutAt)
+			{
+				SetAlpha(graphics[0].color.a - (1.0f/(StopFadeoutAt - StartFadeoutAt))*Time.deltaTime);
 			}
 		}
 		
 		this.gameObject.SetActive(m_Show);
+	}
+
+	void SetAlpha(float a)
+	{
+		Color c;
+		for(int i = 0; i < graphics.Length; i++)
+		{
+			c = graphics[i].color;
+			c.a = a;
+			graphics[i].color = c;
+		}
+		for(int i = 0; i < texts.Length; i++)
+		{
+			c = texts[i].color;
+			c.a = a;
+			texts[i].color = c;
+		}
 	}
 }

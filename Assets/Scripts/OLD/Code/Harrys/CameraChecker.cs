@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using Vuforia;
 public class CameraChecker : MonoBehaviour {
 
 	private QCARBehaviour m_script;

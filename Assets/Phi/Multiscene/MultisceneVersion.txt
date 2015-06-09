@@ -1,0 +1,6 @@
+1.0.17
+	Add: MultisceneLoad componentto allow you to add a list of scenes to an object in your scene and configure which should be loaded in play /edit modes. Or just use it as a usefu;list of bookmarked scenes you need quick access to when editing the current scene.
+1.0.16
+	Fix: Edge case where if scripts were edited during play mode and you switched back to edit mode at a specific time during an assembly reload the scene would be reset to it's saved state.
+1.0.15
+	First Unity Asset Store Build

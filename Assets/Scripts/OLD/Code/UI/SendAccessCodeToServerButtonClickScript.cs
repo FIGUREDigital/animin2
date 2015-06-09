@@ -17,9 +17,6 @@ public class SendAccessCodeToServerButtonClickScript : MonoBehaviour {
     private const string FakeCode10 = "6GWK0H6D";
     private const string MasterReset = "AM989FTW";
 
-    [SerializeField]
-    public GameObject IncorrectLabel;
-
 	// Use this for initialization
 	void Start () 
 	{
@@ -44,6 +41,8 @@ public class SendAccessCodeToServerButtonClickScript : MonoBehaviour {
 	void purchaseSuccessful( StoreKitTransaction transaction )
 #elif UNITY_ANDROID
     void purchaseSuccessful(GooglePurchase transaction)
+#else 
+    void purchaseSuccessful()
 #endif
 	{
 		UnregisterListeners();
@@ -54,6 +53,8 @@ public class SendAccessCodeToServerButtonClickScript : MonoBehaviour {
 		void purchaseUnsuccessful( string transaction )
 #elif UNITY_ANDROID
 		void purchaseUnsuccessful( string transaction, int errorcode )
+#else
+    void purchaseUnsuccessful(string transaction)
 #endif
 	{
 		UnregisterListeners();

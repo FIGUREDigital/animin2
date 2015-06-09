@@ -118,7 +118,7 @@ public class JoystiqScript : MonoBehaviour {
 		
 		float movementSpeed = 0;
 		
-		bool fingerTouchValid = false;
+//		bool fingerTouchValid = false;
 		/*
 		for(int i=0;i<Input.touchCount;++i)
 		{

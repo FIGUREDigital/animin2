@@ -26,12 +26,12 @@ public class UIClickButtonMasterScript : MonoBehaviour
         }
 		
         List<InventoryItemData> inventoryItems = new List<InventoryItemData>();
-        for (int i = 0; i < ProfilesManagementScript.Singleton.CurrentAnimin.Inventory.Count; ++i)
+        for (int i = 0; i < ProfilesManagementScript.Instance.CurrentAnimin.Inventory.Count; ++i)
         {
 //			Debug.Log(ProfilesManagementScript.Singleton.CurrentAnimin.Inventory[i].Id.ToString());
-            if (InventoryItemData.Items[(int)ProfilesManagementScript.Singleton.CurrentAnimin.Inventory[i].Id].ItemType != typeToLoad)
+			if (ProfilesManagementScript.Instance.CurrentAnimin.Inventory[i].Definition.ItemType != typeToLoad)
                 continue;
-            inventoryItems.Add(ProfilesManagementScript.Singleton.CurrentAnimin.Inventory[i]);
+            inventoryItems.Add(ProfilesManagementScript.Instance.CurrentAnimin.Inventory[i]);
         }
 		
 		
@@ -47,8 +47,8 @@ public class UIClickButtonMasterScript : MonoBehaviour
             Debug.Log(sprite0.name);
 
            // subItems[panelCount].transform.GetChild(0).gameObject.GetComponent<Button>().normalSprite = InventoryItemData.Items[(int)inventoryItems[i + 0].Id].SpriteName;
-            subItems[panelCount].transform.GetChild(0).gameObject.GetComponent<InterfaceItemLinkToModelScript>().Item3DPrefab = InventoryItemData.Items[(int)inventoryItems[i + 0].Id].PrefabId;
-            subItems[panelCount].transform.GetChild(0).gameObject.GetComponent<InterfaceItemLinkToModelScript>().ItemID = InventoryItemData.Items[(int)inventoryItems[i + 0].Id].Id;
+            subItems[panelCount].transform.GetChild(0).gameObject.GetComponent<InterfaceItemLinkToModelScript>().Item3DPrefab = inventoryItems[i + 0].Definition.PrefabId;
+			subItems[panelCount].transform.GetChild(0).gameObject.GetComponent<InterfaceItemLinkToModelScript>().ItemID = inventoryItems[i + 0].Id;
             subItems[panelCount].transform.GetChild(0).gameObject.SetActive(true);
             sprite0.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = inventoryItems[i + 0].Count.ToString();
 
@@ -68,8 +68,8 @@ public class UIClickButtonMasterScript : MonoBehaviour
                 GameObject sprite1 = subItems[panelCount].transform.GetChild(1).gameObject;
 
                // subItems[panelCount].transform.GetChild(1).gameObject.GetComponent<Button>().normalSprite = InventoryItemData.Items[(int)inventoryItems[i + 1].Id].SpriteName;
-                subItems[panelCount].transform.GetChild(1).gameObject.GetComponent<InterfaceItemLinkToModelScript>().Item3DPrefab = InventoryItemData.Items[(int)inventoryItems[i + 1].Id].PrefabId;
-                subItems[panelCount].transform.GetChild(1).gameObject.GetComponent<InterfaceItemLinkToModelScript>().ItemID = InventoryItemData.Items[(int)inventoryItems[i + 1].Id].Id;
+                subItems[panelCount].transform.GetChild(1).gameObject.GetComponent<InterfaceItemLinkToModelScript>().Item3DPrefab = inventoryItems[i + 1].Definition.PrefabId;
+                subItems[panelCount].transform.GetChild(1).gameObject.GetComponent<InterfaceItemLinkToModelScript>().ItemID = inventoryItems[i + 1].Id;
                 subItems[panelCount].transform.GetChild(1).gameObject.SetActive(true);
                 sprite1.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = inventoryItems[i + 1].Count.ToString();
 
@@ -146,7 +146,7 @@ public class UIClickButtonMasterScript : MonoBehaviour
                             }
                             else
                             {
-                                ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(script.GroundItems[i].GetComponent<UIPopupItemScript>().Id, 1);
+                                ProfilesManagementScript.Instance.CurrentAnimin.AddItemToInventory(script.GroundItems[i].GetComponent<UIPopupItemScript>().Id, 1);
                             }
                         }
                         Destroy(script.GroundItems[i]);
@@ -154,7 +154,7 @@ public class UIClickButtonMasterScript : MonoBehaviour
 			
                     script.GroundItems.Clear();
                     UIGlobalVariablesScript.Singleton.SoundEngine.Play(GenericSoundId.CleanPooPiss);
-                    UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().HidePopupMenus();
+                    UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().HidePopupMenus(false);
 
                     for (int i = 0; i < EDMMixerScript.Singleton.KeysOn.Length; ++i)
                     {
@@ -188,8 +188,7 @@ public class UIClickButtonMasterScript : MonoBehaviour
 
             case UIFunctionalityId.GoToMainMenuFromGame:
                 {
-                    SaveAndLoad.Instance.SaveAllData();
-
+					UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().CleanUpItems();
                     Application.LoadLevel("Menu");
 
                     break;
@@ -197,18 +196,18 @@ public class UIClickButtonMasterScript : MonoBehaviour
 
             case UIFunctionalityId.AudioOnOffGame:
                 {
-                    ProfilesManagementScript.Singleton.CurrentProfile.Settings.AudioEnabled = !ProfilesManagementScript.Singleton.CurrentProfile.Settings.AudioEnabled;
+                    ProfilesManagementScript.Instance.CurrentProfile.Settings.AudioEnabled = !ProfilesManagementScript.Instance.CurrentProfile.Settings.AudioEnabled;
 
                     SetSoundSprite();
 
-                    SaveAndLoad.Instance.SaveAllData();
+                    //SaveAndLoad.Instance.SaveAllData();
                     Debug.Log("just saved...ui cllick");
 
                     break;
                 }
             case UIFunctionalityId.ResetAnimin:
                 {
-                    ProfilesManagementScript.Singleton.CurrentAnimin.SetDefault(ProfilesManagementScript.Singleton.CurrentAnimin.PlayerAniminId);
+                    ProfilesManagementScript.Instance.CurrentAnimin.SetDefault(ProfilesManagementScript.Instance.CurrentAnimin.PlayerAniminId);
                     Application.LoadLevel("VuforiaTest");
 
                     break;

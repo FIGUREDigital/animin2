@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class BroomScript : MonoBehaviour
@@ -17,7 +17,7 @@ public class BroomScript : MonoBehaviour
                 }
                 else
                 {
-                    ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(script.GroundItems[i].GetComponent<UIPopupItemScript>().Id, 1);
+                    ProfilesManagementScript.Instance.CurrentAnimin.AddItemToInventory(script.GroundItems[i].GetComponent<UIPopupItemScript>().Id, 1);
                 }
             }
             Destroy(script.GroundItems[i]);
@@ -25,7 +25,7 @@ public class BroomScript : MonoBehaviour
 
         script.GroundItems.Clear();
         UIGlobalVariablesScript.Singleton.SoundEngine.Play(GenericSoundId.CleanPooPiss);
-        UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().HidePopupMenus();
+        UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().HidePopupMenus(false);
 
         for (int i = 0; i < EDMMixerScript.Singleton.KeysOn.Length; ++i)
         {

@@ -376,7 +376,7 @@ public class CharacterControllerScript : MonoBehaviour //Photon.MonoBehaviour
         if (isControllable) // don't move player at all if not controllable.
         {
             // Apply gravity
-            bool jumpButton = PressedJumb;//Input.GetButton("Jump");
+            //bool jumpButton = PressedJumb;//Input.GetButton("Jump");
 
             // When we reach the apex of the jump we send out a message
             if (jumping && !jumpingReachedApex && verticalSpeed <= 0.0f)
@@ -540,7 +540,7 @@ public class CharacterControllerScript : MonoBehaviour //Photon.MonoBehaviour
         PressedJumb = false;
     }
 
-    [RPC]
+//    [RPC]
     protected void ReceiveHitByEnemy(int enemyViewId, int playerCharacterViewId)
     {
 //		GameObject hitenemy = PhotonView.Find(enemyViewId).gameObject;
@@ -597,17 +597,17 @@ public class CharacterControllerScript : MonoBehaviour //Photon.MonoBehaviour
                 script.Stop(true);
                 hit.gameObject.GetComponent<LighbulbSwitchOnOffScript>().Switch();
             }
+            else if (itemType == PopupItemType.Food && ProfilesManagementScript.Instance.CurrentAnimin.Hungry < CharacterProgressScript.ConsideredHungryLevels)
+            {
+                this.GetComponent<CharacterProgressScript>().PickupItem(hit.gameObject);
+                this.GetComponent<CharacterProgressScript>().CurrentAction = ActionId.EatItem;
+
+            }
             else if (this.GetComponent<CharacterProgressScript>().ShouldThrowObjectAfterPickup)
             {
                 this.GetComponent<CharacterProgressScript>().PickupItem(hit.gameObject/*.GetComponent<ReferencedObjectScript>().Reference.GetComponent<UIPopupItemScript>()*/);
                 this.GetComponent<CharacterProgressScript>().CurrentAction = ActionId.ThrowItemAfterPickup;
 
-            }
-            else if (itemType == PopupItemType.Food && ProfilesManagementScript.Singleton.CurrentAnimin.Hungry < CharacterProgressScript.ConsideredHungryLevels)
-            {
-                this.GetComponent<CharacterProgressScript>().PickupItem(hit.gameObject);
-                this.GetComponent<CharacterProgressScript>().CurrentAction = ActionId.EatItem;
-			
             }
             else
             {

@@ -38,7 +38,7 @@ public class EnterProfile : MonoBehaviour {
 		}
 		else
 		{
-			ProfilesManagementScript.Singleton.LoginExistingUser(ThisProfile);
+			ProfilesManagementScript.Instance.LoginExistingUser(ThisProfile);
 			UiPages.Next(Pages.AniminSelectPage);
 		}
 	}

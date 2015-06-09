@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class TboEvolutionWarningScript : MonoBehaviour {
@@ -8,7 +8,7 @@ public class TboEvolutionWarningScript : MonoBehaviour {
 
 		public void OnClick()
 		{
-			ProfilesManagementScript.Singleton.CloseEvolutionPurchaseWarning (ContinueToPurchase);
+			ProfilesManagementScript.Instance.CloseEvolutionPurchaseWarning (ContinueToPurchase);
 
 		}
 }

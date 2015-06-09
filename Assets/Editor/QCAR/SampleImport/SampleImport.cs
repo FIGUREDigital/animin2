@@ -20,6 +20,6 @@ public class SampleImport : AssetPostprocessor
     {
         // Set the Unity version for internal use
         string path = Path.Combine(Application.dataPath, "StreamingAssets/QCAR");
-        QCARUnity.SetUnityVersion(path);
+        //QCARUnity.SetUnityVersion(path);
     }
 }

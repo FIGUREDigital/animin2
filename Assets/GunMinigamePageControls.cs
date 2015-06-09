@@ -1,5 +1,8 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
+using UiImage = UnityEngine.UI.Image;
+using TMPro;
 
 public enum ReadyStates
 {
@@ -7,6 +10,7 @@ public enum ReadyStates
     Ready2,
     Ready1,
     Go,
+	None,
     Count,
 }
 
@@ -15,24 +19,26 @@ public class GunMinigamePageControls : MonoBehaviour
 {
 
     [SerializeField]
-    private UnityEngine.UI.Image m_Bar, m_Go321, m_GunIcon;
+    private UnityEngine.UI.Image m_Bar, m_GunIcon;
+	
+	[SerializeField]
+	private UIText text123;
 
-
-    [SerializeField]
-    private Sprite[] Go321Textures;
-
+	public Animation m_321;
+    
     public UnityEngine.UI.Image Bar { get { return m_Bar; } }
 
     public UnityEngine.UI.Image Icon { get { return m_GunIcon; } }
 
-    public UnityEngine.UI.Image Go321 { get { return m_Go321; } }
+	public UIText completeMessage;
 
+	public GameObject awesome;
 
 
     [SerializeField]
-    private UnityEngine.UI.Text m_Points;
+	private TextMeshProUGUI m_Points;
 
-    public UnityEngine.UI.Text Points { get { return m_Points; } }
+	public TextMeshProUGUI Points { get { return m_Points; } }
 
 
     [SerializeField]
@@ -64,21 +70,21 @@ public class GunMinigamePageControls : MonoBehaviour
     {
         get
         {
-            Debug.Log("Waiting for Input : [" + (TutorialCounter == 0 || TutorialCounter == 1) + "];");
-            return  (!ProfilesManagementScript.Singleton.CurrentProfile.TutorialCanonClashPlayed) && (TutorialCounter == 0 || TutorialCounter == 1);
+//            Debug.Log("Waiting for Input : [" + (TutorialCounter == 0 || TutorialCounter == 1) + "];");
+            return  (!ProfilesManagementScript.Instance.CurrentProfile.TutorialCanonClashPlayed) && (TutorialCounter == 0 || TutorialCounter == 1);
         }
     }
 
     // Use this for initialization
     void Start()
     {
-	
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (ProfilesManagementScript.Singleton.CurrentProfile.TutorialCanonClashPlayed == false)
+        if (ProfilesManagementScript.Instance.CurrentProfile.TutorialCanonClashPlayed == false)
         {
             switch (TutorialCounter)
             {
@@ -88,7 +94,7 @@ public class GunMinigamePageControls : MonoBehaviour
                         SetBarWidth(0);
                         m_TutorialMove.SetActive(true);
                         m_Points.transform.parent.gameObject.SetActive(false);
-                        m_Go321.gameObject.SetActive(false);
+                        m_321.gameObject.SetActive(false);
                         m_TutorialMove.SetActive(false);
 
                         m_TutorialEnemies.SetActive(true);
@@ -113,8 +119,8 @@ public class GunMinigamePageControls : MonoBehaviour
                         GunsMinigameScript script = UIGlobalVariablesScript.Singleton.GunGameScene.GetComponent<GunsMinigameScript>();
                         if (script != null)
                         if (!script.Go321Done)
-                            m_Go321.gameObject.SetActive(true);
-                        ProfilesManagementScript.Singleton.CurrentProfile.TutorialCanonClashPlayed = true;
+                            m_321.gameObject.SetActive(true);
+                        ProfilesManagementScript.Instance.CurrentProfile.TutorialCanonClashPlayed = true;
                         TutorialCounter++;
                     }
                     break;
@@ -127,24 +133,26 @@ public class GunMinigamePageControls : MonoBehaviour
         m_TutorialEnemies.SetActive(false);
         m_TutorialMove.SetActive(false);
         TutorialCounter = 0;
-        ProfilesManagementScript.Singleton.CurrentProfile.TutorialCanonClashPlayed = false;
+        ProfilesManagementScript.Instance.CurrentProfile.TutorialCanonClashPlayed = false;
     }
 
     public void SetReadyState(ReadyStates newState)
     {
+		Debug.Log ("SetReadyState "+newState);
+		m_321.gameObject.SetActive (newState <= ReadyStates.Go);
         switch (newState)
         {
             case ReadyStates.Ready3:
-                Go321.sprite = Go321Textures[0];
+				text123.Text = "3";
                 break;
-            case ReadyStates.Ready2:
-                Go321.sprite = Go321Textures[1];
+			case ReadyStates.Ready2:
+				text123.Text = "2";
                 break;
-            case ReadyStates.Ready1:
-                Go321.sprite = Go321Textures[2];
+			case ReadyStates.Ready1:
+				text123.Text = "1";
                 break;
-            case ReadyStates.Go:
-                Go321.sprite = Go321Textures[3];
+			case ReadyStates.Go:
+				text123.Text = "Go!";
                 break;
         }
     }
@@ -161,11 +169,11 @@ public class GunMinigamePageControls : MonoBehaviour
 
     void OnEnable()
     {
-        if (!ProfilesManagementScript.Singleton.CurrentProfile.TutorialCanonClashPlayed)
+        if (!ProfilesManagementScript.Instance.CurrentProfile.TutorialCanonClashPlayed)
             TutorialCounter = 0;
         m_Points.transform.parent.gameObject.SetActive(true);
-        m_Go321.gameObject.SetActive(true);
-        m_Go321.gameObject.SetActive(false);
+        m_321.gameObject.SetActive(true);
+        m_321.gameObject.SetActive(false);
         m_TutorialEnemies.SetActive(false);
         if (UiPages.GetPage(Pages.JoystickPage) != null)
             UiPages.GetPage(Pages.JoystickPage).SetActive(true);
@@ -176,4 +184,56 @@ public class GunMinigamePageControls : MonoBehaviour
         if (UiPages.GetPage(Pages.JoystickPage) != null)
             UiPages.GetPage(Pages.JoystickPage).SetActive(false);
     }
+
+	public void SetWaveComplete(int wave)
+	{
+		awesome.SetActive(wave > 0);
+		if(wave <= 0) return;
+		awesome.GetComponent<Animation>().GetComponent<Animation>().Play("AwesomeScale");
+		if (wave >= 10)
+		{
+			completeMessage.Text = "All Waves Complete!";
+		}
+		else
+		{
+			completeMessage.Text = "Wave "+wave+" Complete";
+		}
+	}
+
+	public IEnumerator ShowWaveComplete(int wave)
+	{		
+		SetWaveComplete(wave);
+		//	UiPages.GetPage(Pages.GunMinigamePage).GetComponent<GunMinigamePageControls>().Paused = true;
+		//	UIGlobalVariablesScript.Singleton.GunGameScene.GetComponent<GunsMinigameScript>().Paused = true;
+		//	uiParticles = GameObject.FindGameObjectWithTag("uiparticles");
+		//	uiParticles.GetComponent<ParticleSystem>().particleSystem.Play();
+		//GameObject.FindGameObjectWithTag("wave321go").GetComponent<UiImage>().sprite = clear3;
+		SetReadyState(ReadyStates.Ready3);
+		GameObject.FindGameObjectWithTag("wave321go").GetComponent<Animation>().GetComponent<Animation>().Play("321goScale");
+		yield return new WaitForSeconds (1.0f);
+		//GameObject.FindGameObjectWithTag("wave321go").GetComponent<UiImage>().sprite = clear2;
+		SetReadyState(ReadyStates.Ready2);
+		GameObject.FindGameObjectWithTag("wave321go").GetComponent<Animation>().GetComponent<Animation>().Play("321goScale");
+		yield return new WaitForSeconds (1.0f);
+		//GameObject.FindGameObjectWithTag("wave321go").GetComponent<UiImage>().sprite = clear1;
+		SetReadyState(ReadyStates.Ready1);
+		GameObject.FindGameObjectWithTag("wave321go").GetComponent<Animation>().GetComponent<Animation>().Play("321goScale");
+		yield return new WaitForSeconds (1.0f);
+		//GameObject.FindGameObjectWithTag("wave321go").GetComponent<UiImage>().sprite = clearGo;
+		SetReadyState(ReadyStates.Go);
+		GameObject.FindGameObjectWithTag("wave321go").GetComponent<Animation>().GetComponent<Animation>().Play("321goScale");
+		yield return new WaitForSeconds (1.0f);
+		GameObject.FindGameObjectWithTag("awesomeUI").GetComponent<Animation>().GetComponent<Animation>().Play("AwesomeScaleDown");
+		GameObject.FindGameObjectWithTag("wave321go").GetComponent<Animation>().GetComponent<Animation>().Play("321goScaleDown");
+		yield return new WaitForSeconds (1.0f);
+		SetReadyState(ReadyStates.None);
+		//GameObject.FindGameObjectWithTag("wave321go").GetComponent<UiImage>().sprite = blankSprite;
+		
+		SetWaveComplete(-1);
+		//	uiParticles.GetComponent<ParticleSystem>().particleSystem.Clear();
+		//	uiParticles.GetComponent<ParticleSystem>().particleSystem.Stop();
+		//	UiPages.GetPage(Pages.GunMinigamePage).GetComponent<GunMinigamePageControls>().Paused = false;
+        //	UIGlobalVariablesScript.Singleton.GunGameScene.GetComponent<GunsMinigameScript>().Paused = false;
+	}
+
 }

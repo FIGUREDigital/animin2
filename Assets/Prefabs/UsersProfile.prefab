@@ -1,0 +1,159 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &142020
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 482938}
+  - 114: {fileID: 11440200}
+  - 114: {fileID: 11471970}
+  - 114: {fileID: 11487312}
+  m_Layer: 0
+  m_Name: UsersProfile
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &482938
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 142020}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -427.965942, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11440200
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 142020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e6ee5fec146b48a6815964520832c98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItunesScript: {fileID: 0}
+  PiAge: {fileID: 0}
+  TBOAge: {fileID: 0}
+  KelsiAge: {fileID: 0}
+  MandiAge: {fileID: 0}
+  SentToPurchaseAdultTBOFromMainScene: 0
+  AniminToUnlockId: 0
+  ListOfPlayerProfiles: []
+  CurrentProfile:
+    FirstTimePlaying: 0
+    Characters:
+    - Inventory: []
+      PlayerAniminId: 0
+      AniminEvolutionId: 0
+      EggTaps: 0
+      ZefTokens: 0
+      CrystalCount: 0
+      SubstagesCompleted: 
+      Username: 
+      m_CaringScreenItems: []
+    - Inventory: []
+      PlayerAniminId: 0
+      AniminEvolutionId: 0
+      EggTaps: 0
+      ZefTokens: 0
+      CrystalCount: 0
+      SubstagesCompleted: 
+      Username: 
+      m_CaringScreenItems: []
+    - Inventory: []
+      PlayerAniminId: 0
+      AniminEvolutionId: 0
+      EggTaps: 0
+      ZefTokens: 0
+      CrystalCount: 0
+      SubstagesCompleted: 
+      Username: 
+      m_CaringScreenItems: []
+    - Inventory: []
+      PlayerAniminId: 0
+      AniminEvolutionId: 0
+      EggTaps: 0
+      ZefTokens: 0
+      CrystalCount: 0
+      SubstagesCompleted: 
+      Username: 
+      m_CaringScreenItems: []
+    - Inventory: []
+      PlayerAniminId: 0
+      AniminEvolutionId: 0
+      EggTaps: 0
+      ZefTokens: 0
+      CrystalCount: 0
+      SubstagesCompleted: 
+      Username: 
+      m_CaringScreenItems: []
+    Settings:
+      AudioEnabled: 0
+    ProfileName: 
+    UniqueID: 
+    ActiveAnimin: 0
+    UnlockedAnimins: 
+    Achievements: []
+    BuyFullTbo: 0
+    TutorialsCompleted: []
+    m_StrawberryAdded: 0
+    m_PhoneAdded: 0
+    m_ShownStartEatStrawberry: 0
+    m_GivenZef: 0
+    m_GivenCrystals: 0
+    m_PhoneMessage: 0
+  CurrentAnimin:
+    Inventory: []
+    PlayerAniminId: 0
+    AniminEvolutionId: 0
+    EggTaps: 0
+    ZefTokens: 0
+    CrystalCount: 0
+    SubstagesCompleted: 
+    Username: 
+    m_CaringScreenItems: []
+  BeginLoadLevel: 0
+--- !u!114 &11471970
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 142020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6e8dc368aea62849a08511d338cc8d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  singletonName: 
+--- !u!114 &11487312
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 142020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71e85335ea943c24dab255ae6092c111, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 142020}
+  m_IsPrefabParent: 1

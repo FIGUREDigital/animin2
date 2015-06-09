@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using UiImage = UnityEngine.UI.Image;
 
 public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
 {
@@ -45,8 +46,8 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
     //public Texture2D[] BarTextures;
     public Texture FrontBar;
 
-    private const float BarrelSpawnMinTime = 2;
-    private const float BarrelSpawnMaxTime = 5;
+    private const float BarrelSpawnMinTime = 1;
+    private const float BarrelSpawnMaxTime = 7;
     private int Wave;
     private int[] WaveTimers = new int[] { 2, 10, 10, 10, 10, 10, 10, 10, 10, 10 };
     private int[] WaveMinEnemies = new int[] { 2, 3, 4, 5, 6, 7, 8, 9, 11, 15 };
@@ -122,30 +123,339 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
         get { return m_Paused; }
     }
 
-    // Use this for initialization
+	// New Wave System
+	public static int waveCount;
+	public static int enemyCount;
+	private bool canSpawn;
+	public static int destroyedEnemyCount;
+	public Sprite blankSprite;
+	
+	public Sprite clear3;
+	public Sprite clear2;
+	public Sprite clear1;
+	public Sprite clearGo;
+
+//	public GameObject uiParticles;
+
+	private bool clearWave;
+	private bool spawnBarrels;
+	private bool canShoot;
+
+	public Sprite blueBar;
+	public Sprite blueberryIcon;
+
+	IEnumerator ClearWave(int wave)
+	{
+		clearWave = true;
+		spawnBarrels = false;
+		canShoot = false;
+		UIGlobalVariablesScript.Singleton.SoundEngine.StopLoop();
+		
+		yield return StartCoroutine(UIControls.ShowWaveComplete(wave));
+		
+		if(wave < 10)
+        {
+            UIGlobalVariablesScript.Singleton.SoundEngine.PlayLoop(GenericSoundId.GunLoop);
+		}
+
+		clearWave = false;
+		
+		if(wave < 10)
+		{
+			spawnBarrels = true;
+			canShoot = true;
+			WaveTimerForNext = 1;
+		}
+		else
+		{
+            ExitMinigame();
+		}
+	}
+
+	IEnumerator WaveOneEnemies ()
+	{
+		if (clearWave == false)
+		{
+			enemyCount = 3;
+			for (int a = 0; a < enemyCount; ++a)
+			{
+				SpawnWaveOne(0);
+			}
+			yield return new WaitForSeconds (3.0f);
+			enemyCount = 3;
+			for (int a = 0; a < enemyCount; ++a)
+			{
+				SpawnWaveOne(0);
+			}
+		}
+		// 6
+	}
+
+	IEnumerator WaveTwoEnemies ()
+	{
+		if (clearWave == false)
+		{
+			enemyCount = 3;
+			for (int a = 0; a < enemyCount; ++a)
+			{
+				SpawnWaveTwo(0);
+			}
+			yield return new WaitForSeconds (3.0f);
+			enemyCount = 3;
+			for (int a = 0; a < enemyCount; ++a)
+			{
+				SpawnWaveTwo(0);
+			}
+			yield return new WaitForSeconds (5.0f);
+			enemyCount = 4;
+			for (int a = 0; a < enemyCount; ++a)
+			{
+				SpawnWaveTwo(0);
+			}
+			// 10
+		}
+	}
+
+	IEnumerator WaveThreeEnemies ()
+	{
+		if (clearWave == false)
+		{
+			enemyCount = 4;
+			for (int a = 0; a < enemyCount; ++a)
+			{
+				SpawnWaveThree(0);
+			}
+			yield return new WaitForSeconds (4.0f);
+			enemyCount = 4;
+			for (int a = 0; a < enemyCount; ++a)
+			{
+				SpawnWaveThree(0);
+			}
+			yield return new WaitForSeconds (6.0f);
+			enemyCount = 6;
+			for (int a = 0; a < enemyCount; ++a)
+			{
+				SpawnWaveThree(0);
+			}
+			// 14
+		}
+	}
+
+	IEnumerator WaveFourEnemies ()
+	{
+		if (clearWave == false)
+		{
+			enemyCount = 6;
+			for (int a = 0; a < enemyCount; ++a)
+			{
+				SpawnWaveFour(0);
+			}
+			yield return new WaitForSeconds (4.0f);
+			enemyCount = 6;
+			for (int a = 0; a < enemyCount; ++a)
+			{
+				SpawnWaveFour(0);
+			}
+			yield return new WaitForSeconds (6.0f);
+			enemyCount = 6;
+			for (int a = 0; a < enemyCount; ++a)
+			{
+				SpawnWaveFour(0);
+			}
+			// 18
+		}
+	}
+
+	IEnumerator WaveFiveEnemies ()
+	{
+		if (clearWave == false)
+		{
+			enemyCount = 7;
+			for (int a = 0; a < enemyCount; ++a)
+			{
+				SpawnWaveFive(0);
+			}
+			yield return new WaitForSeconds (4.0f);
+			enemyCount = 7;
+			for (int a = 0; a < enemyCount; ++a)
+			{
+				SpawnWaveFive(0);
+			}
+			yield return new WaitForSeconds (6.0f);
+			enemyCount = 8;
+			for (int a = 0; a < enemyCount; ++a)
+			{
+				SpawnWaveFive(0);
+			}
+			// 22
+		}
+	}
+
+	IEnumerator WaveSixEnemies ()
+	{
+		if (clearWave == false)
+		{
+			enemyCount = 8;
+			for (int a = 0; a < enemyCount; ++a)
+			{
+				SpawnWaveSix(0);
+			}
+			yield return new WaitForSeconds (5.0f);
+			enemyCount = 8;
+			for (int a = 0; a < enemyCount; ++a)
+			{
+				SpawnWaveSix(0);
+			}
+			yield return new WaitForSeconds (7.0f);
+			enemyCount = 10;
+			for (int a = 0; a < enemyCount; ++a)
+			{
+				SpawnWaveSix(0);
+			}
+			// 26
+		}
+	}
+
+	IEnumerator WaveSevenEnemies ()
+	{
+		if (clearWave == false)
+		{
+			enemyCount = 9;
+			for (int a = 0; a < enemyCount; ++a)
+			{
+				SpawnWaveSix(0);
+			}
+			yield return new WaitForSeconds (5.0f);
+			enemyCount = 9;
+			for (int a = 0; a < enemyCount; ++a)
+			{
+				SpawnWaveSix(0);
+			}
+			yield return new WaitForSeconds (7.0f);
+			enemyCount = 12;
+			for (int a = 0; a < enemyCount; ++a)
+			{
+				SpawnWaveSix(0);
+			}
+			// 30
+		}
+	}
+
+	IEnumerator WaveEightEnemies ()
+	{
+		if (clearWave == false)
+		{
+			enemyCount = 10;
+			for (int a = 0; a < enemyCount; ++a)
+			{
+				SpawnWaveSix(0);
+			}
+			yield return new WaitForSeconds (5.0f);
+			enemyCount = 10;
+			for (int a = 0; a < enemyCount; ++a)
+			{
+				SpawnWaveSix(0);
+			}
+			yield return new WaitForSeconds (7.0f);
+			enemyCount = 14;
+			for (int a = 0; a < enemyCount; ++a)
+			{
+				SpawnWaveSix(0);
+			}
+			// 34
+		}
+	}
+
+	IEnumerator WaveNineEnemies ()
+	{
+		if (clearWave == false)
+		{
+			enemyCount = 12;
+			for (int a = 0; a < enemyCount; ++a)
+			{
+				SpawnWaveSix(0);
+			}
+			yield return new WaitForSeconds (6.0f);
+			enemyCount = 12;
+			for (int a = 0; a < enemyCount; ++a)
+			{
+				SpawnWaveSix(0);
+			}
+			yield return new WaitForSeconds (8.0f);
+			enemyCount = 14;
+			for (int a = 0; a < enemyCount; ++a)
+			{
+				SpawnWaveSix(0);
+			}
+			// 38
+		}
+	}
+
+	IEnumerator WaveTenEnemies ()
+	{
+		if (clearWave == false)
+		{
+			enemyCount = 14;
+			for (int a = 0; a < enemyCount; ++a)
+			{
+				SpawnWaveSix(0);
+			}
+			yield return new WaitForSeconds (6.0f);
+			enemyCount = 14;
+			for (int a = 0; a < enemyCount; ++a)
+			{
+				SpawnWaveSix(0);
+			}
+			yield return new WaitForSeconds (8.0f);
+			enemyCount = 14;
+			for (int a = 0; a < enemyCount; ++a)
+			{
+				SpawnWaveSix(0);
+			}
+			// 42
+		}
+	}
+
+	// Use this for initialization
     void Start()
     {
         CurrentBullets.Clear();
-        CurrentBullets.Add(BulletPrefab[Random.Range(0, BulletPrefab.Length)]);
+       // CurrentBullets.Add(BulletPrefab[Random.Range(0, BulletPrefab.Length)]);
+		CurrentBullets.Add(BulletPrefab[1]);
+
+		GameObject.FindGameObjectWithTag("meterfill").GetComponent<UiImage>().sprite = blueBar;
+		GameObject.FindGameObjectWithTag("metericon").GetComponent<UiImage>().sprite = blueberryIcon;
 
         m_State = GameStateId.Initialize;
 		m_Go321Done = false;
+		// Starting Wave
+		waveCount = 1;
+		enemyCount = 0;
+		destroyedEnemyCount = 0;
+		canSpawn = true;
+
+		clearWave = false;
+		spawnBarrels = true;
+		canShoot = true;
+		UIControls.SetWaveComplete(-1);
+
+	//	uiParticles = GameObject.FindGameObjectWithTag("uiparticles");
+	//	uiParticles.GetComponent<ParticleSystem>().particleSystem.Stop();
+
     }
 
     void Awake()
     {
-        if (ProfilesManagementScript.Singleton.CurrentProfile == null)
+        if (ProfilesManagementScript.Instance.CurrentProfile == null)
         {
             Debug.Log("PlayerProfileData.ActiveProfile = null!");
-            ProfilesManagementScript.Singleton.CurrentProfile = PlayerProfileData.CreateNewProfile("Dummy");
-            ProfilesManagementScript.Singleton.CurrentAnimin = ProfilesManagementScript.Singleton.CurrentProfile.Characters[(int)PersistentData.TypesOfAnimin.Pi];
+            ProfilesManagementScript.Instance.CurrentProfile = PlayerProfileData.CreateNewProfile("Dummy");
+            ProfilesManagementScript.Instance.CurrentAnimin = ProfilesManagementScript.Instance.CurrentProfile.Characters[(int)PersistentData.TypesOfAnimin.Pi];
         }
 
-        UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterSwapManagementScript>().LoadCharacter(ProfilesManagementScript.Singleton.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Singleton.CurrentAnimin.AniminEvolutionId);
+        UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterSwapManagementScript>().LoadCharacter(ProfilesManagementScript.Instance.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Instance.CurrentAnimin.AniminEvolutionId, false);
         UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<MinigameAnimationControllerScript>().LoadAnimator(UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterSwapManagementScript>().CurrentModel);
     }
-
-
 
     // Update is called once per frame
     void Update()
@@ -157,6 +467,115 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
 
         float LerpTime = 0.3f;
 
+//		Debug.Log ("Wave Count " + waveCount);
+	
+		if (destroyedEnemyCount == 6)
+		{
+			if (waveCount == 1)
+			{
+				StartCoroutine(ClearWave(waveCount));
+			}
+			waveCount = 2;
+			canSpawn = true;
+		}
+
+		if (destroyedEnemyCount == 16)
+		{
+			if (waveCount == 2)
+			{
+				StartCoroutine(ClearWave(waveCount));
+            }
+			
+			waveCount = 3;
+			canSpawn = true;
+		}
+
+		if (destroyedEnemyCount == 30)
+		{
+			if (waveCount == 3)
+			{
+				StartCoroutine(ClearWave(waveCount));
+            }
+
+			waveCount = 4;
+			canSpawn = true;
+		}
+
+		if (destroyedEnemyCount == 48)
+		{
+			if (waveCount == 4)
+			{
+				StartCoroutine(ClearWave(waveCount));
+            }
+			waveCount = 5;
+			canSpawn = true;
+		}
+
+		if (destroyedEnemyCount == 70)
+		{
+			if (waveCount == 5)
+			{
+				StartCoroutine(ClearWave(waveCount));
+            }
+
+			waveCount = 6;
+			canSpawn = true;
+		}
+
+		if (destroyedEnemyCount == 96)
+		{
+			if (waveCount == 6)
+			{
+				StartCoroutine(ClearWave(waveCount));
+            }
+
+			waveCount = 7;
+			canSpawn = true;
+		}
+
+		if (destroyedEnemyCount == 126)
+		{
+			if (waveCount == 7)
+			{
+				StartCoroutine(ClearWave(waveCount));
+            }
+
+			waveCount = 8;
+			canSpawn = true;
+		}
+
+		if (destroyedEnemyCount == 160)
+		{
+			if (waveCount == 8)
+			{
+				StartCoroutine(ClearWave(waveCount));
+            }
+
+			waveCount = 9;
+			canSpawn = true;
+		}
+
+		if (destroyedEnemyCount == 198)
+		{
+			if (waveCount == 9)
+			{
+				StartCoroutine(ClearWave(waveCount));
+            }
+
+			waveCount = 10;
+			canSpawn = true;
+		}
+
+		if (destroyedEnemyCount == 240)
+		{
+			canSpawn = false;
+			if (waveCount == 10)
+			{
+				StartCoroutine(ClearWave(waveCount));
+			}
+			waveCount = 11;
+        }
+        
         switch (m_State)
         {
 
@@ -164,7 +583,6 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
                 {
                     if (UIControls.WaitingForTouch)
                         break;
-                    UIControls.Go321.gameObject.SetActive(true);
                     UIControls.SetReadyState(ReadyStates.Ready3);
 
                     FillUpTimer = 0;
@@ -192,14 +610,14 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
                 }
             case GameStateId.PrepareToStart3:
                 {
-                    UIControls.Go321.gameObject.SetActive(true);
+                    UIControls.m_321.gameObject.SetActive(true);
                     if (FillUpTimer >= 0.25f)
                     {
                         UIControls.SetReadyState(ReadyStates.Ready2);
-                        UIControls.Go321.gameObject.transform.localScale = LerpFrom;
+						UIControls.m_321.gameObject.transform.localScale = LerpFrom;
                         m_State = GameStateId.PrepareToStart2;
                     }
-                    UIControls.Go321.gameObject.transform.localScale = Vector3.Lerp(UIControls.Go321.gameObject.transform.localScale, LerpTo, LerpTime);
+					UIControls.m_321.gameObject.transform.localScale = Vector3.Lerp(UIControls.m_321.gameObject.transform.localScale, LerpTo, LerpTime);
 
                     FillUpTimer += Time.deltaTime * 0.40f;
                     UIControls.SetBarWidth(FillUpTimer);
@@ -211,10 +629,10 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
                     if (FillUpTimer >= 0.5f)
                     {
                         UIControls.SetReadyState(ReadyStates.Ready1);
-                        UIControls.Go321.gameObject.transform.localScale = LerpFrom;
+						UIControls.m_321.gameObject.transform.localScale = LerpFrom;
                         m_State = GameStateId.PrepareToStart1;
                     }
-                    UIControls.Go321.gameObject.transform.localScale = Vector3.Lerp(UIControls.Go321.gameObject.transform.localScale, LerpTo, LerpTime);
+					UIControls.m_321.gameObject.transform.localScale = Vector3.Lerp(UIControls.m_321.gameObject.transform.localScale, LerpTo, LerpTime);
 
                     FillUpTimer += Time.deltaTime * 0.40f;
                     UIControls.SetBarWidth(FillUpTimer);
@@ -226,10 +644,10 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
                     if (FillUpTimer >= 0.75f)
                     {
                         UIControls.SetReadyState(ReadyStates.Go);
-                        UIControls.Go321.gameObject.transform.localScale = LerpFrom;
+						UIControls.m_321.gameObject.transform.localScale = LerpFrom;
                         m_State = GameStateId.PrepareToStartGO;
                     }
-                    UIControls.Go321.gameObject.transform.localScale = Vector3.Lerp(UIControls.Go321.gameObject.transform.localScale, LerpTo, LerpTime);
+					UIControls.m_321.gameObject.transform.localScale = Vector3.Lerp(UIControls.m_321.gameObject.transform.localScale, LerpTo, LerpTime);
 
                     FillUpTimer += Time.deltaTime * 0.40f;
                     UIControls.SetBarWidth(FillUpTimer);
@@ -241,10 +659,10 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
                     if (FillUpTimer >= 1f)
                     {
                         UIControls.SetReadyState(ReadyStates.Ready3);
-                        UIControls.Go321.gameObject.SetActive(false);
+						UIControls.m_321.gameObject.SetActive(false);
                         m_State = GameStateId.Countdown;
                     }
-                    UIControls.Go321.gameObject.transform.localScale = Vector3.Lerp(UIControls.Go321.gameObject.transform.localScale, LerpTo, LerpTime);
+					UIControls.m_321.gameObject.transform.localScale = Vector3.Lerp(UIControls.m_321.gameObject.transform.localScale, LerpTo, LerpTime);
 
                     FillUpTimer += Time.deltaTime * 0.40f;
                     UIControls.SetBarWidth(FillUpTimer);
@@ -252,9 +670,6 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
                     break;
                 }
 
-
-
-                
             case GameStateId.PrepareToStart:
                 {
                     m_State = GameStateId.Countdown;
@@ -285,10 +700,10 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
 				Debug.Log ("Paused");
 				break;
 			}
-
-
+				if (spawnBarrels == true)
+				{
                     NextBarrelSpawnTimer -= Time.deltaTime;
-                    if (NextBarrelSpawnTimer <= 0)
+                    if (NextBarrelSpawnTimer <= 1)
                     {
                         NextBarrelSpawnTimer = Random.Range(BarrelSpawnMinTime, BarrelSpawnMaxTime);
                         if (Random.Range(0, 10) == 0)
@@ -296,6 +711,7 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
                         else
                             SpawnBarrelStart(false);
                     }
+
 
                     RandomCubeTimer -= Time.deltaTime;
                     if (RandomCubeTimer <= 0)
@@ -310,43 +726,140 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
                         AmmoTimer = 0.001f;
                         m_State = GameStateId.Completed;
                     }
-
-                      
+				}
                     //ReceiveEventAmmoTimer(AmmoTimer);
 
-
                     WaveTimerForNext -= Time.deltaTime;
-                    if (WaveTimerForNext <= 0)
+                    if (WaveTimerForNext <= 1 && canSpawn == true)
                     {
-                        Wave++;
+                       // Wave++;
                         if (Wave == WaveTimers.Length)
                         {
-                            m_State = GameStateId.Completed;
+                           // m_State = GameStateId.Completed;
                         }
                         else
                         {
-                            WaveTimerForNext = WaveTimers[Wave];
-                            int enemyCount = Random.Range(WaveMinEnemies[Wave], WaveMaxEnemies[Wave]);
-                            for (int a = 0; a < enemyCount; ++a)
-                            {
-                                SpawnEnemyStart(0);
-                            }
-                        }
+                            //WaveTimerForNext = WaveTimers[Wave];
+							WaveTimerForNext = 10;
+                          //int enemyCount = Random.Range(WaveMinEnemies[Wave], WaveMaxEnemies[Wave]);
+							if (waveCount == 1)
+							{
+								enemyCount = 3;
+								StartCoroutine("WaveOneEnemies");
+	
+                            //	for (int a = 0; a < enemyCount; ++a)
+                            //	{
+								//	SpawnWaveOne(0);
+                            //	}
+							}
+							
+							else if (waveCount == 2 && destroyedEnemyCount == 6)
+							{
+								enemyCount = 10;
+								StartCoroutine("WaveTwoEnemies");	
+							//	for (int a = 0; a < enemyCount; ++a)
+							//	{
+							//		SpawnWaveTwo(0);
+							//	}
+							}
 
+							else if (waveCount == 3 && destroyedEnemyCount == 16)
+							{
+								enemyCount = 14;
+								StartCoroutine("WaveThreeEnemies");
+							//	for (int a = 0; a < enemyCount; ++a)
+							//	{
+							//		SpawnWaveThree(0);
+							//	}
+							}
+					
+							else if (waveCount == 4 && destroyedEnemyCount == 30)
+							{
+								enemyCount = 18;
+								StartCoroutine("WaveFourEnemies");
+							//	for (int a = 0; a < enemyCount; ++a)
+							//	{
+							//		SpawnWaveFour(0);
+							//	}
+							}
+
+							else if (waveCount == 5 && destroyedEnemyCount == 48)
+							{
+								enemyCount = 22;
+								StartCoroutine("WaveFiveEnemies");
+							//	for (int a = 0; a < enemyCount; ++a)
+							//	{
+							//		SpawnWaveFive(0);
+							//	}
+							}
+
+							else if (waveCount == 6 && destroyedEnemyCount == 70)
+							{
+								enemyCount = 26;
+								StartCoroutine("WaveSixEnemies");
+							//	for (int a = 0; a < enemyCount; ++a)
+							//	{
+							//		SpawnWaveSix(0);
+							//	}
+							}
+
+							else if (waveCount == 7 && destroyedEnemyCount == 96)
+							{
+								enemyCount = 30;
+								StartCoroutine("WaveSevenEnemies");
+							//	for (int a = 0; a < enemyCount; ++a)
+							//	{
+							//		SpawnWaveSeven(0);
+							//	}
+							}
+
+							else if (waveCount == 8 && destroyedEnemyCount == 126)
+							{
+								enemyCount = 34;
+								StartCoroutine("WaveEightEnemies");
+							//	for (int a = 0; a < enemyCount; ++a)
+							//	{
+							//		SpawnWaveEight(0);
+							//	}
+							}
+
+							else if (waveCount == 9 && destroyedEnemyCount == 160)
+							{
+								enemyCount = 38;
+								StartCoroutine("WaveNineEnemies");
+							//	for (int a = 0; a < enemyCount; ++a)
+							//	{
+							//		SpawnWaveNine(0);
+							//	}
+							}
+
+							else if (waveCount == 10 && destroyedEnemyCount == 198)
+							{
+								enemyCount = 42;
+								StartCoroutine("WaveTenEnemies");
+							//	for (int a = 0; a < enemyCount; ++a)
+							//	{
+							//		SpawnWaveTen(0);
+							//	}
+							}
+                        }
                     }
 
                     AutoShootCooldown -= Time.deltaTime;
                     if (AutoShootCooldown <= 0)
                     {
-                        AutoShootCooldown = 0.18f;
-                        //UIGlobalVariablesScript.Singleton.SoundEngine.Play(GenericSoundId.Jump);
+					if (canShoot == true)
+					{
+                        	AutoShootCooldown = 0.18f;
+                        	//UIGlobalVariablesScript.Singleton.SoundEngine.Play(GenericSoundId.Jump);
 
-                        for (int a = 0; a < PlayersCharacters.Count; ++a)
-                        {
-                            ShootBulletForwardStart(a);
-                        }
+                        	for (int a = 0; a < PlayersCharacters.Count; ++a)
+                        	{
+                            	ShootBulletForwardStart(a);
+                        	}
                         
-                    }
+                    	}
+					}
                     UIControls.SetBarWidth(AmmoTimer);
                     //MeterBar.renderer.set = (int)((AmmoTimer) * MeterBarBackground.width);
 
@@ -410,11 +923,7 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
     {
         m_State = GameStateId.PrepareToStart3;
     }
-
-
-
-
-
+	
     public void Reset()
     {
         m_State = GameStateId.Initialize;
@@ -445,32 +954,31 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
     {
         if (m_InvulnTimer > 0)
             return;
-        m_InvulnTimer = 0.5f;
-        AmmoTimer -= 0.15f;
+        m_InvulnTimer = 1.0f;
+        AmmoTimer -= 0.20f;
 
         character.GetComponent<CharacterControllerScript>().Forces.Add(
-            new CharacterForces() { Speed = 800, Direction = -character.transform.forward, Length = 0.3f }
+            new CharacterForces() { Speed = 800, Direction = -character.transform.forward, Length = 0.6f }
         );
 
 
         UIGlobalVariablesScript.Singleton.SoundEngine.Play(GenericSoundId.GunGame_Bump_Into_Baddy);
     }
-
-
+	
     public void OnBulletHitBarrel(BarrelCollisionScript barrel)
     {
         UIControls.Bar.sprite = barrel.BarFrontTexture;
         UIControls.Icon.sprite = barrel.BuletIcon;
 
         //Destroy(barrel);
-        AmmoTimer += 0.07f;
+        AmmoTimer += 0.15f;
         if (AmmoTimer >= 1)
             AmmoTimer = 1;
         string[] prefabs = barrel.BulletPrefabs;
         CurrentBullets.Clear();
         CurrentBullets.AddRange(prefabs);
 
-        Points += 400;
+        Points += 150;
 
         UIGlobalVariablesScript.Singleton.SoundEngine.Play(GenericSoundId.GunGame_barrel_destroy);
 
@@ -521,7 +1029,7 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
         PlayersCharacters.Add(instance);
     }
 
-    public GameObject SpawnEnemyStart(int level)
+   /* public GameObject SpawnEnemyStart(int level)
     {
         if (level >= EnemyPrefabs.Length)
             level = EnemyPrefabs.Length - 1;
@@ -529,9 +1037,12 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
         GameObject resourceLoad = Resources.Load(EnemyPrefabs[level]) as GameObject;
 
         Texture2D[] textures = SlimeTextures;
+
         if (level == 1)
-            textures = SlimeLevel2Textures;
-        int textureIndex = Random.Range(0, textures.Length);
+		
+        textures = SlimeLevel2Textures;
+      //	int textureIndex = Random.Range(0, textures.Length);
+		int textureIndex = 3;
 
         Vector3 position = new Vector3(Random.Range(-1.5f, 1.5f), 0, Random.Range(-1.5f, 1.5f));
 
@@ -539,10 +1050,8 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
 
         newEnemy = Instantiate(resourceLoad) as GameObject;
         SpawnEnemyEnd(newEnemy, level, textureIndex, position);
-        
 
-
-        return newEnemy;
+		return newEnemy;
     }
 
     public void SpawnEnemyEnd(GameObject newEnemy, int level, int textureIndex, Vector3 position)
@@ -580,6 +1089,623 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
         newEnemy.name = texture.name;
         //SpawnedObjects.Add(newEnemy);
     }
+*/
+	public GameObject SpawnWaveOne(int level)
+	{
+		// Blue enemies
+		if (level >= EnemyPrefabs.Length)
+			level = EnemyPrefabs.Length - 1;
+		
+		GameObject resourceLoad = Resources.Load(EnemyPrefabs[level]) as GameObject;
+		
+//		Texture2D[] textures = SlimeTextures;
+//		if (level == 1)
+//			textures = SlimeLevel2Textures;
+		//	int textureIndex = Random.Range(0, textures.Length);
+		// Blue
+		int textureIndex = 0;
+		
+		Vector3 position = new Vector3(Random.Range(-1.5f, 1.5f), 0, Random.Range(-1.5f, 1.5f));
+		
+		GameObject newEnemy = null;
+		
+		newEnemy = Instantiate(resourceLoad) as GameObject;
+		SpawnWaveOneEnd(newEnemy, level, textureIndex, position);
+
+		canSpawn = false;
+
+		return newEnemy;
+	}
+
+	public void SpawnWaveOneEnd(GameObject newEnemy, int level, int textureIndex, Vector3 position)
+	{
+		Texture2D[] textures = SlimeTextures;
+		if (level == 1)
+			textures = SlimeLevel2Textures;
+		
+		float scale = 1;
+		if (level == 1)
+			scale = 3;
+		
+		newEnemy.transform.parent = SpawnedObjectsAllOthers.transform;
+		newEnemy.transform.position = new Vector3(0, 0, 0);
+		newEnemy.transform.rotation = Quaternion.identity;
+		newEnemy.transform.localScale = new Vector3(0.06f * scale, 0.06f * scale, 0.06f * scale);
+		newEnemy.transform.localPosition = position;
+		
+		//if(level == 1)
+		//	newProjectile.transform.rotation = Quaternion.Euler(15, 0, 0);
+		
+		
+		Texture2D texture = textures[textureIndex];
+		
+		for (int i = 0; i < newEnemy.transform.childCount; ++i)
+			if (newEnemy.transform.GetChild(i).GetComponent<Renderer>() != null)
+				newEnemy.transform.GetChild(i).GetComponent<Renderer>().material.mainTexture = texture;
+		
+		newEnemy.GetComponent<GunGameEnemyScript>().BulletSplat = BulletSplats[textureIndex];
+		newEnemy.GetComponent<GunGameEnemyScript>().SkinColor = SlimeColors[textureIndex];
+		newEnemy.GetComponent<GunGameEnemyScript>().Speed = Random.Range(0.05f, 0.11f) * (level + 1);
+		newEnemy.GetComponent<GunGameEnemyScript>().SplatSetByCode = MonsterSplatPrefabs[textureIndex];
+		newEnemy.GetComponent<GunGameEnemyScript>().Level = level;
+		newEnemy.GetComponent<GunGameEnemyScript>().TargetToFollow = PlayersCharacters[Random.Range(0, PlayersCharacters.Count)];
+		newEnemy.name = texture.name;
+		//SpawnedObjects.Add(newEnemy);
+	}
+
+	public GameObject SpawnWaveTwo(int level)
+	{
+		if (level >= EnemyPrefabs.Length)
+			level = EnemyPrefabs.Length - 1;
+		
+		GameObject resourceLoad = Resources.Load(EnemyPrefabs[level]) as GameObject;
+		
+//		Texture2D[] textures = SlimeTextures;		
+//		if (level == 1)			
+//			textures = SlimeLevel2Textures;
+		// Blue & red
+			int textureIndex = Random.Range(0, 2);
+
+		Vector3 position = new Vector3(Random.Range(-1.5f, 1.5f), 0, Random.Range(-1.5f, 1.5f));
+		
+		GameObject newEnemy = null;
+		
+		newEnemy = Instantiate(resourceLoad) as GameObject;
+		SpawnWaveTwoEnd(newEnemy, level, textureIndex, position);
+		
+		return newEnemy;
+	}
+	
+	public void SpawnWaveTwoEnd(GameObject newEnemy, int level, int textureIndex, Vector3 position)
+	{
+		Texture2D[] textures = SlimeTextures;
+		if (level == 1)
+			textures = SlimeLevel2Textures;
+		
+		float scale = 1;
+		if (level == 1)
+			scale = 3;
+		
+		newEnemy.transform.parent = SpawnedObjectsAllOthers.transform;
+		newEnemy.transform.position = new Vector3(0, 0, 0);
+		newEnemy.transform.rotation = Quaternion.identity;
+		newEnemy.transform.localScale = new Vector3(0.06f * scale, 0.06f * scale, 0.06f * scale);
+		newEnemy.transform.localPosition = position;
+		
+		//if(level == 1)
+		//	newProjectile.transform.rotation = Quaternion.Euler(15, 0, 0);
+		
+		
+		Texture2D texture = textures[textureIndex];
+		
+		for (int i = 0; i < newEnemy.transform.childCount; ++i)
+			if (newEnemy.transform.GetChild(i).GetComponent<Renderer>() != null)
+				newEnemy.transform.GetChild(i).GetComponent<Renderer>().material.mainTexture = texture;
+		
+		newEnemy.GetComponent<GunGameEnemyScript>().BulletSplat = BulletSplats[textureIndex];
+		newEnemy.GetComponent<GunGameEnemyScript>().SkinColor = SlimeColors[textureIndex];
+		newEnemy.GetComponent<GunGameEnemyScript>().Speed = Random.Range(0.05f, 0.11f) * (level + 1);
+		newEnemy.GetComponent<GunGameEnemyScript>().SplatSetByCode = MonsterSplatPrefabs[textureIndex];
+		newEnemy.GetComponent<GunGameEnemyScript>().Level = level;
+		newEnemy.GetComponent<GunGameEnemyScript>().TargetToFollow = PlayersCharacters[Random.Range(0, PlayersCharacters.Count)];
+		newEnemy.name = texture.name;
+		//SpawnedObjects.Add(newEnemy);
+	}
+
+	public GameObject SpawnWaveThree(int level)
+	{
+		if (level >= EnemyPrefabs.Length)
+			level = EnemyPrefabs.Length - 1;
+		
+		GameObject resourceLoad = Resources.Load(EnemyPrefabs[level]) as GameObject;
+		
+//		Texture2D[] textures = SlimeTextures;
+
+//		if (level == 1)
+			
+//			textures = SlimeLevel2Textures;
+		// Blue & red & yellow
+		int textureIndex = Random.Range(0, 3);
+		
+		Vector3 position = new Vector3(Random.Range(-1.5f, 1.5f), 0, Random.Range(-1.5f, 1.5f));
+		
+		GameObject newEnemy = null;
+		
+		newEnemy = Instantiate(resourceLoad) as GameObject;
+		SpawnWaveThreeEnd(newEnemy, level, textureIndex, position);
+		
+		return newEnemy;
+	}
+
+	public void SpawnWaveThreeEnd(GameObject newEnemy, int level, int textureIndex, Vector3 position)
+	{
+		Texture2D[] textures = SlimeTextures;
+		if (level == 1)
+			textures = SlimeLevel2Textures;
+		
+		float scale = 1;
+		if (level == 1)
+			scale = 3;
+		
+		newEnemy.transform.parent = SpawnedObjectsAllOthers.transform;
+		newEnemy.transform.position = new Vector3(0, 0, 0);
+		newEnemy.transform.rotation = Quaternion.identity;
+		newEnemy.transform.localScale = new Vector3(0.06f * scale, 0.06f * scale, 0.06f * scale);
+		newEnemy.transform.localPosition = position;
+		
+		//if(level == 1)
+		//	newProjectile.transform.rotation = Quaternion.Euler(15, 0, 0);
+		
+		
+		Texture2D texture = textures[textureIndex];
+		
+		for (int i = 0; i < newEnemy.transform.childCount; ++i)
+			if (newEnemy.transform.GetChild(i).GetComponent<Renderer>() != null)
+				newEnemy.transform.GetChild(i).GetComponent<Renderer>().material.mainTexture = texture;
+		
+		newEnemy.GetComponent<GunGameEnemyScript>().BulletSplat = BulletSplats[textureIndex];
+		newEnemy.GetComponent<GunGameEnemyScript>().SkinColor = SlimeColors[textureIndex];
+		newEnemy.GetComponent<GunGameEnemyScript>().Speed = Random.Range(0.05f, 0.11f) * (level + 1);
+		newEnemy.GetComponent<GunGameEnemyScript>().SplatSetByCode = MonsterSplatPrefabs[textureIndex];
+		newEnemy.GetComponent<GunGameEnemyScript>().Level = level;
+		newEnemy.GetComponent<GunGameEnemyScript>().TargetToFollow = PlayersCharacters[Random.Range(0, PlayersCharacters.Count)];
+		newEnemy.name = texture.name;
+		//SpawnedObjects.Add(newEnemy);
+	}
+
+	public GameObject SpawnWaveFour(int level)
+	{
+		if (level >= EnemyPrefabs.Length)
+			level = EnemyPrefabs.Length - 1;
+		
+		GameObject resourceLoad = Resources.Load(EnemyPrefabs[level]) as GameObject;
+		
+//		Texture2D[] textures = SlimeTextures;
+		
+//		if (level == 1)
+			
+//			textures = SlimeLevel2Textures;
+		// Blue & red & yellow & green
+		int textureIndex = Random.Range(0, 4);
+		
+		Vector3 position = new Vector3(Random.Range(-1.5f, 1.5f), 0, Random.Range(-1.5f, 1.5f));
+		
+		GameObject newEnemy = null;
+		
+		newEnemy = Instantiate(resourceLoad) as GameObject;
+		SpawnWaveFourEnd(newEnemy, level, textureIndex, position);
+		
+		return newEnemy;
+	}
+
+	public void SpawnWaveFourEnd(GameObject newEnemy, int level, int textureIndex, Vector3 position)
+	{
+		Texture2D[] textures = SlimeTextures;
+		if (level == 1)
+			textures = SlimeLevel2Textures;
+		
+		float scale = 1;
+		if (level == 1)
+			scale = 3;
+		
+		newEnemy.transform.parent = SpawnedObjectsAllOthers.transform;
+		newEnemy.transform.position = new Vector3(0, 0, 0);
+		newEnemy.transform.rotation = Quaternion.identity;
+		newEnemy.transform.localScale = new Vector3(0.06f * scale, 0.06f * scale, 0.06f * scale);
+		newEnemy.transform.localPosition = position;
+		
+		//if(level == 1)
+		//	newProjectile.transform.rotation = Quaternion.Euler(15, 0, 0);
+		
+		
+		Texture2D texture = textures[textureIndex];
+		
+		for (int i = 0; i < newEnemy.transform.childCount; ++i)
+			if (newEnemy.transform.GetChild(i).GetComponent<Renderer>() != null)
+				newEnemy.transform.GetChild(i).GetComponent<Renderer>().material.mainTexture = texture;
+		
+		newEnemy.GetComponent<GunGameEnemyScript>().BulletSplat = BulletSplats[textureIndex];
+		newEnemy.GetComponent<GunGameEnemyScript>().SkinColor = SlimeColors[textureIndex];
+		newEnemy.GetComponent<GunGameEnemyScript>().Speed = Random.Range(0.05f, 0.11f) * (level + 1);
+		newEnemy.GetComponent<GunGameEnemyScript>().SplatSetByCode = MonsterSplatPrefabs[textureIndex];
+		newEnemy.GetComponent<GunGameEnemyScript>().Level = level;
+		newEnemy.GetComponent<GunGameEnemyScript>().TargetToFollow = PlayersCharacters[Random.Range(0, PlayersCharacters.Count)];
+		newEnemy.name = texture.name;
+		//SpawnedObjects.Add(newEnemy);
+	}
+
+	public GameObject SpawnWaveFive(int level)
+	{
+		if (level >= EnemyPrefabs.Length)
+			level = EnemyPrefabs.Length - 1;
+		
+		GameObject resourceLoad = Resources.Load(EnemyPrefabs[level]) as GameObject;
+		
+//		Texture2D[] textures = SlimeTextures;
+		
+//		if (level == 1)
+			
+//			textures = SlimeLevel2Textures;
+		// Blue & red & yellow & green
+		int textureIndex = Random.Range(0, 4);
+		
+		Vector3 position = new Vector3(Random.Range(-1.5f, 1.5f), 0, Random.Range(-1.5f, 1.5f));
+		
+		GameObject newEnemy = null;
+		
+		newEnemy = Instantiate(resourceLoad) as GameObject;
+		SpawnWaveFiveEnd(newEnemy, level, textureIndex, position);
+		
+		return newEnemy;
+	}
+
+	public void SpawnWaveFiveEnd(GameObject newEnemy, int level, int textureIndex, Vector3 position)
+	{
+		Texture2D[] textures = SlimeTextures;
+		if (level == 1)
+			textures = SlimeLevel2Textures;
+		
+		float scale = 1;
+		if (level == 1)
+			scale = 3;
+		
+		newEnemy.transform.parent = SpawnedObjectsAllOthers.transform;
+		newEnemy.transform.position = new Vector3(0, 0, 0);
+		newEnemy.transform.rotation = Quaternion.identity;
+		newEnemy.transform.localScale = new Vector3(0.06f * scale, 0.06f * scale, 0.06f * scale);
+		newEnemy.transform.localPosition = position;
+		
+		//if(level == 1)
+		//	newProjectile.transform.rotation = Quaternion.Euler(15, 0, 0);
+		
+		
+		Texture2D texture = textures[textureIndex];
+		
+		for (int i = 0; i < newEnemy.transform.childCount; ++i)
+			if (newEnemy.transform.GetChild(i).GetComponent<Renderer>() != null)
+				newEnemy.transform.GetChild(i).GetComponent<Renderer>().material.mainTexture = texture;
+		
+		newEnemy.GetComponent<GunGameEnemyScript>().BulletSplat = BulletSplats[textureIndex];
+		newEnemy.GetComponent<GunGameEnemyScript>().SkinColor = SlimeColors[textureIndex];
+		newEnemy.GetComponent<GunGameEnemyScript>().Speed = Random.Range(0.05f, 0.11f) * (level + 1);
+		newEnemy.GetComponent<GunGameEnemyScript>().SplatSetByCode = MonsterSplatPrefabs[textureIndex];
+		newEnemy.GetComponent<GunGameEnemyScript>().Level = level;
+		newEnemy.GetComponent<GunGameEnemyScript>().TargetToFollow = PlayersCharacters[Random.Range(0, PlayersCharacters.Count)];
+		newEnemy.name = texture.name;
+		//SpawnedObjects.Add(newEnemy);
+	}
+
+	public GameObject SpawnWaveSix(int level)
+	{
+		if (level >= EnemyPrefabs.Length)
+			level = EnemyPrefabs.Length - 1;
+		
+		GameObject resourceLoad = Resources.Load(EnemyPrefabs[level]) as GameObject;
+		
+//		Texture2D[] textures = SlimeTextures;
+		
+//		if (level == 1)
+			
+//			textures = SlimeLevel2Textures;
+		// Blue & red & yellow & green
+		int textureIndex = Random.Range(0, 4);
+		
+		Vector3 position = new Vector3(Random.Range(-1.5f, 1.5f), 0, Random.Range(-1.5f, 1.5f));
+		
+		GameObject newEnemy = null;
+		
+		newEnemy = Instantiate(resourceLoad) as GameObject;
+		SpawnWaveSixEnd(newEnemy, level, textureIndex, position);
+		
+		return newEnemy;
+	}
+	
+	public void SpawnWaveSixEnd(GameObject newEnemy, int level, int textureIndex, Vector3 position)
+	{
+		Texture2D[] textures = SlimeTextures;
+		if (level == 1)
+			textures = SlimeLevel2Textures;
+		
+		float scale = 1;
+		if (level == 1)
+			scale = 3;
+		
+		newEnemy.transform.parent = SpawnedObjectsAllOthers.transform;
+		newEnemy.transform.position = new Vector3(0, 0, 0);
+		newEnemy.transform.rotation = Quaternion.identity;
+		newEnemy.transform.localScale = new Vector3(0.06f * scale, 0.06f * scale, 0.06f * scale);
+		newEnemy.transform.localPosition = position;
+		
+		//if(level == 1)
+		//	newProjectile.transform.rotation = Quaternion.Euler(15, 0, 0);
+		
+		
+		Texture2D texture = textures[textureIndex];
+		
+		for (int i = 0; i < newEnemy.transform.childCount; ++i)
+			if (newEnemy.transform.GetChild(i).GetComponent<Renderer>() != null)
+				newEnemy.transform.GetChild(i).GetComponent<Renderer>().material.mainTexture = texture;
+		
+		newEnemy.GetComponent<GunGameEnemyScript>().BulletSplat = BulletSplats[textureIndex];
+		newEnemy.GetComponent<GunGameEnemyScript>().SkinColor = SlimeColors[textureIndex];
+		newEnemy.GetComponent<GunGameEnemyScript>().Speed = Random.Range(0.05f, 0.11f) * (level + 1);
+		newEnemy.GetComponent<GunGameEnemyScript>().SplatSetByCode = MonsterSplatPrefabs[textureIndex];
+		newEnemy.GetComponent<GunGameEnemyScript>().Level = level;
+		newEnemy.GetComponent<GunGameEnemyScript>().TargetToFollow = PlayersCharacters[Random.Range(0, PlayersCharacters.Count)];
+		newEnemy.name = texture.name;
+		//SpawnedObjects.Add(newEnemy);
+	}
+
+	public GameObject SpawnWaveSeven(int level)
+	{
+		if (level >= EnemyPrefabs.Length)
+			level = EnemyPrefabs.Length - 1;
+		
+		GameObject resourceLoad = Resources.Load(EnemyPrefabs[level]) as GameObject;
+		
+//		Texture2D[] textures = SlimeTextures;
+		
+//		if (level == 1)
+			
+//			textures = SlimeLevel2Textures;
+		// Blue & red & yellow & green
+		int textureIndex = Random.Range(0, 4);
+		
+		Vector3 position = new Vector3(Random.Range(-1.5f, 1.5f), 0, Random.Range(-1.5f, 1.5f));
+		
+		GameObject newEnemy = null;
+		
+		newEnemy = Instantiate(resourceLoad) as GameObject;
+		SpawnWaveSevenEnd(newEnemy, level, textureIndex, position);
+		
+		return newEnemy;
+	}
+	
+	public void SpawnWaveSevenEnd(GameObject newEnemy, int level, int textureIndex, Vector3 position)
+	{
+		Texture2D[] textures = SlimeTextures;
+		if (level == 1)
+			textures = SlimeLevel2Textures;
+		
+		float scale = 1;
+		if (level == 1)
+			scale = 3;
+		
+		newEnemy.transform.parent = SpawnedObjectsAllOthers.transform;
+		newEnemy.transform.position = new Vector3(0, 0, 0);
+		newEnemy.transform.rotation = Quaternion.identity;
+		newEnemy.transform.localScale = new Vector3(0.06f * scale, 0.06f * scale, 0.06f * scale);
+		newEnemy.transform.localPosition = position;
+		
+		//if(level == 1)
+		//	newProjectile.transform.rotation = Quaternion.Euler(15, 0, 0);
+		
+		
+		Texture2D texture = textures[textureIndex];
+		
+		for (int i = 0; i < newEnemy.transform.childCount; ++i)
+			if (newEnemy.transform.GetChild(i).GetComponent<Renderer>() != null)
+				newEnemy.transform.GetChild(i).GetComponent<Renderer>().material.mainTexture = texture;
+		
+		newEnemy.GetComponent<GunGameEnemyScript>().BulletSplat = BulletSplats[textureIndex];
+		newEnemy.GetComponent<GunGameEnemyScript>().SkinColor = SlimeColors[textureIndex];
+		newEnemy.GetComponent<GunGameEnemyScript>().Speed = Random.Range(0.05f, 0.11f) * (level + 1);
+		newEnemy.GetComponent<GunGameEnemyScript>().SplatSetByCode = MonsterSplatPrefabs[textureIndex];
+		newEnemy.GetComponent<GunGameEnemyScript>().Level = level;
+		newEnemy.GetComponent<GunGameEnemyScript>().TargetToFollow = PlayersCharacters[Random.Range(0, PlayersCharacters.Count)];
+		newEnemy.name = texture.name;
+		//SpawnedObjects.Add(newEnemy);
+	}
+
+	public GameObject SpawnWaveEight(int level)
+	{
+		if (level >= EnemyPrefabs.Length)
+			level = EnemyPrefabs.Length - 1;
+		
+		GameObject resourceLoad = Resources.Load(EnemyPrefabs[level]) as GameObject;
+		
+//		Texture2D[] textures = SlimeTextures;
+		
+//		if (level == 1)
+			
+//			textures = SlimeLevel2Textures;
+		// Blue & red & yellow & green
+		int textureIndex = Random.Range(0, 4);
+		
+		Vector3 position = new Vector3(Random.Range(-1.5f, 1.5f), 0, Random.Range(-1.5f, 1.5f));
+		
+		GameObject newEnemy = null;
+		
+		newEnemy = Instantiate(resourceLoad) as GameObject;
+		SpawnWaveEightEnd(newEnemy, level, textureIndex, position);
+		
+		return newEnemy;
+	}
+	
+	public void SpawnWaveEightEnd(GameObject newEnemy, int level, int textureIndex, Vector3 position)
+	{
+		Texture2D[] textures = SlimeTextures;
+		if (level == 1)
+			textures = SlimeLevel2Textures;
+		
+		float scale = 1;
+		if (level == 1)
+			scale = 3;
+		
+		newEnemy.transform.parent = SpawnedObjectsAllOthers.transform;
+		newEnemy.transform.position = new Vector3(0, 0, 0);
+		newEnemy.transform.rotation = Quaternion.identity;
+		newEnemy.transform.localScale = new Vector3(0.06f * scale, 0.06f * scale, 0.06f * scale);
+		newEnemy.transform.localPosition = position;
+		
+		//if(level == 1)
+		//	newProjectile.transform.rotation = Quaternion.Euler(15, 0, 0);
+		
+		
+		Texture2D texture = textures[textureIndex];
+		
+		for (int i = 0; i < newEnemy.transform.childCount; ++i)
+			if (newEnemy.transform.GetChild(i).GetComponent<Renderer>() != null)
+				newEnemy.transform.GetChild(i).GetComponent<Renderer>().material.mainTexture = texture;
+		
+		newEnemy.GetComponent<GunGameEnemyScript>().BulletSplat = BulletSplats[textureIndex];
+		newEnemy.GetComponent<GunGameEnemyScript>().SkinColor = SlimeColors[textureIndex];
+		newEnemy.GetComponent<GunGameEnemyScript>().Speed = Random.Range(0.05f, 0.11f) * (level + 1);
+		newEnemy.GetComponent<GunGameEnemyScript>().SplatSetByCode = MonsterSplatPrefabs[textureIndex];
+		newEnemy.GetComponent<GunGameEnemyScript>().Level = level;
+		newEnemy.GetComponent<GunGameEnemyScript>().TargetToFollow = PlayersCharacters[Random.Range(0, PlayersCharacters.Count)];
+		newEnemy.name = texture.name;
+		//SpawnedObjects.Add(newEnemy);
+	}
+
+	public GameObject SpawnWaveNine(int level)
+	{
+		if (level >= EnemyPrefabs.Length)
+			level = EnemyPrefabs.Length - 1;
+		
+		GameObject resourceLoad = Resources.Load(EnemyPrefabs[level]) as GameObject;
+		
+//		Texture2D[] textures = SlimeTextures;
+		
+//		if (level == 1)
+			
+//			textures = SlimeLevel2Textures;
+		// Blue & red & yellow & green
+		int textureIndex = Random.Range(0, 4);
+		
+		Vector3 position = new Vector3(Random.Range(-1.5f, 1.5f), 0, Random.Range(-1.5f, 1.5f));
+		
+		GameObject newEnemy = null;
+		
+		newEnemy = Instantiate(resourceLoad) as GameObject;
+		SpawnWaveNineEnd(newEnemy, level, textureIndex, position);
+		
+		return newEnemy;
+	}
+	
+	public void SpawnWaveNineEnd(GameObject newEnemy, int level, int textureIndex, Vector3 position)
+	{
+		Texture2D[] textures = SlimeTextures;
+		if (level == 1)
+			textures = SlimeLevel2Textures;
+		
+		float scale = 1;
+		if (level == 1)
+			scale = 3;
+		
+		newEnemy.transform.parent = SpawnedObjectsAllOthers.transform;
+		newEnemy.transform.position = new Vector3(0, 0, 0);
+		newEnemy.transform.rotation = Quaternion.identity;
+		newEnemy.transform.localScale = new Vector3(0.06f * scale, 0.06f * scale, 0.06f * scale);
+		newEnemy.transform.localPosition = position;
+		
+		//if(level == 1)
+		//	newProjectile.transform.rotation = Quaternion.Euler(15, 0, 0);
+		
+		
+		Texture2D texture = textures[textureIndex];
+		
+		for (int i = 0; i < newEnemy.transform.childCount; ++i)
+			if (newEnemy.transform.GetChild(i).GetComponent<Renderer>() != null)
+				newEnemy.transform.GetChild(i).GetComponent<Renderer>().material.mainTexture = texture;
+		
+		newEnemy.GetComponent<GunGameEnemyScript>().BulletSplat = BulletSplats[textureIndex];
+		newEnemy.GetComponent<GunGameEnemyScript>().SkinColor = SlimeColors[textureIndex];
+		newEnemy.GetComponent<GunGameEnemyScript>().Speed = Random.Range(0.05f, 0.11f) * (level + 1);
+		newEnemy.GetComponent<GunGameEnemyScript>().SplatSetByCode = MonsterSplatPrefabs[textureIndex];
+		newEnemy.GetComponent<GunGameEnemyScript>().Level = level;
+		newEnemy.GetComponent<GunGameEnemyScript>().TargetToFollow = PlayersCharacters[Random.Range(0, PlayersCharacters.Count)];
+		newEnemy.name = texture.name;
+		//SpawnedObjects.Add(newEnemy);
+	}
+
+	public GameObject SpawnWaveTen(int level)
+	{
+		if (level >= EnemyPrefabs.Length)
+			level = EnemyPrefabs.Length - 1;
+		
+		GameObject resourceLoad = Resources.Load(EnemyPrefabs[level]) as GameObject;
+		
+//		Texture2D[] textures = SlimeTextures;
+		
+//		if (level == 1)
+			
+//			textures = SlimeLevel2Textures;
+		// Blue & red & yellow & green
+		int textureIndex = Random.Range(0, 4);
+		
+		Vector3 position = new Vector3(Random.Range(-1.5f, 1.5f), 0, Random.Range(-1.5f, 1.5f));
+		
+		GameObject newEnemy = null;
+		
+		newEnemy = Instantiate(resourceLoad) as GameObject;
+		SpawnWaveTenEnd(newEnemy, level, textureIndex, position);
+		
+		return newEnemy;
+	}
+	
+	public void SpawnWaveTenEnd(GameObject newEnemy, int level, int textureIndex, Vector3 position)
+	{
+		Texture2D[] textures = SlimeTextures;
+		if (level == 1)
+			textures = SlimeLevel2Textures;
+		
+		float scale = 1;
+		if (level == 1)
+			scale = 3;
+		
+		newEnemy.transform.parent = SpawnedObjectsAllOthers.transform;
+		newEnemy.transform.position = new Vector3(0, 0, 0);
+		newEnemy.transform.rotation = Quaternion.identity;
+		newEnemy.transform.localScale = new Vector3(0.06f * scale, 0.06f * scale, 0.06f * scale);
+		newEnemy.transform.localPosition = position;
+		
+		//if(level == 1)
+		//	newProjectile.transform.rotation = Quaternion.Euler(15, 0, 0);
+		
+		
+		Texture2D texture = textures[textureIndex];
+		
+		for (int i = 0; i < newEnemy.transform.childCount; ++i)
+			if (newEnemy.transform.GetChild(i).GetComponent<Renderer>() != null)
+				newEnemy.transform.GetChild(i).GetComponent<Renderer>().material.mainTexture = texture;
+		
+		newEnemy.GetComponent<GunGameEnemyScript>().BulletSplat = BulletSplats[textureIndex];
+		newEnemy.GetComponent<GunGameEnemyScript>().SkinColor = SlimeColors[textureIndex];
+		newEnemy.GetComponent<GunGameEnemyScript>().Speed = Random.Range(0.05f, 0.11f) * (level + 1);
+		newEnemy.GetComponent<GunGameEnemyScript>().SplatSetByCode = MonsterSplatPrefabs[textureIndex];
+		newEnemy.GetComponent<GunGameEnemyScript>().Level = level;
+		newEnemy.GetComponent<GunGameEnemyScript>().TargetToFollow = PlayersCharacters[Random.Range(0, PlayersCharacters.Count)];
+		newEnemy.name = texture.name;
+		//SpawnedObjects.Add(newEnemy);
+	}
+
+
+
+	public void WaveCompleted()
+	{
+		// Next Wave
+	}
 
     public void SpawnBarrelStart(bool special)
     {
@@ -593,8 +1719,35 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
         }
         else
         {
-            GameObject resourceLoad = Resources.Load(Barrels[Random.Range(0, Barrels.Length)]) as GameObject;
-            newProjectile = Instantiate(resourceLoad) as GameObject;
+            //GameObject resourceLoad = Resources.Load(Barrels[Random.Range(0, Barrels.Length)]) as GameObject;
+			if (waveCount == 1)
+			{
+				// Blue Barrels
+				GameObject resourceLoad = Resources.Load(Barrels[0]) as GameObject;
+				newProjectile = Instantiate(resourceLoad) as GameObject;
+			}
+
+			if (waveCount == 2)
+			{
+				// Blue & Red Barrels
+				GameObject resourceLoad = Resources.Load(Barrels[Random.Range(0, 2)]) as GameObject;
+				newProjectile = Instantiate(resourceLoad) as GameObject;
+			}
+
+			if (waveCount == 3)
+			{
+				// Blue & Red & Yellow Barrels
+				GameObject resourceLoad = Resources.Load(Barrels[Random.Range(0, 3)]) as GameObject;
+				newProjectile = Instantiate(resourceLoad) as GameObject;
+			}
+
+			if (waveCount >= 4)
+			{
+				// Blue & Red & Yellow & Green
+				GameObject resourceLoad = Resources.Load(Barrels[Random.Range(0, 4)]) as GameObject;
+				newProjectile = Instantiate(resourceLoad) as GameObject;
+			}
+           // newProjectile = Instantiate(resourceLoad) as GameObject;
         }
 
         // newProjectile.GetComponent<BarrelCollisionScript>().SetLocal(true);
@@ -628,7 +1781,7 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
 
     public void ShootBulletForwardStart(int playerIndex)
     {
-        bool isMasterClientShooting = false;
+//        bool isMasterClientShooting = false;
 
         GameObject newProjectile = null;
         GameObject resourceLoad = Resources.Load(CurrentBullets[Random.Range(0, CurrentBullets.Count)]) as GameObject;
@@ -644,11 +1797,7 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
         newProjectile.GetComponent<Rigidbody>().AddForce(PlayersCharacters[playerIndex].transform.forward * 20000);
     }
 
-
-
-
-
-
+			
     public void ShootBulletLost(float speedVariationFactor, GameObject character)
     {
         Debug.Log("When am I called? If you see this Debug, let Harry know, and tell him when this was called. Also tell him he's looking good today.");
@@ -699,7 +1848,7 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
         newProjectile.GetComponent<MonsterSplatExplosionScript>().SplatPrefab = bulletSplat;
 
         //newProjectile.GetComponent<Rigidbody>().AddForce(Vector3.down * 20000);
-        newProjectile.renderer.material.color = color;
+        newProjectile.GetComponent<Renderer>().material.color = color;
         //newProjectile.GetComponent<Rigidbody>().AddForce((Vector3.up + direction) * 5000 * speedVariationFactor);
         //newProjectile.GetComponent<Rigidbody>().AddExplosionForce(10, position + new Vector3(0,1,0), 1);
 

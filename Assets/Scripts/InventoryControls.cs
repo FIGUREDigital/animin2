@@ -1,22 +1,19 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using TMPro;
 
 public class InventoryControls : MonoBehaviour 
 {
 	private const string PREFAB_PATH = "Prefabs/UI/ItemButton";
 	[SerializeField]
-	private Text m_InventoryLabel;
-	public Text InventoryLabel
+	private TextMeshProUGUI m_InventoryLabel;
+	public TextMeshProUGUI InventoryLabel
 	{
 		get
 		{
 			return m_InventoryLabel;
-		}
-		set
-		{
-			m_InventoryLabel = value;
 		}
 	}
 	[SerializeField]
@@ -36,11 +33,11 @@ public class InventoryControls : MonoBehaviour
 		set
 		{
 			m_CurrentMode = value;
-			prefabButton = Resources.Load(PREFAB_PATH);
 		}
 	}
-	
-	private Object prefabButton;
+
+	[SerializeField]
+	private GameObject itemButton;
 
 	void Start()
 	{
@@ -52,7 +49,14 @@ public class InventoryControls : MonoBehaviour
 		{
 			foreach(GameObject go in m_CurrentDisplayed)
 			{
-				Destroy(go);
+				if(go != itemButton)
+				{
+					Destroy(go);
+				}
+				else
+				{
+					go.SetActive(false);
+				}
 			}
 			
 			m_CurrentDisplayed.Clear ();
@@ -63,22 +67,54 @@ public class InventoryControls : MonoBehaviour
 		Clear ();
 		
 		m_CaringPage = transform.parent.parent.GetComponent<CaringPageControls> ();
-		m_CurrentDisplayed = new List<GameObject> ();
-		for (int i=0; i<ProfilesManagementScript.Singleton.CurrentAnimin.Inventory.Count; ++i)
+		m_CurrentDisplayed = new List<GameObject> ();		
+		itemButton.SetActive (false);
+//		int count = 0;
+		for (int i=0; i<ProfilesManagementScript.Instance.CurrentAnimin.Inventory.Count; ++i)
 		{
-			if(InventoryItemData.Items[(int)ProfilesManagementScript.Singleton.CurrentAnimin.Inventory[i].Id].ItemType == type)
+			InventoryItemBankData data = ProfilesManagementScript.Instance.CurrentAnimin.Inventory[i].Definition;
+			//Debug.Log ("Inventory contains: "+data.Id);
+			if(data.ItemType == type)
 			{
-				InventoryItemBankData data = InventoryItemData.Items[(int)ProfilesManagementScript.Singleton.CurrentAnimin.Inventory[i].Id];
-				InventoryItemControls button = ((GameObject)Instantiate(prefabButton)).GetComponent<InventoryItemControls>();
-				button.data = data;
+				InventoryItemControls button;
+				if(m_CurrentDisplayed.Count == 0)
+				{
+					itemButton.SetActive(true);
+					button = itemButton.GetComponent<InventoryItemControls>();
+				}
+				else
+				{
+					button = ((GameObject)Instantiate(itemButton)).GetComponent<InventoryItemControls>();
+				}
+				button.Data = data;
 				button.caringPage = m_CaringPage;
-				button.GetComponent<UnityEngine.UI.Image>().sprite = data.SpriteName;
 				m_CurrentDisplayed.Add(button.gameObject);
 				button.transform.parent = m_InventoryGrid.transform;
 
                 button.transform.localScale = Vector3.one * 0.8f;
 			}
 		}
+		float spacing = 0;
+		int columns = Mathf.CeilToInt(m_CurrentDisplayed.Count * 0.5f);
+		if (columns > 1)
+		{
+			spacing = m_InventoryGrid.spacing.x * (columns - 1);
+		}
+		RectTransform rt = m_InventoryGrid.transform as RectTransform;
+		Vector2 size = rt.sizeDelta; 
+		size.x = spacing + m_InventoryGrid.cellSize.x * columns;
+		rt.sizeDelta = size;
+		Vector2 pos = rt.anchoredPosition;
+		// Now position so that the first item is at the left of the window fi we have 5 or more columns otherwise it's centered
+		if (columns <= 4)
+		{
+			pos.x = 0;
+		}
+		else
+		{
+			pos.x = ((float)(columns - 4))*0.5f;
+		}
+		rt.anchoredPosition = pos;
 	}
 
 	void OnEnable()

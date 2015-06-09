@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 [System.Serializable]
@@ -63,6 +64,9 @@ public enum InventoryItemId
     Kiwi,
     Cereal,
 
+	Phone,
+    Zef,
+
     Count,
 }
 
@@ -83,7 +87,7 @@ public class InventoryItemData
 
     #region Static Nonsense
 
-    public static InventoryItemBankData[] Items;
+    private static InventoryItemBankData[] Items;
 
     public static void Initialize()
     {
@@ -125,13 +129,26 @@ public class InventoryItemData
         Items[(int)InventoryItemId.Noodles] = new InventoryItemBankData() { Id = InventoryItemId.Noodles, PrefabId = "Prefabs/Items/noodles", SpriteName = store.GetSprite(InventoryItemId.Noodles)  as Sprite,  ItemType = PopupItemType.Food };
         Items[(int)InventoryItemId.Kiwi] = new InventoryItemBankData() { Id = InventoryItemId.Kiwi, PrefabId = "Prefabs/Items/kiwi", SpriteName = store.GetSprite(InventoryItemId.Kiwi)  as Sprite,  ItemType = PopupItemType.Food };
         Items[(int)InventoryItemId.Cereal] = new InventoryItemBankData() { Id = InventoryItemId.Cereal, PrefabId = "Prefabs/Items/cereal", SpriteName = store.GetSprite(InventoryItemId.Cereal)  as Sprite,  ItemType = PopupItemType.Food };
-
+        Items[(int)InventoryItemId.Phone] = new InventoryItemBankData() { Id = InventoryItemId.Phone, PrefabId = "Prefabs/Items/red_phone", SpriteName = store.GetSprite(InventoryItemId.Phone), ItemType = PopupItemType.Item };
+        Items[(int)InventoryItemId.Zef] = new InventoryItemBankData() { Id = InventoryItemId.Zef, PrefabId = "Prefabs/zefToken", SpriteName = store.GetSprite(InventoryItemId.Zef), ItemType = PopupItemType.Token };
     }
 
     #endregion
 
     public InventoryItemId Id;
     public int Count;
+	public InventoryItemBankData Definition
+	{
+		get
+		{
+			return Items[(int)Id];
+		}
+	}
+
+	static public InventoryItemBankData GetDefinition(InventoryItemId id)
+	{
+		return Items[(int)id];
+	}
 }
 
 public enum AniminSubevolutionStageId
@@ -291,21 +308,51 @@ public class CharacterProgressScript : MonoBehaviour
     private const float M_GIFT_TIME = 100.0f;
     private const float M_HAPPINESS_DEGREDATION = 0.1f;
     
-    private const float M_HEALTH_DEGREDATION = 0.1f;
-    private const float M_HUNGER_DEGREDATION = 0.3f;
-    private const float M_FITNESS_DEGREDATION = 0.4f;
-
-
+   // private const float M_HEALTH_DEGREDATION = 0.1f;
+	private const float M_HEALTH_DEGREDATION = 0.02f;
+   // private const float M_HUNGER_DEGREDATION = 0.3f;
+	private const float M_HUNGER_DEGREDATION = 0.06f;
+   // private const float M_FITNESS_DEGREDATION = 0.4f;
+	private const float M_FITNESS_DEGREDATION = 0.08f;
+	
     private GUITexture[] m_UITextures;
 
     private bool m_HasStartedMoving;
 
-    // Use this for initialization
+
+    bool m_AllowEggTaps = false;
+    bool m_AllowMoveAnimin = false; // Set to true once we allow the player to tell the animin to walk to a point
+    bool m_AllowAutonomousMove = false;
+
+    public bool AllowAutonomousMove
+    {
+        get
+        {
+            return m_AllowAutonomousMove;
+        }
+    }
+
+    void TutorialEventFired(string fired)
+    {
+        if (fired == "AllowEggTaps")
+        {
+            m_AllowEggTaps = true;
+        }
+        else if (fired == "AllowMoveAnimin")
+        {
+            m_AllowMoveAnimin = true;
+        }
+    }
+
     void Awake()
     {
-        LastSavePerformed = DateTime.Now;
-        LastTimeToilet = DateTime.Now;
+        m_AllowEggTaps = TutorialHandler.CheckTutorialContainingEventCompleted("AllowEggTaps");
+        m_AllowAutonomousMove = m_AllowMoveAnimin = TutorialHandler.CheckTutorialContainingEventCompleted("AllowMoveAnimin");
+        TutorialHandler.FireEvents += TutorialEventFired;
 
+        LastSavePerformed = DateTime.UtcNow;
+		LastTimeToilet = DateTime.UtcNow;
+        
         InventoryItemData.Initialize();
 
 	
@@ -313,16 +360,12 @@ public class CharacterProgressScript : MonoBehaviour
         //ProfilesManagementScript.Singleton.CurrentAnimin.Load();
 
         Debug.Log("CharacterProgressScript AWAKE");
-        Debug.Log("ProfilesManagementScript set : [" + ProfilesManagementScript.isSet + "];");
-        if (ProfilesManagementScript.isSet == false)
+ 
+        if (ProfilesManagementScript.Instance.CurrentProfile == null)
         {
-            ProfilesManagementScript.Singleton = new ProfilesManagementScript();
-        }
-        if (ProfilesManagementScript.Singleton.CurrentProfile == null)
-        {
-            Debug.Log("NO PROFILE FOUND");
-            ProfilesManagementScript.Singleton.CurrentProfile = PlayerProfileData.CreateNewProfile("buildintest");
-            ProfilesManagementScript.Singleton.CurrentAnimin = ProfilesManagementScript.Singleton.CurrentProfile.Characters[(int)PersistentData.TypesOfAnimin.Tbo];
+            Debug.LogError("NO PROFILE FOUND");
+            ProfilesManagementScript.Instance.CurrentProfile = PlayerProfileData.CreateNewProfile("buildintest");
+            ProfilesManagementScript.Instance.CurrentAnimin = ProfilesManagementScript.Instance.CurrentProfile.Characters[(int)PersistentData.TypesOfAnimin.Tbo];
         }
 
         //TextTest.color = new Color(1, 1, 1, 0.0f);
@@ -335,7 +378,7 @@ public class CharacterProgressScript : MonoBehaviour
         animationController = GetComponent<AnimationControllerScript>();
         CurrentAction = ActionId.EnterSleep;
 
-        GameObject[] gos = ProfilesManagementScript.Singleton.CurrentAnimin.LoadCaringScreenItem();
+        GameObject[] gos = ProfilesManagementScript.Instance.CurrentAnimin.LoadCaringScreenItem();
         if (gos != null)
             for (int i = 0; i < gos.Length; i++)
                 GroundItems.Add(gos[i]);
@@ -347,23 +390,29 @@ public class CharacterProgressScript : MonoBehaviour
 
 
     void Start()
-    {	
-
+    {
+		ConfigurableData.Instance.EnsureInstanced ();
         UIClickButtonMasterScript.SetSoundSprite();
 
-        if (ProfilesManagementScript.Singleton.CurrentAnimin == null)
+        if (ProfilesManagementScript.Instance.CurrentAnimin == null)
         {
-            ProfilesManagementScript.Singleton.CurrentAnimin = new PersistentData();
-            ProfilesManagementScript.Singleton.CurrentAnimin.PlayerAniminId = PersistentData.TypesOfAnimin.Tbo;
-            ProfilesManagementScript.Singleton.CurrentAnimin.AniminEvolutionId = AniminEvolutionStageId.Baby;
+            ProfilesManagementScript.Instance.CurrentAnimin = new PersistentData();
+            ProfilesManagementScript.Instance.CurrentAnimin.PlayerAniminId = PersistentData.TypesOfAnimin.Tbo;
+            ProfilesManagementScript.Instance.CurrentAnimin.AniminEvolutionId = AniminEvolutionStageId.Baby;
         }
 
         //HARRY: REMEMEBR TO REMOVE THESE COMMENTS, FOR CHRIST'S SAKE.
-        Debug.Log("ID  : [" + ProfilesManagementScript.Singleton.CurrentAnimin + "|" + ProfilesManagementScript.Singleton.CurrentAnimin.AniminEvolutionId + "];");
+        Debug.Log("ID  : [" + ProfilesManagementScript.Instance.CurrentAnimin + "|" + ProfilesManagementScript.Instance.CurrentAnimin.AniminEvolutionId + "];");
 
 
-        this.GetComponent<CharacterSwapManagementScript>().LoadCharacter(ProfilesManagementScript.Singleton.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Singleton.CurrentAnimin.AniminEvolutionId);
+        this.GetComponent<CharacterSwapManagementScript>().LoadCharacter(ProfilesManagementScript.Instance.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Instance.CurrentAnimin.AniminEvolutionId, !ProfilesManagementScript.Instance.CurrentAnimin.Hatched);
         //this.GetComponent<CharacterSwapManagementScript>().LoadCharacter(AniminId.Mandi   , AniminEvolutionStageId.Adult);
+
+		/* Debug Add Items
+		ProfilesManagementScript.Instance.CurrentAnimin.AddItemToInventory(InventoryItemId.EDM808, 1);
+		ProfilesManagementScript.Instance.CurrentAnimin.AddItemToInventory(InventoryItemId.EDMJuno, 1);
+		ProfilesManagementScript.Instance.CurrentAnimin.AddItemToInventory(InventoryItemId.EDMKsynth, 1);
+		*/
 
         /* OLD ADD ITEMS TO INVENTORY
         ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.AlmondMilk, 3);
@@ -392,18 +441,13 @@ public class CharacterProgressScript : MonoBehaviour
         ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.woodSword, 1);
         */
 
-				if (!ProfilesManagementScript.Singleton.CurrentProfile.StrawberryAdded) {
-						ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory (InventoryItemId.Strawberry, 1);
-						ProfilesManagementScript.Singleton.CurrentProfile.StrawberryAdded = true;
-				}
-
-        for (int i = 0; i < ProfilesManagementScript.Singleton.CurrentAnimin.Inventory.Count; i++)
+        for (int i = 0; i < ProfilesManagementScript.Instance.CurrentAnimin.Inventory.Count; i++)
         {
-            for (int j = 0; j < ProfilesManagementScript.Singleton.CurrentAnimin.Inventory.Count; j++)
+            for (int j = 0; j < ProfilesManagementScript.Instance.CurrentAnimin.Inventory.Count; j++)
             {
-                if (ProfilesManagementScript.Singleton.CurrentAnimin.Inventory[i].Id == ProfilesManagementScript.Singleton.CurrentAnimin.Inventory[j].Id && i != j)
+                if (ProfilesManagementScript.Instance.CurrentAnimin.Inventory[i].Id == ProfilesManagementScript.Instance.CurrentAnimin.Inventory[j].Id && i != j)
                 {
-                    Debug.Log("Duplicate found : [" + i + "|" + j + "]; ID :[" + ProfilesManagementScript.Singleton.CurrentAnimin.Inventory[i].Id + "];");
+                    Debug.Log("Duplicate found : [" + i + "|" + j + "]; ID :[" + ProfilesManagementScript.Instance.CurrentAnimin.Inventory[i].Id + "];");
                 }
             }
         }
@@ -416,64 +460,73 @@ public class CharacterProgressScript : MonoBehaviour
                 if (BetweenSceneData.Instance.Points >= 15000)
                 {
                     AchievementsScript.Singleton.Show(AchievementTypeId.Gold, BetweenSceneData.Instance.Points);
+					ProfilesManagementScript.Instance.CurrentAnimin.Fitness += 60;
                     SpawnChests(3);
                 }
                 else if (BetweenSceneData.Instance.Points >= 5000)
                 {
                     AchievementsScript.Singleton.Show(AchievementTypeId.Silver, BetweenSceneData.Instance.Points);
+					ProfilesManagementScript.Instance.CurrentAnimin.Fitness += 40;
                     SpawnChests(2);
                 }
                 else if (BetweenSceneData.Instance.Points >= 800)
                 {
                     AchievementsScript.Singleton.Show(AchievementTypeId.Bronze, BetweenSceneData.Instance.Points);
+					ProfilesManagementScript.Instance.CurrentAnimin.Fitness += 20;
                     SpawnChests(1);
                 }
+                else if (!TutorialHandler.CheckTutsCompleted("MiniGameDone"))
+                {
+                    ProfilesManagementScript.Instance.CurrentAnimin.Fitness += 10;
+                    SpawnChests(1);
+                }
+                TutorialHandler.TriggerAdHocStatic("MiniGameDone");
                 BetweenSceneData.Instance.ResetPoints();
             }
             if (BetweenSceneData.Instance.minigame == BetweenSceneData.Minigame.Collector)
             {
 								UiPages.GetPage (Pages.CaringPage).GetComponent<CaringPageControls> ().TutorialHandler.BeginBlock ();
-                UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHocStartCond("BoxLandReturn");
+                UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHoc("BoxLandReturn");
                 if (BetweenSceneData.Instance.Points >= 7000)
                 {
-                    UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHocStartCond("BoxLandScoreBreak1");
+                    UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHoc("BoxLandScoreBreak1");
                 }
             }
         }
 
 		
-        if (DateTime.Now.Subtract(ProfilesManagementScript.Singleton.CurrentAnimin.CreatedOn).Days >= 1)
+		if (DateTime.UtcNow.Subtract(ProfilesManagementScript.Instance.CurrentAnimin.CreatedOn).Days >= 1)
         {
             if (UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler != null)
-                UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHocStartCond("1DayEvolve");
+                UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHoc("1DayEvolve");
         }
-        if (DateTime.Now.Subtract(ProfilesManagementScript.Singleton.CurrentAnimin.CreatedOn).Days >= 3)
+		if (DateTime.UtcNow.Subtract(ProfilesManagementScript.Instance.CurrentAnimin.CreatedOn).Days >= 3)
         {
             if (UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler != null)
-                UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHocStartCond("3DayEvolve");
+                UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHoc("3DayEvolve");
         }
-		
-
-
-
     }
-    void CleanUpItems(){
+
+
+   public void CleanUpItems(){
         for (int i = 0; i < groundItemsOnARscene.Count; i++)
         {
-            ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(groundItemsOnARscene[i].GetComponent<UIPopupItemScript>().Id, 1);
+            ProfilesManagementScript.Instance.CurrentAnimin.AddItemToInventory(groundItemsOnARscene[i].GetComponent<UIPopupItemScript>().Id, 1);
         }
 
         Debug.Log("ON DESTROYED! groundItemsOnNonARScene : [" + groundItemsOnNonARScene.Count + "];");
-        ProfilesManagementScript.Singleton.CurrentAnimin.SaveCaringScreenItem(groundItemsOnNonARScene.ToArray());
-        SaveAndLoad.Instance.SaveAllData();
+        ProfilesManagementScript.Instance.CurrentAnimin.SaveCaringScreenItem(groundItemsOnNonARScene.ToArray(), ObjectHolding);
+		ProfilesManagementScript.Instance.Save();
     }
     void OnDestroy()
     {
-        CleanUpItems();
+        TutorialHandler.FireEvents -= TutorialEventFired;
     }
     void OnApplicationQuit(){
-        CleanUpItems();
+		CleanUpItems();
     }
+
+    
     void OnApplicationPause(bool pauseStatus)
     {
 
@@ -481,7 +534,7 @@ public class CharacterProgressScript : MonoBehaviour
         if (pauseStatus)
         {
             CleanUpItems();
-            Stop(true);
+            Stop(true);		
             //CurrentAction = ActionId.EnterSleep;
         }
         else
@@ -490,9 +543,8 @@ public class CharacterProgressScript : MonoBehaviour
         }
     }
 
-    public GameObject SpawnStageItem(string prefabId, Vector3 position)
+    public GameObject SpawnStageItem(string prefabId, Vector3 position, bool isZefRewardItem = false)
     {
-
         GameObject resource = Resources.Load<GameObject>(prefabId);
 		
         GameObject gameObject = GameObject.Instantiate(resource) as GameObject;
@@ -502,6 +554,11 @@ public class CharacterProgressScript : MonoBehaviour
         //gameObject.transform.localRotation = Quaternion.Euler(0, UnityEngine.Random.Range(-180, 180), 0);
 
         UIPopupItemScript scriptRef = gameObject.GetComponent<UIPopupItemScript>();
+
+		if(isZefRewardItem)
+		{
+			ItemUnlockBehaviour.Show(scriptRef.Id);
+		}
 
         float scale = 0.1f;
         gameObject.transform.localScale = new Vector3(scale, scale, scale);
@@ -529,6 +586,22 @@ public class CharacterProgressScript : MonoBehaviour
         return gameObject;
     }
 
+    public GameObject GetItemToEatIfHungry()
+    {
+        if (ProfilesManagementScript.Instance.CurrentAnimin.Hungry >= CharacterProgressScript.ConsideredHungryLevels) return null; // Not hungry
+        for (int i = 0; i < GroundItems.Count; ++i)
+        {
+            UIPopupItemScript itemData = GroundItems[i]/*.GetComponent<ReferencedObjectScript>().Reference*/.GetComponent<UIPopupItemScript>();
+            if (itemData == null)
+                continue;
+
+            if (itemData.Type == PopupItemType.Food)
+            {
+                return itemData.gameObject;
+            }
+        }
+        return null;
+    }
 
     public GameObject GetRandomItem()
     {
@@ -577,7 +650,7 @@ public class CharacterProgressScript : MonoBehaviour
 		
         throwScript.Begin(throwdirection, maxDistance);
 
-        UIGlobalVariablesScript.Singleton.SoundEngine.Play(ProfilesManagementScript.Singleton.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Singleton.CurrentAnimin.AniminEvolutionId, CreatureSoundId.Throw);
+        UIGlobalVariablesScript.Singleton.SoundEngine.Play(ProfilesManagementScript.Instance.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Instance.CurrentAnimin.AniminEvolutionId, CreatureSoundId.Throw);
         //ObjectHolding.transform.position = this.transform.position;
 		
 		
@@ -593,17 +666,33 @@ public class CharacterProgressScript : MonoBehaviour
         //CurrentAction = ActionId.None;
     }
 
-    public void HidePopupMenus()
+    bool hiddenTutorial = false;
+
+    public void HidePopupMenus(bool AboutToShow)
     {
         Debug.Log("Hiding popup menus");
+        if (AboutToShow)
+        {
+            if (!hiddenTutorial)
+            {
+                TutorialHandler.Hide(true);
+                hiddenTutorial = true;
+            }
+        }
+        else if (hiddenTutorial)
+        {
+            TutorialHandler.Hide(false);
+            hiddenTutorial = false;			
+			CaringPageControls.ShowUI(null, null);
+        }
         //UICOMMENT
-        CaringPageControls.StereoUI.SetActive(false);
+ /*       CaringPageControls.StereoUI.SetActive(false);
         CaringPageControls.AlarmUI.SetActive(false);
-        CaringPageControls.PianoUI.SetActive(false);
+        CaringPageControls.PhoneUI.SetActive(false);
         CaringPageControls.LightbulbUI.SetActive(false);
         CaringPageControls.EDMBoxUI.SetActive(false);
         CaringPageControls.JunoUI.SetActive(false);
-        CaringPageControls.PianoUI.SetActive(false);
+        CaringPageControls.PianoUI.SetActive(false);*/
     }
 
     private GameObject GetClosestFoodToEat()
@@ -661,7 +750,6 @@ public class CharacterProgressScript : MonoBehaviour
             case 0:
             default:
                 return null;
-                break;
         }
         Debug.Log("Spawn Chests");
         GameObject resource = Resources.Load<GameObject>(prefab);
@@ -688,7 +776,7 @@ public class CharacterProgressScript : MonoBehaviour
 
         UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<AnimateCharacterOutPortalScript>().Timer = 0;
         UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<AnimateCharacterOutPortalScript>().JumbId = AnimateCharacterOutPortalScript.JumbStateId.Jumbout;
-        UIGlobalVariablesScript.Singleton.SoundEngine.Play(ProfilesManagementScript.Singleton.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Singleton.CurrentAnimin.AniminEvolutionId, CreatureSoundId.JumbOutPortal);
+        UIGlobalVariablesScript.Singleton.SoundEngine.Play(ProfilesManagementScript.Instance.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Instance.CurrentAnimin.AniminEvolutionId, CreatureSoundId.JumbOutPortal);
         //UIGlobalVariablesScript.Singleton.ARPortal.GetComponent<PortalScript>().Show(true);
         progressScript.CurrentAction = ActionId.SmallCooldownPeriod;
         progressScript.SmallCooldownTimer = 0.5f;
@@ -743,29 +831,52 @@ public class CharacterProgressScript : MonoBehaviour
             GetComponentsInChildren<SkinnedMeshRenderer>()[i].material.mainTexture = tex;
         }
     }
+
+	void UpdateAfterPause(float minutes)
+	{
+		ConfigurableData.Instance.UpdateAfterPause (minutes);//);
+		//Debug.Log ("data fitness:" + data.fitness.Count);
+	}
 	
     // Update is called once per frame
     void Update()
     {
+		DateTime lastPlay = ProfilesManagementScript.Instance.CurrentAnimin.lastPlay;
+		DateTime now = DateTime.UtcNow;
+		TimeSpan span = now.Subtract (lastPlay);
+		if (span.TotalMinutes > 1 && span.TotalMinutes < 60*24*365) 
+		{
+			UpdateAfterPause ((float)span.TotalMinutes);
+		}
+		ProfilesManagementScript.Instance.CurrentAnimin.lastPlay = now;
 
         EvolutionManager.Instance.UpdateEvo();
 
+        ProfilesManagementScript.Instance.CurrentAnimin.Hungry -= Time.deltaTime * M_HUNGER_DEGREDATION;
+        ProfilesManagementScript.Instance.CurrentAnimin.Fitness -= Time.deltaTime * M_FITNESS_DEGREDATION;
+        float oldHealth = ProfilesManagementScript.Instance.CurrentAnimin.Health;
+        ProfilesManagementScript.Instance.CurrentAnimin.Health -= Time.deltaTime * M_HEALTH_DEGREDATION;
 
-        ProfilesManagementScript.Singleton.CurrentAnimin.Hungry -= Time.deltaTime * M_HUNGER_DEGREDATION;
-        ProfilesManagementScript.Singleton.CurrentAnimin.Fitness -= Time.deltaTime * M_FITNESS_DEGREDATION;
-        ProfilesManagementScript.Singleton.CurrentAnimin.Health -= Time.deltaTime * M_HEALTH_DEGREDATION;
+        if (oldHealth >= 40 && ProfilesManagementScript.Instance.CurrentAnimin.Health < 40)
+        {
+            TutorialHandler.TriggerAdHocStatic("Unhealthy");
+        }
 	
         //TextTest.color = new Color(1,1,1, TextTest.color.a - Time.deltaTime * 0.6f);
         //if(TextTest.color.a < 0)
         //	TextTest.color = new Color(1,1,1, 0);
 
 
-        ProfilesManagementScript.Singleton.CurrentAnimin.Happy = ((
-            (ProfilesManagementScript.Singleton.CurrentAnimin.Hungry / 100.0f) +
-            (ProfilesManagementScript.Singleton.CurrentAnimin.Fitness / 100.0f) +
-            (ProfilesManagementScript.Singleton.CurrentAnimin.Health / 100.0f))
-        / 3.0f)
-        * PersistentData.MaxHappy;
+       // ProfilesManagementScript.Singleton.CurrentAnimin.Happy = ((
+           // (ProfilesManagementScript.Singleton.CurrentAnimin.Hungry / 100.0f) +
+           // (ProfilesManagementScript.Singleton.CurrentAnimin.Fitness / 100.0f) +
+           // (ProfilesManagementScript.Singleton.CurrentAnimin.Health / 100.0f))
+        // 3.0f)
+       // * PersistentData.MaxHappy;
+
+		ProfilesManagementScript.Instance.CurrentAnimin.Happy = (((ProfilesManagementScript.Instance.CurrentAnimin.Hungry / 100.0f) + 
+		                                                           (ProfilesManagementScript.Instance.CurrentAnimin.Fitness / 100.0f) + 
+		                                                           (ProfilesManagementScript.Instance.CurrentAnimin.Health / 100.0f)) / 3.0f * PersistentData.MaxHappy);
 
 
         //Debug.Log("Hungry: " + (Hungry / 100.0f).ToString());
@@ -777,11 +888,11 @@ public class CharacterProgressScript : MonoBehaviour
 //			//Evolution += (Happy / MaxHappy) * Time.deltaTime * 0.1f;
 //			//if(Evolution >= 100) Evolution = 100;
 //
-        float percentage = ProfilesManagementScript.Singleton.CurrentAnimin.Evolution;
-        Sprite EvoProgress = UIGlobalVariablesScript.Singleton.EvolutionProgressSprite;
-        float scale = UIGlobalVariablesScript.Singleton.gameObject.transform.localScale.x;
-        int screenWidth = 1330;
-        int width = (int)(screenWidth * percentage);
+//        float percentage = ProfilesManagementScript.Instance.CurrentAnimin.Evolution;
+//        Sprite EvoProgress = UIGlobalVariablesScript.Singleton.EvolutionProgressSprite;
+//        float scale = UIGlobalVariablesScript.Singleton.gameObject.transform.localScale.x;
+//        int screenWidth = 1330;
+//        int width = (int)(screenWidth * percentage);
 //        Vector3 pos = EvoProgress.transform.position;
 //        pos.x = ((-screenWidth + width) * 0.5f) * scale;
 //        pos.y = 275.0f * scale;
@@ -793,7 +904,7 @@ public class CharacterProgressScript : MonoBehaviour
 //
 //			//UIGlobalVariablesScript.Singleton.EvolutionProgressSprite.width = (int)(1330.0f * (Evolution / 100.0f));
 //			
-//			if(NextHappynBonusTimeAt >= DateTime.Now)
+		//			if(NextHappynBonusTimeAt >= DateTime.UtcNow)
 //			{
 //				// do bonus of happyness
 //			}
@@ -912,28 +1023,24 @@ public class CharacterProgressScript : MonoBehaviour
                     animationController.IsHoldingItem = false;
                     animationController.IsEating = true;
                     EatAlphaTimer = 0;
-
                     PlayedEatingSound = false;
-
                     break;
                 }
             case ActionId.WaitEatingFinish:
                 {
                     if (!animationController.IsEating)
                     {
-
-                        PopupItemType itemType = ObjectHolding./*GetComponent<ReferencedObjectScript>().Reference.*/GetComponent<UIPopupItemScript>().Type;
-
-                        Debug.Log("FINISHED EATING");
-
+                        //PopupItemType itemType = ObjectHolding./*GetComponent<ReferencedObjectScript>().Reference.*/GetComponent<UIPopupItemScript>().Type;
+				
                         OnInteractWithPopupItem(ObjectHolding./*GetComponent<ReferencedObjectScript>().Reference.*/GetComponent<UIPopupItemScript>());
                         this.GetComponent<CharacterProgressScript>().GroundItems.Remove(ObjectHolding);
                         Destroy(ObjectHolding);
-				
 
                         pickupItemSavedData.WasInHands = true;
                         ObjectHolding = null;
                         CurrentAction = ActionId.None;
+						Debug.Log("FINISHED EATING");
+						UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHoc("EatStrawberry");
                     }
                     else
                     {
@@ -947,45 +1054,45 @@ public class CharacterProgressScript : MonoBehaviour
 
                                 PlayedEatingSound = true;
                                 if (popup.SpecialId == SpecialFunctionalityId.Liquid)
-                                    UIGlobalVariablesScript.Singleton.SoundEngine.Play(ProfilesManagementScript.Singleton.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Singleton.CurrentAnimin.AniminEvolutionId, CreatureSoundId.FeedDrink);
+                                    UIGlobalVariablesScript.Singleton.SoundEngine.Play(ProfilesManagementScript.Instance.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Instance.CurrentAnimin.AniminEvolutionId, CreatureSoundId.FeedDrink);
                                 else
-                                    UIGlobalVariablesScript.Singleton.SoundEngine.Play(ProfilesManagementScript.Singleton.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Singleton.CurrentAnimin.AniminEvolutionId, CreatureSoundId.FeedFood);
+                                    UIGlobalVariablesScript.Singleton.SoundEngine.Play(ProfilesManagementScript.Instance.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Instance.CurrentAnimin.AniminEvolutionId, CreatureSoundId.FeedFood);
 
                             }
                         }
 
                         if (EatAlphaTimer >= 1)
                         {
-                            if (ObjectHolding.renderer != null)
+                            if (ObjectHolding.GetComponent<Renderer>() != null)
                             {
-                                ObjectHolding.renderer.material.shader = Shader.Find("Custom/ItemShader");
+                                ObjectHolding.GetComponent<Renderer>().material.shader = Shader.Find("Custom/ItemShader");
 
-                                float alpha = ObjectHolding.renderer.material.color.a;
+                                float alpha = ObjectHolding.GetComponent<Renderer>().material.color.a;
                                 alpha -= Time.deltaTime * 3;
                                 if (alpha <= 0)
                                     alpha = 0;
-                                ObjectHolding.renderer.material.color = new Color(
-                                    ObjectHolding.renderer.material.color.r,
-                                    ObjectHolding.renderer.material.color.g,
-                                    ObjectHolding.renderer.material.color.b,
+                                ObjectHolding.GetComponent<Renderer>().material.color = new Color(
+                                    ObjectHolding.GetComponent<Renderer>().material.color.r,
+                                    ObjectHolding.GetComponent<Renderer>().material.color.g,
+                                    ObjectHolding.GetComponent<Renderer>().material.color.b,
                                     alpha);
                             }
 
                             for (int a = 0; a < ObjectHolding.transform.childCount; ++a)
                             {
-                                if (ObjectHolding.transform.GetChild(a).renderer == null)
+                                if (ObjectHolding.transform.GetChild(a).GetComponent<Renderer>() == null)
                                     continue;
 
-                                ObjectHolding.transform.GetChild(a).renderer.material.shader = Shader.Find("Custom/ItemShader");
+                                ObjectHolding.transform.GetChild(a).GetComponent<Renderer>().material.shader = Shader.Find("Custom/ItemShader");
 						
-                                float alpha = ObjectHolding.transform.GetChild(a).renderer.material.color.a;
+                                float alpha = ObjectHolding.transform.GetChild(a).GetComponent<Renderer>().material.color.a;
                                 alpha -= Time.deltaTime * 3;
                                 if (alpha <= 0)
                                     alpha = 0;
-                                ObjectHolding.transform.GetChild(a).renderer.material.color = new Color(
-                                    ObjectHolding.transform.GetChild(a).renderer.material.color.r,
-                                    ObjectHolding.transform.GetChild(a).renderer.material.color.g,
-                                    ObjectHolding.transform.GetChild(a).renderer.material.color.b,
+                                ObjectHolding.transform.GetChild(a).GetComponent<Renderer>().material.color = new Color(
+                                    ObjectHolding.transform.GetChild(a).GetComponent<Renderer>().material.color.r,
+                                    ObjectHolding.transform.GetChild(a).GetComponent<Renderer>().material.color.g,
+                                    ObjectHolding.transform.GetChild(a).GetComponent<Renderer>().material.color.b,
                                     alpha);
                             }
                         }
@@ -1010,7 +1117,7 @@ public class CharacterProgressScript : MonoBehaviour
                     else
                         UIGlobalVariablesScript.Singleton.ARPortal.GetComponent<PortalScript>().Show(PortalStageId.NonARScene, false);
 			
-                    UIGlobalVariablesScript.Singleton.SoundEngine.Play(ProfilesManagementScript.Singleton.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Singleton.CurrentAnimin.AniminEvolutionId, CreatureSoundId.JumbOutPortal);
+                    UIGlobalVariablesScript.Singleton.SoundEngine.Play(ProfilesManagementScript.Instance.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Instance.CurrentAnimin.AniminEvolutionId, CreatureSoundId.JumbOutPortal);
 
                     animationController.IsExitPortal = true;
 
@@ -1056,7 +1163,7 @@ public class CharacterProgressScript : MonoBehaviour
 
                             UIGlobalVariablesScript.Singleton.ARPortal.GetComponent<PortalScript>().Show(PortalStageId.ARscene, false);
 
-                            UIGlobalVariablesScript.Singleton.SoundEngine.Play(ProfilesManagementScript.Singleton.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Singleton.CurrentAnimin.AniminEvolutionId, CreatureSoundId.JumbOutPortal);
+                            UIGlobalVariablesScript.Singleton.SoundEngine.Play(ProfilesManagementScript.Instance.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Instance.CurrentAnimin.AniminEvolutionId, CreatureSoundId.JumbOutPortal);
                         }
                     }
                     else if (PortalTimer >= StartFade)
@@ -1087,7 +1194,10 @@ public class CharacterProgressScript : MonoBehaviour
                     animationController.IsSleeping = true;
                     CurrentAction = ActionId.Sleep;
                     SleepBoundingBox.SetActive(true);
-                    UIGlobalVariablesScript.Singleton.SoundEngine.PlayLoop(ProfilesManagementScript.Singleton.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Singleton.CurrentAnimin.AniminEvolutionId, CreatureSoundId.SnoringSleeping);
+                    if (ProfilesManagementScript.Instance.CurrentAnimin.Hatched)
+                    {
+                        UIGlobalVariablesScript.Singleton.SoundEngine.PlayLoop(ProfilesManagementScript.Instance.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Instance.CurrentAnimin.AniminEvolutionId, CreatureSoundId.SnoringSleeping);
+                    }
 
                     break;
                 }
@@ -1096,9 +1206,30 @@ public class CharacterProgressScript : MonoBehaviour
                 {
                     if (Input.GetButtonUp("Fire1"))
                     {
-                        if (!hadUItouch && hadRayCollision && hitInfo.collider.gameObject == SleepBoundingBox)
+						Egg egg = hitInfo.collider != null ? hitInfo.collider.GetComponent<Egg>() : null;
+                        if (!hadUItouch && hadRayCollision && (hitInfo.collider.gameObject == SleepBoundingBox || egg != null))
                         {
-                            exitSleep();
+							if (egg != null)
+                            {
+                                // Only allow tapping on the egg once the tutorial has told you about it!
+                                if (m_AllowEggTaps)
+                                {                            
+									if(egg.Tap ())
+									{
+										GetComponent<CharacterSwapManagementScript>().CurrentModel.transform.localScale = GetComponent<CharacterSwapManagementScript>().defaultScale;
+										
+										TutorialHandler.TriggerAdHocStatic("Hatched");
+										
+										exitSleep();
+									}
+                                }
+                            }
+                            else
+                            {
+                                // Not in an egg so awake straight away
+                                exitSleep();
+                                TutorialHandler.TriggerAdHocStatic("ExitSleep");
+                            }
 						
                         }
                     }
@@ -1312,7 +1443,7 @@ public class CharacterProgressScript : MonoBehaviour
 
                                     if (TouchesObjcesWhileSwiping[i].GetComponent<UIPopupItemScript>() != null)
                                     {
-                                        ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(TouchesObjcesWhileSwiping[i].GetComponent<UIPopupItemScript>().Id, 1);
+                                        ProfilesManagementScript.Instance.CurrentAnimin.AddItemToInventory(TouchesObjcesWhileSwiping[i].GetComponent<UIPopupItemScript>().Id, 1);
                                     }
 
                                     if (TouchesObjcesWhileSwiping[i].GetComponent<EDMBoxScript>() != null)
@@ -1325,7 +1456,7 @@ public class CharacterProgressScript : MonoBehaviour
                                     TouchesObjcesWhileSwiping.RemoveAt(i);
 
                                     Debug.Log("SwipeDetected!");
-                                    HidePopupMenus();
+                                    HidePopupMenus(false);
 
                                     if (ObjectHolding == hitInfo.collider.gameObject)
                                     {
@@ -1340,7 +1471,7 @@ public class CharacterProgressScript : MonoBehaviour
                             if (cleanedShit)
                             {
                                 UIGlobalVariablesScript.Singleton.SoundEngine.Play(GenericSoundId.CleanPooPiss);
-                                UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHocStartCond("CleanPiss");
+                                TutorialHandler.TriggerAdHocStatic("ShitCleaned");
                             }
 												
                             if (TouchesObjcesWhileSwiping.Contains(this.gameObject) && !cleanedShit && !animationController.IsTickled)
@@ -1348,7 +1479,7 @@ public class CharacterProgressScript : MonoBehaviour
                                 Stop(true);
                                 animationController.IsTickled = true;
 
-                                UIGlobalVariablesScript.Singleton.SoundEngine.Play(ProfilesManagementScript.Singleton.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Singleton.CurrentAnimin.AniminEvolutionId, 
+                                UIGlobalVariablesScript.Singleton.SoundEngine.Play(ProfilesManagementScript.Instance.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Instance.CurrentAnimin.AniminEvolutionId, 
                                     (CreatureSoundId)((int)CreatureSoundId.Tickle + UnityEngine.Random.Range(0, 3)));
 							
 							
@@ -1418,7 +1549,7 @@ public class CharacterProgressScript : MonoBehaviour
                                 else if (ObjectHolding != null && ObjectHolding/*.GetComponent<ReferencedObjectScript>().Reference*/.GetComponent<UIPopupItemScript>().NonInteractable)
                                 {
                                     //Debug.Log("HIT THE CHARACTER FOR INTERACTION 3");
-                                    UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHocStartCond("Fart");
+                                    UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHoc("Fart");
                                     UIGlobalVariablesScript.Singleton.SoundEngine.PlayFart();
                                 }
                                 else if (ObjectHolding == null && CameraModelScript.Instance.transform.childCount == 0 && !animationController.IsPat)
@@ -1428,10 +1559,10 @@ public class CharacterProgressScript : MonoBehaviour
                                     animationController.IsPat = true;
                                     //Debug.Log("IS TICKLED");
 								
-                                    UIGlobalVariablesScript.Singleton.SoundEngine.Play(ProfilesManagementScript.Singleton.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Singleton.CurrentAnimin.AniminEvolutionId, CreatureSoundId.PatReact);
+                                    UIGlobalVariablesScript.Singleton.SoundEngine.Play(ProfilesManagementScript.Instance.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Instance.CurrentAnimin.AniminEvolutionId, CreatureSoundId.PatReact);
                                 }
                                 Debug.Log("Tap");
-                                //UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHocExitCond("Attention", "tap");
+								UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHoc("StrokeAnimin");
                             }
                             else if ((hitInfo.collider.tag == "Items") && hitInfo.collider/*.GetComponent<ReferencedObjectScript>().Reference*/.GetComponent<UIPopupItemScript>().Type == PopupItemType.Token)
                             {
@@ -1501,6 +1632,7 @@ public class CharacterProgressScript : MonoBehaviour
 
                                 bool isItemAlreadyOn = false;
                                 if ((CaringPageControls.AlarmUI.activeInHierarchy
+						     		|| CaringPageControls.PhoneUI.activeInHierarchy
                                     || CaringPageControls.PianoUI.activeInHierarchy
                                     || CaringPageControls.JunoUI.activeInHierarchy
                                     || CaringPageControls.EDMBoxUI.activeInHierarchy
@@ -1511,78 +1643,97 @@ public class CharacterProgressScript : MonoBehaviour
                                     isItemAlreadyOn = true;
                                 }
 
-                                if (RequestedToMoveToCounter == 1 && !isItemAlreadyOn && (moveHitInfo.collider.GetComponent<UIPopupItemScript>().Menu != MenuFunctionalityUI.None) && !hadUItouch)
+                                MenuFunctionalityUI menuUI = moveHitInfo.collider.GetComponent<UIPopupItemScript>().Menu;
+
+                                if (RequestedToMoveToCounter == 1 && !isItemAlreadyOn && (menuUI != MenuFunctionalityUI.None) && !hadUItouch)
                                 {
-                                    if (moveHitInfo.collider/*.GetComponent<ReferencedObjectScript>().Reference*/.GetComponent<UIPopupItemScript>().Menu == MenuFunctionalityUI.Clock)
+                                    switch (menuUI)
                                     {
-                                        HidePopupMenus();
-									
-                                        CaringPageControls.TargetItem = moveHitInfo.collider.gameObject;
-                                        //TriggeredHoldAction = true;
-                                        CaringPageControls.AlarmUI.SetActive(true);
-                                        LastKnownObjectWithMenuUp = moveHitInfo.collider.gameObject;
-                                        preventMovingTo = true;
-                                    }
-                                    else if (moveHitInfo.collider/*.GetComponent<ReferencedObjectScript>().Reference*/.GetComponent<UIPopupItemScript>().Menu == MenuFunctionalityUI.EDMBox)
-                                    {
-                                        EDMBoxScript edmScript = moveHitInfo.collider.gameObject.GetComponent<EDMBoxScript>();
-                                        HidePopupMenus();
+                                        case MenuFunctionalityUI.Clock:
+                                            {
+                                                HidePopupMenus(true);
+												CaringPageControls.ShowUI(moveHitInfo.collider.gameObject, CaringPageControls.AlarmUI);
+                                                LastKnownObjectWithMenuUp = moveHitInfo.collider.gameObject;
+                                                preventMovingTo = true;
+                                                break;
+                                            }
+                                        case MenuFunctionalityUI.Phone:
+                                            {
+                                                HidePopupMenus(true);								
+												CaringPageControls.ShowUI(moveHitInfo.collider.gameObject, CaringPageControls.PhoneUI);
+                                                LastKnownObjectWithMenuUp = moveHitInfo.collider.gameObject;
+                                                preventMovingTo = true;
+                                                break;
+                                            }
+                                        case MenuFunctionalityUI.EDMBox:
+                                            {
+                                                EDMBoxScript edmScript = moveHitInfo.collider.gameObject.GetComponent<EDMBoxScript>();
+                                                HidePopupMenus(true);
 
-                                        if (edmScript != null)
-                                        {
-                                            edmScript.SetInterface(CaringPageControls.EDMBoxUI);
-                                            CaringPageControls.TargetItem = moveHitInfo.collider.gameObject;
-                                            CaringPageControls.EDMBoxUI.SetActive(true);
-                                        }
-                                        else
-                                        {
-                                            Debug.Log("edmScript is null");
-                                        }
-									
-                                        LastKnownObjectWithMenuUp = moveHitInfo.collider.gameObject;
-                                        preventMovingTo = true;
-                                    }
-                                    else if (moveHitInfo.collider/*.GetComponent<ReferencedObjectScript>().Reference*/.GetComponent<UIPopupItemScript>().Menu == MenuFunctionalityUI.Juno)
-                                    {
+                                        
+                                        		if (edmScript != null)
+                                                {
+                                                    edmScript.SetInterface(CaringPageControls.EDMBoxUI);
+													CaringPageControls.ShowUI(moveHitInfo.collider.gameObject, CaringPageControls.EDMBoxUI);
+                                        		}
+                                        		else
+                                                {
+                                                    Debug.Log("edmScript is null");
+                                                }
 
-                                        HidePopupMenus();
-                                        moveHitInfo.collider.gameObject.GetComponent<EDMBoxScript>().SetInterface(CaringPageControls.JunoUI);
-                                        CaringPageControls.TargetItem = moveHitInfo.collider.gameObject;
-                                        CaringPageControls.JunoUI.SetActive(true);
-									
-                                        LastKnownObjectWithMenuUp = moveHitInfo.collider.gameObject;
-                                        preventMovingTo = true;
-                                    }
-                                    else if (moveHitInfo.collider/*.GetComponent<ReferencedObjectScript>().Reference*/.GetComponent<UIPopupItemScript>().Menu == MenuFunctionalityUI.Piano)
-                                    {
-                                        HidePopupMenus();
+                                                LastKnownObjectWithMenuUp = moveHitInfo.collider.gameObject;
+                                                preventMovingTo = true;
+                                                break;
+                                            }
+                                        case MenuFunctionalityUI.Juno:
+                                            {
 
-                                        moveHitInfo.collider.gameObject.GetComponent<EDMBoxScript>().SetInterface(CaringPageControls.PianoUI);
-                                        CaringPageControls.TargetItem = moveHitInfo.collider.gameObject;
-                                        CaringPageControls.PianoUI.SetActive(true);
-									
-                                        LastKnownObjectWithMenuUp = moveHitInfo.collider.gameObject;
-                                        preventMovingTo = true;
-                                    }
-                                    //else if (moveHitInfo.collider.GetComponent<UIPopupItemScript>().Menu == MenuFunctionalityUI.Mp3Player)
-                                    else if (false)
-                                    {
-                                        HidePopupMenus();
-                                        CaringPageControls.TargetItem = moveHitInfo.collider.gameObject;
-                                        CaringPageControls.StereoUI.SetActive(true);
+                                                HidePopupMenus(true);
+                                                moveHitInfo.collider.gameObject.GetComponent<EDMBoxScript>().SetInterface(CaringPageControls.JunoUI);
+												CaringPageControls.ShowUI(moveHitInfo.collider.gameObject, CaringPageControls.JunoUI);
+								
+                                        		LastKnownObjectWithMenuUp = moveHitInfo.collider.gameObject;
+                                                preventMovingTo = true;
+                                                break;
+                                            }
+                                        case MenuFunctionalityUI.Piano:
+                                            {
+                                                HidePopupMenus(true);
 
+                                                moveHitInfo.collider.gameObject.GetComponent<EDMBoxScript>().SetInterface(CaringPageControls.PianoUI);
+												CaringPageControls.ShowUI(moveHitInfo.collider.gameObject, CaringPageControls.PianoUI);
+								
+                                        		LastKnownObjectWithMenuUp = moveHitInfo.collider.gameObject;
+                                                preventMovingTo = true;
+                                                break;
+                                            }
+                                        case MenuFunctionalityUI.Mp3Player:
+                                            {
+                                                /*
+                                                HidePopupMenus(true);
+                                                CaringPageControls.TargetItem = moveHitInfo.collider.gameObject;
+                                                CaringPageControls.StereoUI.SetActive(true);
+
+                                                LastKnownObjectWithMenuUp = moveHitInfo.collider.gameObject;
+                                                preventMovingTo = true;*/
+                                                break;
+                                            }
+                                        case MenuFunctionalityUI.Lightbulb:
+                                            {
+                                                HidePopupMenus(true);
+												//CaringPageControls.LightbulbUI.GetComponent<UIWidget>().SetAnchor(moveHitInfo.collider.gameObject);
+												CaringPageControls.ShowUI(moveHitInfo.collider.gameObject, CaringPageControls.LightbulbUI);
+												ToggleableButtonScript toggle = CaringPageControls.LightbulbUI.GetComponentInChildren<ToggleableButtonScript>();
+                                                LighbulbSwitchOnOffScript onOff = CaringPageControls.TargetItem.GetComponentInChildren<LighbulbSwitchOnOffScript>();
+                                                if (toggle != null && onOff != null)
+                                                {
+                                                    toggle.Set(onOff.IsOn);
+												}
+								
                                         LastKnownObjectWithMenuUp = moveHitInfo.collider.gameObject;
-                                        preventMovingTo = true;
-                                    }
-                                    else if (moveHitInfo.collider.GetComponent<UIPopupItemScript>().Menu == MenuFunctionalityUI.Lightbulb)
-                                    {
-                                        HidePopupMenus();
-                                        //CaringPageControls.LightbulbUI.GetComponent<UIWidget>().SetAnchor(moveHitInfo.collider.gameObject);
-                                        CaringPageControls.TargetItem = moveHitInfo.collider.gameObject;
-                                        CaringPageControls.LightbulbUI.SetActive(true);
-									
-                                        LastKnownObjectWithMenuUp = moveHitInfo.collider.gameObject;
-                                        preventMovingTo = true;
+                                                preventMovingTo = true;
+                                                break;
+                                            }
                                     }
                                 }
                                 else if (ObjectHolding == null)
@@ -1597,10 +1748,12 @@ public class CharacterProgressScript : MonoBehaviour
                             }
                             point.y = this.transform.position.y;
 
-                            if (!preventMovingTo)
+                            if (!preventMovingTo && m_AllowMoveAnimin)
                             {
                                 if (!hadUItouch)
-                                    HidePopupMenus();
+                                    HidePopupMenus(false);
+
+                                m_AllowAutonomousMove = true;
 
                                 if (RequestedToMoveToCounter > 1)
                                 {
@@ -1620,7 +1773,7 @@ public class CharacterProgressScript : MonoBehaviour
                     }
                     else
                     {
-                        if (!IsMovingTowardsLocation && !animationController.IsWakingUp && ObjectHolding == null && ProfilesManagementScript.Singleton.CurrentAnimin.Hungry <= ConsideredHungryLevels && !animationController.IsTickled)
+                        if (!IsMovingTowardsLocation && !animationController.IsWakingUp && ObjectHolding == null && ProfilesManagementScript.Instance.CurrentAnimin.Hungry <= ConsideredHungryLevels && !animationController.IsTickled)
                         {
                             //Debug.Log("Famished!");
                             FeedMyselfTimer += Time.deltaTime;
@@ -1655,7 +1808,7 @@ public class CharacterProgressScript : MonoBehaviour
 
             case ActionId.DropItem:
                 {
-                    bool validDrop = false;
+//                    bool validDrop = false;
 				  
                     // DRAG ITEM ON TO THE CHARACTER
                     if (hadRayCollision && hitInfo.collider.name.StartsWith("MainCharacter") && !animationController.IsHoldingItem)
@@ -1665,12 +1818,12 @@ public class CharacterProgressScript : MonoBehaviour
 
                         GroundItems.Remove(DragableObject);
                         PutItemInHands(DragableObject);
-                        validDrop = true;
+ //                       validDrop = true;
                     }
                     else if (hadRayCollision && hitInfo.collider.name.StartsWith("Invisible Ground Plane"))
                     {
                         DragableObject.transform.parent = ActiveWorld.transform;
-                        validDrop = true;
+ //                       validDrop = true;
                         //GroundItems.Add(DragableObject);
                         DragableObject.layer = LayerMask.NameToLayer("Default");
 
@@ -1738,14 +1891,14 @@ public class CharacterProgressScript : MonoBehaviour
                 }
         }
 
-        if ((DateTime.Now - LastTimeToilet).TotalSeconds >= M_SHIT_TIME && !animationController.IsSleeping && animationController.IsIdle && !IsMovingTowardsLocation)
+		if ((DateTime.UtcNow - LastTimeToilet).TotalSeconds >= M_SHIT_TIME && !animationController.IsSleeping && animationController.IsIdle && !IsMovingTowardsLocation && TutorialHandler.CheckTutsCompleted("MiniGameDone"))
         {
             GameObject newPoo;
-            if (UnityEngine.Random.Range(0, 2) == 0)
+            if (UnityEngine.Random.Range(0, 2) == 0 || !TutorialHandler.CheckTutsCompleted("Shit"))
             {
                 newPoo = GameObject.Instantiate(PooPrefab) as GameObject;
                 UIGlobalVariablesScript.Singleton.SoundEngine.Play(GenericSoundId.TakePoo);
-                UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHocStartCond("Shit"); //Hey, we have naming conventions. I'm gonna stick to them.
+                TutorialHandler.TriggerAdHocStatic("Shit"); //Hey, we have naming conventions. I'm gonna stick to them.
             }
             else
             {
@@ -1767,16 +1920,16 @@ public class CharacterProgressScript : MonoBehaviour
 
             MoveTo(this.transform.position + new Vector3(UnityEngine.Random.Range(-40, 40), 0, randomDistanceA * sign), false);
 
-            LastTimeToilet = DateTime.Now;
-        }
-
-        if ((DateTime.Now - LastGiftTime).TotalSeconds >= M_GIFT_TIME && !animationController.IsSleeping && animationController.IsIdle && !IsMovingTowardsLocation)
+			LastTimeToilet = DateTime.UtcNow;
+		}
+        
+		if ((DateTime.UtcNow - LastGiftTime).TotalSeconds >= M_GIFT_TIME && !animationController.IsSleeping && animationController.IsIdle && !IsMovingTowardsLocation)
         {
             GetRandomItem();
-            LastGiftTime = DateTime.Now;
-        }
-
-
+			LastGiftTime = DateTime.UtcNow;
+		}
+        
+        
         if (UIGlobalVariablesScript.Singleton.NonSceneRef != null && UIGlobalVariablesScript.Singleton.NonSceneRef.activeInHierarchy && UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.localPosition.y <= -2)
         {
 
@@ -1834,11 +1987,11 @@ public class CharacterProgressScript : MonoBehaviour
         //UIGlobalVariablesScript.Singleton.EvolutionControlBarRef.GetComponent<UISlider>().value = Evolution / 100.0f;
 		*/
         /*
-		if((DateTime.Now - LastSavePerformed).TotalSeconds >= 4)
+		if((DateTime.UtcNow - LastSavePerformed).TotalSeconds >= 4)
 		{
 //            ProfilesManagementScript.Singleton.CurrentProfile.Characters[(int)ProfilesManagementScript.Singleton.CurrentProfile.ActiveAnimin].;
             SaveAndLoad.Instance.SaveAllData();
-            LastSavePerformed = DateTime.Now;
+            LastSavePerformed = DateTime.UtcNow;
             Debug.Log("just saved...");
 		}
 */
@@ -1875,12 +2028,13 @@ public class CharacterProgressScript : MonoBehaviour
 
     public void exitSleep()
     {
-        LastTimeToilet = DateTime.Now;
+		LastTimeToilet = DateTime.UtcNow;
         Debug.Log("exit sleep");
+		UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHoc("WakeAnimin");
         animationController.IsSleeping = false;
         CurrentAction = ActionId.None;
         SleepBoundingBox.SetActive(false);
-        UIGlobalVariablesScript.Singleton.SoundEngine.Play(ProfilesManagementScript.Singleton.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Singleton.CurrentAnimin.AniminEvolutionId, CreatureSoundId.SleepToIdle);
+        UIGlobalVariablesScript.Singleton.SoundEngine.Play(ProfilesManagementScript.Instance.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Instance.CurrentAnimin.AniminEvolutionId, CreatureSoundId.SleepToIdle);
         UIGlobalVariablesScript.Singleton.SoundEngine.StopLoop();
 		
 //        UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerExitCond("Initial", "WakeUp");
@@ -1935,6 +2089,8 @@ public class CharacterProgressScript : MonoBehaviour
             case PopupItemType.Token:
                 {
                     //Stop(true);
+                    AudioController.Play("ZefToken");
+                    TutorialHandler.TriggerAdHocStatic("PickupZef");
                     EvolutionManager.Instance.AddZef();
 
 //				for(int i=0;i<(int)AniminSubevolutionStageId.Count;++i)
@@ -1978,7 +2134,7 @@ public class CharacterProgressScript : MonoBehaviour
 			else
 			{*/
                     //ShowText("yum yum");
-                    ProfilesManagementScript.Singleton.CurrentAnimin.Hungry += item.Points;
+                    ProfilesManagementScript.Instance.CurrentAnimin.Hungry += item.Points;
 
                     if (item.Id == InventoryItemId.Blueberry || item.Id == InventoryItemId.Strawberry || item.Id == InventoryItemId.watermelon)
                     {
@@ -1998,7 +2154,6 @@ public class CharacterProgressScript : MonoBehaviour
                     AchievementManager.Instance.AddToAchievment(AchievementManager.Achievements.PlayMusic);
                     //ShowText("I can't use this item");
                     return false;
-                    break;
                 }
 
             case PopupItemType.Medicine:
@@ -2012,22 +2167,22 @@ public class CharacterProgressScript : MonoBehaviour
 			{*/
 
 
-                    if (ProfilesManagementScript.Singleton.CurrentAnimin.Health / PersistentData.MaxHealth <= 0.4f)
+                    if (ProfilesManagementScript.Instance.CurrentAnimin.Health / PersistentData.MaxHealth <= 0.4f)
                     {
-                        UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHocStartCond("HealFrom40");
+                        UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHoc("HealFrom40");
                     }
 
                     //ShowText("I feel good");
-                    ProfilesManagementScript.Singleton.CurrentAnimin.Health += item.Points;
+                    ProfilesManagementScript.Instance.CurrentAnimin.Health += item.Points;
                     Stop(true);
                     animationController.IsTakingPill = true;
                     AchievementManager.Instance.AddToAchievment(AchievementManager.Achievements.Heal);
 
 
                     if (item.SpecialId == SpecialFunctionalityId.Injection)
-                        UIGlobalVariablesScript.Singleton.SoundEngine.Play(ProfilesManagementScript.Singleton.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Singleton.CurrentAnimin.AniminEvolutionId, CreatureSoundId.InjectionReact);
+                        UIGlobalVariablesScript.Singleton.SoundEngine.Play(ProfilesManagementScript.Instance.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Instance.CurrentAnimin.AniminEvolutionId, CreatureSoundId.InjectionReact);
                     else
-                        UIGlobalVariablesScript.Singleton.SoundEngine.Play(ProfilesManagementScript.Singleton.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Singleton.CurrentAnimin.AniminEvolutionId, CreatureSoundId.EatPill);
+                        UIGlobalVariablesScript.Singleton.SoundEngine.Play(ProfilesManagementScript.Instance.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Instance.CurrentAnimin.AniminEvolutionId, CreatureSoundId.EatPill);
 
                     //}
                     break;
@@ -2046,6 +2201,9 @@ public class CharacterProgressScript : MonoBehaviour
 
     public void MoveTo(Vector3 location, bool run)
     {
+        // Note can't trigger the move to point stuff here unless we also check that the user caused the move or stop the animin from moving until that tutorial has played
+        // that's probably the best idea.
+        TutorialHandler.TriggerAdHocStatic("MoveAnimin");
         if (Mathf.Abs(location.x) >= 180 || Mathf.Abs(location.z) >= 180)
             return;
         Debug.Log("Moving to point: " + location.ToString());

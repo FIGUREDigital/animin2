@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using TMPro;
 public enum AchievementMedels
 {
 	achievementIconGold,
@@ -20,15 +21,15 @@ public class AchievementsScript : MonoBehaviour
 
 	public GameObject AchievementObject;
 	public UnityEngine.UI.Image MedalIcon;
-	public Text Title;
-	public Text Description;
-	public UnityEngine.UI.Image BackgroundGradient;
+	public TextMeshProUGUI Title;
+	public TextMeshProUGUI Description;
+	public Gradient BackgroundGradient;
 
 	private float Timer;
 	private float Alpha = 0;
 	private float VerticalMovement;
 
-	void Start()
+	void Awake()
 	{
 		Singleton = this;
 		//Show(AchievementTypeId.Gold, 400);
@@ -36,6 +37,7 @@ public class AchievementsScript : MonoBehaviour
 
 	public void Show(AchievementTypeId id, int points)
 	{
+		GetComponent<AudioSource>().Play();
 		AchievementObject.SetActive(true);
 		Timer = 5;
 		VerticalMovement = 0;
@@ -54,7 +56,7 @@ public class AchievementsScript : MonoBehaviour
 		case AchievementTypeId.Gold:
 			{
 				Title.text = "Gold Award!";
-				BackgroundGradient.color = new Color32(247,255,38,255);
+				BackgroundGradient.vertex1 = new Color32(247,255,38,255);
 				Description.text = string.Format(@"Well done! you scored {0} points.", points);
 				MedalIcon.sprite = store.GetMedel(AchievementMedels.achievementIconGold);
 				break;
@@ -62,7 +64,7 @@ public class AchievementsScript : MonoBehaviour
 		case AchievementTypeId.Bronze:
 			{
 				Title.text = "Bronze Award!";
-				BackgroundGradient.color = new Color32(247,255,38,255);
+			BackgroundGradient.vertex1 = new Color32(247,255,38,255);
 				Description.text = string.Format(@"Well done! you scored {0} points.", points);
 				MedalIcon.sprite = store.GetMedel(AchievementMedels.achievementIconBronze);
 				break;
@@ -70,7 +72,7 @@ public class AchievementsScript : MonoBehaviour
 		case AchievementTypeId.Silver:
 			{
 				Title.text = "Silver Award!!";
-				BackgroundGradient.color = new Color32(247,255,38,255);
+			BackgroundGradient.vertex1 = new Color32(247,255,38,255);
 				Description.text = string.Format(@"Well done! you scored {0} points.", points);
 				MedalIcon.sprite = store.GetMedel(AchievementMedels.achievementIconSilver);
 				break;
@@ -78,7 +80,7 @@ public class AchievementsScript : MonoBehaviour
 		case AchievementTypeId.Achievement:
 			{
 				Title.text = "Achievement!";
-				BackgroundGradient.color = new Color32(89,255,38,255);
+			BackgroundGradient.vertex1 = new Color32(89,255,38,255);
 				Description.text = "Congratulations, you got an achievement.";
 				MedalIcon.sprite = store.GetMedel(AchievementMedels.achievementIconStar);
 				break;
@@ -87,7 +89,7 @@ public class AchievementsScript : MonoBehaviour
 		case AchievementTypeId.Evolution:
 			{
 				Title.text = "Your Animin has evolved!";
-				BackgroundGradient.color = new Color32(89,255,38,255);
+			BackgroundGradient.vertex1 = new Color32(89,255,38,255);
 				Description.text = "Well done! Keep taking care of your Animin and training them up.";
 				MedalIcon.sprite = store.GetMedel(AchievementMedels.achievementIconMarker3);
 				break;
@@ -96,7 +98,7 @@ public class AchievementsScript : MonoBehaviour
 		case AchievementTypeId.EvolutionExclamation:
 			{
 				Title.text = "Your animin has grown!";
-				BackgroundGradient.color = new Color32(89,255,38,255);
+			BackgroundGradient.vertex1 = new Color32(89,255,38,255);
 				Description.text = "Well done! Keep taking care of your Animin and training them up.";
 				MedalIcon.sprite = store.GetMedel(AchievementMedels.achievementIconMarker3);
 				break;
@@ -104,7 +106,7 @@ public class AchievementsScript : MonoBehaviour
 		case AchievementTypeId.EvolutionStar:
 			{
 				Title.text = "You unlocked a surprise!";
-				BackgroundGradient.color = new Color32(89,255,38,255);
+			BackgroundGradient.vertex1 = new Color32(89,255,38,255);
 				Description.text = "Well done! Keep taking care of your Animin and training them up.";
 				MedalIcon.sprite = store.GetMedel(AchievementMedels.achievementIconMarker1);
 				break;
@@ -112,7 +114,7 @@ public class AchievementsScript : MonoBehaviour
 		case AchievementTypeId.Tutorial:
 			{
 				Title.text = "Yo!";
-				BackgroundGradient.color = new Color32(255,190,38,0);
+			BackgroundGradient.vertex1 = new Color32(255,190,38,0);
 				Description.text = "Well done! Keep taking care of your Animin and training them up.";
 				MedalIcon.sprite = store.GetMedel(AchievementMedels.achievementIconWorm);
 				break;
@@ -120,7 +122,7 @@ public class AchievementsScript : MonoBehaviour
 		case AchievementTypeId.Birthday:
 			{
 				Title.text = "Happy Birthday!";
-				BackgroundGradient.color = new Color32(255,38,124,255);
+			BackgroundGradient.vertex1 = new Color32(255,38,124,255);
 				Description.text = "Well done! Keep taking care of your Animin and training them up.";
 				MedalIcon.sprite = store.GetMedel(AchievementMedels.achievementIconBirthday);
 				break;

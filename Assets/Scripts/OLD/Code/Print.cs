@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.IO;
+using Prime31;
 
 public class Print : MonoBehaviour 
 {

@@ -1,20 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using TMPro;
 
 public class AchievementCount : MonoBehaviour 
 {
-	Text label;
+	TextMeshProUGUI label;
 	void Start()
 	{
-		label = GetComponent<Text>();
+		label = GetComponent<TextMeshProUGUI>();
 		label.text = AchievementManager.Instance.CompletedAchievements.ToString();
 	}
 	void OnEnable()
 	{
 		if(label == null)
 		{
-			label = GetComponent<Text>();
+			label = GetComponent<TextMeshProUGUI>();
 		}
 		label.text = AchievementManager.Instance.CompletedAchievements.ToString();
 	}

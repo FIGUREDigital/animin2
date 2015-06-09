@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
 
@@ -25,6 +25,7 @@ public class DragDropMainBarItem : MonoBehaviour, IBeginDragHandler, IDragHandle
         Debug.Log("DETECTED DRAG DROP RELEASE");
 
         RaycastHit hit;
+		Debug.Log ("Main Camera: "+Camera.main.name);
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit))
         {
@@ -44,15 +45,18 @@ public class DragDropMainBarItem : MonoBehaviour, IBeginDragHandler, IDragHandle
         GameObject resourceLoaded = (GameObject)Resources.Load(modelLink.Item3DPrefab);
         GameObject child = (GameObject)GameObject.Instantiate(resourceLoaded);
         UIPopupItemScript popScript = child.GetComponent<UIPopupItemScript>();
-        ProfilesManagementScript.Singleton.CurrentAnimin.RemoveItemFromInventory(modelLink.ItemID, 1);
+        ProfilesManagementScript.Instance.CurrentAnimin.RemoveItemFromInventory(modelLink.ItemID, 1);
 					
         child.transform.parent = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().ActiveWorld.transform;
+	//	child.transform.localScale = new Vector3 (1, 1, 1);
 					
         child.transform.localRotation = Quaternion.Euler(0, UnityEngine.Random.Range(0, 360), 0);
 
         UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().DragedObjectedFromUIToWorld = true;
         if(OnClicked != null)
             OnClicked();
+
+        TutorialHandler.TriggerAdHocStatic("Drop"+popScript.Id.ToString());
 					
         if (popScript.Type == PopupItemType.Food)
             UIGlobalVariablesScript.Singleton.SoundEngine.Play(GenericSoundId.DropFood);

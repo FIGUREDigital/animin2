@@ -101,7 +101,7 @@ MonoBehaviour:
   NonInteractable: 0
   Menu: 0
   SpecialId: 0
-  Id: 0
+  Id: 35
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1

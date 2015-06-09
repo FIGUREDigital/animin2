@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class LoginUser : MonoBehaviour 
@@ -7,7 +7,7 @@ public class LoginUser : MonoBehaviour
 
     public void OnClick()
 	{
-        ProfilesManagementScript.Singleton.LoginExistingUser(ThisProfile);
+        ProfilesManagementScript.Instance.LoginExistingUser(ThisProfile);
 
 	}
 }

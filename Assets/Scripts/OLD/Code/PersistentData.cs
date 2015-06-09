@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 using System;
 using UnityEngine.UI;
@@ -35,45 +35,94 @@ public class PersistentData
 
 	public List<InventoryItemData> Inventory = new List<InventoryItemData>();
     public TypesOfAnimin PlayerAniminId;
+	public string AniminName
+	{
+		get
+		{
+			switch (PlayerAniminId)
+			{
+			case TypesOfAnimin.Pi:
+				return "Pi";
+			case TypesOfAnimin.Kelsey:
+				return "Kelsi";
+			case TypesOfAnimin.Mandi:
+				return "Mandi";
+			default:
+				return "T-Bo";
+			}
+		}
+	}
+
+	public bool IsMale
+	{		
+		get
+		{
+			return PlayerAniminId != TypesOfAnimin.Kelsey && PlayerAniminId != TypesOfAnimin.Mandi;
+		}
+	}
+
 	public AniminEvolutionStageId AniminEvolutionId;
-	public const float MaxHappy = 125.0f;
+    public int EggTaps = 0;
+    public bool Hatched 
+    {
+        get
+        {
+            return EggTaps > 5;
+        }
+    }
+//	public const float MaxHappy = 125.0f;
+	public const float MaxHappy = 100.0f;
 	public const float MaxHungry = 100;
 	public const float MaxFitness = 100;
 	public const float MaxHealth = 100;
 	public int ZefTokens;
+	public int CrystalCount;
 	public List<AniminSubevolutionStageId> SubstagesCompleted = new List<AniminSubevolutionStageId>(); 
 	public string Username;
-	public System.DateTime CreatedOn;
+	public System.DateTime CreatedOn = DateTime.UtcNow;
 	public static bool InventoryUpdated;
-
-
+	
 	private int age;
 	private bool audioIsOn;
-	private float happy;
+	public static float happy;
 	private float hungry;
 	private float fitness;
 	private float evolution;
 	private float health;
-
-
-
-
+	public DateTime lastPlay;
+			
     public CaringScreenItem[] m_CaringScreenItems;
 
-    public void SaveCaringScreenItem(GameObject[] objects){
+    public void SaveCaringScreenItem(GameObject[] objects, GameObject holding){
         Debug.Log("Objects.length : [" + objects.Length + "];");
         //m_CaringScreenItems = new CaringScreenItem[objects.Length];
         List<CaringScreenItem> ItemList = new List<CaringScreenItem>();
+        if (holding != null)
+        {
+            Vector3 pos = holding.transform.localPosition;
+            pos.y = 0;
+            holding.transform.localPosition = pos;
+            Save(ItemList, holding);
+        }
         for (int i = 0; i < objects.Length; i++)
         {
-            Debug.Log("Saving Item : [" + objects[i] + "];");
-            UIPopupItemScript popup = objects[i].GetComponent<UIPopupItemScript>();
-            if (popup == null)
-                continue;
-            ItemList.Add(new CaringScreenItem(popup.Id, objects[i].transform.position));
+            Save(ItemList, objects[i]);
         }
         m_CaringScreenItems = ItemList.ToArray();
     }
+
+    void Save(List<CaringScreenItem> ItemList, GameObject o)
+    {
+        if (o == null) return;
+        Debug.Log("Saving Item : [" + o + "];");
+        UIPopupItemScript popup = o.GetComponent<UIPopupItemScript>();
+        //AH Avoid saving items that have a none ID, causes an exception on loading - Note Zef tokens use none
+        if (popup != null && popup.Id != InventoryItemId.None)
+        {
+            ItemList.Add(new CaringScreenItem(popup.Id, o.transform.position));
+        }
+    }
+
     public GameObject[] LoadCaringScreenItem(){
         Debug.Log("LoadCaringScreenItem called! m_CaringScreenItems : [" + m_CaringScreenItems + "];");
         if (m_CaringScreenItems == null)
@@ -81,19 +130,27 @@ public class PersistentData
         GameObject[] returnGOs = new GameObject[m_CaringScreenItems.Length];
         for (int i = 0; i < m_CaringScreenItems.Length; i++)
         {
-            Debug.Log ("Prefab : [" + InventoryItemData.Items [(int)m_CaringScreenItems [i].Id].PrefabId + "];");
-            GameObject resourceLoaded = (GameObject)Resources.Load(InventoryItemData.Items[(int)m_CaringScreenItems[i].Id].PrefabId);
-            returnGOs[i] = (GameObject)GameObject.Instantiate(resourceLoaded);
+//            Debug.Log ("Prefab : [" + InventoryItemData.Items [(int)m_CaringScreenItems [i].Id].PrefabId + "];");
+			InventoryItemBankData def =  InventoryItemData.GetDefinition(m_CaringScreenItems[i].Id);
+			if(def !=null)
+			{
+				GameObject resourceLoaded = (GameObject)Resources.Load(def.PrefabId);
+	            returnGOs[i] = (GameObject)GameObject.Instantiate(resourceLoaded);
 
-            returnGOs[i].transform.parent = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().ActiveWorld.transform;
+	            returnGOs[i].transform.parent = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().ActiveWorld.transform;
 
-            //returnGOs[i].transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-            //returnGOs[i].transform.localScale *= 10;
-            returnGOs[i].transform.localRotation = Quaternion.Euler(0, UnityEngine.Random.Range(0, 360), 0);
+	            //returnGOs[i].transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+	            //returnGOs[i].transform.localScale *= 10;
+	            returnGOs[i].transform.localRotation = Quaternion.Euler(0, UnityEngine.Random.Range(0, 360), 0);
 
-            returnGOs[i].transform.position = m_CaringScreenItems[i].Position;
+	            returnGOs[i].transform.position = m_CaringScreenItems[i].Position;
 
-            Debug.Log("Scale of [" + returnGOs[i].name + "] is [" + returnGOs[i].transform.localScale + "];");
+	            Debug.Log("Scale of [" + returnGOs[i].name + "] is [" + returnGOs[i].transform.localScale + "];");
+			}
+			else
+			{
+				Debug.LogError ("Warning caring system index "+i+" ("+(m_CaringScreenItems[i].Id.ToString ())+") has a null item");
+			}
         }
         return returnGOs;
     }
@@ -177,7 +234,7 @@ public class PersistentData
 
 	private void CalcAge()
 	{
-		System.TimeSpan realAge = System.DateTime.Now.Subtract(CreatedOn);
+		System.TimeSpan realAge = System.DateTime.UtcNow.Subtract(CreatedOn);
 		age = (int)Math.Floor(realAge.TotalDays / 3);
 	}
 
@@ -186,27 +243,30 @@ public class PersistentData
 		SubstagesCompleted.Clear();
 		PlayerAniminId = animin;
 		AniminEvolutionId = AniminEvolutionStageId.Baby;
-		CreatedOn = System.DateTime.Now;
+		CreatedOn = System.DateTime.UtcNow;
 		
 		Happy = MaxHappy;
 		Hungry = MaxHungry * 0.65f;
 		Fitness = MaxFitness;
 		Health = MaxHealth;
 		ZefTokens = 0;
+		CrystalCount = 0;
+
 
 	}
 
 	public void AddItemToInventory(InventoryItemId id, int count)
 	{
-		if (InventoryItemData.Items [(int)id] == null) {
+		InventoryItemBankData def = InventoryItemData.GetDefinition(id);
+		if (def == null) {
 						Debug.Log ("Something has gone terribely wrong");
 						return;
 				}
-		if(!((InventoryItemData.Items [(int)id].ItemType == PopupItemType.Food) ||
-		     (InventoryItemData.Items [(int)id].ItemType == PopupItemType.Medicine) ||
-		     (InventoryItemData.Items [(int)id].ItemType == PopupItemType.Item)))
+		if(!((def.ItemType == PopupItemType.Food) ||
+		     (def.ItemType == PopupItemType.Medicine) ||
+		     (def.ItemType == PopupItemType.Item)))
 		    {
-			Debug.Log ("Cannot add item! /nID : [" + id + "]; Data : [" + InventoryItemData.Items [(int)id].ItemType + "];");
+			Debug.Log ("Cannot add item! /nID : [" + id + "]; Data : [" + def.ItemType + "];");
 			return;
 		}
         int key = 0;
@@ -292,7 +352,7 @@ public class PersistentData
 	{
 		for(int i=0;i<Inventory.Count;++i)
 		{
-			if(InventoryItemData.Items[(int)Inventory[i].Id].ItemType == type)
+			if(Inventory[i].Definition.ItemType == type)
 			{
 				return Inventory[i];
 			}
@@ -326,7 +386,7 @@ public class PersistentData
 
 		return false;
 	}
-	
+
 //	public void Save(SaveLoadDictionary dictionary)
 //	{
 //		dictionary.Write("Hungry", Hungry);

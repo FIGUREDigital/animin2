@@ -1,12 +1,13 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using TMPro;
 
 public class AgeScript : MonoBehaviour {
 
 	void OnEnable()
 	{
-		Text label = gameObject.GetComponent<Text>();
-		label.text = "Age "+ ProfilesManagementScript.Singleton.CurrentAnimin.Age;
+		TextMeshProUGUI label = gameObject.GetComponent<TextMeshProUGUI>();
+		label.text = "Age "+ ProfilesManagementScript.Instance.CurrentAnimin.Age;
 	}
 }

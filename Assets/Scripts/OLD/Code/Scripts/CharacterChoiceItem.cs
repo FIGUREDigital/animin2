@@ -1,15 +1,16 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using TMPro;
 
 public class CharacterChoiceItem : MonoBehaviour 
 {
 	[SerializeField]
 	private GameObject mSprite;
 	[SerializeField]
-	private GameObject mDisabledSprite;
+	private GameObject mGetNow;
 	[SerializeField]
-	private GameObject mLockedButton;
+	private GameObject mDisabledSprite;
 	[SerializeField]
 	private GameObject mMailButton;
 	[SerializeField]
@@ -58,42 +59,29 @@ public class CharacterChoiceItem : MonoBehaviour
 				Debug.Log("Disabled sprite found!");
 			}
 		}
-
-		if(mLockedButton == null)
-		{
-			Debug.LogWarning("CANNOT FIND LOCK BUTTON FOR CHARACTER. ATTEMPTING TO RESOLVE.");
-			mLockedButton = transform.FindChild("Unlock Button").gameObject;
-			if(mLockedButton == null)
-			{
-				Debug.LogError("LOCK BUTTON NOT SET FOR CHARACTER");
-			}
-			else
-			{
-				Debug.Log("Lock button found!");
-			}
-		}
 	}
 
 	void OnEnable()
 	{
 		mUnlocked = false;
-		for(int i =0; i < ProfilesManagementScript.Singleton.CurrentProfile.UnlockedAnimins.Count; i++)
+		for(int i =0; i < ProfilesManagementScript.Instance.CurrentProfile.UnlockedAnimins.Count; i++)
 		{
-			if(ProfilesManagementScript.Singleton.CurrentProfile.UnlockedAnimins[i] == ThisCharacter)
+			if(ProfilesManagementScript.Instance.CurrentProfile.UnlockedAnimins[i] == ThisCharacter)
 			{
 				mUnlocked = true;
 			}
 		}
         ChangeLockedState(mUnlocked);
-		Invoke ("UpdateAge", 0.1f);
+		UpdateAge();
+		//Invoke ("UpdateAge", 0.1f);
 	}
 
 	private void UpdateAge()
 	{
-		Text label = mAgeLabel.GetComponent<Text>();
-		if(ProfilesManagementScript.Singleton.CurrentProfile.Characters[(int)ThisCharacter] != null)
+		TextMeshProUGUI label = mAgeLabel.GetComponent<TextMeshProUGUI>();
+		if(ProfilesManagementScript.Instance.CurrentProfile.Characters[(int)ThisCharacter] != null)
 		{
-			PersistentData pd = ProfilesManagementScript.Singleton.CurrentProfile.Characters[(int)ThisCharacter];
+			PersistentData pd = ProfilesManagementScript.Instance.CurrentProfile.Characters[(int)ThisCharacter];
 			label.text = "Age " + pd.Age;
 		}
 		else
@@ -108,13 +96,18 @@ public class CharacterChoiceItem : MonoBehaviour
         mUnlocked = unlocked;
         mSprite.SetActive(mUnlocked);
 		mDisabledSprite.SetActive(!mUnlocked);
-		mLockedButton.SetActive(!mUnlocked);
-		mMailButton.SetActive (mUnlocked);
-		if(ThisCharacter == PersistentData.TypesOfAnimin.Tbo)
+		if(mMailButton)
 		{
-			mMailButton.SetActive (false);
+			mMailButton.SetActive (mUnlocked);
+			if(ThisCharacter == PersistentData.TypesOfAnimin.Tbo)
+			{
+				mMailButton.SetActive (false);
+			}
 		}
 		mAgeLabel.SetActive(mUnlocked);
+		if (mGetNow) {
+			mGetNow.SetActive (!mUnlocked);
+		}
 	}
 
 	public void GoToAddress()

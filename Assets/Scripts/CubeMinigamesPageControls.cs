@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
+using TMPro;
 
 public class CubeMinigamesPageControls : MonoBehaviour {
 
@@ -16,9 +17,9 @@ public class CubeMinigamesPageControls : MonoBehaviour {
     public GameObject[] Stars { get { return m_Stars; } }
 
     [SerializeField]
-    private Text m_LevelCounter, m_Points;
-    public Text LevelCounter { get { return m_LevelCounter; } }
-    public Text PointLabel { get { return m_Points; } }
+    private TextMeshProUGUI m_LevelCounter, m_Points;
+	public TextMeshProUGUI LevelCounter { get { return m_LevelCounter; } }
+	public TextMeshProUGUI PointLabel { get { return m_Points; } }
 
     [SerializeField]
     private GameObject m_TutorialMove, m_TutorialJump, m_TutorialSwipe;
@@ -50,7 +51,7 @@ public class CubeMinigamesPageControls : MonoBehaviour {
     void Update () {
         if (m_Paused)
             return;
-        if (ProfilesManagementScript.Singleton.CurrentProfile.TutorialBoxLandPlayed == false)
+        if (ProfilesManagementScript.Instance.CurrentProfile.TutorialBoxLandPlayed == false)
         {
             switch(TutorialCounter){
                 case 0:
@@ -79,7 +80,7 @@ public class CubeMinigamesPageControls : MonoBehaviour {
                     if (MinigameScript.IsSwiping)
                     {
                         m_TutorialSwipe.SetActive(false);
-                        ProfilesManagementScript.Singleton.CurrentProfile.TutorialBoxLandPlayed = true;
+                        ProfilesManagementScript.Instance.CurrentProfile.TutorialBoxLandPlayed = true;
                         TutorialCounter++;
                     }
                     break;
@@ -91,11 +92,11 @@ public class CubeMinigamesPageControls : MonoBehaviour {
 		m_TutorialMove.SetActive (false);
 		m_TutorialSwipe.SetActive (false);
 		TutorialCounter = 0;
-		ProfilesManagementScript.Singleton.CurrentProfile.TutorialBoxLandPlayed = false;
+		ProfilesManagementScript.Instance.CurrentProfile.TutorialBoxLandPlayed = false;
 	}
 
 	void OnEnable(){
-        if (!ProfilesManagementScript.Singleton.CurrentProfile.TutorialBoxLandPlayed)
+        if (!ProfilesManagementScript.Instance.CurrentProfile.TutorialBoxLandPlayed)
             TutorialCounter = 0;
 		m_TutorialJump.SetActive (false);
 		m_TutorialMove.SetActive (false);

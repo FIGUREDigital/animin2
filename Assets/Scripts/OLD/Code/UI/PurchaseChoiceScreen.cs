@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class PurchaseChoiceScreen : MonoBehaviour {
@@ -12,7 +12,7 @@ public class PurchaseChoiceScreen : MonoBehaviour {
 
 	void OnEnable()
 	{
-        ProfilesManagementScript.Singleton.ItunesScript = this.GetComponentInChildren<ItunesButtonUpdate>();
+        ProfilesManagementScript.Instance.ItunesScript = this.GetComponentInChildren<ItunesButtonUpdate>();
         mTitle.SetActive(false);
 		mSocialButtons.SetActive(false);
 	}

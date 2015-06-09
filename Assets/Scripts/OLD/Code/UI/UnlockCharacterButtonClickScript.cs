@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class UnlockCharacterButtonClickScript : MonoBehaviour 
@@ -14,13 +14,13 @@ public class UnlockCharacterButtonClickScript : MonoBehaviour
 
 	public void OnClick()
 	{
-		ProfilesManagementScript.Singleton.AniminToUnlockId = Id;
+		ProfilesManagementScript.Instance.AniminToUnlockId = Id;
         
 //		UIManager.Instance.UITransition(ProfilesManagementScript.Singleton.AniminsScreen, ProfilesManagementScript.Singleton.PurchaseChoiceScreen);
 
         if(! Application.isEditor)
         {
-            ProfilesManagementScript.Singleton.ActivateShopItemCheck();
+            ProfilesManagementScript.Instance.ActivateShopItemCheck();
 			UiPages.Next(Pages.LoadingPage);
         }
 		else

@@ -15,7 +15,7 @@
          Timer - START CONDITION ONLY (End Condition TBA)
          Description:    A timer is activated when the end of another tutorial.
          Parameters:
-         Trigger:        Trigger ID. When the tutorial specified in the ID here ends the timer will begin. EG Setting "trigger = 0" will begin the timer when tutorial with the id of 0 ends.  - TUTORIAL START CONDITION ONLY
+         Trigger:        Trigger name. When the tutorial specified here ends the timer will begin. EG Setting "trigger = Initial" will begin the timer when Initial tutorial ends.  - TUTORIAL START CONDITION ONLY
          Seconds:        The time in seconds for the timer to run for before this tutorial begins.
          
          UIButton
@@ -29,7 +29,9 @@
          Call:           The callsign of the AdHoc call. Use this in code to trigger the condition.
          -->
     <Tutorials>
-        <Tutorial id="00" name="Initial">
+			
+
+        <Tutorial name="Initial">
             <!---Description : This tutorial will play at the start, when the user first starts the app, telling them how to view Stats-->
             <StartCondition>
                 <Initial/>
@@ -37,361 +39,436 @@
             <Lessons>
                 <Lesson>
                     <TutEntries>
-                        <TutEntry text="Hello, I'm Andy Wormhole!"/>
-                        <TutEntry text="I was travelling through a portal and found this Animin."/>
-                        <TutEntry text="I wonder how he got here..."/>
-                        <TutEntry text="Why don’t you wake it up!"/>
-                    </TutEntries>
+                        <TutEntry text="Hi, I'm Andy Wormhole!"/>
+                        <TutEntry text="I was travelling through a wormhole when I found this Animin egg."/>
+                        <TutEntry text="To take a better look at it, you can zoom in…" fire="PointToZoom"/>
+                        <TutEntry text="Press here to try it now."/>						
+                    </TutEntries>					
+        			<EndCondition>
+        				<AdHoc call = "ToggleZoom"/>
+					</EndCondition>
+                </Lesson>
+                <Lesson>
+                    <TutEntries>
+                        <TutEntry text="Its almost ready to hatch!"/>
+                        <TutEntry text="I'm glad you're here too…" fire="PopOutOfGrass"/>
+                        <TutEntry text="Animin need to be cared for, but I haven't got any arms!"/>	
+                    	<TutEntry text="Tap the egg to let the Animin out" fire="AllowEggTaps"/>						
+                    </TutEntries>							
+        			<EndCondition>
+        				<AdHoc call = "Hatched"/>
+					</EndCondition>
                 </Lesson>
             </Lessons>
-        </Tutorial>
-        <Tutorial id="01" name="Hungry">
-            <StartCondition>
-                <Timer trigger="0" seconds="10"/>
+        </Tutorial>		
+        
+        <Tutorial name="WakeUp">
+        	<StartCondition>
+        		<AdHoc call = "WakeUp"/>
             </StartCondition>
-            <Lessons>
+        	 <Lessons>
                 <Lesson>
                     <TutEntries>
-                        <TutEntry text="Your Animin looks hungry."/>
-                        <TutEntry text="Why don’t you feed him a strawberry?"/>
-                        <TutEntry text="Drag one out from the food menu."/>
-                    </TutEntries>
-                    <EndCondition>
-                        <AdHoc call="EatStrawberry"/>
-                    </EndCondition>
-                </Lesson>
-                <Lesson>
-                    <TutEntries>
-                        <TutEntry text="Tasty! if you click on the food, they will eat it."/>
-                    </TutEntries>
-                    <Stamp exit="None"/>
+                    	 <TutEntry text="Why dont you wake up your Animin…"/>
+                    	 <TutEntry text="Tap on him to wake him up!"/>
+                    </TutEntries>							
+        			<EndCondition>
+        				<AdHoc call = "ExitSleep"/>
+					</EndCondition>
                 </Lesson>
             </Lessons>
-        </Tutorial>
-        
-        
-        
-        <Tutorial id="02" name="CheckStats">
-            <!---Description : Check statistics screen-->
-            <StartCondition>
-                <Timer trigger="1" seconds="20"/>
+        </Tutorial>		
+        <Tutorial name="Stroke">	
+        	<StartCondition>
+        		<Timer trigger="Initial" seconds="0"/>	
             </StartCondition>
-            <Lessons>
+        	 <Lessons>			
                 <Lesson>
                     <TutEntries>
-                        <TutEntry text="Animin need a lot of care and attention to grow into an adult! "/>
-                        <TutEntry text="See how happy he is by looking in the stats"/>
+                    	 <TutEntry text="Amazing!! Welcome to the world little Animin."/>
+                    	 <TutEntry text="Well hey there! this Animin's name is T-Bo."/>
+                    	 <TutEntry text="How do I know his name? All will be revealed in time…"/>
+                    	 <TutEntry text="Animin need to be cared for in order help them evolve"/>
                     </TutEntries>
-                    <EndCondition>
-                        <Uibutton name="Button - Open Stats"/>
-                    </EndCondition>
+                </Lesson>
+                <Lesson skip = "ShouldSkipZoomOut">
+                    <TutEntries>
+                        <TutEntry text="You can also press to zoom back out." fire="PointToZoom"/>
+                    </TutEntries>					
+        			<EndCondition>
+        				<AdHoc call = "ToggleZoom"/>
+					</EndCondition>
                 </Lesson>
                 <Lesson>
                     <TutEntries>
-                        <TutEntry text="If your Animin is happier it will evolve faster!"/>
-                    </TutEntries>
+                    	 <TutEntry text="T-Bo loves attention."/>
+                    	 <TutEntry text="Why don't you stroke him …"/>
+                    	 <TutEntry text="Just tap to stroke."/>
+                    </TutEntries>				
+        			<EndCondition>
+        				<AdHoc call = "StrokeAnimin"/>
+					</EndCondition>
                 </Lesson>
             </Lessons>
         </Tutorial>
         
-        
-        
-        <Tutorial id="03" name="Prize">
-            <StartCondition>
-                <AdHoc call = "Prize"/>
+        <Tutorial name="TapMove">	
+        	<StartCondition>
+        		<Timer trigger="Stroke" seconds="2"/>	
             </StartCondition>
-            <Lessons>
+        	 <Lessons>
                 <Lesson>
                     <TutEntries>
-                        <TutEntry text="Wow, look at those prizes!"/>
-                        <TutEntry text="Drag items off the stage to put them back in item menus."/>
-                    </TutEntries>
+                    	 <TutEntry text="I think the two of you are going to get on just great."/>
+                    	 <TutEntry text="Tell your Animin where to go by tapping in empty space…" fire="AllowMoveAnimin"/>
+                    </TutEntries>			
+        			<EndCondition>
+        				<AdHoc call = "MoveAnimin"/>
+					</EndCondition>
                 </Lesson>
             </Lessons>
         </Tutorial>
         
         
-        
-        <Tutorial id="04" name="FartButton">
-            <StartCondition>
-                <AdHoc call = "Fart"/>
+        <Tutorial name="Stats">
+        	<StartCondition>
+        		<Timer trigger="TapMove" seconds="5"/>	
             </StartCondition>
-            <Lessons>
+        	 <Lessons>
                 <Lesson>
                     <TutEntries>
-                        <TutEntry text="Ahahaha! "/>
-                        <TutEntry text="Oh my gosh, that is so gross!"/>
+                    	 <TutEntry text="Have a look at your Animins stats…"/>
+                    	 <TutEntry text="Just tap here to see." fire="PointToStats"/>						 
+                    </TutEntries>								
+        			<EndCondition>
+        				<AdHoc call = "ViewStats"/>
+					</EndCondition>
+                </Lesson>
+                <Lesson>
+                    <TutEntries>
+                    	 <TutEntry text="Thats where you can see all the vital information about T-Bo."/>
+                    	 <TutEntry text="It looked like he was getting quite hungry!"/>
                     </TutEntries>
                 </Lesson>
             </Lessons>
         </Tutorial>
         
-        
-        
-        <Tutorial id="05" name="BoomBoxWin">
-            <StartCondition>
-                <AdHoc call = "BBWin"/>
+         <Tutorial name="Strawberry">
+        	<StartCondition>
+        		<Timer trigger="Stats" seconds="0"/>	
             </StartCondition>
-            <Lessons>
-                <Lesson>
+        	 <Lessons>
+                <Lesson skip= "SkipIfStrawberryOnGround">
                     <TutEntries>
-                        <TutEntry text="Looks like you have won a boom box!"/>
-                        <TutEntry text="Keep evolving your animin to win more."/>
-                    </TutEntries>
+                    	 <TutEntry text="I have a strawberry you can give him." fire="GiveStrawberry"/>
+                    	 <TutEntry text="Just drag it out from your storage on to an empty space…" fire="ShowFeeding"/> 
+                    </TutEntries>									
+        			<EndCondition>
+        				<AdHoc call = "DropStrawberry"/>
+					</EndCondition>	
                 </Lesson>
             </Lessons>
         </Tutorial>
-        
-        
-        
-        <Tutorial id="06" name="BoomBoxPlace">
-            <StartCondition>
-                <AdHoc call = "BBPlace"/>
+		
+         <Tutorial name="EatStrawberry">
+        	<StartCondition>
+        		<AdHoc call = "EatStrawberry"/>
             </StartCondition>
-            <Lessons>
-                <Lesson>
-                    <TutEntries>
-                        <TutEntry text="If you touch the boombox you can select music and watch your Animin dance to the music!"/>
-                    </TutEntries>
-                </Lesson>
-            </Lessons>
-        </Tutorial>
+        	<Lessons>
+				<Lesson>
+					<TutEntries>
+                    		<TutEntry text="That did the trick!" fire="ShownStartEatStrawberry"/>  
+                    		<TutEntry text="But it's not going to be long before he's hungry again."/> 
+					</TutEntries>
+				</Lesson>
+			</Lessons>
+        </Tutorial>		
         
-        
-        
-        
-        
-        
-        <Tutorial id="07" name="BoxLand1">
-            <StartCondition>
-                <AdHoc call = "BoxLandReturn"/>
+        <Tutorial name="GetPhone">
+        	<StartCondition>
+        		<Timer trigger="EatStrawberry" seconds="5"/>
             </StartCondition>
-            <Lessons>
-                <Lesson>
+        	 <Lessons>
+                <Lesson skip = "SkipIfPhoneOnGround">
                     <TutEntries>
-                        <TutEntry text="See if you can beat my score of 7000 in Boxland!"/>
-                        <TutEntry text="I bet you cant..."/>
-                    </TutEntries>
+                    	 <TutEntry text="Hey, why don't you take this phone…" fire="GivePhone"/>
+                    	 <TutEntry text="You can call me for my advice and insightful quotes…"/>
+                    	 <TutEntry text="Damn, I'm a smooth talker…"/>
+                    	 <TutEntry text="Try it now! Drag the phone out from your storage…" fire="ShowDragItems"/>
+                    </TutEntries>									
+        			<EndCondition>
+        				<AdHoc call = "DropPhone"/>
+					</EndCondition>	
                 </Lesson>
             </Lessons>
         </Tutorial>
+
+		<Tutorial name="Phone">
+			<StartCondition>
+				<Timer trigger="GetPhone" seconds="0"/>
+			</StartCondition>
+			<Lessons>
+                <Lesson>
+                    <TutEntries>
+                    	 <TutEntry text="Tap the phone to see your contacts and call me!" fire="PointPhone"/> 
+                    </TutEntries>								
+        			<EndCondition>
+        				<AdHoc call = "CallPhone"/>
+					</EndCondition>	
+                </Lesson>
+                <Lesson>
+                    <TutEntries>
+                    	 <TutEntry text="I feel more popular already. lolololol."/> 
+                    </TutEntries>
+                </Lesson>
+            </Lessons>
+        </Tutorial>        
         
-        
-        
-        
-        
-        
-        <Tutorial id="08" name="BoxLand2">
-            <StartCondition>
-                <AdHoc call = "BoxLandScoreBreak1"/>
+         <Tutorial name="Zef">
+        	<StartCondition>
+        		<Timer trigger="Phone" seconds="10"/>
             </StartCondition>
-            <Lessons>
-                <Lesson>
+        	 <Lessons>
+                <Lesson skip ="GivenZef">
                     <TutEntries>
-                        <TutEntry text="Woah, you are getting great, you beat my top score!"/>
-                        <TutEntry text="Do you think you can make it to 10,000 points? That would be crazy."/>
+                    	 <TutEntry text="One of the coolest thing about Animin is that that they can evolve…"/>
+                    	 <TutEntry text="To see the evolution have a look at the Evolution bar…"/>
+                    	 <TutEntry text="Its in the stats…" fire="PointToStats"/>
+                    	 <TutEntry text="Press there now to see…"/>						 
+                    </TutEntries>								
+        			<EndCondition>
+        				<AdHoc call = "ViewStats"/>
+					</EndCondition>
+                </Lesson>
+                <Lesson skip ="GivenZef">
+                    <TutEntries>
+                    	 <TutEntry text="To increase your Animins evolution you need ZEF Tokens…"/>
+                    	 <TutEntry text="To start you off Ill give you a few of mine." fire="GiveZef"/>
+                    </TutEntries>							
+        			<EndCondition>
+        				<AdHoc call = "PickupZef"/>
+					</EndCondition>
+                </Lesson>
+            </Lessons>
+        </Tutorial>
+
+		        
+        <Tutorial name="ClockUnlocked">
+			<StartCondition>
+				<AdHoc call = "UnlockedClock"/>
+			</StartCondition>
+        	 <Lessons>
+                <Lesson skip = "MarkTutorialAsComplete">
+                    <TutEntries>
+                    	 <TutEntry text="Wow! check that out."/>
+                    	 <TutEntry text="Tap once on the clock to see the time."/>
+                    	 <TutEntry text="Now you will always know how long you need to feed and care for your Animin."/>
+                    	 <TutEntry text="As you evolve you will also receive more items to decorate and play with!"/>
                     </TutEntries>
                 </Lesson>
             </Lessons>
         </Tutorial>
-        
-        
-        
-        
-        
-        
-        <Tutorial id="09" name="EvolveExplain1">
-            <StartCondition>
-                <AdHoc call = "1DayEvolve"/>
+		
+        <Tutorial name="Crystals">
+        	<StartCondition>
+        		<Timer trigger="ClockUnlocked" seconds="10"/>
             </StartCondition>
-            <Lessons>
-                <Lesson>
+        	 <Lessons>
+                <Lesson skip = "MarkTutorialAsComplete">
                     <TutEntries>
-                        <TutEntry text="Animins grow older much faster than humans. 3 human days are equal to 1 Animin year!"/>
-                        <TutEntry text="Which means your Animin will be 1 tomorrow..."/>
-                    </TutEntries>
+                    	 <TutEntry text="When your Animin is happy, it will produce crystals…" fire="GiveCrystals"/>
+                    	 <TutEntry text="and when it is REALLY happy it will produce ZEF tokens!"/>
+                    	 <TutEntry text="you can see how many zef and crystals you have in the stats."/>
+                    	 <TutEntry text="You can use crystals to enter portals…"/>
+                    </TutEntries>						
+        			<EndCondition>
+        				<AdHoc call = "PickupCrystal"/>
+					</EndCondition>
                 </Lesson>
             </Lessons>
         </Tutorial>
-        
-        
-        
-        
-        
-        
-        <Tutorial id="10" name="EvolveExplain2">
-            <StartCondition>
-                <AdHoc call = "3DayEvolve"/>
+				
+        <Tutorial name="UseCrystals">
+        	<StartCondition>			
+        		<AdHoc call = "PickupCrystal"/>
             </StartCondition>
-            <Lessons>
+        	 <Lessons>
                 <Lesson>
                     <TutEntries>
-                        <TutEntry text="Happy Birthday!!!"/>
-                        <TutEntry text="Your Animin is now 1 year old!"/>
-                    </TutEntries>
+                    	 <TutEntry text="Press here to see what you can do with your crystals…" fire="PointToPortals"/>
+                    </TutEntries>							
+        			<EndCondition>
+        				<AdHoc call = "ViewPortals"/>
+					</EndCondition>
                 </Lesson>
             </Lessons>
         </Tutorial>
         
-        
-        
-        
-        
-        
-        <Tutorial id="11" name="EDMExplanation">
-            <StartCondition>
-                <AdHoc call = "EDM"/>
+        <Tutorial name="MiniGameDone">
+        	<StartCondition>			
+        		<AdHoc call = "MiniGameDone"/>
             </StartCondition>
-            <Lessons>
+        	 <Lessons>
                 <Lesson>
-                    <TutEntries>
-                        <TutEntry text="Sick beats!"/>
-                        <TutEntry text="It needs a melody if you ask me..."/>
-                        <TutEntry text="You need to collect more instruments to make a whole song."/>
+                    <TutEntries skip = "MarkTutorialAsComplete">
+                    	 <TutEntry text="Good job!"/>
+                    	 <TutEntry text="Check out the cool items you won!!"/>
+                    	 <TutEntry text="When you play a minigame your Animins fitness will improve."/>
+                    	 <TutEntry text="Check out the stats to see T-Bo's fitness level now."/>
+                    	 <TutEntry text="A fitter Animin means a happier Animin…"/>
+                    	 <TutEntry text="and a happier Animin means they will evolve faster."/>
                     </TutEntries>
                 </Lesson>
             </Lessons>
         </Tutorial>
         
-        
-        
-        
-        
-        
-        <Tutorial id="12" name="Shit">
-            <StartCondition>
-                <AdHoc call = "Shit"/>
+        <Tutorial name="Shit">
+        	<StartCondition>
+        		<AdHoc call = "Shit"/>
             </StartCondition>
-            <Lessons>
+        	 <Lessons>
                 <Lesson>
                     <TutEntries>
-                        <TutEntry text="Whoopsie!"/>
-                        <TutEntry text="To clean that mess, drag the broom over it."/>
+                    	 <TutEntry text="Hah! I guess everyones gotta go sometime!!"/>
+                    	 <TutEntry text="And with no toilet around, I guess you will have to clean up."/>
+                    	 <TutEntry text="Just drag the broom over from here onto any mess and it will be cleaned." fire="ShowDragBrrom"/>
+                    </TutEntries>						
+        			<EndCondition>
+        				<AdHoc call = "ShitCleaned"/>
+					</EndCondition>
+                </Lesson>
+                <Lesson skip = "MarkTutorialAsComplete">
+                    <TutEntries>
+                    	 <TutEntry text="Spotless!!"/>
                     </TutEntries>
                 </Lesson>
             </Lessons>
         </Tutorial>
-        
-        
-        
-        
-        
-        
-        <Tutorial id="13" name="Piss">
-            <StartCondition>
-                <AdHoc call = "CleanPiss"/>
+		
+        <Tutorial name="Unhealthy">
+        	<StartCondition>
+        		<AdHoc call = "Unhealthy"/>
             </StartCondition>
-            <Lessons>
+        	 <Lessons>
                 <Lesson>
                     <TutEntries>
-                        <TutEntry text="Great job! This place looks spotless!"/>
-                        <TutEntry text="Hey, everybody’s gotta pee sometimes..."/>
+                    	 <TutEntry text="Your Animins not looking super healthy…"/>
+                    	 <TutEntry text="It probably needs a little medicine…"/>
+                    	 <TutEntry text="Your collection of medicines will appear here…" fire="ShowMedicine"/>
+                    	 <TutEntry text="They can be found in portals and quests!"/>
                     </TutEntries>
                 </Lesson>
             </Lessons>
-        </Tutorial>
-        
-        
-        
-        
-        
-        
-        <Tutorial id="14" name="Health1">
-            <StartCondition>
-                <AdHoc call = "HealthBelow40"/>
-            </StartCondition>
-            <Lessons>
-                <Lesson>
-                    <TutEntries>
-                        <TutEntry text="Your Animin is starting to look unwell..."/>
-                        <TutEntry text="Maybe some medicine will help."/>
-                    </TutEntries>
-                </Lesson>
+        </Tutorial>		
+
+        <Tutorial name="Phone1">
+        	<StartCondition>
+        		<AdHoc call = "Phone1"/>
+            </StartCondition>			
+        	<Lessons>
+				<Lesson>
+					<TutEntries>
+                    		<TutEntry text="They always say time changes things, but you actually have to change them yourself."/>
+                    </TutEntries>	
+                </Lesson>				
             </Lessons>
         </Tutorial>
-        
-        
-        
-        
-        
-        
-        <Tutorial id="15" name="Health2">
-            <StartCondition>
-                <AdHoc call = "HealFrom40"/>
-            </StartCondition>
-            <Lessons>
-                <Lesson>
-                    <TutEntries>
-                        <TutEntry text="Your Animin is starting to look better again, you really are a great friend."/>
-                        <TutEntry text="More medicine can be won in mini games."/>
-                    </TutEntries>
-                </Lesson>
+		
+		
+        <Tutorial name="Phone2">
+        	<StartCondition>
+        		<AdHoc call = "Phone2"/>
+            </StartCondition>			
+        	<Lessons>
+				<Lesson>
+					<TutEntries>
+                    		<TutEntry text="I am a deeply superficial worm."/>
+                    </TutEntries>	
+                </Lesson>				
             </Lessons>
         </Tutorial>
-        
-        
-        
-        
-        
-        
-        <Tutorial id="16" name="Walk">
-            <StartCondition>
-                <AdHoc call = "5Minutes"/>
-            </StartCondition>
-            <Lessons>
-                <Lesson>
-                    <TutEntries>
-                        <TutEntry text="Tap somewhere on the screen and your animin will walk there."/>
-                        <TutEntry text="Try tapping on the screen now."/>
-                    </TutEntries>
-                    <EndCondition>
-                        <AdHoc call="walkto"/>
-                    </EndCondition>
-                </Lesson>
-                <Lesson>
-                    <TutEntries>
-                        <TutEntry text="Good job!"/>
-                        <TutEntry text="Now try double tapping to run somewhere."/>
-                    </TutEntries>
-                    <EndCondition>
-                        <AdHoc call="runto"/>
-                    </EndCondition>
-                </Lesson>
-                <Lesson>
-                    <TutEntries>
-                        <TutEntry text="That's it!"/>
-                    </TutEntries>
-                </Lesson>
+		
+        <Tutorial name="Phone3">
+        	<StartCondition>
+        		<AdHoc call = "Phone3"/>
+            </StartCondition>			
+        	<Lessons>
+				<Lesson>
+					<TutEntries>
+                    		<TutEntry text="Isn't life a series of images that change as they repeat themselves?"/>
+                    </TutEntries>	
+                </Lesson>				
             </Lessons>
         </Tutorial>
-        
-        
-        
-        
-        <Tutorial id="17" name="Attention">
-            <StartCondition>
-                <AdHoc call = "9Minutes"/>
-            </StartCondition>
-            <Lessons>
-                <Lesson>
-                    <TutEntries>
-                        <TutEntry text="Tap your Animin to give them attention."/>
-                        <TutEntry text="Try it now!"/>
-                    </TutEntries>
-                    <EndCondition>
-                        <AdHoc call="tap"/>
-                    </EndCondition>
-                </Lesson>
-                <Lesson>
-                    <TutEntries>
-                        <TutEntry text="Nice, try stroking your Animin also!"/>
-                    </TutEntries>
-                </Lesson>
+			
+			
+        <Tutorial name="Phone4">
+        	<StartCondition>
+        		<AdHoc call = "Phone4"/>
+            </StartCondition>			
+        	<Lessons>
+				<Lesson>
+					<TutEntries>
+                    		<TutEntry text="If you're not trying to be real, you don't have to get it right. That's Animin"/>
+                    </TutEntries>	
+                </Lesson>				
             </Lessons>
         </Tutorial>
-        
-        
-        
+		
+        <Tutorial name="Phone5">
+        	<StartCondition>
+        		<AdHoc call = "Phone5"/>
+            </StartCondition>			
+        	<Lessons>
+				<Lesson>
+					<TutEntries>
+                    		<TutEntry text="I'm afraid that if you look at a thing long enough, it loses all of its meaning."/>
+                    </TutEntries>	
+                </Lesson>				
+            </Lessons>
+        </Tutorial>
+			
+			
+        <Tutorial name="Phone6">
+        	<StartCondition>
+        		<AdHoc call = "Phone6"/>
+            </StartCondition>			
+        	<Lessons>
+				<Lesson>
+					<TutEntries>
+                    		<TutEntry text="Try pinching the screen with two fingers to zoom in and out."/>
+                    </TutEntries>	
+                </Lesson>				
+            </Lessons>
+        </Tutorial>
+		
+			
+        <Tutorial name="Phone7">
+        	<StartCondition>
+        		<AdHoc call = "Phone7"/>
+            </StartCondition>			
+        	<Lessons>
+				<Lesson>
+					<TutEntries>
+                    		<TutEntry text="If somethings too small to pick up, try zooming in to make it bigger."/>
+                    </TutEntries>	
+                </Lesson>				
+            </Lessons>
+        </Tutorial>
+
+		
+        <Tutorial name="Phone8">
+        	<StartCondition>
+        		<AdHoc call = "Phone8"/>
+            </StartCondition>			
+        	<Lessons>
+				<Lesson>
+					<TutEntries>
+                    		<TutEntry text="The food you receive from a Gold medal fills your Animin up the most."/>
+                    </TutEntries>	
+                </Lesson>				
+            </Lessons>
+        </Tutorial>
     </Tutorials>
 </ArrayOfTutorials>
 

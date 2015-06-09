@@ -4,7 +4,6 @@ using System.Collections;
 public class SelectCharacterClickScript : MonoBehaviour 
 {
     public PersistentData.TypesOfAnimin Animin;
-	private bool BeginLoadLevel;
 	public GameObject UnlockButton;
 
 	// Use this for initialization
@@ -21,9 +20,9 @@ public class SelectCharacterClickScript : MonoBehaviour
 
 	public void OnClick()
 	{
-        ProfilesManagementScript.Singleton.CurrentProfile.ActiveAnimin = Animin;
-        ProfilesManagementScript.Singleton.AssignCurrentAniminToVariable();
-		ProfilesManagementScript.Singleton.BeginLoadLevel = true;
+        ProfilesManagementScript.Instance.CurrentProfile.ActiveAnimin = Animin;
+        ProfilesManagementScript.Instance.AssignCurrentAniminToVariable();
+		ProfilesManagementScript.Instance.BeginLoadLevel = true;
 		UiPages.Next (Pages.LevelLoadingPage);
 
 	}

@@ -3,42 +3,31 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine.UI;
+using Phi;
 
-public class ProfilesManagementScript : MonoBehaviour 
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
+using System.Xml.Serialization;
+
+public class ProfilesManagementScript : Phi.SingletonMonoBehaviour<ProfilesManagementScript>
 {
-    private static bool m_Set = false;
-    private static ProfilesManagementScript m_Singleton;
-    public static ProfilesManagementScript Singleton
-    {
-        get
-        {
-            return m_Singleton;
-        }
-        set
-        {
-            Debug.Log("ProfilesManagementScript Singleton SET");
-            if (value != null)
-                m_Set = true;
-            m_Singleton = value;
-        }
-    }
-    public static bool isSet{ get { return m_Set; } }
-	public static bool Initialized;
+	//public static bool Initialized;
 
     private GameObject EvolveTboToAdultWarning;
 
     public ItunesButtonUpdate ItunesScript;
 
-	public Text PiAge;
-	public Text TBOAge;
-	public Text KelsiAge;
-	public Text MandiAge;
-
     public bool SentToPurchaseAdultTBOFromMainScene;
 
     public PersistentData.TypesOfAnimin AniminToUnlockId;
 
-    public List<PlayerProfileData> ListOfPlayerProfiles;
+    public List<PlayerProfileData> ListOfPlayerProfiles
+	{
+		get
+		{
+			return StateData.ProfileList;
+		}
+	}
 
     public PlayerProfileData CurrentProfile; 
 
@@ -48,32 +37,127 @@ public class ProfilesManagementScript : MonoBehaviour
 
 
 
-	void Awake()
+	[System.Serializable]
+	public class ProfileStateData
 	{
-		Singleton = this;
-		if(!Initialized)
-		{
-
-		}
-
+		public List<PlayerProfileData> ProfileList; 
+		//public PlayerProfileData CurrentProfile;
+		public bool UpgradeTbo;
+	}
+	
+	static public ProfileStateData StateData;
+    
+	public void OnDestroy()
+	{		
+		Debug.LogError ("DESTROY");
 	}
 
-    void LoadProfileData()
-    {
-        SaveAndLoad.Instance.Awake();
-        CurrentProfile = new PlayerProfileData();
-        ListOfPlayerProfiles = new List<PlayerProfileData>();
-        SaveAndLoad.Instance.LoadAllData();
+    public void Save()
+	{		
+		Debug.LogWarning ("SAVE");
+		if (!this) {
+			Debug.LogWarning ("AVOID WIPE");
+			return;
+		}
+		#if UNITY_IOS
+		UnityEngine.iOS.Device.SetNoBackupFlag(Application.persistentDataPath);
+		UnityEngine.iOS.Device.SetNoBackupFlag(Application.persistentDataPath + "/unity.txt");
+		UnityEngine.iOS.Device.SetNoBackupFlag(Application.persistentDataPath + "/storeKitReceipts.archive");
+		#endif
+		
+		Debug.Log ("Saving Profiles");
+		/*for (int i =0; i< ProfilesManagementScript.Instance.ListOfPlayerProfiles.Count; i++)
+		{
+			StateData.ProfileList.Add(ProfilesManagementScript.Instance.ListOfPlayerProfiles[i]);
+		}*/
+		//StateData.CurrentProfile = ProfilesManagementScript.Instance.CurrentProfile;
+		//StateData.UpgradeTbo = ProfilesManagementScript.Singleton.SentToPurchaseAdultTBOFromMainScene;
+		StateData.UpgradeTbo = false;
+		XmlSerializer bf = new XmlSerializer(typeof(ProfileStateData));
+		Debug.Log ("Creating file");
+		FileStream file = File.Create (Application.persistentDataPath + "/savedGamesTemp.anidat");
+		Debug.Log ("Serializing");
+		string output = "StateData:\nProfiles:";
+		foreach (PlayerProfileData ppd in StateData.ProfileList)
+		{
+			output += "\n"  + ppd.ProfileName;
+		}
+		//output += "\nCurrent Profile: " + StateData.CurrentProfile.ProfileName;
+		output += "\nTbo Unlock: " + StateData.UpgradeTbo;
+		Debug.Log(output);
+		bf.Serialize(file, StateData);
+		Debug.Log ("Closing File");
+		file.Close();
+		if (File.Exists(Application.persistentDataPath + "/savedGames.anidat"))
+		{
+			Debug.Log("Deleting old");
+			File.Delete(Application.persistentDataPath + "/savedGamesBackup.anidat");
+			File.Replace(Application.persistentDataPath + "/savedGamesTemp.anidat", Application.persistentDataPath + "/savedGames.anidat", Application.persistentDataPath + "/savedGamesBackup.anidat");
+			#if UNITY_IOS
+			UnityEngine.iOS.Device.SetNoBackupFlag(Application.persistentDataPath + "/savedGamesBackup.anidat");
+			#endif
+		}
+		else
+		{
+			File.Copy(Application.persistentDataPath + "/savedGamesTemp.anidat", Application.persistentDataPath + "/savedGames.anidat");
+		}
+		#if UNITY_IOS
+		UnityEngine.iOS.Device.SetNoBackupFlag(Application.persistentDataPath + "/savedGames.anidat");
+        #endif
     }
-
-	
-	void Start ()
-	{
+    
+    public List<PlayerProfileData> ProfileList
+    {
+        get
+        {
+            return StateData.ProfileList;
+        }
+    }
+    
+    override public void Init()
+    {
+		Debug.Log ("Init ProfilesManagementScript");
         CharacterChoiceManager.Instance.Initialised = false;
-        LoadProfileData();
-        RefreshProfiles ();
+        
+        // Forces a different code path in the BinaryFormatter that doesn't rely on on - required for correct iOS saves
+		Environment.SetEnvironmentVariable("MONO_REFLECTION_SERIALIZER", "yes");
+		CurrentProfile = new PlayerProfileData();
+		//ListOfPlayerProfiles = new List<PlayerProfileData>();
+		
+		StateData = new ProfileStateData();		
+		StateData.ProfileList = new List<PlayerProfileData> ();
+        
+        if(File.Exists(Application.persistentDataPath + "/savedGames.anidat")) 
+		{
+			XmlSerializer bf = new XmlSerializer(typeof(ProfileStateData));
+			FileStream file = File.Open(Application.persistentDataPath + "/savedGames.anidat", FileMode.Open);
+			StateData = (ProfileStateData)bf.Deserialize(file);
+			file.Close();
+			Debug.Log ("Save data loaded from " + Application.persistentDataPath + "/savedGames.anidat");
+			
+			//ListOfPlayerProfiles.Clear();			
+			//for (int i =0; i< StateData.ProfileList.Count; i++)
+			//{
+			//	ListOfPlayerProfiles.Add(StateData.ProfileList[i]);            
+			//}
+			CurrentProfile = null;//StateData.ProfileList[0];//StateData.CurrentProfile;
+            SentToPurchaseAdultTBOFromMainScene = StateData.UpgradeTbo;
+		}
+		else
+		{			
+			Debug.Log ("No Save data fond at" + Application.persistentDataPath + "/savedGames.anidat");			/*
+            ProfilesManagementScript.Singleton.SendRealTimeNotification("Downloads",1);
+            #if UNITY_IOS
+            ProfilesManagementScript.Singleton.SendRealTimeNotification("IOS",1);
+            #elif UNITY_ANDROID
+            ProfilesManagementScript.Singleton.SendRealTimeNotification("Android",1);
+            #endif
+            */
+        }
 
-		Debug.Log("-----Registered----");
+        RefreshProfiles ();
+        
+        Debug.Log("-----Registered----");
 	}
 
 	public void AssignCurrentAniminToVariable()
@@ -87,20 +171,20 @@ public class ProfilesManagementScript : MonoBehaviour
         tempData = PlayerProfileData.CreateNewProfile(name);
         tempData.UniqueID = id;
         ListOfPlayerProfiles.Add(tempData);
-        SaveAndLoad.Instance.SaveAllData();
-		Debug.Log("just saved...new");
+		
+		Save();
+        Debug.Log("just saved...new");
 		CurrentProfile = tempData;
-        AchievementManager.Instance.PopulateAchievements(true);		
-        
+        AchievementManager.Instance.PopulateAchievements(true);
         UnlockCharacterManager.Instance.CheckInitialCharacterUnlock();
-
 	}
     public void LoginExistingUser(PlayerProfileData userToLogin)
     {
-        foreach(PlayerProfileData tempPlayerProfileData in ProfilesManagementScript.Singleton.ListOfPlayerProfiles)
+        foreach(PlayerProfileData tempPlayerProfileData in ProfilesManagementScript.Instance.ListOfPlayerProfiles)
         {
             if (tempPlayerProfileData == userToLogin)
             {
+				//AH CurentProfile set
                 CurrentProfile = tempPlayerProfileData;
                 break;
             }
@@ -133,7 +217,7 @@ public class ProfilesManagementScript : MonoBehaviour
 			
             CurrentAnimin = CurrentProfile.Characters[(int)CurrentProfile.ActiveAnimin];
 
-			SaveAndLoad.Instance.SaveAllData();
+			Save();
 			Debug.Log("Saved succesful login");
             UnlockCharacterManager.Instance.CheckInitialCharacterUnlock();
 		} 
@@ -181,7 +265,7 @@ public class ProfilesManagementScript : MonoBehaviour
 		{
 			Debug.Log("IAP Timeout");
 			ShopManager.Instance.ShopReady = true;
-			ProfilesManagementScript.Singleton.ContinueToInAppPurchase(false);
+			ProfilesManagementScript.Instance.ContinueToInAppPurchase(false);
 		}
 	}
 
@@ -194,27 +278,40 @@ public class ProfilesManagementScript : MonoBehaviour
     public void OnAccessCodeResult(string resultId)
     {
         Debug.Log("Access code result is... "+resultId);
-		if(resultId == "Card successfully activated" || resultId == "Animin already activated")
+		if(resultId.StartsWith("Card successfully activated") || resultId.StartsWith("Animin already activated"))
         {
 			UnlockCharacterManager.Instance.UnlockCharacter();
 			UiPages.Next(Pages.AniminSelectPage);
         }
-        if(resultId == "Card number not valid")
+        if(resultId.StartsWith ("Card number not valid"))
         {
-			UiPages.Next(Pages.NotValidCodeErrorPage);
+			
+			DialogPage.SetMessage("We cannot verify this code, please check carefully and try again.");
+			//error box
+			UiPages.SetDialogBackPage(Pages.PurchasePage);
+			UiPages.Next(Pages.DialogPage);
         }
-        else if(resultId == "Card number already used")
+		else if(resultId.StartsWith("Card number already used"))
         {
-			UiPages.Next(Pages.CodeUsedErrorPage);
+			//DialogPage.SetMessage("We're very sorry but there has been an error connecting to the internet.\n\nPlease check your internet connection and try again.");			
+			//UiPages.SetDialogBackPage(Pages.AniminSelectPage);			
+			DialogPage.SetMessage("This code has already been used to unlock an Animin.");
+			//error box
+			UiPages.SetDialogBackPage(Pages.PurchasePage);
+			UiPages.Next(Pages.DialogPage);
         }
-        else if(resultId == "Animin already activated")
+		else if(resultId.StartsWith("Animin already activated"))
         {
 			Debug.Log("WHOA: Something went weird, we shouldn't be able to do this.");
 			UiPages.Next(Pages.AniminSelectPage);
         }
-        else if(resultId == "Something went wrong, please try again in a bit...")
+		else if(resultId.StartsWith("Something went wrong, please try again in a bit..."))
         {
-			UiPages.Next(Pages.CodeErrorPage);
+			
+			DialogPage.SetMessage("There has been a problem connecting to the verification server.\n\nPlease check your internet connection and try again.");
+			//error box
+			UiPages.SetDialogBackPage(Pages.PurchasePage);
+			UiPages.Next(Pages.DialogPage);
         }
         else
         {
@@ -234,8 +331,8 @@ public class ProfilesManagementScript : MonoBehaviour
 
     public void ShowEvolutionPurchaseWarning()
     {
-        EvolveTboToAdultWarning = (GameObject)GameObject.Instantiate (Resources.Load("NGUIPrefabs/UI - EvolveBabyTboWarning"));
-        EvolveTboToAdultWarning.SetActive( true );
+        //EvolveTboToAdultWarning = (GameObject)GameObject.Instantiate (Resources.Load("NGUIPrefabs/UI - EvolveBabyTboWarning"));
+        //EvolveTboToAdultWarning.SetActive( true );
 
     }
 
@@ -246,7 +343,7 @@ public class ProfilesManagementScript : MonoBehaviour
         if (andContinue)
         {
             SentToPurchaseAdultTBOFromMainScene = true;
-            SaveAndLoad.Instance.SaveAllData();
+			Save ();
             Application.LoadLevel(0);
         }
     }
@@ -257,7 +354,7 @@ public class ProfilesManagementScript : MonoBehaviour
         AniminToUnlockId = PersistentData.TypesOfAnimin.TboAdult;
         if( Application.isEditor)
         {
-            ProfilesManagementScript.Singleton.ContinueToInAppPurchase(true);
+            ProfilesManagementScript.Instance.ContinueToInAppPurchase(true);
         }
         else
         {
@@ -274,8 +371,11 @@ public class ProfilesManagementScript : MonoBehaviour
         else
         {
             Debug.Log("Shop Unavailable");
+			
+			DialogPage.SetMessage("We're very sorry but there has been an error connecting to the internet.\n\nPlease check your internet connection and try again.");
 			//error box
-			UiPages.Next(Pages.ConnectionErrorPage);
+			UiPages.SetDialogBackPage(Pages.AniminSelectPage);
+			UiPages.Next(Pages.DialogPage);
         }
 
     }
@@ -287,7 +387,7 @@ public class ProfilesManagementScript : MonoBehaviour
 
     void OnLevelWasLoaded(int level)
     {
-        SaveAndLoad.Instance.LoadAllData();
+//        SaveAndLoad.Instance.LoadAllData();
         Debug.Log(SentToPurchaseAdultTBOFromMainScene);
         if (level == 0 && SentToPurchaseAdultTBOFromMainScene)
         {
@@ -297,29 +397,17 @@ public class ProfilesManagementScript : MonoBehaviour
         }
 
     }
-	
+
+	bool loading = false;
 	// Update is called once per frame
 	void Update () 
 	{
-        if(BeginLoadLevel)
+		if(BeginLoadLevel && !loading)
         {
             BeginLoadLevel = false;
             Debug.Log("Loading New level");
             StartCoroutine(LoadLevel(@"ARBase"));
         }
-		else
-		{
-			if(async != null)
-			{
-				Debug.Log("Loading " + async.progress.ToString());
-
-				if(async.progress >= 0.9f)
-				{
-					Debug.Log("ASync Finished");
-					async.allowSceneActivation = true;
-				}
-			}
-		}
 	}
 	AsyncOperation async;
 	
@@ -338,9 +426,10 @@ public class ProfilesManagementScript : MonoBehaviour
 		Debug.LogWarning("ASYNC LOAD STARTED - " +
 		                 "DO NOT EXIT PLAY MODE UNTIL SCENE LOADS... UNITY WILL CRASH");
 		async = Application.LoadLevelAsync(name);
-		async.allowSceneActivation = false;
+		//async.allowSceneActivation = false;
 
 		yield return async;
+		loading = false;
 	}
 
 }

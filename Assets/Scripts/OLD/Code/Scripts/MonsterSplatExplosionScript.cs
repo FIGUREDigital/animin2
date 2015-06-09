@@ -42,8 +42,8 @@ public class MonsterSplatExplosionScript : MonoBehaviour
 
 	void FixedUpdate()
 	{
-		var curVel = rigidbody.velocity;
+		var curVel = GetComponent<Rigidbody>().velocity;
 		curVel.y -= myGravity * Time.deltaTime; // apply fake gravity
-		rigidbody.velocity = curVel;
+		GetComponent<Rigidbody>().velocity = curVel;
 	}
 }

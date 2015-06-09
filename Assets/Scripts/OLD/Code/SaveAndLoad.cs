@@ -5,7 +5,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using System;
 using System.Xml.Serialization;
-
+/*
 public class SaveAndLoad {
 
 	#region Singleton
@@ -25,74 +25,35 @@ public class SaveAndLoad {
 	}
 	
 	#endregion
-    [System.Serializable]
-    public class ProfileStateData
-    {
-        public List<PlayerProfileData> ProfileList; 
-        public PlayerProfileData CurrentProfile;
-        public bool UpgradeTbo;
-    }
 
-    public ProfileStateData StateData;
-
-    public void Awake()
-    {
-        Environment.SetEnvironmentVariable("MONO_REFLECTION_SERIALIZER", "yes");
-    }
 
 	public SaveAndLoad()
 	{
         StateData = new ProfileStateData();
 
         StateData.ProfileList = new List<PlayerProfileData> ();
-//		PlayerPrefs.DeleteAll ();
+	//	PlayerPrefs.DeleteAll ();
 	}
 
-	public void LoadAllData()
-	{
-		
-//        File.Delete(Application.persistentDataPath + "/savedGames.aniÍdat");
-
-        if(File.Exists(Application.persistentDataPath + "/savedGames.anidat")) 
-		{
-            XmlSerializer bf = new XmlSerializer(typeof(ProfileStateData));
-			FileStream file = File.Open(Application.persistentDataPath + "/savedGames.anidat", FileMode.Open);
-            StateData = (ProfileStateData)bf.Deserialize(file);
-			file.Close();
-			Debug.Log ("Save data loaded from " + Application.persistentDataPath + "/savedGames.anidat");
-            RepopulateData();
-		}
-		else
-		{
-						/*
-            ProfilesManagementScript.Singleton.SendRealTimeNotification("Downloads",1);
-            #if UNITY_IOS
-            ProfilesManagementScript.Singleton.SendRealTimeNotification("IOS",1);
-            #elif UNITY_ANDROID
-            ProfilesManagementScript.Singleton.SendRealTimeNotification("Android",1);
-            #endif
-            */
-		}
-	}
 
 	public void SaveAllData()
 	{
         StateData.ProfileList.Clear();
         #if UNITY_IOS
-        iPhone.SetNoBackupFlag(Application.persistentDataPath);
-        iPhone.SetNoBackupFlag(Application.persistentDataPath + "/unity.txt");
-        iPhone.SetNoBackupFlag(Application.persistentDataPath + "/storeKitReceipts.archive");
+        UnityEngine.iOS.Device.SetNoBackupFlag(Application.persistentDataPath);
+        UnityEngine.iOS.Device.SetNoBackupFlag(Application.persistentDataPath + "/unity.txt");
+        UnityEngine.iOS.Device.SetNoBackupFlag(Application.persistentDataPath + "/storeKitReceipts.archive");
         #endif
 
 		Debug.Log ("Saving Profiles");
-        for (int i =0; i< ProfilesManagementScript.Singleton.ListOfPlayerProfiles.Count; i++)
+        for (int i =0; i< ProfilesManagementScript.Instance.ListOfPlayerProfiles.Count; i++)
         {
             PlayerProfileData tempProfile = new PlayerProfileData();
-            tempProfile = ProfilesManagementScript.Singleton.ListOfPlayerProfiles[i];
+			tempProfile = ProfilesManagementScript.Instance.ListOfPlayerProfiles[i];
             StateData.ProfileList.Add(tempProfile);
 			Debug.Log ("Adding profile " + i + ": " + tempProfile.ProfileName );
         }
-        StateData.CurrentProfile = ProfilesManagementScript.Singleton.CurrentProfile;
+		StateData.CurrentProfile = ProfilesManagementScript.Instance.CurrentProfile;
         //StateData.UpgradeTbo = ProfilesManagementScript.Singleton.SentToPurchaseAdultTBOFromMainScene;
         StateData.UpgradeTbo = false;
         XmlSerializer bf = new XmlSerializer(typeof(ProfileStateData));
@@ -116,7 +77,7 @@ public class SaveAndLoad {
             File.Delete(Application.persistentDataPath + "/savedGamesBackup.anidat");
             File.Replace(Application.persistentDataPath + "/savedGamesTemp.anidat", Application.persistentDataPath + "/savedGames.anidat", Application.persistentDataPath + "/savedGamesBackup.anidat");
             #if UNITY_IOS
-            iPhone.SetNoBackupFlag(Application.persistentDataPath + "/savedGamesBackup.anidat");
+            UnityEngine.iOS.Device.SetNoBackupFlag(Application.persistentDataPath + "/savedGamesBackup.anidat");
             #endif
         }
         else
@@ -124,35 +85,9 @@ public class SaveAndLoad {
             File.Copy(Application.persistentDataPath + "/savedGamesTemp.anidat", Application.persistentDataPath + "/savedGames.anidat");
         }
         #if UNITY_IOS
-        iPhone.SetNoBackupFlag(Application.persistentDataPath + "/savedGames.anidat");
+        UnityEngine.iOS.Device.SetNoBackupFlag(Application.persistentDataPath + "/savedGames.anidat");
         #endif
 
 	}	
 
-//    public List<PlayerProfileData> LoadProfileData()
-//    {
-//        ProfileStateData tempstate = new ProfileStateData();
-//
-//        tempstate.ProfileList = new List<PlayerProfileData> ();
-//
-//        for (int i =0; i< ProfilesManagementScript.Singleton.ListOfPlayerProfiles.Count; i++)
-//        {
-//            tempProfile.Add(ProfileList[i]);
-//        }
-//
-//        return tempProfile;
-//    }
-
-	public void RepopulateData()
-	{
-        ProfilesManagementScript.Singleton.ListOfPlayerProfiles.Clear();
-
-        for (int i =0; i< StateData.ProfileList.Count; i++)
-        {
-            ProfilesManagementScript.Singleton.ListOfPlayerProfiles.Add(StateData.ProfileList[i]);            
-        }
-        ProfilesManagementScript.Singleton.CurrentProfile = StateData.CurrentProfile;
-        ProfilesManagementScript.Singleton.SentToPurchaseAdultTBOFromMainScene = StateData.UpgradeTbo;
-
-	}
-}
+}*/

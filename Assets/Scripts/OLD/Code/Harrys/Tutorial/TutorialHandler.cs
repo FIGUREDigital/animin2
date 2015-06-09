@@ -72,7 +72,14 @@ public class TutorialHandler : MonoBehaviour
 
 
     private bool m_PlayingTutorial, m_EndingTutorial;
-    private Tutorial m_CurTutorial = null;
+	static public Tutorial CurrentTutorial
+	{
+		get
+		{
+			return m_CurTutorial;
+		}
+	}
+    static private Tutorial m_CurTutorial = null;
 	private int m_Letter_i, m_Lesson_i, m_Entry_i, m_FullLength;
 
     private string m_CurrentAdHocExitCond;

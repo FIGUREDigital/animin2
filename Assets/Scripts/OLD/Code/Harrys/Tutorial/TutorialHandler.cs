@@ -391,6 +391,19 @@ public class TutorialHandler : MonoBehaviour
 
                         //MakeScreensVisible(new GameObject[]{ UIGlobalVariablesScript.Singleton.CaringScreenRef });
                         m_PlayingTutorial = true;
+
+						// If hatched and not playing the wakeup tutorial wake animin up
+						if(ProfilesManagementScript.Instance.CurrentAnimin.Hatched && m_CurTutorial.Name != "WakeUp")
+						{
+							CharacterProgressScript cp = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>();
+							if (cp.CurrentAction == ActionId.Sleep)
+							{
+								// Ensure we are awake!
+								cp.exitSleep();
+							}
+						}
+
+
                         ConsiderSkipLesson();
                         break;
                     }

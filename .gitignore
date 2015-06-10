@@ -8,3 +8,5 @@ Library/
 *.unityproj
 *.sln
 QCAR
+Assets/UnityVS.meta
+Assets/UnityVS/

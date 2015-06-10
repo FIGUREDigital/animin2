@@ -64,7 +64,7 @@ public class EtceteraUIManager : MonoBehaviourGUI
 		if( GUILayout.Button( "Play Video" ) )
 		{
 			// closeOnTouch has no effect if you are showing controls
-			EtceteraAndroid.playMovie( "http://www.daily3gp.com/vids/747.3gp", 0xFF0000, false, EtceteraAndroid.ScalingMode.AspectFit, true );
+			EtceteraAndroid.playMovie( "http://techslides.com/demos/sample-videos/small.3gp", 0xFF0000, false, EtceteraAndroid.ScalingMode.AspectFit, true );
 		}
 
 
@@ -202,7 +202,7 @@ public class EtceteraUIManager : MonoBehaviourGUI
 	{
 		// scale the image down to a reasonable size before loading
 		EtceteraAndroid.scaleImageAtPath( imagePath, 0.1f );
-		testPlane.renderer.material.mainTexture = EtceteraAndroid.textureFromFileAtPath( imagePath );
+		testPlane.GetComponent<Renderer>().material.mainTexture = EtceteraAndroid.textureFromFileAtPath( imagePath );
 	}
 #endif
 }

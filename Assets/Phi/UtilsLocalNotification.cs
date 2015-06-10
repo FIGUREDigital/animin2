@@ -35,7 +35,9 @@ public class UtilsLocalNotification
 
 	public static void AskUserForPermission()
 	{
+#if UNITY_IPHONE
 		UnityEngine.iOS.NotificationServices.RegisterForNotifications(UnityEngine.iOS.NotificationType.Alert, false);
+#endif
 	}
 	
 	public static void Submit(string gameName)
@@ -76,20 +78,21 @@ public class UtilsLocalNotification
 #if UNITY_ANDROID
 		int total = 0;
 		for (int i = 0; i < allNotifications.Count; i++)
-		{
-			UtilsLocalNotification n = allNotifications[i];
+        {
+            UtilsLocalNotification n = allNotifications[i];
+            Debug.Log("Notification " + n.alertBody + " " + n.fireDate);
 			int seconds = (int)((n.fireDate - System.DateTime.Now).TotalSeconds);
 			if(seconds > 0)
 			{
 				int id = EtceteraAndroid.scheduleNotification(seconds, gameName, n.alertBody, n.alertBody, "");
 				
 				Debug.Log("Notification "+n.alertBody+" "+seconds+"s ");
-				TDPlayerPrefs.SetInt("LNotif"+total,id);
+				PlayerPrefs.SetInt("LNotif"+total,id);
 				total++;
 			}
 		}		
-		TDPlayerPrefs.SetInt("LNotifNumOf",total);
-		TDPlayerPrefs.DoSave();
+		PlayerPrefs.SetInt("LNotifNumOf",total);
+		PlayerPrefs.Save();
 #endif
 	}
 	
@@ -101,13 +104,14 @@ public class UtilsLocalNotification
 
 		
 #if UNITY_ANDROID
-		int num = TDPlayerPrefs.GetInt("LNotifNumOf",0);
+		int num = PlayerPrefs.GetInt("LNotifNumOf",0);
 		for(int i = 0; i < num ; i++)
 		{
-			int id = TDPlayerPrefs.GetInt("LNotif"+i,0);
+			int id = PlayerPrefs.GetInt("LNotif"+i,0);
 			EtceteraAndroid.cancelNotification(id);
 		}
-		TDPlayerPrefs.SetInt("LNotifNumOf",0);
+		PlayerPrefs.SetInt("LNotifNumOf",0);
+        PlayerPrefs.Save();
 #endif
 		if(includeOurList)
 		{

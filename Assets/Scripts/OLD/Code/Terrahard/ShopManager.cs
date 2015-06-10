@@ -241,14 +241,14 @@ public class ShopManager
 		{
 			mShopReady = true;
 			Debug.Log("Go to shop");
-			ProfilesManagementScript.Singleton.ContinueToInAppPurchase(true);
+			ProfilesManagementScript.Instance.ContinueToInAppPurchase(true);
 			
 		}
 		else if (skus.Count <= 0 && !mShopReady)
 		{
 			mShopReady = true;
 			Debug.Log("Avoid shop");
-			ProfilesManagementScript.Singleton.ContinueToInAppPurchase(false);
+			ProfilesManagementScript.Instance.ContinueToInAppPurchase(false);
 			
 		}
 		Debug.Log ("Number of purchases: " + purchases.Count.ToString ());

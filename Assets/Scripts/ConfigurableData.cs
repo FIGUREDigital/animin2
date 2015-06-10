@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -94,7 +94,7 @@ public class ConfigurableData : Phi.SingletonMonoBehaviour<ConfigurableData> {
 		public void Add(PersistentData animin)
 		{			
 			float minutes = GetNotifyTime(animin);
-			if(minutes > 1)
+			if(minutes >= 1)
 			{
 				UtilsLocalNotification notification = new UtilsLocalNotification ();
 				

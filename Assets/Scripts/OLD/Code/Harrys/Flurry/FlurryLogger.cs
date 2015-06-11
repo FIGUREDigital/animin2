@@ -93,10 +93,6 @@ public class FlurryLogger
 
 
 
-    public enum Minigame
-    {
-        Cuberunners,
-        Gungame};
 
     private bool TimingMinigame;
 

@@ -5,7 +5,7 @@ public class FlurryStartMinigame : MonoBehaviour {
 
 
 	[SerializeField]
-	private FlurryLogger.Minigame MiniGame;
+	private Minigame MiniGame;
 	// Use this for initialization
 	void Start () {
 		FlurryLogger.Instance.StartMinigame(MiniGame);

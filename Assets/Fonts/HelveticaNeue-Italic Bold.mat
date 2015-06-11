@@ -2,14 +2,16 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 3
+  serializedVersion: 6
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: HelveticaNeue-Italic Bold
   m_Shader: {fileID: 4800000, guid: cafd18099dfc0114896e0a8b277b81b6, type: 3}
-  m_ShaderKeywords: []
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
   m_CustomRenderQueue: -1
+  stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
     m_TexEnvs:
@@ -80,7 +82,7 @@ Material:
       data:
         first:
           name: _FaceDilate
-        second: .238000005
+        second: .123999998
       data:
         first:
           name: _OutlineUVSpeedX
@@ -200,7 +202,7 @@ Material:
       data:
         first:
           name: _ScaleRatioC
-        second: .63499999
+        second: .730000019
       data:
         first:
           name: _TextureWidth

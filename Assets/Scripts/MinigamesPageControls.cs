@@ -2,6 +2,12 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
+public enum Minigame
+{
+	Cuberunners,
+	Gungame
+};
+
 public class MinigamesPageControls : MonoBehaviour 
 {
 	public UnityEngine.UI.Image miniGame1;

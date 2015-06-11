@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class JoystickPageControls : MonoBehaviour
 {
-    public bool Paused;
+    static public bool Paused;
 
     private MinigameCollectorScript MinigameScript;
     private MinigameAnimationControllerScript CharacterAnimationRef;

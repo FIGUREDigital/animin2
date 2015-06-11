@@ -14,14 +14,6 @@ public class MinigameCollectorScript : MonoBehaviour
 		Completed,
 	}
 
-	private enum MinigameStateId
-	{
-		Playing = 0,
-		ExitMinigame,
-	}
-
-	private MinigameStateId State;
-
 	//private GameObject[,] CubeMatrix;
 
 	private List<GameObject> Collections = new List<GameObject>();
@@ -177,12 +169,22 @@ public class MinigameCollectorScript : MonoBehaviour
 	}
 	
 	
-	public void ExitMinigame(bool succesfullyCompleted)
-	{
+	public void EndMinigame(bool skipScores = false)
+	{		
+		Paused = true;
+		if (!skipScores) {
+			ScoringPage.Show (Minigame.Cuberunners, Points, StarsCollected, LeaveMinigame);
+		} else {
+			LeaveMinigame ();
+		}
+	}
+
+	public void LeaveMinigame()
+	{		
 		UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterControllerScript>().Forces.Clear();
-        //UIClickButtonMasterScript.HandleClick(UIFunctionalityId.CloseCurrentMinigame, null);
-        BetweenSceneData.Instance.ReturnFromMiniGame = true;
-        MainARHandler.Instance.ChangeSceneToCaring();
+		//UIClickButtonMasterScript.HandleClick(UIFunctionalityId.CloseCurrentMinigame, null);
+		BetweenSceneData.Instance.ReturnFromMiniGame = true;
+		MainARHandler.Instance.ChangeSceneToCaring();
 	}
 	
 	
@@ -212,6 +214,9 @@ public class MinigameCollectorScript : MonoBehaviour
             {
                 evilScripts[i].Paused = value;                                                                                      //Pause each enemy individually
             }
+			
+			JoystickPageControls.Paused = value;
+			UiPages.GetPage(Pages.CubeMinigamePage).GetComponent<CubeMinigamesPageControls>().Paused = value;
         }
         get { return m_Paused; }
     }
@@ -223,131 +228,125 @@ public class MinigameCollectorScript : MonoBehaviour
 		BetweenSceneData.Instance.Points = Points;
 		CharacterProgressScript progressScript = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>();
 
-		if(State == MinigameStateId.ExitMinigame)
-		{
-			progressScript.CurrentAction = ActionId.ExitPortalMainStage;
-		}
-		else
+
+		if(Input.GetButtonDown("Fire1") && CanBeginLevelSwipe())
         {
-			if(Input.GetButtonDown("Fire1") && CanBeginLevelSwipe())
-            {
-				Debug.Log ("Fire1 -1");
-                m_IsSwiping = true;
-				lastMousePosition = Input.mousePosition;
-				isSwipingAllowed = true;
-				TimeStartedSwipe = Time.time;
-				SnapAngleDifference = 0;
+			Debug.Log ("Fire1 -1");
+            m_IsSwiping = true;
+			lastMousePosition = Input.mousePosition;
+			isSwipingAllowed = true;
+			TimeStartedSwipe = Time.time;
+			SnapAngleDifference = 0;
 
-			}
-			else if(Input.GetButton("Fire1") && isSwipingAllowed)
+		}
+		else if(Input.GetButton("Fire1") && isSwipingAllowed)
+		{
+			Debug.Log ("Fire1 -2");
+            m_IsSwiping = true;
+			SnapAngleDifference += (lastMousePosition.x - Input.mousePosition.x) * 0.09f;
+			snapAngle += (lastMousePosition.x - Input.mousePosition.x) * 0.09f;
+			lastMousePosition = Input.mousePosition;
+		}
+		else if(Input.GetButtonUp("Fire1") && isSwipingAllowed)
+		{
+			Debug.Log ("Fire1 -3");
+            m_IsSwiping = true;
+			//fast swipe
+			if((Time.time - TimeStartedSwipe) <= 0.4f)
 			{
-				Debug.Log ("Fire1 -2");
-                m_IsSwiping = true;
-				SnapAngleDifference += (lastMousePosition.x - Input.mousePosition.x) * 0.09f;
-				snapAngle += (lastMousePosition.x - Input.mousePosition.x) * 0.09f;
-				lastMousePosition = Input.mousePosition;
-			}
-			else if(Input.GetButtonUp("Fire1") && isSwipingAllowed)
-			{
-				Debug.Log ("Fire1 -3");
-                m_IsSwiping = true;
-				//fast swipe
-				if((Time.time - TimeStartedSwipe) <= 0.4f)
+				snapAngle -= SnapAngleDifference;
+
+				// rotate right
+				if(Input.mousePosition.x >= lastMousePosition.x)
 				{
-					snapAngle -= SnapAngleDifference;
-
-					// rotate right
-					if(Input.mousePosition.x >= lastMousePosition.x)
-					{
-						snapAngle  -= 90.0f;
-						snapAngle = (int)(snapAngle / 90.0f) * 90f;
-						//Debug.Log("PATH A");/
-					}
-					// rotate left
-					else
-					{
-						snapAngle  += 90.0f;
-						snapAngle = (int)(snapAngle / 90.0f) * 90f;
-						//Debug.Log("PATH B");
-					}
+					snapAngle  -= 90.0f;
+					snapAngle = (int)(snapAngle / 90.0f) * 90f;
+					//Debug.Log("PATH A");/
 				}
-				// slow swipe
+				// rotate left
 				else
 				{
-				}
-            }
-			else
-            {
-                m_IsSwiping = false;
-                isSwipingAllowed = false;
-			}
-
-
-			AngleInTransform = Mathf.Lerp(AngleInTransform, snapAngle, Time.deltaTime * 7);
-
-			float finalTransform = AngleInTransform;
-
-			UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef.transform.rotation = Quaternion.Euler(
-				UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef.transform.rotation.eulerAngles.x,
-				finalTransform,
-				UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef.transform.rotation.eulerAngles.z
-				);
-
-
-
-			//Debug.Log("AngleInTransform - snapAngle:" + Mathf.Abs(AngleInTransform - snapAngle).ToString());
-
-			if( Mathf.Abs(AngleInTransform - snapAngle) <= 0.1f)
-			{
-				AngleInTransform = snapAngle;
-				UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterControllerScript>().FreezeCollisionDetection = false;
-			}
-			else
-			{
-				UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterControllerScript>().FreezeCollisionDetection = true;
-			}
-			if(GameStartDelay.HasValue)
-			{
-				GameStartDelay -= Time.deltaTime;
-
-				if(GameStartDelay <= 0)
-				{
-					for(int i=0;i<EvilCharacters.Count;++i)
-						EvilCharacters[i].SetActive(true);
-
-					if(oldLevelId != -1)
-					{
-						Stage.transform.GetChild(oldLevelId).gameObject.SetActive(false);
-					}
-					UIGlobalVariablesScript.Singleton.MainCharacterRef.SetActive(true);
-					GameStartDelay = null;
-					ResetCharacter();
-
-					/*Transform newTransform = Stage.transform.GetChild(currentLevelId);
-					
-					for(int a=0;a<newTransform.childCount;++a)
-					{
-						if(newTransform.GetChild(a).name.StartsWith("cubes"))
-						{
-							Transform cubes = newTransform.GetChild(a);
-						}
-					}*/
+					snapAngle  += 90.0f;
+					snapAngle = (int)(snapAngle / 90.0f) * 90f;
+					//Debug.Log("PATH B");
 				}
 			}
+			// slow swipe
 			else
 			{
-				CheckForPickupCollision ();
-
-				if (CharacterRef.transform.localPosition.y <= -1f) //This is for falling, I think.
-				{
-					UIGlobalVariablesScript.Singleton.SoundEngine.Play(GenericSoundId.Fall_Through_Levels);
-
-					LoseHeart(true);
-				}
 			}
-			//UICOMMENT: UIGlobalVariablesScript.Singleton.TextForStarsInMiniCollector.text = StarsCollected.ToString();
-            UiPages.GetPage(Pages.CubeMinigamePage).GetComponent<CubeMinigamesPageControls>().LevelCounter.text= StarsCollected.ToString();
+        }
+		else
+        {
+            m_IsSwiping = false;
+            isSwipingAllowed = false;
 		}
+
+
+		AngleInTransform = Mathf.Lerp(AngleInTransform, snapAngle, Time.deltaTime * 7);
+
+		float finalTransform = AngleInTransform;
+
+		UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef.transform.rotation = Quaternion.Euler(
+			UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef.transform.rotation.eulerAngles.x,
+			finalTransform,
+			UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef.transform.rotation.eulerAngles.z
+			);
+
+
+
+		//Debug.Log("AngleInTransform - snapAngle:" + Mathf.Abs(AngleInTransform - snapAngle).ToString());
+
+		if( Mathf.Abs(AngleInTransform - snapAngle) <= 0.1f)
+		{
+			AngleInTransform = snapAngle;
+			UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterControllerScript>().FreezeCollisionDetection = false;
+		}
+		else
+		{
+			UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterControllerScript>().FreezeCollisionDetection = true;
+		}
+		if(GameStartDelay.HasValue)
+		{
+			GameStartDelay -= Time.deltaTime;
+
+			if(GameStartDelay <= 0)
+			{
+				for(int i=0;i<EvilCharacters.Count;++i)
+					EvilCharacters[i].SetActive(true);
+
+				if(oldLevelId != -1)
+				{
+					Stage.transform.GetChild(oldLevelId).gameObject.SetActive(false);
+				}
+				UIGlobalVariablesScript.Singleton.MainCharacterRef.SetActive(true);
+				GameStartDelay = null;
+				ResetCharacter();
+
+				/*Transform newTransform = Stage.transform.GetChild(currentLevelId);
+				
+				for(int a=0;a<newTransform.childCount;++a)
+				{
+					if(newTransform.GetChild(a).name.StartsWith("cubes"))
+					{
+						Transform cubes = newTransform.GetChild(a);
+					}
+				}*/
+			}
+		}
+		else
+		{
+			CheckForPickupCollision ();
+
+			if (CharacterRef.transform.localPosition.y <= -1f) //This is for falling, I think.
+			{
+				UIGlobalVariablesScript.Singleton.SoundEngine.Play(GenericSoundId.Fall_Through_Levels);
+
+				LoseHeart(true);
+			}
+		}
+		//UICOMMENT: UIGlobalVariablesScript.Singleton.TextForStarsInMiniCollector.text = StarsCollected.ToString();
+        UiPages.GetPage(Pages.CubeMinigamePage).GetComponent<CubeMinigamesPageControls>().LevelCounter.text= StarsCollected.ToString();
 	}
 	private void LoseHeart(bool resetIfZero)
 	{
@@ -361,7 +360,7 @@ public class MinigameCollectorScript : MonoBehaviour
 		}
 		else
 		{
-			ExitMinigame(false);
+			EndMinigame();
 
 		}
 	}
@@ -524,7 +523,7 @@ public class MinigameCollectorScript : MonoBehaviour
 
 				if(StarsCollected >= 10)
 				{
-					ExitMinigame(true);
+					EndMinigame();
 					//UIClickButtonMasterScript.HandleClick(UIFunctionalityId.CloseCurrentMinigame, null);
 					break;
 				}
@@ -543,12 +542,13 @@ public class MinigameCollectorScript : MonoBehaviour
 	{
 		TutorialId = TutorialStateId.None;
 		Points = 0;
-		State = MinigameStateId.Playing;
 		Hearts = 3;
 		oldLevelId = -1;
 		currentLevelId = -1;
 		CompletedLevels.Clear();
 		StarsCollected = 0;
+
+		Paused = false;
 
 		for(int i=0;i<StarsUI.Length;++i)
             if (StarsUI[i] != null) StarsUI[i].SetActive(false);

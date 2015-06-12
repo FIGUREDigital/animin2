@@ -19,6 +19,7 @@ public class JoystickPageControls : MonoBehaviour
 
     private bool m_JumpButtonPressed;
     private bool m_Jump;
+	ShowHide showHide;
     public bool PressedJump{
         get{
             return m_Jump;
@@ -34,6 +35,7 @@ public class JoystickPageControls : MonoBehaviour
 
     // Use this for initialization
     void Start(){
+		showHide = GetComponent<ShowHide> ();
         Init();
     }
     void OnEnable(){
@@ -52,6 +54,9 @@ public class JoystickPageControls : MonoBehaviour
     }
 	
     void Update () {
+		if (showHide.CurTarget == Paused) {
+			showHide.Show (!Paused);
+		}
 		if (Paused) return;
 
 		isButtonDown = false;
@@ -120,7 +125,7 @@ public class JoystickPageControls : MonoBehaviour
             CharacterControllerRef.MovementDirection.y = 0;
 
 			movementSpeed = diff.magnitude / maxRadius;
-			Debug.Log ("movementSpeed ="+movementSpeed);
+//			Debug.Log ("movementSpeed ="+movementSpeed);
             if(movementSpeed < 0.5f)
             {
                 CharacterAnimationRef.IsRunning = false;

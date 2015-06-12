@@ -166,12 +166,12 @@ public class MinigameCollectorScript : MonoBehaviour
 		
 
 		UIGlobalVariablesScript.Singleton.ARPortal.GetComponent<PortalScript>().Show(PortalStageId.MinigameCuberRunners, false);
-	}
-	
+	}	
 	
 	public void EndMinigame(bool skipScores = false)
 	{		
 		Paused = true;
+		UiPages.GetPage (Pages.CubeMinigamePage).GetComponent<ShowHide> ().Show (false);
 		if (!skipScores) {
 			ScoringPage.Show (Minigame.Cuberunners, Points, StarsCollected, LeaveMinigame);
 		} else {
@@ -549,6 +549,8 @@ public class MinigameCollectorScript : MonoBehaviour
 		StarsCollected = 0;
 
 		Paused = false;
+		
+		UiPages.GetPage (Pages.CubeMinigamePage).GetComponent<ShowHide> ().Show (true);
 
 		for(int i=0;i<StarsUI.Length;++i)
             if (StarsUI[i] != null) StarsUI[i].SetActive(false);

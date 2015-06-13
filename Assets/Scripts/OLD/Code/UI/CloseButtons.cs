@@ -6,7 +6,7 @@ public class CloseButtons : MonoBehaviour {
 
 	private Button[] mButtons;
     private OpenInGamePurchaseView view;
-    private ShowForm buyForm;
+    //private ShowForm buyForm;
 
     private bool Exception(Button uib){
         if (uib.gameObject == view.gameObject)
@@ -24,7 +24,7 @@ public class CloseButtons : MonoBehaviour {
 	{
         mButtons = GetComponentsInChildren<Button>(true);
         view = GetComponentInChildren<OpenInGamePurchaseView>();
-        if (view != null)buyForm = view.gameObject.GetComponentInChildren<ShowForm>();
+        //if (view != null)buyForm = view.gameObject.GetComponentInChildren<ShowForm>();
 	}
 	
 	// Update is called once per frame

@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class SelectDay : MonoBehaviour {
 
-	private int my_i;
+	//private int my_i;
 	private bool m_clicked;
 
 	// Use this for initialization
@@ -16,7 +16,7 @@ public class SelectDay : MonoBehaviour {
 			//Debug.Log("Comparing : ["+this+":"+grid.GetComponentsInChildren<Text>()[i].gameObject+"];");
 			if (this.gameObject == grid.GetComponentsInChildren<Text>()[i].gameObject){
 				//Debug.Log("Found!");
-				my_i = i;
+				//my_i = i;
 				break;
 			}
 		}

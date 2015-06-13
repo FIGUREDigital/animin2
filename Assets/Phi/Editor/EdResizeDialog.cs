@@ -6,8 +6,8 @@ using System.Collections.Generic;
 public class EdResizeDialog : EditorWindow
 {
 
-	Vector2 newSize = new Vector2(2048,1500);
-	bool shouldClose = false;
+	//Vector2 newSize = new Vector2(2048,1500);
+	//bool shouldClose = false;
 
 	void OnGUI()
 	{

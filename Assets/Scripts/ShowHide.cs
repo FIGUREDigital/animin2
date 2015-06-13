@@ -8,10 +8,13 @@ public class ShowHide : MonoBehaviour {
 
 	public Transform showHideThis;
 	public Vector3 offset;
+	public bool scaleToZero = false;
 	public bool startHidden = true;
 	public float duration = 0.25f;
+	public float durationHide = 0f;
 	public Ease easeIn = Ease.OutCubic;
 	public Ease easeOut = Ease.InCubic;
+	public float showDelay = 0;
 	public bool CurTarget
 	{
 		get
@@ -28,21 +31,32 @@ public class ShowHide : MonoBehaviour {
 
 	bool currentTarget = false;
 	Tween tween = null;
-	Vector3 visiblePosition;
+	Vector3 defaultVec;
 	Vector3 hiddenPosition;
+	static Vector3 nearlyZero = new Vector3(0.001f, 0.001f, 0.001f);
 
 	void Awake()
 	{
-		visiblePosition = showHideThis.transform.localPosition;
+		if (durationHide == 0) {
+			durationHide = duration;
+		}
+		defaultVec = scaleToZero ? showHideThis.transform.localScale : showHideThis.transform.localPosition;
 	}
 
 	void OnEnable()
 	{
-		showHideThis.gameObject.SetActive(showHideThis);
-		Vector3 pos = visiblePosition + offset;
-		showHideThis.transform.localPosition = pos;
+		showHideThis.gameObject.SetActive(false);
 		currentTarget = false;
-		if (showHideThis) 
+		if (scaleToZero) 
+		{
+			showHideThis.transform.localScale = nearlyZero;
+		} 
+		else 
+		{			
+			Vector3 pos = defaultVec + offset;
+			showHideThis.transform.localPosition = pos;
+		}
+		if (!startHidden) 
 		{
 			Show(true);
 		}
@@ -62,8 +76,36 @@ public class ShowHide : MonoBehaviour {
 	}
 
 	// Use this for initialization
-	public void Show(bool show, Action onFinish = null) 
+	public void Show(bool show, bool instant = false, Action onFinish = null) 
 	{
+		Vector3 dest;
+		if (scaleToZero) 
+		{
+			dest = show ? defaultVec : nearlyZero;
+		}
+		else 
+		{
+			dest = show ? defaultVec : defaultVec + offset;
+		}
+
+		if (instant) 
+		{
+			if (tween != null)
+			{
+				tween.Kill();
+				tween = null;
+			}
+			showHideThis.gameObject.SetActive(show);
+			if (scaleToZero) 
+			{
+				showHideThis.localScale = dest;
+			}
+			else 
+			{
+				showHideThis.localPosition = dest;
+			}
+			currentTarget = show;
+		}
 		if (currentTarget == show)
 		{
 			if(onFinish != null)
@@ -81,16 +123,36 @@ public class ShowHide : MonoBehaviour {
 			tween.Kill();
 			tween = null;
 		}
-		Vector3 pos = visiblePosition;
-		if(!show)
-		{
-			pos += offset;
-		}
 		if(show)
 		{
 			showHideThis.gameObject.SetActive(true);
 		}
-		showHideThis.DOLocalMove(pos, duration).SetEase(show ? easeIn : easeOut).OnComplete(OnComplete);
+		if (scaleToZero) 
+		{
+			if(show)
+			{
+				tween = showHideThis.DOScale (dest , duration).SetEase (easeIn).OnComplete (OnComplete);
+			}
+			else
+			{
+				tween = showHideThis.DOScale (dest , durationHide).SetEase (easeOut).OnComplete (OnComplete);
+			}
+		}
+		else 
+		{
+			if(!show)
+			{
+				tween = showHideThis.DOLocalMove (dest, duration).SetEase (easeIn).OnComplete (OnComplete);
+			}
+			else
+			{				
+				tween = showHideThis.DOLocalMove (dest, durationHide).SetEase (easeOut).OnComplete (OnComplete);
+			}
+		}
+		if (tween != null && show) 
+		{
+			tween.SetDelay(showDelay);
+		}
 	}
 
 	void OnComplete()

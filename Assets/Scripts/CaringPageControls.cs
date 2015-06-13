@@ -93,8 +93,7 @@ public class CaringPageControls : MonoBehaviour
 	public float flipPos = 0.5f;
 	public float triangleLowOffset = 0.6f;
 	public float uiScale = 1;
-	
-	bool uiShouldBeVisble = false;
+
 	float tweeningDir = 0;
 	Tween uiTween = null; 
 	

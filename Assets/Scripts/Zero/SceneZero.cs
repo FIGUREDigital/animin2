@@ -5,7 +5,10 @@ using System.IO;
 
 public class SceneZero : MonoBehaviour
 {
+	
+	#if UNITY_ANDROID
 	private static bool LoadedOBB = false;
+#endif
 	public Text errormess;
 
 	void Start ()

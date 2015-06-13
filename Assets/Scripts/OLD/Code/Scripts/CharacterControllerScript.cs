@@ -15,7 +15,7 @@ public class CharacterControllerScript : MonoBehaviour //Photon.MonoBehaviour
 
     public Camera CameraRef;
 
-    enum CharacterState
+    /*enum CharacterState
     {
 		
         Idle = 0,
@@ -28,9 +28,9 @@ public class CharacterControllerScript : MonoBehaviour //Photon.MonoBehaviour
 		
         Jumping = 4,
 		
-    }
+    }*/
 
-    private CharacterState _characterState;
+    //private CharacterState _characterState;
 	
     // The speed when walking
 	
@@ -126,7 +126,7 @@ public class CharacterControllerScript : MonoBehaviour //Photon.MonoBehaviour
 	
     // When did the user start walking (Used for going into trot after a while)
 	
-    private float walkTimeStart = 0.0F;
+    //private float walkTimeStart = 0.0F;
 	
     // Last time the jump button was clicked down
 	
@@ -134,26 +134,15 @@ public class CharacterControllerScript : MonoBehaviour //Photon.MonoBehaviour
 	
     // Last time we performed a jump
 	
-    private float lastJumpTime = -1.0F;
-	
-	
-	
-	
+    private float lastJumpTime = -1.0F;	
 	
     // the height we jumped from (Used to determine for how long to apply extra jump power after jumping.)
 	
-    private float lastJumpStartHeight = 0.0F;
-	
-	
-	
-	
-	
-    private Vector3 inAirVelocity = Vector3.zero;
-	
-	
+//    private float lastJumpStartHeight = 0.0F;
+		
+    private Vector3 inAirVelocity = Vector3.zero;	
 	
     private float lastGroundedTime = 0.0F;
-
 
     public List<CharacterForces> Forces = new List<CharacterForces>();
 	
@@ -319,8 +308,8 @@ public class CharacterControllerScript : MonoBehaviour //Photon.MonoBehaviour
 			
             // Reset walk time start when we slow down
 			
-            if (moveSpeed < walkSpeed * 0.3f)
-                walkTimeStart = Time.time;
+            //if (moveSpeed < walkSpeed * 0.3f)
+            //    walkTimeStart = Time.time;
 			
         }
 		
@@ -412,13 +401,13 @@ public class CharacterControllerScript : MonoBehaviour //Photon.MonoBehaviour
 		
         lastJumpTime = Time.time;
 		
-        lastJumpStartHeight = transform.position.y;
+        //lastJumpStartHeight = transform.position.y;
 		
         lastJumpButtonTime = -10;
 		
 		
 		
-        _characterState = CharacterState.Jumping;
+        //_characterState = CharacterState.Jumping;
 		
     }
 

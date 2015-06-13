@@ -287,7 +287,7 @@ public class CharacterProgressScript : MonoBehaviour
     RaycastHit moveHitInfo;
     RaycastHit detectDragHit;
     ActionId lastActionId;
-    bool hadButtonDownLastFrame;
+    //bool hadButtonDownLastFrame;
     bool IsDetectingMouseMoveForDrag;
     bool IsDetectFlick;
     float FeedMyselfTimer;
@@ -1978,11 +1978,12 @@ public class CharacterProgressScript : MonoBehaviour
             Debug.Log("just saved...");
 		}
 */
+		/*
         if (Input.GetButtonDown("Fire1"))
             hadButtonDownLastFrame = true;
         else
             hadButtonDownLastFrame = false;
-
+*/
 
         if (!Input.GetButton("Fire1"))
         {

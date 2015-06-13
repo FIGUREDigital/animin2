@@ -13,7 +13,7 @@ public class ProfilesManagementScript : Phi.SingletonMonoBehaviour<ProfilesManag
 {
 	//public static bool Initialized;
 
-    private GameObject EvolveTboToAdultWarning;
+    //private GameObject EvolveTboToAdultWarning;
 
     public ItunesButtonUpdate ItunesScript;
 
@@ -338,7 +338,7 @@ public class ProfilesManagementScript : Phi.SingletonMonoBehaviour<ProfilesManag
 
 	public void CloseEvolutionPurchaseWarning(bool andContinue)
     {
-        Destroy(EvolveTboToAdultWarning);
+        //Destroy(EvolveTboToAdultWarning);
 
         if (andContinue)
         {

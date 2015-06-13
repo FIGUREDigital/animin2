@@ -12,7 +12,13 @@ public class JoystickPageControls : MonoBehaviour
     private CharacterControllerScript CharacterControllerRef;
 
     [SerializeField]
-    private GameObject m_JoystickFront, m_JoystickBack, m_JumpButton;
+	private GameObject m_JoystickFront;
+
+	[SerializeField]
+	private GameObject m_JoystickBack;
+
+	[SerializeField]
+	private GameObject m_JumpButton;
 
     private bool isButtonDown = false;
     private int fingerID = -1;

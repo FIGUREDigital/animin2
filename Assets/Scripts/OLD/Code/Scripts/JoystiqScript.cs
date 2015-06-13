@@ -42,16 +42,8 @@ public class JoystiqScript : MonoBehaviour {
 	
 	private int size;                   // Screen's smaller side.
 	
-	private float length;               // The maximum distance the Joystick can be pushed.
-	
 	private bool gotPosition;           // Joystick has a position.
-	
-	private int fingerID;               // ID of finger touching this Joystick.
-	
-	private int lastID;                 // ID of last finger touching this Joystick.
-	
-	private float tapTimer;             // Double-tap's timer.
-	
+
 	private bool enable;                // VJR external control.
 
     private bool m_Paused;
@@ -69,15 +61,7 @@ public class JoystiqScript : MonoBehaviour {
 	
 	private void Awake() 
 	{
-	
-
-		fingerID = -1; 
-		lastID = -1; 
 		VJRdoubleTap = false; 
-		tapTimer = 0; 
-		length = 140;
-
-	
 	}
 
 	void Start()
@@ -104,18 +88,6 @@ public class JoystiqScript : MonoBehaviour {
 			ThumbpadFront.UpdateAnchors();
 		}*/
 
-		bool isButtonDown = false;
-		Vector3 mousePosition = Vector3.zero;
-
-#if UNITY_EDITOR
-		if(Input.GetMouseButton(0))
-		{
-			isButtonDown = true;
-			mousePosition = Input.mousePosition;
-		}
-#endif
-		if(!isButtonDown) fingerID = -1;
-		
 		float movementSpeed = 0;
 		
 //		bool fingerTouchValid = false;

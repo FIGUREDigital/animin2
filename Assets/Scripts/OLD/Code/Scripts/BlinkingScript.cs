@@ -4,7 +4,10 @@ using System.Collections;
 public class BlinkingScript : MonoBehaviour
 {
     [SerializeField]
-    private Texture EyesOpenTexture, BlinkingTexture;
+	private Texture EyesOpenTexture;
+
+	[SerializeField]
+	private Texture BlinkingTexture;
 
     [SerializeField]
     private Renderer[] TexturesToSwap;

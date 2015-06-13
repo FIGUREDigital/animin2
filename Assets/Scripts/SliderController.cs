@@ -27,7 +27,7 @@ public class SliderController : MonoBehaviour
 	{
 		mImage = GetComponent<RectTransform> ();
 		float leftResult = 0;
-		float rightResult = 0;
+//		float rightResult = 0;
 		/*Remember to comment these back in when UI is working.
         UIGlobalVariablesScript.Singleton.HungryControlBarRef.transform.localPosition = new Vector3(Mathf.Lerp(-80.51972f, 617.2906f, ProfilesManagementScript.Singleton.CurrentAnimin.Hungry / 100.0f), UIGlobalVariablesScript.Singleton.HungryControlBarRef.transform.localPosition.y, 0);
         UIGlobalVariablesScript.Singleton.HealthControlBarRef.transform.localPosition = new Vector3(Mathf.Lerp(-80.51972f, 617.2906f, ProfilesManagementScript.Singleton.CurrentAnimin.Health / 100.0f), UIGlobalVariablesScript.Singleton.HealthControlBarRef.transform.localPosition.y, 0);
@@ -43,20 +43,20 @@ public class SliderController : MonoBehaviour
 		{
 		case Slider.Happiness:
 			leftResult = Mathf.Lerp(min, max, ProfilesManagementScript.Instance.CurrentAnimin.Happy / PersistentData.MaxHappy);
-			rightResult = Mathf.Lerp(max, min, ProfilesManagementScript.Instance.CurrentAnimin.Happy / PersistentData.MaxHappy);
+//			rightResult = Mathf.Lerp(max, min, ProfilesManagementScript.Instance.CurrentAnimin.Happy / PersistentData.MaxHappy);
 			break;
 		case Slider.Health:
 			leftResult = Mathf.Lerp(min, max, ProfilesManagementScript.Instance.CurrentAnimin.Health / PersistentData.MaxHealth);
-			rightResult = Mathf.Lerp(max, min, ProfilesManagementScript.Instance.CurrentAnimin.Health / PersistentData.MaxHealth);
+//			rightResult = Mathf.Lerp(max, min, ProfilesManagementScript.Instance.CurrentAnimin.Health / PersistentData.MaxHealth);
 			break;
 		case Slider.Hunger:
 			leftResult = Mathf.Lerp(min, max, ProfilesManagementScript.Instance.CurrentAnimin.Hungry / PersistentData.MaxHungry);
-			rightResult = Mathf.Lerp(max, min, ProfilesManagementScript.Instance.CurrentAnimin.Hungry / PersistentData.MaxHungry);
+//			rightResult = Mathf.Lerp(max, min, ProfilesManagementScript.Instance.CurrentAnimin.Hungry / PersistentData.MaxHungry);
 			break;
 		case Slider.Fitness:
 			
 			leftResult = Mathf.Lerp(min, max, ProfilesManagementScript.Instance.CurrentAnimin.Fitness / PersistentData.MaxFitness);
-			rightResult = Mathf.Lerp(max, min, ProfilesManagementScript.Instance.CurrentAnimin.Fitness / PersistentData.MaxFitness);
+//			rightResult = Mathf.Lerp(max, min, ProfilesManagementScript.Instance.CurrentAnimin.Fitness / PersistentData.MaxFitness);
 			break;
 		default:
 			break;

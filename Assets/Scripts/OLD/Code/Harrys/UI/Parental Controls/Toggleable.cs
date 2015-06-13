@@ -7,18 +7,18 @@ public class Toggleable : MonoBehaviour {
 	public delegate void Toggle(bool on);
 
 	private Toggle m_Toggle;
-
+	/*
 	[SerializeField]
 	private string OnSpriteName = "alarm_active_on";
 	[SerializeField]
 	private string OffSpriteName = "alarm_active_off";
-
+*/
 	private bool m_On;
-	private Button m_Button;
+	//private Button m_Button;
 
 	void Start(){
 		m_On = false;
-		m_Button = this.GetComponent<Button> ();
+		//m_Button = this.GetComponent<Button> ();
 	}
 
 	void OnClick(){

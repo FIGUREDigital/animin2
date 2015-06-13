@@ -659,7 +659,7 @@ namespace TMPro
                 m_sharedMaterial.SetFloat("_CullMode", 0);
                 m_sharedMaterial.SetFloat("_ZTestMode", 4);
                 m_renderer.receiveShadows = false;
-                m_renderer.castShadows = false; // true;
+                m_renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off; // true;
                 // Get a Reference to the Shader
             }
             else
@@ -690,12 +690,12 @@ namespace TMPro
                 if (m_sharedMaterial.passCount > 1)
                 {
                     m_renderer.receiveShadows = false;
-                    m_renderer.castShadows = true;
+					m_renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
                 }
                 else
                 {
                     m_renderer.receiveShadows = false;
-                    m_renderer.castShadows = false; 
+					m_renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
                 }
             }
 

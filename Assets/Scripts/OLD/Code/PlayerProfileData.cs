@@ -9,7 +9,7 @@ public class PlayerProfileData
 
     public bool FirstTimePlaying;
 
-    private int FileVersion = 1;
+    //private int FileVersion = 1;
 
     public PersistentData[] Characters = new PersistentData[(int)PersistentData.TypesOfAnimin.Count];
     public PlayerProfileSettings Settings = new PlayerProfileSettings();

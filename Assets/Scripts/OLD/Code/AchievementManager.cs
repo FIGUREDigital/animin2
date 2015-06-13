@@ -190,9 +190,9 @@ public class AchievementManager
 	private void FireAchievment(Achievements item)
 	{
 	
-		string achievement = Description(item);
-
-		AchievementsScript.Singleton.Show(AchievementTypeId.Achievement,1000);
-		AchievementsScript.Singleton.Description.text = string.Format(mDescription, achievement);	                                                       ;
+		// AH Temporarily dissable achievements
+		//string achievement = Description(item);
+		//AchievementsScript.Singleton.Show(AchievementTypeId.Achievement,1000);
+		//AchievementsScript.Singleton.Description.text = string.Format(mDescription, achievement);	                                                       ;
 	}
 }

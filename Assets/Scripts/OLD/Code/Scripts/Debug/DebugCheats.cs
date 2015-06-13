@@ -30,7 +30,7 @@ public class DebugCheats : MonoBehaviour
 #if DEBUGCHEATS
         switch (button)
         {
-
+			/*
             case CheatButtons.Birthday:
                 AchievementsScript.Singleton.Show(AchievementTypeId.Birthday, 0);
                 break;
@@ -49,7 +49,7 @@ public class DebugCheats : MonoBehaviour
 
             case CheatButtons.EvolutionMarker2:
                 AchievementsScript.Singleton.Show(AchievementTypeId.EvolutionStar, 0);
-                break;
+                break;*/
 
             case CheatButtons.Evolve:
                 switch (ProfilesManagementScript.Instance.CurrentAnimin.AniminEvolutionId)

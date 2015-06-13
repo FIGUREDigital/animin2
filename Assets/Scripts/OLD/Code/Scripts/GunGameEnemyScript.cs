@@ -27,14 +27,14 @@ public class GunGameEnemyScript : MonoBehaviour //Photon.MonoBehaviour
     }
 
     public bool PreventMerge;
-    private GunsMinigameScript m_Minigame;
+/*    private GunsMinigameScript m_Minigame;
 
     // Use this for initialization
     void Start()
     {
         m_Minigame = UIGlobalVariablesScript.Singleton.GunGameScene.GetComponent<GunsMinigameScript>();
     }
-
+*/
     // Update is called once per frame
     void Update()
     {

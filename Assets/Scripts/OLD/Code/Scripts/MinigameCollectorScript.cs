@@ -226,7 +226,7 @@ public class MinigameCollectorScript : MonoBehaviour
         if (Paused) return;
         UiPages.GetPage(Pages.CubeMinigamePage).GetComponent<CubeMinigamesPageControls>().PointLabel.text = Points.ToString() + " pts";
 		BetweenSceneData.Instance.Points = Points;
-		CharacterProgressScript progressScript = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>();
+		//CharacterProgressScript progressScript = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>();
 
 
 		if(Input.GetButtonDown("Fire1") && CanBeginLevelSwipe())

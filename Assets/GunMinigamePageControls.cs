@@ -19,7 +19,11 @@ public class GunMinigamePageControls : MonoBehaviour
 {
 
     [SerializeField]
-    private UnityEngine.UI.Image m_Bar, m_GunIcon;
+	private UnityEngine.UI.Image m_Bar;
+
+	
+	[SerializeField]
+	private UnityEngine.UI.Image m_GunIcon;
 	
 	[SerializeField]
 	private UIText text123;
@@ -42,7 +46,10 @@ public class GunMinigamePageControls : MonoBehaviour
 
 
     [SerializeField]
-    private GameObject m_TutorialEnemies, m_TutorialMove;
+	private GameObject m_TutorialEnemies;
+	
+	[SerializeField]
+	private GameObject m_TutorialMove;
     private int TutorialCounter;
 
     private bool m_Paused;
@@ -92,11 +99,17 @@ public class GunMinigamePageControls : MonoBehaviour
                     if (!m_Paused)
                     {
                         SetBarWidth(0);
-                        m_TutorialMove.SetActive(true);
+						if(m_TutorialMove)
+						{
+	                        m_TutorialMove.SetActive(true);
+						}
                         m_Points.transform.parent.gameObject.SetActive(false);
                         m_321.gameObject.SetActive(false);
-                        m_TutorialMove.SetActive(false);
-
+					
+						if(m_TutorialMove)
+						{
+	                        m_TutorialMove.SetActive(false);
+						}
                         m_TutorialEnemies.SetActive(true);
 
                         TutorialCounter++;
@@ -106,15 +119,22 @@ public class GunMinigamePageControls : MonoBehaviour
                     if (Input.GetButtonUp("Fire1"))
                     {
                         m_TutorialEnemies.SetActive(false);
-                        m_TutorialMove.SetActive(true);
+					
+						if(m_TutorialMove)
+						{
+	                        m_TutorialMove.SetActive(true);
+						}
                         TutorialCounter++;
                     }
                     break;
                 case 2:
                     if (JoystickControls.IsMovingWithJoystick)
                     {
-
-                        m_TutorialMove.SetActive(false);
+					
+						if(m_TutorialMove)
+						{
+	                        m_TutorialMove.SetActive(false);
+						}
                         m_Points.transform.parent.gameObject.SetActive(true);
                         GunsMinigameScript script = UIGlobalVariablesScript.Singleton.GunGameScene.GetComponent<GunsMinigameScript>();
                         if (script != null)
@@ -131,7 +151,11 @@ public class GunMinigamePageControls : MonoBehaviour
     public void ResetTutorial()
     {
         m_TutorialEnemies.SetActive(false);
-        m_TutorialMove.SetActive(false);
+		
+		if(m_TutorialMove)
+		{
+        	m_TutorialMove.SetActive(false);
+		}
         TutorialCounter = 0;
         ProfilesManagementScript.Instance.CurrentProfile.TutorialCanonClashPlayed = false;
     }

@@ -5,7 +5,10 @@ using UnityEngine.UI;
 public class ToggleableButtonScript : MonoBehaviour {
 
     [SerializeField]
-    private Sprite m_GraphicOn,m_GraphicOff;
+	private Sprite m_GraphicOn;
+
+	[SerializeField]
+	private Sprite m_GraphicOff;
 	
 	[SerializeField]
 	private GameObject m_Visibility;

@@ -6,16 +6,9 @@ public class InvBoxControls : MonoBehaviour {
     
     public delegate void DropAction();
     public static event DropAction OnDropItem;
-    UnityEngine.UI.Image box;
     public static bool listening;
     public static bool stopListening;
 
-	// Use this for initialization
-	void Start () 
-    {
-        box = GetComponent<UnityEngine.UI.Image>();
-	}
-	
 	// Update is called once per frame
 	void Update () 
     {

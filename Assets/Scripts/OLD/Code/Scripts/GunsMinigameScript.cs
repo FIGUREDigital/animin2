@@ -49,9 +49,6 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
     private const float BarrelSpawnMinTime = 1;
     private const float BarrelSpawnMaxTime = 7;
     private int Wave;
-    private int[] WaveTimers = new int[] { 2, 10, 10, 10, 10, 10, 10, 10, 10, 10 };
-    private int[] WaveMinEnemies = new int[] { 2, 3, 4, 5, 6, 7, 8, 9, 11, 15 };
-    private int[] WaveMaxEnemies = new int[] { 3, 4, 5, 6, 7, 8, 9, 10, 12, 17 };
     private float WaveTimerForNext;
     private float AutoShootCooldown;
     private float RandomCubeTimer;
@@ -593,7 +590,7 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
                     
                     NextBarrelSpawnTimer = Random.Range(BarrelSpawnMinTime, BarrelSpawnMaxTime);
                     Wave = 0;
-                    WaveTimerForNext = WaveTimers[0];
+                    WaveTimerForNext = 2;
                     RandomCubeTimer = Random.Range(8, 20);
                     Points = 0;
                     m_State = GameStateId.PrepareToStart3;
@@ -736,7 +733,7 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
                     if (WaveTimerForNext <= 1 && canSpawn == true)
                     {
                        // Wave++;
-                        if (Wave == WaveTimers.Length)
+                        if (Wave == 10)
                         {
                            // m_State = GameStateId.Completed;
                         }
@@ -982,8 +979,14 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
 	
     public void OnBulletHitBarrel(BarrelCollisionScript barrel)
     {
-        UIControls.Bar.sprite = barrel.BarFrontTexture;
-        UIControls.Icon.sprite = barrel.BuletIcon;
+		if(UIControls.Bar)
+		{
+			UIControls.Bar.sprite = barrel.BarFrontTexture;
+		}
+		if(UIControls.Icon)
+		{
+        	UIControls.Icon.sprite = barrel.BuletIcon;
+		}
 
         //Destroy(barrel);
         AmmoTimer += 0.15f;
@@ -1802,7 +1805,7 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
         GameObject resourceLoad = Resources.Load(CurrentBullets[Random.Range(0, CurrentBullets.Count)]) as GameObject;
         newProjectile = Instantiate(resourceLoad) as GameObject;
 
-        newProjectile.GetComponent<ProjectileScript>().SetLocal(true);
+//        newProjectile.GetComponent<ProjectileScript>().SetLocal(true);
 
         newProjectile.transform.parent = SpawnedObjectsAllOthers.transform;
         newProjectile.transform.position = UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.position;

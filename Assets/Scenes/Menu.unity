@@ -144,7 +144,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11421552, guid: dca8330bdc06646f496a23866f78f148, type: 2}
       propertyPath: _currentInspectorSelection.currentCategoryIndex
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11421552, guid: dca8330bdc06646f496a23866f78f148, type: 2}
       propertyPath: AudioCategories.Array.data[1].AudioItems.Array.data[11].Name
@@ -176,7 +176,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11421552, guid: dca8330bdc06646f496a23866f78f148, type: 2}
       propertyPath: _currentInspectorSelection.currentItemIndex
-      value: 13
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 11421552, guid: dca8330bdc06646f496a23866f78f148, type: 2}
       propertyPath: _currentInspectorSelection.currentSubitemIndex
@@ -276,6 +276,68 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dca8330bdc06646f496a23866f78f148, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1001 &177971247
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 426658, guid: 94cb94be5550f4ba59284f250c51df43, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -75.4276199
+      objectReference: {fileID: 0}
+    - target: {fileID: 426658, guid: 94cb94be5550f4ba59284f250c51df43, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 36.6894379
+      objectReference: {fileID: 0}
+    - target: {fileID: 426658, guid: 94cb94be5550f4ba59284f250c51df43, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 426658, guid: 94cb94be5550f4ba59284f250c51df43, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 426658, guid: 94cb94be5550f4ba59284f250c51df43, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 426658, guid: 94cb94be5550f4ba59284f250c51df43, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 426658, guid: 94cb94be5550f4ba59284f250c51df43, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 426658, guid: 94cb94be5550f4ba59284f250c51df43, type: 2}
+      propertyPath: m_RootOrder
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449550, guid: 94cb94be5550f4ba59284f250c51df43, type: 2}
+      propertyPath: playlistDefs.Array.data[0].playlist
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449550, guid: 94cb94be5550f4ba59284f250c51df43, type: 2}
+      propertyPath: playlistDefs.Array.data[1].playlist
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449550, guid: 94cb94be5550f4ba59284f250c51df43, type: 2}
+      propertyPath: playlistDefs.Array.data[2].playlist
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449550, guid: 94cb94be5550f4ba59284f250c51df43, type: 2}
+      propertyPath: playlistDefs.Array.data[3].playlist
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449550, guid: 94cb94be5550f4ba59284f250c51df43, type: 2}
+      propertyPath: playlistDefs.Array.data[4].playlist
+      value: 5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 94cb94be5550f4ba59284f250c51df43, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &204875195
 GameObject:
@@ -1683,7 +1745,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b5a66dad6ffbba448efba96fe71c5cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicID: MusicMainMenu
+  onEnable: 1
+  onDisable: 0
 --- !u!4 &834632793
 Transform:
   m_ObjectHideFlags: 0

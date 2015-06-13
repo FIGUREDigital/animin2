@@ -4,20 +4,29 @@ using System.Collections;
 public class IngamePauseMenu : MonoBehaviour
 {
     [SerializeField]
-    private GameObject m_PauseMenu, m_PauseButton;
+	private GameObject m_PauseMenu;
+
+	[SerializeField]
+	private GameObject m_PauseButton;
 
     // Use this for initialization
     void Awake()
     {
         m_PauseMenu.SetActive(false);
-        m_PauseButton.SetActive(true);
+		if(m_PauseButton)
+		{
+        	m_PauseButton.SetActive(true);
+		}
     }
 
     public void SetPause(bool On)
     {
 		JoystickPageControls.Paused = On;
 		m_PauseMenu.SetActive (On);
-		m_PauseButton.SetActive (!On);
+		if(m_PauseButton)
+		{
+			m_PauseButton.SetActive (!On);
+		}
         if (MainARHandler.Instance.CurrentGameScene == GameScenes.MinigameCubeRunner)
 		{
 			//UiPages.GetPage(Pages.CubeMinigamePage).GetComponent<CubeMinigamesPageControls>().Paused = On;

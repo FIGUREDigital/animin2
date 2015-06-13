@@ -2,8 +2,12 @@
 using System.Collections;
 
 public class GetOBB : MonoBehaviour {
-
+	
+	#if DEBUG
+	#if UNITY_ANDROID
     private static bool LoadedOBB = false;
+#endif
+#endif
 
     void Start()
     {

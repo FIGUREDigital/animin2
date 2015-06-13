@@ -3,13 +3,13 @@ using System.Collections;
 
 public class MinigameCharacterControllerKeyboard : MonoBehaviour {
 
-    MinigameAnimationControllerScript CharacterAnimationRef;
-    CharacterControllerScript CharacterController;
+    //MinigameAnimationControllerScript CharacterAnimationRef;
+    //CharacterControllerScript CharacterController;
 
 	// Use this for initialization
 	void Start () {
-        CharacterController = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterControllerScript>();
-        CharacterAnimationRef = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<MinigameAnimationControllerScript>();
+        //CharacterController = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterControllerScript>();
+        //CharacterAnimationRef = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<MinigameAnimationControllerScript>();
 	}
 	
     // Update is called once per frame

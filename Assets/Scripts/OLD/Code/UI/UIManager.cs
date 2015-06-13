@@ -28,7 +28,7 @@ public class UIManager : MonoBehaviour
 
 	public void UITransition(GameObject oldScreen, GameObject newScreen)
 	{
-		Vector3 offset = new Vector3(Screen.width*3, 0, 0);
+//		Vector3 offset = new Vector3(Screen.width*3, 0, 0);
 //		TweenPosition tpOld = oldScreen.AddComponent<TweenPosition>();
 //		TweenPosition tpNew = newScreen.AddComponent<TweenPosition>();
 //		tpOld.from = oldScreen.transform.position;

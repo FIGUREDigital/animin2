@@ -15,7 +15,7 @@ public class PulseGradient : MonoBehaviour {
 	Graphic graphic;
 
 	// Use this for initialization
-	void Start() 
+	void Awake() 
 	{
 		grad = GetComponent<Gradient> ();
 		graphic = GetComponent<Graphic> ();

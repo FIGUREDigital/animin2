@@ -145,7 +145,6 @@ public class ScoringPage : Phi.SingletonScene<ScoringPage>
 	}
 
 	float showingHighScore = 0;
-	int showMedal = 0;
 	int curMedal = 0;
 	float medalAt = 0;
 	float barMax = float.MaxValue;

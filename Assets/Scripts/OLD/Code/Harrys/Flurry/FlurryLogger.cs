@@ -11,9 +11,9 @@ public class FlurryLogger
 {
 	
     bool m_Inited = false;
-    private string m_SessionTime = "SessionTime";
-    private string m_MainMenuStart = "MainMenuStart";
-    private string m_TimeInMinigame = "TimeInMinigame";
+    //private string m_SessionTime = "SessionTime";
+    //private string m_MainMenuStart = "MainMenuStart";
+    //private string m_TimeInMinigame = "TimeInMinigame";
 
     public void Init()
     {

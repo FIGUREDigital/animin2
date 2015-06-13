@@ -103,8 +103,8 @@ public class MainARHandler : MonoBehaviour
 
     private ValueSmoother SmootherAxisX = new ValueSmoother();
     private ValueSmoother SmootherAxisY = new ValueSmoother();
-    private ValueSmootherVector3 CameraPositionSmoother = new ValueSmootherVector3();
-    private ValueSmootherVector3 CameraRotationSmoother = new ValueSmootherVector3();
+    //private ValueSmootherVector3 CameraPositionSmoother = new ValueSmootherVector3();
+    //private ValueSmootherVector3 CameraRotationSmoother = new ValueSmootherVector3();
 
 	[SerializeField]
     private SpriteStore mSpriteStore;
@@ -272,7 +272,7 @@ public class MainARHandler : MonoBehaviour
 			if(caringPage  != null)
 			{
 				CaringPageControls caringPageControls = caringPage.GetComponent<CaringPageControls>();
-				//caringPageControls.BroomButton();
+				caringPageControls.BroomButton();
 			}
 
 			// Switch this to call delegates!
@@ -511,7 +511,7 @@ public class MainARHandler : MonoBehaviour
         {
             case GameScenes.Caring:
                 CurrentGameSceneGameObject = (GameObject)GameObject.Instantiate(Resources.Load("Prefabs/ScenePrefabs/Caring"));
-                if (m_PreviousGameScene != null && (m_PreviousGameScene == GameScenes.MinigameCubeRunner || m_PreviousGameScene == GameScenes.MinigameCannon))
+                if (m_PreviousGameScene == GameScenes.MinigameCubeRunner || m_PreviousGameScene == GameScenes.MinigameCannon)
                     UiPages.Next(Pages.CaringPage);
                 break;
 

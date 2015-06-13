@@ -27,7 +27,6 @@ public class AchievementsScript : MonoBehaviour
 
 	private float Timer;
 	private float Alpha = 0;
-	private float VerticalMovement;
 
 	void Awake()
 	{
@@ -40,7 +39,6 @@ public class AchievementsScript : MonoBehaviour
 		GetComponent<AudioSource>().Play();
 		AchievementObject.SetActive(true);
 		Timer = 5;
-		VerticalMovement = 0;
         //AchievementObject.GetComponent<RectTransform>().bottomAnchor.absolute = -509;
 
         if (UIGlobalVariablesScript.Singleton == null)

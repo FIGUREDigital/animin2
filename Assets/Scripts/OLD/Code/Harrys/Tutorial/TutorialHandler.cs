@@ -82,28 +82,6 @@ public class TutorialHandler : MonoBehaviour
     static private Tutorial m_CurTutorial = null;
 	private int m_Letter_i, m_Lesson_i, m_Entry_i, m_FullLength;
 
-    private string m_CurrentAdHocExitCond;
-
-    public string CurrentAdHocExitCond{ get { return m_CurrentAdHocExitCond; } }
-
-    private GameObject m_AchievmentObject;
-    private GameObject AchievmentObject{
-        get{
-            if (m_AchievmentObject == null)
-                m_AchievmentObject = UiPages.GetPage(Pages.CaringPage).GetComponentInChildren<AchievementsScript>().AchievementObject;
-            return m_AchievmentObject;
-        }
-    }
-
-    private bool m_WaitingForInput;
-
-    private bool WaitingForInput
-    {
-        get{ return false; } 
-        set{ m_WaitingForInput = value; }
-    }
-
-
     private const string TutorialPlayerPrefID = "TUTORIALS_COMPLETED";
 
     static public bool CheckTutsCompleted(string name)
@@ -371,7 +349,7 @@ public class TutorialHandler : MonoBehaviour
                     {
                         if (m_TutorialUIParent == null)
                             return;
-                        if (AchievmentObject.activeInHierarchy)
+						if (m_Hidden > 0)
                             return;
 
                         SetTutorialCondition(Tutorials[i].Name, false); // No need to start it anymore as we have now started 
@@ -453,7 +431,7 @@ public class TutorialHandler : MonoBehaviour
             }
             else
             {
-                if (!WaitingForInput)
+//                if (!WaitingForInput)
                 {
                     bool showNextButton = true;
                     if(m_Entry_i == m_CurTutorial.Lessons[m_Lesson_i].TutEntries.Length - 1)
@@ -498,34 +476,7 @@ public class TutorialHandler : MonoBehaviour
 		{
 			m_WormPosition.transform.position = GetComponent<Camera>().ViewportToWorldPoint(new Vector3(0.05f, -0.1f, (GetComponent<Camera>().farClipPlane+GetComponent<Camera>().nearClipPlane)/2));
 		}
-    }
-													
-    //- ENTRY CONDITIONS ----------------------------------------------------------------
-    public bool CheckCharacterProgress(CharacterProgressScript script, RaycastHit hitInfo)
-    {
-        bool cont = false;
-        /*
-        switch (m_CurrentExitCond) {
-            case ("WakeUp"):
-                if (hitInfo.collider.gameObject == script.SleepBoundingBox)
-                    cont = true;
-                break;
-        }
-        */
-        switch (m_CurrentAdHocExitCond)
-        {
-            case("walkto"):
-            case("runto"):
-                if (hitInfo.collider.name.StartsWith("Invisible Ground Plane"))
-                    cont = true;
-                break;
-            case("tap"):
-                if (hitInfo.collider.name.StartsWith("MainCharacter") || hitInfo.collider.gameObject == script.ObjectHolding)
-                    cont = true;
-                break;
-        }
-        return cont;
-    }
+    }		
 
     //This method test whether or not to start the tutorial.
     private bool CheckStartCondition(string name)

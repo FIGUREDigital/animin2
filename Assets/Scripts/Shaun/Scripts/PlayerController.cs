@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour {
 	// PUBLIC (NETWORK)
 	// ---------------------------------------------------------------------------------------------------------------------------------------------------
 
-	[RPC]
+//	[RPC]
 	public void Run() { StartCoroutine(Running()); }
 
 

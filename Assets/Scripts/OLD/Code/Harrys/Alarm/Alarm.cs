@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class Alarm : MonoBehaviour {
-
+	/*
 	private LoopingScrollView m_HoursSelector;
 	private LoopingScrollView m_MinutesSelector;
 
@@ -19,4 +19,5 @@ public class Alarm : MonoBehaviour {
 	void Update () {
 		//Debug.Log ("Alarm is currently set to time: [" + m_HoursSelector.CurrentlySelected + ":" + m_MinutesSelector.CurrentlySelected + "];");
 	}
+	*/
 }

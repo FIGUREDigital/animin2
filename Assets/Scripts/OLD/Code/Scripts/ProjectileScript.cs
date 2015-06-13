@@ -10,10 +10,10 @@ public class ProjectileScript : MonoBehaviour
     // SHAUN START
     // ---------------------------------------------------------------------------------------------------------------------------------------------------
 
-    private bool __local;
+    //private bool __local;
 
     //public bool local { get { return __local;} }
-    public void SetLocal(bool local) { __local = local; }
+    //public void SetLocal(bool local) { __local = local; }
 
     // SHAUN END
     // ---------------------------------------------------------------------------------------------------------------------------------------------------
@@ -47,7 +47,7 @@ public class ProjectileScript : MonoBehaviour
 			LayerMask.NameToLayer("Floor"),  
 			LayerMask.NameToLayer("Projectiles"));
 
-        GunsMinigameScript miniGame = UIGlobalVariablesScript.Singleton.GunGameScene.GetComponent<GunsMinigameScript>();
+        //GunsMinigameScript miniGame = UIGlobalVariablesScript.Singleton.GunGameScene.GetComponent<GunsMinigameScript>();
 
 	}
 	

@@ -263,7 +263,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400030}
-  - 114: {fileID: 11443532}
+  - 114: {fileID: 11425282}
   m_Layer: 0
   m_Name: Music
   m_TagString: Untagged
@@ -1589,7 +1589,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FartSounds: []
   MusicSounds: []
---- !u!114 &11443532
+--- !u!114 &11425282
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -1597,12 +1597,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 100030}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b7db2aaddb6e49a483cfd93b9f83b12, type: 3}
+  m_Script: {fileID: 11500000, guid: 9b5a66dad6ffbba448efba96fe71c5cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioID: MusicGunMinigame
-  restorePreviousOnDisable: 1
-  previousMusic: 
+  onEnable: 3
+  onDisable: 2
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1

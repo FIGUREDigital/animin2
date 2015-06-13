@@ -483,7 +483,6 @@ public class UIClickButtonMasterScript : MonoBehaviour
                         case UIFunctionalityId.PlayMinigameGunFighters:
                             Application.LoadLevel("VuforiaTestMinigame2");
                             break;
-                            break;
                     }
                     break;
                 }

@@ -20,8 +20,6 @@ public class EvoBar : MonoBehaviour
 	void OnEnable()
 	{
 		PlaceMarkers();
-		AniminEvolutionStageId id = ProfilesManagementScript.Instance.CurrentAnimin.AniminEvolutionId;
-
 		CalcEvolution ();
 	}
 	private void CalcEvolution()

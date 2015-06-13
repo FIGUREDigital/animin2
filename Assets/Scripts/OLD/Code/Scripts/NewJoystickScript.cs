@@ -18,7 +18,6 @@ public class NewJoystickScript : MonoBehaviour {
 	private Image background;      // Background's GUI.
 	private Vector2 origin;             // Touch's Origin in Screen-Space.
 	private Vector2 position;           // Pixel Position in Screen-Space.
-	private int size;                   // Screen's smaller side.
 	private float length;               // The maximum distance the Joystick can be pushed.
 	private bool gotPosition;           // Joystick has a position.
 	private int fingerID;               // ID of finger touching this Joystick.
@@ -99,7 +98,7 @@ public class NewJoystickScript : MonoBehaviour {
 		gameObject.transform.localScale = new Vector3(0,0,0);
 		gameObject.transform.position = new Vector3(0,0,999);
 
-		if (Screen.width > Screen.height) {size = Screen.height;} else {size = Screen.width;} VJRvector = new Vector2(0,0);
+		VJRvector = new Vector2(0,0);
 
 //		joystick = gameObject.AddComponent("GSprite") as GSprite;
 //		joystick.texture = joystick2D; 

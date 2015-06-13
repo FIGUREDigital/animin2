@@ -143,13 +143,10 @@ Gun,
             {
                 case UIGlobalVariablesScript.ActiveState.Caring:
                     return GardenSceneRef;
-                    break;
                 case UIGlobalVariablesScript.ActiveState.Collecting:
                     return CubeRunnerMinigameSceneRef;
-                    break;
                 case UIGlobalVariablesScript.ActiveState.Gun:
                     return GunGameScene;
-                    break;
             }
             return null;
         }
@@ -164,13 +161,10 @@ Gun,
             {
                 case UIGlobalVariablesScript.ActiveState.Caring:
                     return CaringScreenRef;
-                    break;
                 case UIGlobalVariablesScript.ActiveState.Collecting:
                     return CuberunnerGamesScreenRef;
-                    break;
                 case UIGlobalVariablesScript.ActiveState.Gun:
                     return GunGameInterface;
-                    break;
             }
             return null;
         }

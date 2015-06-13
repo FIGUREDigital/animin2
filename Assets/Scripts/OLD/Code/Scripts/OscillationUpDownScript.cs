@@ -105,12 +105,12 @@ public class EnemyRespawnScript : MonoBehaviour
 public class EnemyDeathAnimationScript : MonoBehaviour
 {
 	private float Timer;
-	private float Speed;
+	//private float Speed;
 	
 	void Start()
 	{
 		Timer = 3;
-		Speed = UnityEngine.Random.Range(0.3f, 0.4f);
+		//Speed = UnityEngine.Random.Range(0.3f, 0.4f);
 		//this.transform.localScale = new Vector3(this.transform.localScale.x, this.transform.localScale.y * 0.07f, this.transform.localScale.z);
 	
 		for(int i=0;i<this.transform.childCount;++i)

@@ -12,17 +12,29 @@ public class CubeMinigamesPageControls : MonoBehaviour {
     CharacterControllerScript CharacterControllerRef;
 
     [SerializeField]
-    private GameObject[] m_Hearts, m_Stars;
+	private GameObject[] m_Hearts;
+
+	[SerializeField]
+	private GameObject[] m_Stars;
     public GameObject[] Hearts { get { return m_Hearts; } }
     public GameObject[] Stars { get { return m_Stars; } }
 
     [SerializeField]
-    private TextMeshProUGUI m_LevelCounter, m_Points;
+	private TextMeshProUGUI m_LevelCounter;
+
+	[SerializeField]
+	private TextMeshProUGUI m_Points;
 	public TextMeshProUGUI LevelCounter { get { return m_LevelCounter; } }
 	public TextMeshProUGUI PointLabel { get { return m_Points; } }
 
     [SerializeField]
-    private GameObject m_TutorialMove, m_TutorialJump, m_TutorialSwipe;
+	private GameObject m_TutorialMove;
+
+	[SerializeField]
+	private GameObject m_TutorialJump;
+
+	[SerializeField]
+	private GameObject m_TutorialSwipe;
     private int TutorialCounter;
 
     private bool m_Paused;

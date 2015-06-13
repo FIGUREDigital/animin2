@@ -189,7 +189,7 @@ public class TMPro_SDFMaterialEditor : MaterialEditor
 		}
 		catch (System.Exception e)
 		{
-			//Debug.LogException(e);
+			Debug.LogException(e);
 			return;
 		}
 		if(this != null)

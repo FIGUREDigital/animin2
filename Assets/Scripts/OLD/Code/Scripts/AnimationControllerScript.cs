@@ -587,7 +587,7 @@ public class AnimationControllerScript : MonoBehaviour
         }
     }
 
-    int test = 0;
+//    int test = 0;
 
     // Update is called once per frame
     void Update()

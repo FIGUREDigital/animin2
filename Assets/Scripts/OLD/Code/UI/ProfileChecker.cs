@@ -6,16 +6,16 @@ public class ProfileChecker : MonoBehaviour
 {
 	//script no longer in use with new profile system
 
-    GameObject Login;
+    //GameObject Login;
 	GameObject User;
-	GameObject NewUser;
+	//GameObject NewUser;
 
 	bool initialStartup;
 	void Start()
 	{
-		Login = transform.FindChild("Login").gameObject;
+		//Login = transform.FindChild("Login").gameObject;
 		User = transform.FindChild("User").gameObject;
-		NewUser = transform.FindChild("NewUser").gameObject;
+		//NewUser = transform.FindChild("NewUser").gameObject;
 
 		initialStartup = PlayerPrefs.GetString("First Login") != "true";
 //		SaveAndLoad.Instance.LoadAllData ();

@@ -14790,7 +14790,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 401840}
-  - 114: {fileID: 11486466}
+  - 114: {fileID: 11436550}
   m_Layer: 0
   m_Name: Music
   m_TagString: Untagged
@@ -44745,7 +44745,7 @@ MonoBehaviour:
   debugEditSmoothTime: LerpSpeed
   additionalYOffset: {fileID: 400988}
   m_NonARCameraPositionReference: {fileID: 401962}
---- !u!114 &11486466
+--- !u!114 &11436550
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -44753,12 +44753,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 101840}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b7db2aaddb6e49a483cfd93b9f83b12, type: 3}
+  m_Script: {fileID: 11500000, guid: 9b5a66dad6ffbba448efba96fe71c5cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioID: MusicCubeMinigame
-  restorePreviousOnDisable: 1
-  previousMusic: 
+  onEnable: 4
+  onDisable: 2
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1

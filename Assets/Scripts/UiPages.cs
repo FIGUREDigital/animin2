@@ -85,7 +85,7 @@ public class UiPages : MonoBehaviour
     /// <summary>
     /// Static instance
     /// </summary>
-    private static UiPages instance;
+    //private static UiPages instance;
 
     // Private
     #endregion
@@ -100,7 +100,7 @@ public class UiPages : MonoBehaviour
     /// </summary>
     void Awake()
     {
-        instance = this;
+        //instance = this;
 
         // fix the pages
         uiPages = new GameObject[(int)Pages.MAINSCENE_COUNT];
@@ -438,7 +438,7 @@ public class UiPages : MonoBehaviour
         EventSystem.current.RaycastAll(pe, hits);
 
         bool hit = false;
-        GameObject hgo = null;
+//        GameObject hgo = null;
         string gos = "";
         foreach (RaycastResult h in hits)
         {

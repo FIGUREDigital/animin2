@@ -7,7 +7,7 @@ public class ObjectLookAtDeviceScript : MonoBehaviour
 
 	float angle =0;
 	float speed = (2 * Mathf.PI) / 5; //2*PI in degress is 360, so you get 5 seconds to complete a circle
-	float radius=5;
+	//float radius=5;
 	//public Transform ObjectTrasnform;
 
 	//public Vector3 Angles;

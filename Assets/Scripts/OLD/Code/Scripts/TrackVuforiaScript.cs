@@ -40,8 +40,8 @@ public class TrackVuforiaScript : MonoBehaviour, ITrackableEventHandler
 
     private ValueSmoother SmootherAxisX = new ValueSmoother();
     private ValueSmoother SmootherAxisY = new ValueSmoother();
-    private ValueSmootherVector3 CameraPositionSmoother = new ValueSmootherVector3();
-    private ValueSmootherVector3 CameraRotationSmoother = new ValueSmootherVector3();
+    //private ValueSmootherVector3 CameraPositionSmoother = new ValueSmootherVector3();
+    //private ValueSmootherVector3 CameraRotationSmoother = new ValueSmootherVector3();
 
 
     void Start()
@@ -165,7 +165,7 @@ public class TrackVuforiaScript : MonoBehaviour, ITrackableEventHandler
     }
     public static void EnableDisableMinigamesBasedOnARStatus()
     {
-        GameObject sprite = GameObject.Find("SpriteCubeWorld");
+//        GameObject sprite = GameObject.Find("SpriteCubeWorld");
 
 //        if (sprite != null)
 //        {

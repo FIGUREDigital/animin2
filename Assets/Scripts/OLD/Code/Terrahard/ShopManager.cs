@@ -147,7 +147,7 @@ public class ShopManager
         Debug.Log( "productListReceivedEvent. total products received: " + productList.Count );
 
         // print the products to the console
-        foreach( StoreKitProduct product in productList )
+//        foreach( StoreKitProduct product in productList )
 //            Debug.Log( product.ToString() + "\n" );
 
         if(productList.Count > 0 && !mShopReady)

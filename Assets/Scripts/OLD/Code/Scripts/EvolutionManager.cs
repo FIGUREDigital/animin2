@@ -29,7 +29,7 @@ public class EvolutionManager
     private int mNextMarker = (int)(MARKER_RATE * 0.5f);
     private int mZefProgress;
     private int mCurrentMarker = 0;
-    private string mReward;
+    //private string mReward;
     private AniminEvolutionStageId mCorrectStage;
     private HappinessState mHappinessState;
     private HappinessState mPrevHappinessState;
@@ -39,31 +39,28 @@ public class EvolutionManager
     private struct UnlockItem
     {
         public InventoryItemId Id;
-        public int Marker;
+        public int numZefs;
 
-        public UnlockItem(InventoryItemId id, int marker)
+		public UnlockItem(InventoryItemId id, int numZefs)
         {
             Id = id;
-            Marker = marker;
+			this.numZefs = numZefs;
         }
     }
 
     UnlockItem[] m_Unlocks = new UnlockItem[]
     {
 	//	new UnlockItem(InventoryItemId.Phone, 1),
-        new UnlockItem(InventoryItemId.Clock, 1),
-        new UnlockItem(InventoryItemId.EDMJuno, 2),
-        new UnlockItem(InventoryItemId.FartButton, 3),
-        new UnlockItem(InventoryItemId.EDM808, 4),
-        new UnlockItem(InventoryItemId.woodFrame, 5),
-        new UnlockItem(InventoryItemId.EDMKsynth, 6),
-        new UnlockItem(InventoryItemId.Camera, 7),
-        new UnlockItem(InventoryItemId.Boombox, 8),
-        new UnlockItem(InventoryItemId.woodSword, 9),
-        new UnlockItem(InventoryItemId.Radio, 10),
-        new UnlockItem(InventoryItemId.paperCalendar, 11)
+        new UnlockItem(InventoryItemId.Clock, 3),
+        new UnlockItem(InventoryItemId.EDMJuno, 6),
+		new UnlockItem(InventoryItemId.Radio, 9),
+        new UnlockItem(InventoryItemId.EDM808, 12),
+		new UnlockItem(InventoryItemId.FartButton, 16),
+		new UnlockItem(InventoryItemId.Boombox, 20),
+		new UnlockItem(InventoryItemId.Lightbulb, 24),
+		new UnlockItem(InventoryItemId.EDMKsynth, 28),
+		new UnlockItem(InventoryItemId.Camera, 34)
     };
-
 
     public static List<string> mMarkers = new List<string>();
 
@@ -193,91 +190,23 @@ public class EvolutionManager
         {
             Debug.Log("ZefTokens : [" + ProfilesManagementScript.Instance.CurrentAnimin.ZefTokens + "]; Next Marker : " + mNextMarker + "];");
             mNextMarker += MARKER_RATE;
-            if (mMarkers.Count > mCurrentMarker)
+            /*if (mMarkers.Count > mCurrentMarker)
             {
                 mReward = mMarkers[mCurrentMarker];
-            }
+            }*/
 		   // Not triggered everytime an evo item is unlocked...
            // AchievementsScript.Singleton.Show(mEvoStar ? AchievementTypeId.EvolutionStar : AchievementTypeId.EvolutionExclamation, 0);
             mEvoStar = !mEvoStar;
             mCurrentMarker++;
 		}
-           // for (int i = 0; i < m_Unlocks.Length; i++)
-           // {
-                //if (m_Unlocks[i].Marker == mCurrentMarker)
-				if (ProfilesManagementScript.Instance.CurrentAnimin.ZefTokens == 3)
-                {
-                    GameObject chest = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().GetAndSpawnChests(4);
-                 // chest.GetComponent<EvolutionChestItem>().id = m_Unlocks[i].Id;
-					chest.GetComponent<EvolutionChestItem>().id = InventoryItemId.Clock;
-                   // break;
-                }
-
-				if (ProfilesManagementScript.Instance.CurrentAnimin.ZefTokens == 6)
-				{
-					GameObject chest = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().GetAndSpawnChests(4);
-					// chest.GetComponent<EvolutionChestItem>().id = m_Unlocks[i].Id;
-					chest.GetComponent<EvolutionChestItem>().id = InventoryItemId.EDMJuno;
-				//	break;
-				}
-
-				if (ProfilesManagementScript.Instance.CurrentAnimin.ZefTokens == 9)
-				{
-					GameObject chest = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().GetAndSpawnChests(4);
-					// chest.GetComponent<EvolutionChestItem>().id = m_Unlocks[i].Id;
-					chest.GetComponent<EvolutionChestItem>().id = InventoryItemId.Radio;
-					//	break;
-				}
-
-				if (ProfilesManagementScript.Instance.CurrentAnimin.ZefTokens == 12)
-				{
-					GameObject chest = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().GetAndSpawnChests(4);
-					// chest.GetComponent<EvolutionChestItem>().id = m_Unlocks[i].Id;
-					chest.GetComponent<EvolutionChestItem>().id = InventoryItemId.EDM808;
-					//	break;
-				}
-				
-				if (ProfilesManagementScript.Instance.CurrentAnimin.ZefTokens == 16)
-				{
-					GameObject chest = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().GetAndSpawnChests(4);
-					// chest.GetComponent<EvolutionChestItem>().id = m_Unlocks[i].Id;
-					chest.GetComponent<EvolutionChestItem>().id = InventoryItemId.FartButton;
-					//	break;
-				}
-
-				if (ProfilesManagementScript.Instance.CurrentAnimin.ZefTokens == 20)
-				{
-					GameObject chest = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().GetAndSpawnChests(4);
-					// chest.GetComponent<EvolutionChestItem>().id = m_Unlocks[i].Id;
-					chest.GetComponent<EvolutionChestItem>().id = InventoryItemId.Boombox;
-					//	break;
-				}
-
-				if (ProfilesManagementScript.Instance.CurrentAnimin.ZefTokens == 24)
-				{
-					GameObject chest = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().GetAndSpawnChests(4);
-					// chest.GetComponent<EvolutionChestItem>().id = m_Unlocks[i].Id;
-					chest.GetComponent<EvolutionChestItem>().id = InventoryItemId.Lightbulb;
-					//	break;
-				}
-
-				if (ProfilesManagementScript.Instance.CurrentAnimin.ZefTokens == 28)
-				{
-					GameObject chest = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().GetAndSpawnChests(4);
-					// chest.GetComponent<EvolutionChestItem>().id = m_Unlocks[i].Id;
-					chest.GetComponent<EvolutionChestItem>().id = InventoryItemId.EDMKsynth;
-					//	break;
-				}
-
-				if (ProfilesManagementScript.Instance.CurrentAnimin.ZefTokens == 34)
-				{
-					GameObject chest = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().GetAndSpawnChests(4);
-					// chest.GetComponent<EvolutionChestItem>().id = m_Unlocks[i].Id;
-					chest.GetComponent<EvolutionChestItem>().id = InventoryItemId.Camera;
-					//	break;
-				}
-           // }
-       // }
+        for (int i = 0; i < m_Unlocks.Length; i++)
+        {
+			if (m_Unlocks[i].numZefs == ProfilesManagementScript.Instance.CurrentAnimin.ZefTokens)
+			{
+                GameObject chest = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().GetAndSpawnChests(4);
+             	chest.GetComponent<EvolutionChestItem>().id = m_Unlocks[i].Id;
+            }
+		}
         //if (ProfilesManagementScript.Singleton.CurrentProfile.ActiveAnimin == PersistentData.TypesOfAnimin.Tbo)
 /*        if (false)
         {
@@ -417,7 +346,7 @@ public class EvolutionManager
     {
         ProfilesManagementScript.Instance.CurrentAnimin.AniminEvolutionId = mCorrectStage;
         UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterSwapManagementScript>().LoadCharacter(ProfilesManagementScript.Instance.CurrentAnimin.PlayerAniminId, mCorrectStage, !ProfilesManagementScript.Instance.CurrentAnimin.Hatched);
-        AchievementsScript.Singleton.Show(AchievementTypeId.Evolution, 100);
+        //AchievementsScript.Singleton.Show(AchievementTypeId.Evolution, 100);
     }
 
     private void Devolve()

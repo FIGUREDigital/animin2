@@ -251,7 +251,7 @@ public class EtceteraAndroid
 	}
 
 
-	// Prompts the user to choose an image from the photo album and resizes it to the dimensions passed in. Passing in 0 dimensions will get you a full sized image.
+	// Prompts the user to choose an image from the photo album
 	public static void promptForPictureFromAlbum( string name )
 	{
 		if( Application.platform != RuntimePlatform.Android )

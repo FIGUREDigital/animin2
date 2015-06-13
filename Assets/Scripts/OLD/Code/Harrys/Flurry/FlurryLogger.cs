@@ -33,9 +33,9 @@ public class FlurryLogger
         FlurryAnalytics.setSessionReportsOnCloseEnabled(true);
         FlurryAnalytics.setSessionReportsOnPauseEnabled(true);
         #elif UNITY_ANDROID
-        FlurryAndroid.setContinueSessionMillis(20000);
-        FlurryAndroid.onStartSession("K98433N9XWCVX5NHTPCN",false,true);
-        FlurryAndroid.setLogEnabled(true);
+        FlurryAnalytics.setContinueSessionMillis(20000);
+        FlurryAnalytics.startSession("K98433N9XWCVX5NHTPCN", false);
+        FlurryAnalytics.setLogEnabled(true);
 
         #endif
 
@@ -47,19 +47,15 @@ public class FlurryLogger
         FlurryAnalytics.logEventWithParameters("DeviceStats", dict, false);
         FlurryAnalytics.logEvent("SessionTime", true);
         #elif UNITY_ANDROID
-        FlurryAndroid.logEvent ("DeviceStats", dict, false);
-        FlurryAndroid.logEvent ("SessionTime", true);
+        FlurryAnalytics.logEvent("DeviceStats", dict, false);
+        FlurryAnalytics.logEvent("SessionTime", true);
         #endif
     }
 
     public void EndSession()
     {
         Debug.Log("FLURRY LOGGER : [End Session];");
-        #if UNITY_IOS
         FlurryAnalytics.endTimedEvent("SessionTime");
-        #elif UNITY_ANDROID
-		FlurryAndroid.endTimedEvent ("SessionTime");
-        #endif
         //ProfilesManagementScript.Singleton.SendRealTimeNotification("LoggedIn",-1);
     }
 
@@ -70,11 +66,7 @@ public class FlurryLogger
     public void StartMainScreenTimer()
     {
         Debug.Log("FLURRY LOGGER : [StartMainScreenTimer];");
-        #if UNITY_IOS
-            FlurryAnalytics.logEvent("MainMenuStart", true);
-        #elif UNITY_ANDROID
-		    FlurryAndroid.logEvent("MainMenuStart",true);
-        #endif
+        FlurryAnalytics.logEvent("MainMenuStart", true);
         TimingMainScreen = true;
     }
 
@@ -83,11 +75,7 @@ public class FlurryLogger
         Debug.Log("FLURRY LOGGER : [EndMainScreenTimer];");
         if (!TimingMainScreen)
             return;
-        #if UNITY_IOS
-            FlurryAnalytics.endTimedEvent("MainMenuStart");
-        #elif UNITY_ANDROID
-		    FlurryAndroid.endTimedEvent ("MainMenuStart");
-        #endif
+        FlurryAnalytics.endTimedEvent("MainMenuStart");
         TimingMainScreen = false;
     }
 
@@ -106,7 +94,7 @@ public class FlurryLogger
         #if UNITY_IOS
             FlurryAnalytics.logEventWithParameters("TimeInMinigame", dict, true);
         #elif UNITY_ANDROID
-		    FlurryAndroid.logEvent ("TimeInMinigame", dict, true);
+        FlurryAnalytics.logEvent("TimeInMinigame", dict, true);
         #endif
         TimingMinigame = true;
     }
@@ -122,7 +110,7 @@ public class FlurryLogger
         #if UNITY_IOS
             FlurryAnalytics.logEventWithParameters("TimeInMinigame", dict, true);
         #elif UNITY_ANDROID
-		    FlurryAndroid.logEvent ("TimeInMinigame", dict, true);
+        FlurryAnalytics.logEvent("TimeInMinigame", dict, true);
         #endif
 
         TimingMinigame = false;
@@ -138,7 +126,7 @@ public class FlurryLogger
         #if UNITY_IOS
             FlurryAnalytics.logEvent("ARCardTime", false);
         #elif UNITY_ANDROID
-        	FlurryAndroid.logEvent ("ARCardTime",false);
+        FlurryAnalytics.logEvent("ARCardTime", false);
         #endif
         TimingARCard = true;
     }
@@ -151,7 +139,7 @@ public class FlurryLogger
         #if UNITY_IOS
             FlurryAnalytics.endTimedEvent("ARCardTime");
         #elif UNITY_ANDROID
-            FlurryAndroid.endTimedEvent ("ARCardTime");
+        FlurryAnalytics.endTimedEvent("ARCardTime");
         #endif
         TimingARCard = false;
     }
@@ -168,7 +156,7 @@ public class FlurryLogger
         #if UNITY_IOS
             FlurryAnalytics.logEventWithParameters("ConversionTime", dict, false);
         #elif UNITY_ANDROID
-            FlurryAndroid.logEvent ("ConversionTime", dict, false);
+        FlurryAnalytics.logEvent("ConversionTime", dict, false);
         #endif
     }
 
@@ -184,7 +172,7 @@ public class FlurryLogger
         #if UNITY_IOS
             FlurryAnalytics.logEventWithParameters("ConversionTime", dict, false);
         #elif UNITY_ANDROID
-		    FlurryAndroid.logEvent ("ConversionTime", dict, false);
+        FlurryAnalytics.logEvent("ConversionTime", dict, false);
         #endif
     }
 

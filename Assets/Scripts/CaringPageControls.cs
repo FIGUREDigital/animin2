@@ -332,7 +332,7 @@ public class CaringPageControls : MonoBehaviour
             #elif UNITY_ANDROID
             StartCoroutine(ScreenshotManager.Save( screenshotName, "Animin" , true));
             ScreenshotManager.ScreenshotFinishedSaving += PopPhoto;
-			audio.Play();
+			GetComponent<AudioSource>().Play();
             #endif
         }
     }

@@ -6,9 +6,9 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: HelveticaNeue-Italic Bold BlueBoarder
+  m_Name: HelveticaNeue boarder
   m_Shader: {fileID: 4800000, guid: cafd18099dfc0114896e0a8b277b81b6, type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: MASK_OFF UNDERLAY_ON
   m_LightmapFlags: 5
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -19,7 +19,7 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2855442, guid: 2e5064c5a9bdc4a83aad3c9f5fef1a85, type: 2}
+          m_Texture: {fileID: 2868834, guid: 662405f740bef4e72854d24e76afd5c6, type: 2}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -82,7 +82,7 @@ Material:
       data:
         first:
           name: _FaceDilate
-        second: .683000028
+        second: .119999997
       data:
         first:
           name: _OutlineUVSpeedX
@@ -94,11 +94,11 @@ Material:
       data:
         first:
           name: _OutlineWidth
-        second: .286000013
+        second: .150000006
       data:
         first:
           name: _OutlineSoftness
-        second: 0
+        second: .0590000004
       data:
         first:
           name: _Bevel
@@ -150,19 +150,19 @@ Material:
       data:
         first:
           name: _UnderlayOffsetX
-        second: 0
+        second: .389999986
       data:
         first:
           name: _UnderlayOffsetY
-        second: 0
+        second: -.360000014
       data:
         first:
           name: _UnderlayDilate
-        second: 0
+        second: .419999987
       data:
         first:
           name: _UnderlaySoftness
-        second: 0
+        second: .196999997
       data:
         first:
           name: _GlowOffset
@@ -186,7 +186,7 @@ Material:
       data:
         first:
           name: _WeightBold
-        second: .75
+        second: .5
       data:
         first:
           name: _ShaderFlags
@@ -194,15 +194,15 @@ Material:
       data:
         first:
           name: _ScaleRatioA
-        second: .833333313
+        second: .800000012
       data:
         first:
           name: _ScaleRatioB
-        second: .833333313
+        second: .703999996
       data:
         first:
           name: _ScaleRatioC
-        second: .264166623
+        second: .699106276
       data:
         first:
           name: _TextureWidth
@@ -214,7 +214,7 @@ Material:
       data:
         first:
           name: _GradientScale
-        second: 6
+        second: 5
       data:
         first:
           name: _ScaleX
@@ -255,7 +255,7 @@ Material:
       data:
         first:
           name: _OutlineColor
-        second: {r: .239215687, g: .388235301, b: .78039217, a: .643137276}
+        second: {r: 0, g: 0, b: 0, a: 1}
       data:
         first:
           name: _SpecularColor

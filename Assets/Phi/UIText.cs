@@ -27,6 +27,7 @@ public class UIText : MonoBehaviour {
     private Material material;
 
     private bool isLocalized = false;
+	bool enableCalled = false;
 
     [NonSerialized]
     public Action<string> onTextChanged = null;    // Allow other components to be triggered when the text is changed.
@@ -71,6 +72,7 @@ public class UIText : MonoBehaviour {
 
     void OnEnable()
     {
+		enableCalled = true;
         CheckValid();
     }
 
@@ -199,6 +201,8 @@ public class UIText : MonoBehaviour {
         
     public void UpdateText(bool setLocalized = false)
     {
+		if (!enableCalled)
+			return;
 		if (textRenderer == null)
 		{
 			CheckValid();

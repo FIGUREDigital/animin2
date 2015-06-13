@@ -98,7 +98,8 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
         set
         {
             m_Paused = value;
-
+			
+			UiPages.GetPage(Pages.GunMinigamePage).GetComponent<GunMinigamePageControls>().Paused = value;
             Animator animator = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponentInChildren<Animator>();
             if (animator != null)
                 animator.enabled = !value;                           //Pause the character's Animation
@@ -422,6 +423,8 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
         CurrentBullets.Clear();
        // CurrentBullets.Add(BulletPrefab[Random.Range(0, BulletPrefab.Length)]);
 		CurrentBullets.Add(BulletPrefab[1]);
+		Paused = false;
+		JoystickPageControls.Paused = false;
 
 		GameObject.FindGameObjectWithTag("meterfill").GetComponent<UiImage>().sprite = blueBar;
 		GameObject.FindGameObjectWithTag("metericon").GetComponent<UiImage>().sprite = blueberryIcon;
@@ -907,8 +910,20 @@ public class GunsMinigameScript : MonoBehaviour//Photon.MonoBehaviour
     }
 
     public void ExitMinigame()
-    {
-        UIGlobalVariablesScript.Singleton.SoundEngine.StopLoop();
+    {		
+		UIGlobalVariablesScript.Singleton.SoundEngine.StopLoop();
+		Paused = true;
+		JoystickPageControls.Paused = true;
+		UiPages.GetPage (Pages.GunMinigamePage).GetComponent<ShowHide> ().Show (false);
+		//if (!skipScores) {
+		ScoringPage.Show (Minigame.Gungame, Points, 0, LeaveMinigame);
+		//} else {
+		//	LeaveMinigame ();
+		//}
+	}
+
+	public void LeaveMinigame()
+	{
         BetweenSceneData.Instance.ReturnFromMiniGame = true;
         BetweenSceneData.Instance.Points = Points;
         MainARHandler.Instance.ChangeSceneToCaring();

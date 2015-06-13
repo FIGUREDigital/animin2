@@ -22,6 +22,7 @@ public class PlayerProfileData
     public bool BuyFullTbo;
 
     public List<string> TutorialsCompleted = new List<string>();
+	public List<int>highScores= new List<int>();
 
     public bool TutorialBoxLandPlayed
     {

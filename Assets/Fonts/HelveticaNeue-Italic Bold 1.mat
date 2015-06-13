@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: HelveticaNeue-Italic Bold BlueBoarder
+  m_Name: HelveticaNeue-Italic Bold 1
   m_Shader: {fileID: 4800000, guid: cafd18099dfc0114896e0a8b277b81b6, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
@@ -19,7 +19,7 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2855442, guid: 2e5064c5a9bdc4a83aad3c9f5fef1a85, type: 2}
+          m_Texture: {fileID: 2802644, guid: 2e5064c5a9bdc4a83aad3c9f5fef1a85, type: 2}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -82,7 +82,7 @@ Material:
       data:
         first:
           name: _FaceDilate
-        second: .683000028
+        second: .123999998
       data:
         first:
           name: _OutlineUVSpeedX
@@ -94,7 +94,7 @@ Material:
       data:
         first:
           name: _OutlineWidth
-        second: .286000013
+        second: 0
       data:
         first:
           name: _OutlineSoftness
@@ -202,7 +202,7 @@ Material:
       data:
         first:
           name: _ScaleRatioC
-        second: .264166623
+        second: .730000019
       data:
         first:
           name: _TextureWidth
@@ -255,7 +255,7 @@ Material:
       data:
         first:
           name: _OutlineColor
-        second: {r: .239215687, g: .388235301, b: .78039217, a: .643137276}
+        second: {r: 0, g: 0, b: 0, a: 1}
       data:
         first:
           name: _SpecularColor

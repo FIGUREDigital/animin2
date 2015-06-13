@@ -16,6 +16,11 @@ public class ScoringPage : Phi.SingletonScene<ScoringPage>
 	public UIText highScore;
 	public float duration = 4;
 	public MedalScores[] medalScores;
+	public MeshRenderer chestLid;
+	public MeshRenderer chestBase;
+	public GameObject prize;
+	public Transform chest;
+	public Transform win;
 	
 	[System.Serializable]
 	public class MedalScores
@@ -31,6 +36,9 @@ public class ScoringPage : Phi.SingletonScene<ScoringPage>
 		public Color bar;
 		public Sprite sprite;
 		public ParticleSystem particles;
+		public Material chestLidMaterial;
+		public Material chestBaseMaterial;
+		public ParticleSystem chestParticles;
 	}
 
 	override public void Init()
@@ -44,7 +52,7 @@ public class ScoringPage : Phi.SingletonScene<ScoringPage>
 			Camera cam = Phi.SingletonPrefab.instances["UICamera"].GetComponent<Camera>();
 			cam.clearFlags = CameraClearFlags.Color;
 			cam.backgroundColor = Color.black;
-			Show (Minigame.Cuberunners, 20000, 4, null);
+			Show (Minigame.Cuberunners, 800, 4, null);
 		}
 		#endif
 	}
@@ -98,6 +106,7 @@ public class ScoringPage : Phi.SingletonScene<ScoringPage>
 		barFill.color = medalVisualDefs[curMedal].bar;
 		glow.transform.DOScale (Vector3.one, duration).SetEase (Ease.OutBounce);
 		StartCoroutine(ParticleBurst(curMedal));
+		BetweenSceneData.Instance.chest = curMedal+1;
 		// Setup next medal			
 		curMedal++;
 		SetupMedal(curMedal);
@@ -120,6 +129,17 @@ public class ScoringPage : Phi.SingletonScene<ScoringPage>
 
 	void SetHighScore(float score)
 	{
+		float curHigh = 0;
+		while (ProfilesManagementScript.Instance.CurrentProfile.highScores.Count <= (int)currentGame) 
+		{
+			ProfilesManagementScript.Instance.CurrentProfile.highScores.Add (0);
+		}
+		curHigh = ProfilesManagementScript.Instance.CurrentProfile.highScores[(int)currentGame];
+		if (score < curHigh) {
+			score = curHigh;
+		} else {
+			ProfilesManagementScript.Instance.CurrentProfile.highScores[(int)currentGame] = Mathf.RoundToInt(score);
+		}
 		showingHighScore = score;
 		highScore.Text = string.Format("High Score: {0:0}", score);
 	}
@@ -131,19 +151,31 @@ public class ScoringPage : Phi.SingletonScene<ScoringPage>
 	float barMax = float.MaxValue;
 	float barMin = 0;
 	MedalScores ms = null;
+	Action onFinish;
+	Minigame currentGame;
 
 	IEnumerator DoShow (Minigame game, int points, int stars, Action onFinish)
 	{
-		SetHighScore (18000);
+		currentGame = game;
+		win.localScale = new Vector3 (0.001f, 0.001f, 0.001f);
+		win.gameObject.SetActive (false);
+		chest.localScale = Vector3.zero;
+		this.onFinish = onFinish;
 		visuals.SetActive (false);
-		visuals.transform.localScale = new Vector3 (0.001f, 0.001f, 0.001f);
+		prize.SetActive (false);		
 		yield return new WaitForSeconds (0.25f);
-		visuals.SetActive (true);
 		SetScore (0);
 		starCount.Text = "x<size=+60>" + stars + "</size>";
 		glow.gameObject.SetActive (false);
 		visuals.SetActive (true);
+		SetHighScore (0);
+#if SCALEON
+		visuals.transform.localScale = new Vector3 (0.001f, 0.001f, 0.001f);
 		visuals.transform.DOScale (Vector3.one, 0.5f).SetEase (Ease.OutBounce);
+		#else
+		visuals.transform.localPosition = new Vector3 (0, -1800, 0);
+		visuals.transform.DOLocalMove (Vector3.zero, 0.5f).SetEase (Ease.OutBounce);
+#endif
 		yield return new WaitForSeconds (0.5f);
 	
 		ms = null;
@@ -180,21 +212,50 @@ public class ScoringPage : Phi.SingletonScene<ScoringPage>
 			if (points > barMax)
 			{
 				// Get ready for next bar.. hide medal		
-				glow.transform.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InCubic);
-				yield return new WaitForSeconds(0.55f);
+				//glow.transform.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InCubic);
+				//yield return new WaitForSeconds(0.55f);
+				glow.transform.localScale = Vector3.zero;
 				// And show
 				ShowMedal(0.5f);
 			}
 			i++;
-		} while (ms.scores.Length >= i);
-		if(onFinish != null)
-		{
-			onFinish();
+		} while (points > barMax && ms.scores.Length >= i);
+		if (curMedal > 0) {
+			switch (curMedal)
+			{
+			case 1:
+				AudioController.Play ("MedalBronze");
+				break;
+			case 2:
+				AudioController.Play ("MedalSilver");
+				break;
+			case 3:
+				AudioController.Play ("MedalGold");
+				break;
+			}
+			MedalVisual visual = medalVisualDefs [curMedal - 1];
+			if (visual != null) {
+				// Now show prize
+				chestLid.sharedMaterial = visual.chestLidMaterial;
+				chestBase.sharedMaterial = visual.chestBaseMaterial;
+				prize.SetActive (true);				
+				win.gameObject.SetActive (true);
+				yield return new WaitForSeconds (0.25f);
+				visual.chestParticles.Emit (50);
+			}
 		}
 	}
 
 	public void OnOk()
-	{
-
+	{		
+		visuals.transform.DOLocalMove (new Vector3 (0, -1800, 0), 0.25f).SetEase (Ease.InCubic).OnComplete (Hide);
+	}
+	public void Hide()
+	{		
+		visuals.SetActive (false);
+		if(onFinish != null)
+		{
+			onFinish();
+		}
 	}
 }

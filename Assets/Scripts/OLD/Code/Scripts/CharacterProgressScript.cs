@@ -455,34 +455,17 @@ public class CharacterProgressScript : MonoBehaviour
 
         if (BetweenSceneData.Instance.ReturnFromMiniGame)
         {
-            if (BetweenSceneData.Instance.Points >= 0)
-            {
-                if (BetweenSceneData.Instance.Points >= 15000)
-                {
-                    AchievementsScript.Singleton.Show(AchievementTypeId.Gold, BetweenSceneData.Instance.Points);
-					ProfilesManagementScript.Instance.CurrentAnimin.Fitness += 60;
-                    SpawnChests(3);
-                }
-                else if (BetweenSceneData.Instance.Points >= 5000)
-                {
-                    AchievementsScript.Singleton.Show(AchievementTypeId.Silver, BetweenSceneData.Instance.Points);
-					ProfilesManagementScript.Instance.CurrentAnimin.Fitness += 40;
-                    SpawnChests(2);
-                }
-                else if (BetweenSceneData.Instance.Points >= 800)
-                {
-                    AchievementsScript.Singleton.Show(AchievementTypeId.Bronze, BetweenSceneData.Instance.Points);
-					ProfilesManagementScript.Instance.CurrentAnimin.Fitness += 20;
-                    SpawnChests(1);
-                }
-                else if (!TutorialHandler.CheckTutsCompleted("MiniGameDone"))
-                {
-                    ProfilesManagementScript.Instance.CurrentAnimin.Fitness += 10;
-                    SpawnChests(1);
-                }
-                TutorialHandler.TriggerAdHocStatic("MiniGameDone");
-                BetweenSceneData.Instance.ResetPoints();
-            }
+			if (!TutorialHandler.CheckTutsCompleted("MiniGameDone") && BetweenSceneData.Instance.chest == 0)
+			{
+				BetweenSceneData.Instance.chest = 1;
+			}
+			if(BetweenSceneData.Instance.chest > 0)
+			{
+				SpawnChests(BetweenSceneData.Instance.chest);
+				ProfilesManagementScript.Instance.CurrentAnimin.Fitness += BetweenSceneData.Instance.chest*20;
+			}
+			TutorialHandler.TriggerAdHocStatic("MiniGameDone");
+			BetweenSceneData.Instance.ResetData();
             if (BetweenSceneData.Instance.minigame == BetweenSceneData.Minigame.Collector)
             {
 								UiPages.GetPage (Pages.CaringPage).GetComponent<CaringPageControls> ().TutorialHandler.BeginBlock ();
@@ -1615,7 +1598,7 @@ public class CharacterProgressScript : MonoBehaviour
                     //Debug.Log("END OF NONE");
 
 
-                    if (RequestedToMoveToCounter > 0)
+					if (RequestedToMoveToCounter > 0 && moveHitInfo.collider)
                     {
                         if ((Time.time - RequestedTime) >= 0.17f)
                         {

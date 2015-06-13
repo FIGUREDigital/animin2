@@ -19,14 +19,19 @@ public class BetweenSceneData
     public enum Minigame {Collector, Guns};
     public Minigame minigame;
 
-
+	public int trophy;
+	public int chest;
     private int m_Points;
     public int Points
     {
         get { return m_Points; }
         set { m_Points = value; }
     }
-    public void ResetPoints() { Points = 0; }
+    public void ResetData() 
+	{
+		Points = 0; 
+		chest = 0;
+	}
 
     #region Singleton
     static BetweenSceneData m_Instance;

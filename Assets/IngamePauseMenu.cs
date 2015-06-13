@@ -24,7 +24,6 @@ public class IngamePauseMenu : MonoBehaviour
             UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef.GetComponent<MinigameCollectorScript>().Paused = On;
         } else if (MainARHandler.Instance.CurrentGameScene == GameScenes.MinigameCannon)
 		{
-			UiPages.GetPage(Pages.GunMinigamePage).GetComponent<GunMinigamePageControls>().Paused = On;
             UIGlobalVariablesScript.Singleton.GunGameScene.GetComponent<GunsMinigameScript>().Paused = On;
         }
     }

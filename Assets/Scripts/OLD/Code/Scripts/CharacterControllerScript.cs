@@ -617,7 +617,7 @@ public class CharacterControllerScript : MonoBehaviour //Photon.MonoBehaviour
             //Destroy(hit.gameObject);
         }
 
-        if (hit.gameObject.tag == "EnemyJumbTop")
+		if (hit.gameObject.tag == "EnemyJumbTop" && UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef != null)
         {
             Debug.Log("HIT ENEMY");
             // hit from above
@@ -630,7 +630,11 @@ public class CharacterControllerScript : MonoBehaviour //Photon.MonoBehaviour
             {
                 Debug.Log("HIT FROM SIDES");
 
-                UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef.GetComponent<MinigameCollectorScript>().OnEvilCharacterHit(hit.gameObject);
+				MinigameCollectorScript mcs = UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef.GetComponent<MinigameCollectorScript>();
+				if (mcs != null)
+				{
+					mcs.OnEvilCharacterHit(hit.gameObject);
+				}
 
 
                 //CharacterController controller = GetComponent<CharacterController>();

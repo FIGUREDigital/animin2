@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Phi;
 
-public class Music : Phi.SingletonScene<Music> {
+public class Music : SingletonScene<Music> {
 
 	static string currentMusicID = "";
+
+	UIToast.DisplayData toast = null;
 
 	[System.Serializable]
 	public class MusicInfo
@@ -32,6 +35,8 @@ public class Music : Phi.SingletonScene<Music> {
 		public string audioIDToPlayWhenStarts;	// When set and you start playing this playlist this audioID will also be triggered.
 		public Color notificationColor;
 		public Sprite notificationSprite;
+		public bool isMusicPlayer = false;	// When true this should play instead of caring or minigame music until it is switched off.
+		public bool canTransitionIfPlayingMusicPlayer = false;
 	}
 
 	[SerializeField]
@@ -39,20 +44,33 @@ public class Music : Phi.SingletonScene<Music> {
 
 	PlaylistDef currentPlayList;
 
+	public Playlists CurentList
+	{
+		get
+		{
+			return currentPlayList != null ? currentPlayList.playlist : Playlists.None;
+		}
+	}
+
+
 	public override void Init()
 	{
 	}
 
-	public void Play(Playlists list)
+	public void Play(Playlists list, bool force = false)
 	{
+		PlaylistDef newPList = null;
 		for(int i = 0; i < playlistDefs.Length; i++)
 		{
 			if (playlistDefs[i].playlist == list)
 			{
-				currentPlayList = playlistDefs[i];
+				newPList = playlistDefs[i];
 				break;
 			}
 		}
+		if(newPList == null) return;
+		if(!force && currentPlayList != null && currentPlayList.isMusicPlayer && !newPList.canTransitionIfPlayingMusicPlayer) return;
+		currentPlayList = newPList;
 		if(currentPlayList != null)
 		{
 			AudioController.ClearPlaylist();
@@ -60,10 +78,17 @@ public class Music : Phi.SingletonScene<Music> {
 			{
 				AudioController.EnqueueMusic(currentPlayList.musicInfos[i].musicID);
 			}
-			AudioController.PlayMusicPlaylist();
+			if(!BoomBoxUI.IsPlaying)
+			{
+				AudioController.PlayMusicPlaylist();
+			}
 		}
 	}
-	
+
+	string previousNotificationSound = "";
+
+	bool deviceMusicPlaying = false;
+
 	// Update is called once per frame
 	void Update ()
 	{
@@ -79,21 +104,56 @@ public class Music : Phi.SingletonScene<Music> {
 		{
 			currentMusicID = "";
 		}
-		if (Phi.UIToast.Exists () && notify && currentPlayList != null) 
+
+		if(BoomBoxUI.IsPlaying != deviceMusicPlaying)
 		{
+			deviceMusicPlaying = !deviceMusicPlaying;
+			if(deviceMusicPlaying)
+			{
+				AudioController.StopMusic(0.5f);
+			}
+			else
+			{
+				// Start curPlaylist!
+				notify = true;
+				AudioController.PlayMusicPlaylist();
+			}
+		}
+
+		if (Phi.UIToast.Exists () && notify && currentPlayList != null && !deviceMusicPlaying) 
+		{
+			if(toast != null)
+			{
+				UIToast.Instance.Remove(toast);
+				toast = null;
+			}
 			MusicInfo[] musicInfos = currentPlayList.musicInfos;
+			if (previousNotificationSound.Length > 0)
+			{
+				AudioController.Stop (previousNotificationSound, 0.5f);
+			}
 			for(int i = 0; i < musicInfos.Length; i++)
 			{
 				if (musicInfos[i].musicID == currentMusicID)
 				{
 					MusicInfo mi = musicInfos[i];
-					if(!string.IsNullOrEmpty(mi.title))
-					{
-						Phi.UIToast.Instance.Display(mi.title, mi.extraInfo, currentPlayList.notificationSprite, currentPlayList.notificationColor, null, null, null);
-					}
+					NewSong(mi.title, mi.extraInfo, currentPlayList.notificationSprite, currentPlayList.notificationColor, currentPlayList.audioIDToPlayWhenStarts);
+					previousNotificationSound = currentPlayList.audioIDToPlayWhenStarts;
 					break;
 				}
 			}
 		}
 	}
+
+	public void NewSong(string title, string artist, Sprite sprite, Color col, string audioID = "")
+	{		
+		if(string.IsNullOrEmpty(title)) return;
+
+		if(toast != null)
+		{
+			UIToast.Instance.Remove(toast);
+            toast = null;
+        }		
+		toast = Phi.UIToast.Instance.Display(title, artist, sprite, col, audioID);
+    }
 }

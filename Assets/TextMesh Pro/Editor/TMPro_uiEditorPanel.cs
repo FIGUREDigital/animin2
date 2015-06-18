@@ -910,7 +910,6 @@ namespace TMPro.EditorUtilities
         }
 
 
-
         // Special Handling of Undo / Redo Events.
         private void OnUndoRedo()
         {

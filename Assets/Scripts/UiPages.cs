@@ -45,6 +45,7 @@ public enum Pages
     CubeMinigamePage,
     GunMinigamePage,
     JoystickPage,
+	ItemAlbum,
     MAINSCENE_COUNT
 }
 
@@ -235,7 +236,8 @@ public class UiPages : MonoBehaviour
         mBackMap[(int)Pages.AchievementsPage] = uiPages[(int)Pages.CaringPage];
         mBackMap[(int)Pages.PrivacyPolicyPage] = uiPages[(int)Pages.SettingsPage];
         mBackMap[(int)Pages.CreditsPage] = uiPages[(int)Pages.SettingsPage];
-        mBackMap[(int)Pages.MinigamesPage] = uiPages[(int)Pages.CaringPage];
+		mBackMap[(int)Pages.MinigamesPage] = uiPages[(int)Pages.CaringPage];
+		mBackMap[(int)Pages.ItemAlbum] = uiPages[(int)Pages.CaringPage];
     }
 
 	public static void SetDialogBackPage(Pages page)

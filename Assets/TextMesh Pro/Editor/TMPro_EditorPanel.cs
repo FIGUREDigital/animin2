@@ -26,8 +26,6 @@ namespace TMPro.EditorUtilities
             public static bool materialEditor = true;
         }
 
-        private static bool m_hideTags;
-
         private static int m_eventID;
 
         private static string[] uiStateLabel = new string[] { "\t- <i>Click to expand</i> -", "\t- <i>Click to collapse</i> -" };
@@ -35,9 +33,9 @@ namespace TMPro.EditorUtilities
         private const string k_UndoRedo = "UndoRedoPerformed";
         //private static string[] k_sortingLayerNames = 
 
-        private GUIStyle toggleStyle;
-        private int selAlignGrid_A = 0;
-        private int selAlignGrid_B = 0;
+
+        public int selAlignGrid_A = 0;
+        public int selAlignGrid_B = 0;
 
 
         // Serialized Properties
@@ -222,37 +220,17 @@ namespace TMPro.EditorUtilities
 
         public override void OnInspectorGUI()
         {
-            // Copy Default GUI Toggle Style
-            if (toggleStyle == null)
-            {
-                toggleStyle = new GUIStyle(GUI.skin.label);
-                toggleStyle.fontSize = 12;
-                toggleStyle.normal.textColor = TMP_UIStyleManager.Section_Label.normal.textColor;
-                toggleStyle.richText = true;
-            }
-
 
             serializedObject.Update();
 
-            Rect rect = EditorGUILayout.GetControlRect(false, 24);
+            Rect rect;
             float labelWidth = EditorGUIUtility.labelWidth = 130f;
             float fieldWidth = EditorGUIUtility.fieldWidth;
 
             // TEXT INPUT BOX SECTION
-            GUI.Label(rect, "<b>TEXT INPUT BOX</b>" + (m_foldout.textInput ? uiStateLabel[1] : uiStateLabel[0]), TMP_UIStyleManager.Section_Label);
-            if (GUI.Button(new Rect(rect.x, rect.y, rect.width - 150 , rect.height), GUIContent.none, GUI.skin.label))
+            if (GUILayout.Button("<b>TEXT INPUT BOX</b>" + (m_foldout.textInput ? uiStateLabel[1] : uiStateLabel[0]), TMP_UIStyleManager.Section_Label))
                 m_foldout.textInput = !m_foldout.textInput;
 
-            // Toggle showing Rich Tags
-            //GUI.Label(new Rect(rect.width - 100, rect.y + 4, 90, 24), m_hideTags ? "<i>Show <Tags></i>" : "<i>Hide <Tags></i>", toggleStyle);   
-            //m_hideTags = EditorGUI.Toggle(new Rect(rect.width - 10, rect.y + 3, 20, 24), GUIContent.none, m_hideTags);
-            //if (m_hideTags)
-            //{
-            //    //string[] text = text_prop.stringValue.Substring()
-            //}
-            
-          
-            
             if (m_foldout.textInput)
             {
                 EditorGUI.BeginChangeCheck();

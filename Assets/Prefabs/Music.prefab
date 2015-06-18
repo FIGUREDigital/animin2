@@ -41,7 +41,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playlistDefs:
-  - playlist: 0
+  - playlist: 1
     musicInfos:
     - musicID: MusicMainMenu
       title: 
@@ -49,7 +49,9 @@ MonoBehaviour:
     audioIDToPlayWhenStarts: 
     notificationColor: {r: 0, g: 0, b: 0, a: 0}
     notificationSprite: {fileID: 0}
-  - playlist: 1
+    isMusicPlayer: 0
+    canTransitionIfPlayingMusicPlayer: 1
+  - playlist: 2
     musicInfos:
     - musicID: MusicCaringDefault
       title: 
@@ -57,7 +59,9 @@ MonoBehaviour:
     audioIDToPlayWhenStarts: 
     notificationColor: {r: 0, g: 0, b: 0, a: 0}
     notificationSprite: {fileID: 0}
-  - playlist: 2
+    isMusicPlayer: 0
+    canTransitionIfPlayingMusicPlayer: 0
+  - playlist: 3
     musicInfos:
     - musicID: MusicGunMinigame
       title: 
@@ -65,25 +69,56 @@ MonoBehaviour:
     audioIDToPlayWhenStarts: 
     notificationColor: {r: 0, g: 0, b: 0, a: 0}
     notificationSprite: {fileID: 0}
-  - playlist: 3
-    musicInfos:
-    - musicID: MusicCubeMinigame
-      title: 
-      extraInfo: 
-    audioIDToPlayWhenStarts: 
-    notificationColor: {r: 0, g: 0, b: 0, a: 0}
-    notificationSprite: {fileID: 0}
+    isMusicPlayer: 0
+    canTransitionIfPlayingMusicPlayer: 0
   - playlist: 4
     musicInfos:
     - musicID: MusicCubeMinigame
-      title: Test 1
-      extraInfo: Cube It!
-    - musicID: MusicGunMinigame
-      title: Test2
-      extraInfo: Shoot it!
+      title: 
+      extraInfo: 
     audioIDToPlayWhenStarts: 
     notificationColor: {r: 0, g: 0, b: 0, a: 0}
     notificationSprite: {fileID: 0}
+    isMusicPlayer: 0
+    canTransitionIfPlayingMusicPlayer: 0
+  - playlist: 5
+    musicInfos:
+    - musicID: Radio1_1
+      title: Greed Greed
+      extraInfo: KiWi
+    - musicID: Radio1_2
+      title: Honey
+      extraInfo: Meishi Smile
+    - musicID: Radio1_3
+      title: Last Summer
+      extraInfo: Yoshino Yoshikawa
+    - musicID: Radio1_4
+      title: Dance Forever
+      extraInfo: Ulzzang Pistol
+    audioIDToPlayWhenStarts: RadioIdent
+    notificationColor: {r: 1, g: .149019614, b: .486274511, a: .643137276}
+    notificationSprite: {fileID: 0}
+    isMusicPlayer: 1
+    canTransitionIfPlayingMusicPlayer: 1
+  - playlist: 6
+    musicInfos:
+    - musicID: Radio2_1
+      title: Lovely Rainy Day
+      extraInfo: Yoshino Yoshikawa
+    - musicID: Radio2_2
+      title: LED
+      extraInfo: Zoom Lens x Maltine
+    - musicID: Radio2_3
+      title: Love Streams
+      extraInfo: DJ Obake
+    - musicID: Radio2_4
+      title: Memory
+      extraInfo: Zoom Lens x Maltine
+    audioIDToPlayWhenStarts: RadioIdent
+    notificationColor: {r: 1, g: .149019614, b: .486274511, a: .643137276}
+    notificationSprite: {fileID: 0}
+    isMusicPlayer: 1
+    canTransitionIfPlayingMusicPlayer: 1
 --- !u!114 &11480616
 MonoBehaviour:
   m_ObjectHideFlags: 1

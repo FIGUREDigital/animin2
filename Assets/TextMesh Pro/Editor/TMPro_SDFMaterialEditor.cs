@@ -165,37 +165,7 @@ public class TMPro_SDFMaterialEditor : MaterialEditor
 
     public override void OnEnable()
     {
-		try
-		{
-			if(serializedObject != null)
-			{
-				//Debug.Log("serializedObject != null");
-				Object o = serializedObject.targetObject;
-				if (o != null)
-				{
-					//Debug.Log("targetObject = "+o.name);
-				}
-				else
-				{
-					//Debug.Log("targetObject = null");
-					return;
-				}
-			}
-			else
-			{
-				//Debug.Log("serializedObject = null");
-				return;
-			}
-		}
-		catch (System.Exception e)
-		{
-			Debug.LogException(e);
-			return;
-		}
-		if(this != null)
-		{
-        	base.OnEnable();
-		}
+        base.OnEnable();
 
         //Debug.Log("New Instance of SDF Material Editor with ID " + this.GetInstanceID());
 
@@ -318,10 +288,11 @@ public class TMPro_SDFMaterialEditor : MaterialEditor
                 DrawTextureProperty(m_faceTex, "Texture");
                 DrawUVProperty(new MaterialProperty[] { m_faceUVSpeedX, m_faceUVSpeedY }, "UV Speed");
             }
-            
-            DrawSliderProperty(m_outlineSoftness, "Softness");
-            DrawSliderProperty(m_faceDilate, "Dilate");
-            if (targetMaterial.HasProperty("_FaceShininess")) DrawSliderProperty(m_faceShininess, "Gloss");
+
+            DrawRangeProperty(m_outlineSoftness, "Softness");
+
+            DrawRangeProperty(m_faceDilate, "Dilate");
+            if (targetMaterial.HasProperty("_FaceShininess")) DrawRangeProperty(m_faceShininess, "Gloss");
 
             if (EditorGUI.EndChangeCheck()) havePropertiesChanged = true;
         }
@@ -344,9 +315,9 @@ public class TMPro_SDFMaterialEditor : MaterialEditor
                 DrawTextureProperty(m_outlineTex, "Texture");
                 DrawUVProperty(new MaterialProperty[] { m_outlineUVSpeedX, m_outlineUVSpeedY }, "UV Speed");
             }
-            DrawSliderProperty(m_outlineThickness, "Thickness");
+            DrawRangeProperty(m_outlineThickness, "Thickness");
 
-            if (targetMaterial.HasProperty("_OutlineShininess")) DrawSliderProperty(m_outlineShininess, "Gloss");
+            if (targetMaterial.HasProperty("_OutlineShininess")) DrawRangeProperty(m_outlineShininess, "Gloss");
 
             if (EditorGUI.EndChangeCheck()) havePropertiesChanged = true;
         }
@@ -369,10 +340,10 @@ public class TMPro_SDFMaterialEditor : MaterialEditor
                 if (GUI.changed) SetUnderlayKeywords();
 
                 ColorProperty(m_underlayColor, "Color");
-                DrawSliderProperty(m_underlayOffsetX, "OffsetX");
-                DrawSliderProperty(m_underlayOffsetY, "OffsetY");
-                DrawSliderProperty(m_underlayDilate, "Dilate");
-                DrawSliderProperty(m_underlaySoftness, "Softness");
+                DrawRangeProperty(m_underlayOffsetX, "OffsetX");
+                DrawRangeProperty(m_underlayOffsetY, "OffsetY");
+                DrawRangeProperty(m_underlayDilate, "Dilate");
+                DrawRangeProperty(m_underlaySoftness, "Softness");
 
                 if (EditorGUI.EndChangeCheck()) havePropertiesChanged = true;
             }
@@ -396,11 +367,11 @@ public class TMPro_SDFMaterialEditor : MaterialEditor
 
                 EditorGUI.BeginChangeCheck();
 
-                DrawSliderProperty(m_bevel, "Amount");
-                DrawSliderProperty(m_bevelOffset, "Offset");
-                DrawSliderProperty(m_bevelWidth, "Width");
-                DrawSliderProperty(m_bevelRoundness, "Roundness");
-                DrawSliderProperty(m_bevelClamp, "Clamp");
+                DrawRangeProperty(m_bevel, "Amount");
+                DrawRangeProperty(m_bevelOffset, "Offset");
+                DrawRangeProperty(m_bevelWidth, "Width");
+                DrawRangeProperty(m_bevelRoundness, "Roundness");
+                DrawRangeProperty(m_bevelClamp, "Clamp");
 
                 if (EditorGUI.EndChangeCheck()) havePropertiesChanged = true;
             }
@@ -419,12 +390,12 @@ public class TMPro_SDFMaterialEditor : MaterialEditor
                 EditorGUI.indentLevel = 1;
                 if (targetMaterial.HasProperty("_LightAngle"))
                 { // Non Surface Shader
-                    DrawSliderProperty(m_lightAngle, "Light Angle");
+                    DrawRangeProperty(m_lightAngle, "Light Angle");
                     ColorProperty(m_specularColor, "Specular Color");
-                    DrawSliderProperty(m_specularPower, "Specular Power");
-                    DrawSliderProperty(m_reflectivity, "Reflectivity Power");
-                    DrawSliderProperty(m_diffuse, "Diffuse Shadow");
-                    DrawSliderProperty(m_ambientLight, "Ambient Shadow");
+                    DrawRangeProperty(m_specularPower, "Specular Power");
+                    DrawRangeProperty(m_reflectivity, "Reflectivity Power");
+                    DrawRangeProperty(m_diffuse, "Diffuse Shadow");
+                    DrawRangeProperty(m_ambientLight, "Ambient Shadow");
                 }
                 else
                     ColorProperty(m_specColor, "Specular Color");
@@ -442,10 +413,10 @@ public class TMPro_SDFMaterialEditor : MaterialEditor
             if (m_foldout.bump)
             {
                 EditorGUI.BeginChangeCheck();
-
+                EditorGUI.indentLevel = 1;
                 DrawTextureProperty(m_bumpMap, "Texture");
-                DrawSliderProperty(m_bumpFace, "Face");
-                DrawSliderProperty(m_bumpOutline, "Outline");
+                DrawRangeProperty(m_bumpFace, "Face");
+                DrawRangeProperty(m_bumpOutline, "Outline");
 
                 if (EditorGUI.EndChangeCheck()) havePropertiesChanged = true;
             }
@@ -495,10 +466,10 @@ public class TMPro_SDFMaterialEditor : MaterialEditor
 
                 EditorGUI.indentLevel = 1;
                 ColorProperty(m_glowColor, "Color");
-                DrawSliderProperty(m_glowOffset, "Offset");
-                DrawSliderProperty(m_glowInner, "Inner");
-                DrawSliderProperty(m_glowOuter, "Outer");
-                DrawSliderProperty(m_glowPower, "Power");
+                DrawRangeProperty(m_glowOffset, "Offset");
+                DrawRangeProperty(m_glowInner, "Inner");
+                DrawRangeProperty(m_glowOuter, "Outer");
+                DrawRangeProperty(m_glowPower, "Power");
 
                 if (EditorGUI.EndChangeCheck()) havePropertiesChanged = true;
             }
@@ -524,9 +495,9 @@ public class TMPro_SDFMaterialEditor : MaterialEditor
                 DrawFloatProperty(m_texSampleHeight, "Texture Height");
                 GUILayout.Space(20);
 
-                DrawSliderProperty(m_scaleX, "Scale X");
-                DrawSliderProperty(m_scaleY, "Scale Y");
-                DrawSliderProperty(m_PerspectiveFilter, "Perspective Filter");
+                DrawFloatProperty(m_scaleX, "Scale X");
+                DrawFloatProperty(m_scaleY, "Scale Y");
+                DrawRangeProperty(m_PerspectiveFilter, "Perspective Filter");
 
                 GUILayout.Space(20);
 
@@ -672,8 +643,8 @@ public class TMPro_SDFMaterialEditor : MaterialEditor
                     }
                                                       
                     TMPro_EventManager.ON_DRAG_AND_DROP_MATERIAL_CHANGED(go, currentMaterial, newMaterial);
-                    SceneView.RepaintAll();   
-                    //EditorUtility.SetDirty(go);                                    
+                    //SceneView.RepaintAll();   
+                    EditorUtility.SetDirty(go);                                    
                 }
 
                 evt.Use();
@@ -703,12 +674,10 @@ public class TMPro_SDFMaterialEditor : MaterialEditor
 
     private UndoPropertyModification[] OnUndoRedoEvent(UndoPropertyModification[] modifications)
     {
+        /*
         //Debug.Log("Undo Event Registered in SDF Material Editor. # of Properties affected is " + modifications.Length);
-#if UNITY_5_1
-		PropertyModification modifiedProperties = modifications[0].currentValue;
-		#else
-		PropertyModification modifiedProperties = modifications[0].propertyModification;
-#endif
+        
+        PropertyModification modifiedProperties = modifications[0].propertyModification;
         System.Type objType = modifiedProperties.target.GetType();
 
         if (objType == typeof(MeshRenderer) || objType == typeof(Material)) // && UndoEventID != LastUndoEventID)
@@ -721,6 +690,7 @@ public class TMPro_SDFMaterialEditor : MaterialEditor
         if (target != null)
             EditorUtility.SetDirty(target);
 
+        */
         return modifications;
     }
 
@@ -791,7 +761,7 @@ public class TMPro_SDFMaterialEditor : MaterialEditor
 
         Rect rect = EditorGUILayout.GetControlRect(false, 20);
         Rect pos0 = new Rect(rect.x + 15, rect.y, rect.width - 55, 20);
-        Rect pos1 = new Rect(145, rect.y, 80, 18);
+        Rect pos1 = new Rect(130, rect.y, 80, 18);
         
         GUI.Label(pos0, label);
         
@@ -833,9 +803,16 @@ public class TMPro_SDFMaterialEditor : MaterialEditor
 
     private void DrawTextureProperty(MaterialProperty property, string label)
     {
+        float old_LabelWidth = EditorGUIUtility.labelWidth;
+        float old_FieldWidth = EditorGUIUtility.fieldWidth;
+
+        EditorGUIUtility.fieldWidth = 70;
         Rect rect = EditorGUILayout.GetControlRect(false, 75);
         GUI.Label(new Rect(rect.x + 15, rect.y + 5, 100, rect.height), label);
-        TextureProperty(new Rect(rect.x + 10, rect.y + 5, 200, rect.height), property, string.Empty, false);
+        TextureProperty(new Rect(rect.x, rect.y + 5, 200, rect.height), property, string.Empty, false);
+
+        EditorGUIUtility.labelWidth = old_LabelWidth;
+        EditorGUIUtility.fieldWidth = old_FieldWidth;
     }
 
 
@@ -850,6 +827,24 @@ public class TMPro_SDFMaterialEditor : MaterialEditor
 
         //EditorGUIUtility.fieldWidth = 60;
         FloatProperty(pos0, property, label);
+
+        EditorGUIUtility.labelWidth = old_LabelWidth;
+        EditorGUIUtility.fieldWidth = old_FieldWidth;
+    }
+
+
+    private void DrawRangeProperty(MaterialProperty property, string label)
+    {
+        float old_LabelWidth = EditorGUIUtility.labelWidth;
+        float old_FieldWidth = EditorGUIUtility.fieldWidth;
+
+        Rect rect = EditorGUILayout.GetControlRect(false, 16);
+        Rect pos0 = new Rect(rect.x + 15, rect.y, rect.width, rect.height);
+
+        GUI.Label(pos0, label);
+        pos0.x += 100;
+        pos0.width -= 115;
+        RangeProperty(pos0, property, string.Empty);
 
         EditorGUIUtility.labelWidth = old_LabelWidth;
         EditorGUIUtility.fieldWidth = old_FieldWidth;

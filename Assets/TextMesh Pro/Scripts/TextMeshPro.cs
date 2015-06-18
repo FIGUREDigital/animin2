@@ -1,7 +1,7 @@
 // Copyright (C) 2014 Stephan Bouchard - All Rights Reserved
 // This code can only be used under the standard Unity Asset Store End User License Agreement
 // A Copy of the EULA APPENDIX 1 is available at http://unity3d.com/company/legal/as_terms
-// Beta Release 0.1.46 Beta 4.7
+// Beta Release 0.1.5 Beta 1.5
 
 
 using UnityEngine;
@@ -549,8 +549,35 @@ namespace TMPro
         public MaskingTypes maskType
         {
             get { return m_maskType; }
-            set { m_maskType = value; havePropertiesChanged = true; isMaskUpdateRequired = true; }
+            set { m_maskType = value; SetMask(m_maskType); }
         }
+
+        /// <summary>
+        /// Function used to set the mask type and coordinates in World Space
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="maskCoords"></param>
+        public void SetMask(MaskingTypes type, Vector4 maskCoords)
+        {
+            SetMask(type);
+
+            SetMaskCoordinates(maskCoords);
+        }
+
+        /// <summary>
+        /// Function used to set the mask type, coordinates and softness
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="maskCoords"></param>
+        /// <param name="softnessX"></param>
+        /// <param name="softnessY"></param>
+        public void SetMask(MaskingTypes type, Vector4 maskCoords, float softnessX, float softnessY)
+        {
+            SetMask(type);
+
+            SetMaskCoordinates(maskCoords, softnessX, softnessY);
+        }
+
 
         /*
         /// <summary>

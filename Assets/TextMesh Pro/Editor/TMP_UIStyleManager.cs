@@ -39,6 +39,9 @@ namespace TMPro.EditorUtilities
         public static GUIContent[] alignContent_A;
         public static GUIContent[] alignContent_B;
 
+        // Icons
+        //public static GUIContent strikethroughIcon;
+
 
 
         public static void GetUIStyles()
@@ -64,6 +67,9 @@ namespace TMPro.EditorUtilities
                 alignMidline = AssetDatabase.LoadAssetAtPath(tmproAssetFolderPath + "/GUISkins/Textures/btn_AlignMidLine.psd", typeof(Texture2D)) as Texture2D;
 
                 progressTexture = AssetDatabase.LoadAssetAtPath(tmproAssetFolderPath + "/GUISkins/Textures/Progress Bar.psd", typeof(Texture2D)) as Texture2D;
+
+                //strikethroughIcon = new GUIContent(AssetDatabase.LoadAssetAtPath(tmproAssetFolderPath + "/GUISkins/Textures/icon_strikethrough.psd", typeof(Texture2D)) as Texture2D);
+
             }
             else
             {

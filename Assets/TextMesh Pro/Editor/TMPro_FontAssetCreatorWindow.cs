@@ -21,7 +21,7 @@ namespace TMPro.EditorUtilities
         public static void ShowFontAtlasCreatorWindow()
         {
             var window = GetWindow<TMPro_FontAssetCreatorWindow>();
-            window.titleContent = new GUIContent("Asset Creator");
+            window.title = "Asset Creator";
             window.Focus();
         }
 

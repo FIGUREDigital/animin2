@@ -38,8 +38,7 @@ public class Gradient : BaseVertexEffect
 			}
 			Rect r = graphic.GetPixelAdjustedRect();
 			float bottomY = gradientDir == GradientDir.Vertical ? r.yMin : r.xMin;// vertexList [vertexList.Count - 1].position.y : vertexList [vertexList.Count - 1].position.x;
-			float topY = gradientDir == GradientDir.Vertical ? vertexList [0].position.y : vertexList [0].position.x;
-			
+
 			float uiElementHeight = gradientDir == GradientDir.Vertical ? r.height : r.width;//Y - bottomY;
 			
 			for (int i = 0; i < count; i++) {

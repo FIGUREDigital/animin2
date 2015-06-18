@@ -76,7 +76,7 @@ public class ShowHide : MonoBehaviour {
 	}
 
 	// Use this for initialization
-	public void Show(bool show, bool instant = false, Action onFinish = null) 
+	public void Show(bool show, bool instant = false, Action onComplete = null) 
 	{
 		Vector3 dest;
 		if (scaleToZero) 
@@ -108,14 +108,21 @@ public class ShowHide : MonoBehaviour {
 		}
 		if (currentTarget == show)
 		{
-			if(onFinish != null)
+			if(onComplete != null)
 			{
-				onFinish();
+				if(tween != null)
+				{
+					this.onFinish += onComplete;
+				}
+				else
+				{
+					onComplete();
+				}
 			}
 			return;
 		}
-		if (onFinish != null) {
-			this.onFinish += onFinish;
+		if (onComplete != null) {
+			this.onFinish += onComplete;
 		}
 		currentTarget = show;
 		if (tween != null)
@@ -163,8 +170,10 @@ public class ShowHide : MonoBehaviour {
 		}
 		if (onFinish != null) 
 		{
-			onFinish();
+			Action doThis = onFinish;
+			onFinish = null;
+			doThis();
 		}
-		onFinish = null;
+		tween= null;
 	}
 }

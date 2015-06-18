@@ -1,7 +1,8 @@
 // Copyright (C) 2014 Stephan Bouchard - All Rights Reserved
 // This code can only be used under the standard Unity Asset Store End User License Agreement
 // A Copy of the EULA APPENDIX 1 is available at http://unity3d.com/company/legal/as_terms
-// Beta Release 0.1.46 Beta 4.7
+// Beta Release 0.1.5 Beta 1.5
+
 
 #if UNITY_4_6 || UNITY_5
 
@@ -66,6 +67,33 @@ namespace TMPro
             // Assigning fontMaterial always returns an instance of the material.
             set { SetFontMaterial(value); havePropertiesChanged = true; /* ScheduleUpdate(); */  }
         }
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        //public override Material material
+        //{
+        //    get { return m_sharedMaterial; }
+        //    //{
+        //    //    m_IncludeForMasking = true;
+        //    //    Debug.Log("GetMaterialProperty() Material is " + m_sharedMaterial );
+        //    //    return m_sharedMaterial; // base.material;
+        //    //}
+        //    //set
+        //    //{
+        //    //    Debug.Log("SetMaterialProperty");
+        //    //    m_sharedMaterial = value;
+        //    //}
+        //}
+
+
+        //public new void UpdateMaterial()
+        //{
+        //    Debug.Log("UpdateMaterial()");
+        //    base.UpdateMaterial();
+        //}
 
 
         /// <summary>

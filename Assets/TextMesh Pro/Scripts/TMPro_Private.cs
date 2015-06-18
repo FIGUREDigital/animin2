@@ -690,12 +690,12 @@ namespace TMPro
                 if (m_sharedMaterial.passCount > 1)
                 {
                     m_renderer.receiveShadows = false;
-					m_renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+                    m_renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
                 }
                 else
                 {
                     m_renderer.receiveShadows = false;
-					m_renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+                    m_renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off; 
                 }
             }
 
@@ -744,6 +744,46 @@ namespace TMPro
         }
 
 
+        //
+        void SetMask(MaskingTypes maskType)
+        {
+            switch(maskType)
+            {
+                case MaskingTypes.MaskOff:
+                    m_sharedMaterial.EnableKeyword(ShaderUtilities.Keyword_MASK_OFF);
+                    m_sharedMaterial.DisableKeyword(ShaderUtilities.Keyword_MASK_SOFT);
+                    m_sharedMaterial.DisableKeyword(ShaderUtilities.Keyword_MASK_HARD);
+                    break;
+                case MaskingTypes.MaskSoft:
+                    m_sharedMaterial.EnableKeyword(ShaderUtilities.Keyword_MASK_SOFT);
+                    m_sharedMaterial.DisableKeyword(ShaderUtilities.Keyword_MASK_HARD);
+                    m_sharedMaterial.DisableKeyword(ShaderUtilities.Keyword_MASK_OFF);
+                    break;
+                case MaskingTypes.MaskHard:
+                    m_sharedMaterial.EnableKeyword(ShaderUtilities.Keyword_MASK_HARD);
+                    m_sharedMaterial.DisableKeyword(ShaderUtilities.Keyword_MASK_SOFT);
+                    m_sharedMaterial.DisableKeyword(ShaderUtilities.Keyword_MASK_OFF);
+                    break;
+            }
+        }
+
+
+        // Method used to set the masking coordinates
+        void SetMaskCoordinates(Vector4 coords)
+        {
+            m_sharedMaterial.SetVector(ShaderUtilities.ID_MaskCoord, coords);
+        }
+
+        // Method used to set the masking coordinates
+        void SetMaskCoordinates(Vector4 coords, float softX, float softY)
+        {
+            m_sharedMaterial.SetVector(ShaderUtilities.ID_MaskCoord, coords);
+            m_sharedMaterial.SetFloat(ShaderUtilities.ID_MaskSoftnessX, softX);
+            m_sharedMaterial.SetFloat(ShaderUtilities.ID_MaskSoftnessY, softY);
+        }
+
+
+
         // Enable Masking in the Shader
         void EnableMasking()
         {
@@ -776,6 +816,8 @@ namespace TMPro
 
         void UpdateMask()
         {
+            //Debug.Log("UpdateMask() called.");
+            
             if (!m_isMaskingEnabled)
             {
                 // Release Masking Material

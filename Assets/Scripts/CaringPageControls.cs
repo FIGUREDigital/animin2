@@ -33,7 +33,7 @@ public class CaringPageControls : MonoBehaviour
     [SerializeField]
     private GameObject PhotoSaved;
 
-
+	/*
     [SerializeField]
     private GameObject m_StereoUI;
 
@@ -68,7 +68,7 @@ public class CaringPageControls : MonoBehaviour
     private GameObject m_PianoUI;
 
     public GameObject PianoUI{ get { return m_PianoUI; } }
-
+*/
     [SerializeField]
     private TutorialHandler m_TutorialHandler;
 
@@ -99,7 +99,14 @@ public class CaringPageControls : MonoBehaviour
 	
 	RectTransform nextUI = null;
 	GameObject nextTarget = null;
-	RectTransform currentUI = null;
+	static RectTransform currentUI = null;
+	public static RectTransform CurrentUI
+	{
+		get
+		{
+			return currentUI;
+		}
+	}
 
 	float GetUIScale()
 	{
@@ -152,16 +159,12 @@ public class CaringPageControls : MonoBehaviour
 	}
 
 
-    private GameObject m_TargetItem;
+    static private GameObject m_TargetItem;
 
-    public GameObject TargetItem
+    static public GameObject TargetItem
     {
         get { return m_TargetItem; }
     }
-
-    private GameObject[] m_PopupUIs;
-
-    private GameObject[] PopupUIs{ get { return m_PopupUIs; } }
 
     private LighbulbSwitchOnOffScript m_LightScript;
 
@@ -187,9 +190,17 @@ public class CaringPageControls : MonoBehaviour
         }
     }
 
+	[SerializeField]
+	CaringPageUI[] menus;
+
     void Start()
     {
-        m_PopupUIs = new GameObject[]{ StereoUI, PhoneUI, AlarmUI, LightbulbUI, EDMBoxUI, JunoUI, PianoUI };
+		// Ensure all menus are registered
+		for(int i = 0; i < menus.Length; i++)
+		{
+			menus[i].gameObject.SetActive(true);
+			menus[i].gameObject.SetActive(false);
+		}
         mInventoryControls = Inventory.GetComponent<InventoryControls>();
         PopulateButtons();
         m_TriangleHeight = new Vector2(0, m_Triangle.sizeDelta.y * 2.0f);
@@ -290,14 +301,19 @@ public class CaringPageControls : MonoBehaviour
     {
         return InvBox.activeSelf;
     }
+	
+	public void ItemAlbumButton()
+	{
+		UiPages.Next(Pages.ItemAlbum);
+	}
 
-    public void StatsButton()
-    {
+	public void StatsButton()
+	{
 		UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHoc("ViewStats");
-        UiPages.Next(Pages.StatsPage);
-        AudioController.Play(ProfilesManagementScript.Instance.CurrentAnimin.PlayerAniminId.ToString());
+		UiPages.Next(Pages.StatsPage);
+		AudioController.Play(ProfilesManagementScript.Instance.CurrentAnimin.PlayerAniminId.ToString());
 		statsPointer.SetActive(false);
-    }
+	}
 
     public void MinigameButton()
     {
@@ -585,52 +601,45 @@ public class CaringPageControls : MonoBehaviour
 
 	void UpdateTargetItem()
 	{
-		if (m_TargetItem == null) return;
-		for (int i = 0; i < PopupUIs.Length; i++)
+		if(currentUI == null || m_TargetItem == null) return;
+
+		//this is the ui element
+		RectTransform UI_Element = currentUI;
+		
+		
+		//first you need the RectTransform component of your canvas
+		RectTransform CanvasRect = this.GetComponent<RectTransform>();
+		
+		//then you calculate the position of the UI element
+		//0,0 for the canvas is at the center of the screen, whereas WorldToViewPortPoint treats the lower left corner as 0,0. Because of this, you need to subtract the height / width of the canvas * 0.5 to get the correct position.
+		
+		Vector2 ViewportPosition = Camera.main.WorldToViewportPoint(m_TargetItem.transform.position);
+		Vector2 WorldObject_ScreenPosition = new Vector2(
+			((ViewportPosition.x * CanvasRect.sizeDelta.x) - (CanvasRect.sizeDelta.x * 0.5f)),
+			((ViewportPosition.y * CanvasRect.sizeDelta.y) - (CanvasRect.sizeDelta.y * 0.5f)));
+		
+		//now you can set the position of the ui element
+		float sign = (WorldObject_ScreenPosition.y + CanvasRect.sizeDelta.y * 0.5f > CanvasRect.sizeDelta.y * flipPos) ? -1 : 1;
+		
+		float scale = sign;
+		Vector2 triangleHeight = m_TriangleHeight * scale;
+		if(sign < 0)
 		{
-			if (PopupUIs[i] != null && PopupUIs[i].activeInHierarchy)
-			{
-				//this is your object that you want to have the UI element hovering over
-				
-				//this is the ui element
-				RectTransform UI_Element = PopupUIs[i].GetComponent<RectTransform>();
-				
-				
-				//first you need the RectTransform component of your canvas
-				RectTransform CanvasRect = this.GetComponent<RectTransform>();
-				
-				//then you calculate the position of the UI element
-				//0,0 for the canvas is at the center of the screen, whereas WorldToViewPortPoint treats the lower left corner as 0,0. Because of this, you need to subtract the height / width of the canvas * 0.5 to get the correct position.
-				
-				Vector2 ViewportPosition = Camera.main.WorldToViewportPoint(m_TargetItem.transform.position);
-				Vector2 WorldObject_ScreenPosition = new Vector2(
-					((ViewportPosition.x * CanvasRect.sizeDelta.x) - (CanvasRect.sizeDelta.x * 0.5f)),
-					((ViewportPosition.y * CanvasRect.sizeDelta.y) - (CanvasRect.sizeDelta.y * 0.5f)));
-				
-				//now you can set the position of the ui element
-				float sign = (WorldObject_ScreenPosition.y + CanvasRect.sizeDelta.y * 0.5f > CanvasRect.sizeDelta.y * flipPos) ? -1 : 1;
-				
-				float scale = sign;
-				Vector2 triangleHeight = m_TriangleHeight * scale;
-				if(sign < 0)
-				{
-					triangleHeight.y = triangleHeight.y * triangleLowOffset;
-				}
-				UI_Element.anchoredPosition = WorldObject_ScreenPosition + triangleHeight;
-				Vector2 pivot = UI_Element.pivot;
-				pivot.y = sign > 0 ? 0 : 1;
-				UI_Element.pivot = pivot;
-
-				//pivot.y = 1-pivot.y;
-				//m_Triangle.pivot = pivot;
-
-				m_Triangle.anchoredPosition = WorldObject_ScreenPosition + triangleHeight;
-				Vector3 scaleV = Vector3.one;
-				scaleV.y = scale;
-				m_Triangle.transform.localScale = scaleV * uiScale;
-				m_Triangle.gameObject.SetActive(true);
-				UI_Element.transform.localScale = Vector3.one * uiScale;
-			}
+			triangleHeight.y = triangleHeight.y * triangleLowOffset;
 		}
+		UI_Element.anchoredPosition = WorldObject_ScreenPosition + triangleHeight;
+		Vector2 pivot = UI_Element.pivot;
+		pivot.y = sign > 0 ? 0 : 1;
+		UI_Element.pivot = pivot;
+
+		//pivot.y = 1-pivot.y;
+		//m_Triangle.pivot = pivot;
+
+		m_Triangle.anchoredPosition = WorldObject_ScreenPosition + triangleHeight;
+		Vector3 scaleV = Vector3.one;
+		scaleV.y = scale;
+		m_Triangle.transform.localScale = scaleV * uiScale;
+		m_Triangle.gameObject.SetActive(true);
+		UI_Element.transform.localScale = Vector3.one * uiScale;
 	}
 }

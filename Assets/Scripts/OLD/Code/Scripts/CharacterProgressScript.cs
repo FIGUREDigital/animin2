@@ -11,7 +11,6 @@ public class ItemPickupSavedData
     public Vector3 Rotation;
     public bool WasInHands;
 
-
     public void RevertToThis()
     {
         if (WasInHands)
@@ -66,6 +65,7 @@ public enum InventoryItemId
 
 	Phone,
     Zef,
+	ItemAlbum,
 
     Count,
 }
@@ -131,8 +131,9 @@ public class InventoryItemData
         Items[(int)InventoryItemId.Cereal] = new InventoryItemBankData() { Id = InventoryItemId.Cereal, PrefabId = "Prefabs/Items/cereal", SpriteName = store.GetSprite(InventoryItemId.Cereal)  as Sprite,  ItemType = PopupItemType.Food };
         Items[(int)InventoryItemId.Phone] = new InventoryItemBankData() { Id = InventoryItemId.Phone, PrefabId = "Prefabs/Items/red_phone", SpriteName = store.GetSprite(InventoryItemId.Phone), ItemType = PopupItemType.Item };
         Items[(int)InventoryItemId.Zef] = new InventoryItemBankData() { Id = InventoryItemId.Zef, PrefabId = "Prefabs/zefToken", SpriteName = store.GetSprite(InventoryItemId.Zef), ItemType = PopupItemType.Token };
-    }
-
+		Items[(int)InventoryItemId.ItemAlbum] = new InventoryItemBankData() { Id = InventoryItemId.ItemAlbum, PrefabId = "Prefabs/Items/item_album", SpriteName = store.GetSprite(InventoryItemId.ItemAlbum), ItemType = PopupItemType.Item };
+	}
+    
     #endregion
 
     public InventoryItemId Id;
@@ -292,7 +293,6 @@ public class CharacterProgressScript : MonoBehaviour
     bool IsDetectFlick;
     float FeedMyselfTimer;
     public bool HadUITouchLastFrame;
-    private GameObject LastKnownObjectWithMenuUp;
     public const float ConsideredHungryLevels = 70;
 
     //float TimeForNextHungryUnwellSadAnimation;
@@ -407,8 +407,20 @@ public class CharacterProgressScript : MonoBehaviour
 
         this.GetComponent<CharacterSwapManagementScript>().LoadCharacter(ProfilesManagementScript.Instance.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Instance.CurrentAnimin.AniminEvolutionId, !ProfilesManagementScript.Instance.CurrentAnimin.Hatched);
         //this.GetComponent<CharacterSwapManagementScript>().LoadCharacter(AniminId.Mandi   , AniminEvolutionStageId.Adult);
-
-		/* Debug Add Items
+		
+		if(!ProfilesManagementScript.Instance.CurrentAnimin.HasItem(InventoryItemId.Radio))
+		{
+			ProfilesManagementScript.Instance.CurrentAnimin.AddItemToInventory(InventoryItemId.Radio, 1);
+		}
+		if(!ProfilesManagementScript.Instance.CurrentAnimin.HasItem(InventoryItemId.Boombox))
+		{
+			ProfilesManagementScript.Instance.CurrentAnimin.AddItemToInventory(InventoryItemId.Boombox, 1);
+		}
+		if(!ProfilesManagementScript.Instance.CurrentAnimin.HasItem(InventoryItemId.ItemAlbum))
+		{
+			ProfilesManagementScript.Instance.CurrentAnimin.AddItemToInventory(InventoryItemId.ItemAlbum, 1);
+        }
+        /* Debug Add Items
 		ProfilesManagementScript.Instance.CurrentAnimin.AddItemToInventory(InventoryItemId.EDM808, 1);
 		ProfilesManagementScript.Instance.CurrentAnimin.AddItemToInventory(InventoryItemId.EDMJuno, 1);
 		ProfilesManagementScript.Instance.CurrentAnimin.AddItemToInventory(InventoryItemId.EDMKsynth, 1);
@@ -1610,114 +1622,21 @@ public class CharacterProgressScript : MonoBehaviour
                             {
                                 moveHitInfo.collider.gameObject.AddComponent<FlashObjectScript>();
 
-                                point = moveHitInfo.transform.position;
-							
+                                point = moveHitInfo.transform.position;							
 
-                                bool isItemAlreadyOn = false;
-                                if ((CaringPageControls.AlarmUI.activeInHierarchy
-						     		|| CaringPageControls.PhoneUI.activeInHierarchy
-                                    || CaringPageControls.PianoUI.activeInHierarchy
-                                    || CaringPageControls.JunoUI.activeInHierarchy
-                                    || CaringPageControls.EDMBoxUI.activeInHierarchy
-                                    || CaringPageControls.PianoUI.activeInHierarchy
-                                    || CaringPageControls.LightbulbUI.activeInHierarchy)
-                                    && (LastKnownObjectWithMenuUp == moveHitInfo.collider.gameObject))
-                                {
-                                    isItemAlreadyOn = true;
-                                }
+								MenuFunctionalityUI menuUI = moveHitInfo.collider.GetComponent<UIPopupItemScript>().Menu;
+								GameObject menu = CaringPageUI.GetUI(menuUI);
 
-                                MenuFunctionalityUI menuUI = moveHitInfo.collider.GetComponent<UIPopupItemScript>().Menu;
-
-                                if (RequestedToMoveToCounter == 1 && !isItemAlreadyOn && (menuUI != MenuFunctionalityUI.None) && !hadUItouch)
-                                {
-                                    switch (menuUI)
-                                    {
-                                        case MenuFunctionalityUI.Clock:
-                                            {
-                                                HidePopupMenus(true);
-												CaringPageControls.ShowUI(moveHitInfo.collider.gameObject, CaringPageControls.AlarmUI);
-                                                LastKnownObjectWithMenuUp = moveHitInfo.collider.gameObject;
-                                                preventMovingTo = true;
-                                                break;
-                                            }
-                                        case MenuFunctionalityUI.Phone:
-                                            {
-                                                HidePopupMenus(true);								
-												CaringPageControls.ShowUI(moveHitInfo.collider.gameObject, CaringPageControls.PhoneUI);
-                                                LastKnownObjectWithMenuUp = moveHitInfo.collider.gameObject;
-                                                preventMovingTo = true;
-                                                break;
-                                            }
-                                        case MenuFunctionalityUI.EDMBox:
-                                            {
-                                                EDMBoxScript edmScript = moveHitInfo.collider.gameObject.GetComponent<EDMBoxScript>();
-                                                HidePopupMenus(true);
-
-                                        
-                                        		if (edmScript != null)
-                                                {
-                                                    edmScript.SetInterface(CaringPageControls.EDMBoxUI);
-													CaringPageControls.ShowUI(moveHitInfo.collider.gameObject, CaringPageControls.EDMBoxUI);
-                                        		}
-                                        		else
-                                                {
-                                                    Debug.Log("edmScript is null");
-                                                }
-
-                                                LastKnownObjectWithMenuUp = moveHitInfo.collider.gameObject;
-                                                preventMovingTo = true;
-                                                break;
-                                            }
-                                        case MenuFunctionalityUI.Juno:
-                                            {
-
-                                                HidePopupMenus(true);
-                                                moveHitInfo.collider.gameObject.GetComponent<EDMBoxScript>().SetInterface(CaringPageControls.JunoUI);
-												CaringPageControls.ShowUI(moveHitInfo.collider.gameObject, CaringPageControls.JunoUI);
-								
-                                        		LastKnownObjectWithMenuUp = moveHitInfo.collider.gameObject;
-                                                preventMovingTo = true;
-                                                break;
-                                            }
-                                        case MenuFunctionalityUI.Piano:
-                                            {
-                                                HidePopupMenus(true);
-
-                                                moveHitInfo.collider.gameObject.GetComponent<EDMBoxScript>().SetInterface(CaringPageControls.PianoUI);
-												CaringPageControls.ShowUI(moveHitInfo.collider.gameObject, CaringPageControls.PianoUI);
-								
-                                        		LastKnownObjectWithMenuUp = moveHitInfo.collider.gameObject;
-                                                preventMovingTo = true;
-                                                break;
-                                            }
-                                        case MenuFunctionalityUI.Mp3Player:
-                                            {
-                                                /*
-                                                HidePopupMenus(true);
-                                                CaringPageControls.TargetItem = moveHitInfo.collider.gameObject;
-                                                CaringPageControls.StereoUI.SetActive(true);
-
-                                                LastKnownObjectWithMenuUp = moveHitInfo.collider.gameObject;
-                                                preventMovingTo = true;*/
-                                                break;
-                                            }
-                                        case MenuFunctionalityUI.Lightbulb:
-                                            {
-                                                HidePopupMenus(true);
-												//CaringPageControls.LightbulbUI.GetComponent<UIWidget>().SetAnchor(moveHitInfo.collider.gameObject);
-												CaringPageControls.ShowUI(moveHitInfo.collider.gameObject, CaringPageControls.LightbulbUI);
-												ToggleableButtonScript toggle = CaringPageControls.LightbulbUI.GetComponentInChildren<ToggleableButtonScript>();
-                                                LighbulbSwitchOnOffScript onOff = CaringPageControls.TargetItem.GetComponentInChildren<LighbulbSwitchOnOffScript>();
-                                                if (toggle != null && onOff != null)
-                                                {
-                                                    toggle.Set(onOff.IsOn);
-												}
-								
-                                        LastKnownObjectWithMenuUp = moveHitInfo.collider.gameObject;
-                                                preventMovingTo = true;
-                                                break;
-                                            }
-                                    }
+								if (menu != null && !menu.activeInHierarchy && RequestedToMoveToCounter == 1 && (menuUI != MenuFunctionalityUI.None) && !hadUItouch)
+								{
+									HidePopupMenus(true);
+									CaringPageControls.ShowUI(moveHitInfo.collider.gameObject, menu);
+									preventMovingTo = true;
+									EDMBoxScript edmScript = moveHitInfo.collider.gameObject.GetComponent<EDMBoxScript>();
+									if (edmScript != null)
+									{
+										edmScript.SetInterface(menu);
+									}
                                 }
                                 else if (ObjectHolding == null)
                                 {

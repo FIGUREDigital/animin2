@@ -21,6 +21,8 @@ public enum MenuFunctionalityUI
 	Juno,
 	Piano,
 	Alarm,
+	Radio,
+	ItemAlbum
 }
 
 public enum SpecialFunctionalityId

@@ -72,7 +72,7 @@ public class InventoryControls : MonoBehaviour
 //		int count = 0;
 		for (int i=0; i<ProfilesManagementScript.Instance.CurrentAnimin.Inventory.Count; ++i)
 		{
-			InventoryItemBankData data = ProfilesManagementScript.Instance.CurrentAnimin.Inventory[i].Definition;
+			ItemDefinition data = ProfilesManagementScript.Instance.CurrentAnimin.Inventory[i].Definition;
 			//Debug.Log ("Inventory contains: "+data.Id);
 			if(data.ItemType == type)
 			{
@@ -86,7 +86,7 @@ public class InventoryControls : MonoBehaviour
 				{
 					button = ((GameObject)Instantiate(itemButton)).GetComponent<InventoryItemControls>();
 				}
-				button.Data = data;
+				button.Item = data;
 				button.caringPage = m_CaringPage;
 				m_CurrentDisplayed.Add(button.gameObject);
 				button.transform.parent = m_InventoryGrid.transform;

@@ -106,16 +106,6 @@ public class MainARHandler : MonoBehaviour
     //private ValueSmootherVector3 CameraPositionSmoother = new ValueSmootherVector3();
     //private ValueSmootherVector3 CameraRotationSmoother = new ValueSmootherVector3();
 
-	[SerializeField]
-    private SpriteStore mSpriteStore;
-
-    public SpriteStore SpriteStore
-    {
-        get
-        {
-            return mSpriteStore;
-        }
-    }
 
 	public Camera arCamera;
 	public Camera fovCamera;

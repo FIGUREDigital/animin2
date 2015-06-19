@@ -9,15 +9,15 @@ public class BroomScript : MonoBehaviour
 
         for (int i = 0; i < script.GroundItems.Count; ++i)
         {
-            if (script.GroundItems[i].GetComponent<UIPopupItemScript>() != null)
+            if (script.GroundItems[i].GetComponent<ItemDefinition>() != null)
             {
-                if (script.GroundItems[i].GetComponent<UIPopupItemScript>().Type == PopupItemType.Token)
+				if (script.GroundItems[i].GetComponent<ItemDefinition>().ItemType == PopupItemType.Token)
                 {
                     continue;
                 }
                 else
                 {
-                    ProfilesManagementScript.Instance.CurrentAnimin.AddItemToInventory(script.GroundItems[i].GetComponent<UIPopupItemScript>().Id, 1);
+                    ProfilesManagementScript.Instance.CurrentAnimin.AddItemToInventory(script.GroundItems[i].GetComponent<ItemDefinition>().Id, 1);
                 }
             }
             Destroy(script.GroundItems[i]);

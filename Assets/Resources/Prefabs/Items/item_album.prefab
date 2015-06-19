@@ -8,8 +8,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 406414}
-  - 114: {fileID: 11455958}
   - 65: {fileID: 6562196}
+  - 114: {fileID: 11404682}
   m_Layer: 0
   m_Name: item_album
   m_TagString: Items
@@ -102,7 +102,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.1416235, y: .495429605, z: 1.42305267}
   m_Center: {x: -.0140502928, y: .281127751, z: .00137460232}
---- !u!114 &11455958
+--- !u!114 &11404682
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -110,15 +110,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 106414}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b8dab6596d544dd5bfcc636ad461382, type: 3}
+  m_Script: {fileID: 11500000, guid: ee7805debf5aa49fa9aaadf4bd2cb6c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Points: 0
-  Type: 1
-  NonInteractable: 0
-  Menu: 10
-  SpecialId: 0
-  Id: 36
+  points: 0
+  itemType: 1
+  nonInteractable: 0
+  menu: 10
+  specialId: 0
+  id: 36
+  prefab: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 83d06456ddbfe48268c4f50957504bd2, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

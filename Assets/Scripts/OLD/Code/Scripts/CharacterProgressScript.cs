@@ -71,84 +71,16 @@ public enum InventoryItemId
 }
 
 [System.Serializable]
-public class InventoryItemBankData
-{
-    public InventoryItemId Id;
-    public string PrefabId;
-    public Sprite SpriteName;
-    public PopupItemType ItemType;
-}
-
-[System.Serializable]
 public class InventoryItemData
 {
-	
-    private const string ITEM_PATH = "Texture/UI/";
-
-    #region Static Nonsense
-
-    private static InventoryItemBankData[] Items;
-
-    public static void Initialize()
-    {
-        SpriteStore store = MainARHandler.Instance.SpriteStore;
-        Items = new InventoryItemBankData[(int)InventoryItemId.Count];
-
-        Items[(int)InventoryItemId.Strawberry] = new InventoryItemBankData() { Id = InventoryItemId.Strawberry, PrefabId = "Prefabs/Items/strawberry2", SpriteName = store.GetSprite(InventoryItemId.Strawberry), ItemType = PopupItemType.Food };
-        Items[(int)InventoryItemId.Spinach] = new InventoryItemBankData() { Id = InventoryItemId.Spinach, PrefabId = "Prefabs/Items/spinach", SpriteName = store.GetSprite(InventoryItemId.Spinach),  ItemType = PopupItemType.Food };
-        Items[(int)InventoryItemId.Blueberry] = new InventoryItemBankData() { Id = InventoryItemId.Blueberry, PrefabId = "Prefabs/Items/blueberry", SpriteName = store.GetSprite(InventoryItemId.Blueberry),  ItemType = PopupItemType.Food };
-        Items[(int)InventoryItemId.AlmondMilk] = new InventoryItemBankData() { Id = InventoryItemId.AlmondMilk, PrefabId = "Prefabs/Items/almondMilk", SpriteName = store.GetSprite(InventoryItemId.AlmondMilk),  ItemType = PopupItemType.Food };
-        Items[(int)InventoryItemId.Avocado] = new InventoryItemBankData() { Id = InventoryItemId.Avocado, PrefabId = "Prefabs/Items/avocado", SpriteName = store.GetSprite(InventoryItemId.Avocado),  ItemType = PopupItemType.Food };
-        Items[(int)InventoryItemId.Carrot] = new InventoryItemBankData() { Id = InventoryItemId.Carrot, PrefabId = "Prefabs/Items/carrot", SpriteName = store.GetSprite(InventoryItemId.Carrot),  ItemType = PopupItemType.Food };
-        Items[(int)InventoryItemId.Chips] = new InventoryItemBankData() { Id = InventoryItemId.Chips, PrefabId = "Prefabs/Items/chips", SpriteName = store.GetSprite(InventoryItemId.Chips),  ItemType = PopupItemType.Food };
-        Items[(int)InventoryItemId.Toast] = new InventoryItemBankData() { Id = InventoryItemId.Toast, PrefabId = "Prefabs/Items/toast", SpriteName = store.GetSprite(InventoryItemId.Toast),  ItemType = PopupItemType.Food };
-        Items[(int)InventoryItemId.watermelon] = new InventoryItemBankData() { Id = InventoryItemId.watermelon, PrefabId = "Prefabs/Items/watermelon", SpriteName = store.GetSprite(InventoryItemId.watermelon),  ItemType = PopupItemType.Food };
-        Items[(int)InventoryItemId.Carrot] = new InventoryItemBankData() { Id = InventoryItemId.Carrot, PrefabId = "Prefabs/Items/Carrot", SpriteName = store.GetSprite(InventoryItemId.Carrot),  ItemType = PopupItemType.Food };
-        Items[(int)InventoryItemId.Boombox] = new InventoryItemBankData() { Id = InventoryItemId.Boombox, PrefabId = "Prefabs/Items/boombox", SpriteName = store.GetSprite(InventoryItemId.Boombox),  ItemType = PopupItemType.Item };
-        Items[(int)InventoryItemId.Clock] = new InventoryItemBankData() { Id = InventoryItemId.Clock, PrefabId = "Prefabs/Items/mintclock", SpriteName = store.GetSprite(InventoryItemId.Clock),  ItemType = PopupItemType.Item };
-        Items[(int)InventoryItemId.EDMJuno] = new InventoryItemBankData() { Id = InventoryItemId.EDMJuno, PrefabId = "Prefabs/Items/juno", SpriteName = store.GetSprite(InventoryItemId.EDMJuno),  ItemType = PopupItemType.Item };
-        Items[(int)InventoryItemId.EDM808] = new InventoryItemBankData() { Id = InventoryItemId.EDM808, PrefabId = "Prefabs/Items/808", SpriteName = store.GetSprite(InventoryItemId.EDM808),  ItemType = PopupItemType.Item };
-        Items[(int)InventoryItemId.EDMKsynth] = new InventoryItemBankData() { Id = InventoryItemId.EDMKsynth, PrefabId = "Prefabs/Items/ksynth", SpriteName = store.GetSprite(InventoryItemId.EDMKsynth),  ItemType = PopupItemType.Item };
-        Items[(int)InventoryItemId.Lightbulb] = new InventoryItemBankData() { Id = InventoryItemId.Lightbulb, PrefabId = "Prefabs/Items/Lightbulb", SpriteName = store.GetSprite(InventoryItemId.Lightbulb),  ItemType = PopupItemType.Item };
-        Items[(int)InventoryItemId.paperCalendar] = new InventoryItemBankData() { Id = InventoryItemId.paperCalendar, PrefabId = "Prefabs/Items/paperCalendar", SpriteName = store.GetSprite(InventoryItemId.paperCalendar),  ItemType = PopupItemType.Item };
-        Items[(int)InventoryItemId.Camera] = new InventoryItemBankData() { Id = InventoryItemId.Camera, PrefabId = "Prefabs/Items/camera", SpriteName = store.GetSprite(InventoryItemId.Camera),  ItemType = PopupItemType.Item };
-        Items[(int)InventoryItemId.FartButton] = new InventoryItemBankData() { Id = InventoryItemId.FartButton, PrefabId = "Prefabs/Items/fartbutton", SpriteName = store.GetSprite(InventoryItemId.FartButton),  ItemType = PopupItemType.Item };
-        Items[(int)InventoryItemId.woodSword] = new InventoryItemBankData() { Id = InventoryItemId.woodSword, PrefabId = "Prefabs/Items/woodSword", SpriteName = store.GetSprite(InventoryItemId.woodSword),  ItemType = PopupItemType.Item };
-        Items[(int)InventoryItemId.woodFrame] = new InventoryItemBankData() { Id = InventoryItemId.woodFrame, PrefabId = "Prefabs/Items/woodFrame", SpriteName = store.GetSprite(InventoryItemId.woodFrame),  ItemType = PopupItemType.Item };
-        Items[(int)InventoryItemId.Pill] = new InventoryItemBankData() { Id = InventoryItemId.Pill, PrefabId = "Prefabs/Items/capsule", SpriteName = store.GetSprite(InventoryItemId.Pill),  ItemType = PopupItemType.Medicine };
-        Items[(int)InventoryItemId.Plaster] = new InventoryItemBankData() { Id = InventoryItemId.Plaster, PrefabId = "Prefabs/Items/plaster", SpriteName = store.GetSprite(InventoryItemId.Plaster),  ItemType = PopupItemType.Medicine };
-        //Items[(int)InventoryItemId.Syringe] = new InventoryItemBankData() { Id = InventoryItemId.Syringe, PrefabId = "Prefabs/Items/syringe", SpriteName = store.GetSprite(InventoryItemId.Syringe),  ItemType = PopupItemType.Medicine };
-        Items[(int)InventoryItemId.Radio] = new InventoryItemBankData() { Id = InventoryItemId.Radio, PrefabId = "Prefabs/Items/radio", SpriteName = store.GetSprite(InventoryItemId.Radio),  ItemType = PopupItemType.Item };
-        Items[(int)InventoryItemId.Banana] = new InventoryItemBankData() { Id = InventoryItemId.Banana, PrefabId = "Prefabs/Items/banana", SpriteName = store.GetSprite(InventoryItemId.Banana) as Sprite,  ItemType = PopupItemType.Food };
-        Items[(int)InventoryItemId.Peanut] = new InventoryItemBankData() { Id = InventoryItemId.Peanut, PrefabId = "Prefabs/Items/peanut", SpriteName = store.GetSprite(InventoryItemId.Peanut)  as Sprite,  ItemType = PopupItemType.Food };
-        Items[(int)InventoryItemId.Beetroot] = new InventoryItemBankData() { Id = InventoryItemId.Beetroot, PrefabId = "Prefabs/Items/beetroot", SpriteName = store.GetSprite(InventoryItemId.Beetroot)  as Sprite,  ItemType = PopupItemType.Food };
-        Items[(int)InventoryItemId.Chocolate] = new InventoryItemBankData() { Id = InventoryItemId.Chocolate, PrefabId = "Prefabs/Items/chocolate", SpriteName = store.GetSprite(InventoryItemId.Chocolate)  as Sprite,  ItemType = PopupItemType.Food };
-        Items[(int)InventoryItemId.ChocoCake] = new InventoryItemBankData() { Id = InventoryItemId.ChocoCake, PrefabId = "Prefabs/Items/cakeChoco", SpriteName = store.GetSprite(InventoryItemId.ChocoCake)  as Sprite,  ItemType = PopupItemType.Food };
-        Items[(int)InventoryItemId.CakeVanilla] = new InventoryItemBankData() { Id = InventoryItemId.CakeVanilla, PrefabId = "Prefabs/Items/cakeVanilla", SpriteName = store.GetSprite(InventoryItemId.CakeVanilla)  as Sprite,  ItemType = PopupItemType.Food };
-        Items[(int)InventoryItemId.Pizza] = new InventoryItemBankData() { Id = InventoryItemId.Pizza, PrefabId = "Prefabs/Items/pizza", SpriteName = store.GetSprite(InventoryItemId.Pizza)  as Sprite,  ItemType = PopupItemType.Food };
-        Items[(int)InventoryItemId.Noodles] = new InventoryItemBankData() { Id = InventoryItemId.Noodles, PrefabId = "Prefabs/Items/noodles", SpriteName = store.GetSprite(InventoryItemId.Noodles)  as Sprite,  ItemType = PopupItemType.Food };
-        Items[(int)InventoryItemId.Kiwi] = new InventoryItemBankData() { Id = InventoryItemId.Kiwi, PrefabId = "Prefabs/Items/kiwi", SpriteName = store.GetSprite(InventoryItemId.Kiwi)  as Sprite,  ItemType = PopupItemType.Food };
-        Items[(int)InventoryItemId.Cereal] = new InventoryItemBankData() { Id = InventoryItemId.Cereal, PrefabId = "Prefabs/Items/cereal", SpriteName = store.GetSprite(InventoryItemId.Cereal)  as Sprite,  ItemType = PopupItemType.Food };
-        Items[(int)InventoryItemId.Phone] = new InventoryItemBankData() { Id = InventoryItemId.Phone, PrefabId = "Prefabs/Items/red_phone", SpriteName = store.GetSprite(InventoryItemId.Phone), ItemType = PopupItemType.Item };
-        Items[(int)InventoryItemId.Zef] = new InventoryItemBankData() { Id = InventoryItemId.Zef, PrefabId = "Prefabs/zefToken", SpriteName = store.GetSprite(InventoryItemId.Zef), ItemType = PopupItemType.Token };
-		Items[(int)InventoryItemId.ItemAlbum] = new InventoryItemBankData() { Id = InventoryItemId.ItemAlbum, PrefabId = "Prefabs/Items/item_album", SpriteName = store.GetSprite(InventoryItemId.ItemAlbum), ItemType = PopupItemType.Item };
-	}
-    
-    #endregion
-
     public InventoryItemId Id;
     public int Count;
-	public InventoryItemBankData Definition
+	public ItemDefinition Definition
 	{
 		get
 		{
-			return Items[(int)Id];
+			return ItemDefinition.GetDefinition(Id);
 		}
-	}
-
-	static public InventoryItemBankData GetDefinition(InventoryItemId id)
-	{
-		return Items[(int)id];
 	}
 }
 
@@ -353,7 +285,7 @@ public class CharacterProgressScript : MonoBehaviour
         LastSavePerformed = DateTime.UtcNow;
 		LastTimeToilet = DateTime.UtcNow;
         
-        InventoryItemData.Initialize();
+        //InventoryItemData.Initialize();
 
 	
         //ProfilesManagementScript.Singleton.CurrentAnimin.SetDefault();
@@ -506,7 +438,7 @@ public class CharacterProgressScript : MonoBehaviour
    public void CleanUpItems(){
         for (int i = 0; i < groundItemsOnARscene.Count; i++)
         {
-            ProfilesManagementScript.Instance.CurrentAnimin.AddItemToInventory(groundItemsOnARscene[i].GetComponent<UIPopupItemScript>().Id, 1);
+            ProfilesManagementScript.Instance.CurrentAnimin.AddItemToInventory(groundItemsOnARscene[i].GetComponent<ItemDefinition>().Id, 1);
         }
 
         Debug.Log("ON DESTROYED! groundItemsOnNonARScene : [" + groundItemsOnNonARScene.Count + "];");
@@ -538,21 +470,18 @@ public class CharacterProgressScript : MonoBehaviour
         }
     }
 
-    public GameObject SpawnStageItem(string prefabId, Vector3 position, bool isZefRewardItem = false)
+	public GameObject SpawnStageItem(GameObject gameObject, Vector3 position, bool isZefRewardItem = false)
     {
-        GameObject resource = Resources.Load<GameObject>(prefabId);
-		
-        GameObject gameObject = GameObject.Instantiate(resource) as GameObject;
         gameObject.transform.parent = ActiveWorld.transform;
 		
         gameObject.transform.localPosition = position;
         //gameObject.transform.localRotation = Quaternion.Euler(0, UnityEngine.Random.Range(-180, 180), 0);
 
-        UIPopupItemScript scriptRef = gameObject.GetComponent<UIPopupItemScript>();
+		ItemDefinition item = gameObject.GetComponent<ItemDefinition>();
 
 		if(isZefRewardItem)
 		{
-			ItemUnlockBehaviour.Show(scriptRef.Id);
+			ItemUnlockBehaviour.Show(item.Id);
 		}
 
         float scale = 0.1f;
@@ -586,13 +515,13 @@ public class CharacterProgressScript : MonoBehaviour
         if (ProfilesManagementScript.Instance.CurrentAnimin.Hungry >= CharacterProgressScript.ConsideredHungryLevels) return null; // Not hungry
         for (int i = 0; i < GroundItems.Count; ++i)
         {
-            UIPopupItemScript itemData = GroundItems[i]/*.GetComponent<ReferencedObjectScript>().Reference*/.GetComponent<UIPopupItemScript>();
-            if (itemData == null)
+			ItemDefinition item = GroundItems[i]/*.GetComponent<ReferencedObjectScript>().Reference*/.GetComponent<ItemDefinition>();
+            if (item == null)
                 continue;
 
-            if (itemData.Type == PopupItemType.Food)
+            if (item.ItemType == PopupItemType.Food)
             {
-                return itemData.gameObject;
+                return item.gameObject;
             }
         }
         return null;
@@ -606,11 +535,11 @@ public class CharacterProgressScript : MonoBehaviour
         {
             //if(GroundItems[i].GetComponent<ReferencedObjectScript>() == null) continue;
 			
-            UIPopupItemScript itemData = GroundItems[i]/*.GetComponent<ReferencedObjectScript>().Reference*/.GetComponent<UIPopupItemScript>();
-            if (itemData == null)
+            ItemDefinition item = GroundItems[i]/*.GetComponent<ReferencedObjectScript>().Reference*/.GetComponent<ItemDefinition>();
+            if (item == null)
                 continue;
 
-            if (itemData.Type == PopupItemType.Item)
+			if (item.ItemType == PopupItemType.Item)
             {
                 list.Add(GroundItems[i]);
             }
@@ -699,12 +628,12 @@ public class CharacterProgressScript : MonoBehaviour
         for (int i = 0; i < GroundItems.Count; ++i)
         {
             if (GroundItems[i] == null)
-                continue;
-            if (GroundItems[i].GetComponent<UIPopupItemScript>() == null)
+				continue;
+			ItemDefinition item = GroundItems[i].GetComponent<ItemDefinition>();
+			if (item == null)
                 continue;
 
-            UIPopupItemScript itemData = GroundItems[i].GetComponent<UIPopupItemScript>();
-            if (itemData.Type == PopupItemType.Food)
+			if (item.ItemType == PopupItemType.Food)
             {
                 if (closestFood == null)
                 {
@@ -1027,7 +956,7 @@ public class CharacterProgressScript : MonoBehaviour
                     {
                         //PopupItemType itemType = ObjectHolding./*GetComponent<ReferencedObjectScript>().Reference.*/GetComponent<UIPopupItemScript>().Type;
 				
-                        OnInteractWithPopupItem(ObjectHolding./*GetComponent<ReferencedObjectScript>().Reference.*/GetComponent<UIPopupItemScript>());
+                        OnInteractWithPopupItem(ObjectHolding./*GetComponent<ReferencedObjectScript>().Reference.*/GetComponent<ItemDefinition>());
                         this.GetComponent<CharacterProgressScript>().GroundItems.Remove(ObjectHolding);
                         Destroy(ObjectHolding);
 
@@ -1045,7 +974,7 @@ public class CharacterProgressScript : MonoBehaviour
                         {
                             if (!PlayedEatingSound)
                             {
-                                UIPopupItemScript popup = ObjectHolding/*.GetComponent<ReferencedObjectScript>().Reference*/.GetComponent<UIPopupItemScript>();
+								ItemDefinition popup = ObjectHolding/*.GetComponent<ReferencedObjectScript>().Reference*/.GetComponent<ItemDefinition>();
 
                                 PlayedEatingSound = true;
                                 if (popup.SpecialId == SpecialFunctionalityId.Liquid)
@@ -1339,7 +1268,7 @@ public class CharacterProgressScript : MonoBehaviour
 
                         DragableObject = detectDragHit.collider.gameObject;
 					
-                        if (DragableObject.GetComponent<UIPopupItemScript>().Type != PopupItemType.Token)
+                        if (DragableObject.GetComponent<ItemDefinition>().ItemType != PopupItemType.Token)
                         {
 
                             pickupItemSavedData.WasInHands = false;
@@ -1436,12 +1365,12 @@ public class CharacterProgressScript : MonoBehaviour
                                     if (TouchesObjcesWhileSwiping[i].tag == "Shit")
                                         cleanedShit = true;
 
-                                    if (TouchesObjcesWhileSwiping[i].GetComponent<UIPopupItemScript>() != null)
+                                    if (TouchesObjcesWhileSwiping[i].GetComponent<ItemDefinition>() != null)
                                     {
-                                        ProfilesManagementScript.Instance.CurrentAnimin.AddItemToInventory(TouchesObjcesWhileSwiping[i].GetComponent<UIPopupItemScript>().Id, 1);
-                                    }
-
-                                    if (TouchesObjcesWhileSwiping[i].GetComponent<EDMBoxScript>() != null)
+								ProfilesManagementScript.Instance.CurrentAnimin.AddItemToInventory(TouchesObjcesWhileSwiping[i].GetComponent<ItemDefinition>().Id, 1);
+							}
+                                
+                                if (TouchesObjcesWhileSwiping[i].GetComponent<EDMBoxScript>() != null)
                                     {
                                         TouchesObjcesWhileSwiping[i].GetComponent<EDMBoxScript>().Stop();
                                     }
@@ -1519,14 +1448,14 @@ public class CharacterProgressScript : MonoBehaviour
                             {
                                 //Debug.Log("HIT THE CHARACTER FOR INTERACTION");
 
-                                if (ObjectHolding != null && !ObjectHolding./*GetComponent<ReferencedObjectScript>().Reference.*/GetComponent<UIPopupItemScript>().NonInteractable)
+                                if (ObjectHolding != null)
                                 {
                                     //Debug.Log("HIT THE CHARACTER FOR INTERACTION 2");
 
-                                    UIPopupItemScript item = ObjectHolding./*GetComponent<ReferencedObjectScript>().Reference.*/GetComponent<UIPopupItemScript>();
+									ItemDefinition item = ObjectHolding./*GetComponent<ReferencedObjectScript>().Reference.*/GetComponent<ItemDefinition>();
 
 
-                                    if (item.Type == PopupItemType.Food)
+									if (item.ItemType == PopupItemType.Food)
                                     {
                                         //Debug.Log("HIT THE CHARACTER FOR INTERACTION 3");
 
@@ -1541,12 +1470,6 @@ public class CharacterProgressScript : MonoBehaviour
                                     }
 
                                 }
-                                else if (ObjectHolding != null && ObjectHolding/*.GetComponent<ReferencedObjectScript>().Reference*/.GetComponent<UIPopupItemScript>().NonInteractable)
-                                {
-                                    //Debug.Log("HIT THE CHARACTER FOR INTERACTION 3");
-                                    UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHoc("Fart");
-                                    UIGlobalVariablesScript.Singleton.SoundEngine.PlayFart();
-                                }
                                 else if (ObjectHolding == null && CameraModelScript.Instance.transform.childCount == 0 && !animationController.IsPat)
                                 {
                                     //Debug.Log("HIT THE CHARACTER FOR INTERACTION 4");
@@ -1559,9 +1482,9 @@ public class CharacterProgressScript : MonoBehaviour
                                 Debug.Log("Tap");
 								UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHoc("StrokeAnimin");
                             }
-                            else if ((hitInfo.collider.tag == "Items") && hitInfo.collider/*.GetComponent<ReferencedObjectScript>().Reference*/.GetComponent<UIPopupItemScript>().Type == PopupItemType.Token)
+                            else if ((hitInfo.collider.tag == "Items") && hitInfo.collider/*.GetComponent<ReferencedObjectScript>().Reference*/.GetComponent<ItemDefinition>().ItemType == PopupItemType.Token)
                             {
-                                OnInteractWithPopupItem(hitInfo.collider./*GetComponent<ReferencedObjectScript>().Reference.*/GetComponent<UIPopupItemScript>());
+                                OnInteractWithPopupItem(hitInfo.collider./*GetComponent<ReferencedObjectScript>().Reference.*/GetComponent<ItemDefinition>());
                                 this.GetComponent<CharacterProgressScript>().GroundItems.Remove(hitInfo.collider.gameObject);
                                 Destroy(hitInfo.collider.gameObject);
                             }
@@ -1624,7 +1547,7 @@ public class CharacterProgressScript : MonoBehaviour
 
                                 point = moveHitInfo.transform.position;							
 
-								MenuFunctionalityUI menuUI = moveHitInfo.collider.GetComponent<UIPopupItemScript>().Menu;
+								MenuFunctionalityUI menuUI = moveHitInfo.collider.GetComponent<ItemDefinition>().Menu;
 								GameObject menu = CaringPageUI.GetUI(menuUI);
 
 								if (menu != null && !menu.activeInHierarchy && RequestedToMoveToCounter == 1 && (menuUI != MenuFunctionalityUI.None) && !hadUItouch)
@@ -1985,9 +1908,9 @@ public class CharacterProgressScript : MonoBehaviour
 
     }
 
-    public bool OnInteractWithPopupItem(UIPopupItemScript item)
+	public bool OnInteractWithPopupItem(ItemDefinition item)
     {
-        switch (item.Type)
+		switch (item.ItemType)
         {
             case PopupItemType.Token:
                 {
@@ -2053,9 +1976,12 @@ public class CharacterProgressScript : MonoBehaviour
 
             case PopupItemType.Item:
                 {
-			
-                    AchievementManager.Instance.AddToAchievment(AchievementManager.Achievements.PlayMusic);
-                    //ShowText("I can't use this item");
+					if(item.Id == InventoryItemId.FartButton)
+					{
+						UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHoc("Fart");
+						UIGlobalVariablesScript.Singleton.SoundEngine.PlayFart();
+					}
+
                     return false;
                 }
 

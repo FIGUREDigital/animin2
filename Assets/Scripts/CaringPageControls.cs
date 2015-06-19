@@ -14,7 +14,9 @@ public enum InventoryPages
 
 public class CaringPageControls : MonoBehaviour
 {
-
+	
+	[SerializeField]
+	Sprite emptySprite;
     [SerializeField]
     private RectTransform Inventory;
     private InventoryControls mInventoryControls;
@@ -214,16 +216,12 @@ public class CaringPageControls : MonoBehaviour
 
     void ResetButtons()
     {
-		Sprite empty = MainARHandler.Instance.SpriteStore.GetSprite(InventoryItemId.Count);
-        Icon1.sprite = empty;
-        Icon1.GetComponent<InterfaceItemLinkToModelScript>().Item3DPrefab = null;
-        Icon1.GetComponent<InterfaceItemLinkToModelScript>().ItemID = InventoryItemId.None;
-        Icon2.sprite = empty;
-        Icon2.GetComponent<InterfaceItemLinkToModelScript>().Item3DPrefab = null;
-        Icon2.GetComponent<InterfaceItemLinkToModelScript>().ItemID = InventoryItemId.None;
-        Icon3.sprite = empty;
-        Icon3.GetComponent<InterfaceItemLinkToModelScript>().Item3DPrefab = null;
-        Icon3.GetComponent<InterfaceItemLinkToModelScript>().ItemID = InventoryItemId.None;
+        Icon1.sprite = emptySprite;
+        Icon1.GetComponent<InterfaceItemLinkToModelScript>().item = null;
+		Icon2.sprite = emptySprite;
+		Icon2.GetComponent<InterfaceItemLinkToModelScript>().item = null;
+		Icon3.sprite = emptySprite;
+		Icon3.GetComponent<InterfaceItemLinkToModelScript>().item = null;
     }
 
     public void PopulateButtons()
@@ -235,31 +233,28 @@ public class CaringPageControls : MonoBehaviour
         ResetButtons();
         for (int i = 0; i < ProfilesManagementScript.Instance.CurrentAnimin.Inventory.Count; ++i)
         {
-			InventoryItemBankData data = ProfilesManagementScript.Instance.CurrentAnimin.Inventory[i].Definition;
+			ItemDefinition data = ProfilesManagementScript.Instance.CurrentAnimin.Inventory[i].Definition;
 			if (data.ItemType == PopupItemType.Food && !FoodIconSet)
             {
                 Icon1.sprite = data.SpriteName;
-                Icon1.GetComponent<InterfaceItemLinkToModelScript>().Item3DPrefab = data.PrefabId;
-                Icon1.GetComponent<InterfaceItemLinkToModelScript>().ItemID = data.Id;
+                Icon1.GetComponent<InterfaceItemLinkToModelScript>().item = data;
                 FoodIconSet = true;
-                Debug.Log("Food buttons set to " + data.Id.ToString() + "\n Currently there are " + ProfilesManagementScript.Instance.CurrentAnimin.Inventory[i].Count + " " + data.Id.ToString());
+                Debug.Log("Food buttons set to " + data.ToString() + "\n Currently there are " + ProfilesManagementScript.Instance.CurrentAnimin.Inventory[i].Count + " " + data.ToString());
             }
 			else if (data.ItemType == PopupItemType.Item && !ItemIconSet)
             {
-                Icon2.sprite = data.SpriteName;
-                Icon2.GetComponent<InterfaceItemLinkToModelScript>().Item3DPrefab = data.PrefabId;
-                Icon2.GetComponent<InterfaceItemLinkToModelScript>().ItemID = data.Id;
+				Icon2.sprite = data.SpriteName;
+				Icon2.GetComponent<InterfaceItemLinkToModelScript>().item = data;
                 ItemIconSet = true;
-                Debug.Log("Item buttons set to " + data.Id.ToString() + "\n Currently there are " + ProfilesManagementScript.Instance.CurrentAnimin.Inventory[i].Count + " " + data.Id.ToString());
+                Debug.Log("Item buttons set to " + data.ToString() + "\n Currently there are " + ProfilesManagementScript.Instance.CurrentAnimin.Inventory[i].Count + " " + data.ToString());
 
             }
 			else if (data.ItemType == PopupItemType.Medicine && !MediIconSet)
             {
-                Icon3.sprite = data.SpriteName;
-                Icon3.GetComponent<InterfaceItemLinkToModelScript>().Item3DPrefab = data.PrefabId;
-                Icon3.GetComponent<InterfaceItemLinkToModelScript>().ItemID = data.Id;
+				Icon3.sprite = data.SpriteName;
+				Icon3.GetComponent<InterfaceItemLinkToModelScript>().item = data;
                 MediIconSet = true;
-                Debug.Log("Medicine buttons set to " + data.Id.ToString() + "\n Currently there are " + ProfilesManagementScript.Instance.CurrentAnimin.Inventory[i].Count + " " + data.Id.ToString());
+                Debug.Log("Medicine buttons set to " + data.ToString() + "\n Currently there are " + ProfilesManagementScript.Instance.CurrentAnimin.Inventory[i].Count + " " + data.ToString());
 
             }
         }
@@ -477,15 +472,15 @@ public class CaringPageControls : MonoBehaviour
 		
         for (int i = 0; i < script.GroundItems.Count; ++i)
         {
-            if (script.GroundItems[i].GetComponent<UIPopupItemScript>() != null)
+            if (script.GroundItems[i].GetComponent<ItemDefinition>() != null)
             {
-                if (script.GroundItems[i].GetComponent<UIPopupItemScript>().Type == PopupItemType.Token)
+				if (script.GroundItems[i].GetComponent<ItemDefinition>().ItemType == PopupItemType.Token)
                 {
                     continue;
                 }
                 else
                 {
-                    ProfilesManagementScript.Instance.CurrentAnimin.AddItemToInventory(script.GroundItems[i].GetComponent<UIPopupItemScript>().Id, 1);
+                    ProfilesManagementScript.Instance.CurrentAnimin.AddItemToInventory(script.GroundItems[i].GetComponent<ItemDefinition>().Id, 1);
                 }
             }
             Destroy(script.GroundItems[i]);

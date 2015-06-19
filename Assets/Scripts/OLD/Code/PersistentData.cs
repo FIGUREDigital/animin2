@@ -34,10 +34,24 @@ public class PersistentData
 	}
 
 	public List<InventoryItemData> Inventory = new List<InventoryItemData>();
-    public TypesOfAnimin PlayerAniminId;
-	public string AniminName
+
+	public InventoryItemData GetItemData(InventoryItemId id)
 	{
-		get
+		for (int i = 0; i < Inventory.Count; i++) 
+		{
+			InventoryItemData InvData = ProfilesManagementScript.Instance.CurrentAnimin.Inventory [i];
+			if (id == Inventory[i].Id)
+			{
+				return Inventory[i];
+			}
+		}
+		return null;
+	}
+
+	public TypesOfAnimin PlayerAniminId;
+    public string AniminName
+    {
+        get
 		{
 			switch (PlayerAniminId)
 			{
@@ -115,11 +129,11 @@ public class PersistentData
     {
         if (o == null) return;
         Debug.Log("Saving Item : [" + o + "];");
-        UIPopupItemScript popup = o.GetComponent<UIPopupItemScript>();
+		ItemDefinition item = o.GetComponent<ItemDefinition>();
         //AH Avoid saving items that have a none ID, causes an exception on loading - Note Zef tokens use none
-        if (popup != null && popup.Id != InventoryItemId.None)
+        if (item != null && item.Id != InventoryItemId.None)
         {
-            ItemList.Add(new CaringScreenItem(popup.Id, o.transform.position));
+            ItemList.Add(new CaringScreenItem(item.Id, o.transform.position));
         }
     }
 
@@ -131,11 +145,10 @@ public class PersistentData
         for (int i = 0; i < m_CaringScreenItems.Length; i++)
         {
 //            Debug.Log ("Prefab : [" + InventoryItemData.Items [(int)m_CaringScreenItems [i].Id].PrefabId + "];");
-			InventoryItemBankData def =  InventoryItemData.GetDefinition(m_CaringScreenItems[i].Id);
+			ItemDefinition def =  ItemDefinition.GetDefinition(m_CaringScreenItems[i].Id);
 			if(def !=null)
 			{
-				GameObject resourceLoaded = (GameObject)Resources.Load(def.PrefabId);
-	            returnGOs[i] = (GameObject)GameObject.Instantiate(resourceLoaded);
+				returnGOs[i] = def.Create();
 
 	            returnGOs[i].transform.parent = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().ActiveWorld.transform;
 
@@ -257,7 +270,7 @@ public class PersistentData
 
 	public void AddItemToInventory(InventoryItemId id, int count)
 	{
-		InventoryItemBankData def = InventoryItemData.GetDefinition(id);
+		ItemDefinition def = ItemDefinition.GetDefinition(id);
 		if (def == null) {
 						Debug.Log ("Something has gone terribely wrong");
 						return;

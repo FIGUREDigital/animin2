@@ -47,8 +47,7 @@ public class UIClickButtonMasterScript : MonoBehaviour
             Debug.Log(sprite0.name);
 
            // subItems[panelCount].transform.GetChild(0).gameObject.GetComponent<Button>().normalSprite = InventoryItemData.Items[(int)inventoryItems[i + 0].Id].SpriteName;
-            subItems[panelCount].transform.GetChild(0).gameObject.GetComponent<InterfaceItemLinkToModelScript>().Item3DPrefab = inventoryItems[i + 0].Definition.PrefabId;
-			subItems[panelCount].transform.GetChild(0).gameObject.GetComponent<InterfaceItemLinkToModelScript>().ItemID = inventoryItems[i + 0].Id;
+            subItems[panelCount].transform.GetChild(0).gameObject.GetComponent<InterfaceItemLinkToModelScript>().item = inventoryItems[i].Definition;
             subItems[panelCount].transform.GetChild(0).gameObject.SetActive(true);
             sprite0.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = inventoryItems[i + 0].Count.ToString();
 
@@ -68,8 +67,7 @@ public class UIClickButtonMasterScript : MonoBehaviour
                 GameObject sprite1 = subItems[panelCount].transform.GetChild(1).gameObject;
 
                // subItems[panelCount].transform.GetChild(1).gameObject.GetComponent<Button>().normalSprite = InventoryItemData.Items[(int)inventoryItems[i + 1].Id].SpriteName;
-                subItems[panelCount].transform.GetChild(1).gameObject.GetComponent<InterfaceItemLinkToModelScript>().Item3DPrefab = inventoryItems[i + 1].Definition.PrefabId;
-                subItems[panelCount].transform.GetChild(1).gameObject.GetComponent<InterfaceItemLinkToModelScript>().ItemID = inventoryItems[i + 1].Id;
+				subItems[panelCount].transform.GetChild(1).gameObject.GetComponent<InterfaceItemLinkToModelScript>().item = inventoryItems[i+1].Definition;
                 subItems[panelCount].transform.GetChild(1).gameObject.SetActive(true);
                 sprite1.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = inventoryItems[i + 1].Count.ToString();
 
@@ -138,15 +136,15 @@ public class UIClickButtonMasterScript : MonoBehaviour
 			
                     for (int i = 0; i < script.GroundItems.Count; ++i)
                     {
-                        if (script.GroundItems[i].GetComponent<UIPopupItemScript>() != null)
+                        if (script.GroundItems[i].GetComponent<ItemDefinition>() != null)
                         {
-                            if (script.GroundItems[i].GetComponent<UIPopupItemScript>().Type == PopupItemType.Token)
+							if (script.GroundItems[i].GetComponent<ItemDefinition>().ItemType == PopupItemType.Token)
                             {
                                 continue;
                             }
                             else
                             {
-                                ProfilesManagementScript.Instance.CurrentAnimin.AddItemToInventory(script.GroundItems[i].GetComponent<UIPopupItemScript>().Id, 1);
+                                ProfilesManagementScript.Instance.CurrentAnimin.AddItemToInventory(script.GroundItems[i].GetComponent<ItemDefinition>().Id, 1);
                             }
                         }
                         Destroy(script.GroundItems[i]);
@@ -282,8 +280,8 @@ public class UIClickButtonMasterScript : MonoBehaviour
                     UIGlobalVariablesScript.Singleton.StatsButton.SetActive(!mainMenuPopupRef.activeInHierarchy);
                     UIGlobalVariablesScript.Singleton.MinigamesButton.SetActive(!mainMenuPopupRef.activeInHierarchy);
 
-                    UIGlobalVariablesScript.ButtonTriggeredMainMenuPopupRef.GetComponent<InterfaceItemLinkToModelScript>().ItemID = 
-				sender.GetComponent<InterfaceItemLinkToModelScript>().ItemID;
+                    UIGlobalVariablesScript.ButtonTriggeredMainMenuPopupRef.GetComponent<InterfaceItemLinkToModelScript>().item = 
+				sender.GetComponent<InterfaceItemLinkToModelScript>().item;
 			
                     //string spriteName = UIGlobalVariablesScript.ButtonTriggeredMainMenuPopupRef.GetComponent<Image>().spriteName;
 //                    UIGlobalVariablesScript.ButtonTriggeredMainMenuPopupRef.GetComponent<Image>().atlas = sender.GetComponent<Image>().atlas;

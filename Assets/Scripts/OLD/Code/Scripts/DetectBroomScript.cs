@@ -45,10 +45,10 @@ public class DetectBroomScript : MonoBehaviour, IBeginDragHandler, IDragHandler,
         {
             return;
         }
-        UIPopupItemScript script = hit.collider.gameObject.GetComponent<UIPopupItemScript>();
-        if (script != null)
+		ItemDefinition item = hit.collider.gameObject.GetComponent<ItemDefinition>();
+        if (item != null)
         {
-            ProfilesManagementScript.Instance.CurrentAnimin.AddItemToInventory(script.Id, 1);
+            ProfilesManagementScript.Instance.CurrentAnimin.AddItemToInventory(item.Id, 1);
             UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().GroundItems.Remove(hit.collider.gameObject);
             UnityEngine.Object.Destroy(hit.collider.gameObject);
         }

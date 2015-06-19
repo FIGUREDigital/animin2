@@ -42,10 +42,9 @@ public class DragDropMainBarItem : MonoBehaviour, IBeginDragHandler, IDragHandle
         InterfaceItemLinkToModelScript modelLink = GetComponent<InterfaceItemLinkToModelScript>();
 				
 			
-        GameObject resourceLoaded = (GameObject)Resources.Load(modelLink.Item3DPrefab);
-        GameObject child = (GameObject)GameObject.Instantiate(resourceLoaded);
-        UIPopupItemScript popScript = child.GetComponent<UIPopupItemScript>();
-        ProfilesManagementScript.Instance.CurrentAnimin.RemoveItemFromInventory(modelLink.ItemID, 1);
+		GameObject child = modelLink.item.Create();
+		ItemDefinition item = child.GetComponent<ItemDefinition>();
+        ProfilesManagementScript.Instance.CurrentAnimin.RemoveItemFromInventory(modelLink.item.Id, 1);
 					
         child.transform.parent = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().ActiveWorld.transform;
 	//	child.transform.localScale = new Vector3 (1, 1, 1);
@@ -56,14 +55,20 @@ public class DragDropMainBarItem : MonoBehaviour, IBeginDragHandler, IDragHandle
         if(OnClicked != null)
             OnClicked();
 
-        TutorialHandler.TriggerAdHocStatic("Drop"+popScript.Id.ToString());
+        TutorialHandler.TriggerAdHocStatic("Drop"+item.Id.ToString());
 					
-        if (popScript.Type == PopupItemType.Food)
-            UIGlobalVariablesScript.Singleton.SoundEngine.Play(GenericSoundId.DropFood);
-        else if (popScript.Type == PopupItemType.Item)
-            UIGlobalVariablesScript.Singleton.SoundEngine.Play(GenericSoundId.DropItem);
-        else if (popScript.Type == PopupItemType.Medicine)
-            UIGlobalVariablesScript.Singleton.SoundEngine.Play(GenericSoundId.DropMeds);
+		switch (item.ItemType) 
+		{
+		case PopupItemType.Food:
+			UIGlobalVariablesScript.Singleton.SoundEngine.Play (GenericSoundId.DropFood);
+			break;
+		case PopupItemType.Item:
+			UIGlobalVariablesScript.Singleton.SoundEngine.Play (GenericSoundId.DropItem);
+			break;
+		case PopupItemType.Medicine:
+			UIGlobalVariablesScript.Singleton.SoundEngine.Play (GenericSoundId.DropMeds);
+			break;
+		}
         child.transform.position = hit.point;
         UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().GroundItems.Add(child);
     }

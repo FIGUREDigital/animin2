@@ -194,7 +194,7 @@ public class ChestScript : MonoBehaviour
 
                             if (m_ChestType == ChestType.Evo)
                             {
-								zef = progressScript.SpawnStageItem(InventoryItemData.GetDefinition(GetComponent<EvolutionChestItem>().id).PrefabId, Vector3.zero, true);
+								zef = progressScript.SpawnStageItem(ItemDefinition.GetDefinition(GetComponent<EvolutionChestItem>().id).Create (), Vector3.zero, true);
                             }
                             else if (items[cur][i] != ItemType.Zef)
                             {
@@ -233,7 +233,7 @@ public class ChestScript : MonoBehaviour
                                         }
                                         break;
                                 }
-                                zef = progressScript.SpawnStageItem(InventoryItemData.GetDefinition(types[Random.Range(0, types.Length)]).PrefabId, Vector3.zero);
+								zef = progressScript.SpawnStageItem(ItemDefinition.GetDefinition(types[Random.Range(0, types.Length)]).Create (), Vector3.zero);
                             }
                             else
                             {

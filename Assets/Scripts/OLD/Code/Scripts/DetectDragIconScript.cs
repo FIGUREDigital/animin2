@@ -28,13 +28,12 @@ public class DetectDragIconScript : MonoBehaviour, IBeginDragHandler, IEndDragHa
     public void OnBeginDrag(PointerEventData eventData)
 	{
 		InterfaceItemLinkToModelScript refScript = this.GetComponent<InterfaceItemLinkToModelScript>();
-        if (refScript.ItemID == InventoryItemId.None) return;
-        Debug.Log("Begin drag " + refScript.ItemID.ToString());
+        if (refScript.item == null) return;
+        Debug.Log("Begin drag " + refScript.item.ToString());
 
 		//CameraModelScript.Instance.SpriteRef = this.gameObject;
 
-		GameObject resourceLoaded = (GameObject)Resources.Load(InventoryItemData.GetDefinition(refScript.ItemID).PrefabId);
-		GameObject child = (GameObject)GameObject.Instantiate(resourceLoaded);
+		GameObject child = refScript.item.Create ();
 
 		child.GetComponent<BoxCollider>().enabled = false;
 
@@ -51,9 +50,9 @@ public class DetectDragIconScript : MonoBehaviour, IBeginDragHandler, IEndDragHa
 		child.transform.localRotation = Quaternion.Euler(0, 180, 0);
         if(OnClicked != null)
             OnClicked();
-		if (refScript.ItemID == InventoryItemId.woodSword)
+		/*if (refScript.ItemID == InventoryItemId.woodSword)
 						child.transform.localScale *= 2.5f;
 		else if (refScript.ItemID == InventoryItemId.woodFrame)
-						child.transform.localScale *= 6f;
+						child.transform.localScale *= 6f;*/
 	}
 }

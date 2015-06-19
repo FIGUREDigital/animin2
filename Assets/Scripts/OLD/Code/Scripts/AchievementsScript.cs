@@ -48,7 +48,6 @@ public class AchievementsScript : MonoBehaviour
         if (UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript> () == null)
             return;
 
-		SpriteStore store = MainARHandler.Instance.SpriteStore;
 		switch(id)
 		{
 		case AchievementTypeId.Gold:
@@ -56,7 +55,7 @@ public class AchievementsScript : MonoBehaviour
 				Title.text = "Gold Award!";
 				BackgroundGradient.vertex1 = new Color32(247,255,38,255);
 				Description.text = string.Format(@"Well done! you scored {0} points.", points);
-				MedalIcon.sprite = store.GetMedel(AchievementMedels.achievementIconGold);
+				//MedalIcon.sprite = store.GetMedel(AchievementMedels.achievementIconGold);
 				break;
 			}
 		case AchievementTypeId.Bronze:
@@ -64,7 +63,7 @@ public class AchievementsScript : MonoBehaviour
 				Title.text = "Bronze Award!";
 			BackgroundGradient.vertex1 = new Color32(247,255,38,255);
 				Description.text = string.Format(@"Well done! you scored {0} points.", points);
-				MedalIcon.sprite = store.GetMedel(AchievementMedels.achievementIconBronze);
+				//MedalIcon.sprite = store.GetMedel(AchievementMedels.achievementIconBronze);
 				break;
 			}
 		case AchievementTypeId.Silver:
@@ -72,7 +71,7 @@ public class AchievementsScript : MonoBehaviour
 				Title.text = "Silver Award!!";
 			BackgroundGradient.vertex1 = new Color32(247,255,38,255);
 				Description.text = string.Format(@"Well done! you scored {0} points.", points);
-				MedalIcon.sprite = store.GetMedel(AchievementMedels.achievementIconSilver);
+				//MedalIcon.sprite = store.GetMedel(AchievementMedels.achievementIconSilver);
 				break;
 			}
 		case AchievementTypeId.Achievement:
@@ -80,7 +79,7 @@ public class AchievementsScript : MonoBehaviour
 				Title.text = "Achievement!";
 			BackgroundGradient.vertex1 = new Color32(89,255,38,255);
 				Description.text = "Congratulations, you got an achievement.";
-				MedalIcon.sprite = store.GetMedel(AchievementMedels.achievementIconStar);
+				//MedalIcon.sprite = store.GetMedel(AchievementMedels.achievementIconStar);
 				break;
 			}
 
@@ -89,7 +88,7 @@ public class AchievementsScript : MonoBehaviour
 				Title.text = "Your Animin has evolved!";
 			BackgroundGradient.vertex1 = new Color32(89,255,38,255);
 				Description.text = "Well done! Keep taking care of your Animin and training them up.";
-				MedalIcon.sprite = store.GetMedel(AchievementMedels.achievementIconMarker3);
+				//MedalIcon.sprite = store.GetMedel(AchievementMedels.achievementIconMarker3);
 				break;
 			}
 
@@ -98,7 +97,7 @@ public class AchievementsScript : MonoBehaviour
 				Title.text = "Your animin has grown!";
 			BackgroundGradient.vertex1 = new Color32(89,255,38,255);
 				Description.text = "Well done! Keep taking care of your Animin and training them up.";
-				MedalIcon.sprite = store.GetMedel(AchievementMedels.achievementIconMarker3);
+				//MedalIcon.sprite = store.GetMedel(AchievementMedels.achievementIconMarker3);
 				break;
 			}
 		case AchievementTypeId.EvolutionStar:
@@ -106,7 +105,7 @@ public class AchievementsScript : MonoBehaviour
 				Title.text = "You unlocked a surprise!";
 			BackgroundGradient.vertex1 = new Color32(89,255,38,255);
 				Description.text = "Well done! Keep taking care of your Animin and training them up.";
-				MedalIcon.sprite = store.GetMedel(AchievementMedels.achievementIconMarker1);
+				//MedalIcon.sprite = store.GetMedel(AchievementMedels.achievementIconMarker1);
 				break;
 			}
 		case AchievementTypeId.Tutorial:
@@ -114,7 +113,7 @@ public class AchievementsScript : MonoBehaviour
 				Title.text = "Yo!";
 			BackgroundGradient.vertex1 = new Color32(255,190,38,0);
 				Description.text = "Well done! Keep taking care of your Animin and training them up.";
-				MedalIcon.sprite = store.GetMedel(AchievementMedels.achievementIconWorm);
+				//MedalIcon.sprite = store.GetMedel(AchievementMedels.achievementIconWorm);
 				break;
 			}
 		case AchievementTypeId.Birthday:
@@ -122,7 +121,7 @@ public class AchievementsScript : MonoBehaviour
 				Title.text = "Happy Birthday!";
 			BackgroundGradient.vertex1 = new Color32(255,38,124,255);
 				Description.text = "Well done! Keep taking care of your Animin and training them up.";
-				MedalIcon.sprite = store.GetMedel(AchievementMedels.achievementIconBirthday);
+				//MedalIcon.sprite = store.GetMedel(AchievementMedels.achievementIconBirthday);
 				break;
 			}
 		}

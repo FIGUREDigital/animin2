@@ -8,8 +8,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 406414}
-  - 114: {fileID: 11455958}
   - 65: {fileID: 6562196}
+  - 114: {fileID: 11457976}
   m_Layer: 0
   m_Name: red_phone
   m_TagString: Items
@@ -27,7 +27,6 @@ GameObject:
   - 4: {fileID: 455958}
   - 33: {fileID: 3355958}
   - 23: {fileID: 2355958}
-  - 95: {fileID: 9555958}
   m_Layer: 0
   m_Name: model
   m_TagString: Untagged
@@ -61,7 +60,7 @@ Transform:
   m_Father: {fileID: 406414}
   m_RootOrder: 0
 --- !u!23 &2355958
-Renderer:
+MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -69,15 +68,19 @@ Renderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_LightmapIndex: 255
-  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
   - {fileID: 2100000, guid: 3d6b6a70071c3427bbaf34fd6cf79cdb, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
-  m_LightProbeAnchor: {fileID: 0}
+  m_ReflectionProbeUsage: 1
+  m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_ImportantGI: 0
+  m_AutoUVMaxDistance: .5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
 --- !u!33 &3355958
@@ -99,22 +102,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.95838487, y: 1.25409126, z: 1.39286232}
   m_Center: {x: -.0094510084, y: .627045631, z: .000416207331}
---- !u!95 &9555958
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 155958}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 3142591a4dcc849c896f277a951c7459, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &11455958
+--- !u!114 &11457976
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -122,15 +110,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 106414}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b8dab6596d544dd5bfcc636ad461382, type: 3}
+  m_Script: {fileID: 11500000, guid: ee7805debf5aa49fa9aaadf4bd2cb6c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Points: 0
-  Type: 1
-  NonInteractable: 0
-  Menu: 2
-  SpecialId: 0
-  Id: 34
+  points: 0
+  itemType: 1
+  nonInteractable: 0
+  menu: 2
+  specialId: 0
+  id: 34
+  prefab: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 6ffa1457484e84405b4c7fed4b43b7af, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -142,4 +132,3 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 106414}
   m_IsPrefabParent: 1
-  m_IsExploded: 1

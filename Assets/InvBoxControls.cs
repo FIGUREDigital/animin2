@@ -40,7 +40,7 @@ public class InvBoxControls : MonoBehaviour {
         transform.parent.localScale = Vector3.one;
     }
 
-    private UIPopupItemScript m_ItemScript;
+    private ItemDefinition m_Item;
     CaringPageControls m_CaringPageControls;
     void DropItem()
     {
@@ -52,8 +52,7 @@ public class InvBoxControls : MonoBehaviour {
             return;
         }
         Debug.Log("[Drop Item]: Item = "+GO.name);
-        m_ItemScript = GO.GetComponent<UIPopupItemScript> ();
-        m_ItemScript.NonInteractable = true;
+		m_Item = GO.GetComponent<ItemDefinition> ();
         
         m_CaringPageControls = UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>();
         
@@ -61,7 +60,7 @@ public class InvBoxControls : MonoBehaviour {
 
         if (MainARHandler.Instance.DraggedFromStage)
         {
-            ProfilesManagementScript.Instance.CurrentAnimin.AddItemToInventory(m_ItemScript.Id, 1);
+            ProfilesManagementScript.Instance.CurrentAnimin.AddItemToInventory(m_Item.Id, 1);
         }
         
         m_CaringPageControls.DisappearAllItemUIs();

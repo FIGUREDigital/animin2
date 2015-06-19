@@ -10,7 +10,7 @@ public class DroppedItemScript : MonoBehaviour {
 		End,
 	}
 	private float m_VerticalSpeed;
-	private UIPopupItemScript m_ItemScript;
+	private ItemDefinition m_Item;
 
     CaringPageControls m_CaringPageControls;
 
@@ -18,8 +18,7 @@ public class DroppedItemScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		m_ItemScript = GetComponent<UIPopupItemScript> ();
-		m_ItemScript.NonInteractable = true;
+		m_Item = GetComponent<ItemDefinition> ();
 		
 		m_VerticalSpeed = 0;
 
@@ -36,7 +35,7 @@ public class DroppedItemScript : MonoBehaviour {
 //		bool isNonArScene = UIGlobalVariablesScript.Singleton.NonSceneRef.activeInHierarchy;
 		
 		if (this.transform.position.y <= -350) {
-			ProfilesManagementScript.Instance.CurrentAnimin.AddItemToInventory(m_ItemScript.Id,1);
+			ProfilesManagementScript.Instance.CurrentAnimin.AddItemToInventory(m_Item.Id,1);
 			UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().GroundItems.Remove(this.gameObject);
 
             m_CaringPageControls.DisappearAllItemUIs();

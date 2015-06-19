@@ -9,13 +9,13 @@ public class InventoryItemControls : MonoBehaviour {
 	private GameObject CountPanel;
 	public Image image;
 	public CaringPageControls caringPage;
-	public InventoryItemBankData data;
-	public InventoryItemBankData Data
+	private ItemDefinition item;
+	public ItemDefinition Item
 	{
 		set
 		{
-			data = value;
-			image.sprite = data.SpriteName;
+			item = value;
+			image.sprite = item.SpriteName;
 			Count();
 		}
 	}
@@ -23,23 +23,16 @@ public class InventoryItemControls : MonoBehaviour {
 
 	public void OnClick()
 	{
-		caringPage.SetIcon(data.ItemType, data.SpriteName);
-		GameObject icon = caringPage.GetIcon (data.ItemType);
-		icon.GetComponent<InterfaceItemLinkToModelScript>().Item3DPrefab = data.PrefabId;
-		icon.GetComponent<InterfaceItemLinkToModelScript>().ItemID = data.Id;
+		caringPage.SetIcon(item.ItemType, item.SpriteName);
+		GameObject icon = caringPage.GetIcon (item.ItemType);
+		icon.GetComponent<InterfaceItemLinkToModelScript>().item = item;
 		caringPage.CloseInventory();
 	}
 
     void Count()
     {
-        for(int i = 0; i < ProfilesManagementScript.Instance.CurrentAnimin.Inventory.Count; i++)
-        {
-            InventoryItemData InvData = ProfilesManagementScript.Instance.CurrentAnimin.Inventory[i];
-            if(data.Id == InvData.Id)
-            {
-                count = InvData.Count;
-            }
-        }
+		InventoryItemData data = ProfilesManagementScript.Instance.CurrentAnimin.GetItemData(item.Id);
+		int count = data != null ? data.Count : 0;
         mText.text = count.ToString ();
         CountPanel = mText.gameObject.transform.parent.gameObject;
         CountPanel.SetActive(count > 1);

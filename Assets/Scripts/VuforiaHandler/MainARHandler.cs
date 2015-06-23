@@ -67,7 +67,6 @@ public class MainARHandler : MonoBehaviour
 
 	public Transform MainARCamera { get { return ARCameraTransform; } }
     public GameObject CurrentItem;
-    public bool DraggedFromStage;
     private GameScenes m_CurrentGameScene;
     private GameScenes m_PreviousGameScene;
 
@@ -259,11 +258,11 @@ public class MainARHandler : MonoBehaviour
 			//Debug.Log("OnTrackingChange: "+tracking+" [" + mLastTrack.TrackableBehaviour.TrackableName + "];");
 			// Switcing			
 			GameObject caringPage = GameObject.FindGameObjectWithTag("caringpage");			
-			if(caringPage  != null)
+/*			if(caringPage  != null)
 			{
 				CaringPageControls caringPageControls = caringPage.GetComponent<CaringPageControls>();
 				caringPageControls.BroomButton();
-			}
+			}*/
 
 			// Switch this to call delegates!
 			if (m_CurrentGameScene == GameScenes.Caring)

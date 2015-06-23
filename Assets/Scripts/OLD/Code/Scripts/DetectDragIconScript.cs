@@ -27,19 +27,18 @@ public class DetectDragIconScript : MonoBehaviour, IBeginDragHandler, IEndDragHa
         
     public void OnBeginDrag(PointerEventData eventData)
 	{
-		InterfaceItemLinkToModelScript refScript = this.GetComponent<InterfaceItemLinkToModelScript>();
+		ItemLink refScript = this.GetComponent<ItemLink>();
         if (refScript.item == null) return;
         Debug.Log("Begin drag " + refScript.item.ToString());
 
 		//CameraModelScript.Instance.SpriteRef = this.gameObject;
 
-		GameObject child = refScript.item.Create ();
+		GameObject child = refScript.item.Instance;
 
 		child.GetComponent<BoxCollider>().enabled = false;
 
-		CameraModelScript.Instance.SetDragging(child);
+		CameraModelScript.Instance.SetDragging(child, false);
         MainARHandler.Instance.CurrentItem = child;
-        MainARHandler.Instance.DraggedFromStage = false;
 		child.transform.position = Vector3.zero;
         child.transform.localPosition += new Vector3(0, 0, 30f);
 		child.transform.rotation = Quaternion.identity;

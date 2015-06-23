@@ -6,7 +6,8 @@ using System;
 [System.Serializable]
 public class PlayerProfileData
 {
-
+	static private int currentVersion = 1;	// The version number of the format that we are saving.
+	public int version = 0;	// By default if it's not saved then it's version 0
     public bool FirstTimePlaying;
 
     //private int FileVersion = 1;
@@ -23,6 +24,7 @@ public class PlayerProfileData
 
     public List<string> TutorialsCompleted = new List<string>();
 	public List<int>highScores= new List<int>();
+	public Inventory Inventory = new Inventory();
 
     public bool TutorialBoxLandPlayed
     {
@@ -75,6 +77,7 @@ public class PlayerProfileData
     public static PlayerProfileData CreateNewProfile(string name)
     {
         PlayerProfileData profile = new PlayerProfileData();
+		profile.version = currentVersion;
         profile.ProfileName = name;
         for (int i = 0; i < profile.Characters.Length; ++i)
         {
@@ -87,6 +90,26 @@ public class PlayerProfileData
         profile.UnlockedAnimins.Add(PersistentData.TypesOfAnimin.Tbo);
         return profile;
     }
+
+	public void UpdateVersion()
+	{
+		if (version < 1) 
+		{
+			UpdateToVersion1();
+		}
+		// All upgraded so set version to the current format
+		version = currentVersion;
+	}
+
+	public void UpdateToVersion1()
+	{
+		// Go through animins and move any inventory to the global list		
+		foreach (PersistentData c in Characters) 
+		{
+			c.UpdateFromVersion0(Inventory);
+        }
+		version = 1;
+	}
 
     /// <summary>No Description</summary>
     //    public static PlayerProfileData[] GetAllProfiles()

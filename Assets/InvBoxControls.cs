@@ -52,22 +52,15 @@ public class InvBoxControls : MonoBehaviour {
             return;
         }
         Debug.Log("[Drop Item]: Item = "+GO.name);
-		m_Item = GO.GetComponent<ItemDefinition> ();
+		ItemLink link = GO.GetComponent<ItemLink> ();
+		if (link != null) 
+		{
+			link.item.MoveTo(Inventory.Locations.Inventory, Vector3.zero);
+		}
         
-        m_CaringPageControls = UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>();
-        
-//        bool isNonArScene = UIGlobalVariablesScript.Singleton.NonSceneRef.activeInHierarchy;
+		m_CaringPageControls = UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>();
+		m_CaringPageControls.DisappearAllItemUIs();
 
-        if (MainARHandler.Instance.DraggedFromStage)
-        {
-            ProfilesManagementScript.Instance.CurrentAnimin.AddItemToInventory(m_Item.Id, 1);
-        }
-        
-        m_CaringPageControls.DisappearAllItemUIs();
-        
-        
-        UnityEngine.Object.Destroy(GO);
-        UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().GroundItems.Remove(GO);
         OnDropItem();
     }
 }

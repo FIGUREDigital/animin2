@@ -202,15 +202,14 @@ namespace Phi
         {
             foreach(UndoPropertyModification m in modifications)
             {
-#if UNITY_5_1_0
+#if !UNITY_5_0 && !UNITY_4_6 && !UNITY_4_5
                 GameObject go = m.currentValue.target as GameObject;
 #else				
 				GameObject go = m.propertyModification.target as GameObject;
 #endif
                 if (go != null)
-                {
-		
-#if UNITY_5_1_0
+                {					
+#if !UNITY_5_0 && !UNITY_4_6 && !UNITY_4_5
 					if (!EdMultisceneHierarchy.changingVisibility || m.currentValue.propertyPath.CompareTo("m_IsActive") != 0)
 #else
 					if (!EdMultisceneHierarchy.changingVisibility || m.propertyModification.propertyPath.CompareTo("m_IsActive") != 0)
@@ -223,7 +222,7 @@ namespace Phi
                 else
                 {
 					
-#if UNITY_5_1_0
+					#if !UNITY_5_0 && !UNITY_4_6 && !UNITY_4_5
 					Component c = m.currentValue.target as Component;
 #else
 					Component c = m.propertyModification.target as Component;
@@ -235,7 +234,7 @@ namespace Phi
                         if(cam != null)
                         {
 							
-							#if UNITY_5_1_0	
+							#if !UNITY_5_0 && !UNITY_4_6 && !UNITY_4_5
 							if (m.currentValue.propertyPath.CompareTo("m_Depth") == 0 || m.currentValue.propertyPath.CompareTo("m_Enabled") == 0)
 								#else
 								if (m.propertyModification.propertyPath.CompareTo("m_Depth") == 0 || m.propertyModification.propertyPath.CompareTo("m_Enabled") == 0)

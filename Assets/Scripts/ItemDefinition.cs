@@ -54,10 +54,10 @@ public class ItemDefinition : MonoBehaviour
 	InventoryItemId id;
 	
 	[SerializeField]
-	GameObject prefab;
+	Sprite sprite;
 	
 	[SerializeField]
-	Sprite sprite;
+	UnityEngine.Gradient gradient;
 
 	public SpecialFunctionalityId SpecialId
 	{
@@ -107,21 +107,32 @@ public class ItemDefinition : MonoBehaviour
 			return sprite;
 		}
 	}
-	
-	public GameObject Create()
+
+	public UnityEngine.Gradient Gradient
 	{
-		GameObject go = (GameObject)GameObject.Instantiate(gameObject);
+		get
+		{
+			return gradient;
+		}
+	}
+	
+	public GameObject Create(Inventory.Entry entry)
+	{
+		GameObject go = (GameObject)GameObject.Instantiate(gameObject);		
+		go.AddComponent<ItemLink>().item = entry;
+		Destroy (go.GetComponent<ItemDefinition>());	// Remove this component and replace with the ItemLink
 		go.SetActive(true);
 		return go;
 	}
 
 	public void Awake()
 	{
-		if (itemDefinitions.ContainsKey (id)) 
+		ItemDefinition existing;
+		if (itemDefinitions.TryGetValue(id, out existing)) 
 		{
 			// Must be a duplicate which is actually used so leave it allone unless it has the same parent as other
 			// registered definitions.
-			if (itemDefinitions[id].transform.parent == transform.parent)
+			if (existing.transform.parent == transform.parent)
 			{
 				Debug.LogError ("Duplicate ("+name+") item of type "+Id.ToString ()+" found and ignored");
 				gameObject.SetActive(false);
@@ -135,6 +146,12 @@ public class ItemDefinition : MonoBehaviour
 	}	
 	
 	private static Dictionary<InventoryItemId, ItemDefinition> itemDefinitions = new Dictionary<InventoryItemId, ItemDefinition>();
+
+	public static List<ItemDefinition> GetAllDefinitions()
+	{
+		List<ItemDefinition> list = new List<ItemDefinition> (itemDefinitions.Values);
+		return list;
+	}
 
 	public static ItemDefinition GetDefinition(InventoryItemId id)
 	{

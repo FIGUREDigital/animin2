@@ -70,29 +70,34 @@ public class InventoryControls : MonoBehaviour
 		m_CurrentDisplayed = new List<GameObject> ();		
 		itemButton.SetActive (false);
 //		int count = 0;
-		for (int i=0; i<ProfilesManagementScript.Instance.CurrentAnimin.Inventory.Count; ++i)
-		{
-			ItemDefinition data = ProfilesManagementScript.Instance.CurrentAnimin.Inventory[i].Definition;
-			//Debug.Log ("Inventory contains: "+data.Id);
-			if(data.ItemType == type)
-			{
-				InventoryItemControls button;
-				if(m_CurrentDisplayed.Count == 0)
-				{
-					itemButton.SetActive(true);
-					button = itemButton.GetComponent<InventoryItemControls>();
-				}
-				else
-				{
-					button = ((GameObject)Instantiate(itemButton)).GetComponent<InventoryItemControls>();
-				}
-				button.Item = data;
-				button.caringPage = m_CaringPage;
-				m_CurrentDisplayed.Add(button.gameObject);
-				button.transform.parent = m_InventoryGrid.transform;
 
-                button.transform.localScale = Vector3.one * 0.8f;
+		List<InventoryItemId> ids = new List<InventoryItemId> ();
+
+		for (int i=0; i<ProfilesManagementScript.Instance.CurrentProfile.Inventory.Count; ++i)
+		{
+			Inventory.Entry entry = ProfilesManagementScript.Instance.CurrentProfile.Inventory.Get(i);
+			if(entry.Location != Inventory.Locations.Inventory) continue;
+			ItemDefinition def = entry.Definition;
+			if(def.ItemType != type) continue;
+			if(ids.Contains (def.Id)) continue;
+			ids.Add (def.Id);
+
+			InventoryItemControls button;
+			if(m_CurrentDisplayed.Count == 0)
+			{
+				itemButton.SetActive(true);
+				button = itemButton.GetComponent<InventoryItemControls>();
 			}
+			else
+			{
+				button = ((GameObject)Instantiate(itemButton)).GetComponent<InventoryItemControls>();
+			}
+			button.Item = entry;
+			button.caringPage = m_CaringPage;
+			m_CurrentDisplayed.Add(button.gameObject);
+			button.transform.parent = m_InventoryGrid.transform;
+
+            button.transform.localScale = Vector3.one * 0.8f;
 		}
 		float spacing = 0;
 		int columns = Mathf.CeilToInt(m_CurrentDisplayed.Count * 0.5f);

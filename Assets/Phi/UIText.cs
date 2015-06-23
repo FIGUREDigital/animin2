@@ -119,6 +119,7 @@ public class UIText : MonoBehaviour {
                         CopySettingsFromRenderer();
                     }
                     UpdateMaterial();
+					UpdateText ();
                     Localize();
                     break;
                 }                

@@ -74,7 +74,8 @@ public class CollectiblesBehaviour : MonoBehaviour
 						Random.Range(-0.9f, 0.9f),
 						0.0f,
 						Random.Range(-0.9f, 0.9f));
-					UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().SpawnZef(position);
+					CharacterProgressScript progressScript = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>();
+					progressScript.SpawnStageItem(InventoryItemId.Zef, position);
 				}
 
 				while(spawnCrystals > 0 && crystalPrefabs < 3)

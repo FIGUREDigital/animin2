@@ -3,24 +3,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-[System.Serializable]
-public class ItemPickupSavedData
-{
-    public CharacterProgressScript ScriptRef;
-    public Vector3 Position;
-    public Vector3 Rotation;
-    public bool WasInHands;
-
-    public void RevertToThis()
-    {
-        if (WasInHands)
-        {
-
-        }
-    }
-}
-
-
 public enum InventoryItemId
 {
     None = 0,
@@ -73,14 +55,14 @@ public enum InventoryItemId
 [System.Serializable]
 public class InventoryItemData
 {
+	// The following fields should not be used and are public for serialization only :-(
     public InventoryItemId Id;
-    public int Count;
-	public ItemDefinition Definition
+	public int Count;
+
+	public void GetDataForUpgrade(out InventoryItemId id, out int count)
 	{
-		get
-		{
-			return ItemDefinition.GetDefinition(Id);
-		}
+		id = Id;
+		count = Count;
 	}
 }
 
@@ -161,7 +143,7 @@ public class CharacterProgressScript : MonoBehaviour
     private List<GameObject> groundItemsOnNonARScene = new List<GameObject>();
 
 
-    public List<GameObject> GroundItems
+    public List<GameObject> GroundItemsNoLongerUsed
     {
         get
         {
@@ -186,6 +168,7 @@ public class CharacterProgressScript : MonoBehaviour
                 return UIGlobalVariablesScript.Singleton.NonARWorldRef;
         }
     }
+
 
     public GameObject PooPrefab;
     public GameObject PissPrefab;
@@ -216,7 +199,6 @@ public class CharacterProgressScript : MonoBehaviour
 
     public GameObject GroundPlane;
 
-    ItemPickupSavedData pickupItemSavedData = new ItemPickupSavedData();
     RaycastHit moveHitInfo;
     RaycastHit detectDragHit;
     ActionId lastActionId;
@@ -310,21 +292,15 @@ public class CharacterProgressScript : MonoBehaviour
         animationController = GetComponent<AnimationControllerScript>();
         CurrentAction = ActionId.EnterSleep;
 
-        GameObject[] gos = ProfilesManagementScript.Instance.CurrentAnimin.LoadCaringScreenItem();
-        if (gos != null)
-            for (int i = 0; i < gos.Length; i++)
-                GroundItems.Add(gos[i]);
-
-        //animationController.IsSleeping = true;
-        //CurrentAction = ActionId.Sleep;
-        //SleepBoundingBox.SetActive(true);
+		ProfilesManagementScript.Instance.CurrentProfile.Inventory.SetLocationRoot(Inventory.Locations.AR, UIGlobalVariablesScript.Singleton.ARWorldRef);
+		ProfilesManagementScript.Instance.CurrentProfile.Inventory.SetLocationRoot(Inventory.Locations.NonAR, UIGlobalVariablesScript.Singleton.NonARWorldRef);
     }
 
 
     void Start()
     {
 		ConfigurableData.Instance.EnsureInstanced ();
-        UIClickButtonMasterScript.SetSoundSprite();
+        //UIClickButtonMasterScript.SetSoundSprite();
 
         if (ProfilesManagementScript.Instance.CurrentAnimin == null)
         {
@@ -339,63 +315,15 @@ public class CharacterProgressScript : MonoBehaviour
 
         this.GetComponent<CharacterSwapManagementScript>().LoadCharacter(ProfilesManagementScript.Instance.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Instance.CurrentAnimin.AniminEvolutionId, !ProfilesManagementScript.Instance.CurrentAnimin.Hatched);
         //this.GetComponent<CharacterSwapManagementScript>().LoadCharacter(AniminId.Mandi   , AniminEvolutionStageId.Adult);
-		
-		if(!ProfilesManagementScript.Instance.CurrentAnimin.HasItem(InventoryItemId.Radio))
-		{
-			ProfilesManagementScript.Instance.CurrentAnimin.AddItemToInventory(InventoryItemId.Radio, 1);
-		}
-		if(!ProfilesManagementScript.Instance.CurrentAnimin.HasItem(InventoryItemId.Boombox))
-		{
-			ProfilesManagementScript.Instance.CurrentAnimin.AddItemToInventory(InventoryItemId.Boombox, 1);
-		}
-		if(!ProfilesManagementScript.Instance.CurrentAnimin.HasItem(InventoryItemId.ItemAlbum))
-		{
-			ProfilesManagementScript.Instance.CurrentAnimin.AddItemToInventory(InventoryItemId.ItemAlbum, 1);
-        }
-        /* Debug Add Items
-		ProfilesManagementScript.Instance.CurrentAnimin.AddItemToInventory(InventoryItemId.EDM808, 1);
-		ProfilesManagementScript.Instance.CurrentAnimin.AddItemToInventory(InventoryItemId.EDMJuno, 1);
-		ProfilesManagementScript.Instance.CurrentAnimin.AddItemToInventory(InventoryItemId.EDMKsynth, 1);
+
+		/*
+		ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeHave(InventoryItemId.Radio, 1);
+		ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeHave(InventoryItemId.Boombox, 1);
+		ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeHave(InventoryItemId.ItemAlbum, 1);
 		*/
 
-        /* OLD ADD ITEMS TO INVENTORY
-        ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.AlmondMilk, 3);
-        ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.Avocado, 1);
-        ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.Blueberry, 1);
-        ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.Boombox, 1);
-        ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.Camera, 1);
-        ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.Carrot, 1);
-        ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.Chips, 1);
-        ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.Clock, 4);
-        ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.EDM808, 1);
-        ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.EDMJuno, 1);
-        ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.EDMKsynth, 1);
-        ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.FartButton, 1);
-        ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.Lightbulb, 1);
-        //AddItemToInventory(InventoryItemId.mintclock, 1);
-        //AddItemToInventory(InventoryItemId.Noodles, 1);
-        ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.paperCalendar, 1);
-        ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.Pill, 1);
-        ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.Plaster, 1);
-        ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.Spinach, 1);
-        ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.Strawberry, 1);
-        ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.Toast, 1);
-        ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.watermelon, 1);
-        ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.woodFrame, 1);
-        ProfilesManagementScript.Singleton.CurrentAnimin.AddItemToInventory(InventoryItemId.woodSword, 1);
-        */
-
-        for (int i = 0; i < ProfilesManagementScript.Instance.CurrentAnimin.Inventory.Count; i++)
-        {
-            for (int j = 0; j < ProfilesManagementScript.Instance.CurrentAnimin.Inventory.Count; j++)
-            {
-                if (ProfilesManagementScript.Instance.CurrentAnimin.Inventory[i].Id == ProfilesManagementScript.Instance.CurrentAnimin.Inventory[j].Id && i != j)
-                {
-                    Debug.Log("Duplicate found : [" + i + "|" + j + "]; ID :[" + ProfilesManagementScript.Instance.CurrentAnimin.Inventory[i].Id + "];");
-                }
-            }
-        }
-
+		
+		ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeOwn(InventoryItemId.ItemAlbum, 1);
 
         if (BetweenSceneData.Instance.ReturnFromMiniGame)
         {
@@ -436,13 +364,13 @@ public class CharacterProgressScript : MonoBehaviour
 
 
    public void CleanUpItems(){
-        for (int i = 0; i < groundItemsOnARscene.Count; i++)
+        /*for (int i = 0; i < groundItemsOnARscene.Count; i++)
         {
             ProfilesManagementScript.Instance.CurrentAnimin.AddItemToInventory(groundItemsOnARscene[i].GetComponent<ItemDefinition>().Id, 1);
-        }
+        }*/
 
-        Debug.Log("ON DESTROYED! groundItemsOnNonARScene : [" + groundItemsOnNonARScene.Count + "];");
-        ProfilesManagementScript.Instance.CurrentAnimin.SaveCaringScreenItem(groundItemsOnNonARScene.ToArray(), ObjectHolding);
+        //Debug.Log("ON DESTROYED! groundItemsOnNonARScene : [" + groundItemsOnNonARScene.Count + "];");
+        //ProfilesManagementScript.Instance.CurrentAnimin.SaveCaringScreenItem(groundItemsOnNonARScene.ToArray(), ObjectHolding);
 		ProfilesManagementScript.Instance.Save();
     }
     void OnDestroy()
@@ -470,85 +398,35 @@ public class CharacterProgressScript : MonoBehaviour
         }
     }
 
-	public GameObject SpawnStageItem(GameObject gameObject, Vector3 position, bool isZefRewardItem = false)
+	public GameObject SpawnStageItem(InventoryItemId itemID, Vector3 position, bool isZefRewardItem = false)
     {
-        gameObject.transform.parent = ActiveWorld.transform;
-		
-        gameObject.transform.localPosition = position;
+		Inventory.Entry entry = ProfilesManagementScript.Instance.CurrentProfile.Inventory.Add (itemID);
+		GameObject go = entry.Instance;
+		entry.MoveTo (Inventory.CurrentLocation, position);
         //gameObject.transform.localRotation = Quaternion.Euler(0, UnityEngine.Random.Range(-180, 180), 0);
-
-		ItemDefinition item = gameObject.GetComponent<ItemDefinition>();
 
 		if(isZefRewardItem)
 		{
-			ItemUnlockBehaviour.Show(item.Id);
+			ItemUnlockBehaviour.Show(itemID);
 		}
 
         float scale = 0.1f;
-        gameObject.transform.localScale = new Vector3(scale, scale, scale);
+		go.transform.localScale = new Vector3(scale, scale, scale);
 
 		Debug.Log ("If somebody sees this, please tell Harry. Tell him [" + gameObject.name + "]; was a thing.");
-        gameObject.transform.localRotation = Quaternion.Euler(0, UnityEngine.Random.Range(130, 230), 0);
+		go.gameObject.transform.localRotation = Quaternion.Euler(0, UnityEngine.Random.Range(130, 230), 0);
 
-        GroundItems.Add(gameObject);
-        return gameObject;
-    }
-
-    public GameObject SpawnZef(Vector3 position)
-    {
-        CharacterProgressScript script = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>();
-
-        GameObject resource = Resources.Load<GameObject>(@"Prefabs/ZefToken");
-		
-        GameObject gameObject = GameObject.Instantiate(resource) as GameObject;
-        gameObject.transform.parent = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().ActiveWorld.transform;
-		
-        gameObject.transform.localPosition = position;
-        //gameObject.transform.localRotation = Quaternion.Euler(0, UnityEngine.Random.Range(-180, 180), 0);
-		
-        script.GroundItems.Add(gameObject);
-        return gameObject;
-    }
-
-    public GameObject GetItemToEatIfHungry()
-    {
-        if (ProfilesManagementScript.Instance.CurrentAnimin.Hungry >= CharacterProgressScript.ConsideredHungryLevels) return null; // Not hungry
-        for (int i = 0; i < GroundItems.Count; ++i)
-        {
-			ItemDefinition item = GroundItems[i]/*.GetComponent<ReferencedObjectScript>().Reference*/.GetComponent<ItemDefinition>();
-            if (item == null)
-                continue;
-
-            if (item.ItemType == PopupItemType.Food)
-            {
-                return item.gameObject;
-            }
-        }
-        return null;
+		return go;
     }
 
     public GameObject GetRandomItem()
     {
-        List<GameObject> list = new List<GameObject>();
-		
-        for (int i = 0; i < GroundItems.Count; ++i)
-        {
-            //if(GroundItems[i].GetComponent<ReferencedObjectScript>() == null) continue;
+		List<Inventory.Entry> entries = ProfilesManagementScript.Instance.CurrentProfile.Inventory.GetEntries (Inventory.CurrentLocation, PopupItemType.Item);
+		if (entries.Count > 0) {
 			
-            ItemDefinition item = GroundItems[i]/*.GetComponent<ReferencedObjectScript>().Reference*/.GetComponent<ItemDefinition>();
-            if (item == null)
-                continue;
-
-			if (item.ItemType == PopupItemType.Item)
-            {
-                list.Add(GroundItems[i]);
-            }
-        }
-
-        if (list.Count > 0)
-            return list[UnityEngine.Random.Range(0, list.Count)];
-        else
-            return null;
+			return entries[UnityEngine.Random.Range(0, entries.Count)].Instance;
+		}
+		return null;
     }
 
     public void ThrowItemFromHands(Vector3 throwdirection)
@@ -580,10 +458,9 @@ public class CharacterProgressScript : MonoBehaviour
 		
 		
 		
-        GroundItems.Add(ObjectHolding);
+        //GroundItems.Add(ObjectHolding);
 		
         ObjectHolding.transform.rotation = Quaternion.Euler(0, ObjectHolding.transform.rotation.eulerAngles.y, 0);
-        pickupItemSavedData.WasInHands = true;
         animationController.IsThrowing = true;
         IsDetectFlick = false;
         ObjectHolding = null;
@@ -621,34 +498,28 @@ public class CharacterProgressScript : MonoBehaviour
 
     private GameObject GetClosestFoodToEat()
     {
-        GameObject closestFood = null;
+		
+		if (ProfilesManagementScript.Instance.CurrentAnimin.Hungry >= CharacterProgressScript.ConsideredHungryLevels) return null; // Not hungry
+		
+		List<Inventory.Entry> entries = ProfilesManagementScript.Instance.CurrentProfile.Inventory.GetEntries (Inventory.CurrentLocation, PopupItemType.Food);
 
-        //Debug.Log("GROUND ITEMs: " + GroundItems.Count.ToString());
-
-        for (int i = 0; i < GroundItems.Count; ++i)
-        {
-            if (GroundItems[i] == null)
-				continue;
-			ItemDefinition item = GroundItems[i].GetComponent<ItemDefinition>();
-			if (item == null)
-                continue;
-
-			if (item.ItemType == PopupItemType.Food)
-            {
-                if (closestFood == null)
-                {
-                    closestFood = GroundItems[i];
-                }
-                else
-                {
-                    if (Vector3.Distance(this.transform.position, GroundItems[i].transform.position) < Vector3.Distance(this.transform.position, closestFood.transform.position))
-                    {
-                        closestFood = GroundItems[i];
-                    }
-                }
-            }
-        }
-
+		
+		GameObject closestFood = null;
+		for(int i = 0; i < entries.Count; i++)
+		{
+			GameObject go = entries[i].Instance;
+			if (closestFood == null)
+			{
+				closestFood = go;
+			}
+			else
+			{
+				if (Vector3.Distance(this.transform.position, go.transform.position) < Vector3.Distance(this.transform.position, closestFood.transform.position))
+				{
+					closestFood = go;
+				}
+			}
+		}
         return closestFood;
     }
     public void SpawnChests(int value){
@@ -956,11 +827,8 @@ public class CharacterProgressScript : MonoBehaviour
                     {
                         //PopupItemType itemType = ObjectHolding./*GetComponent<ReferencedObjectScript>().Reference.*/GetComponent<UIPopupItemScript>().Type;
 				
-                        OnInteractWithPopupItem(ObjectHolding./*GetComponent<ReferencedObjectScript>().Reference.*/GetComponent<ItemDefinition>());
-                        this.GetComponent<CharacterProgressScript>().GroundItems.Remove(ObjectHolding);
-                        Destroy(ObjectHolding);
+                        OnInteractWithPopupItem(ObjectHolding.GetComponent<ItemLink>().item);
 
-                        pickupItemSavedData.WasInHands = true;
                         ObjectHolding = null;
                         CurrentAction = ActionId.None;
 						Debug.Log("FINISHED EATING");
@@ -974,7 +842,7 @@ public class CharacterProgressScript : MonoBehaviour
                         {
                             if (!PlayedEatingSound)
                             {
-								ItemDefinition popup = ObjectHolding/*.GetComponent<ReferencedObjectScript>().Reference*/.GetComponent<ItemDefinition>();
+								ItemDefinition popup = ObjectHolding.GetComponent<ItemLink>().item.Definition;
 
                                 PlayedEatingSound = true;
                                 if (popup.SpecialId == SpecialFunctionalityId.Liquid)
@@ -1268,18 +1136,8 @@ public class CharacterProgressScript : MonoBehaviour
 
                         DragableObject = detectDragHit.collider.gameObject;
 					
-                        if (DragableObject.GetComponent<ItemDefinition>().ItemType != PopupItemType.Token)
+                        if (DragableObject.GetComponent<ItemLink>().item.Definition.ItemType != PopupItemType.Token)
                         {
-
-                            pickupItemSavedData.WasInHands = false;
-                            //Debug.Log("IT SHOULD GO AND DRAG NOW");
-                            pickupItemSavedData.WasInHands = false;
-						
-                            pickupItemSavedData.Position = DragableObject.transform.position;
-                            pickupItemSavedData.Rotation = DragableObject.transform.rotation.eulerAngles;
-                            //Physics.IgnoreCollision(DragableObject.collider, this.collider, true);
-                            //Debug.Log("DISABLING COLLISION");
-						
                             CurrentAction = ActionId.DragItemAround;
                             IsDetectingMouseMoveForDrag = false;
 
@@ -1360,33 +1218,16 @@ public class CharacterProgressScript : MonoBehaviour
                             bool cleanedShit = false;
                             for (int i = 0; i < TouchesObjcesWhileSwiping.Count; ++i)
                             {
-                                if (TouchesObjcesWhileSwiping[i].tag == "Shit" || TouchesObjcesWhileSwiping[i].tag == "Items")
+                                if (TouchesObjcesWhileSwiping[i].tag == "Shit")
                                 {
                                     if (TouchesObjcesWhileSwiping[i].tag == "Shit")
                                         cleanedShit = true;
 
-                                    if (TouchesObjcesWhileSwiping[i].GetComponent<ItemDefinition>() != null)
-                                    {
-								ProfilesManagementScript.Instance.CurrentAnimin.AddItemToInventory(TouchesObjcesWhileSwiping[i].GetComponent<ItemDefinition>().Id, 1);
-							}
-                                
-                                if (TouchesObjcesWhileSwiping[i].GetComponent<EDMBoxScript>() != null)
-                                    {
-                                        TouchesObjcesWhileSwiping[i].GetComponent<EDMBoxScript>().Stop();
-                                    }
-							   
-                                    GroundItems.Remove(TouchesObjcesWhileSwiping[i]);
                                     Destroy(TouchesObjcesWhileSwiping[i]);
                                     TouchesObjcesWhileSwiping.RemoveAt(i);
 
                                     Debug.Log("SwipeDetected!");
-                                    HidePopupMenus(false);
-
-                                    if (ObjectHolding == hitInfo.collider.gameObject)
-                                    {
-                                        ObjectHolding = null;
-                                        animationController.IsHoldingItem = false;
-                                    }
+                                    HidePopupMenus(false);									
 
                                     i--;
                                 }
@@ -1432,6 +1273,8 @@ public class CharacterProgressScript : MonoBehaviour
                         //if (UIGlobalVariablesScript.Singleton.DragableUI3DObject.transform.childCount == 1 && UIGlobalVariablesScript.Singleton.DragableUI3DObject.transform.GetChild(0).name == "Broom")
                         if (CameraModelScript.Instance.transform.childCount == 1 && CameraModelScript.Instance.transform.GetChild(00).name == "Broom")
                         {
+					Debug.LogError ("Complete refactor following code not been considered");
+					/*
                             if (hadRayCollision && (hitInfo.collider.tag == "Items" || hitInfo.collider.tag == "Shit") && GroundItems.Contains(hitInfo.collider.gameObject))
                             {
 
@@ -1439,7 +1282,7 @@ public class CharacterProgressScript : MonoBehaviour
 
                                 GroundItems.Remove(hitInfo.collider.gameObject);
                                 Destroy(hitInfo.collider.gameObject);
-                            }
+                            }*/
                         }
                         else if (!AtLeastOneSwipeDetected && hadRayCollision/* && !TriggeredHoldAction*/)
                         {
@@ -1452,19 +1295,19 @@ public class CharacterProgressScript : MonoBehaviour
                                 {
                                     //Debug.Log("HIT THE CHARACTER FOR INTERACTION 2");
 
-									ItemDefinition item = ObjectHolding./*GetComponent<ReferencedObjectScript>().Reference.*/GetComponent<ItemDefinition>();
+									ItemLink item = ObjectHolding./*GetComponent<ReferencedObjectScript>().Reference.*/GetComponent<ItemLink>();
 
 
-									if (item.ItemType == PopupItemType.Food)
+									if (item.item.Definition.ItemType == PopupItemType.Food)
                                     {
                                         //Debug.Log("HIT THE CHARACTER FOR INTERACTION 3");
 
                                         this.GetComponent<CharacterProgressScript>().CurrentAction = ActionId.EatItem;
                                     }
-                                    else if (OnInteractWithPopupItem(item))
+									else if (OnInteractWithPopupItem(item.item))
                                     {
                                         //Debug.Log("HIT THE CHARACTER FOR INTERACTION 4");
-                                        Destroy(ObjectHolding);
+                                        //Destroy(ObjectHolding);
                                         ObjectHolding = null;
                                         animationController.IsHoldingItem = false;
                                     }
@@ -1482,11 +1325,9 @@ public class CharacterProgressScript : MonoBehaviour
                                 Debug.Log("Tap");
 								UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHoc("StrokeAnimin");
                             }
-                            else if ((hitInfo.collider.tag == "Items") && hitInfo.collider/*.GetComponent<ReferencedObjectScript>().Reference*/.GetComponent<ItemDefinition>().ItemType == PopupItemType.Token)
+                            else if ((hitInfo.collider.tag == "Items") && hitInfo.collider.GetComponent<ItemLink>().item.Definition.ItemType == PopupItemType.Token)
                             {
-                                OnInteractWithPopupItem(hitInfo.collider./*GetComponent<ReferencedObjectScript>().Reference.*/GetComponent<ItemDefinition>());
-                                this.GetComponent<CharacterProgressScript>().GroundItems.Remove(hitInfo.collider.gameObject);
-                                Destroy(hitInfo.collider.gameObject);
+                                OnInteractWithPopupItem(hitInfo.collider.GetComponent<ItemLink>().item);
                             }
                             else if (hitInfo.collider.name.StartsWith("Invisible Ground Plane") || (hitInfo.collider.tag == "Items"))
                             {
@@ -1506,7 +1347,6 @@ public class CharacterProgressScript : MonoBehaviour
 
                                     ObjectHolding.transform.localPosition = new Vector3(ObjectHolding.transform.localPosition.x, 0, ObjectHolding.transform.localPosition.z);
 
-                                    GroundItems.Add(ObjectHolding);
                                     ObjectHolding = null;
                                     animationController.IsHoldingItem = false;
 
@@ -1547,7 +1387,7 @@ public class CharacterProgressScript : MonoBehaviour
 
                                 point = moveHitInfo.transform.position;							
 
-								MenuFunctionalityUI menuUI = moveHitInfo.collider.GetComponent<ItemDefinition>().Menu;
+								MenuFunctionalityUI menuUI = moveHitInfo.collider.GetComponent<ItemLink>().item.Definition.Menu;
 								GameObject menu = CaringPageUI.GetUI(menuUI);
 
 								if (menu != null && !menu.activeInHierarchy && RequestedToMoveToCounter == 1 && (menuUI != MenuFunctionalityUI.None) && !hadUItouch)
@@ -1638,42 +1478,29 @@ public class CharacterProgressScript : MonoBehaviour
                     // DRAG ITEM ON TO THE CHARACTER
                     if (hadRayCollision && hitInfo.collider.name.StartsWith("MainCharacter") && !animationController.IsHoldingItem)
                     {
-
-                        //if(GroundItems.Contains(DragableObject)) Debug.Log("BUG REPORT!!!!!!!");
-
-                        GroundItems.Remove(DragableObject);
                         PutItemInHands(DragableObject);
- //                       validDrop = true;
                     }
                     else if (hadRayCollision && hitInfo.collider.name.StartsWith("Invisible Ground Plane"))
                     {
                         DragableObject.transform.parent = ActiveWorld.transform;
- //                       validDrop = true;
-                        //GroundItems.Add(DragableObject);
                         DragableObject.layer = LayerMask.NameToLayer("Default");
 
                         if(OnDropItem != null)
                             OnDropItem();
                     }
-                    else if(InvBoxControls.listening)
-                    {
-                        DragableObject = null;
-                        CurrentAction = ActionId.None;
-                    } 
-                    else
+                    else if(!InvBoxControls.listening)
                     {
                         Debug.Log("DROPED IN UNKNOWN LOCATION");
                         if(OnDropItem != null)
                             OnDropItem();
                     }
 
-
-                if(DragableObject != null)
-                {
-                    DragableObject.GetComponent<BoxCollider>().enabled = true;
-                    DragableObject = null;
-                    CurrentAction = ActionId.None;
-                }
+	                if(DragableObject != null)
+	                {
+	                    DragableObject.GetComponent<BoxCollider>().enabled = true;
+	                    DragableObject = null;
+	                    CurrentAction = ActionId.None;
+	                }
                     break;
                 }
 
@@ -1685,12 +1512,19 @@ public class CharacterProgressScript : MonoBehaviour
                     OnDragItem();
 
                     MainARHandler.Instance.CurrentItem = DragableObject;
-                    MainARHandler.Instance.DraggedFromStage = true;
                     if (hadRayCollision && (hitInfo.collider.name.StartsWith("Invisible Ground Plane") || hitInfo.collider.name.StartsWith("Extended")))
 			//if(hadRayCollision && hitInfo.collider.name.StartsWith("SecondGroundPlane"))
                     {
                         Debug.Log("DRAGGING");
-                        DragableObject.transform.position = hitInfo.point;
+						ItemLink li = DragableObject.GetComponent<ItemLink>();
+						if (li != null)
+						{
+							li.item.MoveTo(li.item.Location, hitInfo.point);
+						}
+						else
+						{
+		                    DragableObject.transform.position = hitInfo.point;
+						}
                         //DragableObject.transform.parent = hit.transform;
                     }
 
@@ -1734,8 +1568,6 @@ public class CharacterProgressScript : MonoBehaviour
             newPoo.transform.parent = ActiveWorld.transform;
             newPoo.transform.position = this.transform.position;
             newPoo.transform.rotation = Quaternion.Euler(0, 180 + UnityEngine.Random.Range(-30.0f, 30.0f), 0);
-
-            GroundItems.Add(newPoo);
 
             int sign = -1;
             if (UnityEngine.Random.Range(0, 2) == 0)
@@ -1873,7 +1705,6 @@ public class CharacterProgressScript : MonoBehaviour
     {
         Debug.Log("void PickupItem(GameObject item)");
         UIGlobalVariablesScript.Singleton.SoundEngine.Play(GenericSoundId.ItemPickup);
-        this.GetComponent<CharacterProgressScript>().GroundItems.Remove(item);
         Stop(true);
         //Physics.IgnoreCollision(item.collider, this.collider, true);
         PutItemInHands(item);
@@ -1908,9 +1739,9 @@ public class CharacterProgressScript : MonoBehaviour
 
     }
 
-	public bool OnInteractWithPopupItem(ItemDefinition item)
+	public bool OnInteractWithPopupItem(Inventory.Entry entry)
     {
-		switch (item.ItemType)
+		switch (entry.Definition.ItemType)
         {
             case PopupItemType.Token:
                 {
@@ -1918,33 +1749,6 @@ public class CharacterProgressScript : MonoBehaviour
                     AudioController.Play("ZefToken");
                     TutorialHandler.TriggerAdHocStatic("PickupZef");
                     EvolutionManager.Instance.AddZef();
-
-//				for(int i=0;i<(int)AniminSubevolutionStageId.Count;++i)
-//				{
-//					if(ProfilesManagementScript.Singleton.CurrentAnimin.Evolution >= AniminSubevolutionStageData.Stages[i])
-//					{
-//					if(!ProfilesManagementScript.Singleton.CurrentAnimin.SubstagesCompleted.Contains((AniminSubevolutionStageId)i))
-//						{
-//						ProfilesManagementScript.Singleton.CurrentAnimin.SubstagesCompleted.Add((AniminSubevolutionStageId)i);
-//							AchievementsScript.Singleton.Show(AchievementTypeId.Evolution, 0);
-//						}
-//					}
-//
-//				}
-
-                    /*if(ProfilesManagementScript.Singleton.CurrentAnimin.Evolution >= 100)
-				{
-				if(ProfilesManagementScript.Singleton.CurrentAnimin.AniminEvolutionId != AniminEvolutionStageId.Adult)
-					{
-					ProfilesManagementScript.Singleton.CurrentAnimin.Evolution = 0;
-					ProfilesManagementScript.Singleton.CurrentAnimin.AniminEvolutionId = (AniminEvolutionStageId)((int)ProfilesManagementScript.Singleton.CurrentAnimin.AniminEvolutionId + 1);
-						UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterSwapManagementScript>().LoadCharacter(ProfilesManagementScript.Singleton.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Singleton.CurrentAnimin.AniminEvolutionId);
-
-					}
-				}*/
-
-
-                    //UIGlobalVariablesScript.Singleton.EvolutionProgressSprite.width = (int)(1330.0f * (Evolution / 100.0f));
                     Debug.Log("TOKEN COLLECTED");
 
                     break;
@@ -1960,9 +1764,9 @@ public class CharacterProgressScript : MonoBehaviour
 			else
 			{*/
                     //ShowText("yum yum");
-                    ProfilesManagementScript.Instance.CurrentAnimin.Hungry += item.Points;
+					ProfilesManagementScript.Instance.CurrentAnimin.Hungry += entry.Definition.Points;
 
-                    if (item.Id == InventoryItemId.Blueberry || item.Id == InventoryItemId.Strawberry || item.Id == InventoryItemId.watermelon)
+					if (entry.Definition.Id == InventoryItemId.Blueberry || entry.Definition.Id == InventoryItemId.Strawberry || entry.Definition.Id == InventoryItemId.watermelon)
                     {
                         AchievementManager.Instance.AddToAchievment(AchievementManager.Achievements.EatFruit);
                     }
@@ -1976,7 +1780,7 @@ public class CharacterProgressScript : MonoBehaviour
 
             case PopupItemType.Item:
                 {
-					if(item.Id == InventoryItemId.FartButton)
+					if(entry.Definition.Id == InventoryItemId.FartButton)
 					{
 						UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHoc("Fart");
 						UIGlobalVariablesScript.Singleton.SoundEngine.PlayFart();
@@ -2002,13 +1806,13 @@ public class CharacterProgressScript : MonoBehaviour
                     }
 
                     //ShowText("I feel good");
-                    ProfilesManagementScript.Instance.CurrentAnimin.Health += item.Points;
+					ProfilesManagementScript.Instance.CurrentAnimin.Health += entry.Definition.Points;
                     Stop(true);
                     animationController.IsTakingPill = true;
                     AchievementManager.Instance.AddToAchievment(AchievementManager.Achievements.Heal);
 
 
-                    if (item.SpecialId == SpecialFunctionalityId.Injection)
+					if (entry.Definition.SpecialId == SpecialFunctionalityId.Injection)
                         UIGlobalVariablesScript.Singleton.SoundEngine.Play(ProfilesManagementScript.Instance.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Instance.CurrentAnimin.AniminEvolutionId, CreatureSoundId.InjectionReact);
                     else
                         UIGlobalVariablesScript.Singleton.SoundEngine.Play(ProfilesManagementScript.Instance.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Instance.CurrentAnimin.AniminEvolutionId, CreatureSoundId.EatPill);
@@ -2018,7 +1822,8 @@ public class CharacterProgressScript : MonoBehaviour
                 }
 
         }
-
+		// And consume item
+		ProfilesManagementScript.Instance.CurrentProfile.Inventory.Remove(entry);
         return true;
     }
 

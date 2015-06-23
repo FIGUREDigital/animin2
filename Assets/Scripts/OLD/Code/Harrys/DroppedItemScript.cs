@@ -10,19 +10,17 @@ public class DroppedItemScript : MonoBehaviour {
 		End,
 	}
 	private float m_VerticalSpeed;
-	private ItemDefinition m_Item;
+	private ItemLink m_Item;
 
-    CaringPageControls m_CaringPageControls;
+//    CaringPageControls m_CaringPageControls;
 
 	StateEnum State;
 	// Use this for initialization
-	void Start () {
-
-		m_Item = GetComponent<ItemDefinition> ();
-		
+	void Start () 
+	{
+		m_Item = GetComponent<ItemLink> ();		
 		m_VerticalSpeed = 0;
-
-        m_CaringPageControls = UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>();
+//        m_CaringPageControls = UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>();
 
 	}
 	
@@ -34,13 +32,16 @@ public class DroppedItemScript : MonoBehaviour {
 
 //		bool isNonArScene = UIGlobalVariablesScript.Singleton.NonSceneRef.activeInHierarchy;
 		
-		if (this.transform.position.y <= -350) {
-			ProfilesManagementScript.Instance.CurrentAnimin.AddItemToInventory(m_Item.Id,1);
-			UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().GroundItems.Remove(this.gameObject);
+		if (this.transform.position.y <= -350) 
+		{
+			m_Item.item.MoveTo(Inventory.Locations.Inventory, Vector3.zero);
+			//ProfilesManagementScript.Instance.CurrentAnimin.AddItemToInventory(m_Item.Id,1);
+			//UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().GroundItems.Remove(this.gameObject);
 
-            m_CaringPageControls.DisappearAllItemUIs();
+//            m_CaringPageControls.DisappearAllItemUIs();
 
-			UnityEngine.Object.Destroy(this.gameObject);
+
+			Destroy(this); // Remove this script we are no longer falling
 		}
 	}
 }

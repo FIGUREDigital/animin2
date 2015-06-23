@@ -45,12 +45,10 @@ public class DetectBroomScript : MonoBehaviour, IBeginDragHandler, IDragHandler,
         {
             return;
         }
-		ItemDefinition item = hit.collider.gameObject.GetComponent<ItemDefinition>();
+		ItemLink item = hit.collider.gameObject.GetComponent<ItemLink>();
         if (item != null)
         {
-            ProfilesManagementScript.Instance.CurrentAnimin.AddItemToInventory(item.Id, 1);
-            UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().GroundItems.Remove(hit.collider.gameObject);
-            UnityEngine.Object.Destroy(hit.collider.gameObject);
+			item.item.MoveTo(Inventory.Locations.Inventory, Vector3.zero);
         }
     }
     public void OnEndDrag(PointerEventData data)

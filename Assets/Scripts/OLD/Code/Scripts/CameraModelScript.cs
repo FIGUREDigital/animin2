@@ -8,21 +8,30 @@ public class CameraModelScript : Phi.SingletonMonoBehaviour<CameraModelScript>
 	public override void Init () {
 	}
 
-	public void SetDragging(GameObject go)
+	bool destroyAtEnd = false;
+
+	public void SetDragging(GameObject go, bool destroyAtEnd = true)
 	{
 		//Debug.Log ("CameraModelScript SetDraggin: " + (go == null ? "null" : go.name));
-		if (transform.childCount > 0) {
-			if (go != null) {
+		if (transform.childCount > 0) 
+		{
+			if (go != null) 
+			{
 				Debug.LogError ("Should not be dragging something already - deleting old item!");
 			}
 			while (transform.childCount > 0)
 			{
 				Transform c = transform.GetChild(0);
 				c.parent = null;
-				Destroy (c.gameObject);
+				if(this.destroyAtEnd)
+				{
+					Destroy (c.gameObject);
+				}
 			}
 		}
-		if (go != null) {
+		if (go != null) 
+		{
+			this.destroyAtEnd = destroyAtEnd;
 			go.transform.parent = transform;
 		}
 	}

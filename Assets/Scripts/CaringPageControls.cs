@@ -14,7 +14,6 @@ public enum InventoryPages
 
 public class CaringPageControls : MonoBehaviour
 {
-	
 	[SerializeField]
 	Sprite emptySprite;
     [SerializeField]
@@ -25,11 +24,7 @@ public class CaringPageControls : MonoBehaviour
     private bool InventoryOpen = false;
     private InventoryPages CurrentPage;
     [SerializeField]
-    private UnityEngine.UI.Image Icon1;
-    [SerializeField]
-    private UnityEngine.UI.Image Icon2;
-    [SerializeField]
-    private UnityEngine.UI.Image Icon3;
+    private InventoryItemUIIcon[] icons;
     [SerializeField]
     private GameObject InvBox;
     [SerializeField]
@@ -98,6 +93,27 @@ public class CaringPageControls : MonoBehaviour
 
 	float tweeningDir = 0;
 	Tween uiTween = null; 
+
+	public void OnEnable()
+	{
+		global::Inventory.onItemMoved += OnItemMoved;
+	}
+
+	public void OnDisable()
+	{
+		
+		global::Inventory.onItemMoved -= OnItemMoved;
+	}
+
+	public void OnItemMoved(Inventory.Entry entry, Inventory.Locations from, Inventory.Locations to)
+	{		
+		PopulateButtons();
+		/*
+		if (from == global::Inventory.Locations.Inventory && to != global::Inventory.Locations.Inventory) 
+		{
+			PopulateButtons();
+		}*/
+	}
 	
 	RectTransform nextUI = null;
 	GameObject nextTarget = null;
@@ -216,47 +232,26 @@ public class CaringPageControls : MonoBehaviour
 
     void ResetButtons()
     {
-        Icon1.sprite = emptySprite;
-        Icon1.GetComponent<InterfaceItemLinkToModelScript>().item = null;
-		Icon2.sprite = emptySprite;
-		Icon2.GetComponent<InterfaceItemLinkToModelScript>().item = null;
-		Icon3.sprite = emptySprite;
-		Icon3.GetComponent<InterfaceItemLinkToModelScript>().item = null;
+		for (int i = 0; i < icons.Length; i++) 
+		{
+			icons [i].Item = null;
+		}
     }
 
     public void PopulateButtons()
     {
         Debug.Log("Populating buttons");
-        bool FoodIconSet = false;
-        bool ItemIconSet = false;
-        bool MediIconSet = false;
         ResetButtons();
-        for (int i = 0; i < ProfilesManagementScript.Instance.CurrentAnimin.Inventory.Count; ++i)
+        for (int i = 0; i < ProfilesManagementScript.Instance.CurrentProfile.Inventory.Count; ++i)
         {
-			ItemDefinition data = ProfilesManagementScript.Instance.CurrentAnimin.Inventory[i].Definition;
-			if (data.ItemType == PopupItemType.Food && !FoodIconSet)
-            {
-                Icon1.sprite = data.SpriteName;
-                Icon1.GetComponent<InterfaceItemLinkToModelScript>().item = data;
-                FoodIconSet = true;
-                Debug.Log("Food buttons set to " + data.ToString() + "\n Currently there are " + ProfilesManagementScript.Instance.CurrentAnimin.Inventory[i].Count + " " + data.ToString());
-            }
-			else if (data.ItemType == PopupItemType.Item && !ItemIconSet)
-            {
-				Icon2.sprite = data.SpriteName;
-				Icon2.GetComponent<InterfaceItemLinkToModelScript>().item = data;
-                ItemIconSet = true;
-                Debug.Log("Item buttons set to " + data.ToString() + "\n Currently there are " + ProfilesManagementScript.Instance.CurrentAnimin.Inventory[i].Count + " " + data.ToString());
-
-            }
-			else if (data.ItemType == PopupItemType.Medicine && !MediIconSet)
-            {
-				Icon3.sprite = data.SpriteName;
-				Icon3.GetComponent<InterfaceItemLinkToModelScript>().item = data;
-                MediIconSet = true;
-                Debug.Log("Medicine buttons set to " + data.ToString() + "\n Currently there are " + ProfilesManagementScript.Instance.CurrentAnimin.Inventory[i].Count + " " + data.ToString());
-
-            }
+			Inventory.Entry entry = ProfilesManagementScript.Instance.CurrentProfile.Inventory.Get (i);
+			if(entry.Location != global::Inventory.Locations.Inventory) continue;
+			ItemDefinition data = entry.Definition;
+			int iconIndex = (int)data.ItemType;
+			if (iconIndex < icons.Length && icons[iconIndex] != null && icons[iconIndex].Item == null)
+			{
+				icons[iconIndex].Item = entry;
+			}
         }
     }
 
@@ -286,9 +281,10 @@ public class CaringPageControls : MonoBehaviour
         if (InvBox != null)
         {
             InvBox.SetActive(active);
-            Icon1.enabled = !active;
-            Icon2.enabled = !active;
-            Icon3.enabled = !active;
+			for(int i = 0; i < icons.Length; i++)
+			{
+				icons[i].ShowHide(!active);
+			}
         }
     }
 
@@ -465,7 +461,7 @@ public class CaringPageControls : MonoBehaviour
     {
         Inventory.gameObject.SetActive(false);
     }
-
+	/*
     public void BroomButton()
     {
         CharacterProgressScript script = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>();
@@ -494,43 +490,13 @@ public class CaringPageControls : MonoBehaviour
         {
             EDMMixerScript.Singleton.KeysOn[i] = false;
         }
-    }
+    }*/
 
-    public void SetIcon(PopupItemType p, Sprite s)
+    public void SetIcon(Inventory.Entry entry)
     {
-        switch (p)
-        {
-            case PopupItemType.Food:
-                Icon1.sprite = s;
-                break;
-            case PopupItemType.Item:
-                Icon2.sprite = s;
-                break;
-            case PopupItemType.Medicine:
-                Icon3.sprite = s;
-                break;
-            default:
-                break;
-        }
-
-    }
-
-    public GameObject GetIcon(PopupItemType p)
-    {
-        switch (p)
-        {
-            case PopupItemType.Food:
-                return Icon1.gameObject;
-            case PopupItemType.Item:
-                return Icon2.gameObject;
-            case PopupItemType.Medicine:
-                return Icon3.gameObject;
-            default:
-                break;
-        }
-        return null;
-
-    }
+		InventoryItemUIIcon icon = icons[(int)entry.Definition.ItemType];
+		icon.Item = entry;	
+	}	
 
     public void LightSwitch()
     {
@@ -574,29 +540,16 @@ public class CaringPageControls : MonoBehaviour
 		PhoneUI.SetActive(false);*/
     }
 
-    void Update()
-	{
-		if (PersistentData.InventoryUpdated) {
-			PersistentData.InventoryUpdated = false;
-			PopulateButtons ();
-		}
-		m_Triangle.gameObject.SetActive (false);
-	}
 	void LateUpdate()
 	{
-        if (m_TargetItem != null)
-        {
-			UpdateTargetItem();
-        }
-        else
-        {
-            //DisappearAllItemUIs();
-        }
+		UpdateTargetItem();
     }
 
 	void UpdateTargetItem()
 	{
-		if(currentUI == null || m_TargetItem == null) return;
+		bool uiActive = currentUI != null && m_TargetItem != null;
+		m_Triangle.gameObject.SetActive (uiActive);
+		if(!uiActive) return;
 
 		//this is the ui element
 		RectTransform UI_Element = currentUI;
@@ -634,7 +587,6 @@ public class CaringPageControls : MonoBehaviour
 		Vector3 scaleV = Vector3.one;
 		scaleV.y = scale;
 		m_Triangle.transform.localScale = scaleV * uiScale;
-		m_Triangle.gameObject.SetActive(true);
 		UI_Element.transform.localScale = Vector3.one * uiScale;
 	}
 }

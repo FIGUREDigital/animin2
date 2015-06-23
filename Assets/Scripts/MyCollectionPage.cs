@@ -4,11 +4,29 @@ using Phi;
 
 public class MyCollectionPage : MonoBehaviour 
 {
-	UIImagePro itemImage;
-	GameObject unknown;
-	GameObject locked;
+	public InventoryItemUIIcon icon;
+	public GameObject locked;
+	ItemDefinition def;
 	UIPages pages;
 	int curIndex = -1;
+	UIItemAlbum album;
+
+	
+	void OnSetUpPage(UIPages.SetupPage setupPage)
+	{
+		pages = setupPage.pages;
+		album = pages.userData as UIItemAlbum;		
+		curIndex = setupPage.page;
+		UpdateVisuals();
+	}
+	
+	void UpdateVisuals()
+	{
+		if (album == null) return;
+		icon.ItemDef = (curIndex >= 0 && curIndex < album.definitions.Count) ? album.definitions [curIndex] : null;
+		locked.SetActive (!ProfilesManagementScript.Instance.CurrentProfile.Inventory.OwnItem (icon.ItemDef.Id));
+	}
+
 	/*
 	public void Init()
 	{
@@ -26,26 +44,7 @@ public class MyCollectionPage : MonoBehaviour
 			UpdateVisuals();
 		}
 	}
-	
-	void OnSetUpPage(UIPages.SetupPage setupPage)
-	{
-		pages = setupPage.pages;
-		fehelmets = pages.userData as FEHelmets;
-		if (!fehelmets) return;
-		
-		curIndex = setupPage.page;
-		UpdateVisuals();
-	}
-	
-	void UpdateVisuals()
-	{
-		if (helmets == null) return;
-		int offset = curIndex * NumHelmetsPerPage;
-		for (int i = 0; i < helmets.Length; i++ )
-		{
-			helmet = fehelmets.GetHelmet(offset + i);
-			helmets[i].Setup(helmet, fehelmets);
-		}
-	}
+
+
 */
 }

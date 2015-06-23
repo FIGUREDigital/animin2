@@ -3,7 +3,7 @@ using System.Collections;
 
 public class BroomScript : MonoBehaviour
 {
-    public void ClearAllGroundObjects()
+/*    public void ClearAllGroundObjects()
     {
         CharacterProgressScript script = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>();
 
@@ -32,5 +32,5 @@ public class BroomScript : MonoBehaviour
             EDMMixerScript.Singleton.KeysOn[i] = false;
         }
     }
-
+*/
 }

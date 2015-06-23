@@ -551,14 +551,9 @@ public class CharacterControllerScript : MonoBehaviour //Photon.MonoBehaviour
             return;
         CharacterProgressScript script = this.GetComponent<CharacterProgressScript>();
 
-		if (hit.gameObject.tag == "Items" && hit.gameObject/*.GetComponent<ReferencedObjectScript>().Reference*/.GetComponent<ItemDefinition>().ItemType == PopupItemType.Token)
+		if (hit.gameObject.tag == "Items" && hit.gameObject.GetComponent<ItemLink>().item.Definition.ItemType == PopupItemType.Token)
         {
-			if (this.GetComponent<CharacterProgressScript>().OnInteractWithPopupItem(hit.gameObject/*.GetComponent<ReferencedObjectScript>().Reference*/.GetComponent<ItemDefinition>()))
-            {
-                this.GetComponent<CharacterProgressScript>().GroundItems.Remove(hit.gameObject);
-                Destroy(hit.gameObject);
-				
-            }
+			this.GetComponent<CharacterProgressScript>().OnInteractWithPopupItem(hit.gameObject.GetComponent<ItemLink>().item);
         }
 
         if (hit.gameObject.tag == "EnemyGunGame")
@@ -578,7 +573,7 @@ public class CharacterControllerScript : MonoBehaviour //Photon.MonoBehaviour
 
         if (hit.gameObject.tag == "Items" && this.GetComponent<CharacterProgressScript>().IsGoingToPickUpObject == hit.gameObject)
         {
-            PopupItemType itemType = hit.gameObject/*.GetComponent<ReferencedObjectScript>().Reference*/.GetComponent<ItemDefinition>().ItemType;
+            PopupItemType itemType = hit.gameObject.GetComponent<ItemLink>().item.Definition.ItemType;
 
 
             if (script.InteractWithItemOnPickup && hit.gameObject.GetComponent<LighbulbSwitchOnOffScript>() != null)

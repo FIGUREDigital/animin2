@@ -877,9 +877,11 @@ public class TutorialHandler : MonoBehaviour
         {
             if (!ProfilesManagementScript.Instance.CurrentProfile.m_GivenZef)
             {
-                UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().SpawnZef(new Vector3(0.7f, 0.0f, 0.4f));
-                UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().SpawnZef(new Vector3(-0.1f, 0.0f, -0.7f));
-                UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().SpawnZef(new Vector3(-0.4f, 0.0f, 0.3f));
+				
+				CharacterProgressScript progressScript = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>();
+				progressScript.SpawnStageItem(InventoryItemId.Zef, new Vector3(0.7f, 0.0f, 0.4f));
+				progressScript.SpawnStageItem(InventoryItemId.Zef, new Vector3(-0.1f, 0.0f, -0.7f));
+				progressScript.SpawnStageItem(InventoryItemId.Zef, new Vector3(-0.4f, 0.0f, 0.3f));
                 ProfilesManagementScript.Instance.CurrentProfile.m_GivenZef = true;
             }
         }
@@ -900,12 +902,12 @@ public class TutorialHandler : MonoBehaviour
         else if(skipID == "SkipIfStrawberryOnGround")
         {
             // Skip if we have added strawberry and we are no longer holding it
-            ShouldSkip = ProfilesManagementScript.Instance.CurrentProfile.m_StrawberryAdded && !ProfilesManagementScript.Instance.CurrentAnimin.HasItem(InventoryItemId.Strawberry);
+            ShouldSkip = ProfilesManagementScript.Instance.CurrentProfile.m_StrawberryAdded && !ProfilesManagementScript.Instance.CurrentProfile.Inventory.OwnItem(InventoryItemId.Strawberry);
         }
         else if (skipID == "SkipIfPhoneOnGround")
         {
             // Skip if we have added strawberry and we are no longer holding it
-            ShouldSkip = ProfilesManagementScript.Instance.CurrentProfile.m_PhoneAdded && !ProfilesManagementScript.Instance.CurrentAnimin.HasItem(InventoryItemId.Phone);
+			ShouldSkip = ProfilesManagementScript.Instance.CurrentProfile.m_PhoneAdded && !ProfilesManagementScript.Instance.CurrentProfile.Inventory.OwnItem(InventoryItemId.Phone);
         }
         else if (skipID == "GivenZef")
         {

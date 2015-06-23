@@ -39,25 +39,24 @@ public class DragDropMainBarItem : MonoBehaviour, IBeginDragHandler, IDragHandle
         }
 			
         //ReferencedObjectScript refScript = this.GetComponent<ReferencedObjectScript>();
-        InterfaceItemLinkToModelScript modelLink = GetComponent<InterfaceItemLinkToModelScript>();
+		
+		GameObject GO = MainARHandler.Instance.CurrentItem;
+		ItemLink modelLink = GO.GetComponent<ItemLink>();
 				
 			
-		GameObject child = modelLink.item.Create();
-		ItemDefinition item = child.GetComponent<ItemDefinition>();
-        ProfilesManagementScript.Instance.CurrentAnimin.RemoveItemFromInventory(modelLink.item.Id, 1);
-					
-        child.transform.parent = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().ActiveWorld.transform;
-	//	child.transform.localScale = new Vector3 (1, 1, 1);
-					
+		GameObject child = modelLink.item.Instance;
+		modelLink.item.MoveTo (Inventory.CurrentLocation, hit.point);					
         child.transform.localRotation = Quaternion.Euler(0, UnityEngine.Random.Range(0, 360), 0);
+		
+		child.GetComponent<BoxCollider>().enabled = true;
 
         UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().DragedObjectedFromUIToWorld = true;
         if(OnClicked != null)
             OnClicked();
 
-        TutorialHandler.TriggerAdHocStatic("Drop"+item.Id.ToString());
+		TutorialHandler.TriggerAdHocStatic("Drop"+modelLink.item.Definition.ToString());
 					
-		switch (item.ItemType) 
+		switch (modelLink.item.Definition.ItemType) 
 		{
 		case PopupItemType.Food:
 			UIGlobalVariablesScript.Singleton.SoundEngine.Play (GenericSoundId.DropFood);
@@ -69,7 +68,5 @@ public class DragDropMainBarItem : MonoBehaviour, IBeginDragHandler, IDragHandle
 			UIGlobalVariablesScript.Singleton.SoundEngine.Play (GenericSoundId.DropMeds);
 			break;
 		}
-        child.transform.position = hit.point;
-        UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().GroundItems.Add(child);
     }
 }

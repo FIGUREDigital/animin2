@@ -132,6 +132,10 @@ public class ProfilesManagementScript : Phi.SingletonMonoBehaviour<ProfilesManag
 			XmlSerializer bf = new XmlSerializer(typeof(ProfileStateData));
 			FileStream file = File.Open(Application.persistentDataPath + "/savedGames.anidat", FileMode.Open);
 			StateData = (ProfileStateData)bf.Deserialize(file);
+			foreach(PlayerProfileData profile in StateData.ProfileList)
+			{
+				profile.UpdateVersion();
+			}
 			file.Close();
 			Debug.Log ("Save data loaded from " + Application.persistentDataPath + "/savedGames.anidat");
 			
@@ -154,8 +158,6 @@ public class ProfilesManagementScript : Phi.SingletonMonoBehaviour<ProfilesManag
             #endif
             */
         }
-
-        RefreshProfiles ();
         
         Debug.Log("-----Registered----");
 	}
@@ -226,12 +228,6 @@ public class ProfilesManagementScript : Phi.SingletonMonoBehaviour<ProfilesManag
 		}
 
 	}
-
-    private void RefreshProfiles()
-    {
-        
-    }
-
 	public void OnAllowCreateProfile(string name)
 	{
 ////		ProfilesManagementScript.Singleton.CreateUsernameScreen.SetActive(false);

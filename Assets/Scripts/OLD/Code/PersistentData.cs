@@ -4,6 +4,7 @@ using System;
 using UnityEngine.UI;
 
 
+// CaringScreenItem is no longer used except in this file and old saves
 [System.Serializable]
 public struct CaringScreenItem{
     public InventoryItemId Id;
@@ -31,22 +32,7 @@ public class PersistentData
         TboAdult,
 
         Count,
-	}
-
-	public List<InventoryItemData> Inventory = new List<InventoryItemData>();
-
-	public InventoryItemData GetItemData(InventoryItemId id)
-	{
-		for (int i = 0; i < Inventory.Count; i++) 
-		{
-			InventoryItemData InvData = ProfilesManagementScript.Instance.CurrentAnimin.Inventory [i];
-			if (id == Inventory[i].Id)
-			{
-				return Inventory[i];
-			}
-		}
-		return null;
-	}
+	}    
 
 	public TypesOfAnimin PlayerAniminId;
     public string AniminName
@@ -94,7 +80,6 @@ public class PersistentData
 	public List<AniminSubevolutionStageId> SubstagesCompleted = new List<AniminSubevolutionStageId>(); 
 	public string Username;
 	public System.DateTime CreatedOn = DateTime.UtcNow;
-	public static bool InventoryUpdated;
 	
 	private int age;
 	private bool audioIsOn;
@@ -104,72 +89,6 @@ public class PersistentData
 	private float evolution;
 	private float health;
 	public DateTime lastPlay;
-			
-    public CaringScreenItem[] m_CaringScreenItems;
-
-    public void SaveCaringScreenItem(GameObject[] objects, GameObject holding){
-        Debug.Log("Objects.length : [" + objects.Length + "];");
-        //m_CaringScreenItems = new CaringScreenItem[objects.Length];
-        List<CaringScreenItem> ItemList = new List<CaringScreenItem>();
-        if (holding != null)
-        {
-            Vector3 pos = holding.transform.localPosition;
-            pos.y = 0;
-            holding.transform.localPosition = pos;
-            Save(ItemList, holding);
-        }
-        for (int i = 0; i < objects.Length; i++)
-        {
-            Save(ItemList, objects[i]);
-        }
-        m_CaringScreenItems = ItemList.ToArray();
-    }
-
-    void Save(List<CaringScreenItem> ItemList, GameObject o)
-    {
-        if (o == null) return;
-        Debug.Log("Saving Item : [" + o + "];");
-		ItemDefinition item = o.GetComponent<ItemDefinition>();
-        //AH Avoid saving items that have a none ID, causes an exception on loading - Note Zef tokens use none
-        if (item != null && item.Id != InventoryItemId.None)
-        {
-            ItemList.Add(new CaringScreenItem(item.Id, o.transform.position));
-        }
-    }
-
-    public GameObject[] LoadCaringScreenItem(){
-        Debug.Log("LoadCaringScreenItem called! m_CaringScreenItems : [" + m_CaringScreenItems + "];");
-        if (m_CaringScreenItems == null)
-            return null;
-        GameObject[] returnGOs = new GameObject[m_CaringScreenItems.Length];
-        for (int i = 0; i < m_CaringScreenItems.Length; i++)
-        {
-//            Debug.Log ("Prefab : [" + InventoryItemData.Items [(int)m_CaringScreenItems [i].Id].PrefabId + "];");
-			ItemDefinition def =  ItemDefinition.GetDefinition(m_CaringScreenItems[i].Id);
-			if(def !=null)
-			{
-				returnGOs[i] = def.Create();
-
-	            returnGOs[i].transform.parent = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().ActiveWorld.transform;
-
-	            //returnGOs[i].transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-	            //returnGOs[i].transform.localScale *= 10;
-	            returnGOs[i].transform.localRotation = Quaternion.Euler(0, UnityEngine.Random.Range(0, 360), 0);
-
-	            returnGOs[i].transform.position = m_CaringScreenItems[i].Position;
-
-	            Debug.Log("Scale of [" + returnGOs[i].name + "] is [" + returnGOs[i].transform.localScale + "];");
-			}
-			else
-			{
-				Debug.LogError ("Warning caring system index "+i+" ("+(m_CaringScreenItems[i].Id.ToString ())+") has a null item");
-			}
-        }
-        return returnGOs;
-    }
-
-
-
 
 	public int Age
 	{
@@ -270,6 +189,8 @@ public class PersistentData
 
 	public void AddItemToInventory(InventoryItemId id, int count)
 	{
+		Debug.LogError ("Finish refactoring this");
+		/*
 		ItemDefinition def = ItemDefinition.GetDefinition(id);
 		if (def == null) {
 						Debug.Log ("Something has gone terribely wrong");
@@ -348,34 +269,11 @@ public class PersistentData
         */
 	}
 
-	public bool HasItem(InventoryItemId id)
-	{
-		for(int i=0;i<Inventory.Count;++i)
-		{
-			if(Inventory[i].Id == id)
-			{
-				return true;
-			}
-		}
-
-		return false;
-	}
-
-	public InventoryItemData GetNextItemType(PopupItemType type)
-	{
-		for(int i=0;i<Inventory.Count;++i)
-		{
-			if(Inventory[i].Definition.ItemType == type)
-			{
-				return Inventory[i];
-			}
-		}
-		
-		return null;
-	}
 
 	public bool RemoveItemFromInventory(InventoryItemId id, int count)
 	{
+		Debug.LogError ("Finish refactoring this");
+        /*
 		for(int i=0;i<Inventory.Count;++i)
 		{
 			if(Inventory[i].Id == id)
@@ -396,6 +294,7 @@ public class PersistentData
 
 			}
 		}
+		*/
 
 		return false;
 	}
@@ -421,4 +320,49 @@ public class PersistentData
 //		dictionary.ReadInt("ZefTokens", ref ZefTokens);
 //	
 //	}
+
+	// Following is old data just here to allow upgrading old saves
+	public List<InventoryItemData> Inventory = new List<InventoryItemData>(); 
+	public CaringScreenItem[] m_CaringScreenItems;
+	public void UpdateFromVersion0(Inventory newInventory)
+	{
+		foreach (InventoryItemData item in Inventory) 
+		{
+			InventoryItemId id;
+			int count;
+			item.GetDataForUpgrade(out id, out count);
+			ItemDefinition def = ItemDefinition.GetDefinition(id);
+			if (def.ItemType == PopupItemType.Item)
+			{
+				// Only allow one of these
+				newInventory.EnsureWeOwn(id, 1);
+			}
+			else
+			{
+				// Add to tally
+				newInventory.Add(id, count);
+			}
+		}
+		Inventory.Clear ();	// No longer keep these items in the animin inventory;
+
+		// Add the items that are on the caring page floor		
+		if (m_CaringScreenItems != null) 
+		{
+			foreach (CaringScreenItem cSItem in m_CaringScreenItems) 
+			{
+				global::Inventory.Entry entry;
+				ItemDefinition def = ItemDefinition.GetDefinition (cSItem.Id);
+				if (def.ItemType == PopupItemType.Item) {
+					// Only allow one of these
+					entry = newInventory.EnsureWeOwn (cSItem.Id);
+				} else {
+					// Add to tally
+					entry = newInventory.Add (cSItem.Id);
+				}
+				// And move it to the caring screen
+				entry.MoveTo (global::Inventory.Locations.NonAR, cSItem.Position);
+			}
+		}
+		m_CaringScreenItems = new CaringScreenItem[0];
+    }
 }

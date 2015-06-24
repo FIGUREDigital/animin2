@@ -857,7 +857,7 @@ public class TutorialHandler : MonoBehaviour
             if (!ProfilesManagementScript.Instance.CurrentProfile.m_StrawberryAdded)
             {
                 ProfilesManagementScript.Instance.CurrentProfile.m_StrawberryAdded = true;
-                ProfilesManagementScript.Instance.CurrentAnimin.AddItemToInventory(InventoryItemId.Strawberry, 1);
+				ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeOwn(InventoryItemId.Strawberry, 1);
             }
         }
         else if (fired == "GivePhone")
@@ -865,7 +865,7 @@ public class TutorialHandler : MonoBehaviour
             if (!ProfilesManagementScript.Instance.CurrentProfile.m_PhoneAdded)
             {
                 ProfilesManagementScript.Instance.CurrentProfile.m_PhoneAdded = true;
-                ProfilesManagementScript.Instance.CurrentAnimin.AddItemToInventory(InventoryItemId.Phone, 1);
+				ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeOwn(InventoryItemId.Phone, 1);
                 ItemUnlockBehaviour.Show(InventoryItemId.Phone);
             }
         }
@@ -879,9 +879,9 @@ public class TutorialHandler : MonoBehaviour
             {
 				
 				CharacterProgressScript progressScript = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>();
-				progressScript.SpawnStageItem(InventoryItemId.Zef, new Vector3(0.7f, 0.0f, 0.4f));
-				progressScript.SpawnStageItem(InventoryItemId.Zef, new Vector3(-0.1f, 0.0f, -0.7f));
-				progressScript.SpawnStageItem(InventoryItemId.Zef, new Vector3(-0.4f, 0.0f, 0.3f));
+				progressScript.SpawnStageItem(InventoryItemId.Zef, new Vector3(0.7f, 0.0f, 0.4f) * 200.0f);
+				progressScript.SpawnStageItem(InventoryItemId.Zef, new Vector3(-0.1f, 0.0f, -0.7f) * 200.0f);
+				progressScript.SpawnStageItem(InventoryItemId.Zef, new Vector3(-0.4f, 0.0f, 0.3f) * 200.0f);
                 ProfilesManagementScript.Instance.CurrentProfile.m_GivenZef = true;
             }
         }

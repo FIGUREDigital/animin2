@@ -23,7 +23,7 @@ public class SwitchCharacterModel : MonoBehaviour {
 
 
         for (int i = 0; i < (int)InventoryItemId.Count; i++){
-            ProfilesManagementScript.Instance.CurrentAnimin.AddItemToInventory((InventoryItemId)i, 1);
+            ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeOwn((InventoryItemId)i, 1);
         }
     }
 }

@@ -213,6 +213,10 @@ public class Inventory
     {
 		Entry newEntry = new Entry (id);
 		privateAllItems.Add (newEntry);
+		
+		if (onItemMoved != null) {
+			onItemMoved(newEntry, Locations.Count, Locations.Inventory);
+		}
 		return newEntry;
 	}
 	

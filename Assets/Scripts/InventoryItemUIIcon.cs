@@ -63,6 +63,7 @@ public class InventoryItemUIIcon : MonoBehaviour {
 				if(gradient != null)
 				{
 					gradient.grad = itemDef.Gradient;
+					gradient.GetComponent<Graphic>().SetVerticesDirty();
 				}
 			}
 		}

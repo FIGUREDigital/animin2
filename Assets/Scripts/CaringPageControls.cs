@@ -107,7 +107,12 @@ public class CaringPageControls : MonoBehaviour
 
 	public void OnItemMoved(Inventory.Entry entry, Inventory.Locations from, Inventory.Locations to)
 	{		
-		PopulateButtons();
+		if (to == global::Inventory.Locations.Inventory) {			
+			PopulateButtons (entry);
+		} else {
+			
+			PopulateButtons();
+		}
 		/*
 		if (from == global::Inventory.Locations.Inventory && to != global::Inventory.Locations.Inventory) 
 		{
@@ -238,7 +243,7 @@ public class CaringPageControls : MonoBehaviour
 		}
     }
 
-    public void PopulateButtons()
+	public void PopulateButtons(Inventory.Entry prefferEntry = null)
     {
         Debug.Log("Populating buttons");
         ResetButtons();
@@ -248,7 +253,7 @@ public class CaringPageControls : MonoBehaviour
 			if(entry.Location != global::Inventory.Locations.Inventory) continue;
 			ItemDefinition data = entry.Definition;
 			int iconIndex = (int)data.ItemType;
-			if (iconIndex < icons.Length && icons[iconIndex] != null && icons[iconIndex].Item == null)
+			if (iconIndex < icons.Length && icons[iconIndex] != null && (entry == prefferEntry || icons[iconIndex].Item == null))
 			{
 				icons[iconIndex].Item = entry;
 			}

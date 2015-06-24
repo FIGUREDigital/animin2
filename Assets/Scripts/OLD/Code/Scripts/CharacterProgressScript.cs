@@ -1395,11 +1395,11 @@ public class CharacterProgressScript : MonoBehaviour
 									HidePopupMenus(true);
 									CaringPageControls.ShowUI(moveHitInfo.collider.gameObject, menu);
 									preventMovingTo = true;
-									EDMBoxScript edmScript = moveHitInfo.collider.gameObject.GetComponent<EDMBoxScript>();
+/*									EDMBoxScript edmScript = moveHitInfo.collider.gameObject.GetComponent<EDMBoxScript>();
 									if (edmScript != null)
 									{
 										edmScript.SetInterface(menu);
-									}
+									}*/
                                 }
                                 else if (ObjectHolding == null)
                                 {

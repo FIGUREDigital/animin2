@@ -19,9 +19,6 @@ public class ChestScript : MonoBehaviour
 
     public GameObject[] Coins;
 
-    private List<string> FoodItems = new List<string>();
-    private List<string> MedicalItems = new List<string>();
-
     private enum ChestType {Bronze, Silver, Gold, Evo};
     [SerializeField]
     ChestType m_ChestType;
@@ -90,30 +87,6 @@ public class ChestScript : MonoBehaviour
     InventoryItemId[] MediumMeds = new InventoryItemId[]{ InventoryItemId.Pill };
     InventoryItemId[] WeakMeds = new InventoryItemId[]{ InventoryItemId.Plaster };
 
-		
-    // Use this for initialization
-    void Start()
-    {
-        //State = AnimationStateId.StartingUp;
-        FoodItems.Add("Prefabs/almondMilk");
-        FoodItems.Add("Prefabs/avocado");
-        FoodItems.Add("Prefabs/blueberry");
-        FoodItems.Add("Prefabs/carrot");
-        FoodItems.Add("Prefabs/chips");
-        FoodItems.Add("Prefabs/spinach");
-        FoodItems.Add("Prefabs/strawberry2");
-        FoodItems.Add("Prefabs/toast");
-        FoodItems.Add("Prefabs/watermelon");
-
-        MedicalItems.Add("Prefabs/plaster");
-        MedicalItems.Add("Prefabs/capsule");
-    }
-
-    //	void LateUpdate()
-    //	{
-    //
-    //	}
-	
     // Update is called once per frame
     void Update()
     {
@@ -240,21 +213,6 @@ public class ChestScript : MonoBehaviour
 								zef = progressScript.SpawnStageItem(InventoryItemId.Zef, Vector3.zero);
                             }
 
-                            /*
-                            if (i < Coins.Length * 0.33f)
-                            {
-                                zef = progressScript.SpawnStageItem(FoodItems[Random.Range(0, FoodItems.Count)], Vector3.zero);
-                            }
-                            else if (i < Coins.Length * 0.5f)
-                            {
-                                zef = progressScript.SpawnStageItem(MedicalItems[Random.Range(0, MedicalItems.Count)], Vector3.zero);
-                            }
-                            else
-                            {
-                                zef = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().SpawnZef(Vector3.zero);
-                            }
-                            */
-
                             SpinObjectScript spinScript = zef.GetComponent<SpinObjectScript>();
                             if (spinScript != null)
                             {
@@ -307,10 +265,10 @@ public class ChestScript : MonoBehaviour
 
                             AnimatorStateInfo stateInfo = Coins[i].transform.parent.transform.parent.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0);
 
-                            if (stateInfo.length == 0)
+                            if (stateInfo.length <= 1)
                                 continue;
 
-                            //Debug.Log(stateInfo.normalizedTime.ToString());
+                            Debug.Log(stateInfo.normalizedTime.ToString());
                             //Debug.Log(stateInfo.length.ToString());
 
                             if (Coins[i].transform.parent.transform.parent.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
@@ -324,7 +282,11 @@ public class ChestScript : MonoBehaviour
 
 							
                                 Coins[i].transform.parent = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().ActiveWorld.transform;	
-							
+								ItemLink il = Coins[i].GetComponent<ItemLink>();
+								if (il != null)
+								{
+									il.item.MoveTo(Inventory.CurrentLocation, Coins[i].transform.position);
+								}							
                                 Coins[i].tag = "Items";
                                 Coins[i] = null;
                             }

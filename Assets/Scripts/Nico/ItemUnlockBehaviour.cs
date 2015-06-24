@@ -13,7 +13,7 @@ public class ItemUnlockBehaviour : MonoBehaviour
 		public Image uiItem;
 	}
 
-	public UnlockItems[] showForItems;
+	public InventoryItemUIIcon icon;
 
 	public GameObject fullScreenCloseButton;
 	public ParticleSystem particleEffects;
@@ -28,8 +28,6 @@ public class ItemUnlockBehaviour : MonoBehaviour
 
 	float fade;	// 0 = hidden 1 = fully visible.
 	float fadeDirection = 0;	
-
-	Image showImage = null;	// The UI.Image to be shown
 
 	// Use this for initialization
 	void Start () 
@@ -81,25 +79,10 @@ public class ItemUnlockBehaviour : MonoBehaviour
             FinishedUnlock(showing);
         }
         showing = showItemID;
-		showImage = null;
-		// Set all images to off		
-		for(int i = 0; i < showForItems.Length; i++)
-		{
-			showForItems[i].uiItem.gameObject.SetActive(false);	// Found item will be set 
-			if(showForItems[i].itemID == showItemID)
-			{
-				showImage = showForItems[i].uiItem;
-			}
-		}
-
-		if (showImage == null)
-		{
-			return;	// None found so no need to show
-		}
-        else
-        {
-			SetAlpha(0);
-        }
+		// Set all images to off	
+		icon.gameObject.SetActive (false);
+		icon.ItemDef = ItemDefinition.GetDefinition (showItemID);
+		SetAlpha(0);
 		ShowHideComponents(true);
 		fadeDirection = 1;		
 		particleEffects.enableEmission = true;
@@ -114,9 +97,9 @@ public class ItemUnlockBehaviour : MonoBehaviour
 		{			
 			fadeImages[i].gameObject.SetActive (show);
 		}
-		if(showImage != null)
+		if(icon != null)
 		{
-			showImage.gameObject.SetActive(show);
+			icon.gameObject.SetActive(show);
 		}
 
         if (hiddenTut != show)
@@ -165,10 +148,7 @@ public class ItemUnlockBehaviour : MonoBehaviour
 			c.a = a;
 			fadeImages[i].color = c;
 		}
-		
-		c = showImage.color;
-		c.a = a;
-		showImage.color = c;
+
 		/*
 		if (!particleEffects.enableEmission) 
 		{

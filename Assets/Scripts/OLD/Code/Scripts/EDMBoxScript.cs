@@ -55,7 +55,7 @@ public class EDMBoxScript : MonoBehaviour
 			SetKeyOn(i, false);
 	}
 
-	public void SetInterface(GameObject InterfaceUI)
+/*	public void SetInterface(GameObject InterfaceUI)
 	{
 
 		GameObject sprite = InterfaceUI.transform.GetChild(0).gameObject;
@@ -73,7 +73,7 @@ public class EDMBoxScript : MonoBehaviour
 				key.gameObject.SetActive(true);
 			}
 		}
-	}
+	}*/
 
 	// Update is called once per frame
 	void Update () 

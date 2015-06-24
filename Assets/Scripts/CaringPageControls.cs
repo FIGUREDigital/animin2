@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 using System;
 using DG.Tweening;
@@ -14,17 +15,18 @@ public enum InventoryPages
 
 public class CaringPageControls : MonoBehaviour
 {
-	[SerializeField]
-	Sprite emptySprite;
     [SerializeField]
     private RectTransform Inventory;
     private InventoryControls mInventoryControls;
     [SerializeField]
     private RectTransform Indicator;
     private bool InventoryOpen = false;
-    private InventoryPages CurrentPage;
+	private InventoryItemUIIcon CurrentPage;
     [SerializeField]
     private InventoryItemUIIcon[] icons;
+
+	Dictionary<PopupItemType, InventoryItemUIIcon> iconsByType= new Dictionary<PopupItemType, InventoryItemUIIcon>();
+
     [SerializeField]
     private GameObject InvBox;
     [SerializeField]
@@ -217,7 +219,18 @@ public class CaringPageControls : MonoBehaviour
 	CaringPageUI[] menus;
 
     void Start()
-    {
+	{
+		for (int i = 0; i < icons.Length; i++) 
+		{
+			for(int j = 0; j < icons[i].acceptedItemTypes.Length; j++)
+			{
+				PopupItemType t = icons[i].acceptedItemTypes[j];
+				if (!iconsByType.ContainsKey(t))
+				{
+					iconsByType.Add (t, icons[i]);
+				}
+			}
+		}
 		// Ensure all menus are registered
 		for(int i = 0; i < menus.Length; i++)
 		{
@@ -252,10 +265,13 @@ public class CaringPageControls : MonoBehaviour
 			Inventory.Entry entry = ProfilesManagementScript.Instance.CurrentProfile.Inventory.Get (i);
 			if(entry.Location != global::Inventory.Locations.Inventory) continue;
 			ItemDefinition data = entry.Definition;
-			int iconIndex = (int)data.ItemType;
-			if (iconIndex < icons.Length && icons[iconIndex] != null && (entry == prefferEntry || icons[iconIndex].Item == null))
+			InventoryItemUIIcon icon;
+			if(iconsByType.TryGetValue(data.ItemType, out icon))
 			{
-				icons[iconIndex].Item = entry;
+				if (entry == prefferEntry || icon.Item == null)
+				{
+					icon.Item = entry;
+				}
 			}
         }
     }
@@ -378,94 +394,24 @@ public class CaringPageControls : MonoBehaviour
         // Show random phone quote
     }
 
-    public void FoodButton()
-    {
-        DisappearAllItemUIs();
-		foodPointer.SetActive(false);
-        if (!InventoryOpen)
-        {
-            InventoryOpen = true;
-        }
-        else if (CurrentPage == InventoryPages.Food)
-        {
-            InventoryOpen = false;
-        }
-        else
-        {
-            SwitchInventory(CurrentPage);
-        }
-        CurrentPage = InventoryPages.Food;
-        mInventoryControls.Init(CurrentPage);
-        Inventory.gameObject.SetActive(InventoryOpen);
-        Indicator.localPosition = new Vector2(-343, Indicator.localPosition.y);
-   
-    }
-
-    public void ItemsButton()
-    {
-        DisappearAllItemUIs();
-        if (!InventoryOpen)
-        {
-            InventoryOpen = true;
-        }
-        else if (CurrentPage == InventoryPages.Items)
-        {
-            InventoryOpen = false;
-        }
-        else
-        {
-            SwitchInventory(CurrentPage);
-        }
-        CurrentPage = InventoryPages.Items;
-        mInventoryControls.Init(CurrentPage);
-        Inventory.gameObject.SetActive(InventoryOpen);
-        Indicator.localPosition = new Vector2(0, Indicator.localPosition.y);
-    }
-
-    public void MedicineButton()
-    {
-        DisappearAllItemUIs();
-        if (!InventoryOpen)
-        {
-            InventoryOpen = true;
-        }
-        else if (CurrentPage == InventoryPages.Medicine)
-        {
-            InventoryOpen = false;
-        }
-        else
-        {
-            SwitchInventory(CurrentPage);
-        }
-        CurrentPage = InventoryPages.Medicine;
-        mInventoryControls.Init(CurrentPage);
-        Inventory.gameObject.SetActive(InventoryOpen);
-        Indicator.localPosition = new Vector2(343, Indicator.localPosition.y);
-    }
-
-    private void SwitchInventory(InventoryPages page)
-    {
-        InventoryOpen = false;
-        switch (page)
-        {
-            case InventoryPages.Food:
-                FoodButton();
-                break;
-            case InventoryPages.Items:
-                ItemsButton();
-                break;
-            case InventoryPages.Medicine:
-                MedicineButton();
-                break;
-            default:
-                break;
-        }
-    }
+	public void InventoryButton(InventoryItemUIIcon page)
+	{		
+		DisappearAllItemUIs();
+		if (mInventoryControls.CurrentPage == page) 
+		{
+			mInventoryControls.SetPage(null);
+			return;
+		}
+		
+		mInventoryControls.SetPage(page);
+		Indicator.localPosition = new Vector2(page.transform.localPosition.x, Indicator.localPosition.y);
+	}
 
     public void CloseInventory()
     {
-        Inventory.gameObject.SetActive(false);
+		mInventoryControls.SetPage(null);
     }
+
 	/*
     public void BroomButton()
     {
@@ -499,8 +445,11 @@ public class CaringPageControls : MonoBehaviour
 
     public void SetIcon(Inventory.Entry entry)
     {
-		InventoryItemUIIcon icon = icons[(int)entry.Definition.ItemType];
-		icon.Item = entry;	
+		InventoryItemUIIcon icon;				
+		if (iconsByType.TryGetValue (entry.Definition.ItemType, out icon)) 
+		{
+			icon.Item = entry;	
+		}
 	}	
 
     public void LightSwitch()

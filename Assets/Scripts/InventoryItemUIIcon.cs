@@ -20,6 +20,7 @@ public class InventoryItemUIIcon : MonoBehaviour {
 	public Image icon;
 	public GameObject noIcon;
 	public UIGradientPro gradient;
+	public PopupItemType[] acceptedItemTypes = new PopupItemType[0];	// Null or 0 items = all types
 	private Inventory.Entry item;
 	private ItemDefinition itemDef;
 	virtual public Inventory.Entry Item

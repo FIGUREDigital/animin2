@@ -23,8 +23,8 @@ public class InventoryControls : MonoBehaviour
 	private List<GameObject> m_CurrentDisplayed;
 	private CaringPageControls m_CaringPage;
 
-	private InventoryPages m_CurrentMode;
-	public InventoryPages CurrentMode
+	private InventoryItemUIIcon m_CurrentMode;
+	public InventoryItemUIIcon CurrentPage
 	{
 		get
 		{
@@ -41,7 +41,7 @@ public class InventoryControls : MonoBehaviour
 
 	void Start()
 	{
-		m_CurrentMode = InventoryPages.Food;
+		m_CurrentMode = null;
 	}
 	void Clear()
 	{
@@ -62,26 +62,45 @@ public class InventoryControls : MonoBehaviour
 			m_CurrentDisplayed.Clear ();
 		}
 	}
-	void Populate(PopupItemType type)
+
+	public void SetPage(InventoryItemUIIcon page) 
 	{
+		gameObject.SetActive(page != null);
+		CurrentPage = page;
+		if (page == null)
+			return;
+		InventoryLabel.text = page.name;
+		m_InventoryRect.horizontalNormalizedPosition = -0.2f;
 		Clear ();
 		
 		m_CaringPage = transform.parent.parent.GetComponent<CaringPageControls> ();
 		m_CurrentDisplayed = new List<GameObject> ();		
 		itemButton.SetActive (false);
-//		int count = 0;
-
+		//		int count = 0;
+		
 		List<InventoryItemId> ids = new List<InventoryItemId> ();
-
+		
 		for (int i=0; i<ProfilesManagementScript.Instance.CurrentProfile.Inventory.Count; ++i)
 		{
 			Inventory.Entry entry = ProfilesManagementScript.Instance.CurrentProfile.Inventory.Get(i);
 			if(entry.Location != Inventory.Locations.Inventory) continue;
 			ItemDefinition def = entry.Definition;
-			if(def.ItemType != type) continue;
+			bool found = CurrentPage.acceptedItemTypes == null || CurrentPage.acceptedItemTypes.Length == 0;
+			if(!found)
+			{
+				for(int j = 0; j < CurrentPage.acceptedItemTypes.Length; j++)
+				{
+					if (CurrentPage.acceptedItemTypes[j] == def.ItemType)
+					{
+						found = true;
+						break;
+					}
+				}
+			}
+			if(!found) continue;
 			if(ids.Contains (def.Id)) continue;
 			ids.Add (def.Id);
-
+			
 			InventoryItemControls button;
 			if(m_CurrentDisplayed.Count == 0)
 			{
@@ -96,8 +115,8 @@ public class InventoryControls : MonoBehaviour
 			button.caringPage = m_CaringPage;
 			m_CurrentDisplayed.Add(button.gameObject);
 			button.transform.parent = m_InventoryGrid.transform;
-
-            button.transform.localScale = Vector3.one * 0.8f;
+			
+			button.transform.localScale = Vector3.one * 0.8f;
 		}
 		float spacing = 0;
 		int columns = Mathf.CeilToInt(m_CurrentDisplayed.Count * 0.5f);
@@ -120,32 +139,5 @@ public class InventoryControls : MonoBehaviour
 			pos.x = ((float)(columns - 4))*0.5f;
 		}
 		rt.anchoredPosition = pos;
-	}
-
-	void OnEnable()
-	{
-	}
-
-	public void Init (InventoryPages CurrentPage) 
-	{
-		CurrentMode = CurrentPage;
-		InventoryLabel.text = CurrentPage.ToString ();
-		m_InventoryRect.horizontalNormalizedPosition = -0.2f;
-		PopupItemType type = PopupItemType.Count;
-		switch (CurrentPage) 
-		{
-		case InventoryPages.Food:
-			type = PopupItemType.Food;
-			break;
-		case InventoryPages.Items:
-			type = PopupItemType.Item;
-			break;
-		case InventoryPages.Medicine:
-			type = PopupItemType.Medicine;
-			break;
-		default:
-			break;
-		}
-		Populate (type);
 	}
 }

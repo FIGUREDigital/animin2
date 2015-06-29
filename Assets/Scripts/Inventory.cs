@@ -26,9 +26,17 @@ public class Inventory
 	[System.Serializable]
 	public class Entry
 	{
+		static int layerUI;
+		static int layerFloor;
+		static Entry()
+		{
+			layerUI = LayerMask.NameToLayer("UI");
+			layerFloor = LayerMask.NameToLayer("Floor");
+		}
+
 		// Our private data has to be public due to the use of the xmlserializer.
 		public InventoryItemId privateId;	
-		public Locations privateLocation = Locations.Inventory;	
+		public Locations privateLocation = Locations.Count;	
 		public Vector3 privatePosition = Vector3.zero;
 
 		public ItemDefinition Definition
@@ -67,11 +75,39 @@ public class Inventory
 		public void MoveTo(Locations location, Vector3 position)
 		{
 			Locations oldLoc = this.privateLocation;
+			if (Definition.ItemType == PopupItemType.Box) 
+			{
+				position = Boxes.Snap (position);
+				if (location != Locations.Inventory)
+				{
+					Instance.SetActive(true);	// We disabel the item sometimes while in the inventory
+                }
+				Instance.transform.localRotation = Quaternion.identity;
+			}
 			this.privateLocation = location;
 			this.privatePosition = position;
 			SetTransform ();
 			if (onItemMoved != null) {
 				onItemMoved(this, oldLoc, location);
+			}
+			SetupLayer ();
+		}
+
+		private void SetupLayer()
+		{			
+			if (Definition.ItemType == PopupItemType.Box) 
+			{
+				// Switch layer between UI and world cameras
+				SetLayer(Instance.transform, privateLocation == Locations.Inventory ? layerUI : layerFloor);
+			}
+		}
+
+		static public void SetLayer(Transform tr, int layer)
+		{
+			tr.gameObject.layer = layer;
+			for(int i = tr.childCount -1; i >= 0; i--)
+			{
+				SetLayer(tr.GetChild(i), layer);
 			}
 		}
 
@@ -80,7 +116,13 @@ public class Inventory
 			GameObject instance = Instance;
 			instance.transform.parent = Inventory.roots[(int)privateLocation] != null ? Inventory.roots[(int)privateLocation].transform : null;
 			instance.transform.position = privatePosition;
-			instance.transform.localScale = new Vector3 (.1f, .1f, .1f);
+			
+			if (Definition.ItemType == PopupItemType.Box) {
+				
+				instance.transform.localScale = new Vector3 (.2f, .2f, .2f);
+			} else {
+				instance.transform.localScale = new Vector3 (.1f, .1f, .1f);
+			}
 		}
 
 		GameObject instance;
@@ -91,6 +133,7 @@ public class Inventory
 				if (instance == null)
 				{
 					instance = Definition.Create(this);
+					SetupLayer();
 				}
 				return instance;
 			}
@@ -213,10 +256,7 @@ public class Inventory
     {
 		Entry newEntry = new Entry (id);
 		privateAllItems.Add (newEntry);
-		
-		if (onItemMoved != null) {
-			onItemMoved(newEntry, Locations.Count, Locations.Inventory);
-		}
+		newEntry.MoveTo (Locations.Inventory, Vector3.zero);
 		return newEntry;
 	}
 	

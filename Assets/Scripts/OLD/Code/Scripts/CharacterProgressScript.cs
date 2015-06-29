@@ -49,6 +49,9 @@ public enum InventoryItemId
     Zef,
 	ItemAlbum,
 
+	Box1,
+	Box2,
+
     Count,
 }
 
@@ -321,9 +324,10 @@ public class CharacterProgressScript : MonoBehaviour
 		ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeHave(InventoryItemId.Boombox, 1);
 		ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeHave(InventoryItemId.ItemAlbum, 1);
 		*/
-
 		
 		ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeOwn(InventoryItemId.ItemAlbum, 1);
+		ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeOwn(InventoryItemId.Box1, 10);
+		ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeOwn(InventoryItemId.Box2, 5);
 
         if (BetweenSceneData.Instance.ReturnFromMiniGame)
         {
@@ -469,6 +473,17 @@ public class CharacterProgressScript : MonoBehaviour
 
     bool hiddenTutorial = false;
 
+	ActionId queuedAction;
+	
+	public void Eat()
+	{
+		queuedAction = ActionId.EatItem;
+	}
+	public void Throw()
+	{
+		queuedAction = ActionId.ThrowItemAfterPickup;
+    }
+    
     public void HidePopupMenus(bool AboutToShow)
     {
         Debug.Log("Hiding popup menus");
@@ -721,67 +736,31 @@ public class CharacterProgressScript : MonoBehaviour
         // CHECK FOR UI TOUCH
         if (Input.GetButton("Fire1") || Input.GetButtonDown("Fire1") || Input.GetButtonUp("Fire1"))
         {
-            /* OLD NGUI HADUITOUCH CODE
-            // This grabs the camera attached to the NGUI UI_Root object.
-            Camera uiCam = Camera.main;
-			
-            if (uiCam != null)
-            {
-                // pos is the Vector3 representing the screen position of the input
-				Ray inputRay = uiCam.ScreenPointToRay(Input.mousePosition);  
-								Debug.DrawRay(uiCam.transform.position ,uiCam.ScreenPointToRay(Input.mousePosition).direction*1000,Color.green,5,false); 
-
-
-
-                RaycastHit hit;
-                if (Physics.Raycast(inputRay, out hit))
-				{
-					Debug.Log("Colliding with : [" + hit.collider.gameObject.name + "];");
-                    //Debug.Log("TOUCH: " + hit.collider.gameObject.layer.ToString());
-
-                    //Debug.Log("normalUIRAY:" + hit.collider.gameObject);
-                    if (hit.collider.gameObject.layer == LayerMask.NameToLayer("NGUI"))
-                    {
-                        //Debug.Log("normalUIRAY +++++:" + hit.collider.gameObject);
-                        hadUItouch = true;
-                        //Debug.Log("UI TOUCH");
-                    }
-
-                }
-            }
-            */
-            /*
-            GUITexture[] UITextures = GameObject.FindObjectsOfType<GUITexture>();
-            Debug.Log("Testing : [" + UITextures.Length + "];");
-            for (int i = 0; i < UITextures.Length; i++)
-            {
-                if (UITextures[i].HitTest(Input.mousePosition)){
-                    hadUItouch = true;
-                    break;
-                }
-            }
-            */
-            //ADRIAN. We need to fill this out so that it can tell us Yes/No whether or not the mouse is currently over the UI. Apparently "GUIElement.HitTest(Vector3)" will work, but we need to find a way to get the UITextures to work. Perhaps we should parent all the UIs to a single object which we can access with a singleton?
-            hadUItouch = UiPages.IsMouseOverUI();
+           hadUItouch = UiPages.IsMouseOverUI();
         }
 
-
-		
         RaycastHit hitInfo;
         bool hadRayCollision = false;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hitInfo))
-        {
-            //Debug.Log("TUTORIAL PLAYING? : ["+UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.IsPlaying+"]");
-            //if (UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.IsPlaying)
-            //{
-            //    hadRayCollision = UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.CheckCharacterProgress(this, hitInfo);
-            //}
-            //else
-            hadRayCollision = true;
-            //Debug.Log ("Ray Collision : ["+hitInfo.collider.gameObject.name+"];");
-        }
 
+		int layerMask = Physics.DefaultRaycastLayers;
+		if (MainARHandler.Instance.CurrentItem != null) 
+		{
+			ItemLink il = MainARHandler.Instance.CurrentItem.GetComponent<ItemLink>();
+			if (il != null)
+			{
+				if (il.item.Definition.ItemType == PopupItemType.Box)
+				{
+					layerMask = LayerMask.GetMask("Floor");
+				}
+			}
+		}
+		
+
+		if (Physics.Raycast(ray, out hitInfo, Mathf.Infinity, layerMask))
+        {
+            hadRayCollision = true;
+        }
 
 
         //Debug.Log(CurrentAction.ToString());
@@ -800,27 +779,44 @@ public class CharacterProgressScript : MonoBehaviour
 
             case ActionId.ThrowItemAfterPickup:
                 {
-                    if (animationController.IsHoldingItemComplete)
+					if(ObjectHolding == null)
+					{				
+						CurrentAction = ActionId.None;
+	                }
+	                else if (animationController.IsHoldingItemComplete)
                     {
                         Vector3 throwdirection = Vector3.Normalize(new Vector3(UnityEngine.Random.Range(-1.0f, 1.0f), 0, UnityEngine.Random.Range(-1.0f, 1.0f)));
                         ThrowItemFromHands(throwdirection);
                         CurrentAction = ActionId.None;
                     }
-
-
                     break;
                 }
 
             case ActionId.EatItem:
-                {
-
-                    CurrentAction = ActionId.WaitEatingFinish;
+            {
+				bool canEat = false;
+				if(ObjectHolding != null)
+				{
+					ItemLink il = ObjectHolding.GetComponent<ItemLink>();
+					if(il != null)
+					{
+						canEat = il.item.Definition.ItemType == PopupItemType.Food;
+					}
+				}
+				if(canEat)
+				{
+                   CurrentAction = ActionId.WaitEatingFinish;
                     animationController.IsHoldingItem = false;
                     animationController.IsEating = true;
                     EatAlphaTimer = 0;
                     PlayedEatingSound = false;
-                    break;
                 }
+				else
+				{
+					CurrentAction = ActionId.None;
+				}
+				break;
+			}
             case ActionId.WaitEatingFinish:
                 {
                     if (!animationController.IsEating)
@@ -1039,7 +1035,14 @@ public class CharacterProgressScript : MonoBehaviour
                         HoldingLeftButtonDownTimer = 0;
 
 							
-                    if (lastActionId != ActionId.None)
+					if(queuedAction != ActionId.None)
+					{
+						CurrentAction = queuedAction;
+						queuedAction = ActionId.None;
+						break;
+					}
+
+                   	if (lastActionId != ActionId.None)
                     {
                         //Debug.Log("if(lastActionId != ActionId.None)");
                     }
@@ -1098,48 +1101,16 @@ public class CharacterProgressScript : MonoBehaviour
                     }
                     else if (IsDetectingMouseMoveForDrag && Vector3.Distance(Input.mousePosition, MousePositionAtDragIfMouseMoves) >= 5 && Input.GetButton("Fire1"))
                     {
+						// Start actual drag once dragged far enough
                         //Debug.Log("IsDetectingMouseMoveForDrag");
 
-                        #region Some Commented Out Code
-					
-                        // DRAG ITEM FROM CHARACTER AWAY FROM HIM
-                        /*if(hit.collider.name.StartsWith("MainCharacter") && DragableObject == null && animationController.IsHoldingItem)
-					{
-						//pickupItemSavedData.Position = DragableObject.transform.position;
-						//pickupItemSavedData.Rotation = DragableObject.transform.rotation.eulerAngles;
-						//pickupItemSavedData.WasInHands = true;
-
-						//Debug.Log("SELECTED OBJECT:" + hit.collider.name);
-						//DragableObject = ObjectHolding;
-						//DragableObject.GetComponent<BoxCollider>().enabled = false;
-						DragableObject.transform.parent = this.transform.parent;
-						animationController.IsHoldingItem = false;
-						animationController.IsThrowing = true;
-						//Physics.IgnoreCollision(DragableObject.collider, this.collider, true);
-
-
-					}
-					
-					// GRAB ITEM ITSELF EITHER FROM HANDS OR FLOOR
-					else*/ 
-					
-                        // THROW IT AWAY
-                        //if(animationController.IsHoldingItem)
-                        //{
-                        //	CurrentAction = ActionId.DetectFlickAndThrow;
-                        //}
-					
-                        // GRAB FROM FLOOR
-                        //else
-                        #endregion
-					
-
-                        DragableObject = detectDragHit.collider.gameObject;
+                        DragableObject = detectDragHit.collider.gameObject;		
 					
                         if (DragableObject.GetComponent<ItemLink>().item.Definition.ItemType != PopupItemType.Token)
                         {
-                            CurrentAction = ActionId.DragItemAround;
-                            IsDetectingMouseMoveForDrag = false;
+		                    CurrentAction = ActionId.DragItemAround;
+							IsDetectingMouseMoveForDrag = false;		
+							MainARHandler.Instance.CurrentItem = DragableObject;
 
                             DragableObject.layer = LayerMask.NameToLayer("IgnoreCollisionWithCharacter");
                             DragableObject.GetComponent<BoxCollider>().enabled = false;
@@ -1484,7 +1455,13 @@ public class CharacterProgressScript : MonoBehaviour
                     {
                         DragableObject.transform.parent = ActiveWorld.transform;
                         DragableObject.layer = LayerMask.NameToLayer("Default");
-
+						ItemLink il = DragableObject.GetComponent<ItemLink>();
+						if(il != null)
+						{
+							il.item.MoveTo(Inventory.CurrentLocation, DragableObject.transform.position);
+                        }
+                        
+                        
                         if(OnDropItem != null)
                             OnDropItem();
                     }
@@ -1495,12 +1472,10 @@ public class CharacterProgressScript : MonoBehaviour
                             OnDropItem();
                     }
 
-	                if(DragableObject != null)
-	                {
-	                    DragableObject.GetComponent<BoxCollider>().enabled = true;
-	                    DragableObject = null;
-	                    CurrentAction = ActionId.None;
-	                }
+                    DragableObject.GetComponent<BoxCollider>().enabled = true;
+                    DragableObject = null;
+                    CurrentAction = ActionId.None;
+					MainARHandler.Instance.CurrentItem = null;
                     break;
                 }
 
@@ -1511,15 +1486,15 @@ public class CharacterProgressScript : MonoBehaviour
                 if(OnDragItem != null)
                     OnDragItem();
 
-                    MainARHandler.Instance.CurrentItem = DragableObject;
-                    if (hadRayCollision && (hitInfo.collider.name.StartsWith("Invisible Ground Plane") || hitInfo.collider.name.StartsWith("Extended")))
+			if (hadRayCollision && (hitInfo.collider.gameObject.layer == Boxes.FloorLayer))//(hitInfo.collider.name.StartsWith("Invisible Ground Plane") || hitInfo.collider.name.StartsWith("Extended")))
 			//if(hadRayCollision && hitInfo.collider.name.StartsWith("SecondGroundPlane"))
                     {
-                        Debug.Log("DRAGGING");
 						ItemLink li = DragableObject.GetComponent<ItemLink>();
+				Debug.Log("DRAGGING "+(li != null).ToString ());
 						if (li != null)
 						{
-							li.item.MoveTo(li.item.Location, hitInfo.point);
+							Vector3 pos = Boxes.GetGroundPoint(hitInfo);
+							li.item.MoveTo(li.item.Location, pos);
 						}
 						else
 						{
@@ -1530,12 +1505,13 @@ public class CharacterProgressScript : MonoBehaviour
 
                     if (!Input.GetButton("Fire1"))
                     {
+				/* AH Don't know why we need this here appears to be handled in DropItem too
                         if(InvBoxControls.listening)
                         {
                             DragableObject = null;
                             CurrentAction = ActionId.None;
                         } 
-                        else
+                        else*/
                         {
                             if (hitInfo.collider != null && hitInfo.collider.name.StartsWith("Extended"))
                             {

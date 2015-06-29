@@ -10,6 +10,7 @@ public enum PopupItemType
 	Item,
 	Medicine,
 	Token,
+	Box,
 	Count
 }
 

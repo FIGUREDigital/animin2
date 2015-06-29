@@ -257,7 +257,7 @@ public class MainARHandler : MonoBehaviour
 			m_IsTracking = tracking;
 			//Debug.Log("OnTrackingChange: "+tracking+" [" + mLastTrack.TrackableBehaviour.TrackableName + "];");
 			// Switcing			
-			GameObject caringPage = GameObject.FindGameObjectWithTag("caringpage");			
+//			GameObject caringPage = GameObject.FindGameObjectWithTag("caringpage");			
 /*			if(caringPage  != null)
 			{
 				CaringPageControls caringPageControls = caringPage.GetComponent<CaringPageControls>();

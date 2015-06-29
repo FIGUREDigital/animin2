@@ -20,7 +20,7 @@ public class CaringPageControls : MonoBehaviour
     private InventoryControls mInventoryControls;
     [SerializeField]
     private RectTransform Indicator;
-    private bool InventoryOpen = false;
+//    private bool InventoryOpen = false;
 	private InventoryItemUIIcon CurrentPage;
     [SerializeField]
     private InventoryItemUIIcon[] icons;
@@ -241,7 +241,7 @@ public class CaringPageControls : MonoBehaviour
         PopulateButtons();
         m_TriangleHeight = new Vector2(0, m_Triangle.sizeDelta.y * 2.0f);
         DetectDragIconScript.OnClicked += EnableInvBox;
-        DragDropMainBarItem.OnClicked += DisableInvBox;
+        DragDropMainBarItem.OnDropped += DisableInvBox;
         CharacterProgressScript.OnDragItem += EnableInvBox;
         CharacterProgressScript.OnDropItem += DisableInvBox;
         InvBoxControls.OnDropItem += DisableInvBox;

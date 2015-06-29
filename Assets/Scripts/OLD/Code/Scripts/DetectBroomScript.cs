@@ -33,7 +33,7 @@ public class DetectBroomScript : MonoBehaviour, IBeginDragHandler, IDragHandler,
 		child.transform.localPosition = Vector3.zero;
     }
     public void OnDrag(PointerEventData data)
-    {		
+    {
 		Debug.Log ("Main Camera: "+Camera.main.name);
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

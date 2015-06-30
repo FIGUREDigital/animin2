@@ -395,6 +395,7 @@ public class MainARHandler : MonoBehaviour
 		{
 			CaringScreenOnTrackingLost();
 		}
+		Inventory.ScanItemHeights ();
 	}
 
     private void CaringSceneOnTrackingFound()
@@ -434,7 +435,7 @@ public class MainARHandler : MonoBehaviour
         }
     }
 
-    public void CaringScreenOnTrackingLost()
+    private void CaringScreenOnTrackingLost()
     {
         UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.parent = UIGlobalVariablesScript.Singleton.NonARWorldRef.transform;
         if (UIGlobalVariablesScript.Singleton.NonSceneRef != null)

@@ -50,7 +50,7 @@ public class InvBoxControls : MonoBehaviour {
         {
             Debug.LogWarning("[Drop Item]: ERROR NO ITEM");
             return;
-        }
+		}
         Debug.Log("[Drop Item]: Item = "+GO.name);
 		ItemLink link = GO.GetComponent<ItemLink> ();
 		if (link != null) 
@@ -61,6 +61,7 @@ public class InvBoxControls : MonoBehaviour {
 		m_CaringPageControls = UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>();
 		m_CaringPageControls.DisappearAllItemUIs();
 
-        OnDropItem();
+		OnDropItem();
+		MainARHandler.Instance.CurrentItem = null;
     }
 }

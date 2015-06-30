@@ -404,6 +404,9 @@ public class ProfilesManagementScript : Phi.SingletonMonoBehaviour<ProfilesManag
             Debug.Log("Loading New level");
             StartCoroutine(LoadLevel(@"ARBase"));
         }
+		if (ProfilesManagementScript.Instance.CurrentProfile != null) { 
+			ProfilesManagementScript.Instance.CurrentProfile.Inventory.Update ();
+		}
 	}
 	AsyncOperation async;
 	

@@ -39,7 +39,7 @@ public class InventoryItemUIIcon : MonoBehaviour {
                 il.item = value;
             }
 			
-			if (model != null && model.transform.parent.gameObject == modelParent)
+			if (model != null && model.transform.parent != null && model.transform.parent.gameObject == modelParent)
 			{
 				model.transform.parent = null;
 				model.SetActive(false);

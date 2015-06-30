@@ -23,6 +23,8 @@ public class Inventory
 		}
 	}
 
+	private static bool scanItemHeightRequired = false;
+
 	[System.Serializable]
 	public class Entry
 	{
@@ -80,9 +82,10 @@ public class Inventory
 				position = Boxes.Snap (position);
 				if (location != Locations.Inventory)
 				{
-					Instance.SetActive(true);	// We disabel the item sometimes while in the inventory
+					Instance.SetActive(true);	// We disable the item sometimes while in the inventory
                 }
 				Instance.transform.localRotation = Quaternion.identity;
+				scanItemHeightRequired = true;
 			}
 			this.privateLocation = location;
 			this.privatePosition = position;
@@ -302,4 +305,58 @@ public class Inventory
         }
 		return result;
     }
+
+	public void Update()
+	{
+		ScanItemHeights (false);
+	}
+
+	public static void ScanItemHeights(bool force = true)
+	{	
+		Inventory inv = ProfilesManagementScript.Instance.CurrentProfile.Inventory;
+		if (!force && !scanItemHeightRequired)
+		{
+			return;
+		}
+		// Go through all items and do a raycast to position thier height
+		Locations curLoc = CurrentLocation;
+		BoxCollider boxCollider = null;
+		if (MainARHandler.Instance.CurrentItem != null) 
+		{
+			ItemLink il = MainARHandler.Instance.CurrentItem.GetComponent<ItemLink>();
+			if(il.item.Definition.ItemType == PopupItemType.Box)
+			{
+				boxCollider = il.GetComponent<BoxCollider>();
+				if(!boxCollider.enabled)
+				{
+					boxCollider.enabled = true;
+				}
+				else
+				{
+					boxCollider = null;
+				}
+			}
+		}
+		for (int i = inv.privateAllItems.Count - 1; i >= 0; i--) 
+		{
+			Entry e = inv.privateAllItems[i];
+			if(e.Location == curLoc && e.Definition.ItemType != PopupItemType.Box)
+			{
+				GameObject o = e.Instance;
+				Vector3 pos = o.transform.position;
+				pos.y = 1000;
+				RaycastHit hit;
+				if(Physics.Raycast(pos, Vector3.down, out hit, Mathf.Infinity, 1<<Boxes.FloorLayer))
+				{
+					pos.y = hit.point.y;
+					o.transform.position = pos;
+				}
+			}
+		}
+		if (boxCollider != null) 
+		{			
+			boxCollider.enabled = false;
+		}
+		scanItemHeightRequired = false;
+	}
 }

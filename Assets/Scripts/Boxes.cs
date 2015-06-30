@@ -37,12 +37,37 @@ public class Boxes : MonoBehaviour {
 		return r;
 	}
 
-	
+	public static float Round(float v)
+	{
+		v = v / size;
+		float sign = size;
+		if (v < 0)
+		{
+			sign = -sign;
+			v = -v;
+		}
+		if (v >= 4.5f) 
+		{
+			if (v > 5)
+			{
+				return v * sign;
+			}
+			v -= 0.51f;
+		}
+		return Mathf.Round (v) * sign;
+	}
+
 	public static Vector3 Snap(Vector3 position)
 	{
-		position.x = Mathf.Round (position.x / size) * size;
-		position.y = Mathf.Floor (position.y / size) * size;
-		position.z = Mathf.Round (position.z / size) * size;
+		float sign = 1;
+		float x = position.x;
+
+		if (Mathf.Abs (position.x) <= 5f * size && Mathf.Abs (position.z) <= 5f * size)
+		{
+			position.x = Round(position.x);
+			position.y = Mathf.Floor (position.y / size) * size;
+			position.z = Round(position.z);
+		}
 		return position;
 	}
 }

@@ -182,7 +182,7 @@ public class CharacterProgressScript : MonoBehaviour
     public AnimationControllerScript animationController;
     public bool IsMovingTowardsLocation;
     //public GameObject ObjectCarryAttachmentBone;
-    private GameObject DragableObject;
+    //private GameObject DragableObject;
     public GameObject ObjectHolding;
     private float LastTapClick;
 
@@ -1104,16 +1104,14 @@ public class CharacterProgressScript : MonoBehaviour
 						// Start actual drag once dragged far enough
                         //Debug.Log("IsDetectingMouseMoveForDrag");
 
-                        DragableObject = detectDragHit.collider.gameObject;		
-					
-                        if (DragableObject.GetComponent<ItemLink>().item.Definition.ItemType != PopupItemType.Token)
-                        {
+						Inventory.Entry e = detectDragHit.collider.gameObject.GetComponent<ItemLink>().item;
+                        if (e.Definition.ItemType != PopupItemType.Token)
+						{
+							MainARHandler.Instance.CurrentItem = detectDragHit.collider.gameObject;		
 		                    CurrentAction = ActionId.DragItemAround;
-							IsDetectingMouseMoveForDrag = false;		
-							MainARHandler.Instance.CurrentItem = DragableObject;
-
-                            DragableObject.layer = LayerMask.NameToLayer("IgnoreCollisionWithCharacter");
-                            DragableObject.GetComponent<BoxCollider>().enabled = false;
+							IsDetectingMouseMoveForDrag = false;
+							MainARHandler.Instance.CurrentItem.layer = LayerMask.NameToLayer("IgnoreCollisionWithCharacter");
+							MainARHandler.Instance.CurrentItem.GetComponent<BoxCollider>().enabled = false;
                         }
 
                     }
@@ -1447,33 +1445,35 @@ public class CharacterProgressScript : MonoBehaviour
 //                    bool validDrop = false;
 				  
                     // DRAG ITEM ON TO THE CHARACTER
-                    if (hadRayCollision && hitInfo.collider.name.StartsWith("MainCharacter") && !animationController.IsHoldingItem)
-                    {
-                        PutItemInHands(DragableObject);
-                    }
-                    else if (hadRayCollision && hitInfo.collider.name.StartsWith("Invisible Ground Plane"))
-                    {
-                        DragableObject.transform.parent = ActiveWorld.transform;
-                        DragableObject.layer = LayerMask.NameToLayer("Default");
-						ItemLink il = DragableObject.GetComponent<ItemLink>();
-						if(il != null)
+					if(!InvBoxControls.listening)
+					{
+	                    if (hadRayCollision && hitInfo.collider.name.StartsWith("MainCharacter") && !animationController.IsHoldingItem)
+	                    {
+							PutItemInHands(MainARHandler.Instance.CurrentItem);
+	                    }
+	                    else if (hadRayCollision && hitInfo.collider.name.StartsWith("Invisible Ground Plane"))
+	                    {
+							MainARHandler.Instance.CurrentItem.transform.parent = ActiveWorld.transform;
+							MainARHandler.Instance.CurrentItem.layer = LayerMask.NameToLayer("Default");
+							ItemLink il = MainARHandler.Instance.CurrentItem.GetComponent<ItemLink>();
+							if(il != null)
+							{
+								il.item.MoveTo(Inventory.CurrentLocation, MainARHandler.Instance.CurrentItem.transform.position);
+	                        }
+	                        
+	                        
+	                        if(OnDropItem != null)
+	                            OnDropItem();
+	                    }
+						else
 						{
-							il.item.MoveTo(Inventory.CurrentLocation, DragableObject.transform.position);
-                        }
-                        
-                        
-                        if(OnDropItem != null)
-                            OnDropItem();
-                    }
-                    else if(!InvBoxControls.listening)
-                    {
-                        Debug.Log("DROPED IN UNKNOWN LOCATION");
-                        if(OnDropItem != null)
-                            OnDropItem();
-                    }
+	                        Debug.Log("DROPED IN UNKNOWN LOCATION");
+	                        if(OnDropItem != null)
+	                            OnDropItem();
+	                    }
+					}
 
-                    DragableObject.GetComponent<BoxCollider>().enabled = true;
-                    DragableObject = null;
+					MainARHandler.Instance.CurrentItem.GetComponent<BoxCollider>().enabled = true;
                     CurrentAction = ActionId.None;
 					MainARHandler.Instance.CurrentItem = null;
                     break;
@@ -1489,8 +1489,8 @@ public class CharacterProgressScript : MonoBehaviour
 			if (hadRayCollision && (hitInfo.collider.gameObject.layer == Boxes.FloorLayer))//(hitInfo.collider.name.StartsWith("Invisible Ground Plane") || hitInfo.collider.name.StartsWith("Extended")))
 			//if(hadRayCollision && hitInfo.collider.name.StartsWith("SecondGroundPlane"))
                     {
-						ItemLink li = DragableObject.GetComponent<ItemLink>();
-				Debug.Log("DRAGGING "+(li != null).ToString ());
+						ItemLink li = MainARHandler.Instance.CurrentItem.GetComponent<ItemLink>();
+						Debug.Log("DRAGGING "+(li != null).ToString ());
 						if (li != null)
 						{
 							Vector3 pos = Boxes.GetGroundPoint(hitInfo);
@@ -1498,24 +1498,23 @@ public class CharacterProgressScript : MonoBehaviour
 						}
 						else
 						{
-		                    DragableObject.transform.position = hitInfo.point;
+							MainARHandler.Instance.CurrentItem.transform.position = hitInfo.point;
 						}
                         //DragableObject.transform.parent = hit.transform;
                     }
 
                     if (!Input.GetButton("Fire1"))
                     {
-				/* AH Don't know why we need this here appears to be handled in DropItem too
+
                         if(InvBoxControls.listening)
                         {
-                            DragableObject = null;
                             CurrentAction = ActionId.None;
                         } 
-                        else*/
+                        else				
                         {
                             if (hitInfo.collider != null && hitInfo.collider.name.StartsWith("Extended"))
                             {
-                                DragableObject.AddComponent<DroppedItemScript>();
+								MainARHandler.Instance.CurrentItem.AddComponent<DroppedItemScript>();
                             }
                             CurrentAction = ActionId.DropItem;
                         }

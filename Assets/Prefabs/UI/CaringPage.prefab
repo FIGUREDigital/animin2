@@ -6322,6 +6322,7 @@ MonoBehaviour:
   gradient: {fileID: 11423370}
   modelParent: {fileID: 0}
   acceptedItemTypes: 
+  useInventoryModel: 0
 --- !u!114 &11414768
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7253,6 +7254,7 @@ MonoBehaviour:
   gradient: {fileID: 11417606}
   modelParent: {fileID: 104336}
   acceptedItemTypes: 
+  useInventoryModel: 0
   mText: {fileID: 11475404}
   caringPage: {fileID: 0}
 --- !u!114 &11431270
@@ -8413,6 +8415,7 @@ MonoBehaviour:
   gradient: {fileID: 11471680}
   modelParent: {fileID: 0}
   acceptedItemTypes: 01000000
+  useInventoryModel: 0
 --- !u!114 &11462620
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12774,6 +12777,7 @@ MonoBehaviour:
   gradient: {fileID: 11417606}
   modelParent: {fileID: 0}
   acceptedItemTypes: 
+  useInventoryModel: 0
 --- !u!114 &11471636
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12866,6 +12870,7 @@ MonoBehaviour:
   gradient: {fileID: 11424818}
   modelParent: {fileID: 104734}
   acceptedItemTypes: 04000000
+  useInventoryModel: 1
 --- !u!114 &11472042
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -17351,6 +17356,7 @@ MonoBehaviour:
   gradient: {fileID: 11475316}
   modelParent: {fileID: 0}
   acceptedItemTypes: 0000000002000000
+  useInventoryModel: 0
 --- !u!137 &13702006
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -22924,7 +22930,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 2048, y: 1536}
+  m_SizeDelta: {x: 2048.76978, y: 1536}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22486446
 RectTransform:

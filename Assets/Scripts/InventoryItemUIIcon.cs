@@ -22,6 +22,7 @@ public class InventoryItemUIIcon : MonoBehaviour {
 	public UIGradientPro gradient;
 	public GameObject modelParent;
 	public PopupItemType[] acceptedItemTypes = new PopupItemType[0];	// Null or 0 items = all types
+	public bool useInventoryModel = false;
 	private Inventory.Entry item;
 	private ItemDefinition itemDef;
 	private GameObject model;
@@ -47,8 +48,7 @@ public class InventoryItemUIIcon : MonoBehaviour {
 			}
 			if(modelParent != null && itemDef != null && itemDef.SpriteName == null)
 			{
-				GameObject go = item.Instance;
-				model = item.Instance;
+				model = useInventoryModel ? item.InventoryModel : item.Instance;
 				model.SetActive (true);
 				modelParent.SetActive(showHide);
 				model.transform.parent = modelParent.transform;

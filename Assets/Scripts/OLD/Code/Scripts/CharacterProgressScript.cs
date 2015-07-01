@@ -406,7 +406,7 @@ public class CharacterProgressScript : MonoBehaviour
     {
 		Inventory.Entry entry = ProfilesManagementScript.Instance.CurrentProfile.Inventory.Add (itemID);
 		GameObject go = entry.Instance;
-		entry.MoveTo (Inventory.CurrentLocation, position);
+		entry.MoveTo (Inventory.CurrentLocation, position, true);
         //gameObject.transform.localRotation = Quaternion.Euler(0, UnityEngine.Random.Range(-180, 180), 0);
 
 		if(isZefRewardItem)
@@ -1293,7 +1293,11 @@ public class CharacterProgressScript : MonoBehaviour
                                 }
                                 Debug.Log("Tap");
 								UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHoc("StrokeAnimin");
-                            }
+							}
+							else if ((hitInfo.collider.tag == "Items") && hitInfo.collider.GetComponent<ItemLink>().item.Definition.ItemType == PopupItemType.Box && hitInfo.collider.GetComponent<ItemLink>().item.justSpawnedFromChest)
+							{
+								OnInteractWithPopupItem(hitInfo.collider.GetComponent<ItemLink>().item);
+							}
                             else if ((hitInfo.collider.tag == "Items") && hitInfo.collider.GetComponent<ItemLink>().item.Definition.ItemType == PopupItemType.Token)
                             {
                                 OnInteractWithPopupItem(hitInfo.collider.GetComponent<ItemLink>().item);
@@ -1350,7 +1354,13 @@ public class CharacterProgressScript : MonoBehaviour
 
                             bool preventMovingTo = false;
                             Vector3 point = moveHitInfo.point;
-                            if (moveHitInfo.collider.tag == "Items")
+							ItemLink il = moveHitInfo.collider.GetComponent<ItemLink>();
+							Inventory.Entry entry = null;
+							if (il != null)
+							{
+								entry = il.item;
+							}
+							if (moveHitInfo.collider.tag == "Items" && (entry == null || entry.Definition.ItemType != PopupItemType.Box))
                             {
                                 moveHitInfo.collider.gameObject.AddComponent<FlashObjectScript>();
 
@@ -1728,7 +1738,16 @@ public class CharacterProgressScript : MonoBehaviour
 
                     break;
                 }
-
+			
+			case PopupItemType.Box:
+			{
+				if (entry.justSpawnedFromChest)
+				{
+					entry.MoveTo(Inventory.Locations.Inventory, Vector3.zero);
+					Debug.Log("Box COLLECTED");
+				}
+				break;
+			}
             case PopupItemType.Food:
                 {
                     /*if(Hungry >= 95)

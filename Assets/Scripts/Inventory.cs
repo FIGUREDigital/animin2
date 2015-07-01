@@ -40,6 +40,7 @@ public class Inventory
 		public InventoryItemId privateId;	
 		public Locations privateLocation = Locations.Count;	
 		public Vector3 privatePosition = Vector3.zero;
+		public bool justSpawnedFromChest = false;
 
 		public ItemDefinition Definition
 		{
@@ -74,26 +75,32 @@ public class Inventory
 		{
 		}
 
-		public void MoveTo(Locations location, Vector3 position)
+		public void MoveTo(Locations location, Vector3 position, bool justSpawnedFromChest = false)
 		{
+			this.justSpawnedFromChest = justSpawnedFromChest;
 			Locations oldLoc = this.privateLocation;
 			if (Definition.ItemType == PopupItemType.Box) 
 			{
-				position = Boxes.Snap (position);
-				if (location != Locations.Inventory)
+				GameObject go = Instance;
+				SpinObjectScript spin = go.GetComponent<SpinObjectScript>();
+				if(!justSpawnedFromChest)
 				{
-					Instance.SetActive(true);	// We disable the item sometimes while in the inventory
-                }
-				Instance.transform.localRotation = Quaternion.identity;
-				scanItemHeightRequired = true;
+					position = Boxes.Snap (position);
+					if (location != Locations.Inventory)
+					{
+						go.SetActive(true);	// We disable the item sometimes while in the inventory
+	                }
+					go.transform.localRotation = Quaternion.identity;
+					scanItemHeightRequired = true;
+				}
 			}
 			this.privateLocation = location;
 			this.privatePosition = position;
 			SetTransform ();
+			SetupLayer ();
 			if (onItemMoved != null) {
 				onItemMoved(this, oldLoc, location);
 			}
-			SetupLayer ();
 		}
 
 		private void SetupLayer()
@@ -116,13 +123,30 @@ public class Inventory
 
 		public void SetTransform()
 		{
+
 			GameObject instance = Instance;
+			SpinObjectScript spin = instance.GetComponent<SpinObjectScript>();
 			instance.transform.parent = Inventory.roots[(int)privateLocation] != null ? Inventory.roots[(int)privateLocation].transform : null;
 			instance.transform.position = privatePosition;
 			
-			if (Definition.ItemType == PopupItemType.Box) {
-				
-				instance.transform.localScale = new Vector3 (.2f, .2f, .2f);
+			if (Definition.ItemType == PopupItemType.Box)
+			{
+				if(justSpawnedFromChest)
+				{
+					instance.transform.localScale = new Vector3 (.1f, .1f, .1f);
+					if(spin == null)
+					{
+						spin = instance.AddComponent<SpinObjectScript>();
+					}
+				}
+				else
+				{
+					if(spin != null)
+					{
+						GameObject.Destroy(spin);
+					}
+					instance.transform.localScale = new Vector3 (.2f, .2f, .2f);
+				}
 			} else {
 				instance.transform.localScale = new Vector3 (.1f, .1f, .1f);
 			}
@@ -141,6 +165,22 @@ public class Inventory
 				return instance;
 			}
 		}
+
+		
+		GameObject inventoryModel;
+		public GameObject InventoryModel
+		{
+			get
+			{
+				if (inventoryModel == null)
+				{
+					inventoryModel = Definition.Create(this, true);					
+					SetLayer(inventoryModel.transform, layerUI);
+				}
+				return inventoryModel;
+			}
+		}
+
 
 		// This should only be called by Inventory
 		public void DestroyInstance()
@@ -233,15 +273,13 @@ public class Inventory
 	public int EnsureWeOwn(InventoryItemId id, int count)
 	{
 		count -= GetNumItemsOwned(id);
-		if(count > 0)
+		int added = 0;
+		while (added < count) 
 		{
 			Add(id);
+			added++;
 		}
-		else
-		{
-			count = 0;
-		}
-		return count;
+		return added;
 	}
 
 	

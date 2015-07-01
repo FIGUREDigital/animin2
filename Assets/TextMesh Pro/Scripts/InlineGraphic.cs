@@ -51,11 +51,11 @@ namespace TMPro
                 texture = m_manager.spriteAsset.spriteSheet;      
         }
 
-
+		/*
         protected override void OnValidate()
         {
             //Debug.Log("Texture ID is " + this.texture.GetInstanceID());
-        }
+        }*/
 
         
         public new void UpdateMaterial()

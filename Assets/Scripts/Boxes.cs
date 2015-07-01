@@ -5,6 +5,21 @@ public class Boxes : MonoBehaviour {
 
 	public static float size = 40.0f;
 
+	static private float WorldSize
+	{
+		get
+		{
+			if (Inventory.CurrentLocation == Inventory.Locations.AR)
+			{
+				return 100000.0f;
+			}
+			else
+			{
+				return 9.0f;
+			}
+		}
+	}
+
 	public static int FloorLayer
 	{
 		get
@@ -39,6 +54,7 @@ public class Boxes : MonoBehaviour {
 
 	public static float Round(float v)
 	{
+		float round = WorldSize * 0.5f;
 		v = v / size;
 		float sign = size;
 		if (v < 0)
@@ -46,27 +62,37 @@ public class Boxes : MonoBehaviour {
 			sign = -sign;
 			v = -v;
 		}
-		if (v >= 4.5f) 
+		if (v >= (round)) 
 		{
-			if (v > 5)
+			if (v < round + 0.5f)
 			{
-				return v * sign;
+				v = round + 0.5f;
 			}
-			v -= 0.51f;
+			return v * sign;
+			//}
+			//v -= 0.51f;
 		}
 		return Mathf.Round (v) * sign;
 	}
 
 	public static Vector3 Snap(Vector3 position)
-	{
+	{		
+		float round = WorldSize * 0.5f * size;
+		float roundMax = round + size * 0.5f;
 		float sign = 1;
-		float x = position.x;
-
-		if (Mathf.Abs (position.x) <= 5f * size && Mathf.Abs (position.z) <= 5f * size)
+		float x = Mathf.Abs (position.x);
+		float z = Mathf.Abs (position.z);
+		if (x <= roundMax && z <= roundMax)
 		{
-			position.x = Round(position.x);
+			if (z <= round)
+			{
+				position.x = Round(position.x);
+			}
 			position.y = Mathf.Floor (position.y / size) * size;
-			position.z = Round(position.z);
+			if (x <= round)
+			{
+				position.z = Round(position.z);
+			}
 		}
 		return position;
 	}

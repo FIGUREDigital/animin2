@@ -230,6 +230,7 @@ public class CaringPageControls : MonoBehaviour
 					iconsByType.Add (t, icons[i]);
 				}
 			}
+			icons[i].Item = null;
 		}
 		// Ensure all menus are registered
 		for(int i = 0; i < menus.Length; i++)
@@ -248,18 +249,21 @@ public class CaringPageControls : MonoBehaviour
 
     }
 
-    void ResetButtons()
-    {
-		for (int i = 0; i < icons.Length; i++) 
-		{
-			icons [i].Item = null;
-		}
-    }
-
 	public void PopulateButtons(Inventory.Entry prefferEntry = null)
     {
         Debug.Log("Populating buttons");
-        ResetButtons();
+		
+		for (int i = 0; i < icons.Length; i++) 
+		{
+			if(icons[i].Item != null)
+			{
+				icons[i].Item = ProfilesManagementScript.Instance.CurrentProfile.Inventory.GetOwnedItem(icons[i].Item.Definition.Id);
+				if(icons[i].Item.Location != global::Inventory.Locations.Inventory)
+				{
+					icons[i].Item = null;
+				}
+			}
+		}
         for (int i = 0; i < ProfilesManagementScript.Instance.CurrentProfile.Inventory.Count; ++i)
         {
 			Inventory.Entry entry = ProfilesManagementScript.Instance.CurrentProfile.Inventory.Get (i);

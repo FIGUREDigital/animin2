@@ -34,28 +34,30 @@ public class ChestScript : MonoBehaviour
         WeakMed,
         MediumMed,
         StrongMed,
+
+		NormalBox
     }
 
     private ItemType[][] BronzeRewards = new ItemType[4][]
     {
-        new ItemType[]{ ItemType.Zef, ItemType.WeakFood },
-        new ItemType[]{ ItemType.WeakFood },
-		new ItemType[]{ ItemType.WeakFood, ItemType.WeakFood },
-        new ItemType[]{ ItemType.Zef, ItemType.WeakMed }
+        new ItemType[]{ ItemType.Zef, ItemType.WeakFood, ItemType.NormalBox },
+		new ItemType[]{ ItemType.WeakFood, ItemType.NormalBox },
+		new ItemType[]{ ItemType.WeakFood, ItemType.WeakFood, ItemType.NormalBox },
+		new ItemType[]{ ItemType.Zef, ItemType.WeakMed, ItemType.NormalBox }
     };
     private ItemType[][] SilverRewards = new ItemType[4][]
     {
-		new ItemType[]{ ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.MediumMed },
-        new ItemType[]{ ItemType.Zef, ItemType.Zef, ItemType.MediumFood },
-		new ItemType[]{ ItemType.Zef, ItemType.WeakFood, ItemType.MediumFood },
-		new ItemType[]{ ItemType.Zef, ItemType.MediumFood, ItemType.MediumFood  }
+		new ItemType[]{ ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.MediumMed, ItemType.NormalBox },
+		new ItemType[]{ ItemType.Zef, ItemType.Zef, ItemType.MediumFood, ItemType.NormalBox },
+		new ItemType[]{ ItemType.Zef, ItemType.WeakFood, ItemType.MediumFood, ItemType.NormalBox },
+		new ItemType[]{ ItemType.Zef, ItemType.MediumFood, ItemType.MediumFood, ItemType.NormalBox  }
     };
     private ItemType[][] GoldRewards = new ItemType[4][]
     {
-		new ItemType[]{ ItemType.StrongFood, ItemType.MediumFood, ItemType.StrongMed, ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.Zef },
-        new ItemType[]{ ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.StrongFood },
-		new ItemType[]{ ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.MediumFood, ItemType.StrongFood, ItemType.StrongFood },
-        new ItemType[]{ ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.MediumFood, ItemType.MediumFood }
+		new ItemType[]{ ItemType.StrongFood, ItemType.MediumFood, ItemType.StrongMed, ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.NormalBox},
+		new ItemType[]{ ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.StrongFood, ItemType.NormalBox},
+		new ItemType[]{ ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.MediumFood, ItemType.StrongFood, ItemType.StrongFood, ItemType.NormalBox },
+		new ItemType[]{ ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.MediumFood, ItemType.MediumFood, ItemType.NormalBox }
     };
 
     InventoryItemId[] StrongFoods = new InventoryItemId[]{
@@ -82,6 +84,12 @@ public class ChestScript : MonoBehaviour
         InventoryItemId.watermelon,
         InventoryItemId.Carrot
     };
+
+	
+	InventoryItemId[] NormalBoxes = new InventoryItemId[]{
+		InventoryItemId.Box1,
+		InventoryItemId.Box2
+	};
 
     InventoryItemId[] StrongMeds = new InventoryItemId[]{ InventoryItemId.Pill };
     InventoryItemId[] MediumMeds = new InventoryItemId[]{ InventoryItemId.Pill };
@@ -164,15 +172,16 @@ public class ChestScript : MonoBehaviour
                         for (int i = 0; i < length; ++i)
                         {
                             GameObject zef = null;
+							ItemType t = items[cur][i];
 
                             if (m_ChestType == ChestType.Evo)
                             {
 								zef = progressScript.SpawnStageItem(GetComponent<EvolutionChestItem>().id, Vector3.zero, true);
                             }
-                            else if (items[cur][i] != ItemType.Zef)
+                            else if (t != ItemType.Zef)
                             {
                                 InventoryItemId[] types = new InventoryItemId[]{ };
-                                switch (items[cur][i])
+                                switch (t)
                                 {
                                     case (ItemType.StrongFood):
                                         {
@@ -204,8 +213,15 @@ public class ChestScript : MonoBehaviour
                                         {
                                             types = WeakMeds;
                                         }
-                                        break;
+										break;
+									case (ItemType.NormalBox):
+										{
+											types = NormalBoxes;
+										}
+										break;
                                 }
+						
+								//zef = progressScript.SpawnStageItem(InventoryItemId.Box1, Vector3.zero);
 								zef = progressScript.SpawnStageItem(types[Random.Range(0, types.Length)], Vector3.zero);
                             }
                             else
@@ -285,7 +301,7 @@ public class ChestScript : MonoBehaviour
 								ItemLink il = Coins[i].GetComponent<ItemLink>();
 								if (il != null)
 								{
-									il.item.MoveTo(Inventory.CurrentLocation, Coins[i].transform.position);
+									il.item.MoveTo(Inventory.CurrentLocation, Coins[i].transform.position, true);
 								}							
                                 Coins[i].tag = "Items";
                                 Coins[i] = null;

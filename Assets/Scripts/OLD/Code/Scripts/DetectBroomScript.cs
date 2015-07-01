@@ -41,7 +41,7 @@ public class DetectBroomScript : MonoBehaviour, IBeginDragHandler, IDragHandler,
         {
             Debug.Log("Broom Hit : ["+hit.collider.gameObject.name+"];");
         }
-        if(hit.collider.gameObject.CompareTag("Ground")) // Gross, check the floor layer
+		if(hit.collider.gameObject.CompareTag("Ground") || hit.collider.gameObject.layer == Boxes.FloorLayer) // Gross, check the floor layer
         {
             return;
         }

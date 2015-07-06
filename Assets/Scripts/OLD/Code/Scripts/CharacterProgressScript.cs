@@ -178,6 +178,14 @@ public class CharacterProgressScript : MonoBehaviour
 
     private Vector3 DestinationLocation;
 
+	public bool IsSleeping
+	{
+		get
+		{
+			return animationController.IsSleeping;
+		}
+	}
+
     //public TextMesh TextTest;
     public AnimationControllerScript animationController;
     public bool IsMovingTowardsLocation;
@@ -567,8 +575,8 @@ public class CharacterProgressScript : MonoBehaviour
         GameObject instance = Instantiate(resource) as GameObject;
         instance.transform.parent = ActiveWorld.transform;
         instance.transform.rotation = Quaternion.Euler(0, UnityEngine.Random.Range(170, 190), 0);
-        instance.transform.position = Vector3.zero;
-        instance.transform.localPosition = new Vector3(UnityEngine.Random.Range(-0.67f, 0.67f), this.transform.localPosition.y, UnityEngine.Random.Range(-0.67f, 0.67f));
+		instance.transform.position = Boxes.FindSpawnPoint ();
+        //instance.transform.localPosition = new Vector3(UnityEngine.Random.Range(-0.67f, 0.67f), this.transform.localPosition.y, UnityEngine.Random.Range(-0.67f, 0.67f));
         instance.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
 
         return instance;
@@ -739,11 +747,11 @@ public class CharacterProgressScript : MonoBehaviour
            hadUItouch = UiPages.IsMouseOverUI();
         }
 
-        RaycastHit hitInfo;
+        RaycastHit hitInfo = new RaycastHit();
         bool hadRayCollision = false;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-		int layerMask = Physics.DefaultRaycastLayers;
+		int layerMask = -1;
 		if (MainARHandler.Instance.CurrentItem != null) 
 		{
 			ItemLink il = MainARHandler.Instance.CurrentItem.GetComponent<ItemLink>();
@@ -751,16 +759,37 @@ public class CharacterProgressScript : MonoBehaviour
 			{
 				if (il.item.Definition.ItemType == PopupItemType.Box)
 				{
-					layerMask = LayerMask.GetMask("Floor");
+					layerMask = LayerMask.GetMask("Floor", "ExtendedFloor");
 				}
 			}
 		}
-		
+		if (CurrentAction == ActionId.DragItemAround) 
+		{			
+			layerMask = LayerMask.GetMask("Floor",  "ExtendedFloor");
+		}
 
-		if (Physics.Raycast(ray, out hitInfo, Mathf.Infinity, layerMask))
+		RaycastHit [] hits = Physics.RaycastAll(ray, Mathf.Infinity, layerMask);
+
+		float dist = float.MaxValue;
+		hadRayCollision = false;
+		for (int i = 0; i < hits.Length; i++) 
+		{
+			if (hits[i].collider.gameObject != MainARHandler.Instance.CurrentItem)
+			{
+				if (hits[i].distance < dist)
+				{
+					dist = hits[i].distance;
+					hitInfo = hits[i];
+					hadRayCollision = true;
+				}
+			}
+		}
+
+
+		/*if (Physics.Raycast(ray, out hitInfo, Mathf.Infinity, layerMask))
         {
             hadRayCollision = true;
-        }
+        }*/
 
 
         //Debug.Log(CurrentAction.ToString());
@@ -980,7 +1009,7 @@ public class CharacterProgressScript : MonoBehaviour
             case ActionId.EnterSleep:
                 {
                     animationController.IsSleeping = true;
-                    CurrentAction = ActionId.Sleep;
+                    CurrentAction = ActionId.None;
                     SleepBoundingBox.SetActive(true);
                     if (ProfilesManagementScript.Instance.CurrentAnimin.Hatched)
                     {
@@ -990,41 +1019,7 @@ public class CharacterProgressScript : MonoBehaviour
                     break;
                 }
 
-            case ActionId.Sleep:
-                {
-                    if (Input.GetButtonUp("Fire1"))
-                    {
-						Egg egg = hitInfo.collider != null ? hitInfo.collider.GetComponent<Egg>() : null;
-                        if (!hadUItouch && hadRayCollision && (hitInfo.collider.gameObject == SleepBoundingBox || egg != null))
-                        {
-							if (egg != null)
-                            {
-                                // Only allow tapping on the egg once the tutorial has told you about it!
-                                if (m_AllowEggTaps)
-                                {                            
-									if(egg.Tap ())
-									{
-										GetComponent<CharacterSwapManagementScript>().CurrentModel.transform.localScale = GetComponent<CharacterSwapManagementScript>().defaultScale;
-										
-										TutorialHandler.TriggerAdHocStatic("Hatched");
-										
-										exitSleep();
-									}
-                                }
-                            }
-                            else
-                            {
-                                // Not in an egg so awake straight away
-                                exitSleep();
-                                TutorialHandler.TriggerAdHocStatic("ExitSleep");
-                            }
-						
-                        }
-                    }
-
-                    break;
-                }
-			
+           // case ActionId.Sleep:			
             case ActionId.None:
                 {
                     //Debug.Log("INSIDE NONE");
@@ -1042,8 +1037,8 @@ public class CharacterProgressScript : MonoBehaviour
 						break;
 					}
 
-                   	if (lastActionId != ActionId.None)
-                    {
+					if (lastActionId != ActionId.None)
+					{
                         //Debug.Log("if(lastActionId != ActionId.None)");
                     }
                     else if (HadUITouchLastFrame || hadUItouch || DragedObjectedFromUIToWorld)
@@ -1060,9 +1055,12 @@ public class CharacterProgressScript : MonoBehaviour
                         {
                             if (hitInfo.collider.gameObject == ObjectHolding || hitInfo.collider.gameObject == this.gameObject)
                             {
-                                IsDetectFlick = true;
-                                //CurrentAction = ActionId.DetectFlickAndThrow;
-                                MousePositionAtDragIfMouseMoves = Input.mousePosition;
+								if(!IsSleeping)
+								{
+	                                IsDetectFlick = true;
+	                                //CurrentAction = ActionId.DetectFlickAndThrow;
+	                                MousePositionAtDragIfMouseMoves = Input.mousePosition;
+								}
                             }
                             else if (hitInfo.collider.tag == "Items" && hitInfo.collider.transform)
                             {
@@ -1111,11 +1109,12 @@ public class CharacterProgressScript : MonoBehaviour
 		                    CurrentAction = ActionId.DragItemAround;
 							IsDetectingMouseMoveForDrag = false;
 							MainARHandler.Instance.CurrentItem.layer = LayerMask.NameToLayer("IgnoreCollisionWithCharacter");
-							MainARHandler.Instance.CurrentItem.GetComponent<BoxCollider>().enabled = false;
+//							MainARHandler.Instance.CurrentItem.GetComponent<BoxCollider>().enabled = false;
+							SwitchGravity(MainARHandler.Instance.CurrentItem, false);
                         }
 
                     }
-                    else if (Input.GetButton("Fire1"))
+                    else if (Input.GetButton("Fire1") && !IsSleeping)
                     {
 
 
@@ -1238,110 +1237,140 @@ public class CharacterProgressScript : MonoBehaviour
                         IsDetectFlick = false;
                         IsDetectingMouseMoveForDrag = false;
 
-
-                        //if (UIGlobalVariablesScript.Singleton.DragableUI3DObject.transform.childCount == 1 && UIGlobalVariablesScript.Singleton.DragableUI3DObject.transform.GetChild(0).name == "Broom")
-                        if (CameraModelScript.Instance.transform.childCount == 1 && CameraModelScript.Instance.transform.GetChild(00).name == "Broom")
-                        {
-					Debug.LogError ("Complete refactor following code not been considered");
-					/*
-                            if (hadRayCollision && (hitInfo.collider.tag == "Items" || hitInfo.collider.tag == "Shit") && GroundItems.Contains(hitInfo.collider.gameObject))
-                            {
-
-
-
-                                GroundItems.Remove(hitInfo.collider.gameObject);
-                                Destroy(hitInfo.collider.gameObject);
-                            }*/
-                        }
-                        else if (!AtLeastOneSwipeDetected && hadRayCollision/* && !TriggeredHoldAction*/)
-                        {
-
-                            if (hitInfo.collider.name.StartsWith("MainCharacter") || hitInfo.collider.gameObject == ObjectHolding)
-                            {
-                                //Debug.Log("HIT THE CHARACTER FOR INTERACTION");
-
-                                if (ObjectHolding != null)
-                                {
-                                    //Debug.Log("HIT THE CHARACTER FOR INTERACTION 2");
-
-									ItemLink item = ObjectHolding./*GetComponent<ReferencedObjectScript>().Reference.*/GetComponent<ItemLink>();
-
-
-									if (item.item.Definition.ItemType == PopupItemType.Food)
-                                    {
-                                        //Debug.Log("HIT THE CHARACTER FOR INTERACTION 3");
-
-                                        this.GetComponent<CharacterProgressScript>().CurrentAction = ActionId.EatItem;
-                                    }
-									else if (OnInteractWithPopupItem(item.item))
-                                    {
-                                        //Debug.Log("HIT THE CHARACTER FOR INTERACTION 4");
-                                        //Destroy(ObjectHolding);
-                                        ObjectHolding = null;
-                                        animationController.IsHoldingItem = false;
-                                    }
-
-                                }
-                                else if (ObjectHolding == null && CameraModelScript.Instance.transform.childCount == 0 && !animationController.IsPat)
-                                {
-                                    //Debug.Log("HIT THE CHARACTER FOR INTERACTION 4");
-                                    Stop(true);
-                                    animationController.IsPat = true;
-                                    //Debug.Log("IS TICKLED");
-								
-                                    UIGlobalVariablesScript.Singleton.SoundEngine.Play(ProfilesManagementScript.Instance.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Instance.CurrentAnimin.AniminEvolutionId, CreatureSoundId.PatReact);
-                                }
-                                Debug.Log("Tap");
-								UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHoc("StrokeAnimin");
-							}
-							else if ((hitInfo.collider.tag == "Items") && hitInfo.collider.GetComponent<ItemLink>().item.Definition.ItemType == PopupItemType.Box && hitInfo.collider.GetComponent<ItemLink>().item.justSpawnedFromChest)
+						if (IsSleeping)
+						{
+							Egg egg = hitInfo.collider != null ? hitInfo.collider.GetComponent<Egg>() : null;
+							if (!hadUItouch && hadRayCollision && (hitInfo.collider.gameObject == SleepBoundingBox || egg != null))
 							{
-								OnInteractWithPopupItem(hitInfo.collider.GetComponent<ItemLink>().item);
+								if (egg != null)
+								{
+									// Only allow tapping on the egg once the tutorial has told you about it!
+									if (m_AllowEggTaps)
+									{                            
+										if(egg.Tap ())
+										{
+											GetComponent<CharacterSwapManagementScript>().CurrentModel.transform.localScale = GetComponent<CharacterSwapManagementScript>().defaultScale;
+											
+											TutorialHandler.TriggerAdHocStatic("Hatched");
+											
+											exitSleep();
+										}
+									}
+								}
+								else
+								{
+									// Not in an egg so awake straight away
+									exitSleep();
+									TutorialHandler.TriggerAdHocStatic("ExitSleep");
+								}								
 							}
-                            else if ((hitInfo.collider.tag == "Items") && hitInfo.collider.GetComponent<ItemLink>().item.Definition.ItemType == PopupItemType.Token)
-                            {
-                                OnInteractWithPopupItem(hitInfo.collider.GetComponent<ItemLink>().item);
-                            }
-                            else if (hitInfo.collider.name.StartsWith("Invisible Ground Plane") || (hitInfo.collider.tag == "Items"))
-                            {
-                                //float distane = Vector3.Distance(hitInfo.point, this.transform.position);
-                                //MoveTo(hitInfo.point, distane > 220.0f ? true : false);
-                                if (RequestedToMoveToCounter == 0)
-                                    RequestedTime = Time.time;
-                                RequestedToMoveToCounter++;
-                                moveHitInfo = hitInfo;
+						}
+						else
+						{
+							//if (UIGlobalVariablesScript.Singleton.DragableUI3DObject.transform.childCount == 1 && UIGlobalVariablesScript.Singleton.DragableUI3DObject.transform.GetChild(0).name == "Broom")
+	                        if (CameraModelScript.Instance.transform.childCount == 1 && CameraModelScript.Instance.transform.GetChild(00).name == "Broom")
+	                        {
+								Debug.LogError ("Complete refactor following code not been considered");
+								/*
+	                            if (hadRayCollision && (hitInfo.collider.tag == "Items" || hitInfo.collider.tag == "Shit") && GroundItems.Contains(hitInfo.collider.gameObject))
+	                            {
 
-                                if (ObjectHolding != null && (hitInfo.collider.tag == "Items"))
-                                {
-                                    ObjectHolding.layer = LayerMask.NameToLayer("Default");
-                                    ObjectHolding.transform.parent = ActiveWorld.transform;
 
-                                    GetComponent<CharacterSwapManagementScript>().CurrentModel.GetComponent<HeadReferenceScript>().HoldingObject = null;
 
-                                    ObjectHolding.transform.localPosition = new Vector3(ObjectHolding.transform.localPosition.x, 0, ObjectHolding.transform.localPosition.z);
+	                                GroundItems.Remove(hitInfo.collider.gameObject);
+	                                Destroy(hitInfo.collider.gameObject);
+	                            }*/
+	                        }
+	                        else if (!AtLeastOneSwipeDetected && hadRayCollision/* && !TriggeredHoldAction*/)
+	                        {
 
-                                    ObjectHolding = null;
-                                    animationController.IsHoldingItem = false;
+	                            if (hitInfo.collider.name.StartsWith("MainCharacter") || hitInfo.collider.gameObject == ObjectHolding)
+	                            {
+	                                //Debug.Log("HIT THE CHARACTER FOR INTERACTION");
 
-                                }
-                            }
-                            else
-                            {
-                                Stop(true);
-                                Debug.Log("STOPING BECAUSE NOTHING HIT");
-                            }
-                        }
-//					else if(UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef.activeInHierarchy)
-//					{
-//						UIGlobalVariablesScript.Singleton.ImageTarget.transform.rotation = 
-//							Quaternion.Euler(
-//								UIGlobalVariablesScript.Singleton.ImageTarget.transform.rotation.eulerAngles.x, 
-//								UIGlobalVariablesScript.Singleton.ImageTarget.transform.rotation.eulerAngles.y + 90, 
-//								UIGlobalVariablesScript.Singleton.ImageTarget.transform.rotation.eulerAngles.z);
-//					}
+	                                if (ObjectHolding != null)
+	                                {
+	                                    //Debug.Log("HIT THE CHARACTER FOR INTERACTION 2");
 
-                        //TriggeredHoldAction = false;
-                    }
+										ItemLink item = ObjectHolding./*GetComponent<ReferencedObjectScript>().Reference.*/GetComponent<ItemLink>();
+
+
+										if (item.item.Definition.ItemType == PopupItemType.Food)
+	                                    {
+	                                        //Debug.Log("HIT THE CHARACTER FOR INTERACTION 3");
+
+	                                        this.GetComponent<CharacterProgressScript>().CurrentAction = ActionId.EatItem;
+	                                    }
+										else if (OnInteractWithPopupItem(item.item))
+	                                    {
+	                                        //Debug.Log("HIT THE CHARACTER FOR INTERACTION 4");
+	                                        //Destroy(ObjectHolding);
+	                                        ObjectHolding = null;
+	                                        animationController.IsHoldingItem = false;
+	                                    }
+
+	                                }
+	                                else if (ObjectHolding == null && CameraModelScript.Instance.transform.childCount == 0 && !animationController.IsPat)
+	                                {
+	                                    //Debug.Log("HIT THE CHARACTER FOR INTERACTION 4");
+	                                    Stop(true);
+	                                    animationController.IsPat = true;
+	                                    //Debug.Log("IS TICKLED");
+									
+	                                    UIGlobalVariablesScript.Singleton.SoundEngine.Play(ProfilesManagementScript.Instance.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Instance.CurrentAnimin.AniminEvolutionId, CreatureSoundId.PatReact);
+	                                }
+	                                Debug.Log("Tap");
+									UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHoc("StrokeAnimin");
+								}
+								else if ((hitInfo.collider.tag == "Items") && hitInfo.collider.GetComponent<ItemLink>().item.Definition.ItemType == PopupItemType.Box && hitInfo.collider.GetComponent<ItemLink>().item.justSpawnedFromChest)
+								{
+									OnInteractWithPopupItem(hitInfo.collider.GetComponent<ItemLink>().item);
+								}
+	                            else if ((hitInfo.collider.tag == "Items") && hitInfo.collider.GetComponent<ItemLink>().item.Definition.ItemType == PopupItemType.Token)
+	                            {
+	                                OnInteractWithPopupItem(hitInfo.collider.GetComponent<ItemLink>().item);
+	                            }
+								else if (!IsSleeping && (hitInfo.collider.name.StartsWith("Invisible Ground Plane") || (hitInfo.collider.tag == "Items")))
+	                            {
+	                                //float distane = Vector3.Distance(hitInfo.point, this.transform.position);
+	                                //MoveTo(hitInfo.point, distane > 220.0f ? true : false);
+	                                if (RequestedToMoveToCounter == 0)
+	                                    RequestedTime = Time.time;
+	                                RequestedToMoveToCounter++;
+	                                moveHitInfo = hitInfo;
+
+	                                if (ObjectHolding != null && (hitInfo.collider.tag == "Items"))
+	                                {
+	                                    ObjectHolding.layer = LayerMask.NameToLayer("Default");
+	                                    ObjectHolding.transform.parent = ActiveWorld.transform;
+
+	                                    GetComponent<CharacterSwapManagementScript>().CurrentModel.GetComponent<HeadReferenceScript>().HoldingObject = null;
+
+	                                    ObjectHolding.transform.localPosition = new Vector3(ObjectHolding.transform.localPosition.x, 0, ObjectHolding.transform.localPosition.z);
+
+	                                    ObjectHolding = null;
+	                                    animationController.IsHoldingItem = false;
+
+	                                }
+	                            }
+	                            else
+	                            {
+	                                Stop(true);
+	                                Debug.Log("STOPING BECAUSE NOTHING HIT");
+	                            }
+	                        }
+		//					else if(UIGlobalVariablesScript.Singleton.CubeRunnerMinigameSceneRef.activeInHierarchy)
+		//					{
+		//						UIGlobalVariablesScript.Singleton.ImageTarget.transform.rotation = 
+		//							Quaternion.Euler(
+		//								UIGlobalVariablesScript.Singleton.ImageTarget.transform.rotation.eulerAngles.x, 
+		//								UIGlobalVariablesScript.Singleton.ImageTarget.transform.rotation.eulerAngles.y + 90, 
+		//								UIGlobalVariablesScript.Singleton.ImageTarget.transform.rotation.eulerAngles.z);
+		//					}
+
+	                        //TriggeredHoldAction = false;
+	                    }
+					}
 
                     //Debug.Log("END OF NONE");
 
@@ -1461,7 +1490,7 @@ public class CharacterProgressScript : MonoBehaviour
 	                    {
 							PutItemInHands(MainARHandler.Instance.CurrentItem);
 	                    }
-	                    else if (hadRayCollision && hitInfo.collider.name.StartsWith("Invisible Ground Plane"))
+	                    else //if (hadRayCollision && hitInfo.collider.name.StartsWith("Invisible Ground Plane"))
 	                    {
 							MainARHandler.Instance.CurrentItem.transform.parent = ActiveWorld.transform;
 							MainARHandler.Instance.CurrentItem.layer = LayerMask.NameToLayer("Default");
@@ -1469,23 +1498,27 @@ public class CharacterProgressScript : MonoBehaviour
 							if(il != null)
 							{
 								il.item.MoveTo(Inventory.CurrentLocation, MainARHandler.Instance.CurrentItem.transform.position);
+								il.item.SetupLayer();
 	                        }
-	                        
+					//!!!!! is this happening AndroidJNI AsyncCallback SetupLayer                       
 	                        
 	                        if(OnDropItem != null)
 	                            OnDropItem();
 	                    }
-						else
+						/*else
 						{
 	                        Debug.Log("DROPED IN UNKNOWN LOCATION");
 	                        if(OnDropItem != null)
 	                            OnDropItem();
-	                    }
+	                    }*/
 					}
 
-					MainARHandler.Instance.CurrentItem.GetComponent<BoxCollider>().enabled = true;
+//					MainARHandler.Instance.CurrentItem.GetComponent<BoxCollider>().enabled = true;
+			
+					SwitchGravity(MainARHandler.Instance.CurrentItem, true);
                     CurrentAction = ActionId.None;
 					MainARHandler.Instance.CurrentItem = null;
+					Debug.Log ("Dropped");
                     break;
                 }
 
@@ -1496,7 +1529,7 @@ public class CharacterProgressScript : MonoBehaviour
                 if(OnDragItem != null)
                     OnDragItem();
 
-			if (hadRayCollision && (hitInfo.collider.gameObject.layer == Boxes.FloorLayer))//(hitInfo.collider.name.StartsWith("Invisible Ground Plane") || hitInfo.collider.name.StartsWith("Extended")))
+			if (hadRayCollision && (((1<<hitInfo.collider.gameObject.layer) & Boxes.FloorLayerMask) != 0))//(hitInfo.collider.name.StartsWith("Invisible Ground Plane") || hitInfo.collider.name.StartsWith("Extended")))
 			//if(hadRayCollision && hitInfo.collider.name.StartsWith("SecondGroundPlane"))
                     {
 						ItemLink li = MainARHandler.Instance.CurrentItem.GetComponent<ItemLink>();
@@ -1504,6 +1537,28 @@ public class CharacterProgressScript : MonoBehaviour
 						if (li != null)
 						{
 							Vector3 pos = Boxes.GetGroundPoint(hitInfo);
+							pos.y += 1000;
+							RaycastHit sphereHit;
+							int layersMask;
+							if(li.item.Definition.ItemType == PopupItemType.Box)
+							{
+								layersMask = LayerMask.GetMask("Floor",  "ExtendedFloor");
+							}
+							else
+							{
+								layersMask = LayerMask.GetMask("Floor","Items","ExtendedFloor") | 1;
+							}
+							if (Physics.SphereCast(pos, 5, Vector3.down, out sphereHit, float.MaxValue, layersMask))
+							{
+								Debug.DrawLine(pos, sphereHit.point);
+								pos.y = sphereHit.point.y;
+								Debug.DrawLine(pos, sphereHit.point);
+							}
+							else
+							{
+								pos.y -= 1000;
+							}
+
 							li.item.MoveTo(li.item.Location, pos);
 						}
 						else
@@ -1888,13 +1943,23 @@ public class CharacterProgressScript : MonoBehaviour
             IsMovingTowardsLocation = false;
         }
     }
+
+	public static void SwitchGravity(GameObject go, bool gravity)
+	{		
+		Rigidbody rb = go.GetComponent<Rigidbody>();
+		if (rb != null) {
+			Debug.Log ("Switch gravity " + go.name + " " + gravity);
+			rb.useGravity = gravity;
+		} else {
+			Debug.Log ("Switch gravity " + go.name + " (No RB)");
+		}
+    }
 }
 
 public enum ActionId
 {
     None = 0,
     EnterSleep,
-    Sleep,
     DetectMouseMoveAndDrag,
     DropItem,
     MoveToRequestedLocation,

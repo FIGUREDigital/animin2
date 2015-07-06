@@ -70,10 +70,11 @@ public class CollectiblesBehaviour : MonoBehaviour
 
 				if (PersistentData.happy > 80)
 				{
-					Vector3 position = new Vector3(
+					Vector3 position = Boxes.FindSpawnPoint ();
+					/*	new Vector3(
 						Random.Range(-0.9f, 0.9f),
 						0.0f,
-						Random.Range(-0.9f, 0.9f));
+						Random.Range(-0.9f, 0.9f));*/
 					CharacterProgressScript progressScript = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>();
 					progressScript.SpawnStageItem(InventoryItemId.Zef, position);
 				}
@@ -144,17 +145,21 @@ public class CollectiblesBehaviour : MonoBehaviour
 		crystalAppear = Resources.Load (appearPath) as AudioClip;
 		GetComponent<AudioSource>().clip = crystalAppear;
 		GetComponent<AudioSource>().Play();
-		crystal.transform.localPosition = RandomPosition();
-		crystal.transform.localScale = new Vector3 (9.0f, 9.0f, 9.0f);
 		crystal.transform.parent = ActiveWorld.transform;
+		crystal.transform.position = RandomPosition();
+		crystal.transform.localScale = new Vector3 (0.3f, 0.3f, 0.3f);
 	}
 		
 	Vector3 RandomPosition()
 	{
+		Vector3 pos = Boxes.FindSpawnPoint ();
+		pos.y += 0.06f;
+		return pos;
+		/*
 		float x, y, z;
 		x = UnityEngine.Random.Range (3, 9);
 		y = 1.5f;
 		z = UnityEngine.Random.Range (-7, 14);
-		return new Vector3 (x, y, z);
+		return new Vector3 (x, y, z);*/
 	}	
 }

@@ -12,6 +12,7 @@ GameObject:
   - 23: {fileID: 2300000}
   - 65: {fileID: 6500000}
   - 114: {fileID: 11450756}
+  - 54: {fileID: 5474382}
   m_Layer: 0
   m_Name: avocado
   m_TagString: Items
@@ -26,7 +27,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: .707106829, z: 0, w: .707106829}
-  m_LocalPosition: {x: 3.1993072, y: 6.55855584e-19, z: -7.55754375}
+  m_LocalPosition: {x: -110, y: 0, z: -110}
   m_LocalScale: {x: 20, y: 20, z: 20}
   m_Children: []
   m_Father: {fileID: 0}
@@ -62,6 +63,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_Mesh: {fileID: 4300000, guid: e4bf934e042d44439b51023c69b53d37, type: 3}
+--- !u!54 &5474382
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 80
+  m_CollisionDetection: 0
 --- !u!65 &6500000
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -72,8 +88,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.71740782, y: .855002284, z: 1.18080747}
-  m_Center: {x: 0, y: .427501142, z: 0}
+  m_Size: {x: 2.41279078, y: 1.18413293, z: 1.65159786}
+  m_Center: {x: -4.38682655e-05, y: .592066467, z: -.00638198946}
 --- !u!114 &11450756
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -87,12 +103,53 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   points: 20
   itemType: 0
-  nonInteractable: 0
   menu: 0
   specialId: 0
   id: 5
-  prefab: {fileID: 0}
   sprite: {fileID: 21300000, guid: d278f80e61e2444a38ec1b8f8f6a540d, type: 3}
+  gradient:
+    key0:
+      serializedVersion: 2
+      rgba: 4294967295
+    key1:
+      serializedVersion: 2
+      rgba: 4294967295
+    key2:
+      serializedVersion: 2
+      rgba: 0
+    key3:
+      serializedVersion: 2
+      rgba: 0
+    key4:
+      serializedVersion: 2
+      rgba: 0
+    key5:
+      serializedVersion: 2
+      rgba: 0
+    key6:
+      serializedVersion: 2
+      rgba: 0
+    key7:
+      serializedVersion: 2
+      rgba: 0
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

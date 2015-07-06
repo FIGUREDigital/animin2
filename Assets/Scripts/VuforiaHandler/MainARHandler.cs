@@ -131,7 +131,7 @@ public class MainARHandler : MonoBehaviour
 		fovCamera.enabled = true;
 		m_IsTracking = false;
 		arCamera.cullingMask = fovCamera.cullingMask = (1 << LayerMask.NameToLayer("TransparentFX")) | (1 << LayerMask.NameToLayer("Default"))
-			| (1 << LayerMask.NameToLayer("Ignore Raycast")) | (1 << LayerMask.NameToLayer("Water"))
+			| (1 << LayerMask.NameToLayer("Ignore Raycast")) | (1 << LayerMask.NameToLayer("Water")) | (1 << LayerMask.NameToLayer("Items"))
 				| /*(1 << LayerMask.NameToLayer("UI")) |*/ (1 << LayerMask.NameToLayer("ARCamera"))
 				| (1 << LayerMask.NameToLayer("Character")) | (1 << LayerMask.NameToLayer("IgnoreCollisionWithCharacter"))
 				| (1 << LayerMask.NameToLayer("Projectiles")) | (1 << LayerMask.NameToLayer("Floor"));
@@ -152,9 +152,9 @@ public class MainARHandler : MonoBehaviour
             SmootherAxisX.ValueNext = (float)System.Math.Round(angle);
 			
             Vector3 newPosition = new Vector3(
-                                      Mathf.Cos(SmootherAxisX.ValueNow * Mathf.Deg2Rad) * 220,
+                                      Mathf.Cos(SmootherAxisX.ValueNow * Mathf.Deg2Rad) * 420,
                                       0,
-                                      (Mathf.Sin(SmootherAxisX.ValueNow * Mathf.Deg2Rad) * 220) * 0.2f);
+                                      (Mathf.Sin(SmootherAxisX.ValueNow * Mathf.Deg2Rad) * 420) * 0.2f);
 			
 			
 			
@@ -344,7 +344,7 @@ public class MainARHandler : MonoBehaviour
             UIGlobalVariablesScript.Singleton.Shadow.transform.localScale = new Vector3(0.46f, 0.46f, 0.46f);
 
             if (!SkipAnimation &&
-            charprogress.CurrentAction != ActionId.Sleep &&
+            !charprogress.IsSleeping &&
             charprogress.CurrentAction != ActionId.EnterSleep)
             {
                 charprogress.Stop(true);
@@ -373,7 +373,7 @@ public class MainARHandler : MonoBehaviour
         UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().ShaderAlpha = 1;
 
         if (!SkipAnimation &&
-            UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().CurrentAction != ActionId.Sleep &&
+            !UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().IsSleeping &&
             UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().CurrentAction != ActionId.EnterSleep)
         {
             UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterControllerScript>().ResetRotation();
@@ -402,7 +402,7 @@ public class MainARHandler : MonoBehaviour
     {
         CharacterProgressScript progress = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>();
 
-        if (UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().CurrentAction == ActionId.Sleep ||
+        if (UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().IsSleeping ||
             UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().CurrentAction == ActionId.EnterSleep)
         {
             //Debug.Log("OnTrackingFound: SLEEPING");

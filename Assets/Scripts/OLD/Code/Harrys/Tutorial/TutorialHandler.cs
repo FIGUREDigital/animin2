@@ -374,7 +374,7 @@ public class TutorialHandler : MonoBehaviour
 						if(ProfilesManagementScript.Instance.CurrentAnimin.Hatched && m_CurTutorial.Name != "WakeUp")
 						{
 							CharacterProgressScript cp = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>();
-							if (cp.CurrentAction == ActionId.Sleep)
+							if (cp.IsSleeping)
 							{
 								// Ensure we are awake!
 								cp.exitSleep();

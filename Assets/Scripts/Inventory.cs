@@ -30,16 +30,19 @@ public class Inventory
 	{
 		static int layerUI;
 		static int layerFloor;
+		static int layerItems;
 		static Entry()
 		{
 			layerUI = LayerMask.NameToLayer("UI");
 			layerFloor = LayerMask.NameToLayer("Floor");
+			layerItems = LayerMask.NameToLayer("Items");
 		}
 
 		// Our private data has to be public due to the use of the xmlserializer.
 		public InventoryItemId privateId;	
 		public Locations privateLocation = Locations.Count;	
 		public Vector3 privatePosition = Vector3.zero;
+		public Vector3 privateRotation = Vector3.zero;
 		public bool justSpawnedFromChest = false;
 
 		public ItemDefinition Definition
@@ -75,40 +78,56 @@ public class Inventory
 		{
 		}
 
+		
 		public void MoveTo(Locations location, Vector3 position, bool justSpawnedFromChest = false)
+		{
+			MoveTo (location, position, Vector3.zero, justSpawnedFromChest);
+		}
+
+		public void MoveTo(Locations location, Vector3 position, Vector3 rotation, bool justSpawnedFromChest = false)
 		{
 			this.justSpawnedFromChest = justSpawnedFromChest;
 			Locations oldLoc = this.privateLocation;
-			if (Definition.ItemType == PopupItemType.Box) 
-			{
-				GameObject go = Instance;
-				SpinObjectScript spin = go.GetComponent<SpinObjectScript>();
-				if(!justSpawnedFromChest)
-				{
+			GameObject go = Instance;
+			if (Definition.ItemType == PopupItemType.Box) {
+				SpinObjectScript spin = go.GetComponent<SpinObjectScript> ();
+				if (!justSpawnedFromChest) {
 					position = Boxes.Snap (position);
-					if (location != Locations.Inventory)
-					{
-						go.SetActive(true);	// We disable the item sometimes while in the inventory
-	                }
+					if (location != Locations.Inventory) {
+						go.SetActive (true);	// We disable the item sometimes while in the inventory
+					}
 					go.transform.localRotation = Quaternion.identity;
 					scanItemHeightRequired = true;
+				}
+			} else 
+			{
+				Rigidbody rb = go.GetComponent<Rigidbody>();
+				if(rb != null)
+				{
+					rb.isKinematic = location == Locations.Inventory;
 				}
 			}
 			this.privateLocation = location;
 			this.privatePosition = position;
+			this.privateRotation = rotation;
 			SetTransform ();
-			SetupLayer ();
+			if (oldLoc != location) 
+			{				
+				SetupLayer ();
+			}
 			if (onItemMoved != null) {
 				onItemMoved(this, oldLoc, location);
 			}
 		}
 
-		private void SetupLayer()
+		public void SetupLayer()
 		{			
-			if (Definition.ItemType == PopupItemType.Box) 
-			{
+			if (Definition.ItemType == PopupItemType.Box) {
 				// Switch layer between UI and world cameras
-				SetLayer(Instance.transform, privateLocation == Locations.Inventory ? layerUI : layerFloor);
+				SetLayer (Instance.transform, privateLocation == Locations.Inventory ? layerUI : layerFloor);
+			} else {
+				
+				SetLayer (Instance.transform, privateLocation == Locations.Inventory ? layerUI : layerItems);
 			}
 		}
 
@@ -123,11 +142,25 @@ public class Inventory
 
 		public void SetTransform()
 		{
-
 			GameObject instance = Instance;
 			SpinObjectScript spin = instance.GetComponent<SpinObjectScript>();
-			instance.transform.parent = Inventory.roots[(int)privateLocation] != null ? Inventory.roots[(int)privateLocation].transform : null;
-			instance.transform.position = privatePosition;
+			Transform newParent = Inventory.roots[(int)privateLocation] != null ? Inventory.roots[(int)privateLocation].transform : null;;
+			bool changeParent = newParent != instance.transform.parent;
+			if (changeParent) {
+				instance.transform.parent = newParent;
+			}
+
+			
+			Rigidbody rb = instance.GetComponent<Rigidbody>();
+			if (rb != null && !changeParent) 
+			{
+				rb.MovePosition(privatePosition);
+				rb.MoveRotation(Quaternion.Euler(privateRotation));
+				rb.velocity = Vector3.zero;
+			} else {
+				instance.transform.position = privatePosition;
+				instance.transform.localEulerAngles = privateRotation;
+			}
 			
 			if (Definition.ItemType == PopupItemType.Box)
 			{
@@ -152,14 +185,20 @@ public class Inventory
 			}
 		}
 
-		GameObject instance;
+		GameObject instance;		
+		Rigidbody instanceRBody;
 		public GameObject Instance
 		{
 			get
 			{
 				if (instance == null)
 				{
-					instance = Definition.Create(this);
+					instance = Definition.Create(this);					
+					instanceRBody = instance.GetComponent<Rigidbody> ();
+					if(instanceRBody != null)
+					{
+						instanceRBody.centerOfMass = Vector3.zero;
+					}
 					SetupLayer();
 				}
 				return instance;
@@ -356,25 +395,10 @@ public class Inventory
 		{
 			return;
 		}
-		// Go through all items and do a raycast to position thier height
+		
 		Locations curLoc = CurrentLocation;
-		BoxCollider boxCollider = null;
-		if (MainARHandler.Instance.CurrentItem != null) 
-		{
-			ItemLink il = MainARHandler.Instance.CurrentItem.GetComponent<ItemLink>();
-			if(il.item.Definition.ItemType == PopupItemType.Box)
-			{
-				boxCollider = il.GetComponent<BoxCollider>();
-				if(!boxCollider.enabled)
-				{
-					boxCollider.enabled = true;
-				}
-				else
-				{
-					boxCollider = null;
-				}
-			}
-		}
+		// Go through all items and do a raycast to position thier height
+		int layerMask = Boxes.FloorLayerMask | LayerMask.GetMask ("IgnoreCollisionWithCharacter");
 		for (int i = inv.privateAllItems.Count - 1; i >= 0; i--) 
 		{
 			Entry e = inv.privateAllItems[i];
@@ -382,18 +406,39 @@ public class Inventory
 			{
 				GameObject o = e.Instance;
 				Vector3 pos = o.transform.position;
-				pos.y = 1000;
+				pos.y += 1000;
 				RaycastHit hit;
-				if(Physics.Raycast(pos, Vector3.down, out hit, Mathf.Infinity, 1<<Boxes.FloorLayer))
+				
+				if (Physics.SphereCast(pos, 5, Vector3.down, out hit, float.MaxValue, layerMask))
 				{
 					pos.y = hit.point.y;
-					o.transform.position = pos;
+                }
+				else
+				{
+					pos.y -= 1000;
 				}
+				Vector3 debug = pos;
+				debug.y += 1000;
+				Debug.DrawLine(pos, debug);
+				
+				Rigidbody rb = o.GetComponent<Rigidbody>();
+				if (o.transform.position.y < 0)//os.y > o.transform.position.y)
+				{
+					if(rb != null)
+					{
+						rb.MovePosition(pos);
+                    }
+					else
+					{
+                    	o.transform.position = pos;
+					}
+                }
+				if (rb != null)
+				{
+					rb.WakeUp();
+				}
+
 			}
-		}
-		if (boxCollider != null) 
-		{			
-			boxCollider.enabled = false;
 		}
 		scanItemHeightRequired = false;
 	}

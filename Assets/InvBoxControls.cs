@@ -57,7 +57,7 @@ public class InvBoxControls : MonoBehaviour {
 		{
 			link.item.MoveTo(Inventory.Locations.Inventory, Vector3.zero);
 		}
-        
+		CharacterProgressScript.SwitchGravity (MainARHandler.Instance.CurrentItem, true);
 		m_CaringPageControls = UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>();
 		m_CaringPageControls.DisappearAllItemUIs();
 

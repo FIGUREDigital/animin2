@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Boxes : MonoBehaviour {
 
@@ -20,19 +21,19 @@ public class Boxes : MonoBehaviour {
 		}
 	}
 
-	public static int FloorLayer
+	public static int FloorLayerMask
 	{
 		get
 		{
-			return floorLayer;
+			return floorLayerMask;
 		}
 	}
 
-	static int floorLayer;
+	static int floorLayerMask;
 
 	static Boxes()
 	{
-		floorLayer = LayerMask.NameToLayer("Floor");
+		floorLayerMask = LayerMask.GetMask("Floor", "ExtendedFloor");
 	}
 
 
@@ -49,7 +50,7 @@ public class Boxes : MonoBehaviour {
 		n.y = 0;
 		Vector3 r = hit.point + (n * size * 0.5f);
 //		Debug.Log ("Normal = " + hit.normal+" return "+r);
-		return r;
+		return Snap(r);
 	}
 
 	public static float Round(float v)
@@ -88,12 +89,58 @@ public class Boxes : MonoBehaviour {
 			{
 				position.x = Round(position.x);
 			}
-			position.y = Mathf.Floor (position.y / size) * size;
+			position.y = Mathf.Floor ((0.01f + position.y) / size) * size;
 			if (x <= round)
 			{
 				position.z = Round(position.z);
 			}
 		}
 		return position;
+	}
+	
+	static List<Vector3> possibleLocations = new List<Vector3> ();
+
+	static public Vector3 FindSpawnPoint()
+	{
+		possibleLocations.Clear ();
+		float dim = (WorldSize-1) * size * 0.5f;
+		RaycastHit hit;
+		Vector3 pos;
+		pos.y = 1000;
+		float bestHeight = 2000;
+		for (float x = - dim; x <= dim; x+= size) 
+		{
+			pos.x = x;
+			for (float z = - dim; z <= dim; z+= size) 
+			{
+				pos.z = z;
+				if(Physics.Raycast(pos, Vector3.down, out hit, Mathf.Infinity))
+				{
+					float y = hit.point.y;
+					if (((1<<hit.collider.gameObject.layer) & FloorLayerMask) == 0)
+					{
+						y += 1000;
+					}
+					if (y<= bestHeight)
+					{
+						if (y < bestHeight)
+						{							
+							possibleLocations.Clear ();
+							bestHeight = y;
+						}
+						pos.y = y;
+						possibleLocations.Add (new Vector3(pos.x, pos.y, pos.z));
+						pos.y = 1000;
+					}
+				}
+			}
+		}
+		// Select a random point from the best found
+		pos = possibleLocations[Random.Range(0, possibleLocations.Count)];
+		if (pos.y > 1000)
+		{
+			pos.y -= 1000;
+		}
+		return pos;
 	}
 }

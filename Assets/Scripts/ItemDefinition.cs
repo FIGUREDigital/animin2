@@ -60,6 +60,7 @@ public class ItemDefinition : MonoBehaviour
 	[SerializeField]
 	UnityEngine.Gradient gradient;
 
+
 	public SpecialFunctionalityId SpecialId
 	{
 		get

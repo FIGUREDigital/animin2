@@ -27,7 +27,7 @@ public class DragDropMainBarItem : MonoBehaviour, IBeginDragHandler, IDragHandle
         RaycastHit hit;
 		Debug.Log ("Main Camera: "+Camera.main.name);
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Floor")))
+		if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Floor", "ExtendedFloor")))
         {
             Debug.Log(hit.point);
         }
@@ -40,8 +40,9 @@ public class DragDropMainBarItem : MonoBehaviour, IBeginDragHandler, IDragHandle
 			hitPos = Boxes.GetGroundPoint (hit);
 		}
 		modelLink.item.MoveTo (Inventory.CurrentLocation, hitPos);
+		CharacterProgressScript.SwitchGravity (GO, true);
 		if (hit.collider == null || hit.collider.name.StartsWith("Extended")) 
-		{			
+		{
 			GO.AddComponent<DroppedItemScript>();			
 		}
 			
@@ -53,7 +54,7 @@ public class DragDropMainBarItem : MonoBehaviour, IBeginDragHandler, IDragHandle
 		if (modelLink.item.Definition.ItemType != PopupItemType.Box) {
 			child.transform.localRotation = Quaternion.Euler (0, UnityEngine.Random.Range (0, 360), 0);
 		}		
-		child.GetComponent<BoxCollider>().enabled = true;
+//		child.GetComponent<BoxCollider>().enabled = true;
 
         UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().DragedObjectedFromUIToWorld = true;
         if(OnDropped != null)
@@ -73,5 +74,6 @@ public class DragDropMainBarItem : MonoBehaviour, IBeginDragHandler, IDragHandle
 			UIGlobalVariablesScript.Singleton.SoundEngine.Play (GenericSoundId.DropMeds);
 			break;
 		}
+		MainARHandler.Instance.CurrentItem = null;
     }
 }

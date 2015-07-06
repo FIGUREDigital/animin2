@@ -283,10 +283,10 @@ public class CaringPageControls : MonoBehaviour
 
     public void EnableInvBox()
     {
-        if (UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().CurrentAction == ActionId.Sleep)
+/*        if (UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().IsSleeping)
         {
             return;
-        }
+        }*/
         SetInvBox(true);
     }
     public void DisableInvBox()

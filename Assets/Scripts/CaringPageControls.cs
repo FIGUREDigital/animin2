@@ -258,7 +258,7 @@ public class CaringPageControls : MonoBehaviour
 			if(icons[i].Item != null)
 			{
 				icons[i].Item = ProfilesManagementScript.Instance.CurrentProfile.Inventory.GetOwnedItem(icons[i].Item.Definition.Id);
-				if(icons[i].Item.Location != global::Inventory.Locations.Inventory)
+				if(icons[i].Item != null && icons[i].Item.Location != global::Inventory.Locations.Inventory)
 				{
 					icons[i].Item = null;
 				}

@@ -33,6 +33,11 @@ public class DragDropMainBarItem : MonoBehaviour, IBeginDragHandler, IDragHandle
         }
 		
 		GameObject GO = MainARHandler.Instance.CurrentItem;
+		if (GO == null) 
+		{
+			Debug.LogError ("OnEndDrag caled when MainARHandler.Instance.CurrentItem == null");
+			return;
+		}
 		ItemLink modelLink = GO.GetComponent<ItemLink>();
 		Vector3 hitPos = Vector3.zero;	// Possible bug if no hit position exists, need to work out if this occurs and what to do!
 		if (hit.collider != null) 

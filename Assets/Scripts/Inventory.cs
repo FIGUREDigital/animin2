@@ -90,6 +90,7 @@ public class Inventory
 
 		public void MoveTo(Locations location, Vector3 position, Vector3 rotation, bool justSpawnedFromChest = false)
 		{
+			Debug.Log ("MoveTo " + location + " " + justSpawnedFromChest + " " + Definition.ItemType);
 			this.justSpawnedFromChest = justSpawnedFromChest;
 			Locations oldLoc = this.privateLocation;
 			GameObject go = Instance;

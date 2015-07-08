@@ -66,7 +66,12 @@ public class CharacterChoiceItem : MonoBehaviour
 		mUnlocked = false;
 		for(int i =0; i < ProfilesManagementScript.Instance.CurrentProfile.UnlockedAnimins.Count; i++)
 		{
-			if(ProfilesManagementScript.Instance.CurrentProfile.UnlockedAnimins[i] == ThisCharacter)
+			PersistentData.TypesOfAnimin t = ProfilesManagementScript.Instance.CurrentProfile.UnlockedAnimins[i];
+			if (t == PersistentData.TypesOfAnimin.TboAdult)
+			{
+				t = PersistentData.TypesOfAnimin.Tbo;
+			}
+			if(t == ThisCharacter)
 			{
 				mUnlocked = true;
 			}

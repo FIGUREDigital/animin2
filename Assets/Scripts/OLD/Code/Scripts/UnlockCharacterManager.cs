@@ -76,6 +76,7 @@ public class UnlockCharacterManager
 			break;
 		default:
 		case PersistentData.TypesOfAnimin.TboAdult:
+		case PersistentData.TypesOfAnimin.Tbo:
 			result = free ? TBOADULT_UNLOCK : TBOADULT_PURCHASE;
 			break;
 		case PersistentData.TypesOfAnimin.Kelsey:
@@ -170,34 +171,21 @@ public class UnlockCharacterManager
                 s2 = MANDI_PURCHASE;
 			break;
 			case PersistentData.TypesOfAnimin.TboAdult:
+			case PersistentData.TypesOfAnimin.Tbo:
                 s2 = TBOADULT_PURCHASE;
 			break;
 			
-		default:
-            case PersistentData.TypesOfAnimin.Tbo:
+			default:
 			break;
 		}
 		return ShopManager.Instance.HasBought(s1) || ShopManager.Instance.HasBought(s2);
 	}
 
     public void UnlockCharacter()
-	{  	
-
-        switch(m_CurrentCharacterFocus)
-		{
-            case PersistentData.TypesOfAnimin.Pi:
-			break;
-            case PersistentData.TypesOfAnimin.Kelsey:
-			break;
-            case PersistentData.TypesOfAnimin.Mandi:
-			break;
-            case PersistentData.TypesOfAnimin.TboAdult:
-            break;
-		default:
-			break;
-		}	
-
+	{ 
         CharacterChoiceManager.Instance.UnlockCharacterPortrait(m_CurrentCharacterFocus);
+
+		ProfilesManagementScript.Instance.CurrentProfile.Characters[(int)m_CurrentCharacterFocus].CreatedOn = System.DateTime.UtcNow;
         ProfilesManagementScript.Instance.CurrentProfile.UnlockedAnimins.Add(m_CurrentCharacterFocus);
 		
 		ProfilesManagementScript.Instance.Save();

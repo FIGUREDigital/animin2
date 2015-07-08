@@ -1840,7 +1840,7 @@ public class CharacterProgressScript : MonoBehaviour
 					entry.MoveTo(Inventory.Locations.Inventory, Vector3.zero);
 					Debug.Log("Box COLLECTED");
 				}
-				break;
+				return false;
 			}
             case PopupItemType.Food:
                 {

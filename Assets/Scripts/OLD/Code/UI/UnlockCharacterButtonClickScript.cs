@@ -15,6 +15,7 @@ public class UnlockCharacterButtonClickScript : MonoBehaviour
 	public void OnClick()
 	{
 		ProfilesManagementScript.Instance.AniminToUnlockId = Id;
+		Debug.Log ("On Click " + Id);
         
 //		UIManager.Instance.UITransition(ProfilesManagementScript.Singleton.AniminsScreen, ProfilesManagementScript.Singleton.PurchaseChoiceScreen);
 

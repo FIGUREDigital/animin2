@@ -8,14 +8,29 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400000}
-  - 33: {fileID: 3300000}
-  - 23: {fileID: 2300000}
-  - 95: {fileID: 9500000}
   - 65: {fileID: 6500000}
   - 114: {fileID: 11428494}
   - 54: {fileID: 5458952}
   m_Layer: 0
   m_Name: woodSword
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &122666
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 472774}
+  - 33: {fileID: 3332620}
+  - 23: {fileID: 2386898}
+  - 95: {fileID: 9573874}
+  m_Layer: 16
+  m_Name: Wooden Sword
   m_TagString: Items
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,17 +43,30 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 470, y: 0, z: 470}
+  m_LocalPosition: {x: 600, y: 0, z: 600}
   m_LocalScale: {x: 20, y: 20, z: 20}
-  m_Children: []
+  m_Children:
+  - {fileID: 472774}
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!23 &2300000
+--- !u!4 &472774
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 122666}
+  m_LocalRotation: {x: 0, y: .707106829, z: 0, w: .707106709}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 400000}
+  m_RootOrder: 0
+--- !u!23 &2386898
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
+  m_GameObject: {fileID: 122666}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -57,12 +85,12 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!33 &3300000
+--- !u!33 &3332620
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
+  m_GameObject: {fileID: 122666}
   m_Mesh: {fileID: 4300000, guid: 738729c72cf4e4dbcb2aa0312b8edad2, type: 3}
 --- !u!54 &5458952
 Rigidbody:
@@ -75,9 +103,9 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: .0500000007
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!65 &6500000
 BoxCollider:
@@ -85,19 +113,19 @@ BoxCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 8e558585a95d34e9ca157d1adc5add21, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: .451662868, y: 3.47254443, z: 1.5309937}
-  m_Center: {x: .015188599, y: 1.74243867, z: .00674743671}
---- !u!95 &9500000
+  m_Size: {x: 1.52999997, y: 3.48461771, z: .451662898}
+  m_Center: {x: 0, y: 1.74230886, z: 0}
+--- !u!95 &9573874
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
+  m_GameObject: {fileID: 122666}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 738729c72cf4e4dbcb2aa0312b8edad2, type: 3}
   m_Controller: {fileID: 0}
@@ -124,14 +152,14 @@ MonoBehaviour:
   menu: 0
   specialId: 0
   id: 17
-  sprite: {fileID: 21300000, guid: 7ba983ed189a7b74c9c5c15425319b60, type: 3}
+  sprite: {fileID: 21300000, guid: 13e888f596e0e474a9e32d988d7cde51, type: 3}
   gradient:
     key0:
       serializedVersion: 2
-      rgba: 4294967295
+      rgba: 4282051586
     key1:
       serializedVersion: 2
-      rgba: 4294967295
+      rgba: 2583691263
     key2:
       serializedVersion: 2
       rgba: 0

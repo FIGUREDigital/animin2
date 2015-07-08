@@ -8,13 +8,28 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400000}
-  - 33: {fileID: 3300000}
-  - 23: {fileID: 2300000}
-  - 65: {fileID: 6500000}
   - 114: {fileID: 11411538}
+  - 65: {fileID: 6500000}
   - 54: {fileID: 5464932}
   m_Layer: 0
   m_Name: paperCalendar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &166596
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 468792}
+  - 33: {fileID: 3304520}
+  - 23: {fileID: 2346746}
+  m_Layer: 16
+  m_Name: Paper Calendar
   m_TagString: Items
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,17 +42,30 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 430, y: 0, z: 430}
+  m_LocalPosition: {x: 500, y: 0, z: 500}
   m_LocalScale: {x: 20, y: 20, z: 20}
-  m_Children: []
+  m_Children:
+  - {fileID: 468792}
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!23 &2300000
+--- !u!4 &468792
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 166596}
+  m_LocalRotation: {x: 0, y: .707106829, z: 0, w: .707106709}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 400000}
+  m_RootOrder: 0
+--- !u!23 &2346746
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
+  m_GameObject: {fileID: 166596}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -56,12 +84,12 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!33 &3300000
+--- !u!33 &3304520
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
+  m_GameObject: {fileID: 166596}
   m_Mesh: {fileID: 4300000, guid: 615e24b344a5d4e9183a0e7c4779bae2, type: 3}
 --- !u!54 &5464932
 Rigidbody:
@@ -74,9 +102,9 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: .0500000007
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!65 &6500000
 BoxCollider:
@@ -84,12 +112,12 @@ BoxCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 8e558585a95d34e9ca157d1adc5add21, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: .642460823, y: 1.50611687, z: 1.34718561}
-  m_Center: {x: .0103027346, y: .758758545, z: 1.52587893e-06}
+  m_Size: {x: 1.34718597, y: 1.5, z: .642460823}
+  m_Center: {x: 0, y: .75, z: 0}
 --- !u!114 &11411538
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -106,14 +134,14 @@ MonoBehaviour:
   menu: 0
   specialId: 0
   id: 16
-  sprite: {fileID: 21300000, guid: 6e24fee18191240968f8b3ecae3f5397, type: 3}
+  sprite: {fileID: 21300000, guid: 5556bbcaf8c8b496c89b70f23aa935ad, type: 3}
   gradient:
     key0:
       serializedVersion: 2
-      rgba: 4294967295
+      rgba: 4294964543
     key1:
       serializedVersion: 2
-      rgba: 4294967295
+      rgba: 2583691263
     key2:
       serializedVersion: 2
       rgba: 0

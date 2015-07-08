@@ -577,6 +577,34 @@ Prefab:
       propertyPath: m_Intensity
       value: .779999971
       objectReference: {fileID: 0}
+    - target: {fileID: 19833960, guid: 1c03cd1293c90456fba8289a7b69a39d, type: 2}
+      propertyPath: InitialModule.gravityModifier
+      value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 19876942, guid: 1c03cd1293c90456fba8289a7b69a39d, type: 2}
+      propertyPath: InitialModule.gravityModifier
+      value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 19827862, guid: 1c03cd1293c90456fba8289a7b69a39d, type: 2}
+      propertyPath: InitialModule.gravityModifier
+      value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 19861984, guid: 1c03cd1293c90456fba8289a7b69a39d, type: 2}
+      propertyPath: InitialModule.gravityModifier
+      value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 19804042, guid: 1c03cd1293c90456fba8289a7b69a39d, type: 2}
+      propertyPath: InitialModule.gravityModifier
+      value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 19846336, guid: 1c03cd1293c90456fba8289a7b69a39d, type: 2}
+      propertyPath: InitialModule.gravityModifier
+      value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 112804, guid: 1c03cd1293c90456fba8289a7b69a39d, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1c03cd1293c90456fba8289a7b69a39d, type: 2}
   m_IsPrefabParent: 0

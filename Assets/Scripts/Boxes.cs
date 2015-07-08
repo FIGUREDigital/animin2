@@ -100,10 +100,10 @@ public class Boxes : MonoBehaviour {
 	
 	static List<Vector3> possibleLocations = new List<Vector3> ();
 
-	static public Vector3 FindSpawnPoint()
+	static public Vector3 FindSpawnPoint(int avoidEdgesBy = 0)
 	{
 		possibleLocations.Clear ();
-		float dim = (WorldSize-1) * size * 0.5f;
+		float dim = (WorldSize-1 - (float)avoidEdgesBy*2) * size * 0.5f;
 		RaycastHit hit;
 		Vector3 pos;
 		pos.y = 1000;

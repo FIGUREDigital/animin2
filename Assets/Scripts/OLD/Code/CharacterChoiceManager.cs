@@ -53,7 +53,7 @@ public class CharacterChoiceManager {
 
     public void UnlockCharacterPortrait(PersistentData.TypesOfAnimin typeToUnlock)
     {
-        if (typeToUnlock == PersistentData.TypesOfAnimin.TboAdult)
+        /*if (typeToUnlock == PersistentData.TypesOfAnimin.TboAdult)
         {
             for (int i = 0; i< CharactersToPick.Count; i++)
             {
@@ -63,7 +63,7 @@ public class CharacterChoiceManager {
                     CharactersToPick[i].CharacterClickScript.Animin = PersistentData.TypesOfAnimin.TboAdult;
                 }
             }
-        }
+        }*/
 
 //        for (int i = 0; i< CharactersToPick.Count; i++)
 //        {

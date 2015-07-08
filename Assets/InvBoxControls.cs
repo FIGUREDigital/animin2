@@ -12,10 +12,10 @@ public class InvBoxControls : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
     {
-        Debug.Log("Listening/StopListening : [" + listening + "|" + stopListening + "];");
+//        Debug.Log("Listening/StopListening : [" + listening + "|" + stopListening + "];");
         if (!listening)
             return;
-        Debug.Log("Button : ["+Input.GetButtonUp("Fire1")+"];");
+ //       Debug.Log("Button : ["+Input.GetButtonUp("Fire1")+"];");
         if (Input.GetButtonUp("Fire1"))
         {
             DropItem();

@@ -9,6 +9,7 @@ public class BuyWithItunes : MonoBehaviour
 		{						
 			UnlockCharacterManager.Instance.ID = ProfilesManagementScript.Instance.AniminToUnlockId;
 			UnlockCharacterManager.Instance.UnlockCharacter();
+			UiPages.Back ();
 			return;
 		}
 		Debug.Log("Buying with itunes \n Opening IAP");

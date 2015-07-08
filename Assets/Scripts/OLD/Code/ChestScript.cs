@@ -150,7 +150,12 @@ public class ChestScript : MonoBehaviour
                     if (Timer <= 0)
                     {
                         CharacterProgressScript progressScript = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>();
-					
+						// Disable chest box collider so that items canr come out of it
+						BoxCollider bc = GetComponent<BoxCollider>();
+						if(bc != null)
+						{
+							bc.enabled = false;
+						}
 
                         ItemType[][] items = BronzeRewards;
                         switch (m_ChestType)
@@ -176,7 +181,7 @@ public class ChestScript : MonoBehaviour
 
                             if (m_ChestType == ChestType.Evo)
                             {
-								zef = progressScript.SpawnStageItem(GetComponent<EvolutionChestItem>().id, Vector3.zero, true);
+								zef = progressScript.SpawnStageItem(GetComponent<EvolutionChestItem>().id, transform.position, true);
                             }
                             else if (t != ItemType.Zef)
                             {
@@ -222,11 +227,11 @@ public class ChestScript : MonoBehaviour
                                 }
 						
 								//zef = progressScript.SpawnStageItem(InventoryItemId.Box1, Vector3.zero);
-								zef = progressScript.SpawnStageItem(types[Random.Range(0, types.Length)], Vector3.zero);
+								zef = progressScript.SpawnStageItem(types[Random.Range(0, types.Length)], transform.position);
                             }
                             else
                             {
-								zef = progressScript.SpawnStageItem(InventoryItemId.Zef, Vector3.zero);
+								zef = progressScript.SpawnStageItem(InventoryItemId.Zef, transform.position);
                             }
 
                             SpinObjectScript spinScript = zef.GetComponent<SpinObjectScript>();
@@ -234,88 +239,25 @@ public class ChestScript : MonoBehaviour
                             {
                                 spinScript.enabled = false;
                             }
-                            zef.transform.parent = Coins[i].transform.GetChild(0).transform;
-                            zef.transform.localPosition = Vector3.zero;	
+                            //zef.transform.parent = Coins[i].transform.GetChild(0).transform;
+							float a = 2 * Mathf.PI * (i + Random.Range(-0.35f, 0.35f)) / (float)length;
+							Vector3 pos = zef.transform.position;
+							pos.y += 30;
+							zef.transform.position = pos;
+							ThrowAnimationScript.Throw(zef, new Vector3(Mathf.Sin (a), 0, Mathf.Cos (a)), 30);
                             //zef.transform.localScale *= 0.8f;
 
-                            Coins[i].transform.rotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
-                            Coins[i].GetComponent<Animator>().SetBool("play", true);
-                            Coins[i] = zef;
-                            Coins[i].tag = "Untagged";
-
-                            //Coins[i].transform.localScale = new Vector3(12, 12, 12);
 						
                         }
 
                         Timer = 4;
-                        State = AnimationStateId.LidOpened;
+						State = AnimationStateId.ThrowItemsOut;
 
                         UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHoc("Prize");
                     }
 
 				
 
-                    break;
-                }
-            case AnimationStateId.LidOpened:
-                {
-
-//			for(int i=0;i<Coins.Length;++i)
-//			{
-//				if(Coins[i] == null) continue;
-//
-//				//if(Coins[i].GetComponent<Animator>().
-//			}
-
-                    //Timer -= Time.deltaTime;
-                    //if(Timer <= 0)
-                    {
-                        int counter = 0;
-                        for (int i = 0; i < Coins.Length; ++i)
-                        {
-                            if (Coins[i] == null || Coins[i].transform.parent.transform.parent.GetComponent<Animator>() == null)
-                            {
-                                counter++;
-                                continue;
-                            }
-
-                            AnimatorStateInfo stateInfo = Coins[i].transform.parent.transform.parent.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0);
-
-                            if (stateInfo.length <= 1)
-                                continue;
-
-                            Debug.Log(stateInfo.normalizedTime.ToString());
-                            //Debug.Log(stateInfo.length.ToString());
-
-                            if (Coins[i].transform.parent.transform.parent.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
-                            {
-                                SpinObjectScript spinScript = Coins[i].GetComponent<SpinObjectScript>();
-                                if (spinScript != null)
-                                {
-                                    spinScript.enabled = true;
-                                    Coins[i].GetComponent<SpinObjectScript>().SetRotationAngle();
-                                }
-
-							
-                                Coins[i].transform.parent = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().ActiveWorld.transform;	
-								ItemLink il = Coins[i].GetComponent<ItemLink>();
-								if (il != null)
-								{
-									il.item.MoveTo(Inventory.CurrentLocation, Coins[i].transform.position, true);
-								}							
-                                Coins[i].tag = "Items";
-                                Coins[i] = null;
-                            }
-                        }
-					
-                        if (counter == Coins.Length)
-                        {
-                            State = AnimationStateId.ThrowItemsOut;
-                            Timer = 3;
-				
-                        }
-                    }
-	
                     break;
                 }
 

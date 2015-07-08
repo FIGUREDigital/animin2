@@ -72,7 +72,7 @@ PlayerSettings:
     16:9: 1
     Others: 1
   bundleIdentifier: com.do.dog
-  bundleVersion: 2.0.69
+  bundleVersion: 2.0.70
   preloadedAssets: []
   metroEnableIndependentInputSource: 0
   metroEnableLowLatencyPresentationAPI: 0
@@ -466,7 +466,7 @@ PlayerSettings:
   WebGL::template: APPLICATION:Default
   additionalIl2CppArgs::additionalIl2CppArgs: 
   firstStreamedSceneWithResources: 0
-  cloudProjectId: 
+  cloudProjectId: 7c3ffaaa-7386-4416-a76f-d8832f77e92f
   projectId: 
   projectName: 
   organizationId: 

@@ -78,6 +78,10 @@ public class Inventory
 		{
 		}
 
+		public void UpdatePosAndRotFromTransform()
+		{
+			MoveTo (Location, Instance.transform.position, Instance.transform.localEulerAngles, justSpawnedFromChest);
+		}
 		
 		public void MoveTo(Locations location, Vector3 position, bool justSpawnedFromChest = false)
 		{
@@ -90,13 +94,13 @@ public class Inventory
 			Locations oldLoc = this.privateLocation;
 			GameObject go = Instance;
 			if (Definition.ItemType == PopupItemType.Box) {
+				rotation = Vector3.zero;
 				SpinObjectScript spin = go.GetComponent<SpinObjectScript> ();
 				if (!justSpawnedFromChest) {
 					position = Boxes.Snap (position);
 					if (location != Locations.Inventory) {
 						go.SetActive (true);	// We disable the item sometimes while in the inventory
 					}
-					go.transform.localRotation = Quaternion.identity;
 					scanItemHeightRequired = true;
 				}
 			} else 

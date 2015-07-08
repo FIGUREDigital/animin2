@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using System;
 using UnityEngine.UI;
 using DG.Tweening;
@@ -62,6 +63,8 @@ public class ScoringPage : Phi.SingletonScene<ScoringPage>
 
 	public static void Show (Minigame game, int points, int stars, Action onFinish)
 	{
+		UnityEngine.Analytics.Analytics.CustomEvent ("Score", new Dictionary<string, object>{{"game",game.ToString ()},{"points", points},{"stars", stars}});
+
 		if (Exists ()) 
 		{
 			Instance.StartCoroutine(Instance.DoShow (game, points, stars, onFinish));

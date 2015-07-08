@@ -219,7 +219,7 @@ public class UiPages : MonoBehaviour
         mBackMap[(int)Pages.NewProfilePage] = uiPages[(int)Pages.ProfileSelectPage];
         mBackMap[(int)Pages.AniminSelectPage] = uiPages[(int)Pages.ProfileSelectPage];
         mBackMap[(int)Pages.PurchasePage] = uiPages[(int)Pages.AniminSelectPage];
-        mBackMap[(int)Pages.LoadingPage] = uiPages[(int)Pages.PurchasePage];
+		mBackMap[(int)Pages.LoadingPage] = uiPages[(int)Pages.AniminSelectPage];
         mBackMap[(int)Pages.DemoCardPage] = uiPages[(int)Pages.ProfileSelectPage];
         mBackMap[(int)Pages.AddressInputPage] = uiPages[(int)Pages.AniminSelectPage];
         mBackMap[(int)Pages.CodeInputPage] = uiPages[(int)Pages.PurchasePage];

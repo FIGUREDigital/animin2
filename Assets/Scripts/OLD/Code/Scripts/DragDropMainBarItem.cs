@@ -39,7 +39,8 @@ public class DragDropMainBarItem : MonoBehaviour, IBeginDragHandler, IDragHandle
 		{
 			hitPos = Boxes.GetGroundPoint (hit);
 		}
-		modelLink.item.MoveTo (Inventory.CurrentLocation, hitPos);
+		modelLink.item.MoveTo (Inventory.CurrentLocation, hitPos, new Vector3(0, UnityEngine.Random.Range (180-45, 180+45), 0));
+
 		CharacterProgressScript.SwitchGravity (GO, true);
 		if (hit.collider == null || hit.collider.name.StartsWith("Extended")) 
 		{
@@ -51,9 +52,9 @@ public class DragDropMainBarItem : MonoBehaviour, IBeginDragHandler, IDragHandle
 				
 			
 		GameObject child = modelLink.item.Instance;
-		if (modelLink.item.Definition.ItemType != PopupItemType.Box) {
+		/*if (modelLink.item.Definition.ItemType != PopupItemType.Box) {
 			child.transform.localRotation = Quaternion.Euler (0, UnityEngine.Random.Range (0, 360), 0);
-		}		
+		}*/		
 //		child.GetComponent<BoxCollider>().enabled = true;
 
         UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().DragedObjectedFromUIToWorld = true;

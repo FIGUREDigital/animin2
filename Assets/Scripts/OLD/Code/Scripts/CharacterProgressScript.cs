@@ -191,7 +191,52 @@ public class CharacterProgressScript : MonoBehaviour
     public bool IsMovingTowardsLocation;
     //public GameObject ObjectCarryAttachmentBone;
     //private GameObject DragableObject;
-    public GameObject ObjectHolding;
+	GameObject objectHolding;
+    public GameObject ObjectHolding
+	{
+		get
+		{
+			return objectHolding;
+		}
+		set
+		{
+			if (value == objectHolding) return;
+
+			if (objectHolding != null)
+			{
+				//objectHolding.transform.parent = ActiveWorld.transform;
+				// ToDo if item set layer
+				Rigidbody body = objectHolding.GetComponent<Rigidbody>();
+				if(body != null)
+				{
+					body.isKinematic = false;
+				}
+                ItemLink il = objectHolding.GetComponent<ItemLink>();
+				if(il != null)
+				{
+					il.item.SetupLayer();
+				}
+				else
+				{					
+					objectHolding.layer = LayerMask.NameToLayer("Default");
+				}
+			}
+			objectHolding = value;
+			if (value != null)
+			{
+				objectHolding.layer = LayerMask.NameToLayer("IgnoreCollisionWithCharacter");
+				Rigidbody body = objectHolding.GetComponent<Rigidbody>();
+				if(body != null)
+				{
+                    body.isKinematic = true;
+                }
+            }
+
+			GetComponent<CharacterSwapManagementScript>().CurrentModel.GetComponent<HeadReferenceScript>().HoldingObject = value;
+            animationController.IsHoldingItem = (value != null);
+            
+        }
+    }
     private float LastTapClick;
 
     private int RequestedToMoveToCounter;
@@ -334,8 +379,8 @@ public class CharacterProgressScript : MonoBehaviour
 		*/
 		
 		ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeOwn(InventoryItemId.ItemAlbum, 1);
-		ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeOwn(InventoryItemId.Box1, 10);
-		ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeOwn(InventoryItemId.Box2, 5);
+//		ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeOwn(InventoryItemId.Box1, 10);
+//		ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeOwn(InventoryItemId.Box2, 5);
 
         if (BetweenSceneData.Instance.ReturnFromMiniGame)
         {
@@ -447,35 +492,26 @@ public class CharacterProgressScript : MonoBehaviour
         animationController.IsHoldingItem = false;
 
         this.gameObject.GetComponent<CharacterControllerScript>().RotateToLookAtPoint(this.transform.position + throwdirection * 50);
-		
-		
-        //pickupItemSavedData.Position = DragableObject.transform.position;
-        //pickupItemSavedData.Rotation = DragableObject.transform.rotation.eulerAngles;
-		
-        ObjectHolding.transform.parent = ActiveWorld.transform;
 
-		
-        GetComponent<CharacterSwapManagementScript>().CurrentModel.GetComponent<HeadReferenceScript>().HoldingObject = null;
-		
-        ThrowAnimationScript throwScript = ObjectHolding.AddComponent<ThrowAnimationScript>();
+
+
         float maxDistance = Vector3.Distance(Input.mousePosition, MousePositionAtDragIfMouseMoves) * 0.35f;
         if (maxDistance >= 160)
             maxDistance = 160;
-		
-        throwScript.Begin(throwdirection, maxDistance);
 
+        
         UIGlobalVariablesScript.Singleton.SoundEngine.Play(ProfilesManagementScript.Instance.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Instance.CurrentAnimin.AniminEvolutionId, CreatureSoundId.Throw);
         //ObjectHolding.transform.position = this.transform.position;
-		
-		
-		
-		
         //GroundItems.Add(ObjectHolding);
 		
-        ObjectHolding.transform.rotation = Quaternion.Euler(0, ObjectHolding.transform.rotation.eulerAngles.y, 0);
-        animationController.IsThrowing = true;
+		//ObjectHolding.transform.rotation = Quaternion.Euler(0, ObjectHolding.transform.rotation.eulerAngles.y, 0);
+		Rigidbody body = ObjectHolding.GetComponent<Rigidbody>();
+		ObjectHolding = null;
+		animationController.IsThrowing = true;
         IsDetectFlick = false;
-        ObjectHolding = null;
+
+		ThrowAnimationScript.Throw (body.gameObject, throwdirection, maxDistance);
+        
         //CurrentAction = ActionId.None;
     }
 
@@ -575,7 +611,7 @@ public class CharacterProgressScript : MonoBehaviour
         GameObject instance = Instantiate(resource) as GameObject;
         instance.transform.parent = ActiveWorld.transform;
         instance.transform.rotation = Quaternion.Euler(0, UnityEngine.Random.Range(170, 190), 0);
-		instance.transform.position = Boxes.FindSpawnPoint ();
+		instance.transform.position = Boxes.FindSpawnPoint (2);	// Don't spawn near the edge
         //instance.transform.localPosition = new Vector3(UnityEngine.Random.Range(-0.67f, 0.67f), this.transform.localPosition.y, UnityEngine.Random.Range(-0.67f, 0.67f));
         instance.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
 
@@ -658,7 +694,8 @@ public class CharacterProgressScript : MonoBehaviour
 	
     // Update is called once per frame
     void Update()
-    {
+	{
+		float oldHealth = ProfilesManagementScript.Instance.CurrentAnimin.Health;
 		DateTime lastPlay = ProfilesManagementScript.Instance.CurrentAnimin.lastPlay;
 		DateTime now = DateTime.UtcNow;
 		TimeSpan span = now.Subtract (lastPlay);
@@ -672,7 +709,6 @@ public class CharacterProgressScript : MonoBehaviour
 
         ProfilesManagementScript.Instance.CurrentAnimin.Hungry -= Time.deltaTime * M_HUNGER_DEGREDATION;
         ProfilesManagementScript.Instance.CurrentAnimin.Fitness -= Time.deltaTime * M_FITNESS_DEGREDATION;
-        float oldHealth = ProfilesManagementScript.Instance.CurrentAnimin.Health;
         ProfilesManagementScript.Instance.CurrentAnimin.Health -= Time.deltaTime * M_HEALTH_DEGREDATION;
 
         if (oldHealth >= 40 && ProfilesManagementScript.Instance.CurrentAnimin.Health < 40)
@@ -1306,7 +1342,6 @@ public class CharacterProgressScript : MonoBehaviour
 	                                        //Debug.Log("HIT THE CHARACTER FOR INTERACTION 4");
 	                                        //Destroy(ObjectHolding);
 	                                        ObjectHolding = null;
-	                                        animationController.IsHoldingItem = false;
 	                                    }
 
 	                                }
@@ -1341,16 +1376,8 @@ public class CharacterProgressScript : MonoBehaviour
 
 	                                if (ObjectHolding != null && (hitInfo.collider.tag == "Items"))
 	                                {
-	                                    ObjectHolding.layer = LayerMask.NameToLayer("Default");
-	                                    ObjectHolding.transform.parent = ActiveWorld.transform;
-
-	                                    GetComponent<CharacterSwapManagementScript>().CurrentModel.GetComponent<HeadReferenceScript>().HoldingObject = null;
-
-	                                    ObjectHolding.transform.localPosition = new Vector3(ObjectHolding.transform.localPosition.x, 0, ObjectHolding.transform.localPosition.z);
-
+										// Put object down as we want to play with another item
 	                                    ObjectHolding = null;
-	                                    animationController.IsHoldingItem = false;
-
 	                                }
 	                            }
 	                            else
@@ -1497,15 +1524,16 @@ public class CharacterProgressScript : MonoBehaviour
 							ItemLink il = MainARHandler.Instance.CurrentItem.GetComponent<ItemLink>();
 							if(il != null)
 							{
-								il.item.MoveTo(Inventory.CurrentLocation, MainARHandler.Instance.CurrentItem.transform.position);
+						il.item.MoveTo(Inventory.CurrentLocation, MainARHandler.Instance.CurrentItem.transform.position, MainARHandler.Instance.CurrentItem.transform.localEulerAngles);
 								il.item.SetupLayer();
 	                        }
 					//!!!!! is this happening AndroidJNI AsyncCallback SetupLayer                       
 	                        
-	                        if(OnDropItem != null)
-	                            OnDropItem();
 	                    }
-						/*else
+				
+						if(OnDropItem != null)
+							OnDropItem();
+                    /*else
 						{
 	                        Debug.Log("DROPED IN UNKNOWN LOCATION");
 	                        if(OnDropItem != null)
@@ -1559,7 +1587,23 @@ public class CharacterProgressScript : MonoBehaviour
 								pos.y -= 1000;
 							}
 
-							li.item.MoveTo(li.item.Location, pos);
+							Vector3 rot = MainARHandler.Instance.CurrentItem.transform.localEulerAngles;
+							rot.x = 0;
+							rot.y = rot.y % 360;
+							if (rot.y < 0)
+							{
+								rot.y +=360;
+							}
+							rot.z = 0;
+							if (rot.y > 180+45)
+							{
+								rot.y = 180+45;
+							}
+							if (rot.y < 180-45)
+							{
+								rot.y = 180-45;
+							}
+							li.item.MoveTo(li.item.Location, pos, rot);
 						}
 						else
 						{
@@ -1757,13 +1801,8 @@ public class CharacterProgressScript : MonoBehaviour
     {
         //item.GetComponent<BoxCollider>().enabled = false;
         //if(item.collider.gameObject.activeInHierarchy)
-
-
-
-        item.layer = LayerMask.NameToLayer("IgnoreCollisionWithCharacter");
         //item.transform.parent = GetComponent<CharacterSwapManagementScript>().CurrentModel.GetComponent<HeadReferenceScript>().ObjectCarryAttachmentBone.transform;
-        GetComponent<CharacterSwapManagementScript>().CurrentModel.GetComponent<HeadReferenceScript>().HoldingObject = item;
-        animationController.IsHoldingItem = true;
+
         ObjectHolding = item;
 
         item.transform.localPosition = Vector3.zero;
@@ -1855,6 +1894,7 @@ public class CharacterProgressScript : MonoBehaviour
                     }
 
                     //ShowText("I feel good");
+
 					ProfilesManagementScript.Instance.CurrentAnimin.Health += entry.Definition.Points;
                     Stop(true);
                     animationController.IsTakingPill = true;

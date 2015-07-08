@@ -43,7 +43,20 @@ public class Inventory
 		public Locations privateLocation = Locations.Count;	
 		public Vector3 privatePosition = Vector3.zero;
 		public Vector3 privateRotation = Vector3.zero;
+		public int privateExtraData = 0;	// Stores for example whats inside a chest
 		public bool justSpawnedFromChest = false;
+
+		public int ExtraData
+		{
+			get
+			{
+				return privateExtraData;
+			}
+			set
+			{
+				privateExtraData = value;
+			}
+		}
 
 		public ItemDefinition Definition
 		{
@@ -185,7 +198,13 @@ public class Inventory
 					}
 					instance.transform.localScale = new Vector3 (.2f, .2f, .2f);
 				}
-			} else {
+			}
+			else if (Definition.ItemType == PopupItemType.Chest)
+			{
+				instance.transform.localScale = new Vector3 (.2f, .2f, .2f);
+			}
+			else
+			{
 				instance.transform.localScale = new Vector3 (.1f, .1f, .1f);
 			}
 		}

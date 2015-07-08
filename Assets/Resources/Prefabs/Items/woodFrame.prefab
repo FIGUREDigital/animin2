@@ -8,9 +8,13 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400000}
+  - 54: {fileID: 5416906}
+  - 65: {fileID: 6567988}
+  - 114: {fileID: 11425898}
+  - 114: {fileID: 11400624}
   m_Layer: 0
   m_Name: woodFrame
-  m_TagString: Untagged
+  m_TagString: Items
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25,9 +29,6 @@ GameObject:
   - 4: {fileID: 483694}
   - 33: {fileID: 3342642}
   - 23: {fileID: 2340038}
-  - 65: {fileID: 6536520}
-  - 114: {fileID: 11410964}
-  - 54: {fileID: 5401592}
   m_Layer: 16
   m_Name: Picture Frame
   m_TagString: Items
@@ -91,12 +92,12 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 111746}
   m_Mesh: {fileID: 4300000, guid: 001f4bc4e1dbb486ca64fc608bf1a477, type: 3}
---- !u!54 &5401592
+--- !u!54 &5416906
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 111746}
+  m_GameObject: {fileID: 100000}
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
@@ -106,24 +107,35 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &6536520
+--- !u!65 &6567988
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 111746}
+  m_GameObject: {fileID: 100000}
   m_Material: {fileID: 13400000, guid: 8e558585a95d34e9ca157d1adc5add21, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: .789717674, y: 1.69860685, z: 2.17197824}
-  m_Center: {x: .0444580093, y: .849303424, z: .0111328131}
---- !u!114 &11410964
+  m_Size: {x: 2.171978, y: 1.69860685, z: .789717674}
+  m_Center: {x: .0111100003, y: .849303424, z: .0444580093}
+--- !u!114 &11400624
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 111746}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce4b3bf48db87460691231acf5a744d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11425898
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee7805debf5aa49fa9aaadf4bd2cb6c1, type: 3}

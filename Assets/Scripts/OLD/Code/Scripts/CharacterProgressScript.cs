@@ -52,6 +52,11 @@ public enum InventoryItemId
 	Box1,
 	Box2,
 
+	ChestBronze,
+	ChestSilver,
+	ChestGold,
+	ChestEvo,
+
     Count,
 }
 
@@ -586,36 +591,12 @@ public class CharacterProgressScript : MonoBehaviour
     }
     public GameObject GetAndSpawnChests(int value)
     {
-        string prefab = "Prefabs/chest_bronze";
-        switch (value)
-        {
-            case 1:
-                prefab = "Prefabs/chest_bronze";
-                break;
-            case 2:
-                prefab = "Prefabs/chest_silver";
-                break;
-            case 3:
-                prefab = "Prefabs/chest_gold";
-                break;
-            case 4:
-                prefab = "Prefabs/chest_evo";
-                break;
-            case 0:
-            default:
-                return null;
-        }
-        Debug.Log("Spawn Chests");
-        GameObject resource = Resources.Load<GameObject>(prefab);
+		CharacterProgressScript progressScript = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>();
 
-        GameObject instance = Instantiate(resource) as GameObject;
-        instance.transform.parent = ActiveWorld.transform;
-        instance.transform.rotation = Quaternion.Euler(0, UnityEngine.Random.Range(170, 190), 0);
-		instance.transform.position = Boxes.FindSpawnPoint (2);	// Don't spawn near the edge
-        //instance.transform.localPosition = new Vector3(UnityEngine.Random.Range(-0.67f, 0.67f), this.transform.localPosition.y, UnityEngine.Random.Range(-0.67f, 0.67f));
-        instance.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
-
-        return instance;
+		GameObject chest = progressScript.SpawnStageItem((InventoryItemId)((int)InventoryItemId.ChestBronze + value - 1), Boxes.FindSpawnPoint (2));
+		chest.transform.rotation = Quaternion.Euler (0, UnityEngine.Random.Range (170, 190), 0);
+		chest.GetComponent<ItemLink> ().item.UpdatePosAndRotFromTransform ();
+		return chest;
     }
 
     public void AnimateJumpOutOfPortal()

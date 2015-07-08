@@ -181,7 +181,7 @@ public class ChestScript : MonoBehaviour
 
                             if (m_ChestType == ChestType.Evo)
                             {
-								zef = progressScript.SpawnStageItem(GetComponent<EvolutionChestItem>().id, transform.position, true);
+								zef = progressScript.SpawnStageItem((InventoryItemId)GetComponent<ItemLink>().item.ExtraData, transform.position, true);
                             }
                             else if (t != ItemType.Zef)
                             {
@@ -246,12 +246,13 @@ public class ChestScript : MonoBehaviour
 							zef.transform.position = pos;
 							ThrowAnimationScript.Throw(zef, new Vector3(Mathf.Sin (a), 0, Mathf.Cos (a)), 30);
                             //zef.transform.localScale *= 0.8f;
-
 						
                         }
 
                         Timer = 4;
 						State = AnimationStateId.ThrowItemsOut;
+						// Remove from inventory
+						ProfilesManagementScript.Instance.CurrentProfile.Inventory.Remove(GetComponent<ItemLink>().item);
 
                         UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHoc("Prize");
                     }

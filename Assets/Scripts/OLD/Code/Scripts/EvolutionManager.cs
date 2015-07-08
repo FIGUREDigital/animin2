@@ -204,7 +204,7 @@ public class EvolutionManager
 			if (m_Unlocks[i].numZefs == ProfilesManagementScript.Instance.CurrentAnimin.ZefTokens)
 			{
                 GameObject chest = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().GetAndSpawnChests(4);
-             	chest.GetComponent<EvolutionChestItem>().id = m_Unlocks[i].Id;
+				chest.GetComponent<ItemLink>().item.ExtraData = (int)m_Unlocks[i].Id;
             }
 		}
         //if (ProfilesManagementScript.Singleton.CurrentProfile.ActiveAnimin == PersistentData.TypesOfAnimin.Tbo)

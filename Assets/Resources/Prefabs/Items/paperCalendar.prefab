@@ -11,9 +11,10 @@ GameObject:
   - 114: {fileID: 11411538}
   - 65: {fileID: 6500000}
   - 54: {fileID: 5464932}
+  - 114: {fileID: 11492408}
   m_Layer: 0
   m_Name: paperCalendar
-  m_TagString: Untagged
+  m_TagString: Items
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -178,6 +179,17 @@ MonoBehaviour:
     atime7: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
+--- !u!114 &11492408
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce4b3bf48db87460691231acf5a744d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

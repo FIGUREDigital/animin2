@@ -38,26 +38,23 @@ public class ChestScript : MonoBehaviour
 		NormalBox
     }
 
-    private ItemType[][] BronzeRewards = new ItemType[4][]
+    private ItemType[][] BronzeRewards = new ItemType[][]
     {
-        new ItemType[]{ ItemType.Zef, ItemType.WeakFood, ItemType.NormalBox },
-		new ItemType[]{ ItemType.WeakFood, ItemType.NormalBox },
-		new ItemType[]{ ItemType.WeakFood, ItemType.WeakFood, ItemType.NormalBox },
-		new ItemType[]{ ItemType.Zef, ItemType.WeakMed, ItemType.NormalBox }
+		new ItemType[]{ ItemType.WeakFood, ItemType.WeakFood },
+		new ItemType[]{ ItemType.WeakFood, ItemType.WeakMed, ItemType.NormalBox },
+		new ItemType[]{ ItemType.WeakFood, ItemType.NormalBox }
     };
-    private ItemType[][] SilverRewards = new ItemType[4][]
+    private ItemType[][] SilverRewards = new ItemType[][]
     {
-		new ItemType[]{ ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.MediumMed, ItemType.NormalBox },
-		new ItemType[]{ ItemType.Zef, ItemType.Zef, ItemType.MediumFood, ItemType.NormalBox },
-		new ItemType[]{ ItemType.Zef, ItemType.WeakFood, ItemType.MediumFood, ItemType.NormalBox },
-		new ItemType[]{ ItemType.Zef, ItemType.MediumFood, ItemType.MediumFood, ItemType.NormalBox  }
+		new ItemType[]{ ItemType.MediumFood, ItemType.StrongFood, ItemType.NormalBox, ItemType.Zef },
+		new ItemType[]{ ItemType.MediumFood, ItemType.MediumMed, ItemType.NormalBox, ItemType.Zef },
+		new ItemType[]{ ItemType.MediumFood, ItemType.Zef }
     };
-    private ItemType[][] GoldRewards = new ItemType[4][]
+    private ItemType[][] GoldRewards = new ItemType[][]
     {
-		new ItemType[]{ ItemType.StrongFood, ItemType.MediumFood, ItemType.StrongMed, ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.NormalBox},
-		new ItemType[]{ ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.StrongFood, ItemType.NormalBox},
-		new ItemType[]{ ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.MediumFood, ItemType.StrongFood, ItemType.StrongFood, ItemType.NormalBox },
-		new ItemType[]{ ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.MediumFood, ItemType.MediumFood, ItemType.NormalBox }
+		new ItemType[]{ ItemType.StrongFood, ItemType.StrongFood, ItemType.Zef, ItemType.NormalBox},
+		new ItemType[]{ ItemType.StrongFood, ItemType.StrongMed, ItemType.Zef, ItemType.NormalBox},
+		new ItemType[]{ ItemType.StrongFood, ItemType.Zef, ItemType.NormalBox, ItemType.Zef}
     };
 
     InventoryItemId[] StrongFoods = new InventoryItemId[]{

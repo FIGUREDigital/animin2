@@ -251,7 +251,7 @@ public class CaringPageControls : MonoBehaviour
 
 	public void PopulateButtons(Inventory.Entry prefferEntry = null)
     {
-        Debug.Log("Populating buttons");
+//        Debug.Log("Populating buttons");
 		
 		for (int i = 0; i < icons.Length; i++) 
 		{

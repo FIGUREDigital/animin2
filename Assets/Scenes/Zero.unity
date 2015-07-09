@@ -3039,6 +3039,10 @@ Prefab:
       propertyPath: m_Center.x
       value: -.00505371112
       objectReference: {fileID: 0}
+    - target: {fileID: 11439794, guid: 8eee52c617961425c99f0fb6b73fb023, type: 2}
+      propertyPath: menu
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8eee52c617961425c99f0fb6b73fb023, type: 2}
   m_IsPrefabParent: 0

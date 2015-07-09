@@ -27,7 +27,8 @@ public enum MenuFunctionalityUI
 	Piano,
 	Alarm,
 	Radio,
-	ItemAlbum
+	ItemAlbum,
+	FartButton
 }
 
 public enum SpecialFunctionalityId

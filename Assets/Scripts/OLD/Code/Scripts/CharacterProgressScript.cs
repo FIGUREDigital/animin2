@@ -391,6 +391,7 @@ public class CharacterProgressScript : MonoBehaviour
 		*/
 		
 		ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeOwn(InventoryItemId.ItemAlbum, 1);
+		ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeOwn(InventoryItemId.FartButton, 1);
 //		ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeOwn(InventoryItemId.Box1, 10);
 //		ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeOwn(InventoryItemId.Box2, 5);
 
@@ -1549,7 +1550,7 @@ public class CharacterProgressScript : MonoBehaviour
 			//if(hadRayCollision && hitInfo.collider.name.StartsWith("SecondGroundPlane"))
                     {
 						ItemLink li = MainARHandler.Instance.CurrentItem.GetComponent<ItemLink>();
-						Debug.Log("DRAGGING "+(li != null).ToString ());
+//						Debug.Log("DRAGGING "+(li != null).ToString ());
 						if (li != null)
 						{
 							Vector3 pos = Boxes.GetGroundPoint(hitInfo);
@@ -1856,11 +1857,11 @@ public class CharacterProgressScript : MonoBehaviour
 
             case PopupItemType.Item:
                 {
-					if(entry.Definition.Id == InventoryItemId.FartButton)
+					/*if(entry.Definition.Id == InventoryItemId.FartButton)
 					{
 						UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHoc("Fart");
 						UIGlobalVariablesScript.Singleton.SoundEngine.PlayFart();
-					}
+					}*/
 
                     return false;
                 }

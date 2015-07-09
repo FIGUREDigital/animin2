@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Account
 {
@@ -146,17 +147,17 @@ public class Account
 
 
 	//Customer Service Codes
-	private const string FakeCode1 = "FDG015S7";
-	private const string FakeCode2 = "GL04T9LY";
-	private const string FakeCode3 = "CY3877T2";
-	private const string FakeCode4 = "S4G984FS";
-	private const string FakeCode5 = "TTPM5PFS";
-	private const string FakeCode6 = "RR85FKL4";
-	private const string FakeCode7 = "54985TTS";
-	private const string FakeCode8 = "LS82THLM";
-	private const string FakeCode9 = "I7SMH42W";
-	private const string FakeCode10 = "6GWK0H6D";
-	private const string MasterReset = "AM989FTW";
+	private const string FakeCode1 = "HHFDG015S7";
+	private const string FakeCode2 = "HHGL04T9LY";
+	private const string FakeCode3 = "HHCY3877T2";
+	private const string FakeCode4 = "HHS4G984FS";
+	private const string FakeCode5 = "HHTTPM5PFS";
+	private const string FakeCode6 = "HHRR85FKL4";
+	private const string FakeCode7 = "HH54985TTS";
+	private const string FakeCode8 = "HHLS82THLM";
+	private const string FakeCode9 = "HHI7SMH42W";
+	private const string FakeCode10 = "HH6GWK0H6D";
+	private const string MasterReset = "HHAM989FTW";
 
 	//Custom Service Functions
 	bool FakeCodeUsed(string code)
@@ -221,8 +222,10 @@ public class Account
 		bool backdoorCode = code == MasterReset;
 		bool serviceCode = IsServiceCode(code);
 
+
 		if (serviceCode || backdoorCode)
 		{
+			UnityEngine.Analytics.Analytics.CustomEvent ("CodeBackdoor", new Dictionary<string,object>());
 			Debug.Log("It is a service code... " + code);
 			if(backdoorCode)
 			{
@@ -246,7 +249,8 @@ public class Account
 			PlayerPrefs.Save();
 		}
         else
-        {
+		{
+			UnityEngine.Analytics.Analytics.CustomEvent ("CodeCheck", new Dictionary<string,object>());
 			Debug.Log("Sumbitting code: " + code);
             WWWForm data = new WWWForm();
 
@@ -264,7 +268,9 @@ public class Account
             {
 				Debug.Log("GENERAL ERROR ON CODE SUBMIT: " + code);
                 Debug.Log(w.error);
-                ProfilesManagementScript.Instance.OnAccessCodeResult("Something went wrong, please try again in a bit...");
+                ProfilesManagementScript.Instance.OnAccessCodeResult(code, "Something went wrong, please try again in a bit...");
+				
+				UnityEngine.Analytics.Analytics.CustomEvent ("CodeError", new Dictionary<string, object>{{"code",code},{"error",w.error}});
             }
 
             else
@@ -272,7 +278,7 @@ public class Account
 				Debug.Log("CODE RESULT RETURNED FOR: " + code);
                 Debug.Log(w.text);                              
                        
-                ProfilesManagementScript.Instance.OnAccessCodeResult(w.text);
+                ProfilesManagementScript.Instance.OnAccessCodeResult(code, w.text);
 
             }
         }

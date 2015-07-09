@@ -12,10 +12,10 @@ public class InvBoxControls : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
     {
-        Debug.Log("Listening/StopListening : [" + listening + "|" + stopListening + "];");
+//        Debug.Log("Listening/StopListening : [" + listening + "|" + stopListening + "];");
         if (!listening)
             return;
-        Debug.Log("Button : ["+Input.GetButtonUp("Fire1")+"];");
+ //       Debug.Log("Button : ["+Input.GetButtonUp("Fire1")+"];");
         if (Input.GetButtonUp("Fire1"))
         {
             DropItem();
@@ -50,17 +50,18 @@ public class InvBoxControls : MonoBehaviour {
         {
             Debug.LogWarning("[Drop Item]: ERROR NO ITEM");
             return;
-        }
+		}
         Debug.Log("[Drop Item]: Item = "+GO.name);
 		ItemLink link = GO.GetComponent<ItemLink> ();
 		if (link != null) 
 		{
 			link.item.MoveTo(Inventory.Locations.Inventory, Vector3.zero);
 		}
-        
+		CharacterProgressScript.SwitchGravity (MainARHandler.Instance.CurrentItem, true);
 		m_CaringPageControls = UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>();
 		m_CaringPageControls.DisappearAllItemUIs();
 
-        OnDropItem();
+		OnDropItem();
+		MainARHandler.Instance.CurrentItem = null;
     }
 }

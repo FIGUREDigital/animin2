@@ -20,7 +20,7 @@ public class CaringPageControls : MonoBehaviour
     private InventoryControls mInventoryControls;
     [SerializeField]
     private RectTransform Indicator;
-    private bool InventoryOpen = false;
+//    private bool InventoryOpen = false;
 	private InventoryItemUIIcon CurrentPage;
     [SerializeField]
     private InventoryItemUIIcon[] icons;
@@ -230,6 +230,7 @@ public class CaringPageControls : MonoBehaviour
 					iconsByType.Add (t, icons[i]);
 				}
 			}
+			icons[i].Item = null;
 		}
 		// Ensure all menus are registered
 		for(int i = 0; i < menus.Length; i++)
@@ -241,25 +242,28 @@ public class CaringPageControls : MonoBehaviour
         PopulateButtons();
         m_TriangleHeight = new Vector2(0, m_Triangle.sizeDelta.y * 2.0f);
         DetectDragIconScript.OnClicked += EnableInvBox;
-        DragDropMainBarItem.OnClicked += DisableInvBox;
+        DragDropMainBarItem.OnDropped += DisableInvBox;
         CharacterProgressScript.OnDragItem += EnableInvBox;
         CharacterProgressScript.OnDropItem += DisableInvBox;
         InvBoxControls.OnDropItem += DisableInvBox;
 
     }
 
-    void ResetButtons()
-    {
-		for (int i = 0; i < icons.Length; i++) 
-		{
-			icons [i].Item = null;
-		}
-    }
-
 	public void PopulateButtons(Inventory.Entry prefferEntry = null)
     {
-        Debug.Log("Populating buttons");
-        ResetButtons();
+//        Debug.Log("Populating buttons");
+		
+		for (int i = 0; i < icons.Length; i++) 
+		{
+			if(icons[i].Item != null)
+			{
+				icons[i].Item = ProfilesManagementScript.Instance.CurrentProfile.Inventory.GetOwnedItem(icons[i].Item.Definition.Id);
+				if(icons[i].Item != null && icons[i].Item.Location != global::Inventory.Locations.Inventory)
+				{
+					icons[i].Item = null;
+				}
+			}
+		}
         for (int i = 0; i < ProfilesManagementScript.Instance.CurrentProfile.Inventory.Count; ++i)
         {
 			Inventory.Entry entry = ProfilesManagementScript.Instance.CurrentProfile.Inventory.Get (i);
@@ -279,10 +283,10 @@ public class CaringPageControls : MonoBehaviour
 
     public void EnableInvBox()
     {
-        if (UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().CurrentAction == ActionId.Sleep)
+/*        if (UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().IsSleeping)
         {
             return;
-        }
+        }*/
         SetInvBox(true);
     }
     public void DisableInvBox()

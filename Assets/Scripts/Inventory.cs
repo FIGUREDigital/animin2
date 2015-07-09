@@ -23,13 +23,40 @@ public class Inventory
 		}
 	}
 
+	private static bool scanItemHeightRequired = false;
+
 	[System.Serializable]
 	public class Entry
 	{
+		static int layerUI;
+		static int layerFloor;
+		static int layerItems;
+		static Entry()
+		{
+			layerUI = LayerMask.NameToLayer("UI");
+			layerFloor = LayerMask.NameToLayer("Floor");
+			layerItems = LayerMask.NameToLayer("Items");
+		}
+
 		// Our private data has to be public due to the use of the xmlserializer.
 		public InventoryItemId privateId;	
-		public Locations privateLocation = Locations.Inventory;	
+		public Locations privateLocation = Locations.Count;	
 		public Vector3 privatePosition = Vector3.zero;
+		public Vector3 privateRotation = Vector3.zero;
+		public int privateExtraData = 0;	// Stores for example whats inside a chest
+		public bool justSpawnedFromChest = false;
+
+		public int ExtraData
+		{
+			get
+			{
+				return privateExtraData;
+			}
+			set
+			{
+				privateExtraData = value;
+			}
+		}
 
 		public ItemDefinition Definition
 		{
@@ -64,37 +91,159 @@ public class Inventory
 		{
 		}
 
-		public void MoveTo(Locations location, Vector3 position)
+		public void UpdatePosAndRotFromTransform()
 		{
+			MoveTo (Location, Instance.transform.position, Instance.transform.localEulerAngles, justSpawnedFromChest);
+		}
+		
+		public void MoveTo(Locations location, Vector3 position, bool justSpawnedFromChest = false)
+		{
+			MoveTo (location, position, Vector3.zero, justSpawnedFromChest);
+		}
+
+		public void MoveTo(Locations location, Vector3 position, Vector3 rotation, bool justSpawnedFromChest = false)
+		{
+//			Debug.Log ("MoveTo " + location + " " + justSpawnedFromChest + " " + Definition.ItemType);
+			this.justSpawnedFromChest = justSpawnedFromChest;
 			Locations oldLoc = this.privateLocation;
+			GameObject go = Instance;
+			if (Definition.ItemType == PopupItemType.Box) {
+				rotation = Vector3.zero;
+				SpinObjectScript spin = go.GetComponent<SpinObjectScript> ();
+				if (!justSpawnedFromChest) {
+					position = Boxes.Snap (position);
+					if (location != Locations.Inventory) {
+						go.SetActive (true);	// We disable the item sometimes while in the inventory
+					}
+					scanItemHeightRequired = true;
+				}
+			} else 
+			{
+				Rigidbody rb = go.GetComponent<Rigidbody>();
+				if(rb != null)
+				{
+					rb.isKinematic = location == Locations.Inventory;
+				}
+			}
 			this.privateLocation = location;
 			this.privatePosition = position;
+			this.privateRotation = rotation;
 			SetTransform ();
+			if (oldLoc != location) 
+			{				
+				SetupLayer ();
+			}
 			if (onItemMoved != null) {
 				onItemMoved(this, oldLoc, location);
+			}
+		}
+
+		public void SetupLayer()
+		{			
+			if (Definition.ItemType == PopupItemType.Box) {
+				// Switch layer between UI and world cameras
+				SetLayer (Instance.transform, privateLocation == Locations.Inventory ? layerUI : layerFloor);
+			} else {
+				
+				SetLayer (Instance.transform, privateLocation == Locations.Inventory ? layerUI : layerItems);
+			}
+		}
+
+		static public void SetLayer(Transform tr, int layer)
+		{
+			tr.gameObject.layer = layer;
+			for(int i = tr.childCount -1; i >= 0; i--)
+			{
+				SetLayer(tr.GetChild(i), layer);
 			}
 		}
 
 		public void SetTransform()
 		{
 			GameObject instance = Instance;
-			instance.transform.parent = Inventory.roots[(int)privateLocation] != null ? Inventory.roots[(int)privateLocation].transform : null;
-			instance.transform.position = privatePosition;
-			instance.transform.localScale = new Vector3 (.1f, .1f, .1f);
+			SpinObjectScript spin = instance.GetComponent<SpinObjectScript>();
+			Transform newParent = Inventory.roots[(int)privateLocation] != null ? Inventory.roots[(int)privateLocation].transform : null;;
+			bool changeParent = newParent != instance.transform.parent;
+			if (changeParent) {
+				instance.transform.parent = newParent;
+			}
+
+			
+			Rigidbody rb = instance.GetComponent<Rigidbody>();
+			if (rb != null && !changeParent) 
+			{
+				rb.MovePosition(privatePosition);
+				rb.MoveRotation(Quaternion.Euler(privateRotation));
+				rb.velocity = Vector3.zero;
+			} else {
+				instance.transform.position = privatePosition;
+				instance.transform.localEulerAngles = privateRotation;
+			}
+			
+			if (Definition.ItemType == PopupItemType.Box)
+			{
+				if(justSpawnedFromChest)
+				{
+					instance.transform.localScale = new Vector3 (.1f, .1f, .1f);
+					if(spin == null)
+					{
+						spin = instance.AddComponent<SpinObjectScript>();
+					}
+				}
+				else
+				{
+					if(spin != null)
+					{
+						GameObject.Destroy(spin);
+					}
+					instance.transform.localScale = new Vector3 (.2f, .2f, .2f);
+				}
+			}
+			else if (Definition.ItemType == PopupItemType.Chest)
+			{
+				instance.transform.localScale = new Vector3 (.2f, .2f, .2f);
+			}
+			else
+			{
+				instance.transform.localScale = new Vector3 (.1f, .1f, .1f);
+			}
 		}
 
-		GameObject instance;
+		GameObject instance;		
+		Rigidbody instanceRBody;
 		public GameObject Instance
 		{
 			get
 			{
 				if (instance == null)
 				{
-					instance = Definition.Create(this);
+					instance = Definition.Create(this);					
+					instanceRBody = instance.GetComponent<Rigidbody> ();
+					if(instanceRBody != null)
+					{
+						instanceRBody.centerOfMass = Vector3.zero;
+					}
+					SetupLayer();
 				}
 				return instance;
 			}
 		}
+
+		
+		GameObject inventoryModel;
+		public GameObject InventoryModel
+		{
+			get
+			{
+				if (inventoryModel == null)
+				{
+					inventoryModel = Definition.Create(this, true);					
+					SetLayer(inventoryModel.transform, layerUI);
+				}
+				return inventoryModel;
+			}
+		}
+
 
 		// This should only be called by Inventory
 		public void DestroyInstance()
@@ -187,15 +336,13 @@ public class Inventory
 	public int EnsureWeOwn(InventoryItemId id, int count)
 	{
 		count -= GetNumItemsOwned(id);
-		if(count > 0)
+		int added = 0;
+		while (added < count) 
 		{
 			Add(id);
+			added++;
 		}
-		else
-		{
-			count = 0;
-		}
-		return count;
+		return added;
 	}
 
 	
@@ -213,10 +360,7 @@ public class Inventory
     {
 		Entry newEntry = new Entry (id);
 		privateAllItems.Add (newEntry);
-		
-		if (onItemMoved != null) {
-			onItemMoved(newEntry, Locations.Count, Locations.Inventory);
-		}
+		newEntry.MoveTo (Locations.Inventory, Vector3.zero);
 		return newEntry;
 	}
 	
@@ -237,6 +381,18 @@ public class Inventory
 			if(privateAllItems[i].Location == location)
 			{
 				privateAllItems[i].SetTransform();
+			}
+		}
+	}
+
+	// Used when animin is not hatched
+	public void PutAllItemsAway()
+	{		
+		for (int i = privateAllItems.Count - 1; i >= 0; i--) 
+		{
+			if(privateAllItems[i].Location != Locations.Inventory)
+			{
+				privateAllItems[i].MoveTo(Locations.Inventory, Vector3.zero);
 			}
 		}
 	}
@@ -262,4 +418,64 @@ public class Inventory
         }
 		return result;
     }
+
+	public void Update()
+	{
+		ScanItemHeights (false);
+	}
+
+	public static void ScanItemHeights(bool force = true)
+	{	
+		Inventory inv = ProfilesManagementScript.Instance.CurrentProfile.Inventory;
+		if (!force && !scanItemHeightRequired)
+		{
+			return;
+		}
+		
+		Locations curLoc = CurrentLocation;
+		// Go through all items and do a raycast to position thier height
+		int layerMask = Boxes.FloorLayerMask | LayerMask.GetMask ("IgnoreCollisionWithCharacter");
+		for (int i = inv.privateAllItems.Count - 1; i >= 0; i--) 
+		{
+			Entry e = inv.privateAllItems[i];
+			if(e.Location == curLoc && e.Definition.ItemType != PopupItemType.Box)
+			{
+				GameObject o = e.Instance;
+				Vector3 pos = o.transform.position;
+				pos.y += 1000;
+				RaycastHit hit;
+				
+				if (Physics.SphereCast(pos, 5, Vector3.down, out hit, float.MaxValue, layerMask))
+				{
+					pos.y = hit.point.y;
+                }
+				else
+				{
+					pos.y -= 1000;
+				}
+				Vector3 debug = pos;
+				debug.y += 1000;
+				Debug.DrawLine(pos, debug);
+				
+				Rigidbody rb = o.GetComponent<Rigidbody>();
+				if (o.transform.position.y < 0)//os.y > o.transform.position.y)
+				{
+					if(rb != null)
+					{
+						rb.MovePosition(pos);
+                    }
+					else
+					{
+                    	o.transform.position = pos;
+					}
+                }
+				if (rb != null)
+				{
+					rb.WakeUp();
+				}
+
+			}
+		}
+		scanItemHeightRequired = false;
+	}
 }

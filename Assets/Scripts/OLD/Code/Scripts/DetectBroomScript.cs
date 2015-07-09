@@ -33,7 +33,7 @@ public class DetectBroomScript : MonoBehaviour, IBeginDragHandler, IDragHandler,
 		child.transform.localPosition = Vector3.zero;
     }
     public void OnDrag(PointerEventData data)
-    {		
+    {
 		Debug.Log ("Main Camera: "+Camera.main.name);
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -41,7 +41,7 @@ public class DetectBroomScript : MonoBehaviour, IBeginDragHandler, IDragHandler,
         {
             Debug.Log("Broom Hit : ["+hit.collider.gameObject.name+"];");
         }
-        if(hit.collider.gameObject.CompareTag("Ground")) // Gross, check the floor layer
+		if(hit.collider.gameObject.CompareTag("Ground") || ((1<<hit.collider.gameObject.layer) & Boxes.FloorLayerMask) != 0) // Gross, check the floor layer
         {
             return;
         }

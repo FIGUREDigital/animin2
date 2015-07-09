@@ -10,6 +10,7 @@ GameObject:
   - 4: {fileID: 406414}
   - 65: {fileID: 6562196}
   - 114: {fileID: 11404682}
+  - 54: {fileID: 5483176}
   m_Layer: 0
   m_Name: item_album
   m_TagString: Items
@@ -41,7 +42,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 106414}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
-  m_LocalPosition: {x: 2828, y: 0, z: 0}
+  m_LocalPosition: {x: 1320, y: 0, z: 1320}
   m_LocalScale: {x: 20, y: 20, z: 20}
   m_Children:
   - {fileID: 473506}
@@ -55,7 +56,7 @@ Transform:
   m_GameObject: {fileID: 120082}
   m_LocalRotation: {x: 0, y: -1, z: 0, w: -1.62920685e-07}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4.25, y: 4.25, z: 4.25}
+  m_LocalScale: {x: 3.4000001, y: 3.4000001, z: 3.4000001}
   m_Children: []
   m_Father: {fileID: 406414}
   m_RootOrder: 0
@@ -90,6 +91,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 120082}
   m_Mesh: {fileID: 4300000, guid: 59158e2f118484745b6a69437b46943a, type: 3}
+--- !u!54 &5483176
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 106414}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 80
+  m_CollisionDetection: 0
 --- !u!65 &6562196
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -100,8 +116,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.1416235, y: .495429605, z: 1.42305267}
-  m_Center: {x: -.0140502928, y: .281127751, z: .00137460232}
+  m_Size: {x: 1.55962241, y: .717042565, z: 1.96438336}
+  m_Center: {x: -.0155151365, y: .363882065, z: 4.88230689e-05}
 --- !u!114 &11404682
 MonoBehaviour:
   m_ObjectHideFlags: 1

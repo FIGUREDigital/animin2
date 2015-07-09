@@ -10,6 +10,8 @@ public enum PopupItemType
 	Item,
 	Medicine,
 	Token,
+	Box,
+	Chest,
 	Count
 }
 
@@ -25,7 +27,8 @@ public enum MenuFunctionalityUI
 	Piano,
 	Alarm,
 	Radio,
-	ItemAlbum
+	ItemAlbum,
+	FartButton
 }
 
 public enum SpecialFunctionalityId
@@ -58,6 +61,7 @@ public class ItemDefinition : MonoBehaviour
 	
 	[SerializeField]
 	UnityEngine.Gradient gradient;
+
 
 	public SpecialFunctionalityId SpecialId
 	{
@@ -116,10 +120,18 @@ public class ItemDefinition : MonoBehaviour
 		}
 	}
 	
-	public GameObject Create(Inventory.Entry entry)
+	public GameObject Create(Inventory.Entry entry, bool asInventoryModel = false)
 	{
-		GameObject go = (GameObject)GameObject.Instantiate(gameObject);		
-		go.AddComponent<ItemLink>().item = entry;
+		GameObject go = (GameObject)GameObject.Instantiate(gameObject);
+		if (asInventoryModel) 
+		{
+			go.tag = "Untagged";
+		}
+		else
+		{
+			go.AddComponent<ItemLink> ().item = entry;
+		}
+
 		Destroy (go.GetComponent<ItemDefinition>());	// Remove this component and replace with the ItemLink
 		go.SetActive(true);
 		return go;

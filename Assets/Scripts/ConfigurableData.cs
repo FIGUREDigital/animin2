@@ -217,6 +217,7 @@ public class ConfigurableData : Phi.SingletonMonoBehaviour<ConfigurableData> {
 		yield return www;
 		
 		if (www.error != null) {
+			UnityEngine.Analytics.Analytics.CustomEvent("ConfigErr", new Dictionary<string, object>{{"error",www.error}});
 			Debug.Log (www.error);
 		} else {
 			using (TextReader reader = new StringReader(www.text))
@@ -224,6 +225,7 @@ public class ConfigurableData : Phi.SingletonMonoBehaviour<ConfigurableData> {
 				XmlSerializer bf = new XmlSerializer(typeof(GameData));
 				data = (GameData)bf.Deserialize(reader);
 				Save ();
+				UnityEngine.Analytics.Analytics.CustomEvent("ConfigUpdated", new Dictionary<string, object>{{"version",data.version}});
 				Debug.Log ("Updated GameData "+data.version);
 			}
 		}
@@ -257,9 +259,24 @@ public class ConfigurableData : Phi.SingletonMonoBehaviour<ConfigurableData> {
 	public void UpdateAfterPause(float minutes)
 	{
 		Debug.Log ("Update after " + minutes);
-		ProfilesManagementScript.Instance.CurrentAnimin.Health = UpdateStat (ProfilesManagementScript.Instance.CurrentAnimin.Health, data.health, minutes, "Health");
-		ProfilesManagementScript.Instance.CurrentAnimin.Hungry = UpdateStat (ProfilesManagementScript.Instance.CurrentAnimin.Hungry, data.hungry, minutes, "Hungry");
-		ProfilesManagementScript.Instance.CurrentAnimin.Fitness = UpdateStat (ProfilesManagementScript.Instance.CurrentAnimin.Fitness, data.fitness, minutes, "Fitness");
+		float newHealth = UpdateStat (ProfilesManagementScript.Instance.CurrentAnimin.Health, data.health, minutes, "Health");
+		float newHungry = UpdateStat (ProfilesManagementScript.Instance.CurrentAnimin.Hungry, data.hungry, minutes, "Hungry");
+		float newFitness = UpdateStat (ProfilesManagementScript.Instance.CurrentAnimin.Fitness, data.fitness, minutes, "Fitness");
+		ProfilesManagementScript.Instance.CurrentAnimin.Health = newHealth;
+		ProfilesManagementScript.Instance.CurrentAnimin.Hungry = newHungry;
+		ProfilesManagementScript.Instance.CurrentAnimin.Fitness = newFitness;
+
+
+		UnityEngine.Analytics.Analytics.CustomEvent ("Return", new Dictionary<string, object>{
+			{"duartion",minutes},
+			{"animin",ProfilesManagementScript.Instance.CurrentAnimin.PlayerAniminId},
+			{"age",ProfilesManagementScript.Instance.CurrentAnimin.Age},
+			{"health",ProfilesManagementScript.Instance.CurrentAnimin.Health},
+			{"newHealth",newHealth},
+			{"hungry",ProfilesManagementScript.Instance.CurrentAnimin.Hungry},
+			{"newHungry",newHungry},
+			{"fitness",ProfilesManagementScript.Instance.CurrentAnimin.Fitness},
+			{"newFitness",newFitness}});
 	}
 
 	float UpdateStat(float curValue, List<DeltaRate> deltas, float duration, string comment)

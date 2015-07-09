@@ -34,28 +34,27 @@ public class ChestScript : MonoBehaviour
         WeakMed,
         MediumMed,
         StrongMed,
+
+		NormalBox
     }
 
-    private ItemType[][] BronzeRewards = new ItemType[4][]
+    private ItemType[][] BronzeRewards = new ItemType[][]
     {
-        new ItemType[]{ ItemType.Zef, ItemType.WeakFood },
-        new ItemType[]{ ItemType.WeakFood },
 		new ItemType[]{ ItemType.WeakFood, ItemType.WeakFood },
-        new ItemType[]{ ItemType.Zef, ItemType.WeakMed }
+		new ItemType[]{ ItemType.WeakFood, ItemType.WeakMed, ItemType.NormalBox },
+		new ItemType[]{ ItemType.WeakFood, ItemType.NormalBox }
     };
-    private ItemType[][] SilverRewards = new ItemType[4][]
+    private ItemType[][] SilverRewards = new ItemType[][]
     {
-		new ItemType[]{ ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.MediumMed },
-        new ItemType[]{ ItemType.Zef, ItemType.Zef, ItemType.MediumFood },
-		new ItemType[]{ ItemType.Zef, ItemType.WeakFood, ItemType.MediumFood },
-		new ItemType[]{ ItemType.Zef, ItemType.MediumFood, ItemType.MediumFood  }
+		new ItemType[]{ ItemType.MediumFood, ItemType.StrongFood, ItemType.NormalBox, ItemType.Zef },
+		new ItemType[]{ ItemType.MediumFood, ItemType.MediumMed, ItemType.NormalBox, ItemType.Zef },
+		new ItemType[]{ ItemType.MediumFood, ItemType.Zef }
     };
-    private ItemType[][] GoldRewards = new ItemType[4][]
+    private ItemType[][] GoldRewards = new ItemType[][]
     {
-		new ItemType[]{ ItemType.StrongFood, ItemType.MediumFood, ItemType.StrongMed, ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.Zef },
-        new ItemType[]{ ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.StrongFood },
-		new ItemType[]{ ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.MediumFood, ItemType.StrongFood, ItemType.StrongFood },
-        new ItemType[]{ ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.Zef, ItemType.MediumFood, ItemType.MediumFood }
+		new ItemType[]{ ItemType.StrongFood, ItemType.StrongFood, ItemType.Zef, ItemType.NormalBox},
+		new ItemType[]{ ItemType.StrongFood, ItemType.StrongMed, ItemType.Zef, ItemType.NormalBox},
+		new ItemType[]{ ItemType.StrongFood, ItemType.Zef, ItemType.NormalBox, ItemType.Zef}
     };
 
     InventoryItemId[] StrongFoods = new InventoryItemId[]{
@@ -82,6 +81,12 @@ public class ChestScript : MonoBehaviour
         InventoryItemId.watermelon,
         InventoryItemId.Carrot
     };
+
+	
+	InventoryItemId[] NormalBoxes = new InventoryItemId[]{
+		InventoryItemId.Box1,
+		InventoryItemId.Box2
+	};
 
     InventoryItemId[] StrongMeds = new InventoryItemId[]{ InventoryItemId.Pill };
     InventoryItemId[] MediumMeds = new InventoryItemId[]{ InventoryItemId.Pill };
@@ -142,7 +147,12 @@ public class ChestScript : MonoBehaviour
                     if (Timer <= 0)
                     {
                         CharacterProgressScript progressScript = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>();
-					
+						// Disable chest box collider so that items canr come out of it
+						BoxCollider bc = GetComponent<BoxCollider>();
+						if(bc != null)
+						{
+							bc.enabled = false;
+						}
 
                         ItemType[][] items = BronzeRewards;
                         switch (m_ChestType)
@@ -164,15 +174,16 @@ public class ChestScript : MonoBehaviour
                         for (int i = 0; i < length; ++i)
                         {
                             GameObject zef = null;
+							ItemType t = items[cur][i];
 
                             if (m_ChestType == ChestType.Evo)
                             {
-								zef = progressScript.SpawnStageItem(GetComponent<EvolutionChestItem>().id, Vector3.zero, true);
+								zef = progressScript.SpawnStageItem((InventoryItemId)GetComponent<ItemLink>().item.ExtraData, transform.position, true);
                             }
-                            else if (items[cur][i] != ItemType.Zef)
+                            else if (t != ItemType.Zef)
                             {
                                 InventoryItemId[] types = new InventoryItemId[]{ };
-                                switch (items[cur][i])
+                                switch (t)
                                 {
                                     case (ItemType.StrongFood):
                                         {
@@ -204,13 +215,20 @@ public class ChestScript : MonoBehaviour
                                         {
                                             types = WeakMeds;
                                         }
-                                        break;
+										break;
+									case (ItemType.NormalBox):
+										{
+											types = NormalBoxes;
+										}
+										break;
                                 }
-								zef = progressScript.SpawnStageItem(types[Random.Range(0, types.Length)], Vector3.zero);
+						
+								//zef = progressScript.SpawnStageItem(InventoryItemId.Box1, Vector3.zero);
+								zef = progressScript.SpawnStageItem(types[Random.Range(0, types.Length)], transform.position);
                             }
                             else
                             {
-								zef = progressScript.SpawnStageItem(InventoryItemId.Zef, Vector3.zero);
+								zef = progressScript.SpawnStageItem(InventoryItemId.Zef, transform.position);
                             }
 
                             SpinObjectScript spinScript = zef.GetComponent<SpinObjectScript>();
@@ -218,88 +236,26 @@ public class ChestScript : MonoBehaviour
                             {
                                 spinScript.enabled = false;
                             }
-                            zef.transform.parent = Coins[i].transform.GetChild(0).transform;
-                            zef.transform.localPosition = Vector3.zero;	
+                            //zef.transform.parent = Coins[i].transform.GetChild(0).transform;
+							float a = 2 * Mathf.PI * (i + Random.Range(-0.35f, 0.35f)) / (float)length;
+							Vector3 pos = zef.transform.position;
+							pos.y += 30;
+							zef.transform.position = pos;
+							ThrowAnimationScript.Throw(zef, new Vector3(Mathf.Sin (a), 0, Mathf.Cos (a)), 30);
                             //zef.transform.localScale *= 0.8f;
-
-                            Coins[i].transform.rotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
-                            Coins[i].GetComponent<Animator>().SetBool("play", true);
-                            Coins[i] = zef;
-                            Coins[i].tag = "Untagged";
-
-                            //Coins[i].transform.localScale = new Vector3(12, 12, 12);
 						
                         }
 
                         Timer = 4;
-                        State = AnimationStateId.LidOpened;
+						State = AnimationStateId.ThrowItemsOut;
+						// Remove from inventory
+						ProfilesManagementScript.Instance.CurrentProfile.Inventory.Remove(GetComponent<ItemLink>().item);
 
                         UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerAdHoc("Prize");
                     }
 
 				
 
-                    break;
-                }
-            case AnimationStateId.LidOpened:
-                {
-
-//			for(int i=0;i<Coins.Length;++i)
-//			{
-//				if(Coins[i] == null) continue;
-//
-//				//if(Coins[i].GetComponent<Animator>().
-//			}
-
-                    //Timer -= Time.deltaTime;
-                    //if(Timer <= 0)
-                    {
-                        int counter = 0;
-                        for (int i = 0; i < Coins.Length; ++i)
-                        {
-                            if (Coins[i] == null || Coins[i].transform.parent.transform.parent.GetComponent<Animator>() == null)
-                            {
-                                counter++;
-                                continue;
-                            }
-
-                            AnimatorStateInfo stateInfo = Coins[i].transform.parent.transform.parent.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0);
-
-                            if (stateInfo.length <= 1)
-                                continue;
-
-                            Debug.Log(stateInfo.normalizedTime.ToString());
-                            //Debug.Log(stateInfo.length.ToString());
-
-                            if (Coins[i].transform.parent.transform.parent.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
-                            {
-                                SpinObjectScript spinScript = Coins[i].GetComponent<SpinObjectScript>();
-                                if (spinScript != null)
-                                {
-                                    spinScript.enabled = true;
-                                    Coins[i].GetComponent<SpinObjectScript>().SetRotationAngle();
-                                }
-
-							
-                                Coins[i].transform.parent = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().ActiveWorld.transform;	
-								ItemLink il = Coins[i].GetComponent<ItemLink>();
-								if (il != null)
-								{
-									il.item.MoveTo(Inventory.CurrentLocation, Coins[i].transform.position);
-								}							
-                                Coins[i].tag = "Items";
-                                Coins[i] = null;
-                            }
-                        }
-					
-                        if (counter == Coins.Length)
-                        {
-                            State = AnimationStateId.ThrowItemsOut;
-                            Timer = 3;
-				
-                        }
-                    }
-	
                     break;
                 }
 

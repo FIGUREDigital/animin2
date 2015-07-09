@@ -6,7 +6,6 @@ using TMPro;
 
 public class InventoryControls : MonoBehaviour 
 {
-	private const string PREFAB_PATH = "Prefabs/UI/ItemButton";
 	[SerializeField]
 	private TextMeshProUGUI m_InventoryLabel;
 	public TextMeshProUGUI InventoryLabel
@@ -102,14 +101,15 @@ public class InventoryControls : MonoBehaviour
 			ids.Add (def.Id);
 			
 			InventoryItemControls button;
-			if(m_CurrentDisplayed.Count == 0)
+			/*if(m_CurrentDisplayed.Count == 0)
 			{
 				itemButton.SetActive(true);
 				button = itemButton.GetComponent<InventoryItemControls>();
 			}
-			else
+			else*/
 			{
 				button = ((GameObject)Instantiate(itemButton)).GetComponent<InventoryItemControls>();
+				button.gameObject.SetActive(true);
 			}
 			button.Item = entry;
 			button.caringPage = m_CaringPage;

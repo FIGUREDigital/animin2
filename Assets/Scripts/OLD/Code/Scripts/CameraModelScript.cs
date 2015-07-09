@@ -9,9 +9,23 @@ public class CameraModelScript : Phi.SingletonMonoBehaviour<CameraModelScript>
 	}
 
 	bool destroyAtEnd = false;
-
+	
+	int oldLayer;
 	public void SetDragging(GameObject go, bool destroyAtEnd = true)
 	{
+		if (transform.childCount > 0) 
+		{
+			if(transform.GetChild(0).gameObject.layer == 0)
+			{
+				Inventory.Entry.SetLayer(transform.GetChild(0), oldLayer);
+			}
+		}
+
+		if (go != null) 
+		{
+			oldLayer = go.layer;
+			Inventory.Entry.SetLayer(go.transform, 0);
+		}
 		//Debug.Log ("CameraModelScript SetDraggin: " + (go == null ? "null" : go.name));
 		if (transform.childCount > 0) 
 		{

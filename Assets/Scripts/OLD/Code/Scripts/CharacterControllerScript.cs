@@ -10,10 +10,7 @@ public class CharacterForces
 
 public class CharacterControllerScript : MonoBehaviour //Photon.MonoBehaviour 
 {
-
-
-
-    public Camera CameraRef;
+	public Camera CameraRef;
 
     /*enum CharacterState
     {
@@ -584,13 +581,13 @@ public class CharacterControllerScript : MonoBehaviour //Photon.MonoBehaviour
             else if (itemType == PopupItemType.Food && ProfilesManagementScript.Instance.CurrentAnimin.Hungry < CharacterProgressScript.ConsideredHungryLevels)
             {
                 this.GetComponent<CharacterProgressScript>().PickupItem(hit.gameObject);
-                this.GetComponent<CharacterProgressScript>().CurrentAction = ActionId.EatItem;
+				this.GetComponent<CharacterProgressScript>().Eat();//CurrentAction = ActionId.EatItem;
 
             }
             else if (this.GetComponent<CharacterProgressScript>().ShouldThrowObjectAfterPickup)
             {
                 this.GetComponent<CharacterProgressScript>().PickupItem(hit.gameObject/*.GetComponent<ReferencedObjectScript>().Reference.GetComponent<UIPopupItemScript>()*/);
-                this.GetComponent<CharacterProgressScript>().CurrentAction = ActionId.ThrowItemAfterPickup;
+				this.GetComponent<CharacterProgressScript>().Throw();//CurrentAction = ActionId.ThrowItemAfterPickup;
 
             }
             else
@@ -667,10 +664,12 @@ public class CharacterControllerScript : MonoBehaviour //Photon.MonoBehaviour
 
     public void RotateToLookAtPoint(Vector3 worldPoint)
     {
+		Vector3 delta = worldPoint - transform.position;
+		delta.y = 0;
         //float angle = Vector3.Angle(transform.forward, Vector3.Normalize(worldPoint - transform.position));
 //		Debug.Log("ANGLE: " + angle.ToString());
 
-        RotateDirectionLookAt = Quaternion.LookRotation(Vector3.Normalize(worldPoint - transform.position));
+        RotateDirectionLookAt = Quaternion.LookRotation(Vector3.Normalize(delta));
         //	transform.Rotate(new Vector3(0, angle, 0));
     }
 

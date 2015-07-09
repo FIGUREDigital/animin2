@@ -20,9 +20,13 @@ public class InventoryItemUIIcon : MonoBehaviour {
 	public Image icon;
 	public GameObject noIcon;
 	public UIGradientPro gradient;
+	public GameObject modelParent;
 	public PopupItemType[] acceptedItemTypes = new PopupItemType[0];	// Null or 0 items = all types
+	public bool useInventoryModel = false;
 	private Inventory.Entry item;
 	private ItemDefinition itemDef;
+	private GameObject model;
+	private bool showHide = true;
 	virtual public Inventory.Entry Item
 	{
 		set
@@ -35,6 +39,23 @@ public class InventoryItemUIIcon : MonoBehaviour {
 			{
                 il.item = value;
             }
+			
+			if (model != null && model.transform.parent != null && model.transform.parent.gameObject == modelParent)
+			{
+				model.transform.parent = null;
+				model.SetActive(false);
+				model = null;
+			}
+			if(modelParent != null && itemDef != null && itemDef.SpriteName == null)
+			{
+				model = useInventoryModel ? item.InventoryModel : item.Instance;
+				model.SetActive (true);
+				modelParent.SetActive(showHide);
+				model.transform.parent = modelParent.transform;
+				model.transform.localPosition = Vector3.zero;
+				model.transform.localScale = Vector3.one;
+				model.transform.localRotation = Quaternion.identity;
+			}
         }
         get
 		{
@@ -47,6 +68,10 @@ public class InventoryItemUIIcon : MonoBehaviour {
 	{
 		set
 		{
+			if(modelParent != null)
+			{
+				modelParent.SetActive(false);
+			}
 			itemDef = value;
 			icon.gameObject.SetActive (itemDef != null);
 			if (itemDef == null)
@@ -76,8 +101,12 @@ public class InventoryItemUIIcon : MonoBehaviour {
 
 	public void ShowHide(bool show)
 	{		
+		showHide = show;
 		icon.enabled = show;
 		GetComponent<UIImagePro> ().enabled = show;
+		if (modelParent != null) {
+			modelParent.SetActive (show && (model != null));
+		}
 	}
 
 }

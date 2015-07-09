@@ -142,13 +142,16 @@ public class ShopManager
 	}
 
 #if UNITY_IOS
+
+	static List<StoreKitProduct> productsList;
+
     private void productListReceivedEvent( List<StoreKitProduct> productList )
     {
         Debug.Log( "productListReceivedEvent. total products received: " + productList.Count );
-
+		productsList = productList;
         // print the products to the console
-//        foreach( StoreKitProduct product in productList )
-//            Debug.Log( product.ToString() + "\n" );
+        foreach( StoreKitProduct product in productList )
+            Debug.Log( product.ToString() + "\n" );
 
         if(productList.Count > 0 && !mShopReady)
 		{
@@ -200,9 +203,51 @@ public class ShopManager
 				
 
 #if UNITY_IOS
-	void purchaseSuccessful( StoreKitTransaction transaction )
+	StoreKitProduct GetProduct(string id)
 	{
-		
+		if (productsList != null) {
+			for (int i = 0; i < productsList.Count; i++) {
+				if (productsList [i].productIdentifier == id) {
+					return productsList [i];
+				}
+			}
+		}
+		return null;
+	}
+	public string GetPrice(string id)
+	{
+
+		StoreKitProduct p = GetProduct (id);
+		if (p != null) 
+		{
+			Debug.Log ("GetPrice " + id +" found "+p.formattedPrice);
+			return p.formattedPrice;
+		}
+		Debug.Log ("GetPrice " + id +" not found");
+		return "£1.99";
+	}
+	void purchaseSuccessful( StoreKitTransaction transaction )
+	{		
+		Debug.Log ("Purchase " + transaction.productIdentifier + " " + productsList.Count);
+		StoreKitProduct product = null;
+		if (productsList != null) {
+			for (int i = 0; i < productsList.Count; i++) {
+				if (productsList [i].productIdentifier == transaction.productIdentifier) {
+					product = productsList [i];
+					break;
+				}
+			}
+		}
+
+		if (product != null) {
+			
+			Debug.Log ("Cost " + product.price+" "+product.currencyCode);
+			decimal cost = 0;
+			decimal.TryParse (product.price, out cost);
+			UnityEngine.Analytics.Analytics.Transaction (transaction.productIdentifier, cost, product.currencyCode, transaction.base64EncodedTransactionReceipt, "");
+		} else {
+			UnityEngine.Analytics.Analytics.Transaction (transaction.productIdentifier, 0, "GBP");
+		}
         if( CurrentRestoreStatus == RestoreStatus.InProgress || CurrentRestoreStatus == RestoreStatus.Success )
         {
 
@@ -215,6 +260,11 @@ public class ShopManager
 	}
 
 #elif UNITY_ANDROID
+	
+	public void GetPrice(string id)
+	{
+		return "£1.99";
+	}
     void purchaseSucceededEvent(GooglePurchase purchase)
     {
         CurrentPurchaseStatus = PurchaseStatus.Success;

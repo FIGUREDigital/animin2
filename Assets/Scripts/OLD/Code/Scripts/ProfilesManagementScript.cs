@@ -271,14 +271,17 @@ public class ProfilesManagementScript : Phi.SingletonMonoBehaviour<ProfilesManag
         StartCoroutine(Account.Instance.WWCheckPurchaseCode(code));
     }
 
-    public void OnAccessCodeResult(string resultId)
+    public void OnAccessCodeResult(string code, string resultId)
     {
         Debug.Log("Access code result is... "+resultId);
-		if(resultId.StartsWith("Card successfully activated") || resultId.StartsWith("Animin already activated"))
-        {
-			UnlockCharacterManager.Instance.UnlockCharacter();
-			UiPages.Next(Pages.AniminSelectPage);
-        }
+		if (resultId.StartsWith ("Card successfully activated") || resultId.StartsWith ("Animin already activated")) {
+			UnlockCharacterManager.Instance.UnlockCharacter ();
+			UiPages.Next (Pages.AniminSelectPage);
+			UnityEngine.Analytics.Analytics.CustomEvent ("CodeSuccess", new Dictionary<string, object>{{"code",code},{"result",resultId}});
+
+		} else {
+			UnityEngine.Analytics.Analytics.CustomEvent ("CodeFail", new Dictionary<string, object>{{"code",code},{"result",resultId}});
+		}
         if(resultId.StartsWith ("Card number not valid"))
         {
 			
@@ -404,6 +407,9 @@ public class ProfilesManagementScript : Phi.SingletonMonoBehaviour<ProfilesManag
             Debug.Log("Loading New level");
             StartCoroutine(LoadLevel(@"ARBase"));
         }
+		if (ProfilesManagementScript.Instance.CurrentProfile != null) { 
+			ProfilesManagementScript.Instance.CurrentProfile.Inventory.Update ();
+		}
 	}
 	AsyncOperation async;
 	

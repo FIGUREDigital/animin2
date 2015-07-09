@@ -12,6 +12,9 @@ public class ItunesButtonUpdate : MonoBehaviour
 	private GameObject mKelseyHeader;
 	[SerializeField]
 	private GameObject mMandiHeader;
+	[SerializeField]
+	private UIText mPriceText;
+
 
 	private bool mRegistered;
 
@@ -21,8 +24,12 @@ public class ItunesButtonUpdate : MonoBehaviour
 
 	void OnEnable()
 	{
+		
+		Debug.Log ("OnEnable " + ProfilesManagementScript.Instance.AniminToUnlockId);
 		RegisterListeners();
-        SetCharacterIcons(ProfilesManagementScript.Instance.AniminToUnlockId);
+		SetCharacterIcons(ProfilesManagementScript.Instance.AniminToUnlockId);	
+		Debug.Log ("OnEnable2 " + ProfilesManagementScript.Instance.AniminToUnlockId);	
+		mPriceText.Text = UnlockCharacterManager.Instance.GetPrice(ProfilesManagementScript.Instance.AniminToUnlockId);
 	}
 	
 	void OnDisable()
@@ -48,7 +55,8 @@ public class ItunesButtonUpdate : MonoBehaviour
             case PersistentData.TypesOfAnimin.Pi:
 			mPiHeader.SetActive(true);
 			break;
-            case PersistentData.TypesOfAnimin.TboAdult:
+			case PersistentData.TypesOfAnimin.TboAdult:
+			case PersistentData.TypesOfAnimin.Tbo:
 			mTboHeader.SetActive(true);
 			break;
             case PersistentData.TypesOfAnimin.Kelsey:
@@ -74,8 +82,8 @@ public class ItunesButtonUpdate : MonoBehaviour
 	void GoToAddress()
 	{
 		Debug.Log ("Going to address screen");
-		UiPages.Next (Pages.AddressInputPage);
-		//UnregisterListeners ();
+		ReturnToMainScreen ();
+		//UiPages.Next (Pages.AddressInputPage);
 	}
 	void restoreTransactionsFailed( string error )
 	{

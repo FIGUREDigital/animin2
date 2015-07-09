@@ -105,12 +105,13 @@ public class ConversionBehaviour : MonoBehaviour
 
 	static public void PlayVideo (bool force)
 	{
-		if(force || newSession)
+		return;
+		/*if(force || newSession)
 		{
 			playVideo = true;
 			newSession = false;
 			startConversion = true;
 			fadeAlpha = true;
-		}
+		}*/
 	}
 }

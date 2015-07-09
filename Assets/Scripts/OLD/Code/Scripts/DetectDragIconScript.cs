@@ -34,8 +34,9 @@ public class DetectDragIconScript : MonoBehaviour, IBeginDragHandler, IEndDragHa
 		//CameraModelScript.Instance.SpriteRef = this.gameObject;
 
 		GameObject child = refScript.item.Instance;
+		CharacterProgressScript.SwitchGravity (child, false);
 
-		child.GetComponent<BoxCollider>().enabled = false;
+//		child.GetComponent<BoxCollider>().enabled = false;
 
 		CameraModelScript.Instance.SetDragging(child, false);
         MainARHandler.Instance.CurrentItem = child;

@@ -353,8 +353,15 @@ public class CharacterProgressScript : MonoBehaviour
         animationController = GetComponent<AnimationControllerScript>();
         CurrentAction = ActionId.EnterSleep;
 
-		ProfilesManagementScript.Instance.CurrentProfile.Inventory.SetLocationRoot(Inventory.Locations.AR, UIGlobalVariablesScript.Singleton.ARWorldRef);
-		ProfilesManagementScript.Instance.CurrentProfile.Inventory.SetLocationRoot(Inventory.Locations.NonAR, UIGlobalVariablesScript.Singleton.NonARWorldRef);
+		if (!ProfilesManagementScript.Instance.CurrentAnimin.Hatched)
+		{
+			ProfilesManagementScript.Instance.CurrentProfile.Inventory.PutAllItemsAway();
+		}
+		else
+		{
+			ProfilesManagementScript.Instance.CurrentProfile.Inventory.SetLocationRoot(Inventory.Locations.AR, UIGlobalVariablesScript.Singleton.ARWorldRef);
+			ProfilesManagementScript.Instance.CurrentProfile.Inventory.SetLocationRoot(Inventory.Locations.NonAR, UIGlobalVariablesScript.Singleton.NonARWorldRef);
+		}
     }
 
 

@@ -385,6 +385,18 @@ public class Inventory
 		}
 	}
 
+	// Used when animin is not hatched
+	public void PutAllItemsAway()
+	{		
+		for (int i = privateAllItems.Count - 1; i >= 0; i--) 
+		{
+			if(privateAllItems[i].Location != Locations.Inventory)
+			{
+				privateAllItems[i].MoveTo(Locations.Inventory, Vector3.zero);
+			}
+		}
+	}
+
 	public void Remove(Entry entry)
 	{
 		privateAllItems.Remove(entry);

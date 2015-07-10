@@ -71,7 +71,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleIdentifier: com.do.dog
+  bundleIdentifier: com.figuredigital.animin
   bundleVersion: 2.0.72
   preloadedAssets: []
   metroEnableIndependentInputSource: 0
@@ -79,7 +79,7 @@ PlayerSettings:
   xboxOneDisableKinectGpuReservation: 0
   virtualRealitySupported: 0
   productGUID: 24672a43cd39a4c73bfa1812abab8bc3
-  AndroidBundleVersionCode: 44
+  AndroidBundleVersionCode: 47
   AndroidMinSdkVersion: 16
   AndroidPreferredInstallLocation: 0
   aotOptions: 
@@ -127,12 +127,12 @@ PlayerSettings:
   iOSLaunchScreenFillPct: 100
   iOSLaunchScreenSize: 100
   iOSLaunchScreenCustomXibPath: 
-  AndroidTargetDevice: 3
-  AndroidSplashScreenScale: 0
-  androidSplashScreen: {fileID: 0}
+  AndroidTargetDevice: 0
+  AndroidSplashScreenScale: 2
+  androidSplashScreen: {fileID: 2800000, guid: 1e692eff44c9e43788fd5649dd2863e2, type: 3}
   AndroidKeystoreName: Animin.keystore
   AndroidKeyaliasName: animin
-  AndroidTVCompatibility: 1
+  AndroidTVCompatibility: 0
   AndroidIsGame: 1
   androidEnableBanner: 1
   m_AndroidBanners:
@@ -309,7 +309,7 @@ PlayerSettings:
     4: VUFORIA_IOS_SETTINGS;DEBUGCHEATS;DOTWEEN_TMP
     5: DOTWEEN_TMP
     6: DOTWEEN_TMP
-    7: VUFORIA_ANDROID_SETTINGS;DEBUGCHEATS;DOTWEEN_TMP
+    7: VUFORIA_ANDROID_SETTINGS;DOTWEEN_TMP
     9: DOTWEEN_TMP
     11: DOTWEEN_TMP
     12: DOTWEEN_TMP
@@ -437,14 +437,18 @@ PlayerSettings:
   XboxOneAllowedProductIds: []
   XboxOnePersistentLocalStorageSize: 0
   intPropertyNames:
+  - Metro::ScriptingBackend
   - Standalone::ScriptingBackend
+  - WP8::ScriptingBackend
   - WebGL::ScriptingBackend
   - WebGL::audioCompressionFormat
   - WebGL::exceptionSupport
   - WebGL::memorySize
   - iOS::Architecture
   - iOS::ScriptingBackend
+  Metro::ScriptingBackend: 2
   Standalone::ScriptingBackend: 0
+  WP8::ScriptingBackend: 2
   WebGL::ScriptingBackend: 1
   WebGL::audioCompressionFormat: 4
   WebGL::exceptionSupport: 0

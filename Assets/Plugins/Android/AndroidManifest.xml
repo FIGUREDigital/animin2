@@ -4,7 +4,7 @@
 
   <uses-feature android:name="android.hardware.camera" />
   <uses-feature android:name="android.hardware.camera.autofocus" />
-  <uses-feature android:name="android.hardware.sensor.ACCELEROMETER" />
+  <!--<uses-feature android:name="android.hardware.sensor.ACCELEROMETER" />-->
   <application android:theme="@android:style/Theme.NoTitleBar.Fullscreen" android:icon="@drawable/app_icon" android:label="@string/app_name" android:debuggable="true">
     <activity android:name="com.prime31.UnityPlayerActivity" android:label="@string/app_name" android:screenOrientation="sensorLandscape">
       <intent-filter>

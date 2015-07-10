@@ -260,11 +260,35 @@ public class ShopManager
 	}
 
 #elif UNITY_ANDROID
-	
-	public void GetPrice(string id)
-	{
-		return "£1.99";
-	}
+
+
+    GoogleSkuInfo GetProduct(string id)
+    {
+        if (skus != null)
+        {
+            for (int i = 0; i < skus.Count; i++)
+            {
+                if (skus[i].productId == id)
+                {
+                    return skus[i];
+                }
+            }
+        }
+        return null;
+    }
+    public string GetPrice(string id)
+    {
+
+        GoogleSkuInfo p = GetProduct(id);
+        if (p != null)
+        {
+            Debug.Log("GetPrice " + id + " found " + p.price);
+            return p.price;
+        }
+        Debug.Log("GetPrice " + id + " not found");
+        return "£1.99";
+    }
+
     void purchaseSucceededEvent(GooglePurchase purchase)
     {
         CurrentPurchaseStatus = PurchaseStatus.Success;
@@ -281,8 +305,10 @@ public class ShopManager
         Debug.Log("consumePurchaseFailedEvent: " + error);
     }
 
+    List<GoogleSkuInfo> skus = null;
     private void queryInventorySucceededEvent( List<GooglePurchase> purchases, List<GoogleSkuInfo> skus )
     {
+        this.skus = skus;
         Debug.Log( "queryInventorySucceededEvent" );
         //GUIDebug.Log("queryInventorySucceededEvent");
         Prime31.Utils.logObject( purchases );

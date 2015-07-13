@@ -391,6 +391,7 @@ public class CharacterProgressScript : MonoBehaviour
 		*/
 		
 		ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeOwn(InventoryItemId.ItemAlbum, 1);
+		ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeOwn(InventoryItemId.Strawberry, 2);
 //		ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeOwn(InventoryItemId.FartButton, 1);
 //		ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeOwn(InventoryItemId.Box1, 10);
 //		ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeOwn(InventoryItemId.Box2, 5);
@@ -1460,8 +1461,8 @@ public class CharacterProgressScript : MonoBehaviour
                             RequestedToMoveToCounter = 0;
                         }
                     }
-                    else
-                    {
+					else if(!animationController.IsSleeping)
+			        {
                         if (!IsMovingTowardsLocation && !animationController.IsWakingUp && ObjectHolding == null && ProfilesManagementScript.Instance.CurrentAnimin.Hungry <= ConsideredHungryLevels && !animationController.IsTickled)
                         {
                             //Debug.Log("Famished!");

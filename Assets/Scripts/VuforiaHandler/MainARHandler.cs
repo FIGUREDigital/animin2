@@ -319,7 +319,8 @@ public class MainARHandler : MonoBehaviour
             Debug.Log("PauseJumpOutIntoAR");
             m_CameraUnlock = true;
 
-            UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.localPosition = new Vector3(0, 0.01f, 0);
+			UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.localPosition = new Vector3(0, 0.01f, 0);
+			UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.position = FindFlatArea();
             UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.rotation = Quaternion.Euler(0, 180, 0);
             UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.localScale = new Vector3(0.035f, 0.035f, 0.035f);
             UIGlobalVariablesScript.Singleton.Shadow.transform.localScale = new Vector3(0.46f, 0.46f, 0.46f);
@@ -338,7 +339,7 @@ public class MainARHandler : MonoBehaviour
             UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.parent = UIGlobalVariablesScript.Singleton.ARSceneRef.transform;
             m_CameraUnlock = true;
             //SavedARPosition.y = 0;
-            UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.localPosition = new Vector3(0, 0.01f, 0);
+			UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.position = FindFlatArea();
             UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.rotation = Quaternion.Euler(0, 180, 0);
             UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.localScale = new Vector3(0.035f, 0.035f, 0.035f);
             UIGlobalVariablesScript.Singleton.Shadow.transform.localScale = new Vector3(0.46f, 0.46f, 0.46f);
@@ -356,6 +357,27 @@ public class MainARHandler : MonoBehaviour
         }
     }
 
+	static public Vector3 FindFlatArea()
+	{
+		CharacterProgressScript cpScript = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript> ();
+		bool sleepBoundingBoxEnabled = cpScript.SleepBoundingBox.activeSelf;
+		cpScript.SleepBoundingBox.SetActive (false);
+
+		CharacterSwapManagementScript csmScript = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterSwapManagementScript> ();
+		bool eggActive = csmScript.CurrentEgg != null && csmScript.CurrentEgg.activeSelf;
+		if(eggActive)
+		{
+			csmScript.CurrentEgg.SetActive (false);
+		}
+		Vector3 sleepPos = Boxes.FindSpawnPoint (3, true, Boxes.size * 0.47f);		
+		cpScript.SleepBoundingBox.SetActive (sleepBoundingBoxEnabled);
+		if(eggActive)
+		{
+			csmScript.CurrentEgg.SetActive (true);
+		}
+		return sleepPos;
+	}
+
     public void OnCharacterEnterNonARScene(bool SkipAnimation = false)
     {
         Debug.Log("OnCharacterEnterNonARScene");
@@ -365,7 +387,9 @@ public class MainARHandler : MonoBehaviour
             UIGlobalVariablesScript.Singleton.ARCameraComponent.transform.rotation = Quaternion.Euler(14.73474f, 0.0f, 0.0f);
 
         UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.parent = UIGlobalVariablesScript.Singleton.NonSceneRef.transform;
-        UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.localPosition = new Vector3(0, 0.01f, 0);
+
+		UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.position = FindFlatArea ();
+
         UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.rotation = Quaternion.Euler(0, 180, 0);
         UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.localScale = new Vector3(0.035f, 0.035f, 0.035f);
         UIGlobalVariablesScript.Singleton.Shadow.transform.localScale = new Vector3(0.46f, 0.46f, 0.46f);

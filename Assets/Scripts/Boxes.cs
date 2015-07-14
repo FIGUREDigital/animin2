@@ -100,27 +100,65 @@ public class Boxes : MonoBehaviour {
 	
 	static List<Vector3> possibleLocations = new List<Vector3> ();
 
-	static public Vector3 FindSpawnPoint(int avoidEdgesBy = 0)
+	static public Vector3 FindSpawnPoint(int avoidEdgesBy = 0, bool closestToCenter = false, float radius = 0)
 	{
 		possibleLocations.Clear ();
-		float dim = (WorldSize-1 - (float)avoidEdgesBy*2) * size * 0.5f;
+		float ws = WorldSize;
+		if (ws > 11) 
+		{
+			ws = 11;
+		}
+		float dim = (ws-1 - (float)avoidEdgesBy*2) * size * 0.5f;
 		RaycastHit hit;
 		Vector3 pos;
 		pos.y = 1000;
 		float bestHeight = 2000;
+		int mask = -1 ^ LayerMask.GetMask ("Character");
 		for (float x = - dim; x <= dim; x+= size) 
 		{
 			pos.x = x;
+			float lastY = -1000;
+			float lastY2 = -2000;
 			for (float z = - dim; z <= dim; z+= size) 
 			{
 				pos.z = z;
-				if(Physics.Raycast(pos, Vector3.down, out hit, Mathf.Infinity))
+				bool hitSomething = false;
+				if (radius == 0)
+				{
+					hitSomething = Physics.Raycast(pos, Vector3.down, out hit, Mathf.Infinity, mask);
+				}
+				else
+				{
+					hitSomething = Physics.SphereCast(pos, radius, Vector3.down, out hit, Mathf.Infinity, mask);
+				}
+				if(hitSomething)
 				{
 					float y = hit.point.y;
 					if (((1<<hit.collider.gameObject.layer) & FloorLayerMask) == 0)
 					{
-						y += 1000;
+						y += 3000;
 					}
+					
+					float thisY = y;
+					float zOffset = 0;
+					if(y != lastY)
+					{
+						y += 2000;	// Preffer a location where two blocks next to each other are at the same height
+					}
+					else
+					{
+						if (lastY != lastY2)
+						{
+							y += 1000;							
+							zOffset = -size / 2;	// Shift half a block back.
+						}
+						else
+						{
+							zOffset = -size;	// Shift whole block back.
+						}
+					}
+					lastY2 = lastY;
+					lastY = thisY;
 					if (y<= bestHeight)
 					{
 						if (y < bestHeight)
@@ -129,15 +167,33 @@ public class Boxes : MonoBehaviour {
 							bestHeight = y;
 						}
 						pos.y = y;
-						possibleLocations.Add (new Vector3(pos.x, pos.y, pos.z));
+						possibleLocations.Add (new Vector3(pos.x, pos.y, pos.z + zOffset));
 						pos.y = 1000;
 					}
 				}
 			}
 		}
 		// Select a random point from the best found
-		pos = possibleLocations[Random.Range(0, possibleLocations.Count)];
-		if (pos.y > 1000)
+		if (closestToCenter) 
+		{
+			pos = possibleLocations[0];
+			int index = 0;
+			float dist2 = float.MaxValue;
+			for(int i = 0; i < possibleLocations.Count; i++)
+			{
+				Vector3 pos2 = possibleLocations[i];
+				pos2.y = 0;
+				float mag2 = pos2.sqrMagnitude;
+				if(mag2 < dist2)
+				{
+					dist2 = mag2;
+					pos = possibleLocations[i];
+				}
+			}
+		} else {
+			pos = possibleLocations [Random.Range (0, possibleLocations.Count)];
+		}
+		while (pos.y >= 1000)
 		{
 			pos.y -= 1000;
 		}

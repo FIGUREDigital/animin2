@@ -128,6 +128,8 @@ public class CharacterSwapManagementScript : MonoBehaviour
         if (animinId == PersistentData.TypesOfAnimin.TboAdult)
             animinId = PersistentData.TypesOfAnimin.Tbo;
 
+
+
         if (includeEgg)
         {
             Object resourceEgg = Resources.Load(EggModels[(int)animinId]);

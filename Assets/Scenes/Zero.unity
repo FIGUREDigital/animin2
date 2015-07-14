@@ -434,44 +434,6 @@ Prefab:
       propertyPath: m_Name
       value: Strawberry
       objectReference: {fileID: 0}
-    - target: {fileID: 11429012, guid: 18656798c9d0d4f3eba3ab49697d37c3, type: 2}
-      propertyPath: sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 650f3b2c6b8c44a958e1a714d8cd59fe,
-        type: 3}
-    - target: {fileID: 11429012, guid: 18656798c9d0d4f3eba3ab49697d37c3, type: 2}
-      propertyPath: gradient.key0.rgba
-      value: 4294964543
-      objectReference: {fileID: 0}
-    - target: {fileID: 11429012, guid: 18656798c9d0d4f3eba3ab49697d37c3, type: 2}
-      propertyPath: gradient.key1.rgba
-      value: 2583691263
-      objectReference: {fileID: 0}
-    - target: {fileID: 5423764, guid: 18656798c9d0d4f3eba3ab49697d37c3, type: 2}
-      propertyPath: m_Constraints
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 18656798c9d0d4f3eba3ab49697d37c3, type: 2}
-      propertyPath: m_Layer
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: 18656798c9d0d4f3eba3ab49697d37c3, type: 2}
-      propertyPath: m_Layer
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 100004, guid: 18656798c9d0d4f3eba3ab49697d37c3, type: 2}
-      propertyPath: m_Layer
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 5423764, guid: 18656798c9d0d4f3eba3ab49697d37c3, type: 2}
-      propertyPath: m_IsKinematic
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6500000, guid: 18656798c9d0d4f3eba3ab49697d37c3, type: 2}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 13400000, guid: 8e558585a95d34e9ca157d1adc5add21,
-        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 18656798c9d0d4f3eba3ab49697d37c3, type: 2}
   m_IsPrefabParent: 0
@@ -5535,21 +5497,6 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2008336486}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce4b3bf48db87460691231acf5a744d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &2047886893 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 100004, guid: 18656798c9d0d4f3eba3ab49697d37c3, type: 2}
-  m_PrefabInternal: {fileID: 117711774}
---- !u!114 &2047886894
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2047886893}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ce4b3bf48db87460691231acf5a744d4, type: 3}

@@ -14506,8 +14506,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.67064881, y: .999999821, z: 2.51273131}
+  m_Center: {x: .226395577, y: 3.18921423e-08, z: -.0774353668}
 --- !u!65 &6500002
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -16174,7 +16174,6 @@ MonoBehaviour:
   PissPrefab: {fileID: 100000, guid: 86c25af4269844ee39b3d626ef5eb507, type: 2}
   animationController: {fileID: 0}
   IsMovingTowardsLocation: 0
-  ObjectHolding: {fileID: 0}
   IsGoingToPickUpObject: {fileID: 0}
   InteractWithItemOnPickup: 0
   ShouldThrowObjectAfterPickup: 1

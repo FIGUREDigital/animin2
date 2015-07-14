@@ -118,6 +118,17 @@ public class HappyStateRange
 
 public class CharacterProgressScript : MonoBehaviour
 {
+
+	void OnEnable()
+	{
+		Debug.Log ("OnEnable");
+	}
+	
+	
+	void OnDisable()
+	{
+		Debug.Log ("OnDisable");
+	}
     public delegate void DragAction();
     public static event DragAction OnDragItem;
     
@@ -351,7 +362,9 @@ public class CharacterProgressScript : MonoBehaviour
 
 		
         animationController = GetComponent<AnimationControllerScript>();
-        CurrentAction = ActionId.EnterSleep;
+		Vector3 sleepPos = MainARHandler.FindFlatArea ();
+		transform.localPosition = sleepPos;
+		CurrentAction = ActionId.EnterSleep;
 
 		if (!ProfilesManagementScript.Instance.CurrentAnimin.Hatched)
 		{
@@ -998,13 +1011,13 @@ public class CharacterProgressScript : MonoBehaviour
                             m_JumpedIn = true;
                             //GetComponent<CharacterSwapManagementScript>().CurrentModel.gameObject.SetActive(false);
                             ShaderAlpha = 0;
-                            MainARHandler.Instance.PauseJumpOutIntoAR();
 
                             UIGlobalVariablesScript.Singleton.NonSceneRef.SetActive(false);
                             UIGlobalVariablesScript.Singleton.ARSceneRef.SetActive(true);
-
-
-                            UIGlobalVariablesScript.Singleton.ARPortal.GetComponent<PortalScript>().Show(PortalStageId.ARscene, false);
+					
+							MainARHandler.Instance.PauseJumpOutIntoAR();
+                        
+                        	UIGlobalVariablesScript.Singleton.ARPortal.GetComponent<PortalScript>().Show(PortalStageId.ARscene, false);
 
                             UIGlobalVariablesScript.Singleton.SoundEngine.Play(ProfilesManagementScript.Instance.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Instance.CurrentAnimin.AniminEvolutionId, CreatureSoundId.JumbOutPortal);
                         }
@@ -1035,10 +1048,10 @@ public class CharacterProgressScript : MonoBehaviour
             case ActionId.EnterSleep:
                 {
                     animationController.IsSleeping = true;
-                    CurrentAction = ActionId.None;
-                    SleepBoundingBox.SetActive(true);
+					CurrentAction = ActionId.None;
+					SleepBoundingBox.SetActive(ProfilesManagementScript.Instance.CurrentAnimin.Hatched);
                     if (ProfilesManagementScript.Instance.CurrentAnimin.Hatched)
-                    {
+					{
                         UIGlobalVariablesScript.Singleton.SoundEngine.PlayLoop(ProfilesManagementScript.Instance.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Instance.CurrentAnimin.AniminEvolutionId, CreatureSoundId.SnoringSleeping);
                     }
 

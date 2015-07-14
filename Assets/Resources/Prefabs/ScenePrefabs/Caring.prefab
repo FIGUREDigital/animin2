@@ -233,7 +233,7 @@ GameObject:
   - 33: {fileID: 3300016}
   - 65: {fileID: 6500000}
   - 23: {fileID: 2300016}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sleep Bounding Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}

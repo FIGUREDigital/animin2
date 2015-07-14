@@ -180,7 +180,7 @@ public class Boxes : MonoBehaviour {
 			int index = 0;
 			float dist2 = float.MaxValue;
 			for(int i = 0; i < possibleLocations.Count; i++)
-			{
+			{				
 				Vector3 pos2 = possibleLocations[i];
 				pos2.y = 0;
 				float mag2 = pos2.sqrMagnitude;

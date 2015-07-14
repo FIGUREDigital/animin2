@@ -375,6 +375,7 @@ public class MainARHandler : MonoBehaviour
 		{
 			csmScript.CurrentEgg.SetActive (true);
 		}
+//		Debug.Log ("FindFlatArea =" + sleepPos);
 		return sleepPos;
 	}
 
@@ -389,7 +390,7 @@ public class MainARHandler : MonoBehaviour
         UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.parent = UIGlobalVariablesScript.Singleton.NonSceneRef.transform;
 
 		UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.position = FindFlatArea ();
-
+//		Debug.Log ("Set " + UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.position);
         UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.rotation = Quaternion.Euler(0, 180, 0);
         UIGlobalVariablesScript.Singleton.MainCharacterRef.transform.localScale = new Vector3(0.035f, 0.035f, 0.035f);
         UIGlobalVariablesScript.Singleton.Shadow.transform.localScale = new Vector3(0.46f, 0.46f, 0.46f);

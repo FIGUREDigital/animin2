@@ -42,12 +42,12 @@ public class EDMCheck : MonoBehaviour
             if (EDMMixerScript.Singleton.KeysOn[checkID])
             {
                 m_ToggleScript.SetOn();
-                Debug.Log("Turning On");
+//                Debug.Log("Turning On");
             }
             else
             {
                 m_ToggleScript.SetOff();
-                Debug.Log("Turning Off");
+//                Debug.Log("Turning Off");
             }
         }
         else

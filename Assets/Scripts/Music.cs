@@ -2,9 +2,21 @@
 using System.Collections;
 using Phi;
 
-public class Music : SingletonScene<Music> {
+public class Music : MonoBehaviour{
 
 	static string currentMusicID = "";
+
+	public static bool Exists()
+	{
+		return Phi.SingletonPrefab.instances.ContainsKey("Music");
+	}
+	public static Music Instance
+	{
+		get
+		{
+			return Phi.SingletonPrefab.instances["Music"].GetComponent<Music>();
+		}
+	}
 
 	UIToast.DisplayData toast = null;
 
@@ -52,10 +64,6 @@ public class Music : SingletonScene<Music> {
 		}
 	}
 
-
-	public override void Init()
-	{
-	}
 
 	public void Play(Playlists list, bool force = false)
 	{

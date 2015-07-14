@@ -365,15 +365,12 @@ public class CharacterProgressScript : MonoBehaviour
 		Vector3 sleepPos = MainARHandler.FindFlatArea ();
 		transform.localPosition = sleepPos;
 		CurrentAction = ActionId.EnterSleep;
+		ProfilesManagementScript.Instance.CurrentProfile.Inventory.SetLocationRoot(Inventory.Locations.AR, UIGlobalVariablesScript.Singleton.ARWorldRef);
+		ProfilesManagementScript.Instance.CurrentProfile.Inventory.SetLocationRoot(Inventory.Locations.NonAR, UIGlobalVariablesScript.Singleton.NonARWorldRef);
 
 		if (!ProfilesManagementScript.Instance.CurrentAnimin.Hatched)
 		{
 			ProfilesManagementScript.Instance.CurrentProfile.Inventory.PutAllItemsAway();
-		}
-		else
-		{
-			ProfilesManagementScript.Instance.CurrentProfile.Inventory.SetLocationRoot(Inventory.Locations.AR, UIGlobalVariablesScript.Singleton.ARWorldRef);
-			ProfilesManagementScript.Instance.CurrentProfile.Inventory.SetLocationRoot(Inventory.Locations.NonAR, UIGlobalVariablesScript.Singleton.NonARWorldRef);
 		}
     }
 
@@ -404,7 +401,7 @@ public class CharacterProgressScript : MonoBehaviour
 		*/
 		
 		ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeOwn(InventoryItemId.ItemAlbum, 1);
-		ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeOwn(InventoryItemId.Strawberry, 2);
+//		ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeOwn(InventoryItemId.Strawberry, 2);
 //		ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeOwn(InventoryItemId.FartButton, 1);
 //		ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeOwn(InventoryItemId.Box1, 10);
 //		ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeOwn(InventoryItemId.Box2, 5);

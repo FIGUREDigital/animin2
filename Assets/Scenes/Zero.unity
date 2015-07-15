@@ -4966,6 +4966,56 @@ MonoBehaviour:
   bobSpeed: 1
   spin: {fileID: 0}
   timeOrigin: 0
+--- !u!1001 &1747594891
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 438026, guid: 3d7ddc02ea717464487c63ebcc980762, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 438026, guid: 3d7ddc02ea717464487c63ebcc980762, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 438026, guid: 3d7ddc02ea717464487c63ebcc980762, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 438026, guid: 3d7ddc02ea717464487c63ebcc980762, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 438026, guid: 3d7ddc02ea717464487c63ebcc980762, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 438026, guid: 3d7ddc02ea717464487c63ebcc980762, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 438026, guid: 3d7ddc02ea717464487c63ebcc980762, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 438026, guid: 3d7ddc02ea717464487c63ebcc980762, type: 2}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 11438026, guid: 3d7ddc02ea717464487c63ebcc980762, type: 2}
+      propertyPath: deviceBlacklist.iPad1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11438026, guid: 3d7ddc02ea717464487c63ebcc980762, type: 2}
+      propertyPath: androidMultithreadCompatibility
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 3d7ddc02ea717464487c63ebcc980762, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1749400791 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: c23d7d04316d9451ba4ae957bebad0cb, type: 2}
@@ -5347,6 +5397,10 @@ Prefab:
     - target: {fileID: 6500000, guid: 97e2e3e605932481d8ab6874a879588f, type: 2}
       propertyPath: m_Center.y
       value: .580126584
+      objectReference: {fileID: 0}
+    - target: {fileID: 11487462, guid: 97e2e3e605932481d8ab6874a879588f, type: 2}
+      propertyPath: menu
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 97e2e3e605932481d8ab6874a879588f, type: 2}

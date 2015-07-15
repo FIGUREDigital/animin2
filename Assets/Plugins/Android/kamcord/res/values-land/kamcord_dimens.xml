@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="kamcordShareThumbSize">105dp</dimen>
+    <dimen name="kamcordShareSpacing">10dp</dimen>
+
+    <dimen name="kamcordWatchRecentThumbnailHeight">141dp</dimen>
+    <dimen name="kamcordWatchRecentThumbnailWidth">250dp</dimen>
+    
+    <integer name="kamcordVideoFeedColumns">2</integer>
+
+</resources>

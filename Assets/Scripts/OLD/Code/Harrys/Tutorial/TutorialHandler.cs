@@ -884,7 +884,23 @@ public class TutorialHandler : MonoBehaviour
 				progressScript.SpawnStageItem(InventoryItemId.Zef, new Vector3(-0.4f, 0.0f, 0.3f) * 200.0f);
                 ProfilesManagementScript.Instance.CurrentProfile.m_GivenZef = true;
             }
-        }
+		}
+		else if (fired == "GiveItemAlbum")
+		{
+			if (ProfilesManagementScript.Instance.CurrentProfile.Inventory.GetNumItemsOwned(InventoryItemId.ItemAlbum)== 0)
+			{
+				ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeOwn(InventoryItemId.ItemAlbum, 1);
+				ItemUnlockBehaviour.Show(InventoryItemId.ItemAlbum);
+			}
+		}
+		else if (fired == "GiveBlocks")
+		{
+			if (ProfilesManagementScript.Instance.CurrentProfile.Inventory.GetNumItemsOwned(InventoryItemId.Box1) < 3)
+			{
+				ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeOwn(InventoryItemId.Box1, 3);
+			}
+		}
+
     }
 
     void OnShouldSkipLesson(string skipID)
@@ -908,11 +924,15 @@ public class TutorialHandler : MonoBehaviour
         {
             // Skip if we have added strawberry and we are no longer holding it
 			ShouldSkip = ProfilesManagementScript.Instance.CurrentProfile.m_PhoneAdded && !ProfilesManagementScript.Instance.CurrentProfile.Inventory.OwnItem(InventoryItemId.Phone);
-        }
-        else if (skipID == "GivenZef")
-        {
-            ShouldSkip = ProfilesManagementScript.Instance.CurrentProfile.m_GivenZef;
-        }
+		}
+		else if (skipID == "GivenZef")
+		{
+			ShouldSkip = ProfilesManagementScript.Instance.CurrentProfile.m_GivenZef;
+		}
+		else if (skipID == "GivenBlocks")
+		{
+			ShouldSkip = ProfilesManagementScript.Instance.CurrentProfile.Inventory.GetNumItemsOwned(InventoryItemId.Box1) > 2;
+		}
     }
 
     

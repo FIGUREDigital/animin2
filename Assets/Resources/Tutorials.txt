@@ -232,7 +232,6 @@
                 <Lesson skip ="GivenZef">
                     <TutEntries>
                     	 <TutEntry text="One of the coolest thing about Animin is that that they can evolve…"/>
-                    	 <TutEntry text="To see the evolution have a look at the Evolution bar…"/>
                     	 <TutEntry text="Its in the stats…" fire="PointToStats"/>
                     	 <TutEntry text="Press there now to see…"/>						 
                     </TutEntries>								
@@ -268,10 +267,60 @@
                 </Lesson>
             </Lessons>
         </Tutorial>
-		
+
+		<Tutorial name="ItemAlbum">
+			<StartCondition>
+        		<Timer trigger="ClockUnlocked" seconds="10"/>
+			</StartCondition>
+        	 <Lessons>
+                <Lesson skip = "MarkTutorialAsComplete">
+                    <TutEntries>
+                    	 <TutEntry text="Here is the item album where you can keep track of what items you have." fire="GiveItemAlbum"/>
+                    </TutEntries>
+                </Lesson>
+            </Lessons>
+        </Tutorial>
+
+
+		<Tutorial name="GiveBlocks">
+			<StartCondition>
+        		<Timer trigger="ItemAlbum" seconds="10"/>
+			</StartCondition>
+        	 <Lessons>
+                <Lesson skip = "GivenBlocks">
+                    <TutEntries>
+                    	 <TutEntry text="This place is starting to look nice… Wanna see something cool?"/>
+                    	 <TutEntry text="Here are 3 blocks to start really constructing your world…" fire="GiveBlocks"/>
+                    </TutEntries>
+                </Lesson>
+            </Lessons>
+        </Tutorial>
+
+		<Tutorial name="PlaceBlocks">
+			<StartCondition>
+        		<Timer trigger="GiveBlocks" seconds="5"/>
+			</StartCondition>
+        	 <Lessons>
+                <Lesson>
+                    <TutEntries>
+                    	 <TutEntry text="Try and add a block to your Animins home…" fire="ShowBlocks"/>
+                    </TutEntries>								
+        			<EndCondition>
+        				<AdHoc call = "DropBox1"/>
+					</EndCondition>	
+                </Lesson>
+                <Lesson>
+                    <TutEntries>
+                    	 <TutEntry text="Awesome!"/> 
+                    </TutEntries>
+                </Lesson>
+            </Lessons>
+        </Tutorial>
+
+																		
         <Tutorial name="Crystals">
         	<StartCondition>
-        		<Timer trigger="ClockUnlocked" seconds="10"/>
+        		<Timer trigger="PlaceBlocks" seconds="1"/>
             </StartCondition>
         	 <Lessons>
                 <Lesson skip = "MarkTutorialAsComplete">

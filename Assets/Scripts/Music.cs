@@ -64,6 +64,10 @@ public class Music : MonoBehaviour{
 		}
 	}
 
+	public bool ShouldDance()
+	{
+		return (BoomBoxUI.IsPlaying || currentPlayList.playlist == Playlists.Radio1 || currentPlayList.playlist == Playlists.Radio2);
+	}
 
 	public void Play(Playlists list, bool force = false)
 	{

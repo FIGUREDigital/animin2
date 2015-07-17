@@ -57,6 +57,8 @@ public enum InventoryItemId
 	ChestGold,
 	ChestEvo,
 
+	BasketBall,
+
     Count,
 }
 
@@ -400,9 +402,10 @@ public class CharacterProgressScript : MonoBehaviour
 		ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeHave(InventoryItemId.ItemAlbum, 1);
 		*/
 		
-//		ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeOwn(InventoryItemId.ItemAlbum, 1);
+		ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeOwn(InventoryItemId.Radio, 1);
+//		ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeOwn(InventoryItemId.BasketBall, 1);
 		
-//		ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeOwn(InventoryItemId.Camera, 1);
+		ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeOwn(InventoryItemId.Camera, 1);
 //		ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeOwn(InventoryItemId.Strawberry, 2);
 //		ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeOwn(InventoryItemId.FartButton, 1);
 //		ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeOwn(InventoryItemId.Box1, 10);

@@ -36,6 +36,8 @@ public class DetectDragIconScript : MonoBehaviour, IBeginDragHandler, IEndDragHa
 		GameObject child = refScript.item.Instance;
 		CharacterProgressScript.SwitchGravity (child, false);
 
+		CaringPageControls.CloseInventory ();
+
 //		child.GetComponent<BoxCollider>().enabled = false;
 
 		CameraModelScript.Instance.SetDragging(child, false);

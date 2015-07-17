@@ -25,7 +25,7 @@ public class InventoryItemControls : InventoryItemUIIcon {
 	public void OnClick()
 	{
 		caringPage.SetIcon(Item);
-		caringPage.CloseInventory();
+		CaringPageControls.CloseInventory();
 	}
 
     void Count()

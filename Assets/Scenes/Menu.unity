@@ -2334,7 +2334,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22400000, guid: d3bab2d39d4ed9f4291e4a1afcd3a804, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 2047.78821
+      value: 2048.16699
       objectReference: {fileID: 0}
     - target: {fileID: 22400000, guid: d3bab2d39d4ed9f4291e4a1afcd3a804, type: 2}
       propertyPath: m_SizeDelta.y
@@ -2391,6 +2391,18 @@ Prefab:
     - target: {fileID: 22400026, guid: d3bab2d39d4ed9f4291e4a1afcd3a804, type: 2}
       propertyPath: m_AnchoredPosition.y
       value: 85.1999969
+      objectReference: {fileID: 0}
+    - target: {fileID: 11454208, guid: d3bab2d39d4ed9f4291e4a1afcd3a804, type: 2}
+      propertyPath: m_text
+      value: Includes full game and complete character!
+      objectReference: {fileID: 0}
+    - target: {fileID: 11454208, guid: d3bab2d39d4ed9f4291e4a1afcd3a804, type: 2}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 11454208, guid: d3bab2d39d4ed9f4291e4a1afcd3a804, type: 2}
+      propertyPath: m_fontSize
+      value: 63.1500015
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d3bab2d39d4ed9f4291e4a1afcd3a804, type: 2}

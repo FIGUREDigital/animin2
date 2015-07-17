@@ -374,7 +374,7 @@ public class AnimationControllerScript : MonoBehaviour
     {
         get
         {
-            return animator.GetCurrentAnimatorStateInfo(0).IsName("idle_stand");
+			return animator.GetCurrentAnimatorStateInfo(0).IsName("idle_stand");
         }
     }
 
@@ -652,13 +652,19 @@ public class AnimationControllerScript : MonoBehaviour
             }
         }
 
-        if (IsIdle && !script.IsMovingTowardsLocation && (script.ObjectHolding == null) && !IsLookingCamera && script.CurrentAction != ActionId.EnterPortalToAR && script.CurrentAction != ActionId.EnterPortalToNonAR && !IsEating)
+		bool dancing = IsDance || IsDanceBOP;
+
+		if ((IsIdle || dancing) && !script.IsMovingTowardsLocation && (script.ObjectHolding == null) && !IsLookingCamera && script.CurrentAction != ActionId.EnterPortalToAR && script.CurrentAction != ActionId.EnterPortalToNonAR && !IsEating)
         {
             TimeInIdleState += Time.deltaTime;
 
+			float idleFor = 2;
+			if (dancing)
+			{
+				idleFor = 10;
+			}
 
-
-            if (TimeInIdleState >= 2.0f)
+			if (TimeInIdleState >= idleFor)
             {
                 int randomAnimationGroup = 0;
                 while (true)
@@ -669,6 +675,7 @@ public class AnimationControllerScript : MonoBehaviour
                 }
 
                 LastRandomAnimationGroup = randomAnimationGroup;
+				bool keepDancing = false;
                 
                 switch (randomAnimationGroup)
                 {
@@ -680,48 +687,41 @@ public class AnimationControllerScript : MonoBehaviour
                     case 1:
                     case 2:
                         {
-                            //if (MediaPlayerPluginScript.IsPlaying)
-/*                            if (false)
+                            if (Music.Instance.ShouldDance())
 							{
                                 int random = UnityEngine.Random.Range(0, 2);
                                 if (random == 0)
                                 {
                                     IsDance = true;
+									IsDanceBOP = false;
                                 }
                                 else if (random == 1)
                                 {
                                     IsDanceBOP = true;
+									IsDance = false;
                                 }
+								keepDancing = true;
                             }
-                            else*/
+                            else
                             {
-                                //if (!MediaPlayerPluginScript.IsPlaying)
- //                               if(true)
-								{
-						
-                                    int random = UnityEngine.Random.Range(0, 4);
-                                    if (random == 0)
-                                    {
-                                        IsIdleLook1 = true;
-                                    }
-                                    else if (random == 1)
-                                    {
-                                        IsIdleLook2 = true;
-                                    }
-                                    else if (random == 2)
-                                    {
-                                        IsIdleLook3 = true;
-                                    }
-                                    else if (random == 3)
-                                    {
-                                        IsIdleWave = true;
-                                        UIGlobalVariablesScript.Singleton.SoundEngine.Play(ProfilesManagementScript.Instance.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Instance.CurrentAnimin.AniminEvolutionId, CreatureSoundId.IdleWave);
-                                    }
-                                }
- /*                               else
+                                int random = UnityEngine.Random.Range(0, 4);
+                                if (random == 0)
                                 {
-                                    IsDance = true;
-                                }*/
+                                    IsIdleLook1 = true;
+                                }
+                                else if (random == 1)
+                                {
+                                    IsIdleLook2 = true;
+                                }
+                                else if (random == 2)
+                                {
+                                    IsIdleLook3 = true;
+                                }
+                                else if (random == 3)
+                                {
+                                    IsIdleWave = true;
+                                    UIGlobalVariablesScript.Singleton.SoundEngine.Play(ProfilesManagementScript.Instance.CurrentAnimin.PlayerAniminId, ProfilesManagementScript.Instance.CurrentAnimin.AniminEvolutionId, CreatureSoundId.IdleWave);
+                                }
                             }
 
 
@@ -856,7 +856,11 @@ public class AnimationControllerScript : MonoBehaviour
                         }
 				
                 }
-
+				if(!keepDancing)
+				{					
+					IsDance = false;
+					IsDanceBOP = false;
+				}
 
                 TimeInIdleState = 0;
             }
@@ -883,11 +887,11 @@ public class AnimationControllerScript : MonoBehaviour
                 TimeToPlayIdleSoundFX = UnityEngine.Random.Range(6.0f, 9.0f);
             }
         }
-        if (IsIdle)
+/*        if (IsIdle)
         {
-            //if (MediaPlayerPluginScript.IsPlaying || MediaDebugDummy.On)
+			if (Music.Instance.ShouldDance())
             {
-                //IsDanceBOP = true;
+                IsDanceBOP = true;
             }
         }
         if (IsDanceBOP)
@@ -895,14 +899,9 @@ public class AnimationControllerScript : MonoBehaviour
             Debug.Log("Is boppin");
             //Debug.Log("Time : ["+Time.timeSinceLevelLoad+"]; Time Mod : ["+(Time.timeSinceLevelLoad % 30f == 0)+"]");
             if (Time.timeSinceLevelLoad % 30f == 0){
-                //IsDanceBOP = false;
-            }
-            if (!MediaDebugDummy.On)
-            {
-                Debug.Log("Stopping");
                 IsDanceBOP = false;
-            }
-        }
+            }            
+        }*/
     }
 
     private int LastRandomAnimationGroup = -1;
@@ -952,21 +951,20 @@ public class AnimationControllerScript : MonoBehaviour
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("jump_in_portal"))
             IsEnterPortal = false;
 
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("dance"))
+/*        if (animator.GetCurrentAnimatorStateInfo(0).IsName("dance"))
             IsDance = false;
 
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("DanceAlternative"))
-            IsDanceBOP = false;
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("DanceAlternative"))
+            IsDanceBOP = false;*/
+		if (animator.GetCurrentAnimatorStateInfo(0).IsName("DanceAlternative") || animator.GetCurrentAnimatorStateInfo(0).IsName("dance"))
         {
             if( animator.GetBool("IsWalking") ||
                 animator.GetBool("IsRunning") ||
                 animator.GetBool("IsDancing")){
                 IsDanceBOP=false;
+				IsDance = false;
             }
         }
-
-
 
 //		Debug.Log(animator.GetCurrentAnimatorStateInfo(0).nameHash.ToString());
 

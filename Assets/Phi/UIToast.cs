@@ -69,6 +69,7 @@ namespace Phi
 
 		public void ShowHide(bool show, bool instant)
 		{
+			Debug.Log ("Toast ShowHide" + show+", "+instant);
 			visibleFor = 0;
 			if (show && !hiddenTutorial) 
 			{
@@ -157,6 +158,7 @@ namespace Phi
 
 		public DisplayData Display(string title, string desc, Sprite sprite, Color color, string audioID)
 		{
+			Debug.Log ("Toast " + title);
 			DisplayData data = new DisplayData();
 			data.title = title;
 			data.desc = desc;
@@ -171,6 +173,8 @@ namespace Phi
 
 		private void Display(DisplayData data)
 		{
+			
+			Debug.Log ("Toast queue" + queue.Count);
 	        queue.Add(data);          // some achievements (such as the first one don't want to be shown at all)
 			if (showing == null)
 			{

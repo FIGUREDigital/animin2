@@ -17,7 +17,7 @@ public class CaringPageControls : MonoBehaviour
 {
     [SerializeField]
     private RectTransform Inventory;
-    private InventoryControls mInventoryControls;
+    static private InventoryControls mInventoryControls;
     [SerializeField]
     private RectTransform Indicator;
 //    private bool InventoryOpen = false;
@@ -411,7 +411,7 @@ public class CaringPageControls : MonoBehaviour
 		Indicator.localPosition = new Vector2(page.transform.localPosition.x, Indicator.localPosition.y);
 	}
 
-    public void CloseInventory()
+    static public void CloseInventory()
     {
 		mInventoryControls.SetPage(null);
     }

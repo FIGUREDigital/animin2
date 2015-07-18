@@ -66,6 +66,26 @@ public class UnlockCharacterManager
 	
 	#endregion
 
+
+	static public PersistentData.TypesOfAnimin GetAniminType(string productID)
+	{
+		switch (productID) {
+		case PI_UNLOCK:
+		case PI_PURCHASE:
+			return PersistentData.TypesOfAnimin.Pi;
+		case TBOADULT_UNLOCK:
+		case TBOADULT_PURCHASE:
+			return PersistentData.TypesOfAnimin.Tbo;
+		case KELSEY_UNLOCK:
+		case KELSEY_PURCHASE:
+			return PersistentData.TypesOfAnimin.Kelsey;
+		case MANDI_UNLOCK:
+		case MANDI_PURCHASE:
+			return PersistentData.TypesOfAnimin.Mandi;
+        }
+		return PersistentData.TypesOfAnimin.Count;
+	}
+
 	public string GetItem(PersistentData.TypesOfAnimin type, bool free)
 	{
 		string result = "";
@@ -102,7 +122,7 @@ public class UnlockCharacterManager
 		UiPages.Next (Pages.LoadingPage);
 	}
 
-	public void OpenShop()
+	static public void OpenShop()
 	{
 		Debug.Log("Opening Shop");
 		string[] shopItems = new string[8];
@@ -117,7 +137,16 @@ public class UnlockCharacterManager
 		ShopManager.Instance.StartStore (shopItems);
 	}
 
-	private IEnumerator WaitForResponse()
+	public static void PurchaseSuccessful(string productID)
+	{
+		PersistentData.TypesOfAnimin animinType = GetAniminType (productID);
+		if(animinType != PersistentData.TypesOfAnimin.Count)
+		{		
+			DoUnlock (animinType);
+        }
+    }
+    
+    private IEnumerator WaitForResponse()
 	{
 		Debug.Log ("Start Coroutine!");
 		bool complete = false;
@@ -181,14 +210,16 @@ public class UnlockCharacterManager
 		return ShopManager.Instance.HasBought(s1) || ShopManager.Instance.HasBought(s2);
 	}
 
+	static public void DoUnlock(PersistentData.TypesOfAnimin animin)
+	{
+		CharacterChoiceManager.Instance.UnlockCharacterPortrait(animin);
+		ProfilesManagementScript.StateData.UnlockedAnimins.Add(animin);		
+		ProfilesManagementScript.Instance.Save();
+    }
+    
     public void UnlockCharacter()
 	{ 
-        CharacterChoiceManager.Instance.UnlockCharacterPortrait(m_CurrentCharacterFocus);
-
-		ProfilesManagementScript.Instance.CurrentProfile.Characters[(int)m_CurrentCharacterFocus].CreatedOn = System.DateTime.UtcNow;
-        ProfilesManagementScript.Instance.CurrentProfile.UnlockedAnimins.Add(m_CurrentCharacterFocus);
-		
-		ProfilesManagementScript.Instance.Save();
+		DoUnlock (m_CurrentCharacterFocus);
 		Debug.Log("just saved...unlock");
         ShopManager.Instance.EndStore(); 
 		UnityEngine.Analytics.Analytics.CustomEvent ("Unlock", new Dictionary<string, object>{{"animin",m_CurrentCharacterFocus.ToString()}});
@@ -199,9 +230,9 @@ public class UnlockCharacterManager
 	public void CheckInitialCharacterUnlock()
 	{
         Debug.Log("Unlock started...");
-        for (int i = 0; i < ProfilesManagementScript.Instance.CurrentProfile.UnlockedAnimins.Count; i++)
+		for (int i = 0; i < ProfilesManagementScript.StateData.UnlockedAnimins.Count; i++)
         {   
-            PersistentData.TypesOfAnimin typeToUnlock = ProfilesManagementScript.Instance.CurrentProfile.UnlockedAnimins[i];
+			PersistentData.TypesOfAnimin typeToUnlock = ProfilesManagementScript.StateData.UnlockedAnimins[i];
             Debug.Log("Unlock Character " + typeToUnlock);
             CharacterChoiceManager.Instance.UnlockCharacterPortrait(typeToUnlock);
         }
@@ -217,7 +248,7 @@ public class UnlockCharacterManager
         }
         else
         {
-            UnlockCharacterManager.Instance.OpenShop();
+            UnlockCharacterManager.OpenShop();
         }
 	}
 	void OnApplicationResume()

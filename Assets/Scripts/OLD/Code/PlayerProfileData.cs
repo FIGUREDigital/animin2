@@ -17,7 +17,7 @@ public class PlayerProfileData
     public string ProfileName;
     public string UniqueID;
     public PersistentData.TypesOfAnimin ActiveAnimin;
-    public List<PersistentData.TypesOfAnimin> UnlockedAnimins = new List<PersistentData.TypesOfAnimin>();
+    public List<PersistentData.TypesOfAnimin> UnlockedAnimins = new List<PersistentData.TypesOfAnimin>();	// This is old data and is upgraded to the cross profile data
     public List<AchievementManager.AchievementDetails> Achievements;
 
     public bool BuyFullTbo;

@@ -166,6 +166,10 @@ public class PersistentData
 
 	private void CalcAge()
 	{
+		if (!Hatched) 
+		{
+			age = 0;
+		}
 		System.TimeSpan realAge = System.DateTime.UtcNow.Subtract(CreatedOn);
 		age = (int)Math.Floor(realAge.TotalDays / 3);
 	}

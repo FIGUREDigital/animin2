@@ -685,7 +685,7 @@ public class TutorialHandler : MonoBehaviour
 		
         //Debug.Log ("maxLessons : [" + maxLessons + "];");
 		
-        if (++m_Lesson_i >= maxLessons)
+		if (++m_Lesson_i >= maxLessons || (CurrentTutorial != null && CheckTutsCompleted(CurrentTutorial.Name)))
         {
             EndOfTutorial();
         }
@@ -905,17 +905,8 @@ public class TutorialHandler : MonoBehaviour
 
     void OnShouldSkipLesson(string skipID)
     {
-        if (skipID == "MarkTutorialAsComplete")
-        {
-            // Mark this tutorial as complete so that if the user exits the tutorial before finishing all text entries any follow on tutorials
-            // will occur on next bootup.
-            // Note we are not finishing and closing the tutorial just marking it as complete in the save game.
-            if (m_CurTutorial != null)
-            {
-                MarkTutorialComplete(m_CurTutorial.Name);
-            }
-        }
-        else if(skipID == "SkipIfStrawberryOnGround")
+		bool markAsComplete = false;
+        if(skipID == "SkipIfStrawberryOnGround")
         {
             // Skip if we have added strawberry and we are no longer holding it
             ShouldSkip = ProfilesManagementScript.Instance.CurrentProfile.m_StrawberryAdded && !ProfilesManagementScript.Instance.CurrentProfile.Inventory.OwnItem(InventoryItemId.Strawberry);
@@ -933,6 +924,22 @@ public class TutorialHandler : MonoBehaviour
 		{
 			ShouldSkip = ProfilesManagementScript.Instance.CurrentProfile.Inventory.GetNumItemsOwned(InventoryItemId.Box1) > 2;
 		}
+		else if (skipID == "NoBlocksInInventory")
+		{
+			ShouldSkip = ProfilesManagementScript.Instance.CurrentProfile.Inventory.GetNumItemsInInventory(InventoryItemId.Box1) == 0;
+			markAsComplete = true;
+		}
+		if (markAsComplete || skipID == "MarkTutorialAsComplete")
+		{
+			// Mark this tutorial as complete so that if the user exits the tutorial before finishing all text entries any follow on tutorials
+			// will occur on next bootup.
+			// Note we are not finishing and closing the tutorial just marking it as complete in the save game.
+			if (m_CurTutorial != null)
+			{
+				MarkTutorialComplete(m_CurTutorial.Name);
+			}
+		}
+
     }
 
     

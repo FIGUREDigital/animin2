@@ -21,9 +21,9 @@ public class PaypalChooseCharacterPanel : MonoBehaviour {
         }
 
 
-        for (int i =0; i < ProfilesManagementScript.Instance.CurrentProfile.UnlockedAnimins.Count; i++ )
+		for (int i =0; i < ProfilesManagementScript.StateData.UnlockedAnimins.Count; i++ )
         {
-            if (AniminType ==  ProfilesManagementScript.Instance.CurrentProfile.UnlockedAnimins[i])
+			if (AniminType ==  ProfilesManagementScript.StateData.UnlockedAnimins[i])
             {
                 this.gameObject.SetActive(false);
             }

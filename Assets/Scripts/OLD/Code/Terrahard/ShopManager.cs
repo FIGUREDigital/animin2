@@ -137,7 +137,7 @@ public class ShopManager
 		Debug.Log( "restoreTransactionsFinished" );
 		
 		DialogPage.SetMessage("Your purchases have been successfully restored.\n\nThank you for purchasing Animin.");
-		UiPages.SetDialogBackPage(Pages.PurchasePage);
+		UiPages.SetDialogBackPage(Pages.AniminSelectPage);
 		UiPages.Next(Pages.DialogPage, 5f);
 	}
 
@@ -153,20 +153,20 @@ public class ShopManager
         foreach( StoreKitProduct product in productList )
             Debug.Log( product.ToString() + "\n" );
 
-        if(productList.Count > 0 && !mShopReady)
+		if (!ContinueRestore () && !mShopReady) 
 		{
-                mShopReady = true;
-                Debug.Log("Go to shop");
-			ProfilesManagementScript.Instance.ContinueToInAppPurchase(true);
+			if (productList.Count > 0) {
+				mShopReady = true;
+				Debug.Log ("Go to shop");
+				ProfilesManagementScript.Instance.ContinueToInAppPurchase (true);
 
+			} else if (productList.Count <= 0) {
+				mShopReady = true;
+				Debug.Log ("Avoid shop");
+				ProfilesManagementScript.Instance.ContinueToInAppPurchase (false);
+
+			}
 		}
-        else if (productList.Count <= 0 && !mShopReady)
-        {
-                mShopReady = true;
-                Debug.Log("Avoid shop");
-			ProfilesManagementScript.Instance.ContinueToInAppPurchase(false);
-
-        }
 
     }
 
@@ -239,6 +239,8 @@ public class ShopManager
 			}
 		}
 
+		UnlockCharacterManager.PurchaseSuccessful(transaction.productIdentifier);
+
 		if (product != null) {
 			
 			Debug.Log ("Cost " + product.price+" "+product.currencyCode);
@@ -292,6 +294,8 @@ public class ShopManager
     void purchaseSucceededEvent(GooglePurchase purchase)
     {
         CurrentPurchaseStatus = PurchaseStatus.Success;
+		
+		UnlockCharacterManager.PurchaseSuccessful(purchase.productIdentifier);
         Debug.Log("purchaseSucceededEvent: " + purchase);
     }
 
@@ -313,19 +317,21 @@ public class ShopManager
         //GUIDebug.Log("queryInventorySucceededEvent");
         Prime31.Utils.logObject( purchases );
         Prime31.Utils.logObject( skus );
-		if(skus.Count > 0 && !mShopReady)
+		if(!ContinueRestore() && !mShopReady)
 		{
-			mShopReady = true;
-			Debug.Log("Go to shop");
-			ProfilesManagementScript.Instance.ContinueToInAppPurchase(true);
-			
-		}
-		else if (skus.Count <= 0 && !mShopReady)
-		{
-			mShopReady = true;
-			Debug.Log("Avoid shop");
-			ProfilesManagementScript.Instance.ContinueToInAppPurchase(false);
-			
+			if(skus.Count > 0)
+			{
+				mShopReady = true;
+				Debug.Log("Go to shop");
+				ProfilesManagementScript.Instance.ContinueToInAppPurchase(true);
+				
+			}
+			else
+			{
+				mShopReady = true;
+				Debug.Log("Avoid shop");
+				ProfilesManagementScript.Instance.ContinueToInAppPurchase(false);				
+			}
 		}
 		Debug.Log ("Number of purchases: " + purchases.Count.ToString ());
         for( int i = 0; i < purchases.Count; i++ )
@@ -362,16 +368,41 @@ public class ShopManager
         Debug.Log("billingNotSupportedEvent: " + error);
     }
 #endif
-	
+
+	bool continueRestore = false;
 	public void RestoreItems()
 	{
 		GoToAddress = false;
 		CurrentRestoreStatus = RestoreStatus.InProgress;
-#if UNITY_IOS
-		StoreKitBinding.restoreCompletedTransactions();
+		continueRestore = true;
+#if UNITY_IPHONE
+		if (productsList != null)
 #elif UNITY_ANDROID
-		RestoreAndroidPurchases();
-#endif
+		if(skus != null)
+#endif 
+		{
+			ContinueRestore();
+		} 
+		else
+		{
+			UnlockCharacterManager.OpenShop();
+		}
+	}
+
+	// Can be called at any point and if we are about to restore, it will return true.
+	public bool ContinueRestore()
+	{
+		if (continueRestore) 
+		{
+			#if UNITY_IOS
+			StoreKitBinding.restoreCompletedTransactions();
+			#elif UNITY_ANDROID
+			RestoreAndroidPurchases();
+			#endif
+			continueRestore = false;
+			return true;
+		}
+		return false;
 	}
     
 	private void RestoreAndroidPurchases()

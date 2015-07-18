@@ -134,7 +134,7 @@ public class ItunesButtonUpdate : MonoBehaviour
 				else 
 				{			
 					DialogPage.SetMessage("Your purchases have been successfully restored.\n\nThank you for purchasing Animin.");
-					UiPages.SetDialogBackPage(Pages.PurchasePage);
+					UiPages.SetDialogBackPage(Pages.AniminSelectPage);
 					UiPages.Next(Pages.DialogPage, 1f);
 				}
 

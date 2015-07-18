@@ -234,7 +234,7 @@ public class AnimationControllerScript : MonoBehaviour
 		
         set
         {
-            Debug.Log("Dancebop : ["+value+"];");
+ //           Debug.Log("Dancebop : ["+value+"];");
             animator.SetBool("IsDanceBOP", value);
         }
     }

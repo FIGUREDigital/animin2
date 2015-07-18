@@ -35,14 +35,14 @@ public class ProfilesManagementScript : Phi.SingletonMonoBehaviour<ProfilesManag
 
     public bool BeginLoadLevel;
 
-
-
 	[System.Serializable]
 	public class ProfileStateData
 	{
 		public List<PlayerProfileData> ProfileList; 
 		//public PlayerProfileData CurrentProfile;
-		public bool UpgradeTbo;
+		public bool UpgradeTbo;	
+		public List<PersistentData.TypesOfAnimin> UnlockedAnimins = new List<PersistentData.TypesOfAnimin>();	// This is the new location instead of inside the profiles
+        
 	}
 	
 	static public ProfileStateData StateData;
@@ -134,6 +134,14 @@ public class ProfilesManagementScript : Phi.SingletonMonoBehaviour<ProfilesManag
 			StateData = (ProfileStateData)bf.Deserialize(file);
 			foreach(PlayerProfileData profile in StateData.ProfileList)
 			{
+				// Ensure any unlocked animins are unlocked in the global settings
+				foreach(PersistentData.TypesOfAnimin animinType in profile.UnlockedAnimins)
+				{
+					if (!StateData.UnlockedAnimins.Contains(animinType))
+					{
+						StateData.UnlockedAnimins.Add (animinType);
+					}
+				}
 				profile.UpdateVersion();
 			}
 			file.Close();
@@ -248,7 +256,7 @@ public class ProfilesManagementScript : Phi.SingletonMonoBehaviour<ProfilesManag
     {
         Debug.Log("Activate shop");
         ShopManager.Instance.EndStore();
-        UnlockCharacterManager.Instance.OpenShop();
+        UnlockCharacterManager.OpenShop();
 
 		Debug.Log("Set up timeout");
 		Invoke ("CheckTimeout", 15);

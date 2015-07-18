@@ -1293,6 +1293,8 @@ public class CharacterProgressScript : MonoBehaviour
 										{
 											GetComponent<CharacterSwapManagementScript>().CurrentModel.transform.localScale = GetComponent<CharacterSwapManagementScript>().defaultScale;
 											
+											ProfilesManagementScript.Instance.CurrentAnimin.CreatedOn = System.DateTime.UtcNow;
+
 											TutorialHandler.TriggerAdHocStatic("Hatched");
 											
 											exitSleep();

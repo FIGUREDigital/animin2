@@ -341,7 +341,7 @@
         	<StartCondition>			
         		<AdHoc call = "PickupCrystal"/>
             </StartCondition>
-        	 <Lessons>
+        	 <Lessons skip = "MarkTutorialAsComplete">
                 <Lesson>
                     <TutEntries>
                     	 <TutEntry text="Press here to see what you can do with your crystals…" fire="PointToPortals"/>

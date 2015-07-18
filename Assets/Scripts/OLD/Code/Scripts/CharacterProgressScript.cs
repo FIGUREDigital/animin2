@@ -964,7 +964,8 @@ public class CharacterProgressScript : MonoBehaviour
             case ActionId.ExitPortalMainStage:
                 {
                     Debug.Log("ExitPortalmainStage");
-
+			
+					TutorialHandler.TriggerAdHocStatic("ExitSleep");
                     ShaderAlpha = 1;
 			
                     UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<AnimateCharacterOutPortalScript>().Timer = 0;

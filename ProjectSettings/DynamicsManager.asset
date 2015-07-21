@@ -5,10 +5,10 @@ PhysicsManager:
   m_ObjectHideFlags: 0
   m_Gravity: {x: 0, y: -600, z: 0}
   m_DefaultMaterial: {fileID: 0}
-  m_BounceThreshold: 2
+  m_BounceThreshold: 32
   m_SleepThreshold: .00499999989
   m_DefaultContactOffset: .00999999978
   m_SolverIterationCount: 6
   m_RaycastsHitTriggers: 1
   m_EnableAdaptiveForce: 0
-  m_LayerCollisionMatrix: fffffdfffffffdfffffffdfffffffffffffffdfffffffdfffffffffffffffffffffffdfffffbfdfffff9fdfffffffdfffffffdfffffffdfffffffdfffffffdfffffffdffc800fcffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+  m_LayerCollisionMatrix: fffff5fffffff5fffffff5fffffffffffffff1fffffff1fffffffffffffffffffffff5fffffbf5fffff9f9fffffff1fffffffdfffffff1fffffffdfffffff1fffffff9ffc800fcffcf53f2ffc854fbffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff

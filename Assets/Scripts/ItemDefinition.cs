@@ -63,6 +63,8 @@ public class ItemDefinition : MonoBehaviour
 	[SerializeField]
 	UnityEngine.Gradient gradient;
 
+	public Vector3 floorOffset;
+	public Vector3 scale = new Vector3(0.1f, 0.1f, 0.1f);
 
 	public SpecialFunctionalityId SpecialId
 	{

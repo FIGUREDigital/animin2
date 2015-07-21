@@ -15,8 +15,6 @@ public class EvolutionManager
         Winning,
     }
 
-    [SerializeField]
-    private const string FILENAME = "Assets/Resources/MarkerGuide.xml";
    // private const int MARKER_RATE = 20;
 	private const int MARKER_RATE = 6;
 	private const int BABY_EVOLVE_THRESHOLD = 36;
@@ -26,17 +24,13 @@ public class EvolutionManager
     private const int HAPPINESS_WIN_THRESHOLD = 80;
     private const int HAPPINESS_BIG_WIN_THRESHOLD = 110;
     private const float TIME_FOR_REWARD = 600;
-    private int mNextMarker = (int)(MARKER_RATE * 0.5f);
-    private int mZefProgress;
-    private int mCurrentMarker = 0;
     //private string mReward;
     private AniminEvolutionStageId mCorrectStage;
     private HappinessState mHappinessState;
     private HappinessState mPrevHappinessState;
     private float mTimeInHappinessState;
-    private bool mEvoStar = false;
 
-    private struct UnlockItem
+    public struct UnlockItem
     {
         public InventoryItemId Id;
         public int numZefs;
@@ -48,7 +42,7 @@ public class EvolutionManager
         }
     }
 
-    UnlockItem[] m_Unlocks = new UnlockItem[]
+    public UnlockItem[] m_Unlocks = new UnlockItem[]
     {
 	//	new UnlockItem(InventoryItemId.Phone, 1),
         new UnlockItem(InventoryItemId.Clock, 3),
@@ -137,12 +131,6 @@ public class EvolutionManager
 
     public void Init()
     {
-        while (ProfilesManagementScript.Instance.CurrentAnimin.ZefTokens >= mNextMarker)
-        {
-            mNextMarker += MARKER_RATE;
-            mEvoStar = !mEvoStar;
-            mCurrentMarker++;
-        }
     }
 
     public void UpdateEvo()
@@ -186,25 +174,19 @@ public class EvolutionManager
 
     private void ZefChanged()
     {
-        while (ProfilesManagementScript.Instance.CurrentAnimin.ZefTokens >= mNextMarker)
-        {
-            Debug.Log("ZefTokens : [" + ProfilesManagementScript.Instance.CurrentAnimin.ZefTokens + "]; Next Marker : " + mNextMarker + "];");
-            mNextMarker += MARKER_RATE;
-            /*if (mMarkers.Count > mCurrentMarker)
-            {
-                mReward = mMarkers[mCurrentMarker];
-            }*/
-		   // Not triggered everytime an evo item is unlocked...
-           // AchievementsScript.Singleton.Show(mEvoStar ? AchievementTypeId.EvolutionStar : AchievementTypeId.EvolutionExclamation, 0);
-            mEvoStar = !mEvoStar;
-            mCurrentMarker++;
-		}
         for (int i = 0; i < m_Unlocks.Length; i++)
         {
 			if (m_Unlocks[i].numZefs == ProfilesManagementScript.Instance.CurrentAnimin.ZefTokens)
 			{
-                GameObject chest = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().GetAndSpawnChests(4);
-				chest.GetComponent<ItemLink>().item.ExtraData = (int)m_Unlocks[i].Id;
+				InventoryItemId item = m_Unlocks[i].Id;
+				// Have we got one of these allready?
+				if (!ProfilesManagementScript.Instance.CurrentProfile.Inventory.OwnItem(item))
+				{
+					// Unlock it!
+                	GameObject chest = UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterProgressScript>().GetAndSpawnChests(4);
+					chest.GetComponent<ItemLink>().item.ExtraData = (int)item;
+					break;
+				}
             }
 		}
         //if (ProfilesManagementScript.Singleton.CurrentProfile.ActiveAnimin == PersistentData.TypesOfAnimin.Tbo)
@@ -353,26 +335,5 @@ public class EvolutionManager
     {
         ProfilesManagementScript.Instance.CurrentAnimin.AniminEvolutionId = mCorrectStage;
         UIGlobalVariablesScript.Singleton.MainCharacterRef.GetComponent<CharacterSwapManagementScript>().LoadCharacter(ProfilesManagementScript.Instance.CurrentAnimin.PlayerAniminId, mCorrectStage, !ProfilesManagementScript.Instance.CurrentAnimin.Hatched);
-    }
-
-    public List<string> Deserialize()
-    {
-        List<string> data = null;
-		
-        XmlSerializer serializer = new XmlSerializer(typeof(List<string>));
-		
-        StreamReader reader = new StreamReader(FILENAME);
-        data = (List<string>)serializer.Deserialize(reader);
-        reader.Close();
-		
-        return data;
-    }
-
-    public void Serialize()
-    {
-        XmlSerializer ser = new XmlSerializer(typeof(List<string>));
-        TextWriter writer = new StreamWriter(FILENAME);
-        ser.Serialize(writer, mMarkers);
-        writer.Close();
     }
 }

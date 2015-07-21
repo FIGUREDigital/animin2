@@ -44,7 +44,7 @@ public class DragDropMainBarItem : MonoBehaviour, IBeginDragHandler, IDragHandle
 		{
 			hitPos = Boxes.GetGroundPoint (hit);
 		}
-		modelLink.item.MoveTo (Inventory.CurrentLocation, hitPos, new Vector3(0, UnityEngine.Random.Range (180-45, 180+45), 0));
+		modelLink.item.MoveTo (Inventory.CurrentLocation, hitPos + modelLink.item.Definition.floorOffset, new Vector3(0, UnityEngine.Random.Range (180-45, 180+45), 0));
 
 		CharacterProgressScript.SwitchGravity (GO, true);
 		if (hit.collider == null || hit.collider.name.StartsWith("Extended")) 

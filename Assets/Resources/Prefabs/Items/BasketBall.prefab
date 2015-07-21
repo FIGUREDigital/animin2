@@ -43,7 +43,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 110150}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -.00999999978, z: 0}
+  m_LocalPosition: {x: 0, y: -.469999999, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children: []
   m_Father: {fileID: 432980}
@@ -56,7 +56,7 @@ Transform:
   m_GameObject: {fileID: 103478}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3200, y: 0, z: 3200}
-  m_LocalScale: {x: 20, y: 20, z: 20}
+  m_LocalScale: {x: 26, y: 26, z: 26}
   m_Children:
   - {fileID: 403160}
   m_Father: {fileID: 0}
@@ -100,8 +100,8 @@ Rigidbody:
   m_GameObject: {fileID: 103478}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: .0500000007
+  m_Drag: .5
+  m_AngularDrag: .100000001
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -167,6 +167,8 @@ MonoBehaviour:
     atime7: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
+  floorOffset: {x: 0, y: 12.0900002, z: 0}
+  scale: {x: .129999995, y: .129999995, z: .129999995}
 --- !u!114 &11441038
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -184,12 +186,12 @@ SphereCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 103478}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: ace83fe03746846aea0c58d9c8288d16, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: .465000004
-  m_Center: {x: 0, y: .465000004, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

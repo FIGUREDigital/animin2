@@ -1,1 +1,1 @@
-{"buildNumber":"2.0.77","scmCommitId":"Andrews-MacBook-Pro.local","buildStartTime":"07/18/2015 15:51:45"}
+{"buildNumber":"2.0.79","scmCommitId":"Andrews-MBP.Hersee","buildStartTime":"07/21/2015 20:16:14"}

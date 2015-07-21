@@ -103,6 +103,8 @@ public class Boxes : MonoBehaviour {
 	static public Vector3 FindSpawnPoint(int avoidEdgesBy = 0, bool closestToCenter = false, float radius = 0)
 	{
 		possibleLocations.Clear ();
+		
+		possibleLocations.Add (new Vector3(0, 10000, 0));
 		float ws = WorldSize;
 		if (ws > 11) 
 		{

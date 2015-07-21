@@ -7,7 +7,7 @@ public class EvoBar : MonoBehaviour
 	[SerializeField]
 	private UnityEngine.UI.Image mEvoFill;
 	private int mSpriteWidth = 1330;
-	private List<GameObject> mMarkers = new List<GameObject>();
+	public List<UIImagePro> mMarkers = new List<UIImagePro>();
 	private const string EVO_EX_NAME = "evoMarker_exclamation";
 	private const string EVO_STAR_NAME = "evoMarker_star";
 	private int mNumBabyMarkers;
@@ -38,11 +38,10 @@ public class EvoBar : MonoBehaviour
 
 		if(mMarkers.Count > 0)
 		{
-			foreach(GameObject go in mMarkers)
+			for(int i =0; i < mMarkers.Count; i++)
 			{
-				Destroy(go);
+				mMarkers[i].gameObject.SetActive(false);
 			}
-			mMarkers.Clear();
 		}
 
 		int baby = EvolutionManager.Instance.BabyEvolutionThreshold;
@@ -81,14 +80,28 @@ public class EvoBar : MonoBehaviour
 		bool marker = false;
 		float halfWidth = (mSpriteWidth * 0.5f) - ((0.5f * spacing) * mSpriteWidth);
 		float scale = UIGlobalVariablesScript.Singleton.gameObject.transform.localScale.x;
-		for(int i = 0; i < number; i++)
+		EvolutionManager.UnlockItem[] unlocks = EvolutionManager.Instance.m_Unlocks;
+		int markerIndex = 0;
+		float width = mMarkers [0].transform.parent.GetComponent<RectTransform> ().sizeDelta.x;
+		for(int i = 0; i < unlocks.Length; i++)
 		{
-			Vector3 pos = transform.position + new Vector3((((i * spacing) * mSpriteWidth) - halfWidth) * scale,0,0);
-			GameObject go = MakeThing(pos, marker ? EVO_EX_NAME : EVO_STAR_NAME);
-			marker = !marker;
-			mMarkers.Add(go);
+			float zefs = unlocks[i].numZefs;
+			if (zefs >= min && zefs <= max)
+			{
+				zefs -= min;
+				float ratio = zefs / (max - min);
+				while (markerIndex >= mMarkers.Count)
+				{
+					GameObject go = Instantiate(mMarkers[0].gameObject);
+					go.transform.parent = mMarkers[0].transform.parent;
+					mMarkers.Add (go.GetComponent<UIImagePro>());
+				}
+				UIImagePro iPro = mMarkers[markerIndex++];
+				RectTransform rt = iPro.GetComponent<RectTransform>();
+				rt.anchoredPosition = new Vector2(ratio * width, 0);
+				iPro.gameObject.SetActive (true);
+			}
 		}
-
 	}
 	
 	private GameObject MakeExclamation(Vector3 pos)

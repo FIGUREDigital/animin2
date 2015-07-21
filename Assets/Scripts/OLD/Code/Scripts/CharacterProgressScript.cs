@@ -58,6 +58,7 @@ public enum InventoryItemId
 	ChestEvo,
 
 	BasketBall,
+	BasketBallNet,
 
     Count,
 }
@@ -405,7 +406,8 @@ public class CharacterProgressScript : MonoBehaviour
 		ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeOwn(InventoryItemId.Radio, 1);
 //		ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeOwn(InventoryItemId.BasketBall, 1);
 		
-		ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeOwn(InventoryItemId.Camera, 1);
+		ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeOwn(InventoryItemId.BasketBall, 1);
+		ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeOwn(InventoryItemId.BasketBallNet, 1);
 //		ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeOwn(InventoryItemId.Strawberry, 2);
 //		ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeOwn(InventoryItemId.FartButton, 1);
 //		ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeOwn(InventoryItemId.Box1, 10);
@@ -496,9 +498,7 @@ public class CharacterProgressScript : MonoBehaviour
 			ItemUnlockBehaviour.Show(itemID);
 		}
 
-        float scale = 0.1f;
-		go.transform.localScale = new Vector3(scale, scale, scale);
-
+		go.transform.localScale = ItemDefinition.GetDefinition (itemID).scale;
 		Debug.Log ("If somebody sees this, please tell Harry. Tell him [" + gameObject.name + "]; was a thing.");
 		go.gameObject.transform.localRotation = Quaternion.Euler(0, UnityEngine.Random.Range(130, 230), 0);
 
@@ -1582,7 +1582,7 @@ public class CharacterProgressScript : MonoBehaviour
 							}
 							else
 							{
-								layersMask = LayerMask.GetMask("Floor","Items","ExtendedFloor") | 1;
+								layersMask = LayerMask.GetMask("Floor","ItemsConcave", "Items","ExtendedFloor") | 1;
 							}
 							if (Physics.SphereCast(pos, 5, Vector3.down, out sphereHit, float.MaxValue, layersMask))
 							{
@@ -1611,7 +1611,7 @@ public class CharacterProgressScript : MonoBehaviour
 							{
 								rot.y = 180-45;
 							}
-							li.item.MoveTo(li.item.Location, pos, rot);
+					li.item.MoveTo(li.item.Location, pos + li.item.Definition.floorOffset, rot);
 						}
 						else
 						{

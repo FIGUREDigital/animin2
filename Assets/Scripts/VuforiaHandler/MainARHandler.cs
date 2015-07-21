@@ -131,7 +131,7 @@ public class MainARHandler : MonoBehaviour
 		fovCamera.enabled = true;
 		m_IsTracking = false;
 		arCamera.cullingMask = fovCamera.cullingMask = (1 << LayerMask.NameToLayer("TransparentFX")) | (1 << LayerMask.NameToLayer("Default"))
-			| (1 << LayerMask.NameToLayer("Ignore Raycast")) | (1 << LayerMask.NameToLayer("Water")) | (1 << LayerMask.NameToLayer("Items"))
+			| (1 << LayerMask.NameToLayer("Ignore Raycast")) | (1 << LayerMask.NameToLayer("Water")) | (1 << LayerMask.NameToLayer("Items")) | (1 << LayerMask.NameToLayer("ItemsConcave"))
 				| /*(1 << LayerMask.NameToLayer("UI")) |*/ (1 << LayerMask.NameToLayer("ARCamera"))
 				| (1 << LayerMask.NameToLayer("Character")) | (1 << LayerMask.NameToLayer("IgnoreCollisionWithCharacter"))
 				| (1 << LayerMask.NameToLayer("Projectiles")) | (1 << LayerMask.NameToLayer("Floor"));

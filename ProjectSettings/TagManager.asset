@@ -42,8 +42,8 @@ TagManager:
   - IgnoreUI
   - Items
   - ExtendedFloor
-  - 
-  - 
+  - ItemsConcave
+  - ItemsNoTouch
   - 
   - 
   - 

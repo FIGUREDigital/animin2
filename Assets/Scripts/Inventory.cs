@@ -31,11 +31,13 @@ public class Inventory
 		static int layerUI;
 		static int layerFloor;
 		static int layerItems;
+		static int layerItemsConcave;
 		static Entry()
 		{
 			layerUI = LayerMask.NameToLayer("UI");
 			layerFloor = LayerMask.NameToLayer("Floor");
 			layerItems = LayerMask.NameToLayer("Items");
+			layerItemsConcave = LayerMask.NameToLayer("ItemsConcave");
 		}
 
 		// Our private data has to be public due to the use of the xmlserializer.
@@ -92,8 +94,10 @@ public class Inventory
 		}
 
 		public void UpdatePosAndRotFromTransform()
-		{
-			MoveTo (Location, Instance.transform.position, Instance.transform.localEulerAngles, justSpawnedFromChest);
+		{			
+			this.privatePosition = Instance.transform.position;
+			this.privateRotation = Instance.transform.localEulerAngles;
+			//MoveTo (Location, Instance.transform.position, Instance.transform.localEulerAngles, justSpawnedFromChest);
 		}
 		
 		public void MoveTo(Locations location, Vector3 position, bool justSpawnedFromChest = false)
@@ -143,6 +147,11 @@ public class Inventory
 			if (Definition.ItemType == PopupItemType.Box) {
 				// Switch layer between UI and world cameras
 				SetLayer (Instance.transform, privateLocation == Locations.Inventory ? layerUI : layerFloor);
+			}
+			else if (Definition.Id == InventoryItemId.BasketBallNet)
+			{
+				// Switch layer between UI and world cameras
+				SetLayer (Instance.transform, privateLocation == Locations.Inventory ? layerUI : layerItemsConcave);
 			} else {
 				
 				SetLayer (Instance.transform, privateLocation == Locations.Inventory ? layerUI : layerItems);
@@ -199,13 +208,9 @@ public class Inventory
 					instance.transform.localScale = new Vector3 (.2f, .2f, .2f);
 				}
 			}
-			else if (Definition.ItemType == PopupItemType.Chest)
+			else 
 			{
-				instance.transform.localScale = new Vector3 (.2f, .2f, .2f);
-			}
-			else
-			{
-				instance.transform.localScale = new Vector3 (.1f, .1f, .1f);
+				instance.transform.localScale = Definition.scale;
 			}
 		}
 

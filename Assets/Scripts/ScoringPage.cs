@@ -212,7 +212,7 @@ public class ScoringPage : Phi.SingletonScene<ScoringPage>
 			if (barMax - barMin < 1000) {
 				barMax = barMin + 1000;
 			}
-			DOTween.To (SetScore, scoreValue, Mathf.Min (barMax, points), 2.0f);
+			DOTween.To (SetScore, scoreValue, Mathf.Min (barMax, points), 2.0f).SetEase(Ease.Linear);
 			yield return new WaitForSeconds(2.0f);
 			if (points > barMax)
 			{

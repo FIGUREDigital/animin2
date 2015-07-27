@@ -1150,7 +1150,10 @@ public class CharacterProgressScript : MonoBehaviour
 							MainARHandler.Instance.CurrentItem = detectDragHit.collider.gameObject;		
 		                    CurrentAction = ActionId.DragItemAround;
 							IsDetectingMouseMoveForDrag = false;
-							MainARHandler.Instance.CurrentItem.layer = LayerMask.NameToLayer("IgnoreCollisionWithCharacter");
+							if(e.Id != InventoryItemId.BasketBallNet)
+							{
+								MainARHandler.Instance.CurrentItem.layer = LayerMask.NameToLayer("IgnoreCollisionWithCharacter");
+							}
 //							MainARHandler.Instance.CurrentItem.GetComponent<BoxCollider>().enabled = false;
 							SwitchGravity(MainARHandler.Instance.CurrentItem, false);
                         }
@@ -1579,6 +1582,10 @@ public class CharacterProgressScript : MonoBehaviour
 							if(li.item.Definition.ItemType == PopupItemType.Box)
 							{
 								layersMask = LayerMask.GetMask("Floor",  "ExtendedFloor");
+							}
+							else if (li.item.Id == InventoryItemId.BasketBallNet)
+							{
+								layersMask = LayerMask.GetMask("Floor", "Items","ExtendedFloor") | 1;
 							}
 							else
 							{

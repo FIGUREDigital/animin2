@@ -5928,6 +5928,14 @@ Prefab:
       propertyPath: checkPaddingRequired
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 197948, guid: 8e05686b2b0db4610a57f02236e5858d, type: 2}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 148706, guid: 8e05686b2b0db4610a57f02236e5858d, type: 2}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e05686b2b0db4610a57f02236e5858d, type: 2}
   m_IsPrefabParent: 0

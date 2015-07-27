@@ -1249,7 +1249,8 @@ public class CharacterProgressScript : MonoBehaviour
                             if (cleanedShit)
                             {
                                 UIGlobalVariablesScript.Singleton.SoundEngine.Play(GenericSoundId.CleanPooPiss);
-                                TutorialHandler.TriggerAdHocStatic("ShitCleaned");
+                                TutorialHandler.TriggerAdHocStatic("ShitCleaned");						
+								LastTimeToilet = DateTime.UtcNow;	// We can make a mess again now
                             }
 												
                             if (TouchesObjcesWhileSwiping.Contains(this.gameObject) && !cleanedShit && !animationController.IsTickled)
@@ -1650,13 +1651,18 @@ public class CharacterProgressScript : MonoBehaviour
         }
 
 		if ((DateTime.UtcNow - LastTimeToilet).TotalSeconds >= M_SHIT_TIME && !animationController.IsSleeping && animationController.IsIdle && !IsMovingTowardsLocation && TutorialHandler.CheckTutsCompleted("MiniGameDone"))
-        {
+		{
+			LastTimeToilet = DateTime.UtcNow;
             GameObject newPoo;
             if (UnityEngine.Random.Range(0, 2) == 0 || !TutorialHandler.CheckTutsCompleted("Shit"))
             {
                 newPoo = GameObject.Instantiate(PooPrefab) as GameObject;
                 UIGlobalVariablesScript.Singleton.SoundEngine.Play(GenericSoundId.TakePoo);
                 TutorialHandler.TriggerAdHocStatic("Shit"); //Hey, we have naming conventions. I'm gonna stick to them.
+				if(!TutorialHandler.CheckTutsCompleted("Shit"))
+				{					
+					LastTimeToilet = DateTime.UtcNow.AddMonths(1);	// Avoid doing any more until we clean this up.
+				}
             }
             else
             {
@@ -1676,7 +1682,6 @@ public class CharacterProgressScript : MonoBehaviour
 
             MoveTo(this.transform.position + new Vector3(UnityEngine.Random.Range(-40, 40), 0, randomDistanceA * sign), false);
 
-			LastTimeToilet = DateTime.UtcNow;
 		}
         
 		if ((DateTime.UtcNow - LastGiftTime).TotalSeconds >= M_GIFT_TIME && !animationController.IsSleeping && animationController.IsIdle && !IsMovingTowardsLocation)

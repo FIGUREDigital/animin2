@@ -285,10 +285,16 @@ public class ProfilesManagementScript : Phi.SingletonMonoBehaviour<ProfilesManag
 		if (resultId.StartsWith ("Card successfully activated") || resultId.StartsWith ("Animin already activated")) {
 			UnlockCharacterManager.Instance.UnlockCharacter ();
 			UiPages.Next (Pages.AniminSelectPage);
+			
+			#if UNITYANALYTICS
 			UnityEngine.Analytics.Analytics.CustomEvent ("CodeSuccess", new Dictionary<string, object>{{"code",code},{"result",resultId}});
+#endif
 
 		} else {
+			
+			#if UNITYANALYTICS
 			UnityEngine.Analytics.Analytics.CustomEvent ("CodeFail", new Dictionary<string, object>{{"code",code},{"result",resultId}});
+#endif
 		}
         if(resultId.StartsWith ("Card number not valid"))
         {

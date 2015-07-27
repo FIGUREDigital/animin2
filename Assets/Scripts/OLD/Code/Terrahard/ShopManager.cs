@@ -240,7 +240,8 @@ public class ShopManager
 		}
 
 		UnlockCharacterManager.PurchaseSuccessful(transaction.productIdentifier);
-
+		
+		#if UNITYANALYTICS
 		if (product != null) {
 			
 			Debug.Log ("Cost " + product.price+" "+product.currencyCode);
@@ -250,6 +251,7 @@ public class ShopManager
 		} else {
 			UnityEngine.Analytics.Analytics.Transaction (transaction.productIdentifier, 0, "GBP");
 		}
+		#endif
         if( CurrentRestoreStatus == RestoreStatus.InProgress || CurrentRestoreStatus == RestoreStatus.Success )
         {
 

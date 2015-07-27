@@ -217,7 +217,10 @@ public class ConfigurableData : Phi.SingletonMonoBehaviour<ConfigurableData> {
 		yield return www;
 		
 		if (www.error != null) {
+			
+			#if UNITYANALYTICS
 			UnityEngine.Analytics.Analytics.CustomEvent("ConfigErr", new Dictionary<string, object>{{"error",www.error}});
+#endif
 			Debug.Log (www.error);
 		} else {
 			using (TextReader reader = new StringReader(www.text))
@@ -225,7 +228,10 @@ public class ConfigurableData : Phi.SingletonMonoBehaviour<ConfigurableData> {
 				XmlSerializer bf = new XmlSerializer(typeof(GameData));
 				data = (GameData)bf.Deserialize(reader);
 				Save ();
+				
+				#if UNITYANALYTICS
 				UnityEngine.Analytics.Analytics.CustomEvent("ConfigUpdated", new Dictionary<string, object>{{"version",data.version}});
+#endif
 				Debug.Log ("Updated GameData "+data.version);
 			}
 		}
@@ -266,7 +272,8 @@ public class ConfigurableData : Phi.SingletonMonoBehaviour<ConfigurableData> {
 		ProfilesManagementScript.Instance.CurrentAnimin.Hungry = newHungry;
 		ProfilesManagementScript.Instance.CurrentAnimin.Fitness = newFitness;
 
-
+		
+		#if UNITYANALYTICS
 		UnityEngine.Analytics.Analytics.CustomEvent ("Return", new Dictionary<string, object>{
 			{"duartion",minutes},
 			{"animin",ProfilesManagementScript.Instance.CurrentAnimin.PlayerAniminId},
@@ -277,6 +284,7 @@ public class ConfigurableData : Phi.SingletonMonoBehaviour<ConfigurableData> {
 			{"newHungry",newHungry},
 			{"fitness",ProfilesManagementScript.Instance.CurrentAnimin.Fitness},
 			{"newFitness",newFitness}});
+#endif
 	}
 
 	float UpdateStat(float curValue, List<DeltaRate> deltas, float duration, string comment)

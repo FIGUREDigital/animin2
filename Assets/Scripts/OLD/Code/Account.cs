@@ -225,7 +225,10 @@ public class Account
 
 		if (serviceCode || backdoorCode)
 		{
+			
+			#if UNITYANALYTICS
 			UnityEngine.Analytics.Analytics.CustomEvent ("CodeBackdoor", new Dictionary<string,object>());
+#endif
 			Debug.Log("It is a service code... " + code);
 			if(backdoorCode)
 			{
@@ -250,7 +253,10 @@ public class Account
 		}
         else
 		{
+			
+			#if UNITYANALYTICS
 			UnityEngine.Analytics.Analytics.CustomEvent ("CodeCheck", new Dictionary<string,object>());
+#endif
 			Debug.Log("Sumbitting code: " + code);
             WWWForm data = new WWWForm();
 
@@ -270,7 +276,9 @@ public class Account
                 Debug.Log(w.error);
                 ProfilesManagementScript.Instance.OnAccessCodeResult(code, "Something went wrong, please try again in a bit...");
 				
+				#if UNITYANALYTICS
 				UnityEngine.Analytics.Analytics.CustomEvent ("CodeError", new Dictionary<string, object>{{"code",code},{"error",w.error}});
+#endif
             }
 
             else

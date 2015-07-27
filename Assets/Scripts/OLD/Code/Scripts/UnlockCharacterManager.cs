@@ -222,7 +222,9 @@ public class UnlockCharacterManager
 		DoUnlock (m_CurrentCharacterFocus);
 		Debug.Log("just saved...unlock");
         ShopManager.Instance.EndStore(); 
+#if UNITYANALYTICS
 		UnityEngine.Analytics.Analytics.CustomEvent ("Unlock", new Dictionary<string, object>{{"animin",m_CurrentCharacterFocus.ToString()}});
+#endif
 
        // ProfilesManagementScript.Singleton.SendRealTimeNotification("AniminUnlocked",1);
 	}

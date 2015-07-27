@@ -72,7 +72,7 @@ PlayerSettings:
     16:9: 1
     Others: 1
   bundleIdentifier: com.do.dog
-  bundleVersion: 2.0.79
+  bundleVersion: 2.0.82
   preloadedAssets: []
   metroEnableIndependentInputSource: 0
   metroEnableLowLatencyPresentationAPI: 0
@@ -306,7 +306,7 @@ PlayerSettings:
   scriptingDefineSymbols:
     1: DOTWEEN_TMP
     2: DOTWEEN_TMP
-    4: EVERYPLAY_IPHONE;VUFORIA_IOS_SETTINGS;DEBUGCHEATS;DOTWEEN_TMP
+    4: EVERYPLAY_IPHONE;VUFORIA_IOS_SETTINGS;DOTWEEN_TMP
     5: DOTWEEN_TMP
     6: DOTWEEN_TMP
     7: EVERYPLAY_ANDROID;VUFORIA_ANDROID_SETTINGS;DOTWEEN_TMP

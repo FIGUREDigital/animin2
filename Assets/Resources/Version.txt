@@ -1,1 +1,1 @@
-{"buildNumber":"2.0.79","scmCommitId":"Andrews-MBP.Hersee","buildStartTime":"07/21/2015 20:16:14"}
+{"buildNumber":"2.0.82","scmCommitId":"Andrews-MBP.Hersee","buildStartTime":"07/25/2015 16:27:24"}

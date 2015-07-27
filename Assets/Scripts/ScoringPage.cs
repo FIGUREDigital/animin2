@@ -63,7 +63,10 @@ public class ScoringPage : Phi.SingletonScene<ScoringPage>
 
 	public static void Show (Minigame game, int points, int stars, Action onFinish)
 	{
+		
+		#if UNITYANALYTICS
 		UnityEngine.Analytics.Analytics.CustomEvent ("Score", new Dictionary<string, object>{{"game",game.ToString ()},{"points", points},{"stars", stars}});
+#endif
 
 		if (Exists ()) 
 		{

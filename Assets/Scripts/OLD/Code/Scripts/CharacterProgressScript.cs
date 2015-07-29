@@ -2,6 +2,7 @@ using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Prime31;
 
 public enum InventoryItemId
 {
@@ -377,7 +378,6 @@ public class CharacterProgressScript : MonoBehaviour
 		}
     }
 
-
     void Start()
     {
 		ConfigurableData.Instance.EnsureInstanced ();
@@ -403,6 +403,7 @@ public class CharacterProgressScript : MonoBehaviour
 		ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeHave(InventoryItemId.ItemAlbum, 1);
 		*/
 		
+		ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeOwn(InventoryItemId.woodFrame, 1);
 //		ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeOwn(InventoryItemId.Radio, 1);
 //		ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeOwn(InventoryItemId.BasketBall, 1);
 		
@@ -1432,9 +1433,9 @@ public class CharacterProgressScript : MonoBehaviour
                             {
                                 moveHitInfo.collider.gameObject.AddComponent<FlashObjectScript>();
 
-                                point = moveHitInfo.transform.position;							
+                                point = moveHitInfo.transform.position;		
 
-								MenuFunctionalityUI menuUI = moveHitInfo.collider.GetComponent<ItemLink>().item.Definition.Menu;
+								MenuFunctionalityUI menuUI = entry.Definition.Menu;
 								GameObject menu = CaringPageUI.GetUI(menuUI);
 
 								if (menu != null && !menu.activeInHierarchy && RequestedToMoveToCounter == 1 && (menuUI != MenuFunctionalityUI.None) && !hadUItouch)
@@ -1448,6 +1449,12 @@ public class CharacterProgressScript : MonoBehaviour
 										edmScript.SetInterface(menu);
 									}*/
                                 }
+								else if (entry.Id == InventoryItemId.woodFrame)
+								{
+									HidePopupMenus(true);
+									preventMovingTo = true;
+									il.GetComponent<Picture>().PromptForPhoto();	
+								}
                                 else if (ObjectHolding == null)
                                 {
                                     IsGoingToPickUpObject = moveHitInfo.collider.gameObject;
@@ -1801,9 +1808,6 @@ public class CharacterProgressScript : MonoBehaviour
 		
 //        UiPages.GetPage(Pages.CaringPage).GetComponent<CaringPageControls>().TutorialHandler.TriggerExitCond("Initial", "WakeUp");
     }
-
-
-
 
     public void PickupItem(GameObject item)
     {

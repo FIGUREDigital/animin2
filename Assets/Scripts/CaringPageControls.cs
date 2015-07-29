@@ -332,10 +332,10 @@ public class CaringPageControls : MonoBehaviour
 	}
 
     public void MinigameButton()
-    {
+	{
+		TutorialHandler.TriggerAdHocStatic("ViewPortals");
         DisappearAllItemUIs();
         UiPages.Next(Pages.MinigamesPage);
-        TutorialHandler.TriggerAdHocStatic("ViewPortals");
         AudioController.Play("Portal");
     }
 

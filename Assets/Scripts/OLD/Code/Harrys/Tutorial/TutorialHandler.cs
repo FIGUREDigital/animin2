@@ -458,7 +458,7 @@ public class TutorialHandler : MonoBehaviour
                 BeginBlock();
             }
         }
-        if (m_IsTiming)
+		if (m_IsTiming)
         {
 //            Debug.Log("Timing : [" + ((int)m_Timer) + "];");
             if (m_Timer > 0)
@@ -936,7 +936,7 @@ public class TutorialHandler : MonoBehaviour
 			// Note we are not finishing and closing the tutorial just marking it as complete in the save game.
 			if (m_CurTutorial != null)
 			{
-				MarkTutorialComplete(m_CurTutorial.Name);
+				MarkTutorialComplete(m_CurTutorial.Name, false);
 			}
 		}
 

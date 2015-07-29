@@ -329,9 +329,9 @@
         </Tutorial>
 				
         <Tutorial name="UseCrystals">
-        	<StartCondition>			
-        		<AdHoc call = "PickupCrystal"/>
-            </StartCondition>
+			<StartCondition>
+        		<Timer trigger="Crystals" seconds="1"/>
+			</StartCondition>
         	 <Lessons skip = "MarkTutorialAsComplete">
                 <Lesson>
                     <TutEntries>

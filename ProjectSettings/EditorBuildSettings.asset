@@ -7,6 +7,8 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 0
     path: Assets/Scenes/Test/TestMenu.unity
+  - enabled: 1
+    path: Assets/Plugins/Etcetera/demo/EtceteraTestScene.unity
   - enabled: 0
     path: Assets/Plugins/MediaPlayer/demo/MediaPlayertestScene.unity
   - enabled: 1
@@ -17,3 +19,7 @@ EditorBuildSettings:
     path: Assets/Scenes/ARBase.unity
   - enabled: 0
     path: Assets/Plugins/MediaPlayer/demo/MediaPlayerRawScene.unity
+  - enabled: 1
+    path: Assets/Plugins/Etcetera/demo/EtceteraTestSceneThree.unity
+  - enabled: 1
+    path: Assets/Plugins/Etcetera/demo/EtceteraTestSceneTwo.unity

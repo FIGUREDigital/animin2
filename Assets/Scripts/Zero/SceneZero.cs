@@ -13,11 +13,24 @@ public class SceneZero : MonoBehaviour
 
 	void Start ()
 	{
+		Debug.Log ("SceneZero Start");
 		
 		Application.targetFrameRate = 60;
 		UITextTextMeshPro.Init();
 		UITextTextMeshProNG.Init();
         Debug.Log ("SceneZero");
+#if UNITY_IPHONE
+		if (UnityEngine.iOS.Device.generation == UnityEngine.iOS.DeviceGeneration.iPad3Gen)
+		{
+			// Disable anti-aliasing on iPad 3
+			QualitySettings.antiAliasing = 0;
+			Debug.Log ("Set QualitySettings.antiAliasing = 0");
+		}
+		else
+		{			
+			Debug.Log ("UnityEngine.iOS.Device.generation = "+UnityEngine.iOS.Device.generation);
+		}
+#endif
 
 		#if UNITY_ANDROID
             if(!Application.isEditor)

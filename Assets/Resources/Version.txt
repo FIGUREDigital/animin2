@@ -1,1 +1,1 @@
-{"buildNumber":"2.0.82","scmCommitId":"Andrews-MBP.Hersee","buildStartTime":"07/28/2015 20:55:07"}
+{"buildNumber":"2.0.84","scmCommitId":"MACVMWIN8","buildStartTime":"7/30/2015 7:17:08 PM"}

@@ -297,7 +297,7 @@ public class ShopManager
     {
         CurrentPurchaseStatus = PurchaseStatus.Success;
 		
-		UnlockCharacterManager.PurchaseSuccessful(purchase.productIdentifier);
+		UnlockCharacterManager.PurchaseSuccessful(purchase.productId);
         Debug.Log("purchaseSucceededEvent: " + purchase);
     }
 

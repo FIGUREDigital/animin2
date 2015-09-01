@@ -403,7 +403,7 @@ public class CharacterProgressScript : MonoBehaviour
 		ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeHave(InventoryItemId.ItemAlbum, 1);
 		*/
 		
-		ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeOwn(InventoryItemId.woodFrame, 1);
+//		ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeOwn(InventoryItemId.woodFrame, 1);
 //		ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeOwn(InventoryItemId.Radio, 1);
 //		ProfilesManagementScript.Instance.CurrentProfile.Inventory.EnsureWeOwn(InventoryItemId.BasketBall, 1);
 		
